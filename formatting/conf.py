@@ -31,7 +31,7 @@ primary_domain = 'cpp'
 extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinx.ext.ifconfig', 'sphinx.ext.viewcode']
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['.templates']
+templates_path = ['templates']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -94,7 +94,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'itk'
 
 html_color_theme = '@HTML_COLOR_THEME@'
 itk_blue = '#2c56a4'
@@ -107,46 +107,46 @@ dark_borders_bg = '#0a001f'
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-html_theme_options = { 'stickysidebar': True,
-            'collapsiblesidebar': True,
-            'sidebarbgcolor': itk_blue,
-            'sidebartextcolor': bright_blue,
-            'sidebarlinkcolor': less_bright_blue,
-            'relbarbgcolor': dull_blue,
-            'relbartextcolor': 'white',
-            'relbarlinkcolor': less_bright_blue
-            }
-if html_color_theme == 'dark':
-    html_theme_options.update({
-            'footertextcolor': dark_borders_bg,
-            'footerbgcolor': bright_blue,
-            'bgcolor': dark_borders_bg,
-            'textcolor': 'white',
-            'linkcolor': less_bright_blue,
-            'visitedlinkcolor': bright_blue,
-            'headbgcolor': more_dull_blue,
-            'headtextcolor': bright_blue,
-            'headlinkcolor': less_bright_blue,
-            'codebgcolor': dark_borders_bg,
-            'codetextcolor': 'white',
-            })
-else:
-    html_theme_options.update({
-            'footerbgcolor': dark_borders_bg,
-            'footertextcolor': bright_blue,
-            'textcolor': 'black',
-            'bgcolor': 'white',
-            'linkcolor': dull_blue,
-            'visitedlinkcolor': more_dull_blue,
-            'headbgcolor': bright_blue,
-            'headtextcolor': more_dull_blue,
-            'headlinkcolor': dull_blue,
-            'codetextcolor': 'black',
-            'codebgcolor': 'white',
-            })
+#html_theme_options = { 'stickysidebar': True,
+            #'collapsiblesidebar': True,
+            #'sidebarbgcolor': itk_blue,
+            #'sidebartextcolor': bright_blue,
+            #'sidebarlinkcolor': less_bright_blue,
+            #'relbarbgcolor': dull_blue,
+            #'relbartextcolor': 'white',
+            #'relbarlinkcolor': less_bright_blue
+            #}
+#if html_color_theme == 'dark':
+    #html_theme_options.update({
+            #'footertextcolor': dark_borders_bg,
+            #'footerbgcolor': bright_blue,
+            #'bgcolor': dark_borders_bg,
+            #'textcolor': 'white',
+            #'linkcolor': less_bright_blue,
+            #'visitedlinkcolor': bright_blue,
+            #'headbgcolor': more_dull_blue,
+            #'headtextcolor': bright_blue,
+            #'headlinkcolor': less_bright_blue,
+            #'codebgcolor': dark_borders_bg,
+            #'codetextcolor': 'white',
+            #})
+#else:
+    #html_theme_options.update({
+            #'footerbgcolor': dark_borders_bg,
+            #'footertextcolor': bright_blue,
+            #'textcolor': 'black',
+            #'bgcolor': 'white',
+            #'linkcolor': dull_blue,
+            #'visitedlinkcolor': more_dull_blue,
+            #'headbgcolor': bright_blue,
+            #'headtextcolor': more_dull_blue,
+            #'headlinkcolor': dull_blue,
+            #'codetextcolor': 'black',
+            #'codebgcolor': 'white',
+            #})
 
 # Add any paths that contain custom themes here, relative to this directory.
-#html_theme_path = []
+html_theme_path = ['.']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -167,7 +167,7 @@ else:
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['.static']
+html_static_path = ['static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
