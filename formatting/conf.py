@@ -89,6 +89,7 @@ pygments_style = 'sphinx'
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
+logo = os.path.join('static', 'itk_eg_logo.png')
 
 # -- Options for HTML output ---------------------------------------------------
 
@@ -158,12 +159,12 @@ html_short_title = project
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-#html_logo = None
+html_logo = logo
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-#html_favicon = 'itk_favicon.ico'
+html_favicon = 'itk_favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -232,7 +233,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-#latex_logo = None
+latex_logo = logo
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
