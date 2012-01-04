@@ -26,15 +26,24 @@ endforeach()
 # relative to ${ITK_EXAMPLES_BINARY_DIR} in the binary tree.
 function( copy_external_data_to_binary source destination )
 endfunction()
+# We must also duplicate the source tree since the images need to be present
+# with the source.
+add_custom_target( copy_sources ALL
+  COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITK_EXAMPLES_SOURCE_DIR}/src"
+  "${ITK_EXAMPLES_BINARY_DIR}/src"
+  COMMENT "Copying sources"
+  )
 
 set( HTML_DESTINATION ${ITK_EXAMPLES_BINARY_DIR}/html )
 #function( build_example )
-add_custom_target( build_html
+add_custom_target( build_html ALL
   COMMAND ${SPHINX_BUILD} -b dirhtml
   -c ${ITK_EXAMPLES_SOURCE_DIR}/formatting
-  ${ITK_EXAMPLES_SOURCE_DIR}/src
+  ${ITK_EXAMPLES_BINARY_DIR}/src
   ${HTML_DESTINATION}
+  COMMENT "Building HTML"
   )
+add_dependencies( build_html copy_sources )
 #endfunction()
 
 add_subdirectory( formatting )

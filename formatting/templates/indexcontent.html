@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% set title = 'Overview' %}
+
+{% block body %}
+  <h1>Welcome to the Insight Toolkit Examples!</h1>
+  <p>
+    This is {% block description %}the {{ project|e }} v{{ release|e }} documentation{% if last_updated %}, last updated {{ last_updated|e }}{% endif %}{% endblock %}.
+  </p>
+  <table class="contentstable" align="center" style="margin-left: 30px">
+  <tr>
+    <td width="50%">
+      <p class="biglink"><a class="biglink" href="{{ pathto("Examples/index") }}">Learn</a><br/>
+         <span class="linkdescr">the extensive library of ITK examples</span></p>
+    </td>
+    <td width="50%">
+      <p class="biglink"><a class="biglink" href="{{ pathto("build") }}">Do</a><br/>
+         <span class="linkdescr">how to locally build and run the examples</span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <p class="biglink"><a class="biglink" href="{{ pathto("download") }}">Download</a><br/>
+         <span class="linkdescr">download the examples or this documentation</span></p>
+    </td>
+    <td width="50%">
+      <p class="biglink"><a class="biglink" href="{{ pathto("genindex") }}">Contribute</a><br/>
+         <span class="linkdescr">make corrections and add new examples</span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <p class="biglink"><a class="biglink" href="{{ pathto("search") }}">Search</a><br/>
+         <span class="linkdescr">search the documentation</span></p>
+    </td>
+    <td width="50%">
+      <p class="biglink"><a class="biglink" href="{{ pathto("genindex") }}">Lookup</a><br/>
+         <span class="linkdescr">index of all functions, classes, terms</span></p>
+    </td>
+  </tr>
+  </table>
+{% endblock %}

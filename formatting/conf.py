@@ -152,7 +152,7 @@ html_theme_path = ['.']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = project + 'v' + release
+html_title = project + ' v' + release
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 html_short_title = project
@@ -184,7 +184,9 @@ html_last_updated_fmt = '%b %d, %Y'
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-#html_additional_pages = {}
+html_additional_pages = {
+    'index': 'indexcontent.html'
+    }
 
 # If false, no module index is generated.
 html_domain_indices = False

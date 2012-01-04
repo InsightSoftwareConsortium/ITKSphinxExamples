@@ -9,7 +9,12 @@ Welcome to the ITK Examples documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+  :maxdepth: 2
+
+  Examples/index
+  build
+  download
+  contribute
 
 Indices and tables
 ==================
