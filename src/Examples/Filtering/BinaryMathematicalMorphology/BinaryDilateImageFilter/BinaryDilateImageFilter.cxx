@@ -19,8 +19,7 @@ int main(int argc, char *argv[])
   structuringElement.SetRadius( 3 );
   structuringElement.CreateStructuringElement();
 
-  typedef itk::BinaryDilateImageFilter< ImageType, ImageType, StructuringElementType >
-          BinaryDilateImageFilterType;
+  typedef itk::BinaryDilateImageFilter< ImageType, ImageType, StructuringElementType > BinaryDilateImageFilterType;
 
   BinaryDilateImageFilterType::Pointer dilateFilter = BinaryDilateImageFilterType::New();
   dilateFilter->SetInput( reader->GetOutput() );
