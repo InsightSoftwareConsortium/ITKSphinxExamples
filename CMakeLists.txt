@@ -60,5 +60,10 @@ if( BUILD_EXECUTABLES )
   add_subdirectory( src )
 endif()
 
+configure_file( ${CMAKE_SOURCE_DIR}/Scripts/CreateNewExample.sh.in
+  ${CMAKE_BINARY_DIR}/Scripts/CreateNewExample.sh
+  @ONLY
+)
+
 # This needs to be at the end in case we needed to fetch any other ExternalData.
 ExternalData_Add_Target( ITKExamplesData )
