@@ -1,48 +1,44 @@
 #include "itkImage.h"
 #include "itkBinaryDilateImageFilter.h"
 #include "itkImageFileReader.h"
+#include "itkImageFileWriter.h"
 #include "itkBinaryBallStructuringElement.h"
-
-#include "QuickView.h"
 
 int main(int argc, char *argv[])
 {
-  if(argc < 2)
-    {
-    std::cerr << "Usage: " << std::endl;
-    std::cerr << argv[0] << " InputImageFile [radius]" << std::endl;
-    return EXIT_FAILURE;
-    }
+  typedef unsigned char PixelType;
+  const unsigned int Dimension = 2;
 
-  unsigned int radius = 2;
-  if (argc > 2)
-    {
-    radius = atoi(argv[2]);
-    }
-
-  typedef itk::Image<unsigned char, 2>    ImageType;
-  typedef itk::ImageFileReader<ImageType> ReaderType;
+  typedef itk::Image< PixelType, Dimension >    ImageType;
+  typedef itk::ImageFileReader< ImageType >     ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  reader->SetFileName( "Yinyang.png" );
 
-  typedef itk::BinaryBallStructuringElement<
-    ImageType::PixelType,2>                  StructuringElementType;
+  typedef itk::BinaryBallStructuringElement< PixelType, Dimension > StructuringElementType;
   StructuringElementType structuringElement;
-  structuringElement.SetRadius(radius);
+  structuringElement.SetRadius( 3 );
   structuringElement.CreateStructuringElement();
 
-  typedef itk::BinaryDilateImageFilter <ImageType, ImageType, StructuringElementType>
+  typedef itk::BinaryDilateImageFilter< ImageType, ImageType, StructuringElementType >
           BinaryDilateImageFilterType;
 
-  BinaryDilateImageFilterType::Pointer dilateFilter
-          = BinaryDilateImageFilterType::New();
-  dilateFilter->SetInput(reader->GetOutput());
-  dilateFilter->SetKernel(structuringElement);
+  BinaryDilateImageFilterType::Pointer dilateFilter = BinaryDilateImageFilterType::New();
+  dilateFilter->SetInput( reader->GetOutput() );
+  dilateFilter->SetKernel( structuringElement );
 
-  QuickView viewer;
-  viewer.AddImage(reader->GetOutput());
-  viewer.AddImage(dilateFilter->GetOutput());
-  viewer.Visualize();
+  typedef itk::ImageFileWriter< ImageType > WriterType;
+  WriterType::Pointer writer = WriterType::New();
+  writer->SetInput( dilateFilter->GetOutput() );
+  writer->SetFileName( "BinaryDilateImageFilterOutput.png" );
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & e )
+    {
+    std::cerr << "Error: " << e << std::endl;
+    }
 
   return EXIT_SUCCESS;
 }
