@@ -13,8 +13,8 @@ Contents:
 
   Examples/index
   build
-  download
   contribute
+  download
 
 Indices and tables
 ==================
