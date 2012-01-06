@@ -1,6 +1,7 @@
 cmake_minimum_required( VERSION 2.8.5 )
 project( ITK_EXAMPLES )
 
+include( CTest )
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
 
