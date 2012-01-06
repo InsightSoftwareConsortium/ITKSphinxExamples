@@ -43,21 +43,13 @@ option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
 
   set( SPHINX_CONF_DIR ${ITK_EXAMPLES_SOURCE_DIR}/formatting )
 
-  set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
+  set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_SOURCE_DIR}/src )
 
-  set( HTML_DESTINATION ${ITK_EXAMPLES_BINARY_DIR}/html )
+  set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )
 
-  Sphinx_add_target( build_html dirhtml ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${HTML_DESTINATION} )
+  set( SPHINX_DEPENDENCIES copy_sources )
 
-  set( LATEX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR}/latex )
-
-  Sphinx_add_target( build_latex latex ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${LATEX_DESTINATION} )
-
-  set( TEXT_DESTINATION ${ITK_EXAMPLES_BINARY_DIR}/text )
-
-  Sphinx_add_target( build_text text ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${TEXT_DESTINATION} )
-
-  add_dependencies( build_html copy_sources )
+  Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
 
   add_subdirectory( formatting )
 endif()
