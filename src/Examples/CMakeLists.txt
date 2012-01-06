@@ -1,5 +1,13 @@
 find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+
+if( ${ITK_FOUND} )
+  include( ${ITK_USE_FILE} )
+endif()
+
+if( ${ITK_VERSION_MAJOR} LESS 4 )
+  message( SEND_ERROR "ITKExamples require at least ITK 4.0.0" )
+endif()
+
 # For comparing example outputs to their regression baseline's.
 add_executable( ImageCompare ImageCompare.cxx )
 target_link_libraries( ImageCompare ${ITK_LIBRARIES} )
