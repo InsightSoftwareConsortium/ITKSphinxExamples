@@ -28,6 +28,12 @@ Todo
   example into the class doc.  This also used for search enhancement and
   categorization.
 - Individual examples can be downloaded independently, and built/executed.
+- CDash dashboard.
+
+With funding
+^^^^^^^^^^^^
+
+- Gerrit robot builds.
 
 Build dependencies
 ------------------
