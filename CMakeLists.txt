@@ -1,6 +1,7 @@
 cmake_minimum_required( VERSION 2.8.5 )
 project( ITK_EXAMPLES )
 
+include( CTest )
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
 
@@ -39,17 +40,17 @@ add_custom_target( copy_sources ALL
 option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
   if( BUILD_DOCUMENTATION )
   # Builds the documentation.
-  find_program( SPHINX_BUILD sphinx-build )
+  find_package( Sphinx )
 
-  set( HTML_DESTINATION ${ITK_EXAMPLES_BINARY_DIR}/html )
-  add_custom_target( build_html ALL
-    COMMAND ${SPHINX_BUILD} -b dirhtml
-    -c ${ITK_EXAMPLES_SOURCE_DIR}/formatting
-    ${ITK_EXAMPLES_BINARY_DIR}/src
-    ${HTML_DESTINATION}
-    COMMENT "Building HTML"
-    )
-  add_dependencies( build_html copy_sources )
+  set( SPHINX_CONF_DIR ${ITK_EXAMPLES_SOURCE_DIR}/formatting )
+
+  set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_SOURCE_DIR}/src )
+
+  set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )
+
+  set( SPHINX_DEPENDENCIES copy_sources )
+
+  Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
 
   add_subdirectory( formatting )
 endif()
