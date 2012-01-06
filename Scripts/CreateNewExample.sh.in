@@ -1,0 +1,31 @@
+#! /bin/bash
+
+group=$1
+module=$2
+example_name=$3
+
+mkdir -p @CMAKE_SOURCE_DIR@/src/Examples/${group}/${module}/${example_name}
+
+cd @CMAKE_SOURCE_DIR@/src/Examples/${group}/${module}/${example_name}
+
+echo "cmake_minimum_required( VERSION 2.8 )" > CMakeLists.txt
+echo "" >> CMakeLists.txt
+echo "project( ${example_name} )" >> CMakeLists.txt
+echo "" >> CMakeLists.txt
+
+echo "find_package( ITK REQUIRED )" >> CMakeLists.txt
+echo "" >> CMakeLists.txt
+
+echo "if( \${ITK_FOUND} )" >> CMakeLists.txt
+echo "  include( \${ITK_USE_FILE} )" >> CMakeLists.txt
+echo "endif()" >> CMakeLists.txt
+echo "" >> CMakeLists.txt
+
+echo "add_executable( ${example_name} ${example_name}.cxx )" >> CMakeLists.txt
+echo "target_link_libraries( ${example_name} \${ITK_LIBRARIES} )" >> CMakeLists.txt
+echo "" >> CMakeLists.txt
+
+echo "enable_testing()" >> CMakeLists.txt
+echo "add_test( ${example_name}Test ${example_name} )" >> CMakeLists.txt
+
+touch ${example_name}
