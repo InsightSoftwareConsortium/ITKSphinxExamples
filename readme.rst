@@ -12,16 +12,22 @@ Implemented
 
 - Stored and editable in Git_ version control.
 - HTML output.
+- CTest unit testing.
+- CMake ExternalData for binary data storage.
 
 Todo
 ^^^^
 
 - LaTeX-based PDF output.
+- Text output.
+- Download the entire docs for offline viewing.
 - Anonymous online editing.
 - Editable online with CodeMirror.
 - Peer review with Gerrit.
-- Online profile login.
-
+- Reciprical Doxygen integration with breathe + automatic injection of the
+  example into the class doc.  This also used for search enhancement and
+  categorization.
+- Individual examples can be downloaded independently, and built/executed.
 
 Build dependencies
 ------------------
