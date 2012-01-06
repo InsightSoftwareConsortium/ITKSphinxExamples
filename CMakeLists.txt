@@ -39,16 +39,20 @@ add_custom_target( copy_sources ALL
 option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
   if( BUILD_DOCUMENTATION )
   # Builds the documentation.
-  find_program( SPHINX_BUILD sphinx-build )
-
+  find_package( Sphinx )
+  
+  set( SPHINX_CONF_DIR ${ITK_EXAMPLES_SOURCE_DIR}/formatting )
+  
+  set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
+  
   set( HTML_DESTINATION ${ITK_EXAMPLES_BINARY_DIR}/html )
-  add_custom_target( build_html ALL
-    COMMAND ${SPHINX_BUILD} -b dirhtml
-    -c ${ITK_EXAMPLES_SOURCE_DIR}/formatting
-    ${ITK_EXAMPLES_BINARY_DIR}/src
-    ${HTML_DESTINATION}
-    COMMENT "Building HTML"
-    )
+  
+  set( LATEX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR}/latex )
+  
+  Sphinx_add_target( build_html dirhtml ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${HTML_DESTINATION} )
+  
+  Sphinx_add_target( build_latex latex ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${LATEX_DESTINATION} )
+  
   add_dependencies( build_html copy_sources )
 
   add_subdirectory( formatting )
