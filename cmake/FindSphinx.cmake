@@ -64,55 +64,55 @@ function( Sphinx_add_targets target_base_name conf source base_destination )
     set( _dependencies ${_dependencies} ${arg} )
   endforeach()
 
-  if( SPHINX_HTML_OUTPUT )
+  if( ${SPHINX_HTML_OUTPUT} )
     Sphinx_add_target( ${target_base_name}_html html ${conf} ${source} ${base_destination}/html )
 
     add_dependencies( ${target_base_name}_html _dependencies )
   endif()
 
-  if( SPHINX_DIRHTML_OUTPUT )
+  if( ${SPHINX_DIRHTML_OUTPUT} )
     Sphinx_add_target( ${target_base_name}_dirhtml dirhtml ${conf} ${source} ${base_destination}/dirhtml )
 
     add_dependencies( ${target_base_name}_dirhtml _dependencies )
   endif()
 
-  if( SPHINX_QTHELP_OUTPUT )
+  if( ${SPHINX_QTHELP_OUTPUT} )
     Sphinx_add_target( ${target_base_name}_qthelp qthelp ${conf} ${source} ${base_destination}/qthelp )
 
     add_dependencies( ${target_base_name}_qthelp _dependencies )
   endif()
 
-  if( SPHINX_DEVHELP_OUTPUT )
+  if( ${SPHINX_DEVHELP_OUTPUT} )
     Sphinx_add_target( ${target_base_name}_devhelp devhelp ${conf} ${source} ${base_destination}/devhelp )
 
     add_dependencies( ${target_base_name}_devhelp _dependencies )
   endif()
 
-  if( SPHINX_EPUB_OUTPUT )
+  if( ${SPHINX_EPUB_OUTPUT} )
     Sphinx_add_target( ${target_base_name}_epub epub ${conf} ${source} ${base_destination}/epub )
 
     add_dependencies( ${target_base_name}_epub _dependencies )
   endif()
 
-  if( SPHINX_LATEX_OUTPUT )
+  if( ${SPHINX_LATEX_OUTPUT} )
     Sphinx_add_target( ${target_base_name}_latex latex ${conf} ${source} ${base_destination}/latex )
 
     add_dependencies( ${target_base_name}_latex _dependencies )
   endif()
 
-  if( SPHINX_MAN_OUTPUT )
+  if( ${SPHINX_MAN_OUTPUT} )
     Sphinx_add_target( ${target_base_name}_man man ${conf} ${source} ${base_destination}/man )
 
     add_dependencies( ${target_base_name}_man _dependencies )
   endif()
 
-  if( SPHINX_TEXT_OUTPUT )
+  if( ${SPHINX_TEXT_OUTPUT} )
     Sphinx_add_target( ${target_base_name}_text text ${conf} ${source} ${base_destination}/text )
 
     add_dependencies( ${target_base_name}_text _dependencies )
   endif()
 
-  if( BUILD_TESTING )
+  if( ${BUILD_TESTING} )
     sphinx_add_target( ${target_base_name}_linkcheck linkcheck ${conf} ${source} ${base_destination}/linkcheck )
 
     add_dependencies( ${target_base_name}_linkcheck _dependencies )
