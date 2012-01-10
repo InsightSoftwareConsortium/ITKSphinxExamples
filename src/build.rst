@@ -74,6 +74,6 @@ QGoImageCompare_
 .. _CMake:           http://cmake.org/
 .. _ITK-SNAP:        http://www.itksnap.org/pmwiki/pmwiki.php
 .. _Paraview:        http://paraview.org/
-.. _QGoImageCompare: https://github.com/gofigure2/QGoImageCompare/
+.. _QGoImageCompare: https://github.com/gofigure2/QGoImageCompare
 .. _Qt:              http://qt.nokia.com/
 .. _VTK:             http://vtk.org/
