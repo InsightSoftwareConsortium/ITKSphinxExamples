@@ -3,7 +3,7 @@ Contribute
 ==========
 
 The ITK Examples are stored in the Git_ distributed version control system, and
-the mainline repository can be found at http://itk.org/ITKExamples.git.  Files
+the mainline repository can be found at ITKExamplesRepo_.  Files
 in the repository can be edited either with the `web interface`_ or the typical
 `text editor / version control workflow`_ used when modifying source code.
 
@@ -50,7 +50,8 @@ Peer review with Gerrit
 
 Todo.
 
+.. _ITKExamplesRepo:        http://itk.org/ITKExamples.git
 .. _Git:                    http://git-scm.com/
-.. _reStructuredText:       http://docutils.sourceforge.net/rst.html/
+.. _reStructuredText:       http://docutils.sourceforge.net/rst.html
 .. _Sphinx:                 http://sphinx.pocoo.org/
 .. _Quick reStructuredText: http://docutils.sourceforge.net/docs/user/rst/quickref.html
