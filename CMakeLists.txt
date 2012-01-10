@@ -1,7 +1,20 @@
 cmake_minimum_required( VERSION 2.8.5 )
 project( ITK_EXAMPLES )
 
+set( ITK_EXAMPLES_MAJOR_VERSION 4 )
+set( ITK_EXAMPLES_MINOR_VERSION 0 )
+set( ITK_EXAMPLES_PATCH_VERSION 0 )
+
+set( ITK_EXAMPLES_VERSION
+  "${ITK_EXAMPLES_MAJOR_VERSION}.${ITK_EXAMPLES_MINOR_VERSION}"
+)
+
+set( ITK_EXAMPLES_RELEASE_VERSION
+   "${ITK_EXAMPLES_MAJOR_VERSION}.${ITK_EXAMPLES_MINOR_VERSION}.${ITK_EXAMPLES_PATCH_VERSION}"
+)
+
 include( CTest )
+
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
 
@@ -42,7 +55,7 @@ option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
   # Builds the documentation.
   find_package( Sphinx )
 
-  set( SPHINX_CONF_DIR ${ITK_EXAMPLES_SOURCE_DIR}/formatting )
+  set( SPHINX_CONF_DIR ${ITK_EXAMPLES_BINARY_DIR}/formatting )
 
   set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_SOURCE_DIR}/src )
 
@@ -61,8 +74,8 @@ if( BUILD_EXECUTABLES )
   add_subdirectory( src )
 endif()
 
-configure_file( ${CMAKE_SOURCE_DIR}/Scripts/CreateNewExample.sh.in
-  ${CMAKE_BINARY_DIR}/Scripts/CreateNewExample.sh
+configure_file( ${CMAKE_SOURCE_DIR}/scripts/CreateNewExample.sh.in
+  ${CMAKE_BINARY_DIR}/scripts/CreateNewExample.sh
   @ONLY
 )
 
