@@ -56,7 +56,7 @@ option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
   set( HTML_DESTINATION ${ITK_EXAMPLES_BINARY_DIR}/html )
   add_custom_target( build_html ALL
     COMMAND ${SPHINX_BUILD} -b dirhtml
-    -c ${ITK_EXAMPLES_SOURCE_DIR}/formatting
+    -c ${ITK_EXAMPLES_BINARY_DIR}/formatting
     ${ITK_EXAMPLES_BINARY_DIR}/src
     ${HTML_DESTINATION}
     COMMENT "Building HTML"
