@@ -51,13 +51,12 @@ add_custom_target( copy_sources ALL
 
 # Build the documentation?
 option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
-  if( BUILD_DOCUMENTATION )
+if( BUILD_DOCUMENTATION )
   # Builds the documentation.
   find_package( Sphinx )
 
   set( SPHINX_CONF_DIR ${ITK_EXAMPLES_BINARY_DIR}/formatting )
-
-  set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_SOURCE_DIR}/src )
+  set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
 
   set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )
 
