@@ -54,9 +54,15 @@ add_custom_target( copy_sources ALL
 # Build the documentation?
 option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
 if( BUILD_DOCUMENTATION )
+  # To create tarballs for the examples.
+  include( CPack )
 
   # Builds the documentation.
   find_package( Sphinx )
+  set( SPHINX_HTML_OUTPUT OFF )
+  set( SPHINX_DIRHTML_OUTPUT ON )
+  set( SPHINX_LATEX_OUTPUT ON )
+  set( SPHINX_TEXT_OUTPUT ON )
   set( SPHINX_CONF_DIR ${ITK_EXAMPLES_BINARY_DIR}/formatting )
   set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
   set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )

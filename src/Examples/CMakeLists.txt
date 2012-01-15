@@ -24,7 +24,6 @@ function( compare_to_baseline example_name baseline_prefix )
   string( REPLACE .md5 "" baseline_image "${baseline_image}" )
   get_filename_component( baseline_image_file "${baseline_image}" NAME )
   set( baseline_image "${CMAKE_CURRENT_BINARY_DIR}/${example_name}/${baseline_image_file}" )
-  message( " Baseline ${baseline_image}" )
   string( REPLACE Baseline "" test_image "${baseline_image}" )
   add_test( ${example_name}Test${baseline_prefix}BaselineComparison
     "${ITK_EXAMPLES_BINARY_DIR}/src/Examples/ImageCompare" "${test_image}" "${baseline_image}" )
