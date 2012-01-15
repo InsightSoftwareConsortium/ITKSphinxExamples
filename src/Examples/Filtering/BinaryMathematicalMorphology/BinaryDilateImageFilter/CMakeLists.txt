@@ -9,4 +9,5 @@ add_executable( BinaryDilateImageFilter BinaryDilateImageFilter.cxx )
 target_link_libraries( BinaryDilateImageFilter ${ITK_LIBRARIES} )
 
 enable_testing()
-add_test( BinaryDilateImageFilterTest BinaryDilateImageFilter )
+add_test( BinaryDilateImageFilterTest
+  BinaryDilateImageFilter Yinyang.png BinaryDilateImageFilterOutput.png )

@@ -8,6 +8,41 @@ if( ${ITK_VERSION_MAJOR} LESS 4 )
   message( SEND_ERROR "ITKExamples require at least ITK 4.0.0" )
 endif()
 
+if( BUILD_DOCUMENTATION )
+  find_package( PythonInterp )
+endif()
+
+# A high level target that the individual targets depend on.
+add_custom_target( create_tarballs ALL
+  ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
+  )
+add_dependencies( create_tarballs build_html )
+
+# Macro for adding an example.
+#
+# Most of the CMake logic for the example should live in the examples
+# CMakeLists.txt.  That file should be standalone for building the example.
+# This macro is intended to be instantiated in the CMakeLists.txt one directory
+# above where the example exists.  It does things like creating the example
+# tarball's in the example output directory, and custom targets for building
+# the Sphinx documentation for an individual example.  The Sphinx target will be
+# called ${example_name}Doc.
+macro( add_example example_name )
+
+  if( BUILD_DOCUMENTATION )
+    add_custom_target( ${example_name}Tarball
+      COMMAND ${PYTHON_EXECUTABLE} ${ITK_EXAMPLES_SOURCE_DIR}/scripts/create_tarball.py
+        ${example_name} ${SPHINX_DESTINATION}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+      COMMENT "Creating tarballs for ${example_name}"
+      )
+    add_dependencies( create_tarballs ${example_name}Tarball )
+  endif()
+
+  # Process the example's CMakeLists.txt
+  add_subdirectory( ${example_name} )
+endmacro()
+
 # For comparing example outputs to their regression baseline's.
 add_executable( ImageCompare ImageCompare.cxx )
 target_link_libraries( ImageCompare ${ITK_LIBRARIES} )

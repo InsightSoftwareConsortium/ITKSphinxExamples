@@ -5,7 +5,24 @@ Build
 Build individual examples
 =========================
 
-Todo.
+Download the *example.tar.gz* or *example.zip* file from the link in the left
+hand column of the example's webpage.  Unpack the example::
+
+  tar xvzf example.tar.gz
+
+Move to the build directory::
+
+  cd example/build
+
+Run CMake to configure the project.  You will need to specify the path to your
+ITK build if it is not installed::
+
+  cmake -DITK_DIR=/home/prince/itk_build ..
+
+Build the project, and run the test::
+
+  make
+  ctest -V
 
 Build all examples and the documentation
 ========================================
