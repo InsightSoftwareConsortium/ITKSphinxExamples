@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
   catch( itk::ExceptionObject & e )
     {
     std::cerr << "Error: " << e << std::endl;
+    return EXIT_FAILURE;
     }
 
   return EXIT_SUCCESS;
