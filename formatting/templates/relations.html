@@ -1,0 +1,57 @@
+{#
+    basic/relations.html
+    ~~~~~~~~~~~~~~~~~~~~
+
+    Sphinx sidebar template: relation links.
+
+    :copyright: Copyright 2007-2011 by the Sphinx team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+#}
+
+{# emit a * for every slash so they can be counted #}
+{%- macro countslashes(str) %}
+  {%- set slashcount = 0 %}
+  {%- for char in str %}
+    {%- if char == '/' -%}
+      *
+    {%- endif %}
+  {%- endfor -%}
+{%- endmacro %}
+{%- set slashcount =  countslashes(pagename)|length %}
+
+{%- if slashcount == 4 %}
+  <h4>{{ _('Download') }}</h4>
+  <p class="topless">
+    <a href="{{ pathto(pagename ~ ".zip", 1) }}">Packed as .zip</a>
+  </p>
+  <p class="topless">
+    <a href="{{ pathto(pagename ~ ".tar.gz", 1) }}">Packed as .tar.gz</a>
+  </p>
+{%- endif %}
+
+{%- if prev %}
+  {%- if slashcount == 4 %}
+    <h4>{{ _('Previous example') }}</h4>
+    <p class="topless">
+      <a href="{{ prev.link|e }}" title="{{ _('previous example') }}">{{ prev.title }}</a>
+    </p>
+  {%- else %}
+    <h4>{{ _('Previous topic') }}</h4>
+    <p class="topless">
+      <a href="{{ prev.link|e }}" title="{{ _('previous chapter') }}">{{ prev.title }}</a>
+    </p>
+  {%- endif %}
+{%- endif %}
+{%- if next %}
+  {%- if slashcount == 4 %}
+    <h4>{{ _('Next example') }}</h4>
+    <p class="topless">
+      <a href="{{ next.link|e }}" title="{{ _('next example') }}">{{ next.title }}</a>
+    </p>
+  {%- else %}
+    <h4>{{ _('Next topic') }}</h4>
+    <p class="topless">
+      <a href="{{ next.link|e }}" title="{{ _('next chapter') }}">{{ next.title }}</a>
+    </p>
+  {%- endif %}
+{%- endif %}
