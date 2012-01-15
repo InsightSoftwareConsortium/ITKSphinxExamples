@@ -10,4 +10,4 @@ target_link_libraries( BinaryDilateImageFilter ${ITK_LIBRARIES} )
 
 enable_testing()
 add_test( BinaryDilateImageFilterTest
-  BinaryDilateImageFilter Yinyang.png BinaryDilateImageFilterOutput.png 3 )
+  BinaryDilateImageFilter ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png BinaryDilateImageFilterOutput.png 3 )
