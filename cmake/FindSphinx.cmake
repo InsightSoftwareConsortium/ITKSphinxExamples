@@ -19,7 +19,7 @@ find_package_handle_standard_args(Sphinx DEFAULT_MSG
 option( SPHINX_HTML_OUTPUT "Build a single HTML with the whole content." ON )
 option( SPHINX_DIRHTML_OUTPUT "Build HTML pages, but with a single directory per document." OFF )
 option( SPHINX_HTMLHELP_OUTPUT "Build HTML pages with additional information for building a documentation collection in htmlhelp." OFF )
-option( SPHINX_devhelp_OUTPUT "Build HTML pages with additional information for building a documentation collection in qthelp." OFF )
+option( SPHINX_QTHELP_OUTPUT "Build HTML pages with additional information for building a documentation collection in qthelp." OFF )
 option( SPHINX_DEVHELP_OUTPUT "Build HTML pages with additional information for building a documentation collection in devhelp." OFF )
 option( SPHINX_EPUB_OUTPUT "Build HTML pages with additional information for building a documentation collection in epub." OFF )
 option( SPHINX_LATEX_OUTPUT "Build LaTeX sources that can be compiled to a PDF document using pdflatex." OFF )
@@ -32,7 +32,7 @@ mark_as_advanced(
   SPHINX_HTML_OUTPUT
   SPHINX_DIRHTML_OUTPUT
   SPHINX_HTMLHELP_OUTPUT
-  SPHINX_devhelp_OUTPUT
+  SPHINX_QTHELP_OUTPUT
   SPHINX_DEVHELP_OUTPUT
   SPHINX_EPUB_OUTPUT
   SPHINX_LATEX_OUTPUT
@@ -56,6 +56,7 @@ function( Sphinx_add_target target_name builder conf source destination )
     )
 endfunction()
 
+# Target dependencies can be optionally listed at the end.
 function( Sphinx_add_targets target_base_name conf source base_destination )
 
   set( _dependencies )
