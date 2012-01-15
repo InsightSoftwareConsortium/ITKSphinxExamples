@@ -6,17 +6,22 @@
 
 int main(int argc, char *argv[])
 {
+  if( argc < 4 )
+    {
+    std::cerr << "Usage: " << argv[0] << " <inputImage> <outputImage> <radius>" << std::endl;
+    return EXIT_FAILURE;
+    }
   typedef unsigned char PixelType;
   const unsigned int Dimension = 2;
 
   typedef itk::Image< PixelType, Dimension >    ImageType;
   typedef itk::ImageFileReader< ImageType >     ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( "Yinyang.png" );
+  reader->SetFileName( argv[1] );
 
   typedef itk::BinaryBallStructuringElement< PixelType, Dimension > StructuringElementType;
   StructuringElementType structuringElement;
-  structuringElement.SetRadius( 3 );
+  structuringElement.SetRadius( atoi( argv[3] ) );
   structuringElement.CreateStructuringElement();
 
   typedef itk::BinaryDilateImageFilter< ImageType, ImageType, StructuringElementType > BinaryDilateImageFilterType;
@@ -28,7 +33,7 @@ int main(int argc, char *argv[])
   typedef itk::ImageFileWriter< ImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( dilateFilter->GetOutput() );
-  writer->SetFileName( "BinaryDilateImageFilterOutput.png" );
+  writer->SetFileName( argv[2] );
 
   try
     {
@@ -37,6 +42,7 @@ int main(int argc, char *argv[])
   catch( itk::ExceptionObject & e )
     {
     std::cerr << "Error: " << e << std::endl;
+    return EXIT_FAILURE;
     }
 
   return EXIT_SUCCESS;

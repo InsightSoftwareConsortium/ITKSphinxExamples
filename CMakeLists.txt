@@ -14,7 +14,6 @@ set( ITK_EXAMPLES_RELEASE_VERSION
 )
 
 include( CTest )
-
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
 
@@ -57,6 +56,9 @@ if( BUILD_DOCUMENTATION )
 
   # Builds the documentation.
   find_package( Sphinx )
+  set( SPHINX_HTML_OUTPUT ON )
+  set( SPHINX_LATEX_OUTPUT ON )
+  set( SPHINX_TEXT_OUTPUT ON )
   set( SPHINX_CONF_DIR ${ITK_EXAMPLES_BINARY_DIR}/formatting )
   set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
   set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )

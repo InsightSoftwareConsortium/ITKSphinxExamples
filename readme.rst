@@ -14,6 +14,7 @@ Implemented
 - HTML output.
 - CTest unit testing.
 - CMake ExternalData for binary data storage.
+- Individual examples can be downloaded independently, and easily built/executed/hacked.
 
 Todo
 ^^^^
@@ -27,7 +28,6 @@ Todo
 - Reciprical Doxygen integration with breathe + automatic injection of the
   example into the class doc.  This also used for search enhancement and
   categorization.
-- Individual examples can be downloaded independently, and built/executed.
 - CDash dashboard.
 
 With funding

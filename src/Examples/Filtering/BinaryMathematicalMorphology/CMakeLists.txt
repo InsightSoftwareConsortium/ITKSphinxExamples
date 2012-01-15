@@ -1,2 +1,2 @@
-add_subdirectory( BinaryDilateImageFilter )
+add_example( BinaryDilateImageFilter )
 compare_to_baseline( BinaryDilateImageFilter BinaryDilateImageFilterOutput )
