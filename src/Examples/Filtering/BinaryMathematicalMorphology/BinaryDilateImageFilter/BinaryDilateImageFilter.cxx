@@ -6,9 +6,9 @@
 
 int main(int argc, char *argv[])
 {
-  if( argc < 3 )
+  if( argc < 4 )
     {
-    std::cerr << "Usage: " << argv[0] << " <inputImage> <outputImage>" << std::endl;
+    std::cerr << "Usage: " << argv[0] << " <inputImage> <outputImage> <radius>" << std::endl;
     return EXIT_FAILURE;
     }
   typedef unsigned char PixelType;
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
   typedef itk::BinaryBallStructuringElement< PixelType, Dimension > StructuringElementType;
   StructuringElementType structuringElement;
-  structuringElement.SetRadius( 3 );
+  structuringElement.SetRadius( atoi( argv[3] ) );
   structuringElement.CreateStructuringElement();
 
   typedef itk::BinaryDilateImageFilter< ImageType, ImageType, StructuringElementType > BinaryDilateImageFilterType;
