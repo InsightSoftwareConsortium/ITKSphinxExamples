@@ -50,7 +50,8 @@ Peer review with Gerrit
 
 Todo.
 
-.. _ITKExamplesRepo:        http://itk.org/ITKExamples.git
+.. todo:: replace with http://itk.org/ITKExamples/
+.. _ITKExamplesRepo:        http://mmmccormick.com/ITKExamples
 .. _Git:                    http://git-scm.com/
 .. _reStructuredText:       http://docutils.sourceforge.net/rst.html
 .. _Sphinx:                 http://sphinx.pocoo.org/
