@@ -1,8 +1,22 @@
 Dilate a binary image
 =====================
 
-Dilate regions by using a specified kernel.  In this example, the white regions
-are enlarged.
+Synopsis
+--------
+
+Dilate regions by using a specified kernel, also known as a structuring element.
+In this example, the white regions are enlarged.
+
+Code
+----
+
+C++
+...
+
+.. literalinclude:: BinaryDilateImageFilter.cxx
+
+Results
+-------
 
 .. figure:: Yinyang.png
   :scale: 50%
@@ -15,5 +29,3 @@ are enlarged.
   :alt: Dilated output.
 
   Dilated output.
-
-.. literalinclude:: BinaryDilateImageFilter.cxx
