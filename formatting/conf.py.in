@@ -18,6 +18,9 @@ import sys, os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
 
+sys.path.insert( 0, os.path.abspath('@BREATHE_DIR@') )
+
+
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -28,7 +31,7 @@ primary_domain = 'cpp'
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinx.ext.ifconfig', 'sphinx.ext.viewcode']
+extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinx.ext.ifconfig', 'sphinx.ext.viewcode', 'breathe' ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['templates']
@@ -45,7 +48,7 @@ master_doc = 'index'
 # General information about the project.
 project = u'ITK Examples'
 copyright = u'2011, Insight Software Consortium'
-
+'
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
@@ -85,6 +88,39 @@ exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
+
+# Options for breathe extension
+# -----------------------------
+
+breathe_projects = {
+    "class":"@CMAKE_BINARY_DIR@/examples/doxygen/class/xml/",
+    "structcmd":"@CMAKE_BINARY_DIR@/examples/doxygen/structcmd/xml/",
+    "tinyxml":"@CMAKE_BINARY_DIR@/examples/tinyxml/tinyxml/xml/",
+    "restypedef":"@CMAKE_BINARY_DIR@/examples/doxygen/restypedef/xml/",
+    "nutshell":"@CMAKE_BINARY_DIR@/examples/specific/nutshell/xml/",
+    "rst":"@CMAKE_BINARY_DIR@/examples/specific/rst/xml/",
+    "c_file":"@CMAKE_BINARY_DIR@/examples/specific/c_file/xml/",
+    "namespacefile":"@CMAKE_BINARY_DIR@/examples/specific/namespacefile/xml/",
+    "userdefined":"@CMAKE_BINARY_DIR@/examples/specific/userdefined/xml/",
+    "template_function":"@CMAKE_BINARY_DIR@/examples/specific/template_function/
+    xml/",
+    "template_class":"@CMAKE_BINARY_DIR@/examples/specific/template_class/xml/",
+    "template_class_non_type":
+    "@CMAKE_BINARY_DIR@/examples/specific/template_class_non_type/xml/",
+    }
+
+breathe_default_project = "tinyxml"
+
+breathe_domain_by_extension = {
+        "h" : "cpp",
+        }
+
+breathe_domain_by_file_pattern = {
+        "*/class.h" : "cpp",
+        "*/alias.h" : "c",
+        }
+
+# --------------------------------------
 
 highlight_language = 'c++'
 
