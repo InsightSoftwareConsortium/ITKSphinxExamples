@@ -1,9 +1,14 @@
 {% extends "!layout.html" %}
+{%- set script_files = script_files + ["_static/cookies.js", "_static/color_theme.js"] %}
 {% block extrahead %}
     <link rel="shortcut icon" href="{{ pathto('_static/itk_favicon.ico', 1) }}" />
 {% endblock %}
 {% block footer %}
     <div class="footer">
+      {{ _('Select color theme') }}:
+        <button type="button" onclick="setDarkTheme()">Dark</button>
+        <button type="button" onclick="setLightTheme()">Light</button>
+      <br />
       <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a>
       <br />
       Documentation and code by the

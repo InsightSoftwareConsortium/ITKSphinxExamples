@@ -1,9 +1,45 @@
-var color_theme = readCookie( 'color_theme' );
-if( color_theme == 'dark' )
-  {
-  window.location = "dark/index.html"
-  }
-else // defaults to light
-  {
-  window.location = "light/index.html"
-  }
+function setDarkTheme()
+{
+  $( 'body' ).css( 'background-color', '{{theme_footertextcolor}}' );
+  $( 'a' ).css( 'color', '{{theme_relbarlinkcolor}}' );
+  $( 'pre' ).css({ 'color':'{{theme_codebgcolor}}', 'background-color':'{{theme_darkcodebgcolor}}' });
+  $( ':header' ).css({ 'color':'{{theme_headbgcolor}}', 'background-color':'{{theme_headtextcolor}}' });
+  $( 'div.body' ).css({ 'color':'{{theme_bgcolor}}', 'background-color':'{{theme_footerbgcolor}}' });
+  $( 'div.footer' ).css( 'color', '{{theme_footerbgcolor}}' );
+  $( 'div.footer a' ).css( 'color', '{{theme_footerbgcolor}}' );
+  $( 'div.related' ).css({ 'color':'{{theme_relbartextcolor}}', 'background-color':'{{theme_relbarbgcolor}}' });
+  $( 'div.related a' ).css( 'color', '{{theme_relbarlinkcolor}}' );
+  $( 'div.documount' ).css( 'background-color', '{{theme_sidebarbgcolor}}' );
+  $( 'div.sphinxsidebar' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
+  $( 'div.sphinxsidebar h3' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
+  $( 'div.sphinxsidebar h4' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
+  $( 'div.sphinxsidebar a' ).css({ 'color':'{{theme_sidebarlinkcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
+  $( 'div.sphinxsidebar input' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbtncolor}}' });
+  createCookie( 'color_theme', 'dark', 365 )
+}
+function setLightTheme()
+{
+  $( 'body' ).css( 'background-color', '{{theme_footerbgcolor}}' );
+  $( 'a' ).css( 'color', '{{theme_relbarbgcolor}}' );
+  $( 'pre' ).css({ 'color':'{{theme_codetextcolor}}', 'background-color':'{{theme_sidebartextcolor}}' });
+  $( ':header' ).css({ 'color':'{{theme_headtextcolor}}', 'background-color':'{{theme_headbgcolor}}' });
+  $( 'div.body' ).css({ 'color':'{{theme_textcolor}}', 'background-color':'{{theme_bgcolor}}' });
+  $( 'div.footer' ).css( 'color', '{{theme_footertextcolor}}' );
+  $( 'div.footer a' ).css( 'color', '{{theme_footertextcolor}}' );
+  $( 'div.related' ).css({ 'color':'{{theme_relbartextcolor}}', 'background-color':'{{theme_relbarbgcolor}}' });
+  $( 'div.related a' ).css( 'color', '{{theme_relbarlinkcolor}}' );
+  $( 'div.documount' ).css( 'background-color', '{{theme_sidebarbgcolor}}' );
+  $( 'div.sphinxsidebar' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
+  $( 'div.sphinxsidebar a' ).css({ 'color':'{{theme_sidebarlinkcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
+  $( 'div.sphinxsidebar h3' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
+  $( 'div.sphinxsidebar h4' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
+  $( 'div.sphinxsidebar input' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbtncolor}}' });
+  createCookie( 'color_theme', 'light', 365 )
+}
+$(document).ready(function(){
+  var color_theme = readCookie( 'color_theme' );
+  if( color_theme == 'dark' )
+    {
+    setDarkTheme();
+    }
+});
