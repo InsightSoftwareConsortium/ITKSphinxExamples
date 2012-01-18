@@ -32,6 +32,11 @@ if(NOT ITK_DIR)
   list( APPEND ITKExamples_DEPENDENCIES ITK )
 endif()
 
+if(NOT BREATHE_DIR)
+  include( ${CMAKE_SOURCE_DIR}/External-Breathe.cmake )
+  list( APPEND ITKExamples_DEPENDENCIES BREATHE )
+endif()
+
 ExternalProject_Add( ITK_EXAMPLES
   DEPENDS ${ITKExamples_DEPENDENCIES}
   DOWNLOAD_COMMAND ""
