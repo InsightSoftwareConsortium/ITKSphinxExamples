@@ -16,14 +16,14 @@ Move to the build directory::
 
 Run CMake to configure the project.
 
- - If ITK (Version 4.0.0 or above) is installed::
+- If ITK (Version 4.0.0 or above) is installed::
 
-  cmake ..
+    cmake ..
 
- - If ITK (Version 4.0.0 or above) is not installed but compiled on your
- 	 system, you will need to specify the path to your ITK build::
+- If ITK (Version 4.0.0 or above) is not installed but compiled on your
+  system, you will need to specify the path to your ITK build::
 
-  cmake -DITK_DIR=/home/prince/itk_build ..
+    cmake -DITK_DIR=/home/prince/itk_build ..
 
 
 Build the project, and run the test::
@@ -45,24 +45,25 @@ Move to the build directory::
 
 Run CMake to configure the project.
 
- - If ITK (Version 4.0.0 or above) is installed::
+- If ITK (Version 4.0.0 or above) is installed::
 
-  cmake ..
+    cmake ..
 
- - If ITK (Version 4.0.0 or above) is not installed but compiled on your
- 	 system, you will need to specify the path to your ITK build::
+- If ITK (Version 4.0.0 or above) is not installed but compiled on your
+  system, you will need to specify the path to your ITK build::
 
-  cmake -DITK_DIR=/home/prince/itk_build ..
+    cmake -DITK_DIR=/home/prince/itk_build ..
 
- - If ITK is not installed nor compiled, you can then make use of the superbuild functionality::
-
-  cmake ../superbuild/
+- If ITK is not installed nor compiled, you can then make use of the superbuild functionality::
+  
+    cmake ../superbuild/
 
 Build the project (would generate the documentatin and all examples)::
 
   make
 
 Run the tests::
+
   ctest -V
 
 Run an example
@@ -74,20 +75,20 @@ the example's directory.  Then, directly run the executable.
 Alternatively, the `ctest` command line program that comes with CMake_ can be
 used to drive the examples as unit test.  Running::
 
-  $ ctest
+  ctest
 
 in the binary tree will run all unit tests found in the current directory and
 below.
 
 ::
 
-  $ ctest -R Binary
+  ctest -R Binary
 
 will run all tests whose name matches the regular expression *Binary*.
 
 ::
 
-  $ ctest -V
+  ctest -V
 
 will run *ctest* in verbose mode, which prints out the command executed and all
 of the resulting text output.
