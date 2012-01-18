@@ -1,2 +1,6 @@
 @import url("default.css");
 
+div.darkbody {
+    background-color: {{ theme_textcolor }};
+    color: {{ theme_bgcolor }};
+}

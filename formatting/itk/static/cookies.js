@@ -4,8 +4,8 @@ function createCookie(cookie_name, value, expiration_days)
   if( expiration_days )
     {
     var expiration_date = new Date();
-    expiration_date.setDate( expiration_data.getDate() + expiration_days );
-    expires = '; ' + expiration_data.toUTCString();
+    expiration_date.setDate( expiration_date.getDate() + expiration_days );
+    expires = '; ' + expiration_date.toUTCString();
     }
   document.cookie = name + '=' + escape( value ) + expires
 }
