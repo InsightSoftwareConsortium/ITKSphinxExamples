@@ -93,32 +93,19 @@ pygments_style = 'sphinx'
 # -----------------------------
 
 breathe_projects = {
-    "class":"@CMAKE_BINARY_DIR@/examples/doxygen/class/xml/",
-    "structcmd":"@CMAKE_BINARY_DIR@/examples/doxygen/structcmd/xml/",
-    "tinyxml":"@CMAKE_BINARY_DIR@/examples/tinyxml/tinyxml/xml/",
-    "restypedef":"@CMAKE_BINARY_DIR@/examples/doxygen/restypedef/xml/",
-    "nutshell":"@CMAKE_BINARY_DIR@/examples/specific/nutshell/xml/",
-    "rst":"@CMAKE_BINARY_DIR@/examples/specific/rst/xml/",
-    "c_file":"@CMAKE_BINARY_DIR@/examples/specific/c_file/xml/",
-    "namespacefile":"@CMAKE_BINARY_DIR@/examples/specific/namespacefile/xml/",
-    "userdefined":"@CMAKE_BINARY_DIR@/examples/specific/userdefined/xml/",
-    "template_function":"@CMAKE_BINARY_DIR@/examples/specific/template_function/
-    xml/",
-    "template_class":"@CMAKE_BINARY_DIR@/examples/specific/template_class/xml/",
-    "template_class_non_type":
-    "@CMAKE_BINARY_DIR@/examples/specific/template_class_non_type/xml/",
+    "ITK":"@ITKDoxygenXML_DIR@"
     }
 
-breathe_default_project = "tinyxml"
+breathe_default_project = "ITK"
 
-breathe_domain_by_extension = {
-        "h" : "cpp",
-        }
+#breathe_domain_by_extension = {
+#        "h" : "cpp",
+#        }
 
-breathe_domain_by_file_pattern = {
-        "*/class.h" : "cpp",
-        "*/alias.h" : "c",
-        }
+#breathe_domain_by_file_pattern = {
+#        "*/class.h" : "cpp",
+#        "*/alias.h" : "c",
+#        }
 
 # --------------------------------------
 
