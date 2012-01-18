@@ -39,7 +39,7 @@ endif()
 
 if(NOT ITKDoxygenXML_DIR )
   include( ${CMAKE_SOURCE_DIR}/External-ITKDoxygenXML.cmake )
-  list( APPENDITKExamples_DEPENDENCIES ITKDoxygenXML )
+  list( APPEND ITKExamples_DEPENDENCIES ITKDoxygenXML )
 endif()
 
 ExternalProject_Add( ITK_EXAMPLES
