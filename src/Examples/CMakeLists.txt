@@ -15,8 +15,8 @@ endif()
 # A high level target that the individual targets depend on.
 add_custom_target( createTarballs ALL
   ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
+  DEPENDS build_html
   )
-add_dependencies( createTarballs build_html )
 
 # Macro for adding an example.
 #
