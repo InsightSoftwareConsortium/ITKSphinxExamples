@@ -12,6 +12,9 @@ Doxygen
 
 .. doxygenclass:: itk::BinaryDilateImageFilter
 
+* `Corresponding detailed doxygen documentation`_
+* `Doxygen documentation`_
+
 Code
 ----
 
@@ -35,3 +38,5 @@ Results
 
   Dilated output.
 
+.. _Corresponding detailed doxygen documentation:   http://www.itk.org/Doxygen/html/classitk_1_1BinaryDilateImageFilter.html
+.. _Doxygen documentation:                          http://www.itk.org/Doxygen/html/index.html
