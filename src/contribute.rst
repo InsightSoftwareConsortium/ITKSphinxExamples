@@ -45,6 +45,34 @@ Create a new example
 
 Todo.
 
+Contribute a nightly build
+==========================
+
+Nightly build
+-------------
+
+Examples are nightly compiled, ran and compared to baseline images to ensure
+these examples remain valid on all supported platforms, and to ensure changes
+in the development of ITK do not alterate these examples. Following the same
+principle, the documentation is generated nightly.
+
+Warnings, errors and any other potential issues are reported on the Dashboard_.
+
+Contribute
+----------
+
+On Windows
+++++++++++
+
+Todo.
+
+On Mac/Linux
+++++++++++++
+
+`Set-up a cron-job`_ nightly any time after ?? with the following command to be ran:
+
+  ctest -S /path/to/ITKExamples/scripts/itkexamples_common.cmake -A -V
+
 Peer review with Gerrit
 =======================
 
@@ -56,3 +84,5 @@ Todo.
 .. _reStructuredText:       http://docutils.sourceforge.net/rst.html
 .. _Sphinx:                 http://sphinx.pocoo.org/
 .. _Quick reStructuredText: http://docutils.sourceforge.net/docs/user/rst/quickref.html
+.. _Dashboard:              http://mmmccormick.com/CDash/index.php?project=ITKExamples
+.. _Set-up a cron-job:      http://en.wikipedia.org/wiki/Cron 
