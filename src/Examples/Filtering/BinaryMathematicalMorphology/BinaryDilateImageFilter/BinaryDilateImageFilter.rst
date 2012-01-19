@@ -16,4 +16,6 @@ are enlarged.
 
   Dilated output.
 
+.. doxygenclass:: itk::BinaryDilateImageFilter
+
 .. literalinclude:: BinaryDilateImageFilter.cxx

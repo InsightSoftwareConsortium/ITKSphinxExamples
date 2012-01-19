@@ -55,5 +55,8 @@ ExternalProject_Add( ITK_EXAMPLES
     -DITK_DIR:PATH=${ITK_DIR}
     # VTK
     # -DVTK_DIR:PATH=${VTK_DIR}
+    # breathe
+    -DBREATHE_DIR:PATH=${BREATHE_DIR}
+    -DITKDoxygenXML_DIR:PATH=${ITKDoxygenXML_DIR}
   INSTALL_COMMAND ""
 )

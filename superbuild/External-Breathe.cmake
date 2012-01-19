@@ -7,9 +7,8 @@ ExternalProject_Add( BREATHE
   GIT_REPOSITORY "${git_protocol}://github.com/arnaudgelas/breathe.git"
   GIT_TAG "${BREATHE_TAG}"
   SOURCE_DIR BREATHE
-  BINARY_DIR BREATHE-build
-  CMAKE_ARGS
-    ${ep_common_args}
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND ""
   INSTALL_COMMAND ""
 )
 
