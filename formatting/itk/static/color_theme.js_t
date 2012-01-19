@@ -21,7 +21,7 @@ function setLightTheme()
 {
   $( 'body' ).css( 'background-color', '{{theme_footerbgcolor}}' );
   $( 'a' ).css( 'color', '{{theme_relbarbgcolor}}' );
-  $( 'pre' ).css({ 'color':'{{theme_codetextcolor}}', 'background-color':'{{theme_sidebartextcolor}}' });
+  $( 'pre' ).css({ 'color':'{{theme_codetextcolor}}', 'background-color':'{{theme_codebgcolor}}' });
   $( ':header' ).css({ 'color':'{{theme_headtextcolor}}', 'background-color':'{{theme_headbgcolor}}' });
   $( 'div.body' ).css({ 'color':'{{theme_textcolor}}', 'background-color':'{{theme_bgcolor}}' });
   $( 'div.footer' ).css( 'color', '{{theme_footertextcolor}}' );
