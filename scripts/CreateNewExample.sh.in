@@ -28,4 +28,47 @@ echo "" >> CMakeLists.txt
 echo "enable_testing()" >> CMakeLists.txt
 echo "add_test( ${example_name}Test ${example_name} )" >> CMakeLists.txt
 
-touch ${example_name}
+touch ${example_name}.cxx
+
+
+echo "Title" >> ${example_name}.rst
+echo "=====" >> ${example_name}.rst
+echo "" >> ${example_name}.rst
+
+echo "Synopsis" >> ${example_name}.rst
+echo "--------" >> ${example_name}.rst
+echo ""         >> ${example_name}.rst
+echo "todo"     >> ${example_name}.rst
+
+
+echo ""         >> ${example_name}.rst
+echo "Doxygen"  >> ${example_name}.rst
+echo "-------"  >> ${example_name}.rst
+echo ""         >> ${example_name}.rst
+
+echo ".. doxygenclass:: itk::ClassName" >> ${example_name}.rst
+
+echo "* \`Corresponding detailed doxygen documentation\`_" >> ${example_name}.rst
+echo "* \`Doxygen documentation\`_ >> ${example_name}.rst
+echo "" >> ${example_name}.rst
+
+echo "Code" >> ${example_name}.rst
+echo "----" >> ${example_name}.rst
+
+echo "C++" >> ${example_name}.rst
+echo "..." >> ${example_name}.rst
+
+echo ".. literalinclude:: ${example_name}.cxx >> ${example_name}.rst
+
+
+echo "Results"  >> ${example_name}.rst
+echo "-------"  >> ${example_name}.rst
+echo ""         >> ${example_name}.rst
+echo "todo"     >> ${example_name}.rst
+echo ""         >> ${example_name}.rst
+
+echo ".. _Corresponding detailed doxygen documentation:   http://www.itk.org/Doxygen/html/classitk_1_1ClassName.html"  >> ${example_name}.rst
+echo ".. _Doxygen documentation:                          http://www.itk.org/Doxygen/html/index.html"  >> ${example_name}.rst
+
+
+
