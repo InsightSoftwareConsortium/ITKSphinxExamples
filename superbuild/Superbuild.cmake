@@ -32,6 +32,16 @@ if(NOT ITK_DIR)
   list( APPEND ITKExamples_DEPENDENCIES ITK )
 endif()
 
+if(NOT BREATHE_DIR)
+  include( ${CMAKE_SOURCE_DIR}/External-Breathe.cmake )
+  list( APPEND ITKExamples_DEPENDENCIES BREATHE )
+endif()
+
+if(NOT ITKDoxygenXML_DIR )
+  include( ${CMAKE_SOURCE_DIR}/External-ITKDoxygenXML.cmake )
+  list( APPEND ITKExamples_DEPENDENCIES ITKDoxygenXML )
+endif()
+
 ExternalProject_Add( ITK_EXAMPLES
   DEPENDS ${ITKExamples_DEPENDENCIES}
   DOWNLOAD_COMMAND ""
@@ -45,5 +55,8 @@ ExternalProject_Add( ITK_EXAMPLES
     -DITK_DIR:PATH=${ITK_DIR}
     # VTK
     # -DVTK_DIR:PATH=${VTK_DIR}
+    # breathe
+    -DBREATHE_DIR:PATH=${BREATHE_DIR}
+    -DITKDoxygenXML_DIR:PATH=${ITKDoxygenXML_DIR}
   INSTALL_COMMAND ""
 )

@@ -18,6 +18,9 @@ import sys, os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
 
+sys.path.insert( 0, os.path.abspath('@BREATHE_DIR@') )
+
+
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -28,7 +31,7 @@ primary_domain = 'cpp'
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinx.ext.ifconfig', 'sphinx.ext.viewcode']
+extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinx.ext.ifconfig', 'sphinx.ext.viewcode', 'breathe' ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['templates']
@@ -85,6 +88,26 @@ exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
+
+# Options for breathe extension
+# -----------------------------
+
+breathe_projects = {
+    "ITK":"@ITKDoxygenXML_DIR@"
+    }
+
+breathe_default_project = "ITK"
+
+#breathe_domain_by_extension = {
+#        "h" : "cpp",
+#        }
+
+#breathe_domain_by_file_pattern = {
+#        "*/class.h" : "cpp",
+#        "*/alias.h" : "c",
+#        }
+
+# --------------------------------------
 
 highlight_language = 'c++'
 

@@ -54,6 +54,10 @@ add_custom_target( copy_sources ALL
 option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
 if( BUILD_DOCUMENTATION )
 
+  find_package( Breathe )
+
+  find_package( ITKDoxygenXML )
+
   # Builds the documentation.
   find_package( Sphinx )
   set( SPHINX_HTML_OUTPUT ON )
