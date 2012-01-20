@@ -12,8 +12,14 @@ Doxygen
 
 .. doxygenclass:: itk::BinaryDilateImageFilter
 
-* `Corresponding detailed doxygen documentation`_
-* `Doxygen documentation`_
+* `BinaryDilateImageFilter detailed doxygen documentation`_
+
+.. doxygenclass:: itk::BinaryBallStructuringElement
+
+* `BinaryBallStructuringElement detailed doxygen documentation`_
+
+.. _BinaryDilateImageFilter detailed doxygen documentation:   http://www.itk.org/Doxygen/html/classitk_1_1BinaryDilateImageFilter.html
+.. _BinaryBallStructuringElement detailed doxygen documentation:   http://www.itk.org/Doxygen/html/classitk_1_1BinaryBallStructuringElement.html
 
 Code
 ----
@@ -37,6 +43,3 @@ Results
   :alt: Dilated output.
 
   Dilated output.
-
-.. _Corresponding detailed doxygen documentation:   http://www.itk.org/Doxygen/html/classitk_1_1BinaryDilateImageFilter.html
-.. _Doxygen documentation:                          http://www.itk.org/Doxygen/html/index.html
