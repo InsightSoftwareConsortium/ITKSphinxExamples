@@ -4,6 +4,32 @@ ITK Examples
 A set of cookbook examples for the Insight Toolkit, ITK_.
 
 
+Build instructions
+------------------
+
+Automatic:
+A "superbuild" is provided to automatically fetch and build everything
+that is required. The procedure is almost idential to building a normal CMake
+project - the only difference you must point cmake to ITKExamples/superbuild
+instead of just ITKExamples:
+
+mkdir ~/build/ITKExamples
+cd ~/build/ITKExamples
+cmake ~/src/ITKExamples/superbuild/
+
+Manual:
+
+If you want to use local installations of some of the required tools, configure
+and build ITKExamples as a typical CMake_ project.
+
+.. _Breathe: https://github.com/michaeljones/breathe
+.. _CMake: http://cmake.org/
+.. _Gerrit: http://code.google.com/p/gerrit/
+.. _Git: http://git-scm.com/
+.. _ITK: http://itk.org/
+.. _Sphinx: http://sphinx.pocoo.org/
+
+
 Features
 --------
 
@@ -51,17 +77,3 @@ If building the documentation:
 
 - Breathe_
 - Sphinx_
-
-
-Build instructions
-------------------
-
-Configure and build as a typical CMake_ project.
-
-.. _Breathe: https://github.com/michaeljones/breathe
-.. _CMake: http://cmake.org/
-.. _Gerrit: http://code.google.com/p/gerrit/
-.. _Git: http://git-scm.com/
-.. _ITK: http://itk.org/
-.. _Sphinx: http://sphinx.pocoo.org/
-
