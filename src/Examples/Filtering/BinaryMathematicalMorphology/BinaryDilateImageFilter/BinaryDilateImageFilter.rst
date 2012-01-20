@@ -11,10 +11,12 @@ Doxygen
 -------
 
 .. doxygenclass:: itk::BinaryDilateImageFilter
+  :no-link:
 
 * `BinaryDilateImageFilter detailed doxygen documentation`_
 
 .. doxygenclass:: itk::BinaryBallStructuringElement
+  :no-link:
 
 * `BinaryBallStructuringElement detailed doxygen documentation`_
 
