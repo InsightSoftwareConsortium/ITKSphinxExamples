@@ -62,7 +62,7 @@ if( BUILD_DOCUMENTATION )
   endif()
 
   # Builds the documentation.
-  find_package( Sphinx )
+  find_package( Sphinx REQUIRED )
   set( SPHINX_HTML_OUTPUT ON )
   set( SPHINX_LATEX_OUTPUT ON )
   set( SPHINX_TEXT_OUTPUT ON )
