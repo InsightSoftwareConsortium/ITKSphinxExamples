@@ -47,7 +47,10 @@ Required
 Optional
 ^^^^^^^^
 
-- Sphinx_ (build the documentation)
+If building the documentation:
+
+- Breathe_
+- Sphinx_
 
 
 Build instructions
@@ -55,6 +58,7 @@ Build instructions
 
 Configure and build as a typical CMake_ project.
 
+.. _Breathe: https://github.com/michaeljones/breathe
 .. _CMake: http://cmake.org/
 .. _Gerrit: http://code.google.com/p/gerrit/
 .. _Git: http://git-scm.com/
