@@ -25,7 +25,6 @@ Run CMake to configure the project.
 
     cmake -DITK_DIR=/home/prince/itk_build ..
 
-
 Build the project, and run the test::
 
   make
@@ -58,7 +57,13 @@ Run CMake to configure the project.
   
     cmake ../superbuild/
 
-Build the project (would generate the documentatin and all examples)::
+If not build the documentation and not using superbuild functionality, then you
+must have all the required dependencies installed, which are listed in the
+*readme.rst* file located at the root of the source tree.  If you just want to
+build the examples and not their documentation, set *BUILD_DOCUMENTATION* to
+*OFF* in your CMake configuration.
+
+Build the project (would generate the documentation and all examples)::
 
   make
 
@@ -125,9 +130,19 @@ QGoImageCompare_
   VV
   3DSlicer
 
-.. _CMake:           http://cmake.org/
-.. _ITK-SNAP:        http://www.itksnap.org/pmwiki/pmwiki.php
-.. _Paraview:        http://paraview.org/
-.. _QGoImageCompare: https://github.com/gofigure2/QGoImageCompare
-.. _Qt:              http://qt.nokia.com/
+Submit results to CDash
+=======================
+
+Quality control on the examples is maintained with a dashboard that collects
+configuration, build, and testings results in a CDash_ dashboard.  The
+`ITKExamples dashboard`_ collects builds on a nightly, continuous, and
+experimental basis from a variety of platforms.
+
+.. _CDash:                 http://cdash.org/
+.. _CMake:                 http://cmake.org/
+.. _ITKExamples dashboard: http://mmmccormick.com/CDash/index.php?project=ITKExamples
+.. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
+.. _Paraview:              http://paraview.org/
+.. _QGoImageCompare:       https://github.com/gofigure2/QGoImageCompare
+.. _Qt:                    http://qt.nokia.com/
 .. _VTK:             http://vtk.org/
