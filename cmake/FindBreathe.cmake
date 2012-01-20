@@ -1,12 +1,12 @@
-# - This module looks for Sphinx
-# Find the Sphinx documentation generator
+# - This module looks for Breathe
+# Find the Breathe Sphinx-Doxygen bridge.
 #
 # This modules defines
 #  BREATHE_DIR 
 #  BREATHE_FOUND
 
 find_path(BREATHE_DIR NAMES breathe.cmake
-  DOC "breathe dir"
+  DOC "breathe directory."
 )
 
 include(FindPackageHandleStandardArgs)
