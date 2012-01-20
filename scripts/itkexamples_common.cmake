@@ -40,7 +40,6 @@
 #   CTEST_TEST_TIMEOUT        = Per-test timeout length
 #   CTEST_TEST_ARGS           = ctest_test args (ex: PARALLEL_LEVEL 4)
 #   CMAKE_MAKE_PROGRAM        = Path to "make" tool to use
-#   CMAKE_EXTRA_CONFIGURE_OPTIONS = Extra options to pass to cmake when #   configuring, (ex: -DITK_DIR=/home/luis/bin/ITK)
 #
 # Options to configure builds from experimental git repository:
 #   dashboard_git_url      = Custom git clone url
@@ -397,7 +396,6 @@ while(NOT dashboard_done)
     safe_message("Initial configure top level project...")
     set(options
       -DCTEST_USE_LAUNCHERS=${CTEST_USE_LAUNCHERS}
-      ${CMAKE_EXTRA_CONFIGURE_OPTIONS}
       )
     ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}" OPTIONS "${options}")
     ctest_read_custom_files(${CTEST_BINARY_DIRECTORY})
@@ -419,7 +417,6 @@ while(NOT dashboard_done)
 
       set(options
         ${disable_last_subproj}
-        ${CMAKE_EXTRA_CONFIGURE_OPTIONS}
         )
       set(disable_last_subproj -DModule_${subproj}:BOOL=OFF)
       ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}" OPTIONS "${options}")
@@ -473,7 +470,6 @@ while(NOT dashboard_done)
     safe_message("Final configure top level project...")
     set(options
       ${disable_last_subproj}
-      ${CMAKE_EXTRA_CONFIGURE_OPTIONS}
       )
     ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}" OPTIONS "${options}")
 
