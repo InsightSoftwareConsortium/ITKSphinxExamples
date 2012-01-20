@@ -7,8 +7,8 @@ Synopsis
 Dilate regions by using a specified kernel, also known as a structuring element.
 In this example, the white regions are enlarged.
 
-Doxygen
--------
+Classes demonstrated
+--------------------
 
 .. doxygenclass:: itk::BinaryDilateImageFilter
   :no-link:
