@@ -38,7 +38,7 @@ if(NOT BREATHE_DIR)
 endif()
 
 if(NOT ITKDoxygenXML_DIR )
-  include( ${CMAKE_SOURCE_DIR}/External-ITKDoxygenXML.cmake )
+  include( ${CMAKE_SOURCE_DIR}/../cmake/External-ITKDoxygenXML.cmake )
   list( APPEND ITKExamples_DEPENDENCIES ITKDoxygenXML )
 endif()
 
