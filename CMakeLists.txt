@@ -56,7 +56,10 @@ if( BUILD_DOCUMENTATION )
 
   find_package( Breathe )
 
-  find_package( ITKDoxygenXML )
+  if(NOT ITKDoxygenXML_DIR )
+    include( ${CMAKE_SOURCE_DIR}/cmake/External-ITKDoxygenXML.cmake )
+    list( APPEND ITKExamples_DEPENDENCIES ITKDoxygenXML )
+  endif()
 
   # Builds the documentation.
   find_package( Sphinx )
@@ -66,7 +69,7 @@ if( BUILD_DOCUMENTATION )
   set( SPHINX_CONF_DIR ${ITK_EXAMPLES_BINARY_DIR}/formatting )
   set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
   set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )
-  set( SPHINX_DEPENDENCIES copy_sources )
+  set( SPHINX_DEPENDENCIES copy_sources ITKDoxygenXML )
   Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
 
   add_subdirectory( formatting )
