@@ -25,12 +25,13 @@ Run CMake to configure the project.
 
     cmake -DITK_DIR=/home/prince/itk_build ..
 
-
 Build the project, and run the test::
 
   make
   ctest -V
 
+
+.. _building all the examples:
 
 Build all examples and the documentation
 ========================================
@@ -55,10 +56,16 @@ Run CMake to configure the project.
     cmake -DITK_DIR=/home/prince/itk_build ..
 
 - If ITK is not installed nor compiled, you can then make use of the superbuild functionality::
-  
+
     cmake ../superbuild/
 
-Build the project (would generate the documentatin and all examples)::
+If not build the documentation and not using superbuild functionality, then you
+must have all the required dependencies installed, which are listed in the
+*readme.rst* file located at the root of the source tree.  If you just want to
+build the examples and not their documentation, set *BUILD_DOCUMENTATION* to
+*OFF* in your CMake configuration.
+
+Build the project (would generate the documentation and all examples)::
 
   make
 
@@ -104,30 +111,39 @@ packages are specially suited for medical images, which often have anisotropic
 spacing and can span three or more dimensions.  All applications listed are
 cross-platform.
 
-ITK-SNAP_
-  ITK-SNAP is an application segmentation tools, but is also a nice general
+
+.. figure:: itksnap.png
+  :alt: ITK-SNAP
+  :align: center
+
+  ITK-SNAP_ is an application segmentation tools, but it is also a nice general
   resource for visualizing analysis results.
 
-Paraview_
-  Paraview is a full-featured scientific visualizion GUI written with Qt_/VTK_.
+.. figure:: paraview.png
+  :alt: Paraview
+  :align: center
+
+  Paraview_ is a full-featured scientific visualizion GUI written with Qt_/VTK_.
   It has extensive parallel processing capabilities.
 
-QGoImageCompare_
-  QGoImageCompare is a simple Qt_/VTK_ application capable of comparing multiple
+.. figure:: qgoimagecompare.png
+  :alt: QGoImageCompare
+  :align: center
+
+  QGoImageCompare_ is a simple Qt_/VTK_ application capable of comparing multiple
   images simultaneous by coupling the cameras views.  It is also possible to
   interactively probe the location and value of pixels for both 2D and 3D
   datasets.
 
 .. todo::
 
-  screenshots
   ITKApps FLTK ImageViewer
   VV
   3DSlicer
 
-.. _CMake:           http://cmake.org/
-.. _ITK-SNAP:        http://www.itksnap.org/pmwiki/pmwiki.php
-.. _Paraview:        http://paraview.org/
-.. _QGoImageCompare: https://github.com/gofigure2/QGoImageCompare
-.. _Qt:              http://qt.nokia.com/
-.. _VTK:             http://vtk.org/
+.. _CMake:                 http://cmake.org/
+.. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
+.. _Paraview:              http://paraview.org/
+.. _QGoImageCompare:       https://github.com/gofigure2/QGoImageCompare
+.. _Qt:                    http://qt.nokia.com/
+.. _VTK:                   http://vtk.org/

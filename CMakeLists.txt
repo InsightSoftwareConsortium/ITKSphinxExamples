@@ -47,6 +47,8 @@ add_custom_target( copy_sources ALL
   "${ITK_EXAMPLES_BINARY_DIR}/src"
   COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITK_EXAMPLES_SOURCE_DIR}/formatting"
   "${ITK_EXAMPLES_BINARY_DIR}/formatting"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITK_EXAMPLES_SOURCE_DIR}/scripts"
+  "${ITK_EXAMPLES_BINARY_DIR}/scripts"
   COMMENT "Copying sources"
   )
 
