@@ -25,7 +25,9 @@ int main(int argc, char *argv[])
 {
   if( argc < 4 )
     {
-    std::cerr << "Usage: " << argv[0] << " <inputImage> <outputImage> <radius>" << std::endl;
+    std::cerr << "Usage: " << std::endl;
+    std::cerr << argv[0] << " <inputImage> <outputImage> <radius>";
+    std::cerr << std::endl;
     return EXIT_FAILURE;
     }
   typedef unsigned char PixelType;
@@ -36,14 +38,17 @@ int main(int argc, char *argv[])
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::BinaryBallStructuringElement< PixelType, Dimension > StructuringElementType;
+  typedef itk::BinaryBallStructuringElement< PixelType, Dimension > 
+    StructuringElementType;
   StructuringElementType structuringElement;
   structuringElement.SetRadius( atoi( argv[3] ) );
   structuringElement.CreateStructuringElement();
 
-  typedef itk::BinaryDilateImageFilter< ImageType, ImageType, StructuringElementType > BinaryDilateImageFilterType;
+  typedef itk::BinaryDilateImageFilter< ImageType, ImageType,
+    StructuringElementType > BinaryDilateImageFilterType;
 
-  BinaryDilateImageFilterType::Pointer dilateFilter = BinaryDilateImageFilterType::New();
+  BinaryDilateImageFilterType::Pointer dilateFilter =
+    BinaryDilateImageFilterType::New();
   dilateFilter->SetInput( reader->GetOutput() );
   dilateFilter->SetKernel( structuringElement );
 
