@@ -23,7 +23,7 @@ Run CMake to configure the project.
 - If ITK (Version 4.0.0 or above) is not installed but compiled on your
   system, you will need to specify the path to your ITK build::
 
-    cmake -DITK_DIR=/home/prince/itk_build ..
+    cmake -DITK_DIR=/home/luis/itk_build ..
 
 Build the project, and run the test::
 
@@ -53,7 +53,7 @@ Run CMake to configure the project.
 - If ITK (Version 4.0.0 or above) is not installed but compiled on your
   system, you will need to specify the path to your ITK build::
 
-    cmake -DITK_DIR=/home/prince/itk_build ..
+    cmake -DITK_DIR=/home/luis/itk_build ..
 
 - If ITK is not installed nor compiled, you can then make use of the superbuild functionality::
 
@@ -105,12 +105,32 @@ Visualize the results
 =====================
 
 ITK is a library limited in scope to image analysis, and it purposely does not
-attempt to perform image visualization.  Visualizing the results of analysis
-can is possible with a number of third party applications.  Note that these
-packages are specially suited for medical images, which often have anisotropic
-spacing and can span three or more dimensions.  All applications listed are
-cross-platform.
+attempt to perform image visualization.  Visualizing the results of analysis is
+possible with a number of third party applications.  Note that these packages
+are specially suited for medical images, which often have anisotropic spacing
+and can span three or more dimensions.  All applications listed are open source
+and cross-platform.
 
+.. figure:: slicer.png
+  :alt: 3DSlicer
+  :align: center
+
+  3DSlicer_ is an open-source software platform for the analysis and
+  visualization of medical images and for research in image guided therapy.
+  The platform provides functionality for segmentation, registration and
+  three-dimensional visualization of multi-modal image data, as well as advanced
+  image analysis algorithms for diffusion tensor imaging, functional magnetic
+  resonance imaging and image-guided therapy. Standard image file formats are
+  supported, and the application integrates interface capabilities to biomedical
+  research software and image informatics frameworks.
+
+.. figure:: imageviewer.png
+  :alt: ITKApps ImageViewer
+  :align: center
+
+  An FLTK_-based *ImageViewer* is available in the ITKApps_ repository.  This
+  simple, yet effect slice-based viewer works on 2D and 3D images and supports
+  probing of data values.
 
 .. figure:: itksnap.png
   :alt: ITK-SNAP
@@ -135,15 +155,24 @@ cross-platform.
   interactively probe the location and value of pixels for both 2D and 3D
   datasets.
 
+.. figure:: vv.png
+  :alt: VV
+  :align: center
+
+  VV_ is an image viewer designed for fast and simple visualization of
+  spatio-temporal images: 2D, 2D+t, 3D and 3D+t (or 4D) images.
+
 .. todo::
 
   ITKApps FLTK ImageViewer
-  VV
-  3DSlicer
 
+.. _3DSlicer:              http://www.slicer.org/
 .. _CMake:                 http://cmake.org/
+.. _FLTK:                  http://www.fltk.org/
+.. _ITKApps:               http://itk.org/ITKApps.git
 .. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
 .. _Paraview:              http://paraview.org/
 .. _QGoImageCompare:       https://github.com/gofigure2/QGoImageCompare
 .. _Qt:                    http://qt.nokia.com/
 .. _VTK:                   http://vtk.org/
+.. _VV:                    http://www.creatis.insa-lyon.fr/rio/vv 
