@@ -31,7 +31,7 @@ Build the project, and run the test::
   ctest -V
 
 
-.. _building all the examples:
+.. _building-examples:
 
 Build all examples and the documentation
 ========================================

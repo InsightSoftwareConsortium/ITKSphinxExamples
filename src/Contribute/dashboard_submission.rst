@@ -11,7 +11,7 @@ development of ITK do not adversely effect these examples.
 Experimental submission
 =======================
 
-To submit test results after :ref:`building all the examples`, simply run::
+To submit test results after :ref:`building all the examples <building-examples>`, simply run::
 
   ctest -D Experimental
 
