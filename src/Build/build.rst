@@ -162,10 +162,6 @@ and cross-platform.
   VV_ is an image viewer designed for fast and simple visualization of
   spatio-temporal images: 2D, 2D+t, 3D and 3D+t (or 4D) images.
 
-.. todo::
-
-  ITKApps FLTK ImageViewer
-
 .. _3DSlicer:              http://www.slicer.org/
 .. _CMake:                 http://cmake.org/
 .. _FLTK:                  http://www.fltk.org/
