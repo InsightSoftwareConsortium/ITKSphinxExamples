@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # EXAMPLE.  To be replaced.
-OBJECT_STORES_DIR=~/progs/ITKExamplesExternalData
+OBJECT_STORES_DIR=~/dashboards/dashboard_tests/ExternalData
 
 md5=$(md5sum $1 | cut -d ' ' -f 1)
 echo $md5 > $1.md5

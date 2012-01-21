@@ -12,7 +12,7 @@ Contents:
   :maxdepth: 2
 
   Examples/index
-  build
+  Build/build
   Contribute/index
   download
 
