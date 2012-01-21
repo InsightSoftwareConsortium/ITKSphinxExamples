@@ -56,7 +56,7 @@ Run CMake to configure the project.
     cmake -DITK_DIR=/home/prince/itk_build ..
 
 - If ITK is not installed nor compiled, you can then make use of the superbuild functionality::
-  
+
     cmake ../superbuild/
 
 If not build the documentation and not using superbuild functionality, then you
@@ -132,81 +132,7 @@ QGoImageCompare_
   VV
   3DSlicer
 
-Submit results to CDash
-=======================
-
-Quality control of the examples is maintained with a dashboard that collects
-configuration, build, and testings results in a CDash_ dashboard.  The
-`ITKExamples dashboard`_ collects builds on a nightly, continuous, and
-experimental basis from a variety of platforms.
-
-Experimental submission
------------------------
-
-To submit testing results after `building all the examples`_, simply run::
-
-  ctest -D Experimental
-
-Nightly submission
-------------------
-
-You can volunteer to submit nightly testing results that ensure repository
-activity during the day will allow breakage on your system to go unnoticed.
-
-Step 1: Setup you build directory
-..................................
-
-You will need a directory with sufficient disk space to hold the project source
-code, build tree, and testing scripts.  This can be placed anywhere on your
-system where you have write access::
-
-  mkdir ~/dashboards
-  cd ~/dashboards
-
-Copy the testing support script into your dashboard directory.
-
-::
-
-  cp ~/src/ITKExamples/scripts/itkexamples_common.cmake .
-
-Step 2: Setup a script describing your system
-.............................................
-
-We will write a CTest script that will update the repository, configure, build,
-and test the project, and then upload the results to the CDash server.  Most of
-work in this script will be performed by `itkexamples_common.cmake`, but we need
-to configure the settings unique to our system.
-
-Create a file, `itkexamples_dashboard.cmake`, to hold these settings::
-
-  cp ~/src/ITKExamples/scripts/itkexamples_dashboard.cmake.example itkexamples_dashboard.cmake
-
-You *must* edit this file to describe your local system.
-
-.. literalinclude:: ../scripts/itkexamples_dashboard.cmake.example
-
-Step 3: Configure your system to run the script on a daily basis
-................................................................
-
-First, test the script to ensure that it runs correctly::
-
-  ctest -S ./itkexamples_dashboard.cmake -V
-
-Did everything work?  Do you see your build on the `ITKExamples dashboard`_?
-If so, continue to setup a cronjob that will run the script daily.  Edit your
-cron-file::
-
-  crontab -e
-
-The following line will run the script every day at 3 AM::
-
-  0 3 * * * ctest -S /home/luis/dashboards/itkexamples_dashboard.cmake &> /dev/null
-  
-Thank you for contributing to the quality of the ITK Examples!
-
-.. _CDash:                 http://cdash.org/
 .. _CMake:                 http://cmake.org/
-.. _ITKExamples dashboard: http://mmmccormick.com/CDash/index.php?project=ITKExamples
 .. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
 .. _Paraview:              http://paraview.org/
 .. _QGoImageCompare:       https://github.com/gofigure2/QGoImageCompare
