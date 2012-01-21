@@ -12,6 +12,7 @@
 #   set(CTEST_BUILD_NAME "Platform-Compiler")
 #   set(CTEST_BUILD_CONFIGURATION Debug)
 #   set(CTEST_CMAKE_GENERATOR "Unix Makefiles")
+#   get_filename_component(CTEST_DASHBOARD_ROOT "${CTEST_SCRIPT_DIRECTORY}/dashboard_tests" ABSOLUTE)
 #   include(${CTEST_SCRIPT_DIRECTORY}/itkexamples_common.cmake)
 #
 # Then run a scheduled task (cron job) with a command line such as
@@ -36,7 +37,6 @@
 #   dashboard_no_clean        = True to skip build tree wipeout
 #   CTEST_UPDATE_COMMAND      = path to svn command-line client
 #   CTEST_BUILD_FLAGS         = build tool arguments (ex: -j2)
-#   CTEST_DASHBOARD_ROOT      = Where to put source and build trees
 #   CTEST_TEST_TIMEOUT        = Per-test timeout length
 #   CTEST_TEST_ARGS           = ctest_test args (ex: PARALLEL_LEVEL 4)
 #   CMAKE_MAKE_PROGRAM        = Path to "make" tool to use
@@ -96,7 +96,7 @@ if(NOT DEFINED dashboard_root_name)
   set(dashboard_root_name "My Tests")
 endif()
 if(NOT DEFINED CTEST_DASHBOARD_ROOT)
-  get_filename_component(CTEST_DASHBOARD_ROOT "${CTEST_SCRIPT_DIRECTORY}/../${dashboard_root_name}" ABSOLUTE)
+  get_filename_component(CTEST_DASHBOARD_ROOT "${CTEST_SCRIPT_DIRECTORY}/${dashboard_root_name}" ABSOLUTE)
 endif()
 
 # Select the model (Nightly, Experimental, Continuous).
@@ -173,7 +173,7 @@ if(NOT DEFINED CTEST_BINARY_DIRECTORY)
   if(DEFINED dashboard_binary_name)
     set(CTEST_BINARY_DIRECTORY ${CTEST_DASHBOARD_ROOT}/${dashboard_binary_name})
   else()
-    set(CTEST_BINARY_DIRECTORY ${CTEST_SOURCE_DIRECTORY}-build)
+    set(CTEST_BINARY_DIRECTORY ${CTEST_DASHBOARD_ROOT}/ITKExamples-build)
   endif()
 endif()
 
@@ -397,7 +397,8 @@ while(NOT dashboard_done)
     set(options
       -DCTEST_USE_LAUNCHERS=${CTEST_USE_LAUNCHERS}
       )
-    ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}" OPTIONS "${options}")
+    ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}"
+      SOURCE "${CTEST_SOURCE_DIRECTORY}" OPTIONS "${options}")
     ctest_read_custom_files(${CTEST_BINARY_DIRECTORY})
 
     if(NOT dashboard_no_submit)
