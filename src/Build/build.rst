@@ -112,10 +112,8 @@ are specially suited for medical images, which often have anisotropic spacing
 and can span three or more dimensions.  All applications listed are open source
 and cross-platform.
 
-.. figure:: slicer.png
-  :alt: 3DSlicer
-  :align: center
 
+3DSlicer
   3DSlicer_ is an open-source software platform for the analysis and
   visualization of medical images and for research in image guided therapy.
   The platform provides functionality for segmentation, registration and
@@ -125,43 +123,67 @@ and cross-platform.
   supported, and the application integrates interface capabilities to biomedical
   research software and image informatics frameworks.
 
+.. figure:: slicer.png
+  :alt: 3DSlicer
+  :align: center
+
+  3DSlicer_
+
+
+ImageViewer
+  An FLTK_-based *ImageViewer* is available in the ITKApps_ repository.  This
+  simple yet effect slice-based viewer works on 2D and 3D images and supports
+  probing of data values.
+
 .. figure:: imageviewer.png
   :alt: ITKApps ImageViewer
   :align: center
 
-  An FLTK_-based *ImageViewer* is available in the ITKApps_ repository.  This
-  simple yet effect slice-based viewer works on 2D and 3D images and supports
-  probing of data values.
+  ImageViewer
+
+
+ITK-SNAP
+  ITK-SNAP_ is segmentation application, but it is also a nice general
+  resource for visualization of the results of analysis.
 
 .. figure:: itksnap.png
   :alt: ITK-SNAP
   :align: center
 
-  ITK-SNAP_ is segmentation application, but it is also a nice general
-  resource for visualization of the results of analysis.
+  ITK-SNAP
 
+
+Paraview
+  Paraview_ is a full-featured scientific visualizion GUI written with Qt_/VTK_.
+  It has extensive parallel processing capabilities.
 .. figure:: paraview.png
   :alt: Paraview
   :align: center
 
-  Paraview_ is a full-featured scientific visualizion GUI written with Qt_/VTK_.
-  It has extensive parallel processing capabilities.
 
-.. figure:: qgoimagecompare.png
-  :alt: QGoImageCompare
-  :align: center
-
+QGoImageCompare
   QGoImageCompare_ is a simple Qt_/VTK_ application capable of comparing multiple
   images simultaneous by coupling the cameras views.  It is also possible to
   interactively probe the location and value of pixels for both 2D and 3D
   datasets.
 
+.. figure:: qgoimagecompare.png
+  :alt: QGoImageCompare
+  :align: center
+
+  QGoImageCompare
+
+
+VV
+  VV_ is an image viewer designed for fast and simple visualization of
+  spatio-temporal images: 2D, 2D+t, 3D and 3D+t (or 4D) images.
+
 .. figure:: vv.png
   :alt: VV
   :align: center
 
-  VV_ is an image viewer designed for fast and simple visualization of
-  spatio-temporal images: 2D, 2D+t, 3D and 3D+t (or 4D) images.
+  VV
+
 
 .. _3DSlicer:              http://www.slicer.org/
 .. _CMake:                 http://cmake.org/
