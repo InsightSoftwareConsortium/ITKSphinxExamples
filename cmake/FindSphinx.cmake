@@ -120,33 +120,9 @@ function( Sphinx_add_targets target_base_name conf source base_destination )
   endif()
 
   if( ${SPHINX_LATEX_OUTPUT} )
-    find_package( LATEX )
-    if( NOT PDFLATEX_COMPILER )
-      message("pdflatex compiler was not found. Please pass to advanced mode and provide its full path")
-    else( NOT PDFLATEX_COMPILER )
-    endif()
-
     Sphinx_add_target( ${target_base_name}_latex latex ${conf} ${source} ${base_destination}/latex )
 
     add_dependencies( ${target_base_name}_latex ${_dependencies} )
-
-    file( GLOB _texfile
-      RELATIVE "${base_destination}/latex" 
-      "${base_destination}/latex/*.tex"
-      )
-
-    # Needs to be executed twice to get table of contents.
-    add_custom_command( TARGET ${target_base_name}_latex 
-      POST_BUILD
-      COMMAND ${PDFLATEX_COMPILER}
-        ${base_destination}/latex/${_texfile}
-        -output-directory ${base_destination}/latex
-      COMMAND ${PDFLATEX_COMPILER}
-        ${base_destination}/latex/${_texfile}
-        -output-directory ${base_destination}/latex
-      WORKING_DIRECTORY ${base_destination}/latex
-      COMMENT "Building PDF"
-      )
   endif()
 
   if( ${SPHINX_MAN_OUTPUT} )

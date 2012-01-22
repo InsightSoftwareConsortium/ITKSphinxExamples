@@ -1,9 +1,8 @@
-==========================
 How to build and visualize
 ==========================
 
 Build individual examples
-=========================
+-------------------------
 
 Download the *example.tar.gz* or *example.zip* file from the link in the left
 hand column of the example's webpage.  Unpack the example::
@@ -34,7 +33,7 @@ Build the project, and run the test::
 .. _building-examples:
 
 Build all examples and the documentation
-========================================
+----------------------------------------
 
 Download the tarball. Unpack the example::
 
@@ -75,7 +74,7 @@ Run the tests::
   ctest -V
 
 Run an example
-==============
+--------------
 
 After building the examples, you can run an example by using `cd` to move to
 the example's directory.  Then, directly run the executable.
@@ -103,7 +102,7 @@ of the resulting text output.
 
 
 Visualize the results
-=====================
+---------------------
 
 ITK is a library limited in scope to image analysis, and it purposely does not
 attempt to perform image visualization.  Visualizing the results of analysis is

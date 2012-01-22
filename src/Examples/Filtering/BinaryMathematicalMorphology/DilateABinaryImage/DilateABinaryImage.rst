@@ -18,7 +18,7 @@ Code
 C++
 ...
 
-.. literalinclude:: BinaryDilateImageFilter.cxx
+.. literalinclude:: DilateABinaryImage.cxx
 
 Results
 -------
@@ -29,7 +29,7 @@ Results
 
   Input binary image.
 
-.. figure:: BinaryDilateImageFilterOutputBaseline.png
+.. figure:: DilateABinaryImageOutputBaseline.png
   :scale: 50%
   :alt: Dilated output.
 

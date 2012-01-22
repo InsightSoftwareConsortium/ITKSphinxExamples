@@ -1,4 +1,3 @@
-=======================
 Submit results to CDash
 =======================
 
@@ -9,7 +8,7 @@ examples remain valid on all supported platforms and to ensure changes in the
 development of ITK do not adversely effect these examples. 
 
 Experimental submission
-=======================
+-----------------------
 
 To submit test results after :ref:`building all the examples <building-examples>`, simply run::
 
@@ -18,13 +17,13 @@ To submit test results after :ref:`building all the examples <building-examples>
 at the top of the build tree.
 
 Nightly submission
-==================
+------------------
 
 You can volunteer to submit nightly testing results that ensure repository
 activity during the day will allow breakage on your system to go unnoticed.
 
 Step 1: Setup you build directory
----------------------------------
+.................................
 
 You will need a directory with sufficient disk space to hold the project source
 code, build tree, and testing scripts.  This can be placed anywhere on your
@@ -40,7 +39,7 @@ Copy the testing support script into your dashboard directory.
   cp ~/src/ITKExamples/scripts/itkexamples_common.cmake .
 
 Step 2: Setup a script describing your system
----------------------------------------------
+.............................................
 
 We will write a CTest script that will update the repository, configure, build,
 and test the project, and then upload the results to the CDash server.  Most of
@@ -56,7 +55,7 @@ You *must* edit this file to describe your local system.
 .. literalinclude:: ../../scripts/itkexamples_dashboard.cmake.example
 
 Step 3: Configure your system to run the script on a daily basis
-----------------------------------------------------------------
+................................................................
 
 First, test the script to ensure that it runs correctly::
 
@@ -71,9 +70,9 @@ crontab::
 The following line will run the script every day at 3 AM::
 
   0 3 * * * ctest -S /home/luis/dashboards/itkexamples_dashboard.cmake -A &> /dev/null
-  
+
 Thank you for contributing to the quality of the ITK Examples!
 
 .. _CDash:                 http://cdash.org/
 .. _ITKExamples dashboard: http://mmmccormick.com/CDash/index.php?project=ITKExamples
-.. _setup a cronjob:       http://en.wikipedia.org/wiki/Cron 
+.. _setup a cronjob:       http://en.wikipedia.org/wiki/Cron
