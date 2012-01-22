@@ -156,6 +156,7 @@ ITK-SNAP
 Paraview
   Paraview_ is a full-featured scientific visualizion GUI written with Qt_/VTK_.
   It has extensive parallel processing capabilities.
+
 .. figure:: paraview.png
   :alt: Paraview
   :align: center

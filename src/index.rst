@@ -16,9 +16,7 @@ Contents:
   Examples/index
   download
 
-Indices and tables
-==================
+Index
+=====
 
 * :ref:`genindex`
-* :ref:`search`
-
