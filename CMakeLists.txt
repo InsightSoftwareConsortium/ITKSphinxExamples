@@ -24,10 +24,27 @@ set( CMAKE_MODULE_PATH ${ITK_EXAMPLES_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH} )
 # The CMake magic to download the data.
 set( ExternalData_SOURCE_ROOT "${ITK_EXAMPLES_SOURCE_DIR}" )
 set( ExternalData_BINARY_ROOT "${ITK_EXAMPLES_BINARY_DIR}" )
+
 include( ITKExamplesExternalData )
+set( _RootSubDirs
+  art
+  cmake
+  formatting
+  scripts
+  src
+  superbuild
+)
+
+set( content_links )
+
 # By default we copy all the content links in the source tree to their
 # corresponding locations in the binary tree.
-file( GLOB_RECURSE content_links RELATIVE "${ITK_EXAMPLES_SOURCE_DIR}" "*.md5" )
+foreach( _dir ${_RootSubDirs} )
+  file( GLOB_RECURSE ${_dir}_content_links
+    RELATIVE "${ITK_EXAMPLES_SOURCE_DIR}" "${_dir}/*.md5" )
+  set( content_links ${content_links} ${${_dir}_content_links} )
+endforeach()
+
 foreach(link ${content_links})
   string( REGEX REPLACE "\\.md5$" "" link ${link} )
   ExternalData_Expand_Arguments( ITKExamplesData
