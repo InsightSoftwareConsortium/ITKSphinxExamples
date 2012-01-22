@@ -58,7 +58,7 @@ reStructuredText_ file::
   Dilate a binary image
   =====================
 
-and it also determines the name of the directory, file, and test names
+and it also determines the name of the directory, file, and test
 associated with the example.  These names are determined by CamelCase conversion
 of the title.  For instance, in this case, the corresponding CamelCase title is
 *DilateABinaryImage*.  All files for the examples are placed in a directory
@@ -70,6 +70,27 @@ Python code in *DilateABinaryImage.py*, reStructuredText_ documentation in
 Index entries
 -------------
 
+Index entries follow the title entry.  They are entered with the `Sphinx index
+directive`_; see that documentation for more information on how to specify index
+entries.  Important classes for the example or terms associated with the example
+should be *single* entries.  Term index entries should be lower case to
+distinguish them from classes or methods in the index.  Terms with sub-terms or
+classes with important methods demonstrated should be used as *pair* entries.
+Use *seealso* instead of *see* to add a *see also* entry.  For instance, with
+our dilate a binary image example::
 
+  .. index::
+    single: BinaryBallStructuringElement
+    single: BinaryDilateImageFilter
+    pair: mathematical morphology; dilation
+    pair: BinaryBallStructuringElement; SetRadius
+    seealso: dilation; erosion
 
+Synopsis
+--------
+
+Code 
+----
+
+.. _Sphinx index directive:  http://sphinx.pocoo.org/markup/misc.html#directive-index
 .. _reStructuredText:        http://docutils.sourceforge.net/rst.html

@@ -2,9 +2,11 @@ Dilate a binary image
 =====================
 
 .. index::
-  single: BinaryBallStructuringElement: BinaryDilateImageFilter
+  single: BinaryBallStructuringElement
+  single: BinaryDilateImageFilter
   pair: mathematical morphology; dilation
   pair: BinaryBallStructuringElement; SetRadius
+  seealso: dilation; erosion
 
 Synopsis
 --------
