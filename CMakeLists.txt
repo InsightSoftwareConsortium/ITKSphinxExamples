@@ -27,7 +27,6 @@ set( ExternalData_BINARY_ROOT "${ITK_EXAMPLES_BINARY_DIR}" )
 
 include( ITKExamplesExternalData )
 set( _RootSubDirs
-  art
   cmake
   formatting
   scripts
