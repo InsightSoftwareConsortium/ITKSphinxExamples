@@ -135,8 +135,12 @@ function( Sphinx_add_targets target_base_name conf source base_destination )
       "${base_destination}/latex/*.tex"
       )
 
+    # Needs to be executed twice to get table of contents.
     add_custom_command( TARGET ${target_base_name}_latex 
       POST_BUILD
+      COMMAND ${PDFLATEX_COMPILER}
+        ${base_destination}/latex/${_texfile}
+        -output-directory ${base_destination}/latex
       COMMAND ${PDFLATEX_COMPILER}
         ${base_destination}/latex/${_texfile}
         -output-directory ${base_destination}/latex
