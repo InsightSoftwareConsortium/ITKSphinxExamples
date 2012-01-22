@@ -135,12 +135,13 @@ function( Sphinx_add_targets target_base_name conf source base_destination )
       "${base_destination}/latex/*.tex"
       )
 
-    add_custom_target( ${target_base_name}_pdf ALL
+    add_custom_command( TARGET ${target_base_name}_latex 
+      POST_BUILD
       COMMAND ${PDFLATEX_COMPILER}
         ${base_destination}/latex/${_texfile}
         -output-directory ${base_destination}/latex
       WORKING_DIRECTORY ${base_destination}/latex
-      DEPENDS ${target_base_name}_latex
+      COMMENT "Building PDF"
       )
   endif()
 
