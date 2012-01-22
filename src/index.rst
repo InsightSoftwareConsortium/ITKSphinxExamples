@@ -11,9 +11,9 @@ Contents:
 .. toctree::
   :maxdepth: 2
 
-  Examples/index
   Build/build
   Contribute/index
+  Examples/index
   download
 
 Indices and tables

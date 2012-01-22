@@ -150,7 +150,7 @@ ITK-SNAP
   :alt: ITK-SNAP
   :align: center
 
-  ITK-SNAP
+  ITK-SNAP_
 
 
 Paraview
@@ -159,6 +159,8 @@ Paraview
 .. figure:: paraview.png
   :alt: Paraview
   :align: center
+
+  Paraview_
 
 
 QGoImageCompare
@@ -171,7 +173,7 @@ QGoImageCompare
   :alt: QGoImageCompare
   :align: center
 
-  QGoImageCompare
+  QGoImageCompare_
 
 
 VV
@@ -182,7 +184,7 @@ VV
   :alt: VV
   :align: center
 
-  VV
+  VV_
 
 
 .. _3DSlicer:              http://www.slicer.org/
