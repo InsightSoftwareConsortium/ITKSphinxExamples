@@ -11,11 +11,11 @@ Automatic:
 A "superbuild" is provided to automatically fetch and build everything
 that is required. The procedure is almost idential to building a normal CMake
 project - the only difference you must point cmake to ITKExamples/superbuild
-instead of just ITKExamples:
+instead of just ITKExamples::
 
-mkdir ~/build/ITKExamples
-cd ~/build/ITKExamples
-cmake ~/src/ITKExamples/superbuild/
+ mkdir ~/build/ITKExamples
+ cd ~/build/ITKExamples
+ cmake ~/src/ITKExamples/superbuild/
 
 Manual:
 
