@@ -1,12 +1,11 @@
-==========
 Contribute
 ==========
 
 The ITK Examples are stored in the Git_ distributed version control system, and
-the mainline repository can be found at `ITK Examples repository`_.  Files in the
-repository can be edited either with the :ref:`web interface <web interface>` or
-the typical :ref:`text editor / version control workflow <text editor / version
-control workflow>` used when modifying source code.
+the mainline repository can be found at `ITK Examples repository`_.  Files in
+the repository can be edited either with the :ref:`web interface
+<web-submission>` or the typical :ref:`text editor / version control workflow
+<text-editor-submission>` used when modifying source code.
 
 Examples code can be written in the C++, Python, or Java programming languages.
 Documentation for the examples is writted in reStructuredText_ / Sphinx_.  A
@@ -19,7 +18,7 @@ There are a variety of ways to take part in the ITK Examples project.  All
 facets are important to the success of the project.
 
 .. toctree::
-  :maxdepth: 1
+  :maxdepth: 2
 
   write_a_new_example
   contribute_with_web_interface

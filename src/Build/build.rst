@@ -1,9 +1,8 @@
-=====
-Build
-=====
+How to build and visualize
+==========================
 
 Build individual examples
-=========================
+-------------------------
 
 Download the *example.tar.gz* or *example.zip* file from the link in the left
 hand column of the example's webpage.  Unpack the example::
@@ -34,7 +33,7 @@ Build the project, and run the test::
 .. _building-examples:
 
 Build all examples and the documentation
-========================================
+----------------------------------------
 
 Download the tarball. Unpack the example::
 
@@ -59,13 +58,14 @@ Run CMake to configure the project.
 
     cmake ../superbuild/
 
-If not build the documentation and not using superbuild functionality, then you
-must have all the required dependencies installed, which are listed in the
+The superbuild will download and build all required dependencies.  If you are
+building the documentation and not using superbuild functionality, then you must
+have all the required dependencies installed, which are listed in the
 *readme.rst* file located at the root of the source tree.  If you just want to
 build the examples and not their documentation, set *BUILD_DOCUMENTATION* to
 *OFF* in your CMake configuration.
 
-Build the project (would generate the documentation and all examples)::
+Build the project (will generate the documentation and all examples)::
 
   make
 
@@ -74,7 +74,7 @@ Run the tests::
   ctest -V
 
 Run an example
-==============
+--------------
 
 After building the examples, you can run an example by using `cd` to move to
 the example's directory.  Then, directly run the executable.
@@ -102,19 +102,17 @@ of the resulting text output.
 
 
 Visualize the results
-=====================
+---------------------
 
 ITK is a library limited in scope to image analysis, and it purposely does not
 attempt to perform image visualization.  Visualizing the results of analysis is
-possible with a number of third party applications.  Note that these packages
+possible with a number of third-party applications.  Note that these packages
 are specially suited for medical images, which often have anisotropic spacing
 and can span three or more dimensions.  All applications listed are open source
 and cross-platform.
 
-.. figure:: slicer.png
-  :alt: 3DSlicer
-  :align: center
 
+3DSlicer
   3DSlicer_ is an open-source software platform for the analysis and
   visualization of medical images and for research in image guided therapy.
   The platform provides functionality for segmentation, registration and
@@ -124,43 +122,70 @@ and cross-platform.
   supported, and the application integrates interface capabilities to biomedical
   research software and image informatics frameworks.
 
+.. figure:: slicer.png
+  :alt: 3DSlicer
+  :align: center
+
+  3DSlicer_
+
+
+ImageViewer
+  An FLTK_-based *ImageViewer* is available in the ITKApps_ repository.  This
+  simple yet effect slice-based viewer works on 2D and 3D images and supports
+  probing of data values.
+
 .. figure:: imageviewer.png
   :alt: ITKApps ImageViewer
   :align: center
 
-  An FLTK_-based *ImageViewer* is available in the ITKApps_ repository.  This
-  simple, yet effect slice-based viewer works on 2D and 3D images and supports
-  probing of data values.
+  ImageViewer
+
+
+ITK-SNAP
+  ITK-SNAP_ is segmentation application, but it is also a nice general
+  resource for visualization of the results of analysis.
 
 .. figure:: itksnap.png
   :alt: ITK-SNAP
   :align: center
 
-  ITK-SNAP_ is an application segmentation tools, but it is also a nice general
-  resource for visualizing analysis results.
+  ITK-SNAP_
+
+
+Paraview
+  Paraview_ is a full-featured scientific visualizion GUI written with Qt_/VTK_.
+  It has extensive parallel processing capabilities.
 
 .. figure:: paraview.png
   :alt: Paraview
   :align: center
 
-  Paraview_ is a full-featured scientific visualizion GUI written with Qt_/VTK_.
-  It has extensive parallel processing capabilities.
+  Paraview_
 
-.. figure:: qgoimagecompare.png
-  :alt: QGoImageCompare
-  :align: center
 
+QGoImageCompare
   QGoImageCompare_ is a simple Qt_/VTK_ application capable of comparing multiple
   images simultaneous by coupling the cameras views.  It is also possible to
   interactively probe the location and value of pixels for both 2D and 3D
   datasets.
 
+.. figure:: qgoimagecompare.png
+  :alt: QGoImageCompare
+  :align: center
+
+  QGoImageCompare_
+
+
+VV
+  VV_ is an image viewer designed for fast and simple visualization of
+  spatio-temporal images: 2D, 2D+t, 3D and 3D+t (or 4D) images.
+
 .. figure:: vv.png
   :alt: VV
   :align: center
 
-  VV_ is an image viewer designed for fast and simple visualization of
-  spatio-temporal images: 2D, 2D+t, 3D and 3D+t (or 4D) images.
+  VV_
+
 
 .. _3DSlicer:              http://www.slicer.org/
 .. _CMake:                 http://cmake.org/

@@ -1,6 +1,13 @@
 Dilate a binary image
 =====================
 
+.. index::
+  single: BinaryBallStructuringElement
+  single: BinaryDilateImageFilter
+  pair: mathematical morphology; dilation
+  pair: BinaryBallStructuringElement; SetRadius
+  seealso: dilation; erosion
+
 Synopsis
 --------
 
@@ -13,7 +20,7 @@ Code
 C++
 ...
 
-.. literalinclude:: BinaryDilateImageFilter.cxx
+.. literalinclude:: DilateABinaryImage.cxx
 
 Results
 -------
@@ -24,7 +31,7 @@ Results
 
   Input binary image.
 
-.. figure:: BinaryDilateImageFilterOutputBaseline.png
+.. figure:: DilateABinaryImageOutputBaseline.png
   :scale: 50%
   :alt: Dilated output.
 

@@ -27,7 +27,6 @@ set( ExternalData_BINARY_ROOT "${ITK_EXAMPLES_BINARY_DIR}" )
 
 include( ITKExamplesExternalData )
 set( _RootSubDirs
-  art
   cmake
   formatting
   scripts
@@ -90,6 +89,25 @@ if( BUILD_DOCUMENTATION )
   set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )
   set( SPHINX_DEPENDENCIES copy_sources ITKDoxygenXML )
   Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
+
+  # Build the PDF with pdflatex
+  find_package( LATEX )
+  if( NOT PDFLATEX_COMPILER )
+    message("pdflatex compiler was not found. Please pass to advanced mode and provide its full path")
+  else()
+    # Needs to be executed twice to get table of contents.
+    add_custom_command( TARGET build_latex 
+      POST_BUILD
+      COMMAND ${PDFLATEX_COMPILER}
+        ${SPHINX_DESTINATION}/latex/ITKExamples.tex
+        -output-directory ${SPHINX_DESTINATION}/latex
+      COMMAND ${PDFLATEX_COMPILER}
+        ${SPHINX_DESTINATION}/latex/ITKExamples.tex
+        -output-directory ${SPHINX_DESTINATION}/latex
+      WORKING_DIRECTORY ${SPHINX_DESTINATION}/latex
+      COMMENT "Building PDF"
+      )
+  endif()
 
   add_subdirectory( formatting )
 endif()

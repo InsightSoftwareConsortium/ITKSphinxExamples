@@ -1,16 +1,15 @@
-.. _`text editor / version control workflow`:
+.. _text-editor-submission:
 
-===================
 Contribute with Git
 ===================
 
 Modifying an existing example
-=============================
+-----------------------------
 
 Todo.
 
 Create a new example
-====================
+--------------------
 
 Todo.
 
