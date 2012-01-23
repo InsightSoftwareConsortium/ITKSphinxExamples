@@ -21,10 +21,10 @@ class_name  = raw_input( "Please enter a class: " )
 example_name = raw_input( "Please enter an example name: " )
 
 # Collect directories
-root_dir = os.path.abspath( '@ITK_EXAMPLE_SOURCE_DIR@' )
+root_dir = os.path.abspath( '@ITK_EXAMPLES_SOURCE_DIR@' )
 
 example_src_dir = os.path.join( root_dir, "src/Examples" )
-example_dir = os.path.join( example_src_dir, group_name, module_name )
+example_dir = os.path.join( example_src_dir, group_name, module_name, example_name )
 
 if not os.path.exists( example_dir ):
    os.mkdir( example_dir )
