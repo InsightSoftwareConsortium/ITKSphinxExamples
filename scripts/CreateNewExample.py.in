@@ -11,8 +11,7 @@ class_name  = raw_input( "Please enter a class: " )
 example_name = raw_input( "Please enter an example name: " )
 
 # Collect directories
-root_dir = os.path.abspath( "/Users/AJG23/GITROOT/ITKExamples" )
-  # os.getcwd() ) #@ITK_EXAMPLE_SOURCE_DIR@ )
+root_dir = os.path.abspath( '@ITK_EXAMPLE_SOURCE_DIR@' )
 
 example_src_dir = os.path.join( root_dir, "src/Examples" )
 example_dir = os.path.join( example_src_dir, group_name, module_name )

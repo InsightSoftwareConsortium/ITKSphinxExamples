@@ -123,5 +123,10 @@ configure_file( ${CMAKE_SOURCE_DIR}/scripts/CreateNewExample.sh.in
   @ONLY
 )
 
+configure_file( ${CMAKE_SOURCE_DIR}/scripts/CreateNewExample.py.in
+  ${CMAKE_BINARY_DIR}/scripts/CreateNewExample.py
+  @ONLY
+)
+
 # This needs to be at the end in case we needed to fetch any other ExternalData.
 ExternalData_Add_Target( ITKExamplesData )
