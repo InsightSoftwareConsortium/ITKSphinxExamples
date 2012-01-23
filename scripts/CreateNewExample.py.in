@@ -61,7 +61,11 @@ example_src_dir = os.path.join( root_dir, "src/Examples" )
 example_dir = os.path.join( example_src_dir, group_name, module_name, example_name )
 
 if not os.path.exists( example_dir ):
-   os.mkdir( example_dir )
+    if not os.path.exists( os.path.join( example_src_dir, group_name ) ):
+      os.mkdir( os.path.join( example_src_dir, group_name ) )
+    if not os.path.exists( os.path.join( example_src_dir, group_name, module_name ) ):
+      os.mkdir( os.path.join( example_src_dir, group_name, module_name ) )
+    os.mkdir( example_dir )
 
 example_base = os.path.join( example_dir, example_name )
 
