@@ -101,6 +101,8 @@ will run *ctest* in verbose mode, which prints out the command executed and all
 of the resulting text output.
 
 
+.. _visualize:
+
 Visualize the results
 ---------------------
 
