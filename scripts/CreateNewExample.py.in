@@ -63,8 +63,15 @@ example_dir = os.path.join( example_src_dir, group_name, module_name, example_na
 if not os.path.exists( example_dir ):
     if not os.path.exists( os.path.join( example_src_dir, group_name ) ):
       os.mkdir( os.path.join( example_src_dir, group_name ) )
+      # add_subdirectory( group_name ) in CMakeLists.txt
+      #f=open( os.path( example_src_dir, 'CMakeLists.txt', 'a' )
+      #f.write( 'add_subdirectory( ' + group_name + ' ) \n' )
+      #f.close()
+
     if not os.path.exists( os.path.join( example_src_dir, group_name, module_name ) ):
       os.mkdir( os.path.join( example_src_dir, group_name, module_name ) )
+      # f.close()
+
     os.mkdir( example_dir )
 
 example_base = os.path.join( example_dir, example_name )
@@ -116,6 +123,7 @@ f.write( '* `' + class_name + ' detailed doxygen documentation`_\n\n' )
 
 f.write( '.. _' + class_name + ' detailed doxygen documentation:\n' )
 f.write( '  http://www.itk.org/Doxygen/html/classitk_1_1' + class_name + '.html' )
+f.close()
 
 # ---------------------------------------------------------
 # Write cxx file
@@ -150,9 +158,10 @@ f.write( '  // writer->Update();\n\n' )
 
 f.write( 'return EXIT_SUCCESS;\n' )
 f.write( '}\n' )
+f.close()
 
 # ---------------------------------------------------------
-# Write CMakeLists.txt 
+# Write CMakeLists.txt
 
 cmakefile = os.path.join( example_dir, 'CMakeLists.txt' )
 f=open( cmakefile, 'w' )
@@ -172,4 +181,4 @@ f.write( 'target_link_libraries( ' + example_name + ' ${ITK_LIBRARIES} )\n\n' )
 
 f.write( 'enable_testing()\n' )
 f.write( 'add_test( ' + example_name + 'Test ' + example_name + ' )\n' )
-
+f.close()
