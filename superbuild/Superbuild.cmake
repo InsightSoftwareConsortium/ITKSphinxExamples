@@ -58,5 +58,6 @@ ExternalProject_Add( ITK_EXAMPLES
     # breathe
     -DBREATHE_DIR:PATH=${BREATHE_DIR}
     -DITKDoxygenXML_DIR:PATH=${ITKDoxygenXML_DIR}
+    -DBUILD_TESTING:BOOL=OFF
   INSTALL_COMMAND ""
 )
