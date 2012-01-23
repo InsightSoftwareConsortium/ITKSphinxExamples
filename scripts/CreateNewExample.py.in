@@ -1,24 +1,58 @@
 #!/usr/bin/env python
 
 """ Scripts to create a new example
+
+./CreateNewExample.py /path/to/source/of/ITK
+
 """
 
 import os
+import sys
 
-# group
-group = [ 'Core', 'IO', 'Filtering', 'Registration', 'Segmentation', 'Numerics', 'Video', 'ThirdParty', 'Bridge', 'Nonunit', 'Compatibility' ]
+def GetGroupAndModuleFromClassName( itk_dir, class_name ):
 
-group_name = ''
+    cmakefile = os.path.join( itk_dir, 'CMake', 'UseITK.cmake' )
+    result = dict()
+    result[ 'bool' ] = False
 
-while group.count( group_name ) == 0:
-    print 'Here is the list of existing group: ' 
-    print group 
-    group_name = raw_input( "Please enter a group: " )
-# -------------------------------------------------------------------------
+    if not os.path.exists( cmakefile ):
+        print 'Error: wrong path'
+    else:
+      path = ''
 
-module_name = raw_input( "Please enter a module: " )
-class_name  = raw_input( "Please enter a class: " )
+      for root, dirs, files in os.walk( os.path.join( itk_dir, 'Modules' ) ):
+          for f in files:
+              if f == 'itk' + class_name + '.h':
+                  path = root
+
+      if len( path ) != 0:
+          # let's extract the Group
+          temp = path.strip( os.path.join( itk_dir, 'Modules' ) )
+          temp = temp.strip( 'include' )
+
+          GroupModule = temp.split( '/' )
+
+          result[ 'Group' ] = GroupModule[ 0 ]
+          result[ 'Module' ] = GroupModule[ 1 ]
+          result[ 'bool' ] = True
+
+      else:
+          print 'Error: this class is not part of itk'
+
+    return result
+
+# beginning
+temp_res = dict()
+temp_res[ 'bool' ]= False;
+
+while not temp_res[ 'bool' ]:
+    class_name  = raw_input( "Please enter a class: " )
+    temp_res = GetGroupAndModuleFromClassName( sys.argv[1], class_name )
+
+group_name = temp_res[ 'Group' ]
+module_name = temp_res[ 'Module' ]
 example_name = raw_input( "Please enter an example name: " )
+
 
 # Collect directories
 root_dir = os.path.abspath( '@ITK_EXAMPLES_SOURCE_DIR@' )
@@ -47,7 +81,7 @@ f.write( 'Synopsis\n' )
 f.write( '--------\n' )
 
 synopsis = raw_input( 'Synopsis: ' )
-f.write( synopsis )
+f.write( synopsis + '\n\n' )
 
 f.write( 'Code\n' )
 f.write( '----\n\n' )
@@ -74,7 +108,7 @@ f.write( '--------------------\n\n' )
 f.write( '.. doxygenclass: itk::' + class_name + '\n' )
 f.write( '  :no-link:\n\n' )
 
-f.write( '* \`' + class_name + ' detailed doxygen documentation\`_\n\n' )
+f.write( '* `' + class_name + ' detailed doxygen documentation`_\n\n' )
 
 f.write( '.. _' + class_name + ' detailed doxygen documentation:\n' )
 f.write( '  http://www.itk.org/Doxygen/html/classitk_1_1' + class_name + '.html' )

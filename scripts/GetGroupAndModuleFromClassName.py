@@ -11,29 +11,39 @@ for instance, try:
 import sys
 import os
 
-itk_dir = sys.argv[1]
-cmakefile = os.path.join( itk_dir, 'CMake', 'UseITK.cmake' )
+def GetGroupAndModuleFromClassName( itk_dir, class_name )
 
-if not os.path.exists( cmakefile ):
-    print 'Error: wrong path'
-else:
-  class_name = sys.argv[2]
-  path = ''
+#  itk_dir = sys.argv[1]
+    cmakefile = os.path.join( itk_dir, 'CMake', 'UseITK.cmake' )
+    result = dict()
 
-  for root, dirs, files in os.walk( os.path.join( itk_dir, 'Modules' ) ):
-      for f in files:
-          if f == 'itk' + class_name + '.h':
-              path = root
+    if not os.path.exists( cmakefile ):
+        print 'Error: wrong path'
+    else:
+#    class_name = sys.argv[2]
+      path = ''
 
-  if len( path ) != 0:
-      # let's extract the Group
-      temp = path.strip( os.path.join( itk_dir, 'Modules' ) )
-      temp = temp.strip( 'include' )
+      for root, dirs, files in os.walk( os.path.join( itk_dir, 'Modules' ) ):
+          for f in files:
+              if f == 'itk' + class_name + '.h':
+                  path = root
 
-      GroupModule = temp.split( '/' )
-      print 'Group: ' + GroupModule[ 0 ]
-      print 'Module: ' + GroupModule[ 1 ]
+      if len( path ) != 0:
+          # let's extract the Group
+          temp = path.strip( os.path.join( itk_dir, 'Modules' ) )
+          temp = temp.strip( 'include' )
 
-  else:
-      print 'Error: this class is not part of itk'
+          GroupModule = temp.split( '/' )
 
+          result[ 'Group' ] = GroupModule[ 0 ]
+          result[ 'Module' ] = GroupModule[ 1 ]
+
+      else:
+          print 'Error: this class is not part of itk'
+
+    return result
+
+
+result = GetGroupAndModuleFromClassName( sys.argv[1], sys.argv[2] )
+print 'Group: ' + result[ 'Group' ]
+print 'Module: ' + result[ 'Module' ]
