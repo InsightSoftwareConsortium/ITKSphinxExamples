@@ -17,8 +17,6 @@ include( CTest )
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
 
-set( BUILD_TESTING OFF )
-
 # ExternalData setup.  We use the CMake ExternalData features to download binary
 # files from a configurable location(s) -- including the local filesystem -- to
 # avoid storing the potentially large files in the Git history.
