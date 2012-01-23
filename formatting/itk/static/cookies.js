@@ -5,9 +5,9 @@ function createCookie(cookie_name, value, expiration_days)
     {
     var expiration_date = new Date();
     expiration_date.setDate( expiration_date.getDate() + expiration_days );
-    expires = '; ' + expiration_date.toUTCString();
+    expires = '; expires=' + expiration_date.toUTCString();
     }
-  document.cookie = name + '=' + escape( value ) + expires
+  document.cookie = cookie_name + '=' + escape( value ) + expires
 }
 
 function readCookie(desired_cookie_name)
