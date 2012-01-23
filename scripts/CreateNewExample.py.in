@@ -64,15 +64,54 @@ if not os.path.exists( example_dir ):
     if not os.path.exists( os.path.join( example_src_dir, group_name ) ):
       os.mkdir( os.path.join( example_src_dir, group_name ) )
       # add_subdirectory( group_name ) in CMakeLists.txt
-      #f=open( os.path( example_src_dir, 'CMakeLists.txt', 'a' )
-      #f.write( 'add_subdirectory( ' + group_name + ' ) \n' )
-      #f.close()
+      f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ), 'a' )
+      f.write( 'add_subdirectory( ' + group_name + ' ) \n' )
+      f.close()
+
+      f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ) , 'a' )
+      f.write( '' )
+      f.close()
+
+      f=open( os.path.join( example_src_dir, group_name, 'index.rst' ), 'a' )
+      f.write( group_name + '\n' )
+      for i in range( len( group_name ) ):
+          f.write( '=' )
+      f.write( '\n\n' )
+
+      f.write( '.. toctree::\n' )
+      f.write( '  :maxdepth: 2\n\n' )
+      f.close()
 
     if not os.path.exists( os.path.join( example_src_dir, group_name, module_name ) ):
-      os.mkdir( os.path.join( example_src_dir, group_name, module_name ) )
-      # f.close()
+        os.mkdir( os.path.join( example_src_dir, group_name, module_name ) )
+        f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ), 'a' )
+        f.write( 'add_subdirectory( ' + module_name + ' )\n' )
+        f.close()
+
+        f=open( os.path.join( example_src_dir, group_name, 'index.rst' ), 'a' )
+        f.write( '  ' + module_name + '/index.rst\n' )
+        f.close()
+
+        f=open( os.path.join( example_src_dir, group_name, module_name, 'CMakeLists.txt' ), 'a' )
+        f.write( 'add_example( ' + example_name + ' )\n' )
+        f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n\n' )
+        f.close()
+
+        f=open( os.path.join( example_src_dir, group_name, module_name, 'index.rst' ), 'a' )
+        f.write( module_name + '\n' )
+        for i in range( len( module_name ) ):
+            f.write( '=' )
+        f.write( '\n\n' )
+
+        f.write( '.. toctree::\n' )
+        f.write( '  :maxdepth: 2\n\n' )
+
+        f.write( '  ' + example_name + '/' + example_name + '.rst\n' )
+        f.close()
+
 
     os.mkdir( example_dir )
+
 
 example_base = os.path.join( example_dir, example_name )
 
