@@ -1,5 +1,5 @@
-Title
-=====
+CreateAPointSet
+===============
 
 .. index::  single: PointSet
 
