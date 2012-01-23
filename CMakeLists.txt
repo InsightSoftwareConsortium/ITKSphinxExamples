@@ -17,6 +17,8 @@ include( CTest )
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
 
+set( BUILD_TESTING OFF )
+
 # ExternalData setup.  We use the CMake ExternalData features to download binary
 # files from a configurable location(s) -- including the local filesystem -- to
 # avoid storing the potentially large files in the Git history.
@@ -82,8 +84,8 @@ if( BUILD_DOCUMENTATION )
   # Builds the documentation.
   find_package( Sphinx REQUIRED )
   set( SPHINX_HTML_OUTPUT ON )
-  set( SPHINX_LATEX_OUTPUT ON )
-  set( SPHINX_TEXT_OUTPUT ON )
+  set( SPHINX_LATEX_OUTPUT OFF )
+  set( SPHINX_TEXT_OUTPUT OFF )
   set( SPHINX_CONF_DIR ${ITK_EXAMPLES_BINARY_DIR}/formatting )
   set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
   set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )
