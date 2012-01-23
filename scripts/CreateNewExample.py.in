@@ -5,7 +5,17 @@
 
 import os
 
-group_name = raw_input( "Please enter a group: " )
+# group
+group = [ 'Core', 'IO', 'Filtering', 'Registration', 'Segmentation', 'Numerics', 'Video', 'ThirdParty', 'Bridge', 'Nonunit', 'Compatibility' ]
+
+group_name = ''
+
+while group.count( group_name ) == 0:
+    print 'Here is the list of existing group: ' 
+    print group 
+    group_name = raw_input( "Please enter a group: " )
+# -------------------------------------------------------------------------
+
 module_name = raw_input( "Please enter a module: " )
 class_name  = raw_input( "Please enter a class: " )
 example_name = raw_input( "Please enter an example name: " )
@@ -16,7 +26,7 @@ root_dir = os.path.abspath( '@ITK_EXAMPLE_SOURCE_DIR@' )
 example_src_dir = os.path.join( root_dir, "src/Examples" )
 example_dir = os.path.join( example_src_dir, group_name, module_name )
 
-if not os.path.exists( example_dir )
+if not os.path.exists( example_dir ):
    os.mkdir( example_dir )
 
 example_base = os.path.join( example_dir, example_name )
