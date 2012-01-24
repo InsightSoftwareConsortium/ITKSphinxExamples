@@ -5,4 +5,5 @@ Binary Mathematical Morphology
   :maxdepth: 2
 
   DilateABinaryImage/DilateABinaryImage
+  ErodeABinaryImage/ErodeABinaryImage
 

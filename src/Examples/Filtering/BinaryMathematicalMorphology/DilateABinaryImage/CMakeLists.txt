@@ -9,5 +9,6 @@ add_executable( DilateABinaryImage DilateABinaryImage.cxx )
 target_link_libraries( DilateABinaryImage ${ITK_LIBRARIES} )
 
 enable_testing()
-add_test( DilateABinaryImageTest
-  DilateABinaryImage ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png DilateABinaryImageOutput.png 3 )
+add_test( DilateABinaryImageTest DilateABinaryImage
+  ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png DilateABinaryImageOutput.png 3
+  )
