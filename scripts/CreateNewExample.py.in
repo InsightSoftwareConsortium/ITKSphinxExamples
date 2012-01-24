@@ -124,7 +124,7 @@ f = open( example_rst, 'w' )
 f.write( 'Title\n' )
 f.write( '=====\n\n' )
 
-f.write( '.. index::' )
+f.write( '.. index::\n' )
 f.write( '  single: ' + class_name + '\n\n')
 
 f.write( 'Synopsis\n' )

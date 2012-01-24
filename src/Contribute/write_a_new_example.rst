@@ -15,7 +15,8 @@ in text editors.  It is generally ITK's policy to format code lines without
 wrapping up to 200 characters, but the 80 character limit keeps code readable in
 the PDF output.
 
-Please remove all trailing whitespace.
+Please remove all trailing whitespace.  Use two newlines between section
+headings.
 
 Follow ITK conventions for coding; do not use TABs, and use two spacing for
 indentation.
