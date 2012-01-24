@@ -4,6 +4,7 @@
 # back-up files
 *~
 *.bak
+*.swp
 
 # KWStyle hook output
 *.kws
