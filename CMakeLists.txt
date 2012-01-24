@@ -63,6 +63,9 @@ add_custom_target( copy_sources ALL
   "${ITK_EXAMPLES_BINARY_DIR}/scripts"
   COMMENT "Copying sources"
   )
+# For unknown reasons, this was the only effective way to ensure ITKExamplesData
+# was built before build_html.
+add_dependencies( copy_sources ITKExamplesData )
 
 # Build the documentation?
 option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
