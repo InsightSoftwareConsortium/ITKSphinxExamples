@@ -5,3 +5,4 @@ Filtering
   :maxdepth: 2
 
   BinaryMathematicalMorphology/index.rst
+  ImageGrid/index.rst

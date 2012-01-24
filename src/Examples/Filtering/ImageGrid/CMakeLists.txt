@@ -1,0 +1,3 @@
+add_example( FlipAnImageOverSpecifiedAxes )
+compare_to_baseline( FlipAnImageOverSpecifiedAxes FlipAnImageOverSpecifiedAxesOutput)
+
