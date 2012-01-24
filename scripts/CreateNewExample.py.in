@@ -106,7 +106,7 @@ def GetGroupAndModuleFromClassName( itk_dir, class_name ):
 
 # --------------------------------------------------------------------
 # Write rst file
-def WriteExampleRSTFile( example_rst, class_name ):
+def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f = open( example_rst, 'w' )
     title = space_out_camel_case( example_name )
 
@@ -119,7 +119,7 @@ def WriteExampleRSTFile( example_rst, class_name ):
     f.write( '  single: ' + class_name + '\n\n')
 
     f.write( 'Synopsis\n' )
-    f.write( '--------\n' )
+    f.write( '--------\n\n' )
 
     if synopsis == None:
         synopsis = raw_input( 'Synopsis: ' )
@@ -203,10 +203,6 @@ def WriteExampleCXXFile( example_cxx, class_name ):
 
 # ---------------------------------------------------------
 
-NWORDS = train(words(file('listofITKheaders').read()))
-
-alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-
 # parsing arguments
 parser = argparse.ArgumentParser(description='Create a new example.')
 
@@ -228,6 +224,12 @@ useitk_cmake = os.path.join( itk_dir, 'CMake', 'UseITK.cmake' )
 if not os.path.exists( useitk_cmake ):
     print ('Error: wrong path for itk source tree' )
     sys.exit()
+
+WriteAllITKHeaders( itk_dir )
+
+NWORDS = train(words(file('listofITKheaders').read()))
+
+alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
 # beginning
 temp_res = dict()
@@ -332,8 +334,8 @@ example_base = os.path.join( example_dir, example_name )
 example_rst = example_base + '.rst'
 example_cxx = example_base + '.cxx'
 
-WriteExampleRSTFile( example_rst, class_name )
-WriteExampleCXXFile( example_rst, class_name )
+WriteExampleRSTFile( example_rst, class_name, args.synopsis )
+WriteExampleCXXFile( example_cxx, class_name )
 
 # ---------------------------------------------------------
 # Write CMakeLists.txt
