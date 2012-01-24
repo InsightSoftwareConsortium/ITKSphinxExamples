@@ -138,12 +138,6 @@ if not os.path.exists( example_dir ):
         f.write( '  ' + module_name + '/index.rst\n' )
         f.close()
 
-        # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/CMakeLists.txt
-        f=open( os.path.join( example_src_dir, group_name, module_name, 'CMakeLists.txt' ), 'a+' )
-        f.write( 'add_example( ' + example_name + ' )\n' )
-        f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n\n' )
-        f.close()
-
         # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/index.rst
         f=open( os.path.join( example_src_dir, group_name, module_name, 'index.rst' ), 'a+' )
         f.write( module_name + '\n' )
@@ -153,9 +147,19 @@ if not os.path.exists( example_dir ):
 
         f.write( '.. toctree::\n' )
         f.write( '  :maxdepth: 2\n\n' )
-
-        f.write( '  ' + example_name + '/' + example_name + '.rst\n' )
         f.close()
+    # endif
+
+    # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/CMakeLists.txt
+    f=open( os.path.join( example_src_dir, group_name, module_name, 'CMakeLists.txt' ), 'a+' )
+    f.write( 'add_example( ' + example_name + ' )\n' )
+    f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n\n' )
+    f.close()
+
+    # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/index.rst
+    f=open( os.path.join( example_src_dir, group_name, module_name, 'index.rst' ), 'a+' )
+    f.write( '  ' + example_name + '/' + example_name + '.rst\n' )
+    f.close()
 
 
     os.mkdir( example_dir )
@@ -218,13 +222,22 @@ f.close()
 # Write cxx file
 
 f = open( example_cxx, 'w' )
-f.write( '// \#include \"itkImage.h\n' )
-f.write( '// \#include \"itkImageFileReader.h\n' )
-f.write( '// \#include \"itkImageFileWriter.h\n' )
-f.write( '\#include \"itk' + class_name + '.h\n\n' )
+f.write( '// #include \"itkImage.h\n' )
+f.write( '// #include \"itkImageFileReader.h\n' )
+f.write( '// #include \"itkImageFileWriter.h\n' )
+f.write( '#include \"itk' + class_name + '.h\"\n\n' )
 
-f.write( 'int main( int argc, char* argv[]\n' )
+f.write( 'int main( int argc, char* argv[] )\n' )
 f.write( '{\n' )
+f.write( '  // if( argc != 3 )\n' )
+f.write( '  //   {\n' )
+f.write( '  //   std::cerr << Usage: << std::endl;\n' )
+f.write( '  //   std::cerr << argv[0];\n' )
+f.write( '  //   std::cerr << "<InputFileName> <OutputFileName>;\n' )
+f.write( '  //   std::cerr << std::endl;\n' )
+f.write( '  //   return EXIT_FAILURE;\n' )
+f.write( '  //   }\n\n' )
+
 f.write( '  // const unsigned int Dimension = 2;\n\n' )
 
 f.write( '  // typedef unsigned char                      PixelType;\n' )
@@ -242,6 +255,7 @@ f.write( '  // filter->Update();\n\n' )
 
 f.write( '  // typedef itk::ImageFileWrite< ImageType > WriteType;\n' )
 f.write( '  // WriterType::Pointer writer = WriterType::New();\n' )
+f.write( '  // writer->SetFileName( argv[2] );\n' )
 f.write( '  // writer->SetInput( filter->GetOutput() );\n' )
 f.write( '  // writer->Update();\n\n' )
 
