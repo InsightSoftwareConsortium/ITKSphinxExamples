@@ -17,20 +17,6 @@ add_custom_target( createTarballs ALL
   ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
 )
 
-if( BUILD_DOCUMENTATION )
-  if( SPHINX_HTML_OUTPUT )
-    add_dependencies( createTarballs build_html )
-  endif()
-
-  if( SPHINX_LATEX_OUTPUT )
-    add_dependencies( createTarballs build_latex )
-  endif()
-
-  if( SPHINX_TEXT_OUTPUT )
-    add_dependencies( createTarballs build_text )
-  endif()
-endif()
-
 # Macro for adding an example.
 #
 # Most of the CMake logic for the example should live in the examples
@@ -50,6 +36,7 @@ macro( add_example example_name )
       COMMENT "Creating tarballs for ${example_name}"
       )
     add_dependencies( createTarballs ${example_name}Tarball )
+    add_dependencies( ${example_name}Tarball build_html )
   endif()
 
   # Process the example's CMakeLists.txt
