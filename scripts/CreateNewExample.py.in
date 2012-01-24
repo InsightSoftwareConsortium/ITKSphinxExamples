@@ -285,3 +285,22 @@ f.write( 'target_link_libraries( ' + example_name + ' ${ITK_LIBRARIES} )\n\n' )
 f.write( 'enable_testing()\n' )
 f.write( 'add_test( ' + example_name + 'Test ' + example_name + ' )\n' )
 f.close()
+
+print '***'
+print 'Example added successfully!'
+
+print 'Please:'
+print '  1- Edit the following files:'
+print '    * ' + example_cxx
+print '    * ' + example_rst + '\n'
+
+print '  2- Commit changes in the ITKExamples source directory and push'
+print '$ cd /path/to/source/ITKExamples'
+print '$ git checkout -b Add_' + example_name
+print '$ git add src/Examples/' + module_name
+print '$ git commit -a -m "Add ' + example_name + '" '
+print '$ git checkout master'
+print '$ git pull origin master'
+print '$ git merge --no-ff Add_' + example_name
+print '$ git push origin master'
+
