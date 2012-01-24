@@ -2,6 +2,9 @@ ReadAPointSet
 =============
 
 .. index::  single: PointSet
+            single: Mesh
+            single: VTKPolyDataReader
+            pair: Mesh; GetPoint
 
 Synopsis
 --------

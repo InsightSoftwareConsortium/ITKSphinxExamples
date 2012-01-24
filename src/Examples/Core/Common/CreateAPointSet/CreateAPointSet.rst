@@ -2,6 +2,7 @@ CreateAPointSet
 ===============
 
 .. index::  single: PointSet
+            pair: PointSet; InsertElement
 
 Synopsis
 --------
