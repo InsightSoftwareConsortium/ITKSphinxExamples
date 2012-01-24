@@ -13,7 +13,7 @@ if( BUILD_DOCUMENTATION )
 endif()
 
 # A high level target that the individual targets depend on.
-add_custom_target( createTarballs ALL
+add_custom_target( CreateTarballs ALL
   ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
 )
 
@@ -30,13 +30,25 @@ macro( add_example example_name )
 
   if( BUILD_DOCUMENTATION )
     add_custom_target( ${example_name}Tarball
-      COMMAND ${PYTHON_EXECUTABLE} ${ITK_EXAMPLES_SOURCE_DIR}/scripts/createTarball.py
+      COMMAND ${PYTHON_EXECUTABLE} ${ITK_EXAMPLES_SOURCE_DIR}/scripts/CreateTarball.py
         ${example_name} ${SPHINX_DESTINATION}
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       COMMENT "Creating tarballs for ${example_name}"
       )
-    add_dependencies( createTarballs ${example_name}Tarball )
-    add_dependencies( ${example_name}Tarball build_html )
+    add_dependencies( CreateTarballs ${example_name}Tarball )
+
+    if( SPHINX_HTML_OUTPUT )
+      add_dependencies( ${example_name}Tarball build_html )
+    endif()
+
+    if( SPHINX_LATEX_OUTPUT )
+      add_dependencies( ${example_name}Tarball build_latex )
+    endif()
+
+    if( SPHINX_TEXT_OUTPUT )
+      add_dependencies( ${example_name}Tarball build_text )
+    endif()
+
   endif()
 
   # Process the example's CMakeLists.txt

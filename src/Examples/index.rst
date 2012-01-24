@@ -17,4 +17,4 @@ Examples
   Registration/index.rst
   Segmentation/index.rst
   ThirdParty/index.rst
-  Video.index.rst
+  Video/index.rst

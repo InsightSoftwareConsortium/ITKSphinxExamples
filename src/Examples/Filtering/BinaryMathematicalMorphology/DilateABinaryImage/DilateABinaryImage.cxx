@@ -16,10 +16,10 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkBinaryDilateImageFilter.h"
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
 #include "itkBinaryBallStructuringElement.h"
+#include "itkBinaryDilateImageFilter.h"
 
 int main(int argc, char *argv[])
 {

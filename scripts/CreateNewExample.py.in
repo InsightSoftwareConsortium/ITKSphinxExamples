@@ -8,12 +8,17 @@
 
 import os
 import sys
+import argparse
 
+# --------------------------------------------------------------------
 def GetGroupAndModuleFromClassName( itk_dir, class_name ):
 
     cmakefile = os.path.join( itk_dir, 'CMake', 'UseITK.cmake' )
     result = dict()
     result[ 'bool' ] = False
+
+    if class_name == None:
+      return result
 
     if not os.path.exists( cmakefile ):
         print 'Error: wrong path'
@@ -40,19 +45,47 @@ def GetGroupAndModuleFromClassName( itk_dir, class_name ):
           print 'Error: this class is not part of itk'
 
     return result
+# --------------------------------------------------------------------
+
+
+
+# parsing arguments
+parser = argparse.ArgumentParser(description='Create a new example.')
+
+parser.add_argument('itk_source_dir', help='path to itk source tree' )
+parser.add_argument('--class-name', action='store', dest='class_name',
+    help='class name to be demonstrated (e.g. ImageToImageFilter)' )
+parser.add_argument('--example-name', action='store', dest='example_name',
+    help='example name (e.g. WriteAPointset)' )
+
+args = parser.parse_args()
+
+# check itk_source_tree is a real source tree of ITK
+# Note: It would work even with an outdated version of ITK
+itk_dir = args.itk_source_dir
+useitk_cmake = os.path.join( itk_dir, 'CMake', 'UseITK.cmake' )
+
+if not os.path.exists( useitk_cmake ):
+    print 'Error: wrong path for itk source tree'
+    sys.exit()
 
 # beginning
 temp_res = dict()
 temp_res[ 'bool' ]= False;
 
+class_name = args.class_name
+temp_res = GetGroupAndModuleFromClassName( itk_dir, class_name )
+
 while not temp_res[ 'bool' ]:
     class_name  = raw_input( "Please enter a class: " )
-    temp_res = GetGroupAndModuleFromClassName( sys.argv[1], class_name )
+    temp_res = GetGroupAndModuleFromClassName( args.itk_source_dir, class_name )
 
 group_name = temp_res[ 'Group' ]
 module_name = temp_res[ 'Module' ]
-example_name = raw_input( "Please enter an example name: " )
+example_name = args.example_name
 
+if example_name == None:
+    example_name = raw_input( "Please enter an example name: " )
 
 # Collect directories
 root_dir = os.path.abspath( '@ITK_EXAMPLES_SOURCE_DIR@' )
@@ -60,19 +93,26 @@ root_dir = os.path.abspath( '@ITK_EXAMPLES_SOURCE_DIR@' )
 example_src_dir = os.path.join( root_dir, "src/Examples" )
 example_dir = os.path.join( example_src_dir, group_name, module_name, example_name )
 
+# if ITKExmaples/src/Examples/$group_name/$module_name/$example_name does not exist
 if not os.path.exists( example_dir ):
-    if not os.path.exists( os.path.join( example_src_dir, group_name ) ):
-      os.mkdir( os.path.join( example_src_dir, group_name ) )
-      # add_subdirectory( group_name ) in CMakeLists.txt
-      f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ), 'a' )
-      f.write( 'add_subdirectory( ' + group_name + ' ) \n' )
-      f.close()
 
-      f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ) , 'a' )
+    # if ITKExamples/src/Example/$group_name does not exist
+    if not os.path.exists( os.path.join( example_src_dir, group_name ) ):
+
+      # make directory ITKExamples/src/Examples/$group_name
+      os.mkdir( os.path.join( example_src_dir, group_name ) )
+
+      # populate ITKExamples/src/Examples/$group_name/CMakeLists.txt
+      f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ), 'a+' )
+      f.write( 'add_subdirectory( ' + group_name + ' ) \n' )
+#      f.close()
+
+#      f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ) , 'a+' )
       f.write( '' )
       f.close()
 
-      f=open( os.path.join( example_src_dir, group_name, 'index.rst' ), 'a' )
+      # populate ITKExamples/src/Examples/$group_name/index.rst
+      f=open( os.path.join( example_src_dir, group_name, 'index.rst' ), 'a+' )
       f.write( group_name + '\n' )
       for i in range( len( group_name ) ):
           f.write( '=' )
@@ -82,22 +122,24 @@ if not os.path.exists( example_dir ):
       f.write( '  :maxdepth: 2\n\n' )
       f.close()
 
+    # if ITKExamples/src/Examples/$group_name/$module_name does not exist
     if not os.path.exists( os.path.join( example_src_dir, group_name, module_name ) ):
+
+        # make directory ITKExamples/src/Examples/$group_name/$module_name
         os.mkdir( os.path.join( example_src_dir, group_name, module_name ) )
-        f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ), 'a' )
+
+        # append 'add_subdirectory( $module_name )' into ITKExamples/src/Examples/$group_name/CMakeLists.txt
+        f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ), 'a+' )
         f.write( 'add_subdirectory( ' + module_name + ' )\n' )
         f.close()
 
-        f=open( os.path.join( example_src_dir, group_name, 'index.rst' ), 'a' )
+        # append '$module_name/index.rst' into ITKExamples/src/Examples/$group_name/index.rst
+        f=open( os.path.join( example_src_dir, group_name, 'index.rst' ), 'a+' )
         f.write( '  ' + module_name + '/index.rst\n' )
         f.close()
 
-        f=open( os.path.join( example_src_dir, group_name, module_name, 'CMakeLists.txt' ), 'a' )
-        f.write( 'add_example( ' + example_name + ' )\n' )
-        f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n\n' )
-        f.close()
-
-        f=open( os.path.join( example_src_dir, group_name, module_name, 'index.rst' ), 'a' )
+        # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/index.rst
+        f=open( os.path.join( example_src_dir, group_name, module_name, 'index.rst' ), 'a+' )
         f.write( module_name + '\n' )
         for i in range( len( module_name ) ):
             f.write( '=' )
@@ -105,9 +147,19 @@ if not os.path.exists( example_dir ):
 
         f.write( '.. toctree::\n' )
         f.write( '  :maxdepth: 2\n\n' )
-
-        f.write( '  ' + example_name + '/' + example_name + '.rst\n' )
         f.close()
+    # endif
+
+    # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/CMakeLists.txt
+    f=open( os.path.join( example_src_dir, group_name, module_name, 'CMakeLists.txt' ), 'a+' )
+    f.write( 'add_example( ' + example_name + ' )\n' )
+    f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n\n' )
+    f.close()
+
+    # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/index.rst
+    f=open( os.path.join( example_src_dir, group_name, module_name, 'index.rst' ), 'a+' )
+    f.write( '  ' + example_name + '/' + example_name + '.rst\n' )
+    f.close()
 
 
     os.mkdir( example_dir )
@@ -121,8 +173,10 @@ example_cxx = example_base + '.cxx'
 # ---------------------------------------------------------
 # Write rst file
 f = open( example_rst, 'w' )
-f.write( 'Title\n' )
-f.write( '=====\n\n' )
+f.write( example_name +'\n' )
+for i in range( len( example_name ) ):
+    f.write( '=' )
+f.write( '\n\n' )
 
 f.write( '.. index::\n' )
 f.write( '  single: ' + class_name + '\n\n')
@@ -168,13 +222,22 @@ f.close()
 # Write cxx file
 
 f = open( example_cxx, 'w' )
-f.write( '// \#include \"itkImage.h\n' )
-f.write( '// \#include \"itkImageFileReader.h\n' )
-f.write( '// \#include \"itkImageFileWriter.h\n' )
-f.write( '\#include \"itk' + class_name + '.h\n\n' )
+f.write( '// #include \"itkImage.h\n' )
+f.write( '// #include \"itkImageFileReader.h\n' )
+f.write( '// #include \"itkImageFileWriter.h\n' )
+f.write( '#include \"itk' + class_name + '.h\"\n\n' )
 
-f.write( 'int main( int argc, char* argv[]\n' )
+f.write( 'int main( int argc, char* argv[] )\n' )
 f.write( '{\n' )
+f.write( '  // if( argc != 3 )\n' )
+f.write( '  //   {\n' )
+f.write( '  //   std::cerr << Usage: << std::endl;\n' )
+f.write( '  //   std::cerr << argv[0];\n' )
+f.write( '  //   std::cerr << "<InputFileName> <OutputFileName>;\n' )
+f.write( '  //   std::cerr << std::endl;\n' )
+f.write( '  //   return EXIT_FAILURE;\n' )
+f.write( '  //   }\n\n' )
+
 f.write( '  // const unsigned int Dimension = 2;\n\n' )
 
 f.write( '  // typedef unsigned char                      PixelType;\n' )
@@ -192,6 +255,7 @@ f.write( '  // filter->Update();\n\n' )
 
 f.write( '  // typedef itk::ImageFileWrite< ImageType > WriteType;\n' )
 f.write( '  // WriterType::Pointer writer = WriterType::New();\n' )
+f.write( '  // writer->SetFileName( argv[2] );\n' )
 f.write( '  // writer->SetInput( filter->GetOutput() );\n' )
 f.write( '  // writer->Update();\n\n' )
 
