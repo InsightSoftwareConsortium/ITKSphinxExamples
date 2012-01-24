@@ -9,6 +9,60 @@ import os
 import sys
 import argparse
 import re
+import fnmatch
+import collections
+
+# --------------------------------------------------------------------
+def WriteAllITKHeaders( itk_source_dir ):
+
+  matches = []
+  output = file( 'listofITKheaders', 'w' )
+
+  for root, dirs, files in os.walk( os.path.join( itk_source_dir, 'Modules' ) ):
+      for f in fnmatch.filter( files, 'itk*.h' ):
+          output.write( f + '\n' )
+
+# --------------------------------------------------------------------
+def words(text):
+    temp = re.findall( 'itk[A-Z][a-zA-Z_0-9]+', text )
+    for i in range( len(temp) ):
+        var=temp[i]
+        temp[i] = var[3:]
+    return temp
+# --------------------------------------------------------------------
+
+def train(features):
+    model = collections.defaultdict(lambda: 1)
+    for f in features:
+        model[f] += 1
+    return model
+# --------------------------------------------------------------------
+
+def edits1(word):
+    splits     = [(word[:i], word[i:]) for i in range(len(word) + 1)]
+    deletes    = [a + b[1:] for a, b in splits if b]
+    transposes = [a + b[1] + b[0] + b[2:] for a, b in splits if len(b)>1]
+    replaces   = [a + c + b[1:] for a, b in splits for c in alphabet if b]
+    inserts    = [a + c + b     for a, b in splits for c in alphabet]
+    lowercases = [a + b[0].lower() + b[1:] for a, b in splits if b]
+    uppercases = [a + b[0].upper() + b[1:] for a, b in splits if b]
+    all_lowercase = [ word[:].lower() ]
+    #   all_uppercase = [ word[:].upper() ]
+    one_uppercase = [ a[:].lower() + b[0].upper() + b[1:].lower() for a,b in splits if b]
+
+    return set(deletes + transposes + replaces + inserts + lowercases + uppercases + all_lowercase + one_uppercase )
+# --------------------------------------------------------------------
+
+def known_edits2(word):
+    return set(e2 for e1 in edits1(word) for e2 in edits1(e1) if e2 in NWORDS)
+# --------------------------------------------------------------------
+
+def known(words): return set(w for w in words if w in NWORDS)
+# --------------------------------------------------------------------
+
+def itkcorrect(word):
+    candidates = known([word]) or known(edits1(word)) or known_edits2(word) or [word]
+    return max(candidates, key=NWORDS.get)
 
 # --------------------------------------------------------------------
 def space_out_camel_case(s):
@@ -147,7 +201,11 @@ def WriteExampleCXXFile( example_cxx, class_name ):
     f.write( '}\n' )
     f.close()
 
+# ---------------------------------------------------------
 
+NWORDS = train(words(file('listofITKheaders').read()))
+
+alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
 # parsing arguments
 parser = argparse.ArgumentParser(description='Create a new example.')
@@ -180,6 +238,9 @@ temp_res = GetGroupAndModuleFromClassName( itk_dir, class_name )
 
 while not temp_res[ 'bool' ]:
     class_name  = raw_input( "Please enter a class: " )
+    class_name  = itkcorrect( class_name )
+    print( class_name )
+
     temp_res = GetGroupAndModuleFromClassName( args.itk_source_dir, class_name )
 
 group_name = temp_res[ 'Group' ]
