@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::BinaryBallStructuringElement< PixelType, Dimension > 
+  typedef itk::BinaryBallStructuringElement< PixelType, Dimension >
     StructuringElementType;
   StructuringElementType structuringElement;
   structuringElement.SetRadius( atoi( argv[3] ) );
