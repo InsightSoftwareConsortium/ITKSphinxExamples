@@ -3,12 +3,70 @@
 """ Scripts to create a new example
 
 ./CreateNewExample.py /path/to/source/of/ITK
-
 """
 
 import os
 import sys
 import argparse
+import re
+import fnmatch
+import collections
+
+# --------------------------------------------------------------------
+def WriteAllITKHeaders( itk_source_dir ):
+
+  matches = []
+  output = file( 'listofITKheaders', 'w' )
+
+  for root, dirs, files in os.walk( os.path.join( itk_source_dir, 'Modules' ) ):
+      for f in fnmatch.filter( files, 'itk*.h' ):
+          output.write( f + '\n' )
+
+# --------------------------------------------------------------------
+def words(text):
+    temp = re.findall( 'itk[A-Z][a-zA-Z_0-9]+', text )
+    for i in range( len(temp) ):
+        var=temp[i]
+        temp[i] = var[3:]
+    return temp
+# --------------------------------------------------------------------
+
+def train(features):
+    model = collections.defaultdict(lambda: 1)
+    for f in features:
+        model[f] += 1
+    return model
+# --------------------------------------------------------------------
+
+def edits1(word):
+    splits     = [(word[:i], word[i:]) for i in range(len(word) + 1)]
+    deletes    = [a + b[1:] for a, b in splits if b]
+    transposes = [a + b[1] + b[0] + b[2:] for a, b in splits if len(b)>1]
+    replaces   = [a + c + b[1:] for a, b in splits for c in alphabet if b]
+    inserts    = [a + c + b     for a, b in splits for c in alphabet]
+    lowercases = [a + b[0].lower() + b[1:] for a, b in splits if b]
+    uppercases = [a + b[0].upper() + b[1:] for a, b in splits if b]
+    all_lowercase = [ word[:].lower() ]
+    #   all_uppercase = [ word[:].upper() ]
+    one_uppercase = [ a[:].lower() + b[0].upper() + b[1:].lower() for a,b in splits if b]
+
+    return set(deletes + transposes + replaces + inserts + lowercases + uppercases + all_lowercase + one_uppercase )
+# --------------------------------------------------------------------
+
+def known_edits2(word):
+    return set(e2 for e1 in edits1(word) for e2 in edits1(e1) if e2 in NWORDS)
+# --------------------------------------------------------------------
+
+def known(words): return set(w for w in words if w in NWORDS)
+# --------------------------------------------------------------------
+
+def itkcorrect(word):
+    candidates = known([word]) or known(edits1(word)) or known_edits2(word) or [word]
+    return max(candidates, key=NWORDS.get)
+
+# --------------------------------------------------------------------
+def space_out_camel_case(s):
+    return re.sub('((?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z]))', ' ', s)
 
 # --------------------------------------------------------------------
 def GetGroupAndModuleFromClassName( itk_dir, class_name ):
@@ -21,7 +79,7 @@ def GetGroupAndModuleFromClassName( itk_dir, class_name ):
       return result
 
     if not os.path.exists( cmakefile ):
-        print 'Error: wrong path'
+        print ('Error: wrong path')
     else:
       path = ''
 
@@ -42,12 +100,108 @@ def GetGroupAndModuleFromClassName( itk_dir, class_name ):
           result[ 'bool' ] = True
 
       else:
-          print 'Error: this class is not part of itk'
+          print ('Error: this class is not part of itk' )
 
     return result
+
 # --------------------------------------------------------------------
+# Write rst file
+def WriteExampleRSTFile( example_rst, class_name, synopsis ):
+    f = open( example_rst, 'w' )
+    title = space_out_camel_case( example_name )
 
+    f.write( title +'\n' )
+    for i in range( len( title ) ):
+        f.write( '=' )
+    f.write( '\n\n' )
 
+    f.write( '.. index::\n' )
+    f.write( '  single: ' + class_name + '\n\n')
+
+    f.write( 'Synopsis\n' )
+    f.write( '--------\n\n' )
+
+    if synopsis == None:
+        synopsis = raw_input( 'Synopsis: ' )
+    f.write( synopsis + '\n\n' )
+
+    f.write( 'Code\n' )
+    f.write( '----\n\n' )
+
+    f.write( 'C++\n' )
+    f.write( '...\n\n' )
+    f.write( '.. literalinclude:: ' + example_name + '.cxx\n\n' )
+
+    f.write( 'Results\n' )
+    f.write( '-------\n\n' )
+
+    f.write( '.. figure:: \n' )
+    f.write( '  :scale: 50%\n' )
+    f.write( '  :alt: Input image\n\n' )
+    f.write( '  Input image\n\n' )
+
+    f.write( '.. figure:: \n' )
+    f.write( '  :scale: 50%\n' )
+    f.write( '  :alt: Output image\n\n' )
+    f.write( '  Output image\n\n' )
+
+    f.write( 'Classes demonstrated\n' )
+    f.write( '--------------------\n\n' )
+
+    f.write( '.. doxygenclass: itk::' + class_name + '\n' )
+    f.write( '  :no-link:\n\n' )
+
+    f.write( '* `' + class_name + ' detailed doxygen documentation`_\n\n' )
+
+    f.write( '.. _' + class_name + ' detailed doxygen documentation:\n' )
+    f.write( '  http://www.itk.org/Doxygen/html/classitk_1_1' + class_name + '.html' )
+    f.close()
+
+# ---------------------------------------------------------
+def WriteExampleCXXFile( example_cxx, class_name ):
+    f = open( example_cxx, 'w' )
+    f.write( '// #include \"itkImage.h\n' )
+    f.write( '// #include \"itkImageFileReader.h\n' )
+    f.write( '// #include \"itkImageFileWriter.h\n' )
+    f.write( '#include \"itk' + class_name + '.h\"\n\n' )
+
+    f.write( 'int main( int argc, char* argv[] )\n' )
+    f.write( '{\n' )
+    f.write( '  // if( argc != 3 )\n' )
+    f.write( '  //   {\n' )
+    f.write( '  //   std::cerr << Usage: << std::endl;\n' )
+    f.write( '  //   std::cerr << argv[0];\n' )
+    f.write( '  //   std::cerr << "<InputFileName> <OutputFileName>;\n' )
+    f.write( '  //   std::cerr << std::endl;\n' )
+    f.write( '  //   return EXIT_FAILURE;\n' )
+    f.write( '  //   }\n\n' )
+
+    f.write( '  // const unsigned int Dimension = 2;\n\n' )
+
+    f.write( '  // typedef unsigned char                      PixelType;\n' )
+    f.write( '  // typedef itk::Image< PixelType, Dimension > ImageType;\n\n' )
+
+    f.write( '  // typedef itk::ImageFileReader< ImageType >  ReaderType;\n' )
+    f.write( '  // ReaderType::Pointer reader = ReaderType::New();\n' )
+    f.write( '  // reader->SetInputFileName( argv[1] );\n' )
+    f.write( '  // reader->Update();\n\n' )
+
+    f.write( '  // typedef itk::' + class_name + '<> FilterType;\n' )
+    f.write( '  // FilterType::Pointer filter = FilterType::New();\n' )
+    f.write( '  // filter->SetInput( reader->GetOutput() );\n' )
+    f.write( '  // filter->Update();\n\n' )
+
+    f.write( '  // typedef itk::ImageFileWrite< ImageType > WriteType;\n' )
+    f.write( '  // WriterType::Pointer writer = WriterType::New();\n' )
+    f.write( '  // writer->SetFileName( argv[2] );\n' )
+    f.write( '  // writer->SetInput( filter->GetOutput() );\n' )
+    f.write( '  // writer->Update();\n\n' )
+
+    f.write( 'return EXIT_SUCCESS;\n' )
+    f.write( '}\n' )
+    f.close()
+
+# ---------------------------------------------------------
 
 # parsing arguments
 parser = argparse.ArgumentParser(description='Create a new example.')
@@ -57,6 +211,8 @@ parser.add_argument('--class-name', action='store', dest='class_name',
     help='class name to be demonstrated (e.g. ImageToImageFilter)' )
 parser.add_argument('--example-name', action='store', dest='example_name',
     help='example name (e.g. WriteAPointset)' )
+parser.add_argument('--synopsis', action='store', dest='synopsis',
+    help='synopsis (e.g. Write a PointSet)' )
 
 args = parser.parse_args()
 
@@ -66,8 +222,14 @@ itk_dir = args.itk_source_dir
 useitk_cmake = os.path.join( itk_dir, 'CMake', 'UseITK.cmake' )
 
 if not os.path.exists( useitk_cmake ):
-    print 'Error: wrong path for itk source tree'
+    print ('Error: wrong path for itk source tree' )
     sys.exit()
+
+WriteAllITKHeaders( itk_dir )
+
+NWORDS = train(words(file('listofITKheaders').read()))
+
+alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
 # beginning
 temp_res = dict()
@@ -78,6 +240,9 @@ temp_res = GetGroupAndModuleFromClassName( itk_dir, class_name )
 
 while not temp_res[ 'bool' ]:
     class_name  = raw_input( "Please enter a class: " )
+    class_name  = itkcorrect( class_name )
+    print( class_name )
+
     temp_res = GetGroupAndModuleFromClassName( args.itk_source_dir, class_name )
 
 group_name = temp_res[ 'Group' ]
@@ -161,7 +326,6 @@ if not os.path.exists( example_dir ):
     f.write( '  ' + example_name + '/' + example_name + '.rst\n' )
     f.close()
 
-
     os.mkdir( example_dir )
 
 
@@ -170,98 +334,8 @@ example_base = os.path.join( example_dir, example_name )
 example_rst = example_base + '.rst'
 example_cxx = example_base + '.cxx'
 
-# ---------------------------------------------------------
-# Write rst file
-f = open( example_rst, 'w' )
-f.write( example_name +'\n' )
-for i in range( len( example_name ) ):
-    f.write( '=' )
-f.write( '\n\n' )
-
-f.write( '.. index::\n' )
-f.write( '  single: ' + class_name + '\n\n')
-
-f.write( 'Synopsis\n' )
-f.write( '--------\n' )
-
-synopsis = raw_input( 'Synopsis: ' )
-f.write( synopsis + '\n\n' )
-
-f.write( 'Code\n' )
-f.write( '----\n\n' )
-
-f.write( 'C++\n' )
-f.write( '...\n\n' )
-f.write( '.. literalinclude:: ' + example_name + '.cxx\n\n' )
-
-f.write( 'Results\n' )
-f.write( '-------\n\n' )
-f.write( '.. figure:: \n' )
-f.write( '  :scale: 50%\n' )
-f.write( '  :alt: Input image\n\n' )
-f.write( '  Input image\n\n' )
-
-f.write( '.. figure:: \n' )
-f.write( '  :scale: 50%\n' )
-f.write( '  :alt: Output image\n\n' )
-f.write( '  Output image\n\n' )
-
-f.write( 'Classes demonstrated\n' )
-f.write( '--------------------\n\n' )
-
-f.write( '.. doxygenclass: itk::' + class_name + '\n' )
-f.write( '  :no-link:\n\n' )
-
-f.write( '* `' + class_name + ' detailed doxygen documentation`_\n\n' )
-
-f.write( '.. _' + class_name + ' detailed doxygen documentation:\n' )
-f.write( '  http://www.itk.org/Doxygen/html/classitk_1_1' + class_name + '.html' )
-f.close()
-
-# ---------------------------------------------------------
-# Write cxx file
-
-f = open( example_cxx, 'w' )
-f.write( '// #include \"itkImage.h\n' )
-f.write( '// #include \"itkImageFileReader.h\n' )
-f.write( '// #include \"itkImageFileWriter.h\n' )
-f.write( '#include \"itk' + class_name + '.h\"\n\n' )
-
-f.write( 'int main( int argc, char* argv[] )\n' )
-f.write( '{\n' )
-f.write( '  // if( argc != 3 )\n' )
-f.write( '  //   {\n' )
-f.write( '  //   std::cerr << Usage: << std::endl;\n' )
-f.write( '  //   std::cerr << argv[0];\n' )
-f.write( '  //   std::cerr << "<InputFileName> <OutputFileName>;\n' )
-f.write( '  //   std::cerr << std::endl;\n' )
-f.write( '  //   return EXIT_FAILURE;\n' )
-f.write( '  //   }\n\n' )
-
-f.write( '  // const unsigned int Dimension = 2;\n\n' )
-
-f.write( '  // typedef unsigned char                      PixelType;\n' )
-f.write( '  // typedef itk::Image< PixelType, Dimension > ImageType;\n\n' )
-
-f.write( '  // typedef itk::ImageFileReader< ImageType >  ReaderType;\n' )
-f.write( '  // ReaderType::Pointer reader = ReaderType::New();\n' )
-f.write( '  // reader->SetInputFileName( argv[1] );\n' )
-f.write( '  // reader->Update();\n\n' )
-
-f.write( '  // typedef itk::' + class_name + '<> FilterType;\n' )
-f.write( '  // FilterType::Pointer filter = FilterType::New();\n' )
-f.write( '  // filter->SetInput( reader->GetOutput() );\n' )
-f.write( '  // filter->Update();\n\n' )
-
-f.write( '  // typedef itk::ImageFileWrite< ImageType > WriteType;\n' )
-f.write( '  // WriterType::Pointer writer = WriterType::New();\n' )
-f.write( '  // writer->SetFileName( argv[2] );\n' )
-f.write( '  // writer->SetInput( filter->GetOutput() );\n' )
-f.write( '  // writer->Update();\n\n' )
-
-f.write( 'return EXIT_SUCCESS;\n' )
-f.write( '}\n' )
-f.close()
+WriteExampleRSTFile( example_rst, class_name, args.synopsis )
+WriteExampleCXXFile( example_cxx, class_name )
 
 # ---------------------------------------------------------
 # Write CMakeLists.txt
@@ -286,21 +360,23 @@ f.write( 'enable_testing()\n' )
 f.write( 'add_test( ' + example_name + 'Test ' + example_name + ' )\n' )
 f.close()
 
-print '***'
-print 'Example added successfully!'
+# ---------------------------------------------------------
+# print instructions
+print ( '***' )
+print ( 'Example added successfully!' )
 
-print 'Please:'
-print '  1- Edit the following files:'
-print '    * ' + example_cxx
-print '    * ' + example_rst + '\n'
+print ( 'Please:' )
+print ( '  1- Edit the following files:' )
+print ( '    * ' + example_cxx )
+print ( '    * ' + example_rst + '\n' )
 
-print '  2- Commit changes in the ITKExamples source directory and push'
-print '$ cd /path/to/source/ITKExamples'
-print '$ git checkout -b Add_' + example_name
-print '$ git add src/Examples/' + module_name
-print '$ git commit -a -m "Add ' + example_name + '" '
-print '$ git checkout master'
-print '$ git pull origin master'
-print '$ git merge --no-ff Add_' + example_name
-print '$ git push origin master'
+print ( '  2- Commit changes in the ITKExamples source directory and push' )
+print ( '$ cd /path/to/source/ITKExamples' )
+print ( '$ git checkout -b Add_' + example_name )
+print ( '$ git add src/Examples/' + module_name )
+print ( '$ git commit -a -m "Add ' + example_name + '" ' )
+print ( '$ git checkout master' ) 
+print ( '$ git pull origin master' )
+print ( '$ git merge --no-ff Add_' + example_name )
+print ( '$ git push origin master' )
 
