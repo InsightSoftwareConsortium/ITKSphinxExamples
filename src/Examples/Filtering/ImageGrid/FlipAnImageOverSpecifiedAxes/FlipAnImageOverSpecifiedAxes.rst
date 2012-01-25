@@ -19,6 +19,10 @@ C++
 
 .. literalinclude:: FlipAnImageOverSpecifiedAxes.cxx
 
+Python
+......
+
+.. literalinclude:: FlipAnImageOverSpecifiedAxes.py
 
 Results
 -------

@@ -38,7 +38,6 @@ int main(int argc, char* argv[])
   typedef itk::ImageFileReader< ImageType >   ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
-  reader->Update();
 
   typedef itk::FlipImageFilter< ImageType >   FlipImageFilterType;
 
@@ -59,7 +58,6 @@ int main(int argc, char* argv[])
     }
 
   flipFilter->SetFlipAxes( flipAxes );
-  flipFilter->Update();
 
   typedef itk::ImageFileWriter< ImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
