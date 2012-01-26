@@ -2,7 +2,7 @@ Common
 ======
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   CreateAPointSet/CreateAPointSet.rst
   ReadAPointSet/ReadAPointSet.rst
