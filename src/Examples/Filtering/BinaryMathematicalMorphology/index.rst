@@ -2,7 +2,7 @@ Binary Mathematical Morphology
 ==============================
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   DilateABinaryImage/DilateABinaryImage.rst
   ErodeABinaryImage/ErodeABinaryImage.rst
