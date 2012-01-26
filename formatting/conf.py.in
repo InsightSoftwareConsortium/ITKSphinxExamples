@@ -246,3 +246,8 @@ man_pages = [
     ('index', 'itkexamples', u'ITK Examples',
      [u'Insight Software Consortium'], 1)
 ]
+
+# ------------------------
+doxylink = {
+    'itkdox' : ( '@ITKDoxygenTAG_DIR@/InsightDoxygen.tag', 'http://www.itk.org/Doxygen/html/' )
+}

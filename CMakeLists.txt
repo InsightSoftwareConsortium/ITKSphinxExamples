@@ -85,7 +85,7 @@ if( BUILD_DOCUMENTATION )
   set( SPHINX_CONF_DIR ${ITK_EXAMPLES_BINARY_DIR}/formatting )
   set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
   set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )
-  set( SPHINX_DEPENDENCIES copy_sources ITKDoxygenXML ITKExamplesData )
+  set( SPHINX_DEPENDENCIES copy_sources ITKDoxygenXML ITKExamplesData ITKDoxygenTAG )
   Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
 
   # Build the PDF with pdflatex
