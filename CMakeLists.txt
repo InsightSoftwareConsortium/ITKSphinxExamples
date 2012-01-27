@@ -68,7 +68,7 @@ add_custom_target( copy_sources ALL
 add_dependencies( copy_sources ITKExamplesData )
 
 # Build the documentation?
-option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
+option( BUILD_DOCUMENTATION "Build the examples documentation." OFF )
 if( BUILD_DOCUMENTATION )
 
   find_package( Breathe )
