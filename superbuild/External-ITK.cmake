@@ -1,7 +1,7 @@
 #---------------------------------------------------------------------------
 # Get and build itk
 
-set( ITK_TAG "v4.0.0" )
+set( ITK_TAG "625090b59225389a266699ff47a028beb9f872fb" ) #"v4.0.0" )
 
 ExternalProject_Add( ITK
   GIT_REPOSITORY "${git_protocol}://itk.org/ITK.git"
@@ -17,6 +17,7 @@ ExternalProject_Add( ITK
     -DITK_BUILD_ALL_MODULES:BOOL=ON
     -DVTK_DIR:PATH=${VTK_DIR}
     -DModule_ITKVtkGlue:BOOL=ON
+    -DITK_USE_REVIEW:BOOL=ON
   INSTALL_COMMAND ""
   DEPENDS VTK
 )

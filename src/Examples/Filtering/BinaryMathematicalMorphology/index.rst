@@ -2,7 +2,8 @@ Binary Mathematical Morphology
 ==============================
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
-  BinaryDilateImageFilter/BinaryDilateImageFilter
+  DilateABinaryImage/DilateABinaryImage.rst
+  ErodeABinaryImage/ErodeABinaryImage.rst
 

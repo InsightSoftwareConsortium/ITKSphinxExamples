@@ -4,3 +4,7 @@ div.darkbody {
     background-color: {{ theme_textcolor }};
     color: {{ theme_bgcolor }};
 }
+
+td.contentstable {
+  padding-right: 30px;
+}

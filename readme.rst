@@ -4,6 +4,27 @@ ITK Examples
 A set of cookbook examples for the Insight Toolkit, ITK_.
 
 
+Build instructions
+------------------
+
+Automatic
+^^^^^^^^^
+
+A "superbuild" is provided to automatically fetch and build everything
+that is required. The procedure is almost idential to building a normal CMake
+project - the only difference you must point cmake to ITKExamples/superbuild
+instead of just ITKExamples::
+
+ mkdir ~/build/ITKExamples
+ cd ~/build/ITKExamples
+ cmake ~/src/ITKExamples/superbuild/
+
+Manual
+^^^^^^
+
+If you want to use local installations of some of the required tools, configure
+and build ITKExamples as a typical CMake_ project.
+
 Features
 --------
 
@@ -19,16 +40,12 @@ Implemented
 Todo
 ^^^^
 
-- LaTeX-based PDF output.
-- Text output.
 - Download the entire docs for offline viewing.
 - Anonymous online editing.
 - Editable online with CodeMirror.
 - Peer review with Gerrit.
-- Reciprical Doxygen integration with breathe + automatic injection of the
-  example into the class doc.  This also used for search enhancement and
-  categorization.
-- CDash dashboard.
+
+- See `Github Issues`_ for a complete list of actions to be performed, bugs, *etc.*
 
 With funding
 ^^^^^^^^^^^^
@@ -47,17 +64,18 @@ Required
 Optional
 ^^^^^^^^
 
-- Sphinx_ (build the documentation)
+If building the documentation:
 
+- VTK_
+- Breathe_
+- Sphinx_
 
-Build instructions
-------------------
-
-Configure and build as a typical CMake_ project.
-
+.. _Breathe: https://github.com/michaeljones/breathe
 .. _CMake: http://cmake.org/
 .. _Gerrit: http://code.google.com/p/gerrit/
 .. _Git: http://git-scm.com/
 .. _ITK: http://itk.org/
+.. _VTK: http://vtk.org/
 .. _Sphinx: http://sphinx.pocoo.org/
+.. _Github Issues: https://github.com/thewtex/ITKExamples/issues?milestone=&labels=&state=open
 

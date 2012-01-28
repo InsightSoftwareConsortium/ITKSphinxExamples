@@ -16,41 +16,53 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkBinaryDilateImageFilter.h"
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
-#include "itkBinaryBallStructuringElement.h"
+#include "itkFlipImageFilter.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-  if( argc < 4 )
+  if( argc != 4 )
     {
-    std::cerr << "Usage: " << argv[0] << " <inputImage> <outputImage> <radius>" << std::endl;
+    std::cerr << "Usage: " << argv[0];
+    std::cerr << " <InputFileName> <OutputFileName> <AxisToFlip>";
+    std::cerr << std::endl;
     return EXIT_FAILURE;
     }
-  typedef unsigned char PixelType;
-  const unsigned int Dimension = 2;
 
-  typedef itk::Image< PixelType, Dimension >    ImageType;
-  typedef itk::ImageFileReader< ImageType >     ReaderType;
+  const unsigned Dimension = 2;
+
+  typedef unsigned char                       PixelType;
+  typedef itk::Image< PixelType, Dimension >  ImageType;
+
+  typedef itk::ImageFileReader< ImageType >   ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::BinaryBallStructuringElement< PixelType, Dimension > StructuringElementType;
-  StructuringElementType structuringElement;
-  structuringElement.SetRadius( atoi( argv[3] ) );
-  structuringElement.CreateStructuringElement();
+  typedef itk::FlipImageFilter< ImageType >   FlipImageFilterType;
 
-  typedef itk::BinaryDilateImageFilter< ImageType, ImageType, StructuringElementType > BinaryDilateImageFilterType;
+  FlipImageFilterType::Pointer flipFilter
+          = FlipImageFilterType::New ();
+  flipFilter->SetInput( reader->GetOutput() );
 
-  BinaryDilateImageFilterType::Pointer dilateFilter = BinaryDilateImageFilterType::New();
-  dilateFilter->SetInput( reader->GetOutput() );
-  dilateFilter->SetKernel( structuringElement );
+  FlipImageFilterType::FlipAxesArrayType flipAxes;
+  if( atoi( argv[3] ) == 0 )
+    {
+    flipAxes[0] = true;
+    flipAxes[1] = false;
+    }
+  else
+    {
+    flipAxes[0] = false;
+    flipAxes[1] = true;
+    }
+
+  flipFilter->SetFlipAxes( flipAxes );
 
   typedef itk::ImageFileWriter< ImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetInput( dilateFilter->GetOutput() );
   writer->SetFileName( argv[2] );
+  writer->SetInput( flipFilter->GetOutput() );
 
   try
     {
@@ -64,3 +76,4 @@ int main(int argc, char *argv[])
 
   return EXIT_SUCCESS;
 }
+
