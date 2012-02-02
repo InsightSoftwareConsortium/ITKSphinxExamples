@@ -6,3 +6,4 @@ Common
 
   CreateAPointSet/CreateAPointSet.rst
   ReadAPointSet/ReadAPointSet.rst
+  DoDataParallelThreading/DoDataParallelThreading.rst
