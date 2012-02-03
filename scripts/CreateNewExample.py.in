@@ -125,13 +125,6 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
         synopsis = raw_input( 'Synopsis: ' )
     f.write( synopsis + '\n\n' )
 
-    f.write( 'Code\n' )
-    f.write( '----\n\n' )
-
-    f.write( 'C++\n' )
-    f.write( '...\n\n' )
-    f.write( '.. literalinclude:: ' + example_name + '.cxx\n\n' )
-
     f.write( 'Results\n' )
     f.write( '-------\n\n' )
 
@@ -144,6 +137,13 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f.write( '  :scale: 50%\n' )
     f.write( '  :alt: Output image\n\n' )
     f.write( '  Output image\n\n' )
+
+    f.write( 'Code\n' )
+    f.write( '----\n\n' )
+
+    f.write( 'C++\n' )
+    f.write( '...\n\n' )
+    f.write( '.. literalinclude:: ' + example_name + '.cxx\n\n' )
 
     f.write( 'Classes demonstrated\n' )
     f.write( '--------------------\n\n' )
