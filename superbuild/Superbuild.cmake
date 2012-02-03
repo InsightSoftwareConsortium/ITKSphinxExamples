@@ -44,6 +44,11 @@ if( ${BUILD_DOCUMENTATION} )
     include( ${CMAKE_SOURCE_DIR}/External-ITKDoxygenXML.cmake )
     list( APPEND ITKExamples_DEPENDENCIES ITKDoxygenXML )
   endif()
+
+  if(NOT ITKDoxygenTAG_DIR )
+    include( ${CMAKE_SOURCE_DIR}/External-ITKDoxygenTAG.cmake )
+    list( APPEND ITKExamples_DEPENDENCIES ITKDoxygenTAG )
+  endif()
 endif()
 
 option( BUILD_TESTING "Build testing" OFF )
@@ -64,6 +69,7 @@ ExternalProject_Add( ITK_EXAMPLES
     # breathe
     -DBREATHE_DIR:PATH=${BREATHE_DIR}
     -DITKDoxygenXML_DIR:PATH=${ITKDoxygenXML_DIR}
+    -DITKDoxygenTAG_DIR:PATH=${ITKDoxygenTAG_DIR}
     -DBUILD_TESTING:BOOL=${BUILD_TESTING}
     -DBUILD_DOCUMENTATION:BOOL=${BUILD_DOCUMENTATION}
   INSTALL_COMMAND ""

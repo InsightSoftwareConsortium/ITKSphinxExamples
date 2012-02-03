@@ -12,6 +12,7 @@ add_custom_command( OUTPUT ${ITKDoxygenXML_DIR}/index.xml
 add_custom_target( ITKDoxygenXML ${CMAKE_COMMAND} -E echo "Finished obtaining Doxygen XML"
   DEPENDS ${ITKDoxygenXML_DIR}/index.xml )
 
+if( NOT ITKDoxygenTAG_DIR )
 ## TAG file
 set( ITKDoxygenTAG_DIR ${CMAKE_BINARY_DIR}/ITKDoxygenTAG )
 set( ITKDoxygenTAG_TEMP_DIR ${CMAKE_BINARY_DIR}/ITKDoxygenTAG-TEMP )
@@ -28,3 +29,5 @@ add_custom_command( OUTPUT ${ITKDoxygenTAG_DIR}/InsightDoxygen.tag
   )
 add_custom_target( ITKDoxygenTAG ${CMAKE_COMMAND} -E echo "Finished obtaining Doxygen TAG"
   DEPENDS ${ITKDoxygenTAG_DIR}/InsightDoxygen.tag )
+
+endif()
