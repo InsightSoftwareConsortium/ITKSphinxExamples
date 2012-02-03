@@ -13,6 +13,12 @@ Synopsis
 Read a PointSet
 
 
+Results
+-------
+
+Print all points
+
+
 Code
 ----
 
@@ -20,12 +26,6 @@ C++
 ...
 
 .. literalinclude:: ReadAPointSet.cxx
-
-
-Results
--------
-
-Print all points
 
 
 Classes demonstrated
