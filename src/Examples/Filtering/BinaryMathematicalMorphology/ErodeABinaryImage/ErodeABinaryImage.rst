@@ -14,15 +14,6 @@ Synopsis
 Erode regions by using a specified kernel, also known as a structuring element.  In this example, the white regions shrink.
 
 
-Code
-----
-
-C++
-...
-
-.. literalinclude:: ErodeABinaryImage.cxx
-
-
 Results
 -------
 
@@ -37,6 +28,15 @@ Results
   :alt: Eroded output.
 
   Eroded output.
+
+
+Code
+----
+
+C++
+...
+
+.. literalinclude:: ErodeABinaryImage.cxx
 
 
 Classes demonstrated

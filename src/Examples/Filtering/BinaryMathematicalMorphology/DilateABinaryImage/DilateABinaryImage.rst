@@ -16,15 +16,6 @@ Dilate regions by using a specified kernel, also known as a structuring element.
 In this example, the white regions are enlarged.
 
 
-Code
-----
-
-C++
-...
-
-.. literalinclude:: DilateABinaryImage.cxx
-
-
 Results
 -------
 
@@ -39,6 +30,15 @@ Results
   :alt: Dilated output.
 
   Dilated output.
+
+
+Code
+----
+
+C++
+...
+
+.. literalinclude:: DilateABinaryImage.cxx
 
 
 Classes demonstrated

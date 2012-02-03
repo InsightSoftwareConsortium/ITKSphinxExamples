@@ -68,8 +68,13 @@ add_custom_target( copy_sources ALL
 add_dependencies( copy_sources ITKExamplesData )
 
 # Build the documentation?
-option( BUILD_DOCUMENTATION "Build the examples documentation." ON )
+option( BUILD_DOCUMENTATION "Build the examples documentation." OFF )
 if( BUILD_DOCUMENTATION )
+
+  # A high level target that the individual targets depend on.
+  add_custom_target( CreateTarballs ALL
+    ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
+  )
 
   find_package( Breathe )
 
@@ -85,7 +90,7 @@ if( BUILD_DOCUMENTATION )
   set( SPHINX_CONF_DIR ${ITK_EXAMPLES_BINARY_DIR}/formatting )
   set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
   set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )
-  set( SPHINX_DEPENDENCIES copy_sources ITKDoxygenXML ITKExamplesData ITKDoxygenTAG )
+  set( SPHINX_DEPENDENCIES copy_sources ITKDoxygenXML ITKExamplesData ITKDoxygenTAG CreateTarballs )
   Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
 
   # Build the PDF with pdflatex
@@ -94,7 +99,7 @@ if( BUILD_DOCUMENTATION )
     message("pdflatex compiler was not found. Please pass to advanced mode and provide its full path")
   else()
     # Needs to be executed twice to get table of contents.
-    add_custom_command( TARGET build_latex 
+    add_custom_command( TARGET build_latex
       POST_BUILD
       COMMAND ${PDFLATEX_COMPILER}
         ${SPHINX_DESTINATION}/latex/ITKExamples.tex
@@ -106,6 +111,7 @@ if( BUILD_DOCUMENTATION )
       COMMENT "Building PDF"
       )
   endif()
+
 
   add_subdirectory( formatting )
 endif()
