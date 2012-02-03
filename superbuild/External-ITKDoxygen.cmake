@@ -1,9 +1,9 @@
-ExternalProject_Add( ITKDoxygenTAG
+ExternalProject_Add( ITKDoxygen
   URL http://dl.dropbox.com/u/15135983/InsightDoxygen.tag.tar.bz2
-  SOURCE_DIR ITKDoxygenTAG
+  SOURCE_DIR ITKDoxygen
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
   )
 
-set( ITKDoxygenTAG_DIR ${CMAKE_BINARY_DIR}/ITKDoxygenTAG )
+set( ITKDoxygen_DIR ${CMAKE_BINARY_DIR}/ITKDoxygen )
