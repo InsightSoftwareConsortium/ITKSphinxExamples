@@ -14,14 +14,6 @@ In this example we have an `enum` of central nervous system cell types, a
 `std::vector< CELL_TYPE >` that contains the cells that we have encountered, and
 we want to count how many we have of each `CELL_TYPE`.
 
-Code
-----
-
-C++
-...
-
-.. literalinclude:: DoDataParallelThreading.cxx
-
 Results
 -------
 
@@ -35,6 +27,15 @@ Output::
         NEURON:          3
         ASTROCYTE:       5
         OLIGODENDROCYTE: 2
+
+
+Code
+----
+
+C++
+...
+
+.. literalinclude:: DoDataParallelThreading.cxx
 
 Classes demonstrated
 --------------------
