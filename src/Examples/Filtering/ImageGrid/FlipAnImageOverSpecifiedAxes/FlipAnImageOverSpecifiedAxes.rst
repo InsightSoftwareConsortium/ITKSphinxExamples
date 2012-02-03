@@ -10,20 +10,6 @@ Synopsis
 
 Flip an image over the specified axes.  Pixels are swapped over the given axis.
 
-
-Code
-----
-
-C++
-...
-
-.. literalinclude:: FlipAnImageOverSpecifiedAxes.cxx
-
-Python
-......
-
-.. literalinclude:: FlipAnImageOverSpecifiedAxes.py
-
 Results
 -------
 
@@ -38,6 +24,20 @@ Results
   :alt: Output image
 
   Output image
+
+
+Code
+----
+
+C++
+...
+
+.. literalinclude:: FlipAnImageOverSpecifiedAxes.cxx
+
+Python
+......
+
+.. literalinclude:: FlipAnImageOverSpecifiedAxes.py
 
 
 Classes demonstrated
