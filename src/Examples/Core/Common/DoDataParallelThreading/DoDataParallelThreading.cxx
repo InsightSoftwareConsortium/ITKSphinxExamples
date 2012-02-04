@@ -36,22 +36,22 @@ typedef std::map< CELL_TYPE, unsigned int > CellCountType;
 // class is declared as a friend, it can access the CellCounter's private
 // members to compute the cell type count for the CellCounter.
 //
-// While the threading class can access the associate's private members, it
+// While the threading class can access its associate's private members, it
 // generally should only do so in a read-only manner.  Otherwise, attempting to
 // write to the same member from multiple threads will cause race conditions and
-// result in erroreous output or a crash the program.  For this reason, the
-// class contains its own data structures that can be written to in individual
-// threads.  These data structures are set up in the BeforeThreadedExecution
-// method, and the results contained in each data structure are collected in the
-// AfterThreadedExecution.  In this case we have m_CellCountPerThread, whose
-// counts are initialized to zero in BeforeThreadedExecution, and collected
-// together in AfterThreadedExecution.
+// result in erroreous output or crash the program.  For this reason, the
+// threading class contains its own data structures that can be written to in
+// individual threads.  These data structures are set up in the
+// BeforeThreadedExecution method, and the results contained in each data
+// structure are collected in AfterThreadedExecution.  In this case, we have
+// m_CellCountPerThread whose counts are initialized to zero in
+// BeforeThreadedExecution and collected together in AfterThreadedExecution.
 //
 // All members and methods related to the multi-threaded computation are
 // encapsulated in this class.
 //
 // The class inherits from itk::DomainThreader, which provides common
-// functionallity, and defines the stages of the multi-threaded operation.
+// functionality and defines the stages of the multi-threaded operation.
 //
 // The itk::DomainThreader is templated over the type of DomainPartitioner used
 // to split up the domain, and type of the associated class.  The domain in this
@@ -60,6 +60,7 @@ typedef std::map< CELL_TYPE, unsigned int > CellCountType;
 // defined as an iterator range or an image region are the
 // ThreadedIteratorRangePartitioner and the ThreadedImageRegionPartitioner,
 // respectively.
+
 template< class TAssociate >
 class ComputeCellCountThreader:
   public itk::DomainThreader< itk::ThreadedIndexedContainerPartitioner, TAssociate >
@@ -191,7 +192,7 @@ private:
   // The ComputeCellCountThreader gets to access m_CellCount and m_Cells as
   // needed.
   friend class ComputeCellCountThreader< Self >;
-  typename ComputeCellCountThreaderType::Pointer m_ComputeCellCountThreader;
+  ComputeCellCountThreaderType::Pointer m_ComputeCellCountThreader;
 };
 
 
@@ -257,6 +258,7 @@ int main( int argc, char* argv[] )
     {
     std::cerr << "Error: did not get the same results"
       << "for a single-threaded and multi-threaded calculation." << std::endl;
+    return EXIT_FAILURE;
     }
 
   return EXIT_SUCCESS;
