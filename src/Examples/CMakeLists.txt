@@ -13,9 +13,9 @@ if( BUILD_DOCUMENTATION )
 endif()
 
 # A high level target that the individual targets depend on.
-add_custom_target( CreateTarballs ALL
-  ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
-)
+#add_custom_target( CreateTarballs ALL
+#  ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
+#)
 
 # Macro for adding an example.
 #
@@ -34,6 +34,7 @@ macro( add_example example_name )
         ${example_name} ${SPHINX_DESTINATION}
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       COMMENT "Creating tarballs for ${example_name}"
+      DEPENDS copy_sources
       )
     add_dependencies( CreateTarballs ${example_name}Tarball )
   endif()
