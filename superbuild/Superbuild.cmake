@@ -40,9 +40,13 @@ if( ${BUILD_DOCUMENTATION} )
     list( APPEND ITKExamples_DEPENDENCIES BREATHE )
   endif()
 
-  if(NOT ITKDoxygen_DIR )
-    include( ${CMAKE_SOURCE_DIR}/External-ITKDoxygen.cmake )
-    list( APPEND ITKExamples_DEPENDENCIES ITKDoxygen )
+  option( DOC_WITH_LOCAL_DOXYGEN "Download ITK Doxygen documentation" ON )
+
+  if( ${DOC_WITH_LOCAL_DOXYGEN} )
+    if(NOT ITKDoxygen_DIR )
+      include( ${CMAKE_SOURCE_DIR}/External-ITKDoxygen.cmake )
+      list( APPEND ITKExamples_DEPENDENCIES ITKDoxygen )
+    endif()
   endif()
 
   if(NOT ITKDoxygenXML_DIR )

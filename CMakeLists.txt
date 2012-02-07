@@ -91,6 +91,19 @@ if( BUILD_DOCUMENTATION )
   set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
   set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )
   set( SPHINX_DEPENDENCIES copy_sources ITKDoxygenXML ITKExamplesData ITKDoxygenTAG CreateTarballs )
+
+  option( DOC_WITH_LOCAL_DOXYGEN "Generate documentation with local doxygen" ON )
+
+  if( DOC_WITH_LOCAL_DOXYGEN )
+    set( ITKDoxygen_LINK_ADDRESS ${ITKDoxygen_DIR} )
+    set( SPHINX_DEPENDENCIES ${SPHINX_DEPENDENCIES} ITKDoxygen )
+    if(NOT ITKDoxygen_DIR )
+      include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygen.cmake )
+    endif()
+  else()
+    set( ITKDoxygen_LINK_ADDRESS "http://www.itk.org/Doxygen/html" )
+  endif()
+
   Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
 
   # Build the PDF with pdflatex
