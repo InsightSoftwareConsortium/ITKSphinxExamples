@@ -46,7 +46,4 @@ Classes demonstrated
 .. doxygenclass:: itk::FlipImageFilter
   :no-link:
 
-* `FlipImageFilter detailed doxygen documentation`_
-
-.. _FlipImageFilter detailed doxygen documentation:
-  http://www.itk.org/Doxygen/html/classitk_1_1FlipImageFilter.html
+* Detailed documentation: :itkdox:`itk::FlipImageFilter`
