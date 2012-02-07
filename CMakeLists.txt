@@ -81,6 +81,10 @@ if( BUILD_DOCUMENTATION )
   if(NOT ITKDoxygenXML_DIR )
     include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygenXML.cmake )
   endif()
+  
+  if(NOT ITKDoxygenTAG_DIR )
+    include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygenTAG.cmake )
+  endif()
 
   # Builds the documentation.
   find_package( Sphinx REQUIRED )
