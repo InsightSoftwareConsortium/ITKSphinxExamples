@@ -59,3 +59,9 @@ Classes demonstrated
 .. _BinaryBallStructuringElement detailed doxygen documentation:
   http://www.itk.org/Doxygen/html/classitk_1_1BinaryBallStructuringElement.html
 
+
+
+
+---
+
+:itkdox: `BinaryDilateImageFilter`

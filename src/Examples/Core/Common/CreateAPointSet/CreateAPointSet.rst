@@ -30,3 +30,5 @@ Classes demonstrated
 
 .. _PointSet detailed doxygen documentation:
   http://www.itk.org/Doxygen/html/classitk_1_1PointSet.html
+
+:itkdox:`itk::PointSet`
