@@ -45,14 +45,9 @@ Classes demonstrated
 .. doxygenclass:: itk::BinaryErodeImageFilter
   :no-link:
 
-* `BinaryErodeImageFilter detailed doxygen documentation`_
+* Detailed documentation: :itkdox:`itk::BinaryErodeImageFilter`
 
 .. doxygenclass:: itk::BinaryBallStructuringElement
   :no-link:
 
-* `BinaryBallStructuringElement detailed doxygen documentation`_
-
-.. _BinaryErodeImageFilter detailed doxygen documentation:
-  http://www.itk.org/Doxygen/html/classitk_1_1BinaryErodeImageFilter.html
-.. _BinaryBallStructuringElement detailed doxygen documentation:
-  http://www.itk.org/Doxygen/html/classitk_1_1BinaryBallStructuringElement.html
+* Detailed documentation: :itkdox:`itk::BinaryBallStructuringElement`

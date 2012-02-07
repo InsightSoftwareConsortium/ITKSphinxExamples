@@ -40,10 +40,7 @@ C++
 Classes demonstrated
 --------------------
 
-.. doxygenclass: itk::DomainThreader
+.. doxygenclass:: itk::DomainThreader
   :no-link:
 
-* `DomainThreader detailed doxygen documentation`_
-
-.. _DomainThreader detailed doxygen documentation:
-  http://www.itk.org/Doxygen/html/classitk_1_1DomainThreader.html
+* :itkdox:`itk::DomainThreader`

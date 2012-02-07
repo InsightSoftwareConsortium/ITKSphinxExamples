@@ -47,21 +47,9 @@ Classes demonstrated
 .. doxygenclass:: itk::BinaryDilateImageFilter
   :no-link:
 
-* `BinaryDilateImageFilter detailed doxygen documentation`_
+* :itkdox:`itk::BinaryDilateImageFilter`
 
 .. doxygenclass:: itk::BinaryBallStructuringElement
   :no-link:
 
-* `BinaryBallStructuringElement detailed doxygen documentation`_
-
-.. _BinaryDilateImageFilter detailed doxygen documentation:
-  http://www.itk.org/Doxygen/html/classitk_1_1BinaryDilateImageFilter.html
-.. _BinaryBallStructuringElement detailed doxygen documentation:
-  http://www.itk.org/Doxygen/html/classitk_1_1BinaryBallStructuringElement.html
-
-
-
-
----
-
-:itkdox: `BinaryDilateImageFilter`
+* Detailed documentation: :itkdox:`itk::BinaryBallStructuringElement`
