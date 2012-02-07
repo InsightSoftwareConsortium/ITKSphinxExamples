@@ -31,15 +31,15 @@ typedef std::vector< CELL_TYPE >            CellContainerType;
 typedef std::map< CELL_TYPE, unsigned int > CellCountType;
 
 
-// This class performs the multi-threaded cell type counting for the CellCounter
-// class, show below.  The CellCounter class is the TAssociate, and since this
-// class is declared as a friend, it can access the CellCounter's private
-// members to compute the cell type count for the CellCounter.
+// This class performs the multi-threaded cell type counting for the
+// CellCounter class, show below.  The CellCounter class is the TAssociate, and
+// since this class is declared as a friend, it can access the CellCounter's
+// private members to compute the cell type count for the CellCounter.
 //
 // While the threading class can access its associate's private members, it
 // generally should only do so in a read-only manner.  Otherwise, attempting to
-// write to the same member from multiple threads will cause race conditions and
-// result in erroreous output or crash the program.  For this reason, the
+// write to the same member from multiple threads will cause race conditions
+// and result in erroreous output or crash the program.  For this reason, the
 // threading class contains its own data structures that can be written to in
 // individual threads.  These data structures are set up in the
 // BeforeThreadedExecution method, and the results contained in each data
@@ -54,24 +54,25 @@ typedef std::map< CELL_TYPE, unsigned int > CellCountType;
 // functionality and defines the stages of the multi-threaded operation.
 //
 // The itk::DomainThreader is templated over the type of DomainPartitioner used
-// to split up the domain, and type of the associated class.  The domain in this
-// case is a range of indices of a std::vector< CELL_TYPE > to process, so we
-// use a ThreadedIndexedContainerPartitioner.  Other options for a domains
+// to split up the domain, and type of the associated class.  The domain in
+// this case is a range of indices of a std::vector< CELL_TYPE > to process, so
+// we use a ThreadedIndexedContainerPartitioner.  Other options for a domains
 // defined as an iterator range or an image region are the
 // ThreadedIteratorRangePartitioner and the ThreadedImageRegionPartitioner,
 // respectively.
 
-template< class TAssociate >
-class ComputeCellCountThreader:
-  public itk::DomainThreader< itk::ThreadedIndexedContainerPartitioner, TAssociate >
+template< class TAssociate > class ComputeCellCountThreader :
+public
+itk::DomainThreader< itk::ThreadedIndexedContainerPartitioner, TAssociate >
 {
 public:
   // Standard ITK typedefs.
-  typedef ComputeCellCountThreader        Self;
-  typedef itk::DomainThreader< itk::ThreadedIndexedContainerPartitioner, TAssociate >
-                                          Superclass;
-  typedef itk::SmartPointer< Self >       Pointer;
-  typedef itk::SmartPointer< const Self > ConstPointer;
+  typedef ComputeCellCountThreader            Self;
+  typedef itk::DomainThreader<
+    itk::ThreadedIndexedContainerPartitioner,
+    TAssociate >                              Superclass;
+  typedef itk::SmartPointer< Self >           Pointer;
+  typedef itk::SmartPointer< const Self >     ConstPointer;
 
   // The domain is an index range.
   typedef typename Superclass::DomainType DomainType;
@@ -92,10 +93,10 @@ private:
     this->m_Associate->m_CellCount[OLIGODENDROCYTE] = 0;
 
     // Resize our per-thread data structures to the number of threads that we
-    // are actually going to use.  At this point the number of threads that will
-    // be used have already been calculated and are available.  The number of
-    // threads used depends on the number of cores or processors available on
-    // the current system.  It will also be truncated if, for example, the
+    // are actually going to use.  At this point the number of threads that
+    // will be used have already been calculated and are available.  The number
+    // of threads used depends on the number of cores or processors available
+    // on the current system.  It will also be truncated if, for example, the
     // number of cells in the CellContainer is smaller than the number of cores
     // available.
     const itk::ThreadIdType numberOfThreads = this->GetNumberOfThreadsUsed();
@@ -132,14 +133,17 @@ private:
 
   virtual void AfterThreadedExecution()
     {
-    // Accumulate the cell counts per thread in the associate's total cell count. 
+    // Accumulate the cell counts per thread in the associate's total cell
+    // count.
     const itk::ThreadIdType numberOfThreads = this->GetNumberOfThreadsUsed();
     for( itk::ThreadIdType ii = 0; ii < numberOfThreads; ++ii )
       {
-      this->m_Associate->m_CellCount[NEURON] += 
+      this->m_Associate->m_CellCount[NEURON] +=
         this->m_CellCountPerThread[ii][NEURON];
+
       this->m_Associate->m_CellCount[ASTROCYTE] +=
         this->m_CellCountPerThread[ii][ASTROCYTE];
+
       this->m_Associate->m_CellCount[OLIGODENDROCYTE] +=
         this->m_CellCountPerThread[ii][OLIGODENDROCYTE];
       }
@@ -199,9 +203,12 @@ private:
 int main( int argc, char* argv[] )
 {
   // Our cells.
-  static const CELL_TYPE cellsArr[] = { NEURON, ASTROCYTE, ASTROCYTE, OLIGODENDROCYTE,
+  static const CELL_TYPE cellsArr[] =
+    { NEURON, ASTROCYTE, ASTROCYTE, OLIGODENDROCYTE,
     ASTROCYTE, NEURON, NEURON, ASTROCYTE, ASTROCYTE, OLIGODENDROCYTE };
-  CellContainerType cells( cellsArr, cellsArr + sizeof(cellsArr) / sizeof(cellsArr[0]) );
+
+  CellContainerType cells( cellsArr,
+                           cellsArr + sizeof(cellsArr) / sizeof(cellsArr[0]) );
 
   // Count them in a multi-threader way.
   CellCounter cellCounter;
