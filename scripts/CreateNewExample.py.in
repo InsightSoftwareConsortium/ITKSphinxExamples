@@ -148,13 +148,10 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f.write( 'Classes demonstrated\n' )
     f.write( '--------------------\n\n' )
 
-    f.write( '.. doxygenclass: itk::' + class_name + '\n' )
+    f.write( '.. doxygenclass:: itk::' + class_name + '\n' )
     f.write( '  :no-link:\n\n' )
 
-    f.write( '* `' + class_name + ' detailed doxygen documentation`_\n\n' )
-
-    f.write( '.. _' + class_name + ' detailed doxygen documentation:\n' )
-    f.write( '  http://www.itk.org/Doxygen/html/classitk_1_1' + class_name + '.html' )
+    f.write( '* Detailed documentation: :itkdox:`itk::' + class_name + '`\n' )
     f.close()
 
 # ---------------------------------------------------------
