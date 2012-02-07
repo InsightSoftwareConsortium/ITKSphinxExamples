@@ -9,10 +9,12 @@ set(CTEST_BUILD_CONFIGURATION Debug)
 set(CTEST_CMAKE_GENERATOR "Unix Makefiles")
 # This is the directory where the source and build trees will be placed.
 get_filename_component(CTEST_DASHBOARD_ROOT "${CTEST_SCRIPT_DIRECTORY}/dashboard_tests" ABSOLUTE)
-# You can set initial variables for the CMakeCache.  
+# You can set initial variables for the CMakeCache.
 #set(dashboard_cache
+#"
 #ITK_DIR:PATH=/var/coolstuff/ITK_build
-#BUILD_DOCUMENTATION:BOOL=OFF
+#BUILD_DOCUMENTATION:BOOL=ON
+#"
 #)
 # Finally, include the rest of the script that will download, build, and submit the
 # results.  For more configuration variables, see the comments at the top of
