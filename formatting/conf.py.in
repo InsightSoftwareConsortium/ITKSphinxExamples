@@ -250,6 +250,4 @@ man_pages = [
 # ------------------------
 doxylink = {
     'itkdox' : ( '@ITKDoxygenTAG_DIR@/InsightDoxygen.tag', '@ITKDoxygen_LINK_ADDRESS@' )
-  # http://www.itk.org/Doxygen/html' )
-  # '@ITKDoxygen_DIR@' )
 }
