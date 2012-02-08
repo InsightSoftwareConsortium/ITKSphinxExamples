@@ -73,10 +73,14 @@ add_dependencies( copy_sources ITKExamplesData )
 option( BUILD_DOCUMENTATION "Build the examples documentation." OFF )
 if( BUILD_DOCUMENTATION )
 
-  execute_process( COMMAND git shortlog -sne
+  find_program(GIT_COMMAND NAMES git git.cmd)
+
+  execute_process( COMMAND ${GIT_COMMAND} shortlog -sn
     WORKING_DIRECTORY ${ITK_EXAMPLES_SOURCE_DIR}
     OUTPUT_VARIABLE SHORTLOG
   )
+
+  string( REGEX REPLACE "   " " * " SHORTLOG "${SHORTLOG}" )
 
   configure_file( ${ITK_EXAMPLES_SOURCE_DIR}/src/Credits.rst.in
     ${ITK_EXAMPLES_BINARY_DIR}/src/Credits.rst
