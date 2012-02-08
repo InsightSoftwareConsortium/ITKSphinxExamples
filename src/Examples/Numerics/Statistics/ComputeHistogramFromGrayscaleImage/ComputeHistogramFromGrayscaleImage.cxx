@@ -1,39 +1,80 @@
-// #include "itkImage.h
-// #include "itkImageFileReader.h
-// #include "itkImageFileWriter.h
+#include "itkImage.h"
 #include "itkImageToHistogramFilter.h"
+#include "itkImageRandomIteratorWithIndex.h"
 
-int main( int argc, char* argv[] )
+typedef itk::Image<unsigned char, 2> ImageType;
+
+void CreateImage(ImageType::Pointer image);
+
+int main(int, char *[])
 {
-  // if( argc != 3 )
-  //   {
-  //   std::cerr << Usage: << std::endl;
-  //   std::cerr << argv[0];
-  //   std::cerr << "<InputFileName> <OutputFileName>;
-  //   std::cerr << std::endl;
-  //   return EXIT_FAILURE;
-  //   }
+  const unsigned int MeasurementVectorSize = 1; // Grayscale
+  const unsigned int binsPerDimension = 30;
 
-  // const unsigned int Dimension = 2;
+  ImageType::Pointer image = ImageType::New();
+  CreateImage(image);
 
-  // typedef unsigned char                      PixelType;
-  // typedef itk::Image< PixelType, Dimension > ImageType;
+  typedef itk::Statistics::ImageToHistogramFilter< ImageType >
+    ImageToHistogramFilterType;
 
-  // typedef itk::ImageFileReader< ImageType >  ReaderType;
-  // ReaderType::Pointer reader = ReaderType::New();
-  // reader->SetInputFileName( argv[1] );
-  // reader->Update();
+  ImageToHistogramFilterType::HistogramType::MeasurementVectorType
+    lowerBound(binsPerDimension);
+  lowerBound.Fill(0);
 
-  // typedef itk::ImageToHistogramFilter<> FilterType;
-  // FilterType::Pointer filter = FilterType::New();
-  // filter->SetInput( reader->GetOutput() );
-  // filter->Update();
+  ImageToHistogramFilterType::HistogramType::MeasurementVectorType
+    upperBound(binsPerDimension);
+  upperBound.Fill(255) ;
 
-  // typedef itk::ImageFileWrite< ImageType > WriteType;
-  // WriterType::Pointer writer = WriterType::New();
-  // writer->SetFileName( argv[2] );
-  // writer->SetInput( filter->GetOutput() );
-  // writer->Update();
+  ImageToHistogramFilterType::HistogramType::SizeType
+    size(MeasurementVectorSize);
+  size.Fill(binsPerDimension);
 
-return EXIT_SUCCESS;
+  ImageToHistogramFilterType::Pointer imageToHistogramFilter =
+    ImageToHistogramFilterType::New();
+  imageToHistogramFilter->SetInput(image);
+  imageToHistogramFilter->SetHistogramBinMinimum(lowerBound);
+  imageToHistogramFilter->SetHistogramBinMaximum(upperBound);
+  imageToHistogramFilter->SetHistogramSize(size);
+  imageToHistogramFilter->Update();
+
+  ImageToHistogramFilterType::HistogramType* histogram =
+    imageToHistogramFilter->GetOutput();
+
+  std::cout << "Frequency = ";
+  for(unsigned int i = 0; i < histogram->GetSize()[0]; ++i)
+    {
+    std::cout << histogram->GetFrequency(i) << " ";
+    }
+
+  std::cout << std::endl;
+
+  return EXIT_SUCCESS;
+}
+
+void CreateImage(ImageType::Pointer image)
+{
+  // Create a black image with a red square and a green square.
+  // This should produce a histogram with very strong spikes.
+  itk::Size<2> size;
+  size.Fill(10);
+
+  itk::Index<2> start;
+  start.Fill(0);
+
+  itk::ImageRegion<2> region(start, size);
+
+  image->SetRegions(region);
+  image->Allocate();
+
+  image->FillBuffer(0);
+
+  itk::ImageRandomIteratorWithIndex< ImageType >
+    imageIterator( image, image->GetLargestPossibleRegion() );
+  imageIterator.SetNumberOfSamples(10);
+
+  while(!imageIterator.IsAtEnd())
+    {
+    imageIterator.Set(122);
+    ++imageIterator;
+    }
 }
