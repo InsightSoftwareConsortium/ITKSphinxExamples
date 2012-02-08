@@ -41,6 +41,7 @@ macro( add_example example_name )
 
   # Process the example's CMakeLists.txt
   add_subdirectory( ${example_name} )
+
 endmacro()
 
 # For comparing example outputs to their regression baseline's.

@@ -11,5 +11,15 @@ endif()
 add_executable( ReadAPointSet ReadAPointSet.cxx )
 target_link_libraries( ReadAPointSet ${ITK_LIBRARIES} )
 
+install( TARGETS ReadAPointSet
+  DESTINATION bin/ITKExamples/Core/Common
+  COMPONENT Runtime
+)
+
+install( FILES ReadAPointSet.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Core/Common/ReadAPointSet
+  COMPONENT Code
+)
+
 enable_testing()
 add_test( ReadAPointSetTest ReadAPointSet )

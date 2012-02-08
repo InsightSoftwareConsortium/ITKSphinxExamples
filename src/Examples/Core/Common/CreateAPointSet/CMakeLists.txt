@@ -11,5 +11,15 @@ endif()
 add_executable( CreateAPointSet CreateAPointSet.cxx )
 target_link_libraries( CreateAPointSet ${ITK_LIBRARIES} )
 
+install( TARGETS CreateAPointSet
+  DESTINATION bin/ITKExamples/Core/Common
+  COMPONENT Runtime
+)
+
+install( FILES CreateAPointSet.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Core/Common/CreateAPointSet
+  COMPONENT Code
+)
+
 enable_testing()
 add_test( CreateAPointSetTest CreateAPointSet )

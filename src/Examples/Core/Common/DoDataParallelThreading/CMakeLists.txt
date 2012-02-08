@@ -8,5 +8,15 @@ include( ${ITK_USE_FILE} )
 add_executable( DoDataParallelThreading DoDataParallelThreading.cxx )
 target_link_libraries( DoDataParallelThreading ${ITK_LIBRARIES} )
 
+install( TARGETS DoDataParallelThreading
+  DESTINATION bin/ITKExamples/Core/Common
+  COMPONENT Runtime
+)
+
+install( FILES DoDataParallelThreading.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Core/Common/DoDataParallelThreading
+  COMPONENT Code
+)
+
 enable_testing()
 add_test( DoDataParallelThreadingTest DoDataParallelThreading )
