@@ -11,5 +11,10 @@ endif()
 add_executable( CreateAPointSet CreateAPointSet.cxx )
 target_link_libraries( CreateAPointSet ${ITK_LIBRARIES} )
 
+install( TARGETS CreateAPointSet
+  DESTINATION bin/ITKExamples/Core/Common
+  COMPONENT Runtime
+)
+
 enable_testing()
 add_test( CreateAPointSetTest CreateAPointSet )

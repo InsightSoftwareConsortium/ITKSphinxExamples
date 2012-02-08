@@ -11,5 +11,10 @@ endif()
 add_executable( ComputeHistogramFromGrayscaleImage ComputeHistogramFromGrayscaleImage.cxx )
 target_link_libraries( ComputeHistogramFromGrayscaleImage ${ITK_LIBRARIES} )
 
+install( TARGETS ComputeHistogramFromGrayscaleImage
+  DESTINATION bin/ITKExamples/Numerics/Statistics
+  COMPONENT Runtime
+)
+
 enable_testing()
 add_test( ComputeHistogramFromGrayscaleImageTest ComputeHistogramFromGrayscaleImage )

@@ -13,6 +13,8 @@ set( ITK_EXAMPLES_RELEASE_VERSION
    "${ITK_EXAMPLES_MAJOR_VERSION}.${ITK_EXAMPLES_MINOR_VERSION}.${ITK_EXAMPLES_PATCH_VERSION}"
 )
 
+set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ITK_EXAMPLES_BINARY_DIR}/bin )
+
 include( CTest )
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
@@ -81,16 +83,14 @@ if( BUILD_DOCUMENTATION )
   if(NOT ITKDoxygenXML_DIR )
     include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygenXML.cmake )
   endif()
-  
+
   if(NOT ITKDoxygenTAG_DIR )
     include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygenTAG.cmake )
   endif()
 
   # Builds the documentation.
   find_package( Sphinx REQUIRED )
-  set( SPHINX_HTML_OUTPUT ON )
-  set( SPHINX_LATEX_OUTPUT OFF )
-  set( SPHINX_TEXT_OUTPUT OFF )
+
   set( SPHINX_CONF_DIR ${ITK_EXAMPLES_BINARY_DIR}/formatting )
   set( SPHINX_INPUT_DIR ${ITK_EXAMPLES_BINARY_DIR}/src )
   set( SPHINX_DESTINATION ${ITK_EXAMPLES_BINARY_DIR} )
@@ -110,25 +110,39 @@ if( BUILD_DOCUMENTATION )
 
   Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
 
-  # Build the PDF with pdflatex
-  find_package( LATEX )
-  if( NOT PDFLATEX_COMPILER )
-    message("pdflatex compiler was not found. Please pass to advanced mode and provide its full path")
-  else()
-    # Needs to be executed twice to get table of contents.
-    add_custom_command( TARGET build_latex
-      POST_BUILD
-      COMMAND ${PDFLATEX_COMPILER}
-        ${SPHINX_DESTINATION}/latex/ITKExamples.tex
-        -output-directory ${SPHINX_DESTINATION}/latex
-      COMMAND ${PDFLATEX_COMPILER}
-        ${SPHINX_DESTINATION}/latex/ITKExamples.tex
-        -output-directory ${SPHINX_DESTINATION}/latex
-      WORKING_DIRECTORY ${SPHINX_DESTINATION}/latex
-      COMMENT "Building PDF"
-      )
+  if( ${SPHINX_HTML_OUTPUT} )
+    install( DIRECTORY ${SPHINX_DESTINATION}/html
+      DESTINATION share/ITKExamples/doc
+      COMPONENT Doc
+      PATTERN "${SPHINX_DESTINATION}/html/*"
+    )
   endif()
 
+  if( ${SPHINX_LATEX_OUTPUT} )
+    # Build the PDF with pdflatex
+    find_package( LATEX )
+    if( NOT PDFLATEX_COMPILER )
+      message("pdflatex compiler was not found. Please pass to advanced mode and provide its full path")
+    else()
+      # Needs to be executed twice to get table of contents.
+      add_custom_command( TARGET build_latex
+        POST_BUILD
+        COMMAND ${PDFLATEX_COMPILER}
+          ${SPHINX_DESTINATION}/latex/ITKExamples.tex
+          -output-directory ${SPHINX_DESTINATION}/latex
+        COMMAND ${PDFLATEX_COMPILER}
+          ${SPHINX_DESTINATION}/latex/ITKExamples.tex
+          -output-directory ${SPHINX_DESTINATION}/latex
+        WORKING_DIRECTORY ${SPHINX_DESTINATION}/latex
+        COMMENT "Building PDF"
+        )
+
+    install( FILES ${SPHINX_DESTINATION}/latex/ITKExamples.pdf
+      DESTINATION share/ITKExamples/doc/pdf
+      COMPONENT Doc
+      )
+    endif()
+  endif()
 
   add_subdirectory( formatting )
 endif()
@@ -143,3 +157,5 @@ configure_file( ${CMAKE_SOURCE_DIR}/scripts/CreateNewExample.py.in
   ${CMAKE_BINARY_DIR}/scripts/CreateNewExample.py
   @ONLY
 )
+
+include( CPack )
