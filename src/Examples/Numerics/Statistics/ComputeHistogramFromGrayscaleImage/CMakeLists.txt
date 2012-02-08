@@ -1,0 +1,15 @@
+cmake_minimum_required( VERSION 2.8 )
+
+project( ComputeHistogramFromGrayscaleImage )
+
+find_package( ITK REQUIRED )
+
+if( ${ITK_FOUND} )
+  include( ${ITK_USE_FILE} )
+endif()
+
+add_executable( ComputeHistogramFromGrayscaleImage ComputeHistogramFromGrayscaleImage.cxx )
+target_link_libraries( ComputeHistogramFromGrayscaleImage ${ITK_LIBRARIES} )
+
+enable_testing()
+add_test( ComputeHistogramFromGrayscaleImageTest ComputeHistogramFromGrayscaleImage )
