@@ -73,6 +73,16 @@ add_dependencies( copy_sources ITKExamplesData )
 option( BUILD_DOCUMENTATION "Build the examples documentation." OFF )
 if( BUILD_DOCUMENTATION )
 
+  execute_process( COMMAND git shortlog -sne
+    WORKING_DIRECTORY ${ITK_EXAMPLES_SOURCE_DIR}
+    OUTPUT_VARIABLE SHORTLOG
+  )
+
+  configure_file( ${ITK_EXAMPLES_SOURCE_DIR}/src/Credits.rst.in
+    ${ITK_EXAMPLES_BINARY_DIR}/src/Credits.rst
+    @ONLY
+  )
+
   # A high level target that the individual targets depend on.
   add_custom_target( CreateTarballs ALL
     ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
