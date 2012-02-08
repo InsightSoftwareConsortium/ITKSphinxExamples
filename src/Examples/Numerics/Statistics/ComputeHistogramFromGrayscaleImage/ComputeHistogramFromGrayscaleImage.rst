@@ -23,7 +23,7 @@ C++
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::ImageToHistogramFilter
+.. doxygenclass:: itk::Statistics::ImageToHistogramFilter
   :no-link:
 
-* Detailed documentation: :itkdox:`itk::ImageToHistogramFilter`
+* Detailed documentation: :itkdox:`itk::Statistics::ImageToHistogramFilter`
