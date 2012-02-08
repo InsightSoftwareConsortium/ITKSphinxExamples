@@ -13,6 +13,11 @@ install( TARGETS DilateABinaryImage
   COMPONENT Runtime
 )
 
+install( FILES DilateABinaryImage.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology
+  COMPONENT Code
+)
+
 enable_testing()
 add_test( DilateABinaryImageTest DilateABinaryImage
   ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png DilateABinaryImageOutput.png 3

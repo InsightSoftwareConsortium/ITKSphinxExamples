@@ -16,5 +16,10 @@ install( TARGETS ComputeHistogramFromGrayscaleImage
   COMPONENT Runtime
 )
 
+install( FILES ComputeHistogramFromGrayscaleImage.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Numerics/Statistics
+  COMPONENT Code
+)
+
 enable_testing()
 add_test( ComputeHistogramFromGrayscaleImageTest ComputeHistogramFromGrayscaleImage )

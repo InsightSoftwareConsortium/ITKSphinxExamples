@@ -13,6 +13,11 @@ install( TARGETS FlipAnImageOverSpecifiedAxes
   COMPONENT Runtime
 )
 
+install( FILES FlipAnImageOverSpecifiedAxes.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid
+  COMPONENT Code
+)
+
 enable_testing()
 add_test( FlipAnImageOverSpecifiedAxesTest FlipAnImageOverSpecifiedAxes
   ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png FlipAnImageOverSpecifiedAxesOutput.png 0

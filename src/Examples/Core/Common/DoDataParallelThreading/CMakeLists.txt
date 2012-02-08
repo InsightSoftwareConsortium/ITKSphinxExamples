@@ -13,5 +13,10 @@ install( TARGETS DoDataParallelThreading
   COMPONENT Runtime
 )
 
+install( FILES DoDataParallelThreading.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Core/Common
+  COMPONENT Code
+)
+
 enable_testing()
 add_test( DoDataParallelThreadingTest DoDataParallelThreading )

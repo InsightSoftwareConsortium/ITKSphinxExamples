@@ -16,5 +16,10 @@ install( TARGETS CreateAPointSet
   COMPONENT Runtime
 )
 
+install( FILES CreateAPointSet.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Core/Common
+  COMPONENT Code
+)
+
 enable_testing()
 add_test( CreateAPointSetTest CreateAPointSet )

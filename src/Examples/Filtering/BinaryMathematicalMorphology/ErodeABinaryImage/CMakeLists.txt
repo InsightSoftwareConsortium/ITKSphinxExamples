@@ -13,6 +13,11 @@ install( TARGETS ErodeABinaryImage
   COMPONENT Runtime
 )
 
+install( FILES ErodeABinaryImage.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology
+  COMPONENT Code
+)
+
 enable_testing()
 add_test( ErodeABinaryImageTest ErodeABinaryImage
   ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png ErodeABinaryImageOutput.png 3

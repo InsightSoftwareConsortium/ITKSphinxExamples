@@ -16,5 +16,10 @@ install( TARGETS ReadAPointSet
   COMPONENT Runtime
 )
 
+install( FILES ReadAPointSet.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Core/Common
+  COMPONENT Code
+)
+
 enable_testing()
 add_test( ReadAPointSetTest ReadAPointSet )
