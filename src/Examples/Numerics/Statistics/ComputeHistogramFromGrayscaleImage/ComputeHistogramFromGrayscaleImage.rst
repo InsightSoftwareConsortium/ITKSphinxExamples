@@ -1,5 +1,5 @@
- Compute Histogram From Grayscale Image
-=======================================
+Compute Histogram From Grayscale Image
+======================================
 
 .. index::
   single: ImageToHistogramFilter
