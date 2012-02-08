@@ -13,6 +13,7 @@ Contents:
   Contribute/index
   Examples/index
   download
+  Credits
 
 Index
 =====
