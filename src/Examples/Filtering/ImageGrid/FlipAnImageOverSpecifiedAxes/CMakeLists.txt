@@ -14,7 +14,7 @@ install( TARGETS FlipAnImageOverSpecifiedAxes
 )
 
 install( FILES FlipAnImageOverSpecifiedAxes.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid
+  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/FlipAnImageOverSpecifiedAxes
   COMPONENT Code
 )
 

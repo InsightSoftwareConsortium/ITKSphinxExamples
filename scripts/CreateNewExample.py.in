@@ -358,6 +358,11 @@ f.write( '  DESTINATION bin/ITKExamples/' + group_name + '/' + module_name + '\n
 f.write( '  COMPONENT Runtime\n' )
 f.write( ')\n\n' )
 
+f.write( 'install( FILES ' + example_name + '.cxx CMakeLists.txt\n' )
+f.write( '  DESTINATION share/ITKExamples/Code/' + group_name + '/' + module_name + '/' + example_name '\n' )
+f.write( '  COMPONENT Code\n' )
+f.write( ')\n\n' )
+
 f.write( 'enable_testing()\n' )
 f.write( 'add_test( ' + example_name + 'Test ' + example_name + ' )\n' )
 f.close()

@@ -14,7 +14,7 @@ install( TARGETS DilateABinaryImage
 )
 
 install( FILES DilateABinaryImage.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology
+  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology/DilateABinaryImage
   COMPONENT Code
 )
 

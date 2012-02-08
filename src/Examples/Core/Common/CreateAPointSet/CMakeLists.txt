@@ -17,7 +17,7 @@ install( TARGETS CreateAPointSet
 )
 
 install( FILES CreateAPointSet.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common
+  DESTINATION share/ITKExamples/Code/Core/Common/CreateAPointSet
   COMPONENT Code
 )
 

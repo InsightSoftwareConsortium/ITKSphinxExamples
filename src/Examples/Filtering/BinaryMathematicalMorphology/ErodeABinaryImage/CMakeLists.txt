@@ -14,7 +14,7 @@ install( TARGETS ErodeABinaryImage
 )
 
 install( FILES ErodeABinaryImage.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology
+  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology/ErodeABinaryImage
   COMPONENT Code
 )
 

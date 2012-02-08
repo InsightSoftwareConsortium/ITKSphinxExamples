@@ -17,7 +17,7 @@ install( TARGETS ReadAPointSet
 )
 
 install( FILES ReadAPointSet.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common
+  DESTINATION share/ITKExamples/Code/Core/Common/ReadAPointSet
   COMPONENT Code
 )
 

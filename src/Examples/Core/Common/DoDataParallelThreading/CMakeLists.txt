@@ -14,7 +14,7 @@ install( TARGETS DoDataParallelThreading
 )
 
 install( FILES DoDataParallelThreading.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common
+  DESTINATION share/ITKExamples/Code/Core/Common/DoDataParallelThreading
   COMPONENT Code
 )
 
