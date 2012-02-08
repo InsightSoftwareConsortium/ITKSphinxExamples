@@ -1,18 +1,39 @@
 #include "itkImage.h"
+#include "itkImageFileReader.h"
 #include "itkImageToHistogramFilter.h"
 #include "itkImageRandomIteratorWithIndex.h"
 
-typedef itk::Image<unsigned char, 2> ImageType;
-
-void CreateImage(ImageType::Pointer image);
-
-int main(int, char *[])
+int main(int argc, char* argv[])
 {
-  const unsigned int MeasurementVectorSize = 1; // Grayscale
-  const unsigned int binsPerDimension = 30;
+  if( argc != 3 )
+    {
+    std::cerr << argv[0] << "InputFileName NumberOfBins" << std::endl;
+    return EXIT_FAILURE;
+    }
 
-  ImageType::Pointer image = ImageType::New();
-  CreateImage(image);
+  const unsigned int Dimension = 2;
+  typedef unsigned char PixelType;
+  typedef itk::Image< PixelType, Dimension > ImageType;
+
+  const unsigned int MeasurementVectorSize = 1; // Grayscale
+  const unsigned int binsPerDimension =
+    static_cast< unsigned int >( atoi( argv[2] ) );
+
+  typedef itk::ImageFileReader< ImageType > ReaderType;
+  ReaderType::Pointer reader = ReaderType::New();
+  reader->SetFileName( argv[1] );
+
+  try
+    {
+    reader->Update();
+    }
+  catch( itk::ExceptionObject & e )
+    {
+    std::cerr << "Error: " << e << std::endl;
+    return EXIT_FAILURE;
+    }
+
+  ImageType::Pointer image = reader->GetOutput();
 
   typedef itk::Statistics::ImageToHistogramFilter< ImageType >
     ImageToHistogramFilterType;
@@ -31,10 +52,10 @@ int main(int, char *[])
 
   ImageToHistogramFilterType::Pointer imageToHistogramFilter =
     ImageToHistogramFilterType::New();
-  imageToHistogramFilter->SetInput(image);
-  imageToHistogramFilter->SetHistogramBinMinimum(lowerBound);
-  imageToHistogramFilter->SetHistogramBinMaximum(upperBound);
-  imageToHistogramFilter->SetHistogramSize(size);
+  imageToHistogramFilter->SetInput( image );
+  imageToHistogramFilter->SetHistogramBinMinimum( lowerBound );
+  imageToHistogramFilter->SetHistogramBinMaximum( upperBound );
+  imageToHistogramFilter->SetHistogramSize( size );
   imageToHistogramFilter->Update();
 
   ImageToHistogramFilterType::HistogramType* histogram =
@@ -49,32 +70,4 @@ int main(int, char *[])
   std::cout << std::endl;
 
   return EXIT_SUCCESS;
-}
-
-void CreateImage(ImageType::Pointer image)
-{
-  // Create a black image with a red square and a green square.
-  // This should produce a histogram with very strong spikes.
-  itk::Size<2> size;
-  size.Fill(10);
-
-  itk::Index<2> start;
-  start.Fill(0);
-
-  itk::ImageRegion<2> region(start, size);
-
-  image->SetRegions(region);
-  image->Allocate();
-
-  image->FillBuffer(0);
-
-  itk::ImageRandomIteratorWithIndex< ImageType >
-    imageIterator( image, image->GetLargestPossibleRegion() );
-  imageIterator.SetNumberOfSamples(10);
-
-  while(!imageIterator.IsAtEnd())
-    {
-    imageIterator.Set(122);
-    ++imageIterator;
-    }
 }
