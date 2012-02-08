@@ -353,6 +353,11 @@ f.write( 'endif()\n\n' )
 f.write( 'add_executable( ' + example_name + ' ' +  example_name + '.cxx )\n' )
 f.write( 'target_link_libraries( ' + example_name + ' ${ITK_LIBRARIES} )\n\n' )
 
+f.write( 'install( TARGETS ' + example_name + '\n' )
+f.write( '  DESTINATION bin/ITKExamples/' + group_name + '/' + module_name + '\n' )
+f.write( '  COMPONENT Runtime\n' )
+f.write( ')\n\n' )
+
 f.write( 'enable_testing()\n' )
 f.write( 'add_test( ' + example_name + 'Test ' + example_name + ' )\n' )
 f.close()
