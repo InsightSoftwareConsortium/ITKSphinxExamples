@@ -26,6 +26,9 @@ set(ExternalData_URL_TEMPLATES "" CACHE STRING
 file:///var/bigharddrive/%(algo)/%(hash)")
 mark_as_advanced(ExternalData_URL_TEMPLATES)
 list(APPEND ExternalData_URL_TEMPLATES
+  # Data published on dropbox
+  "http://dl.dropbox.com/u/61255957/%(algo)/%(hash)"
+
   # Data published by MIDAS
   "http://midas.kitware.com/api/rest/midas.bitstream.by.hash?hash=%(hash)&algorithm=%(algo)"
 
