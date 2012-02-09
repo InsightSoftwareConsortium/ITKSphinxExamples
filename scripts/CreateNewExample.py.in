@@ -110,6 +110,9 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f = open( example_rst, 'w' )
     title = space_out_camel_case( example_name )
 
+    if title[0] = ' ':
+        title = title[1:]
+
     f.write( title +'\n' )
     for i in range( len( title ) ):
         f.write( '=' )
