@@ -1,4 +1,4 @@
- Laplacian Recursive Gaussian Image Filter
+Laplacian Recursive Gaussian Image Filter
 ==========================================
 
 .. index::
