@@ -14,6 +14,7 @@ Results
 -------
 
 Output::
+
   u :[-1, 1, -1]
   v :[1, 2, 3]
   DotProduct( u, v ) = -2
