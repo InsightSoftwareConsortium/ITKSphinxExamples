@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+#
+# http://code.activestate.com/recipes/578030-dropbox-file-upload-via-web-interface-using-python/
+#
+# url for public folder: http://dl.dropbox.com/u/61255957/
+#
+#
 
 """ Scripts to add data to dropbox
 
