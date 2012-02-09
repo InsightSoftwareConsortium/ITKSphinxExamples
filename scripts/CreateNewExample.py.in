@@ -128,12 +128,12 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f.write( 'Results\n' )
     f.write( '-------\n\n' )
 
-    f.write( '.. figure:: \n' )
+    f.write( '.. figure::\n' )
     f.write( '  :scale: 50%\n' )
     f.write( '  :alt: Input image\n\n' )
     f.write( '  Input image\n\n' )
 
-    f.write( '.. figure:: \n' )
+    f.write( '.. figure::\n' )
     f.write( '  :scale: 50%\n' )
     f.write( '  :alt: Output image\n\n' )
     f.write( '  Output image\n\n' )
@@ -315,7 +315,7 @@ if not os.path.exists( example_dir ):
     # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/CMakeLists.txt
     f=open( os.path.join( example_src_dir, group_name, module_name, 'CMakeLists.txt' ), 'a+' )
     f.write( 'add_example( ' + example_name + ' )\n' )
-    f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n\n' )
+    f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n' )
     f.close()
 
     # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/index.rst
