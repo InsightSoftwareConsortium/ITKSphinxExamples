@@ -1,4 +1,4 @@
- Sobel Edge Detection Image Filter
+Sobel Edge Detection Image Filter
 ==================================
 
 .. index::
