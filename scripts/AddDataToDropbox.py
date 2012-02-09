@@ -8,7 +8,7 @@
 
 """ Scripts to add data to dropbox
 
-./AddDataToDropbox file.txt                     # upload 1 file to Public folder (by default)
+./AddDataToDropbox file.txt                     # upload 1 file to Public/MD5 folder (by default)
 ./AddDataToDropbox dir:/Folder file.txt         # upload 1 file to provided folder
 ./AddDataToDropbox dir:/Folder *.txt            # upload glob expressions to provided folder
 """
@@ -17,7 +17,7 @@ import mechanize
 import os
 import glob
 
-verbose = False
+verbose = True
 
 def upload_files(local_files, remote_dir, email, password):
     """ Upload a local file to Dropbox """
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     password = getpass("Enter Dropbox password:")
     # password = ''
 
-    remote_dir = '/Public'
+    remote_dir = '/Public/MD5'
 
     # allow multiple local file names as input args
     # first arg with 'dir:' prefix is parsed as remote path

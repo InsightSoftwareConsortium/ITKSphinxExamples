@@ -37,7 +37,7 @@ list(APPEND ExternalData_URL_TEMPLATES
   "http://www.itk.org/files/ExamplesExternalData/%(algo)/%(hash)"
 
   # Temporary: TODO remove me
-  "http://mmmccormick.com/ITKExamplesExternalData/%(algo)/%(hash)"
+  #"http://mmmccormick.com/ITKExamplesExternalData/%(algo)/%(hash)"
   )
 
 # Tell ExternalData commands to transform raw files to content links.
