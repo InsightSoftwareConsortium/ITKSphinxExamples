@@ -128,12 +128,12 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f.write( 'Results\n' )
     f.write( '-------\n\n' )
 
-    f.write( '.. figure:: \n' )
+    f.write( '.. figure::\n' )
     f.write( '  :scale: 50%\n' )
     f.write( '  :alt: Input image\n\n' )
     f.write( '  Input image\n\n' )
 
-    f.write( '.. figure:: \n' )
+    f.write( '.. figure::\n' )
     f.write( '  :scale: 50%\n' )
     f.write( '  :alt: Output image\n\n' )
     f.write( '  Output image\n\n' )
@@ -157,18 +157,18 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
 # ---------------------------------------------------------
 def WriteExampleCXXFile( example_cxx, class_name ):
     f = open( example_cxx, 'w' )
-    f.write( '// #include \"itkImage.h\n' )
-    f.write( '// #include \"itkImageFileReader.h\n' )
-    f.write( '// #include \"itkImageFileWriter.h\n' )
+    f.write( '// #include \"itkImage.h\"\n' )
+    f.write( '// #include \"itkImageFileReader.h\"\n' )
+    f.write( '// #include \"itkImageFileWriter.h\"\n' )
     f.write( '#include \"itk' + class_name + '.h\"\n\n' )
 
     f.write( 'int main( int argc, char* argv[] )\n' )
     f.write( '{\n' )
     f.write( '  // if( argc != 3 )\n' )
     f.write( '  //   {\n' )
-    f.write( '  //   std::cerr << Usage: << std::endl;\n' )
+    f.write( '  //   std::cerr << "Usage: "<< std::endl;\n' )
     f.write( '  //   std::cerr << argv[0];\n' )
-    f.write( '  //   std::cerr << "<InputFileName> <OutputFileName>;\n' )
+    f.write( '  //   std::cerr << "<InputFileName> <OutputFileName>\";\n' )
     f.write( '  //   std::cerr << std::endl;\n' )
     f.write( '  //   return EXIT_FAILURE;\n' )
     f.write( '  //   }\n\n' )
@@ -180,21 +180,21 @@ def WriteExampleCXXFile( example_cxx, class_name ):
 
     f.write( '  // typedef itk::ImageFileReader< ImageType >  ReaderType;\n' )
     f.write( '  // ReaderType::Pointer reader = ReaderType::New();\n' )
-    f.write( '  // reader->SetInputFileName( argv[1] );\n' )
+    f.write( '  // reader->SetFileName( argv[1] );\n' )
     f.write( '  // reader->Update();\n\n' )
 
-    f.write( '  // typedef itk::' + class_name + '<> FilterType;\n' )
+    f.write( '  // typedef itk::' + class_name + '< ImageType, ImageType > FilterType;\n' )
     f.write( '  // FilterType::Pointer filter = FilterType::New();\n' )
     f.write( '  // filter->SetInput( reader->GetOutput() );\n' )
     f.write( '  // filter->Update();\n\n' )
 
-    f.write( '  // typedef itk::ImageFileWrite< ImageType > WriteType;\n' )
+    f.write( '  // typedef itk::ImageFileWriter< ImageType > WriterType;\n' )
     f.write( '  // WriterType::Pointer writer = WriterType::New();\n' )
     f.write( '  // writer->SetFileName( argv[2] );\n' )
     f.write( '  // writer->SetInput( filter->GetOutput() );\n' )
     f.write( '  // writer->Update();\n\n' )
 
-    f.write( 'return EXIT_SUCCESS;\n' )
+    f.write( '  return EXIT_SUCCESS;\n' )
     f.write( '}\n' )
     f.close()
 
@@ -315,7 +315,7 @@ if not os.path.exists( example_dir ):
     # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/CMakeLists.txt
     f=open( os.path.join( example_src_dir, group_name, module_name, 'CMakeLists.txt' ), 'a+' )
     f.write( 'add_example( ' + example_name + ' )\n' )
-    f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n\n' )
+    f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n' )
     f.close()
 
     # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/index.rst

@@ -1,0 +1,2 @@
+add_example( SobelEdgeDetectionImageFilter )
+compare_to_baseline( SobelEdgeDetectionImageFilter SobelEdgeDetectionImageFilterOutput)

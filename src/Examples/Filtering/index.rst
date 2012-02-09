@@ -6,3 +6,4 @@ Filtering
 
   BinaryMathematicalMorphology/index.rst
   ImageGrid/index.rst
+  ImageFeature/index.rst
