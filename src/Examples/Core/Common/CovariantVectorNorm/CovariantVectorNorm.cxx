@@ -1,39 +1,43 @@
-// #include "itkImage.h"
-// #include "itkImageFileReader.h"
-// #include "itkImageFileWriter.h"
 #include "itkCovariantVector.h"
 
-int main( int argc, char* argv[] )
+int main(int, char*[])
 {
-  // if( argc != 3 )
-  //   {
-  //   std::cerr << "Usage: "<< std::endl;
-  //   std::cerr << argv[0];
-  //   std::cerr << "<InputFileName> <OutputFileName>";
-  //   std::cerr << std::endl;
-  //   return EXIT_FAILURE;
-  //   }
+  typedef itk::CovariantVector<double, 3> VectorType;
+  VectorType v;
+  v[0] = 1.0;
+  v[1] = 2.0;
+  v[2] = 3.0;
 
-  // const unsigned int Dimension = 2;
+  std::cout << "v: " << v << std::endl;
 
-  // typedef unsigned char                      PixelType;
-  // typedef itk::Image< PixelType, Dimension > ImageType;
+  // norm
+  VectorType::RealValueType vnorm = v.GetNorm();
+  std::cout << "vnorm: " << vnorm << std::endl;
 
-  // typedef itk::ImageFileReader< ImageType >  ReaderType;
-  // ReaderType::Pointer reader = ReaderType::New();
-  // reader->SetFileName( argv[1] );
-  // reader->Update();
+  VectorType::RealValueType vnorm2 = v.GetSquaredNorm();
+  std::cout << "vnorm2: " << vnorm2 << std::endl;
 
-  // typedef itk::CovariantVector< ImageType, ImageType > FilterType;
-  // FilterType::Pointer filter = FilterType::New();
-  // filter->SetInput( reader->GetOutput() );
-  // filter->Update();
+  VectorType u = v;
 
-  // typedef itk::ImageFileWriter< ImageType > WriterType;
-  // WriterType::Pointer writer = WriterType::New();
-  // writer->SetFileName( argv[2] );
-  // writer->SetInput( filter->GetOutput() );
-  // writer->Update();
+  // normalization
+  v.Normalize();
+  std::cout << "v: " << v << std::endl;
+
+  // another way to normalize
+  if( vnorm != 0. )
+    {
+    for( unsigned int i = 0; i < u.GetNumberOfComponents(); i++ )
+      {
+      u[i] /= vnorm;
+      }
+    }
+
+  std::cout << "u: " << u << std::endl;
+
+  if( ( u - v ).GetNorm() != 0. )
+    {
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

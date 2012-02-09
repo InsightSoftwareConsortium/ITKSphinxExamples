@@ -3,6 +3,10 @@ Covariant Vector Norm
 
 .. index::
   single: CovariantVector
+  pair: CovariantVector; GetNorm
+  pair: CovariantVector; GetSquaredNorm
+  pair: CovariantVector; Normalize
+  seealso: CovariantVector
 
 Synopsis
 --------
@@ -12,17 +16,13 @@ Compute the norm of a CovariantVector and normalize it.
 Results
 -------
 
-.. figure::
-  :scale: 50%
-  :alt: Input image
+Output::
 
-  Input image
-
-.. figure::
-  :scale: 50%
-  :alt: Output image
-
-  Output image
+  v: [1, 2, 3]
+  vnorm: 3.74166
+  vnorm2: 14
+  v: [0.267261, 0.534522, 0.801784]
+  u: [0.267261, 0.534522, 0.801784]
 
 Code
 ----

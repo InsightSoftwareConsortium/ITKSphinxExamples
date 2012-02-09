@@ -3,6 +3,7 @@ Covariant Vector
 
 .. index::
   single: CovariantVector
+  seealso: CovariantVectorNorm
 
 Synopsis
 --------
