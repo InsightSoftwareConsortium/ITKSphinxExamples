@@ -7,9 +7,9 @@ int main( int argc, char* argv[] )
 {
   if( argc != 3 )
     {
-    std::cerr << Usage: << std::endl;
+    std::cerr << "Usage: "<< std::endl;
     std::cerr << argv[0];
-    std::cerr << "<InputFileName> <OutputFileName>;
+    std::cerr << "<InputFileName> <OutputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
     }
@@ -21,15 +21,16 @@ int main( int argc, char* argv[] )
 
   typedef itk::ImageFileReader< ImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetInputFileName( argv[1] );
+  reader->SetFileName( argv[1] );
   reader->Update();
 
-  typedef itk::SobelEdgeDetectionImageFilter<> FilterType;
+  typedef itk::SobelEdgeDetectionImageFilter< ImageType, ImageType >
+    FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->Update();
 
-  typedef itk::ImageFileWrite< ImageType > WriteType;
+  typedef itk::ImageFileWriter< ImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( filter->GetOutput() );

@@ -23,4 +23,5 @@ install( FILES SobelEdgeDetectionImageFilter.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME SobelEdgeDetectionImageFilterTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SobelEdgeDetectionImageFilter )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SobelEdgeDetectionImageFilter CellsFluorescence1.png SobelEdgeDectionImageFilterOutput.png
+)
