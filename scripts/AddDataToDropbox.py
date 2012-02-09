@@ -16,8 +16,17 @@
 import mechanize
 import os
 import glob
+import hashlib
+import shutil
 
 verbose = True
+
+def md5sum_file(file_path):
+    md5 = hashlib.md5()
+    with open(file_path, 'rb') as f:
+        for chunk in iter(lambda: f.read(8192), ''):
+            md5.update(chunk)
+    return md5.hexdigest()
 
 def upload_files(local_files, remote_dir, email, password):
     """ Upload a local file to Dropbox """
@@ -103,6 +112,8 @@ if __name__ == "__main__":
 
     remote_dir = '/Public/MD5'
 
+    local_files = []
+
     # allow multiple local file names as input args
     # first arg with 'dir:' prefix is parsed as remote path
     if len(sys.argv) > 1:
@@ -119,16 +130,34 @@ if __name__ == "__main__":
     prepared_local_files = []
 
     for local_file in local_files:
-
         # explode globs
         if '*' in local_file:
             prepared_local_files += glob.glob(local_file)
         else:
             prepared_local_files.append(local_file)
 
-
     if not len(prepared_local_files):
         print 'No local files provided! Quitting.'
         sys.exit(2)
 
-    upload_files(prepared_local_files, remote_dir, email, password)
+    prepared_local_hashes = []
+
+    for local_file in prepared_local_files:
+
+        local_hash = md5sum_file( local_file )
+
+        local_file_md5 = open( local_file + '.md5', 'wb+' )
+        local_file_md5.write( local_hash )
+        local_file_md5.close()
+
+        shutil.copyfile( local_file, local_hash )
+
+        prepared_local_hashes.append( local_hash )
+
+    upload_files(prepared_local_hashes, remote_dir, email, password)
+
+    for local_file in prepared_local_files:
+        os.remove( local_file )
+
+    for local_hash in prepared_local_hashes:
+        os.remove( local_hash )
