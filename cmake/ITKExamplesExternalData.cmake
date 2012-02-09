@@ -35,9 +35,6 @@ list(APPEND ExternalData_URL_TEMPLATES
   # Data published by developers using git-gerrit-push.
   "http://www.itk.org/files/ExternalData/%(algo)/%(hash)"
   "http://www.itk.org/files/ExamplesExternalData/%(algo)/%(hash)"
-
-  # Temporary: TODO remove me
-  #"http://mmmccormick.com/ITKExamplesExternalData/%(algo)/%(hash)"
   )
 
 # Tell ExternalData commands to transform raw files to content links.
