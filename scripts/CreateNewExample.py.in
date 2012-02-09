@@ -379,7 +379,7 @@ print ( '    * ' + example_cxx )
 print ( '    * ' + example_rst + '\n' )
 
 print ( '  2- Commit changes in the ITKExamples source directory and push' )
-print ( '$ cd /path/to/source/ITKExamples' )
+print ( '$ cd @ITK_EXAMPLES_SOURCE_DIR@' )
 print ( '$ git checkout -b Add_' + example_name )
 print ( '$ git add src/Examples/' + group_name + '/' + module_name )
 print ( '$ git commit -a -m "Add ' + example_name + '" ' )
