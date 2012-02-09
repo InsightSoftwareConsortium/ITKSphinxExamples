@@ -46,32 +46,32 @@ def upload_files(local_files, remote_dir, email, password):
 
     br.addheaders = [('User-agent', ' Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1018.0 Safari/535.19')]
 
-    if verbose: print 'Opening login page...'
+    if verbose: print( 'Opening login page...' )
     # Browse to the login page
     r = br.open('https://www.dropbox.com/login')
     # just in case you need the html
     # html = r.read()
     # this shows a lot of info
 
-    print r.info()
+    print( r.info() )
 
-    if verbose: print br.title(), br.geturl()
+    if verbose: print( br.title(), br.geturl() )
 
     # Enter the username and password into the login form
     isLoginForm = lambda l: l.action == "https://www.dropbox.com/login" and l.method == "POST"
 
     try:
-        if verbose: print 'selecting form...'
+        if verbose: print( 'selecting form...' )
         br.select_form(predicate=isLoginForm)
     except:
-        print("Unable to find login form.");
+        print( 'Unable to find login form.' )
         exit(1);
 
     br['login_email'] = email
     br['login_password'] = password
 
     # Send the form
-    if verbose: print 'submitting login form...'
+    if verbose: print( 'submitting login form...' )
     response = br.submit()
 
     # Add our file upload to the upload form once logged in
@@ -81,8 +81,8 @@ def upload_files(local_files, remote_dir, email, password):
         try:
             br.select_form(predicate=isUploadForm)
         except:
-            print("Unable to find upload form.");
-            print("Make sure that your login information is correct.");
+            print( 'Unable to find upload form.' );
+            print( 'Make sure that your login information is correct.' );
             exit(1);
 
         br.form.find_control("dest").readonly = False
@@ -98,7 +98,7 @@ def upload_files(local_files, remote_dir, email, password):
 
             if verbose: print 'Ok'
 
-    print 'All completed Ok!'
+    print( 'All completed Ok!')
 
 if __name__ == "__main__":
     import sys
@@ -156,8 +156,21 @@ if __name__ == "__main__":
 
     upload_files(prepared_local_hashes, remote_dir, email, password)
 
-    for local_file in prepared_local_files:
-        os.remove( local_file )
-
     for local_hash in prepared_local_hashes:
         os.remove( local_hash )
+
+    temp = local_files[0]
+
+    print( '****\n' )
+
+    print( '$ git checkout -b Add_' + temp )
+
+    for local_file in prepared_local_files:
+        print( '$ git add ' + local_file )
+        os.remove( local_file )
+
+    print( '$ git commit -a -m \"Add data\"' )
+    print( '$ git checkout master' )
+    print( '$ git pull origin master' )
+    print( '$ git merge --no-ff Add_' + temp )
+    print( '$ git push origin master' )
