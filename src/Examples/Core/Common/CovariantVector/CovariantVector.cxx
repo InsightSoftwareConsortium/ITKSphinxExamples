@@ -2,7 +2,10 @@
 
 int main(int, char*[])
 {
-  typedef itk::CovariantVector<double, 3> VectorType;
+  const unsigned int Dimension = 3;
+  typedef double CoordType;
+
+  typedef itk::CovariantVector< CoordType, Dimension > VectorType;
   VectorType v;
   v[0] = 1.0;
   v[1] = 2.0;
