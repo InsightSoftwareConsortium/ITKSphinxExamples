@@ -12,13 +12,13 @@ Apply SobelEdgeDetectionImageFilter to an image
 Results
 -------
 
-.. figure::
+.. figure:: CellsFluorescence1.png
   :scale: 50%
   :alt: Input image
 
   Input image
 
-.. figure::
+.. figure:: SobelEdgeDetectionImageFilterOutputBaseline.png
   :scale: 50%
   :alt: Output image
 
