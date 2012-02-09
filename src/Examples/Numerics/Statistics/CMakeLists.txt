@@ -1,2 +1,1 @@
 add_example( ComputeHistogramFromGrayscaleImage )
-compare_to_baseline( ComputeHistogramFromGrayscaleImage ComputeHistogramFromGrayscaleImageOutput)
