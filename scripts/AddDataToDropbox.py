@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 
+""" Scripts to add data to dropbox
+
+./AddDataToDropbox file.txt                     # upload 1 file to Public folder (by default)
+./AddDataToDropbox dir:/Folder file.txt         # upload 1 file to provided folder
+./AddDataToDropbox dir:/Folder *.txt            # upload glob expressions to provided folder
+"""
+
 import mechanize
 import os
 import glob
@@ -88,7 +95,7 @@ if __name__ == "__main__":
     password = getpass("Enter Dropbox password:")
     # password = ''
 
-    remote_dir = ''
+    remote_dir = '/Public'
 
     # allow multiple local file names as input args
     # first arg with 'dir:' prefix is parsed as remote path
