@@ -22,4 +22,4 @@ install( FILES ComputeHistogramFromGrayscaleImage.cxx CMakeLists.txt
 )
 
 enable_testing()
-add_test( ComputeHistogramFromGrayscaleImageTest ComputeHistogramFromGrayscaleImage )
+add_test( ComputeHistogramFromGrayscaleImageTest ComputeHistogramFromGrayscaleImage ${CMAKE_CURRENT_BINARY_DIR}/sf4.png 16 )
