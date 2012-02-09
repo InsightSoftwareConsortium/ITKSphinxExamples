@@ -9,3 +9,4 @@ Common
   DoDataParallelThreading/DoDataParallelThreading.rst
   CovariantVector/CovariantVector.rst
   CovariantVectorNorm/CovariantVectorNorm.rst
+  CovariantVectorDotProduct/CovariantVectorDotProduct.rst
