@@ -22,4 +22,6 @@ install( FILES ReadAPointSet.cxx CMakeLists.txt
 )
 
 enable_testing()
-add_test( ReadAPointSetTest ReadAPointSet )
+add_test( NAME ReadAPointSetTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadAPointSet
+)

@@ -22,4 +22,6 @@ install( FILES CreateAPointSet.cxx CMakeLists.txt
 )
 
 enable_testing()
-add_test( CreateAPointSetTest CreateAPointSet )
+add_test( NAME CreateAPointSetTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateAPointSet
+)

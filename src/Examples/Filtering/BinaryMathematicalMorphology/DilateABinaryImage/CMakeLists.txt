@@ -19,6 +19,6 @@ install( FILES DilateABinaryImage.cxx CMakeLists.txt
 )
 
 enable_testing()
-add_test( DilateABinaryImageTest DilateABinaryImage
-  ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png DilateABinaryImageOutput.png 3
+add_test( NAME DilateABinaryImageTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DilateABinaryImage ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png DilateABinaryImageOutput.png 3
   )

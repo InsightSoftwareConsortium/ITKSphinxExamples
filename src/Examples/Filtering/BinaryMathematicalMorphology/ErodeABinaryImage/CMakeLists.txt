@@ -19,6 +19,6 @@ install( FILES ErodeABinaryImage.cxx CMakeLists.txt
 )
 
 enable_testing()
-add_test( ErodeABinaryImageTest ErodeABinaryImage
-  ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png ErodeABinaryImageOutput.png 3
-  )
+add_test( NAME ErodeABinaryImageTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ErodeABinaryImage ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png ErodeABinaryImageOutput.png 3
+)

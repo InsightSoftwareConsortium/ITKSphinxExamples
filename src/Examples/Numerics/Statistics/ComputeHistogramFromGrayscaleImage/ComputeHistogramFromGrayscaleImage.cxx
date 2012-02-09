@@ -61,13 +61,18 @@ int main(int argc, char* argv[])
   ImageToHistogramFilterType::HistogramType* histogram =
     imageToHistogramFilter->GetOutput();
 
-  std::cout << "Frequency = ";
+  std::cout << "Frequency = [ ";
   for(unsigned int i = 0; i < histogram->GetSize()[0]; ++i)
     {
-    std::cout << histogram->GetFrequency(i) << " ";
+    std::cout << histogram->GetFrequency(i);
+
+    if( i != histogram->GetSize()[0] - 1 )
+      {
+      std::cout << "," << std::endl;
+      }
     }
 
-  std::cout << std::endl;
+  std::cout << " ]" << std::endl;
 
   return EXIT_SUCCESS;
 }

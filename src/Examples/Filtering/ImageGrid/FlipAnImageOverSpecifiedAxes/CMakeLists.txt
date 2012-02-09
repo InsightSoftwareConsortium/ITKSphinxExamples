@@ -19,6 +19,6 @@ install( FILES FlipAnImageOverSpecifiedAxes.cxx CMakeLists.txt
 )
 
 enable_testing()
-add_test( FlipAnImageOverSpecifiedAxesTest FlipAnImageOverSpecifiedAxes
-  ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png FlipAnImageOverSpecifiedAxesOutput.png 0
-  )
+add_test( NAME FlipAnImageOverSpecifiedAxesTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/FlipAnImageOverSpecifiedAxes ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png FlipAnImageOverSpecifiedAxesOutput.png 0
+)

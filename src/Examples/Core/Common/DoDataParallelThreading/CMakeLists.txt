@@ -19,4 +19,6 @@ install( FILES DoDataParallelThreading.cxx CMakeLists.txt
 )
 
 enable_testing()
-add_test( DoDataParallelThreadingTest DoDataParallelThreading )
+add_test( NAME DoDataParallelThreadingTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DoDataParallelThreading
+)
