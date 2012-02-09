@@ -1,3 +1,5 @@
 add_example( CovariantVector )
 add_example( CreateAPointSet )
 add_example( DoDataParallelThreading )
+add_example( CovariantVectorNorm )
+compare_to_baseline( CovariantVectorNorm CovariantVectorNormOutput)

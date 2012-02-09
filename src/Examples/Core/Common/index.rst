@@ -8,3 +8,4 @@ Common
   ReadAPointSet/ReadAPointSet.rst
   DoDataParallelThreading/DoDataParallelThreading.rst
   CovariantVector/CovariantVector.rst
+  CovariantVectorNorm/CovariantVectorNorm.rst
