@@ -1,2 +1,4 @@
 add_example( SobelEdgeDetectionImageFilter )
 compare_to_baseline( SobelEdgeDetectionImageFilter SobelEdgeDetectionImageFilterOutput)
+add_example( LaplacianRecursiveGaussianImageFilter )
+compare_to_baseline( LaplacianRecursiveGaussianImageFilter LaplacianRecursiveGaussianImageFilterOutput)
