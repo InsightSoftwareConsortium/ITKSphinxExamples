@@ -15,6 +15,13 @@ set( ITK_EXAMPLES_RELEASE_VERSION
 
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ITK_EXAMPLES_BINARY_DIR}/bin )
 
+# Check to make sure the submodules have been created.
+if( NOT EXISTS "${ITK_EXAMPLES_SOURCE_DIR}/utilities/ext/breathelink/.git" )
+  message( SEND_ERROR "The git submodules are not available.  Please run
+  git submodule update --init --recursive"
+  )
+endif()
+
 include( CTest )
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
