@@ -31,7 +31,7 @@ include( ITKExamplesExternalData )
 set( _RootSubDirs
   cmake
   formatting
-  scripts
+  utilities
   src
   superbuild
 )
@@ -61,8 +61,8 @@ add_custom_target( copy_sources ALL
   "${ITK_EXAMPLES_BINARY_DIR}/src"
   COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITK_EXAMPLES_SOURCE_DIR}/formatting"
   "${ITK_EXAMPLES_BINARY_DIR}/formatting"
-  COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITK_EXAMPLES_SOURCE_DIR}/scripts"
-  "${ITK_EXAMPLES_BINARY_DIR}/scripts"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITK_EXAMPLES_SOURCE_DIR}/utilities"
+  "${ITK_EXAMPLES_BINARY_DIR}/utilities"
   COMMENT "Copying sources"
   )
 # For unknown reasons, this was the only effective way to ensure ITKExamplesData
@@ -167,8 +167,8 @@ if( BUILD_EXECUTABLES )
   add_subdirectory( src )
 endif()
 
-configure_file( ${CMAKE_SOURCE_DIR}/scripts/CreateNewExample.py.in
-  ${CMAKE_BINARY_DIR}/scripts/CreateNewExample.py
+configure_file( ${CMAKE_SOURCE_DIR}/utilities/CreateNewExample.py.in
+  ${CMAKE_BINARY_DIR}/utilities/CreateNewExample.py
   @ONLY
 )
 

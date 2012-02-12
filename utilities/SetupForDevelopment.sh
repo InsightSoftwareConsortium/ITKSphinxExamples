@@ -115,7 +115,7 @@ else
 fi
 echo
 
-cd scripts
+cd utilities
 
 echo "Checking basic user information..."
 ./SetupUser.sh || exit 1
