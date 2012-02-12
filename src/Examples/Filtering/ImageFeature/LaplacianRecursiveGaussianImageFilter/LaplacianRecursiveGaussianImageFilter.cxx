@@ -9,7 +9,7 @@ int main( int argc, char* argv[] )
     {
     std::cerr << "Usage: "<< std::endl;
   std::cerr << argv[0];
-  std::cerr << "<InputFileName> <OutputFileName>";
+  std::cerr << " <InputFileName> <OutputFileName>";
   std::cerr << std::endl;
   return EXIT_FAILURE;
   }
@@ -37,7 +37,15 @@ int main( int argc, char* argv[] )
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( filter->GetOutput() );
-  writer->Update();
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & e )
+    {
+    std::cerr << "Error: " << e << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

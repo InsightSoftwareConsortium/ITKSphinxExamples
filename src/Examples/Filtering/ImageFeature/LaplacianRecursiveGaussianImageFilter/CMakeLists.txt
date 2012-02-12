@@ -4,9 +4,7 @@ project( LaplacianRecursiveGaussianImageFilter )
 
 find_package( ITK REQUIRED )
 
-if( ${ITK_FOUND} )
-  include( ${ITK_USE_FILE} )
-endif()
+include( ${ITK_USE_FILE} )
 
 add_executable( LaplacianRecursiveGaussianImageFilter LaplacianRecursiveGaussianImageFilter.cxx )
 target_link_libraries( LaplacianRecursiveGaussianImageFilter ${ITK_LIBRARIES} )
@@ -23,4 +21,7 @@ install( FILES LaplacianRecursiveGaussianImageFilter.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME LaplacianRecursiveGaussianImageFilterTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LaplacianRecursiveGaussianImageFilter )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LaplacianRecursiveGaussianImageFilter
+  ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
+  LaplacianRecursiveGaussianImageFilterOutput.mha
+  )

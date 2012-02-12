@@ -166,7 +166,7 @@ if __name__ == "__main__":
     print( '$ git checkout -b Add_' + temp )
 
     for local_file in prepared_local_files:
-        print( '$ git add ' + local_file )
+        print( '$ git add ' + local_file + '.md5')
         os.remove( local_file )
 
     print( '$ git commit -a -m \"Add data\"' )

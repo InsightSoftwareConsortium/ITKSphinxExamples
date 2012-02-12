@@ -19,6 +19,8 @@ import sys, os
 #sys.path.insert(0, os.path.abspath('.'))
 
 sys.path.insert( 0, os.path.abspath('@BREATHE_DIR@') )
+sys.path.insert(0, os.path.abspath(os.path.join('@ITK_EXAMPLES_BINARY_DIR@',
+'utilities', 'ext')))
 
 
 # -- General configuration -----------------------------------------------------
