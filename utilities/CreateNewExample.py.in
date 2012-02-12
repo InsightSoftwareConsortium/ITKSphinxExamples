@@ -348,10 +348,7 @@ f.write( 'cmake_minimum_required( VERSION 2.8 )\n\n' )
 f.write( 'project( ' + example_name + ' )\n\n' )
 
 f.write( 'find_package( ITK REQUIRED )\n\n' )
-
-f.write( 'if( ${ITK_FOUND} )\n' )
-f.write( '  include( ${ITK_USE_FILE} )\n' )
-f.write( 'endif()\n\n' )
+f.write( 'include( ${ITK_USE_FILE} )\n' )
 
 f.write( 'add_executable( ' + example_name + ' ' +  example_name + '.cxx )\n' )
 f.write( 'target_link_libraries( ' + example_name + ' ${ITK_LIBRARIES} )\n\n' )
