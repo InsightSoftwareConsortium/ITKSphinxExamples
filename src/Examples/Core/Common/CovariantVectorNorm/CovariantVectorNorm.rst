@@ -8,10 +8,12 @@ Covariant Vector Norm
   pair: CovariantVector; Normalize
   seealso: CovariantVector
 
+
 Synopsis
 --------
 
 Compute the norm of a CovariantVector and normalize it.
+
 
 Results
 -------
@@ -24,6 +26,7 @@ Output::
   v: [0.267261, 0.534522, 0.801784]
   u: [0.267261, 0.534522, 0.801784]
 
+
 Code
 ----
 
@@ -32,10 +35,8 @@ C++
 
 .. literalinclude:: CovariantVectorNorm.cxx
 
+
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::CovariantVector
-  :no-link:
-
-* Detailed documentation: :itkdox:`itk::CovariantVector`
+.. breathelink:: itk::CovariantVector

@@ -23,7 +23,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::PointSet
-  :no-link:
-
-* Detailed documentation: :itkdox:`itk::PointSet`
+.. breathelink:: itk::PointSet

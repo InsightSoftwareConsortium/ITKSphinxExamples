@@ -42,12 +42,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::BinaryErodeImageFilter
-  :no-link:
-
-* Detailed documentation: :itkdox:`itk::BinaryErodeImageFilter`
-
-.. doxygenclass:: itk::BinaryBallStructuringElement
-  :no-link:
-
-* Detailed documentation: :itkdox:`itk::BinaryBallStructuringElement`
+.. breathelink:: itk::BinaryErodeImageFilter itk::BinaryBallStructuringElement

@@ -122,11 +122,11 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f.write( '  single: ' + class_name + '\n\n')
 
     f.write( 'Synopsis\n' )
-    f.write( '--------\n\n' )
+    f.write( '--------\n\n\n' )
 
     if synopsis == None:
         synopsis = raw_input( 'Synopsis: ' )
-    f.write( synopsis + '\n\n' )
+    f.write( synopsis + '\n\n\n' )
 
     f.write( 'Results\n' )
     f.write( '-------\n\n' )
@@ -139,22 +139,20 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f.write( '.. figure::\n' )
     f.write( '  :scale: 50%\n' )
     f.write( '  :alt: Output image\n\n' )
-    f.write( '  Output image\n\n' )
+    f.write( '  Output image\n\n\n' )
 
     f.write( 'Code\n' )
     f.write( '----\n\n' )
 
     f.write( 'C++\n' )
     f.write( '...\n\n' )
-    f.write( '.. literalinclude:: ' + example_name + '.cxx\n\n' )
+    f.write( '.. literalinclude:: ' + example_name + '.cxx\n\n\n' )
 
     f.write( 'Classes demonstrated\n' )
-    f.write( '--------------------\n\n' )
+    f.write( '--------------------\n' )
 
-    f.write( '.. doxygenclass:: itk::' + class_name + '\n' )
-    f.write( '  :no-link:\n\n' )
+    f.write( '\n. breathelink: itk::' + class_name + '\n' )
 
-    f.write( '* Detailed documentation: :itkdox:`itk::' + class_name + '`\n' )
     f.close()
 
 # ---------------------------------------------------------

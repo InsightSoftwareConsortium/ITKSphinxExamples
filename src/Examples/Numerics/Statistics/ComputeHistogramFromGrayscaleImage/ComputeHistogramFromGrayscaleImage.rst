@@ -4,10 +4,12 @@ Compute Histogram From Grayscale Image
 .. index::
   single: ImageToHistogramFilter
 
+
 Synopsis
 --------
 
 Compute a histogram from a grayscale image
+
 
 Results
 -------
@@ -46,10 +48,8 @@ C++
 
 .. literalinclude:: ComputeHistogramFromGrayscaleImage.cxx
 
+
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::Statistics::ImageToHistogramFilter
-  :no-link:
-
-* Detailed documentation: :itkdox:`itk::Statistics::ImageToHistogramFilter`
+.. breathelink:: itk::Statistics::ImageToHistogramFilter

@@ -24,6 +24,7 @@ Results
 
   Output image
 
+
 Code
 ----
 
@@ -32,10 +33,8 @@ C++
 
 .. literalinclude:: LaplacianRecursiveGaussianImageFilter.cxx
 
+
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::LaplacianRecursiveGaussianImageFilter
-  :no-link:
-
-* Detailed documentation: :itkdox:`itk::LaplacianRecursiveGaussianImageFilter`
+.. breathelink:: itk::LaplacianRecursiveGaussianImageFilter

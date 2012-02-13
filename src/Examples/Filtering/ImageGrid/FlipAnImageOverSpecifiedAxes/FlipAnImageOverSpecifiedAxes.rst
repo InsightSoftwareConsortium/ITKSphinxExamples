@@ -10,6 +10,7 @@ Synopsis
 
 Flip an image over the specified axes.  Pixels are swapped over the given axis.
 
+
 Results
 -------
 
@@ -43,7 +44,4 @@ Python
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::FlipImageFilter
-  :no-link:
-
-* Detailed documentation: :itkdox:`itk::FlipImageFilter`
+.. breathelink:: itk::FlipImageFilter

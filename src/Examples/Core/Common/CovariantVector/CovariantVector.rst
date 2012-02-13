@@ -5,10 +5,12 @@ Covariant Vector
   single: CovariantVector
   seealso: CovariantVectorNorm
 
+
 Synopsis
 --------
 
 Covariant Vector
+
 
 Results
 -------
@@ -25,10 +27,8 @@ C++
 
 .. literalinclude:: CovariantVector.cxx
 
+
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::CovariantVector
-  :no-link:
-
-* Detailed documentation: :itkdox:`itk::CovariantVector`
+.. breathelink:: itk::CovariantVector
