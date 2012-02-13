@@ -5,6 +5,7 @@ Do data parallel threading
   single: DomainThreader
   single: ThreadedIndexedContainerPartitioner
 
+
 Synopsis
 --------
 
@@ -13,6 +14,7 @@ In this example, we show how to do an operation on data across multiple threads 
 In this example we have an `enum` of central nervous system cell types, a
 `std::vector< CELL_TYPE >` that contains the cells that we have encountered, and
 we want to count how many we have of each `CELL_TYPE`.
+
 
 Results
 -------
@@ -37,10 +39,8 @@ C++
 
 .. literalinclude:: DoDataParallelThreading.cxx
 
+
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::DomainThreader
-  :no-link:
-
-* :itkdox:`itk::DomainThreader`
+.. breathelink:: itk::DomainThreader

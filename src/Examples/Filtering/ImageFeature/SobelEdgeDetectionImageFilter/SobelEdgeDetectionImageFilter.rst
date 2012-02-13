@@ -35,7 +35,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::SobelEdgeDetectionImageFilter
-  :no-link:
-
-* Detailed documentation: :itkdox:`itk::SobelEdgeDetectionImageFilter`
+.. breathelink:: itk::SobelEdgeDetectionImageFilter

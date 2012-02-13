@@ -44,12 +44,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. doxygenclass:: itk::BinaryDilateImageFilter
-  :no-link:
-
-* :itkdox:`itk::BinaryDilateImageFilter`
-
-.. doxygenclass:: itk::BinaryBallStructuringElement
-  :no-link:
-
-* Detailed documentation: :itkdox:`itk::BinaryBallStructuringElement`
+.. breathelink:: itk::BinaryDilateImageFilter itk::BinaryBallStructuringElement
