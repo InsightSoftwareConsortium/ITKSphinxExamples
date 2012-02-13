@@ -99,8 +99,6 @@ if( BUILD_DOCUMENTATION )
     ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
   )
 
-  find_package( Breathe )
-
   if(NOT ITKDoxygenXML_DIR )
     include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygenXML.cmake )
   endif()
