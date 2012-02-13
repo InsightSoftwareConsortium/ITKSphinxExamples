@@ -35,10 +35,6 @@ endif()
 option( BUILD_DOCUMENTATION "Build documentation" OFF )
 
 if( ${BUILD_DOCUMENTATION} )
-  if(NOT BREATHE_DIR)
-    include( ${CMAKE_SOURCE_DIR}/External-Breathe.cmake )
-    list( APPEND ITKExamples_DEPENDENCIES BREATHE )
-  endif()
 
   option( DOC_WITH_LOCAL_DOXYGEN "Download ITK Doxygen documentation" ON )
 
@@ -76,7 +72,6 @@ ExternalProject_Add( ITK_EXAMPLES
     # VTK
     # -DVTK_DIR:PATH=${VTK_DIR}
     # breathe
-    -DBREATHE_DIR:PATH=${BREATHE_DIR}
     -DITKDoxygen_DIR:PATH=${ITKDoxygen_DIR}
     -DITKDoxygenXML_DIR:PATH=${ITKDoxygenXML_DIR}
     -DITKDoxygenTAG_DIR:PATH=${ITKDoxygenTAG_DIR}
