@@ -12,14 +12,12 @@ Compute the Laplacian of an image.
 Results
 -------
 
-.. figure::
-  :scale: 50%
+.. figure:: cthead1.png
   :alt: Input image
 
   Input image
 
-.. figure::
-  :scale: 50%
+.. figure:: LaplacianRecursiveGaussianImageFilterOutput.mha
   :alt: Output image
 
   Output image
