@@ -22,3 +22,7 @@ GITCONFIG="${GIT} config ${global}"
 
 # Pull all updates - first a general pull and then submodules.
 ${GITCONFIG} alias.pullall "!bash -c \"git pull && git submodule update --init\""
+
+${GITCONFIG} alias.add-example "!bash -c \"git checkout -b AddExample_$1\""
+
+${GITCONFIG} alias.merge-example "!bash -c \"git checkout master && git pullall && git merge --no-ff AddExample_$1\""
