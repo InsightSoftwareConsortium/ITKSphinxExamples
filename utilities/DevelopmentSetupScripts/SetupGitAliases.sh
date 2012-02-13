@@ -21,4 +21,4 @@ GITCONFIG="${GIT} config ${global}"
 # General aliases that could be global
 
 # Pull all updates - first a general pull and then submodules.
-${GITCONFIG} alias.pullall "!bash -c \"git pull && git submodule update --init\""
+${GITCONFIG} alias.pullall "!bash -c \"git pull && git submodule update\""
