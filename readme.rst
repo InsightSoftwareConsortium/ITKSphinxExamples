@@ -3,6 +3,20 @@ ITK Examples
 
 A set of cookbook examples for the Insight Toolkit, ITK_.
 
+Download instructions
+---------------------
+
+With version of Git (>= 1.6.5)::
+
+  $ git clone --recursive git@github.com:thewtex/ITKExamples.git
+
+
+With older versions::
+
+  $ git clone git@github.com:thewtex/ITKExamples.git
+  $ cd ITKExamples
+  $ git submodule update --init
+
 
 Build instructions
 ------------------
@@ -69,6 +83,14 @@ If building the documentation:
 - VTK_
 - Breathe_
 - Sphinx_
+
+Development setup
+------------------
+
+Run the bash scipt SetupForDevelopment.sh::
+
+  $ ./utilities/SetupForDevelopment.sh
+
 
 .. _Breathe: https://github.com/michaeljones/breathe
 .. _CMake: http://cmake.org/
