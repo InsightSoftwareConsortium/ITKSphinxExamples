@@ -125,9 +125,9 @@ echo "Setting up git hooks..."
 ./SetupHooks.sh || exit 1
 echo
 
-# echo "Setting up useful Git aliases..."
-# ./SetupGitAliases.sh || exit 1
-# echo
+echo "Setting up useful Git aliases..."
+./SetupGitAliases.sh || exit 1
+echo
 
 # Make this non-fatal, as it is useful to get the other stuff set up
 # echo "Setting up Gerrit..."
