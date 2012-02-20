@@ -3,6 +3,6 @@
 cd @ITK_EXAMPLES_SOURCE_DIR@
 gource --log-command git > project.log
 gource --output-custom-log project.log
-gource -s 0.5 -1280x720 -o - | ffmpeg -y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libx264 -preset ultrafast -crf 1 -threads 0 -bf 0 gource.mp4
-mv gource.mp4 @ITK_EXAMPLES_BINARY_DIR@
+gource --highlight-users -s 0.1 --auto-skip-seconds 1 --file-idle-time 5 --stop-at-end -o - | ffmpeg -y -b 3000K -r 60 -f image2pipe -vcodec ppm -i - -vcodec mpeg2video -pix_fmt yuv422p -qscale 1 -qmin 1 -intra -an gource.mpeg
+mv gource.mpeg @ITK_EXAMPLES_BINARY_DIR@/src/
 rm project.log
