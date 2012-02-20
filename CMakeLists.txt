@@ -94,6 +94,11 @@ if( BUILD_DOCUMENTATION )
     @ONLY
   )
 
+  configure_file( ${ITK_EXAMPLES_SOURCE_DIR}/utilities/CodeSwarn.sh.in
+    ${ITK_EXAMPLES_BINARY_DIR}/utilities/CodeSwarn.sh
+    @ONLY
+  )
+
   # A high level target that the individual targets depend on.
   add_custom_target( CreateTarballs ALL
     ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
