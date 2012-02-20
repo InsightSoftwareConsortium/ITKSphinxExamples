@@ -85,8 +85,8 @@ if( BUILD_DOCUMENTATION )
     WORKING_DIRECTORY ${ITK_EXAMPLES_BINARY_DIR}
     )
 
-  configure_file( ${ITK_EXAMPLES_SOURCE_DIR}/utilities/CodeSwarn.sh.in
-    ${ITK_EXAMPLES_BINARY_DIR}/utilities/CodeSwarn.sh
+  configure_file( ${ITK_EXAMPLES_SOURCE_DIR}/utilities/CodeSwarm.sh.in
+    ${ITK_EXAMPLES_BINARY_DIR}/utilities/CodeSwarm.sh
     @ONLY
   )
 
