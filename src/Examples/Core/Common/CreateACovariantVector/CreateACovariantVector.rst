@@ -1,15 +1,14 @@
-Covariant Vector
-================
+Create a CovariantVector
+========================
 
 .. index::
   single: CovariantVector
-  seealso: CovariantVectorNorm
 
 
 Synopsis
 --------
 
-Covariant Vector
+Create a CovariantVector
 
 
 Results
@@ -25,7 +24,7 @@ Code
 C++
 ...
 
-.. literalinclude:: CovariantVector.cxx
+.. literalinclude:: CreateACovariantVector.cxx
 
 
 Classes demonstrated
