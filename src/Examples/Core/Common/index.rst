@@ -13,3 +13,4 @@ Common
   GetTypeBasicInformation/GetTypeBasicInformation.rst
   DistanceBetweenPoints/DistanceBetweenPoints.rst
   CreateAVector/CreateAVector.rst
+  TryCatchException/TryCatchException.rst
