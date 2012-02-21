@@ -1,39 +1,41 @@
-// #include "itkImage.h"
-// #include "itkImageFileReader.h"
-// #include "itkImageFileWriter.h"
 #include "itkNumericTraits.h"
 
-int main( int argc, char* argv[] )
+int main(int, char* [] )
 {
-  // if( argc != 3 )
-  //   {
-  //   std::cerr << "Usage: "<< std::endl;
-  //   std::cerr << argv[0];
-  //   std::cerr << "<InputFileName> <OutputFileName>";
-  //   std::cerr << std::endl;
-  //   return EXIT_FAILURE;
-  //   }
+  typedef float MyType;
 
-  // const unsigned int Dimension = 2;
+  std::cout << "Min: " << itk::NumericTraits< MyType >::min() << std::endl;
+  std::cout << "Max: " << itk::NumericTraits< MyType >::max() << std::endl;
+  std::cout << "Zero: " << itk::NumericTraits< MyType >::Zero << std::endl;
+  std::cout << "ZeroValue: " << itk::NumericTraits< MyType >::ZeroValue()
+            << std::endl;
 
-  // typedef unsigned char                      PixelType;
-  // typedef itk::Image< PixelType, Dimension > ImageType;
+  std::cout << "Is -1 negative? "
+            << itk::NumericTraits< MyType >::IsNegative(-1) << std::endl;
 
-  // typedef itk::ImageFileReader< ImageType >  ReaderType;
-  // ReaderType::Pointer reader = ReaderType::New();
-  // reader->SetFileName( argv[1] );
-  // reader->Update();
+  std::cout << "Is 1 negative? "
+            << itk::NumericTraits< MyType >::IsNegative(1)
+            << std::endl;
 
-  // typedef itk::NumericTraits< ImageType, ImageType > FilterType;
-  // FilterType::Pointer filter = FilterType::New();
-  // filter->SetInput( reader->GetOutput() );
-  // filter->Update();
+  std::cout << "One: "
+            << itk::NumericTraits< MyType >::One
+            << std::endl;
 
-  // typedef itk::ImageFileWriter< ImageType > WriterType;
-  // WriterType::Pointer writer = WriterType::New();
-  // writer->SetFileName( argv[2] );
-  // writer->SetInput( filter->GetOutput() );
-  // writer->Update();
+  std::cout << "Epsilon: "
+            << itk::NumericTraits< MyType >::epsilon()
+            << std::endl;
 
-  return EXIT_SUCCESS;
+  std::cout << "Infinity: "
+            << itk::NumericTraits< MyType >::infinity() << std::endl;
+
+  if(0 == itk::NumericTraits< MyType >::infinity())
+    {
+    std::cout << " 0 == inf!" << std::endl;
+    return EXIT_FAILURE;
+    }
+  else
+    {
+    std::cout << "Good" << std::endl;
+    return EXIT_SUCCESS;
+    }
 }

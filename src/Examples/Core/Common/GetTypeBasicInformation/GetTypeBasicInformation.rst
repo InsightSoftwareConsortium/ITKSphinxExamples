@@ -14,18 +14,18 @@ Get some basic information about a type
 Results
 -------
 
-.. figure::
-  :scale: 50%
-  :alt: Input image
+Output::
 
-  Input image
-
-.. figure::
-  :scale: 50%
-  :alt: Output image
-
-  Output image
-
+  Min: 1.17549e-38
+  Max: 3.40282e+38
+  Zero: 0
+  ZeroValue: 0
+  Is -1 negative? 1
+  Is 1 negative? 0
+  One: 1
+  Epsilon: 1.19209e-07
+  Infinity: inf
+  Good
 
 Code
 ----
