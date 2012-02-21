@@ -10,3 +10,4 @@ Common
   CreateACovariantVector/CreateACovariantVector.rst
   CovariantVectorNorm/CovariantVectorNorm.rst
   CovariantVectorDotProduct/CovariantVectorDotProduct.rst
+  GetTypeBasicInformation/GetTypeBasicInformation.rst
