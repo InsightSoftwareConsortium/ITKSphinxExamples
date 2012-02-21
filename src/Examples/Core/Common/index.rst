@@ -7,6 +7,6 @@ Common
   CreateAPointSet/CreateAPointSet.rst
   ReadAPointSet/ReadAPointSet.rst
   DoDataParallelThreading/DoDataParallelThreading.rst
-  CovariantVector/CovariantVector.rst
+  CreateACovariantVector/CreateACovariantVector.rst
   CovariantVectorNorm/CovariantVectorNorm.rst
   CovariantVectorDotProduct/CovariantVectorDotProduct.rst

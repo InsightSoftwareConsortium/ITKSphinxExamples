@@ -6,7 +6,6 @@ Covariant Vector Norm
   pair: CovariantVector; GetNorm
   pair: CovariantVector; GetSquaredNorm
   pair: CovariantVector; Normalize
-  seealso: CovariantVector
 
 
 Synopsis

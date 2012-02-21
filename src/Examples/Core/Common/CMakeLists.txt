@@ -1,4 +1,4 @@
-add_example( CovariantVector )
+add_example( CreateACovariantVector )
 add_example( CreateAPointSet )
 add_example( DoDataParallelThreading )
 add_example( CovariantVectorNorm )

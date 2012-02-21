@@ -3,8 +3,7 @@ Covariant Vector Dot Product
 
 .. index::
   single: CovariantVector
-  seealso: CovariantVector, CovariantVectorNorm
-
+  pair: CovariantVector; operator *
 
 Synopsis
 --------
