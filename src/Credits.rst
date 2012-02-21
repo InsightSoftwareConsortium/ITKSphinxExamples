@@ -5,7 +5,7 @@ Credits
    :maxdepth: 2
 
    gitstats/index
-   gitstats/author
+   gitstats/authors
    gitstats/activity
    gitstats/files
    gitstats/lines
