@@ -12,3 +12,4 @@ Common
   CovariantVectorDotProduct/CovariantVectorDotProduct.rst
   GetTypeBasicInformation/GetTypeBasicInformation.rst
   DistanceBetweenPoints/DistanceBetweenPoints.rst
+  CreateAVector/CreateAVector.rst
