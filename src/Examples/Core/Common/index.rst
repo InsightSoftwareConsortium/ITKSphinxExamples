@@ -23,3 +23,4 @@ Common
   IterateOnAVectorContainer/IterateOnAVectorContainer.rst
   CreateAnother/CreateAnother.rst
   CreateAFixedArray/CreateAFixedArray.rst
+  AddOffsetToIndex/AddOffsetToIndex.rst
