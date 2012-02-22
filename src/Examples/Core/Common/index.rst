@@ -15,3 +15,4 @@ Common
   CreateAVector/CreateAVector.rst
   TryCatchException/TryCatchException.rst
   BoundingBoxOfAPointSet/BoundingBoxOfAPointSet.rst
+  MersenneTwisterRandomIntegerGenerator/MersenneTwisterRandomIntegerGenerator.rst
