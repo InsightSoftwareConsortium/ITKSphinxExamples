@@ -27,3 +27,4 @@ Common
   GetNameOfClass/GetNameOfClass.rst
   CreateAImageRegion/CreateAImageRegion.rst
   IsPixelInsideRegion/IsPixelInsideRegion.rst
+  ImageRegionIntersection/ImageRegionIntersection.rst
