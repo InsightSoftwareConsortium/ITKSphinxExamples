@@ -1,0 +1,33 @@
+Is Pixel Inside Region
+======================
+
+.. index::
+   single: ImageRegion
+
+Synopsis
+--------
+
+
+Determine if a pixel is inside of a region
+
+
+Results
+-------
+
+Output::
+  [1, 1] Inside
+  [6, 6] Outside
+
+Code
+----
+
+C++
+...
+
+.. literalinclude:: IsPixelInsideRegion.cxx
+
+
+Classes demonstrated
+--------------------
+
+.. breathelink:: itk::ImageRegion

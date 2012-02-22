@@ -26,3 +26,4 @@ Common
   AddOffsetToIndex/AddOffsetToIndex.rst
   GetNameOfClass/GetNameOfClass.rst
   CreateAImageRegion/CreateAImageRegion.rst
+  IsPixelInsideRegion/IsPixelInsideRegion.rst
