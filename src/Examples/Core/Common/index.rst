@@ -20,3 +20,4 @@ Common
   ObserveAnEvent/ObserveAnEvent.rst
   ComputeTimeBetweenPoints/ComputeTimeBetweenPoints.rst
   WatchAFilter/WatchAFilter.rst
+  IterateOnAVectorContainer/IterateOnAVectorContainer.rst
