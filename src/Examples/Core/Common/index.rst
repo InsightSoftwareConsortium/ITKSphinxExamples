@@ -18,3 +18,4 @@ Common
   MersenneTwisterRandomIntegerGenerator/MersenneTwisterRandomIntegerGenerator.rst
   MersenneTwisterRandomNumberGenerator/MersenneTwisterRandomNumberGenerator.rst
   ObserveAnEvent/ObserveAnEvent.rst
+  ComputeTimeBetweenPoints/ComputeTimeBetweenPoints.rst
