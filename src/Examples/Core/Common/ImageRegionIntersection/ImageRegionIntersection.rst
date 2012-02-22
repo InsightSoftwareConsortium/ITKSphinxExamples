@@ -3,7 +3,7 @@ Image Region Intersection
 
 .. index::
    single: ImageRegion
-   pair: ImageRegion, IsInside
+   pair: ImageRegion; IsInside
 
 Synopsis
 --------

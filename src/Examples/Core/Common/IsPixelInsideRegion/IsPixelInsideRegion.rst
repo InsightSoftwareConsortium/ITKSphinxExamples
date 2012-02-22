@@ -3,7 +3,7 @@ Is Pixel Inside Region
 
 .. index::
    single: ImageRegion
-   pair: ImageRegion, IsInside
+   pair: ImageRegion; IsInside
    single: Index
    single: Size
 
