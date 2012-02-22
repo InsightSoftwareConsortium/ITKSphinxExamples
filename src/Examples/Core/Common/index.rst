@@ -25,3 +25,4 @@ Common
   CreateAFixedArray/CreateAFixedArray.rst
   AddOffsetToIndex/AddOffsetToIndex.rst
   GetNameOfClass/GetNameOfClass.rst
+  CreateAImageRegion/CreateAImageRegion.rst
