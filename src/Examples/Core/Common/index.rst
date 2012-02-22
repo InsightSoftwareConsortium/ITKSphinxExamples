@@ -21,3 +21,4 @@ Common
   ComputeTimeBetweenPoints/ComputeTimeBetweenPoints.rst
   WatchAFilter/WatchAFilter.rst
   IterateOnAVectorContainer/IterateOnAVectorContainer.rst
+  CreateAnother/CreateAnother.rst
