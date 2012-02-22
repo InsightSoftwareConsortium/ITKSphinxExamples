@@ -19,3 +19,4 @@ Common
   MersenneTwisterRandomNumberGenerator/MersenneTwisterRandomNumberGenerator.rst
   ObserveAnEvent/ObserveAnEvent.rst
   ComputeTimeBetweenPoints/ComputeTimeBetweenPoints.rst
+  WatchAFilter/WatchAFilter.rst
