@@ -27,4 +27,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::MersenneTwisterRandomVariateGenerator
+.. breathelink:: itk::Statistics::MersenneTwisterRandomVariateGenerator
