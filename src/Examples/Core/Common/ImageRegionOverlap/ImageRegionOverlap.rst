@@ -19,7 +19,6 @@ Results
 -------
 
 .. figure:: ImageRegionOverlapOutputBaseline.png
-  :scale: 50%
   :alt: Output image
 
   Output image
