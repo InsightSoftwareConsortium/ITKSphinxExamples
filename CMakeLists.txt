@@ -83,6 +83,7 @@ if( BUILD_DOCUMENTATION )
   execute_process( COMMAND ${ITK_EXAMPLES_SOURCE_DIR}/utilities/ext/gitstats/gitstats --rst
     ${ITK_EXAMPLES_SOURCE_DIR} ${ITK_EXAMPLES_BINARY_DIR}/src/gitstats
     WORKING_DIRECTORY ${ITK_EXAMPLES_BINARY_DIR}
+    OUTPUT_QUIET
     )
 
   configure_file( ${ITK_EXAMPLES_SOURCE_DIR}/utilities/CodeSwarm.sh.in
