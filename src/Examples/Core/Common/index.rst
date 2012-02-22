@@ -14,3 +14,4 @@ Common
   DistanceBetweenPoints/DistanceBetweenPoints.rst
   CreateAVector/CreateAVector.rst
   TryCatchException/TryCatchException.rst
+  BoundingBoxOfAPointSet/BoundingBoxOfAPointSet.rst
