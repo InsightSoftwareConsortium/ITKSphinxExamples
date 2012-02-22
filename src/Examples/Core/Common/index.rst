@@ -22,3 +22,4 @@ Common
   WatchAFilter/WatchAFilter.rst
   IterateOnAVectorContainer/IterateOnAVectorContainer.rst
   CreateAnother/CreateAnother.rst
+  CreateAFixedArray/CreateAFixedArray.rst
