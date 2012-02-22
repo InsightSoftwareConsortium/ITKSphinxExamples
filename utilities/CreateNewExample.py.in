@@ -89,15 +89,13 @@ def GetGroupAndModuleFromClassName( itk_dir, class_name ):
                   path = root
 
       if len( path ) != 0:
-          # let's extract the Group
-          temp = path.strip( os.path.join( itk_dir, 'Modules' ) )
-          temp = temp.strip( 'include' )
 
-          GroupModule = temp.split( '/' )
+          temp = path.split( '/' )
+          depth = len( temp )
 
-          result[ 'Group' ] = GroupModule[ 0 ]
-          result[ 'Module' ] = GroupModule[ 1 ]
-          result[ 'bool' ] = True
+          result[ 'Module' ]  = temp[ depth - 2 ]
+          result[ 'Group' ]   = temp[ depth - 3 ]
+          result[ 'bool' ]    = True
 
       else:
           print ('Error: this class is not part of itk' )
