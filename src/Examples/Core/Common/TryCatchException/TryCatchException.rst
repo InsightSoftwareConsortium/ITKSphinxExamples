@@ -2,7 +2,7 @@ Try Catch Exception
 ===================
 
 .. index::
-  single: ExceptionObject
+   single: ExceptionObject
 
 Synopsis
 --------
@@ -37,4 +37,4 @@ C++
 Classes demonstrated
 --------------------
 
-. breathelink: itk::ExceptionObject
+.. breathelink:: itk::ExceptionObject

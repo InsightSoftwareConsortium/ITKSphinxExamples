@@ -119,7 +119,7 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f.write( '\n\n' )
 
     f.write( '.. index::\n' )
-    f.write( '  single: ' + class_name + '\n\n')
+    f.write( '   single: ' + class_name + '\n\n')
 
     f.write( 'Synopsis\n' )
     f.write( '--------\n\n\n' )
@@ -151,7 +151,7 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f.write( 'Classes demonstrated\n' )
     f.write( '--------------------\n' )
 
-    f.write( '\n. breathelink: itk::' + class_name + '\n' )
+    f.write( '\n.. breathelink:: itk::' + class_name + '\n' )
 
     f.close()
 

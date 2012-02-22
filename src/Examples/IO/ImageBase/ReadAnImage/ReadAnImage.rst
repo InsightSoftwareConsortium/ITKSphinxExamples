@@ -28,4 +28,4 @@ C++
 Classes demonstrated
 --------------------
 
-. breathelink: itk::ImageFileReader
+.. breathelink:: itk::ImageFileReader

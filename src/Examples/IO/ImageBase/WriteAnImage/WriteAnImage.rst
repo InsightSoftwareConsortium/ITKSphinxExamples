@@ -2,7 +2,7 @@ Write An Image
 ==============
 
 .. index::
-  single: ImageFileWriter
+   single: ImageFileWriter
 
 Synopsis
 --------
@@ -28,4 +28,4 @@ C++
 Classes demonstrated
 --------------------
 
-. breathelink: itk::ImageFileWriter
+.. breathelink:: itk::ImageFileWriter

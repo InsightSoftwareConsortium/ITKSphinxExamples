@@ -34,4 +34,4 @@ C++
 Classes demonstrated
 --------------------
 
-. breathelink: itk::Point
+.. breathelink:: itk::Point

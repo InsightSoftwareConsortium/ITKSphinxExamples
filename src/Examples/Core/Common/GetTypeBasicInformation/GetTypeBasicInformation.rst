@@ -2,7 +2,7 @@ Get Type Basic Information
 ==========================
 
 .. index::
-  single: NumericTraits
+   single: NumericTraits
 
 Synopsis
 --------
@@ -39,4 +39,4 @@ C++
 Classes demonstrated
 --------------------
 
-. breathelink: itk::NumericTraits
+.. breathelink:: itk::NumericTraits
