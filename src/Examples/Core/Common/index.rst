@@ -17,3 +17,4 @@ Common
   BoundingBoxOfAPointSet/BoundingBoxOfAPointSet.rst
   MersenneTwisterRandomIntegerGenerator/MersenneTwisterRandomIntegerGenerator.rst
   MersenneTwisterRandomNumberGenerator/MersenneTwisterRandomNumberGenerator.rst
+  ObserveAnEvent/ObserveAnEvent.rst
