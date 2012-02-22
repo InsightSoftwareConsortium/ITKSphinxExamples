@@ -20,4 +20,6 @@ install( FILES ReadAnImage.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME ReadAnImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadAnImage )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadAnImage
+    ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png
+)

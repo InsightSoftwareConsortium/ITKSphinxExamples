@@ -3,11 +3,11 @@
 
 int main( int argc, char* argv[] )
 {
-  if( argc != 3 )
+  if( argc != 2 )
     {
     std::cerr << "Usage: "<< std::endl;
     std::cerr << argv[0];
-    std::cerr << "<InputFileName>";
+    std::cerr << " <InputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
     }
