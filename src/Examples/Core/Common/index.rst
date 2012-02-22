@@ -16,3 +16,4 @@ Common
   TryCatchException/TryCatchException.rst
   BoundingBoxOfAPointSet/BoundingBoxOfAPointSet.rst
   MersenneTwisterRandomIntegerGenerator/MersenneTwisterRandomIntegerGenerator.rst
+  MersenneTwisterRandomNumberGenerator/MersenneTwisterRandomNumberGenerator.rst
