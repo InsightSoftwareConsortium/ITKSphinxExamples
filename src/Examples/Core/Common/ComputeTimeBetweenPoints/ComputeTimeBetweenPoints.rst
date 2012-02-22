@@ -15,10 +15,10 @@ Results
 -------
 
 Output::
-  Mean: 7.169
-  Total: 7.169
-  Mean: 7.1673
-  Total: 14.3346
+  Mean: 0.0777099
+  Total: 0.0777099
+  Mean: 0.0777299
+  Total: 0.15546
 
 Code
 ----
