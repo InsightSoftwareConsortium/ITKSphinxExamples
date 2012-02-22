@@ -24,3 +24,4 @@ Common
   CreateAnother/CreateAnother.rst
   CreateAFixedArray/CreateAFixedArray.rst
   AddOffsetToIndex/AddOffsetToIndex.rst
+  GetNameOfClass/GetNameOfClass.rst
