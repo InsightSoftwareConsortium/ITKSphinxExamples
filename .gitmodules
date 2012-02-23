@@ -6,4 +6,4 @@
 	url = https://github.com/michaeljones/breathe
 [submodule "utilities/ext/gitstats"]
 	path = utilities/ext/gitstats
-	url = /home/ajg23/GITROOT/gitstats/
+	url = https://arnaudgelas@github.com/arnaudgelas/gitstats.git
