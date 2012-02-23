@@ -249,7 +249,7 @@ if example_name == None:
     example_name = raw_input( "Please enter an example name: " )
 
 # Collect directories
-root_dir = os.path.abspath( '@ITK_EXAMPLES_SOURCE_DIR@' )
+root_dir = os.path.abspath( '@ITKExamples_SOURCE_DIR@' )
 
 example_src_dir = os.path.join( root_dir, "src/Examples" )
 example_dir = os.path.join( example_src_dir, group_name, module_name, example_name )
@@ -375,7 +375,7 @@ print ( '    * ' + example_cxx )
 print ( '    * ' + example_rst + '\n' )
 
 print ( '  2- Commit changes in the ITKExamples source directory and push' )
-print ( '$ cd @ITK_EXAMPLES_SOURCE_DIR@' )
+print ( '$ cd @ITKExamples_SOURCE_DIR@' )
 print ( '$ git checkout -b Add_' + example_name )
 print ( '$ git add src/Examples/' + group_name + '/' + module_name )
 print ( '$ git commit -a -m "Add ' + example_name + '" ' )
