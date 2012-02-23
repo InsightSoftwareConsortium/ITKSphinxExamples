@@ -8,7 +8,8 @@ Synopsis
 --------
 
 
-Get some basic information about a type
+Get some basic information about a plain old data (POD) type, in this case the
+*float* type.
 
 
 Results
