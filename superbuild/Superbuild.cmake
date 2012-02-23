@@ -58,7 +58,7 @@ endif()
 
 option( BUILD_TESTING "Build testing" OFF )
 
-ExternalProject_Add( ITK_EXAMPLES
+ExternalProject_Add( ITKExamples
   DEPENDS ${ITKExamples_DEPENDENCIES}
   DOWNLOAD_COMMAND ""
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..

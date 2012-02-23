@@ -4,6 +4,6 @@ if( COMMAND CMAKE_POLICY )
   cmake_policy( SET CMP0003 NEW )
 endif( COMMAND CMAKE_POLICY )
 
-project( ITK_EXAMPLES )
+project( ITKExamples )
 
 include( ${CMAKE_SOURCE_DIR}/Superbuild.cmake )
