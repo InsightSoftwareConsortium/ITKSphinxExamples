@@ -29,3 +29,5 @@ Common
   IsPixelInsideRegion/IsPixelInsideRegion.rst
   ImageRegionIntersection/ImageRegionIntersection.rst
   ImageRegionOverlap/ImageRegionOverlap.rst
+  CreateAIndex/CreateAIndex.rst
+  CreateASize/CreateASize.rst
