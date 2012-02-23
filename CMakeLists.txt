@@ -15,12 +15,26 @@ set( ITKExamples_RELEASE_VERSION
 
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ITKExamples_BINARY_DIR}/bin )
 
+# -------------------------------------------------------------------------
 # Check to make sure the submodules have been created.
 if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/utilities/ext/breathelink/.git" )
   message( SEND_ERROR "The git submodules are not available.  Please run
   git submodule update --init --recursive"
   )
 endif()
+
+if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/utilities/ext/breathe/.git" )
+  message( SEND_ERROR "The git submodules are not available.  Please run
+  git submodule update --init --recursive"
+  )
+endif()
+
+if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/utilities/ext/gitstats/.git" )
+  message( SEND_ERROR "The git submodules are not available.  Please run
+  git submodule update --init --recursive"
+  )
+endif()
+# -------------------------------------------------------------------------
 
 include( CTest )
 # Tests are added with add_test() can be run with the 'ctest' command line program.
