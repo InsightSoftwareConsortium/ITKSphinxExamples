@@ -31,3 +31,4 @@ Common
   ImageRegionOverlap/ImageRegionOverlap.rst
   CreateAIndex/CreateAIndex.rst
   CreateASize/CreateASize.rst
+  GetImageSize/GetImageSize.rst
