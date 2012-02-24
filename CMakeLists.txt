@@ -75,24 +75,25 @@ foreach(link ${content_links})
   )
 endforeach()
 ExternalData_Add_Target( ITKExamplesData )
-# We must also duplicate the source tree since the images need to be present
-# with the source.
-add_custom_target( copy_sources ALL
-  COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/src"
-  "${ITKExamples_BINARY_DIR}/src"
-  COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/formatting"
-  "${ITKExamples_BINARY_DIR}/formatting"
-  COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/utilities"
-  "${ITKExamples_BINARY_DIR}/utilities"
-  COMMENT "Copying sources"
-  )
-# For unknown reasons, this was the only effective way to ensure ITKExamplesData
-# was built before build_html.
-add_dependencies( copy_sources ITKExamplesData )
 
 # Build the documentation?
 option( BUILD_DOCUMENTATION "Build the examples documentation." OFF )
 if( BUILD_DOCUMENTATION )
+
+  # We must also duplicate the source tree since the images need to be present
+  # with the source.
+  add_custom_target( copy_sources ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/src"
+    "${ITKExamples_BINARY_DIR}/src"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/formatting"
+    "${ITKExamples_BINARY_DIR}/formatting"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/utilities"
+    "${ITKExamples_BINARY_DIR}/utilities"
+    COMMENT "Copying sources"
+    )
+  # For unknown reasons, this was the only effective way to ensure ITKExamplesData
+  # was built before build_html.
+  add_dependencies( copy_sources ITKExamplesData )
 
   execute_process( COMMAND ${ITKExamples_SOURCE_DIR}/utilities/ext/gitstats/gitstats --rst
     ${ITKExamples_SOURCE_DIR} ${ITKExamples_BINARY_DIR}/src/gitstats
