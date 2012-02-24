@@ -20,4 +20,6 @@ install( FILES CreateDistanceMapFromSeeds.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME CreateDistanceMapFromSeedsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateDistanceMapFromSeeds )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateDistanceMapFromSeeds
+    ${CMAKE_CURRENT_BINARY_DIR}/CreateDistanceMapFromSeedsOutput.mha
+)
