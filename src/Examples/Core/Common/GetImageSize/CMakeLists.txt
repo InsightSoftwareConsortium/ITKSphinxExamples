@@ -20,4 +20,6 @@ install( FILES GetImageSize.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME GetImageSizeTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/GetImageSize )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/GetImageSize
+    ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png
+)

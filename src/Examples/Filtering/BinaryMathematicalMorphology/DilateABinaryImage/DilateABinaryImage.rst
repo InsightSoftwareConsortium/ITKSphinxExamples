@@ -6,7 +6,8 @@ Dilate a binary image
   single: BinaryDilateImageFilter
   pair: mathematical morphology; dilation
   pair: BinaryBallStructuringElement; SetRadius
-  seealso: dilation; erosion
+
+.. seealso:: dilation; erosion
 
 
 Synopsis
