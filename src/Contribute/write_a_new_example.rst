@@ -40,7 +40,7 @@ The examples live inside the *src/Examples* directory of the repository.  They
 are organized by the dominant class demonstrated in the example.  There
 are two directories of organization which mirror the directory layout in ITKv4,
 *Group* followed by *Module*.  Therefore, place the example in the directory
-corresponding to the Module of one of the prominant classes used in the example.  
+corresponding to the Module of one of the prominant classes used in the example.
 
 For instance, an examples that demonstrates the *BinaryDilateImageFilter* would
 be placed in the *src/Examples/Filtering/BinaryMathematicalMorphology/*
@@ -89,7 +89,8 @@ our dilate a binary image example::
     single: BinaryDilateImageFilter
     pair: mathematical morphology; dilation
     pair: BinaryBallStructuringElement; SetRadius
-    seealso: dilation; erosion
+
+  .. seealso:: dilation; erosion
 
 
 Synopsis
