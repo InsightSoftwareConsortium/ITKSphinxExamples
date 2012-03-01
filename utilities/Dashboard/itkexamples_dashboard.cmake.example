@@ -1,14 +1,19 @@
 # An identifier for this computer that shows up on the dashboard.
 set(CTEST_SITE "uberbox")
+
 # A description of the build that identifies it on the dashboard.
 # Usually it should contain the platform and a compiler description.
 set(CTEST_BUILD_NAME "linux-gcc")
+
 # This will set the CMAKE_BUILD_TYPE.
 set(CTEST_BUILD_CONFIGURATION Debug)
+
 # The Generator for CMake.
 set(CTEST_CMAKE_GENERATOR "Unix Makefiles")
+
 # This is the directory where the source and build trees will be placed.
 get_filename_component(CTEST_DASHBOARD_ROOT "${CTEST_SCRIPT_DIRECTORY}/dashboard_tests" ABSOLUTE)
+
 # You can set initial variables for the CMakeCache.
 #set(dashboard_cache
 #"
@@ -16,6 +21,7 @@ get_filename_component(CTEST_DASHBOARD_ROOT "${CTEST_SCRIPT_DIRECTORY}/dashboard
 #BUILD_DOCUMENTATION:BOOL=ON
 #"
 #)
+
 # Finally, include the rest of the script that will download, build, and submit the
 # results.  For more configuration variables, see the comments at the top of
 # this script.
