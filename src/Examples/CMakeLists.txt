@@ -70,10 +70,10 @@ function( compare_to_baseline example_name baseline_prefix )
   get_filename_component( baseline_image_file "${baseline_image}" NAME )
   set( baseline_image "${CMAKE_CURRENT_BINARY_DIR}/${example_name}/${baseline_image_file}" )
   string( REPLACE Baseline "" test_image "${baseline_image}" )
-  add_test( NAME ${example_name}Test${baseline_prefix}BaselineComparison
+  add_test( NAME ${example_name}TestBaselineComparison
     COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageCompare" "${test_image}" "${baseline_image}"
   )
-  set_tests_properties( ${example_name}Test${baseline_prefix}BaselineComparison
+  set_tests_properties( ${example_name}TestBaselineComparison
     PROPERTIES DEPENDS ${example_name}Test )
 endfunction()
 

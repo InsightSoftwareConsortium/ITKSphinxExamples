@@ -6,7 +6,8 @@ Erode a binary image
   single: BinaryErodeImageFilter
   pair: mathematical morphology; erosion
   pair: BinaryBallStructuringElement; SetRadius
-  seealso: erosion; dilation
+
+.. seealso:: erosion; dilation
 
 
 Synopsis
