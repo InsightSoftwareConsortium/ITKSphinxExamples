@@ -34,3 +34,5 @@ Common
   GetImageSize/GetImageSize.rst
   CreateAnRGBImage/CreateAnRGBImage.rst
   SetPixelValueInOneImage/SetPixelValueInOneImage.rst
+  DuplicateAnImage/DuplicateAnImage.rst
+  ApplyAFilterOnlyToASpecifiedRegionOfAnImage/ApplyAFilterOnlyToASpecifiedRegionOfAnImage.rst
