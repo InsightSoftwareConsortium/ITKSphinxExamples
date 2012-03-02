@@ -32,3 +32,5 @@ Common
   CreateAIndex/CreateAIndex.rst
   CreateASize/CreateASize.rst
   GetImageSize/GetImageSize.rst
+  CreateAnRGBImage/CreateAnRGBImage.rst
+  SetPixelValueInOneImage/SetPixelValueInOneImage.rst
