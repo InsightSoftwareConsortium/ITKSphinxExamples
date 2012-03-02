@@ -95,11 +95,13 @@ if( BUILD_DOCUMENTATION )
   # was built before build_html.
   add_dependencies( copy_sources ITKExamplesData )
 
-  execute_process( COMMAND ${ITKExamples_SOURCE_DIR}/utilities/ext/gitstats/gitstats --rst
+  add_custom_target( gitstats ALL
+    COMMAND ${ITKExamples_SOURCE_DIR}/utilities/ext/gitstats/gitstats --rst
     ${ITKExamples_SOURCE_DIR} ${ITKExamples_BINARY_DIR}/src/gitstats
     WORKING_DIRECTORY ${ITKExamples_BINARY_DIR}
     OUTPUT_QUIET
-    )
+  )
+  add_dependencies( gitstats copy_sources )
 
   configure_file( ${ITKExamples_SOURCE_DIR}/utilities/CodeSwarm.sh.in
     ${ITKExamples_BINARY_DIR}/utilities/CodeSwarm.sh
