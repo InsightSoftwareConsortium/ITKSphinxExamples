@@ -9,7 +9,7 @@ int main(int, char *[])
 
   typedef itk::Image< PixelType, Dimension > ImageType;
 
-  ImageType::SizeType;
+  ImageType::SizeType smallSize;
   smallSize.Fill(10);
 
   ImageType::IndexType index;
@@ -33,9 +33,10 @@ int main(int, char *[])
     DerivativeImageFilterType;
 
   DerivativeImageFilterType::Pointer derivativeFilter =
-    DerivativeImageFilterType::New(); derivativeFilter->SetInput(
-  randomImageSource->GetOutput() ); derivativeFilter->SetDirection(0); // "x"
-  axis derivativeFilter->GetOutput()->SetRequestedRegion(smallSize);
+    DerivativeImageFilterType::New();
+  derivativeFilter->SetInput( randomImageSource->GetOutput() );
+  derivativeFilter->SetDirection(0); // "x" axis
+  derivativeFilter->GetOutput()->SetRequestedRegion(smallSize);
   derivativeFilter->Update();
 
   std::cout << "Computed derivative." << std::endl;
