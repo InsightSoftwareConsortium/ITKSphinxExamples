@@ -29,9 +29,10 @@ that is required. The procedure is almost idential to building a normal CMake
 project - the only difference you must point cmake to ITKExamples/superbuild
 instead of just ITKExamples::
 
- mkdir ~/build/ITKExamples
- cd ~/build/ITKExamples
- cmake ~/src/ITKExamples/superbuild/
+  mkdir ~/build/ITKExamples
+  cd ~/build/ITKExamples
+  cmake ~/src/ITKExamples/superbuild/
+  make -j2
 
 Manual
 ^^^^^^
@@ -46,15 +47,15 @@ Implemented
 ^^^^^^^^^^^
 
 - Stored and editable in Git_ version control.
-- HTML output.
+- HTML / PDF output.
 - CTest unit testing.
 - CMake ExternalData for binary data storage.
 - Individual examples can be downloaded independently, and easily built/executed/hacked.
+- Download the entire docs for offline viewing.
 
 Todo
 ^^^^
 
-- Download the entire docs for offline viewing.
 - Anonymous online editing.
 - Editable online with CodeMirror.
 - Peer review with Gerrit.
@@ -72,16 +73,16 @@ Build dependencies
 Required
 ^^^^^^^^
 
-- CMake_
-- ITK_
+- CMake_ ( >= 2.8.5 )
+- ITK_  (>= 4.0.0 )
 
 Optional
 ^^^^^^^^
 
 If building the documentation:
 
-- VTK_
-- Breathe_
+- Python_ ( >= 2.7 )
+  * pyparsing_
 - Sphinx_
 
 Development setup
@@ -91,13 +92,12 @@ Run the bash scipt SetupForDevelopment.sh::
 
   $ ./utilities/SetupForDevelopment.sh
 
-
 .. _Breathe: https://github.com/michaeljones/breathe
 .. _CMake: http://cmake.org/
 .. _Gerrit: http://code.google.com/p/gerrit/
 .. _Git: http://git-scm.com/
 .. _ITK: http://itk.org/
-.. _VTK: http://vtk.org/
 .. _Sphinx: http://sphinx.pocoo.org/
 .. _Github Issues: https://github.com/thewtex/ITKExamples/issues?milestone=&labels=&state=open
-
+.. _Python: http://python.org/
+.. _pyparsing: http://pyparsing.wikispaces.com/
