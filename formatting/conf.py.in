@@ -19,9 +19,11 @@ import sys, os
 #sys.path.insert(0, os.path.abspath('.'))
 
 sys.path.insert( 0, os.path.abspath(os.path.join('@ITKExamples_BINARY_DIR@',
-  'utilities', 'ext', 'breathe')))
+    'utilities', 'ext', 'breathe')))
+sys.path.insert( 0, os.path.abspath(os.path.join('@ITKExamples_BINARY_DIR@',
+    'utilities', 'ext', 'sphinxcontrib')))
 sys.path.insert(0, os.path.abspath(os.path.join('@ITKExamples_BINARY_DIR@',
-'utilities', 'ext')))
+    'utilities', 'ext')))
 
 
 # -- General configuration -----------------------------------------------------
@@ -35,7 +37,7 @@ primary_domain = 'cpp'
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinx.ext.ifconfig',
-    'sphinx.ext.viewcode', 'breathe', 'sphinxcontrib.doxylink', 'breathelink']
+    'sphinx.ext.viewcode', 'breathe', 'doxylink', 'breathelink']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['templates']
