@@ -129,17 +129,7 @@ if( BUILD_DOCUMENTATION )
   set( SPHINX_DESTINATION ${ITKExamples_BINARY_DIR} )
   set( SPHINX_DEPENDENCIES gitstats ITKDoxygenXML ITKExamplesData ITKDoxygenTAG CreateTarballs )
 
-  option( DOC_WITH_LOCAL_DOXYGEN "Generate documentation with local doxygen" ON )
-
-  if( DOC_WITH_LOCAL_DOXYGEN )
-    set( ITKDoxygen_LINK_ADDRESS ${ITKDoxygen_DIR} )
-    set( SPHINX_DEPENDENCIES ${SPHINX_DEPENDENCIES} ITKDoxygen )
-    if(NOT ITKDoxygen_DIR )
-      include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygen.cmake )
-    endif()
-  else()
-    set( ITKDoxygen_LINK_ADDRESS "http://www.itk.org/Doxygen/html" )
-  endif()
+  option( DOC_WITH_LOCAL_DOXYGEN "Generate documentation with local doxygen" OFF )
 
   Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
 
@@ -152,6 +142,8 @@ if( BUILD_DOCUMENTATION )
   endif()
 
   if( ${SPHINX_LATEX_OUTPUT} )
+    set( DOC_WITH_LOCAL_DOXYGEN OFF )
+
     # Build the PDF with pdflatex
     find_package( LATEX )
     if( NOT PDFLATEX_COMPILER )
@@ -175,6 +167,16 @@ if( BUILD_DOCUMENTATION )
       COMPONENT Doc
       )
     endif()
+  endif()
+
+  if( DOC_WITH_LOCAL_DOXYGEN )
+    set( ITKDoxygen_LINK_ADDRESS ${ITKDoxygen_DIR} )
+    set( SPHINX_DEPENDENCIES ${SPHINX_DEPENDENCIES} ITKDoxygen )
+    if(NOT ITKDoxygen_DIR )
+      include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygen.cmake )
+    endif()
+  else()
+    set( ITKDoxygen_LINK_ADDRESS "http://www.itk.org/Doxygen/html" )
   endif()
 
   add_subdirectory( formatting )

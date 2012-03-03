@@ -36,7 +36,7 @@ option( BUILD_DOCUMENTATION "Build documentation" OFF )
 
 if( ${BUILD_DOCUMENTATION} )
 
-  option( DOC_WITH_LOCAL_DOXYGEN "Download ITK Doxygen documentation" ON )
+  option( DOC_WITH_LOCAL_DOXYGEN "Download ITK Doxygen documentation" OFF )
 
   if( ${DOC_WITH_LOCAL_DOXYGEN} )
     if(NOT ITKDoxygen_DIR )
@@ -69,13 +69,11 @@ ExternalProject_Add( ITKExamples
     -DBUILD_SHARED_LIBS:BOOL=FALSE
      # ITK
     -DITK_DIR:PATH=${ITK_DIR}
-    # VTK
-    # -DVTK_DIR:PATH=${VTK_DIR}
-    # breathe
     -DITKDoxygen_DIR:PATH=${ITKDoxygen_DIR}
     -DITKDoxygenXML_DIR:PATH=${ITKDoxygenXML_DIR}
     -DITKDoxygenTAG_DIR:PATH=${ITKDoxygenTAG_DIR}
     -DBUILD_TESTING:BOOL=${BUILD_TESTING}
     -DBUILD_DOCUMENTATION:BOOL=${BUILD_DOCUMENTATION}
+    -DDOC_WITH_LOCAL_DOXYGEN:BOOL=${DOC_WITH_LOCAL_DOXYGEN}
   INSTALL_COMMAND ""
 )
