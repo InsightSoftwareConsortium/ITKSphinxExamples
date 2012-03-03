@@ -1,0 +1,2 @@
+add_example( CreateAnApplyCustomColorMap )
+compare_to_baseline( CreateAnApplyCustomColorMap CreateAnApplyCustomColorMapOutput)

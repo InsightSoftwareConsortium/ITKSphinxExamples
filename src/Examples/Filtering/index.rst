@@ -8,3 +8,4 @@ Filtering
   ImageGrid/index.rst
   ImageFeature/index.rst
   FastMarching/index.rst
+  Colormap/index.rst
