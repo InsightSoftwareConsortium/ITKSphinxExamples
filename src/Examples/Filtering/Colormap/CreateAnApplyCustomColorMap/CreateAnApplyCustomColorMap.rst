@@ -3,6 +3,8 @@ Create An Apply Custom Color Map
 
 .. index::
    single: CustomColormapFunction
+   single: MersenneTwisterRandomVariateGenerator
+   single: ScalarToRGBColormapImageFilter
 
 Synopsis
 --------
@@ -38,3 +40,7 @@ Classes demonstrated
 --------------------
 
 .. breathelink:: itk::Function::CustomColormapFunction
+
+.. breathelink:: itk::ScalarToRGBColormapImageFilter
+
+.. breathelink:: itk::Statistics::MersenneTwisterRandomVariateGenerator
