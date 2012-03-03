@@ -99,7 +99,7 @@ if( BUILD_DOCUMENTATION )
     COMMAND ${ITKExamples_SOURCE_DIR}/utilities/ext/gitstats/gitstats --rst
     ${ITKExamples_SOURCE_DIR} ${ITKExamples_BINARY_DIR}/src/gitstats
     WORKING_DIRECTORY ${ITKExamples_BINARY_DIR}
-    OUTPUT_QUIET
+    COMMENT "Running gitstats"
   )
   add_dependencies( gitstats copy_sources )
 
@@ -127,7 +127,7 @@ if( BUILD_DOCUMENTATION )
   set( SPHINX_CONF_DIR ${ITKExamples_BINARY_DIR}/formatting )
   set( SPHINX_INPUT_DIR ${ITKExamples_BINARY_DIR}/src )
   set( SPHINX_DESTINATION ${ITKExamples_BINARY_DIR} )
-  set( SPHINX_DEPENDENCIES copy_sources ITKDoxygenXML ITKExamplesData ITKDoxygenTAG CreateTarballs )
+  set( SPHINX_DEPENDENCIES gitstats ITKDoxygenXML ITKExamplesData ITKDoxygenTAG CreateTarballs )
 
   option( DOC_WITH_LOCAL_DOXYGEN "Generate documentation with local doxygen" ON )
 
