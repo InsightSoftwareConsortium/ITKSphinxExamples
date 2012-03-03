@@ -154,26 +154,17 @@ Classes demonstrated
 
 At the end of the example, provide quick reference and a link to the doxygen
 documentation for the important classes used in the example.  To do this, use
-the `doxygenclass directive`_ provided by Breathe_ with the *:no-link:* option.
-Also, provide a link to the full doxygen documentation with an `external
-hyperlink target`_. Note that Doxygen URL's follow a predictable pattern.  For
-instance::
+the ``breathelink`` directive, as follows::
 
-  .. doxygenclass:: itk::BinaryDilateImageFilter
-    :no-link:
+  .. breathelink:: itk::BinaryDilateImageFilter
 
-  * `BinaryDilateImageFilter detailed doxygen documentation`_
+Note that the breathelink directive is a custom one which makes use of:
 
-  .. doxygenclass:: itk::BinaryBallStructuringElement
-    :no-link:
-
-  * `BinaryBallStructuringElement detailed doxygen documentation`_
-
-  .. _BinaryDilateImageFilter detailed doxygen documentation:
-    http://www.itk.org/Doxygen/html/classitk_1_1BinaryDilateImageFilter.html
-  .. _BinaryBallStructuringElement detailed doxygen documentation:
-    http://www.itk.org/Doxygen/html/classitk_1_1BinaryBallStructuringElement.html
-
+- the `doxygenclass directive`_ provided by Breathe_ with the *:no-link:*
+  option.
+- the `doxylink`_ directive which provides a link to the full doxygen
+  documentation with an `external hyperlink target`_. Note that Doxygen URL's
+  follow a predictable pattern.  For instance::
 
 .. _Breathe:                   https://github.com/michaeljones/breathe
 .. _external hyperlink target: http://docutils.sourceforge.net/docs/user/rst/quickref.html#external-hyperlink-targets
@@ -184,3 +175,4 @@ instance::
 .. _Pygments:                  http://pygments.org/
 .. _Sphinx index directive:    http://sphinx.pocoo.org/markup/misc.html#directive-index
 .. _reStructuredText:          http://docutils.sourceforge.net/rst.html
+.. _doxylink:                  http://packages.python.org/sphinxcontrib-doxylink/
