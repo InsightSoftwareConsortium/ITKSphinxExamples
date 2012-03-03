@@ -82,7 +82,6 @@ Optional
 If building the documentation:
 
 - Python_ ( >= 2.7 )
-  * pyparsing_
 - Sphinx_
 - gnuplot_
 
@@ -101,5 +100,4 @@ Run the bash scipt SetupForDevelopment.sh::
 .. _Sphinx: http://sphinx.pocoo.org/
 .. _Github Issues: https://github.com/thewtex/ITKExamples/issues?milestone=&labels=&state=open
 .. _Python: http://python.org/
-.. _pyparsing: http://pyparsing.wikispaces.com/
 .. _gnuplot: http://www.gnuplot.info/
