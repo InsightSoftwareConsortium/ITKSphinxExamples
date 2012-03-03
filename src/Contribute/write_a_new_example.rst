@@ -164,7 +164,7 @@ Note that the breathelink directive is a custom one which makes use of:
   option.
 - the `doxylink`_ directive which provides a link to the full doxygen
   documentation with an `external hyperlink target`_. Note that Doxygen URL's
-  follow a predictable pattern.  For instance::
+  follow a predictable pattern.
 
 .. _Breathe:                   https://github.com/michaeljones/breathe
 .. _external hyperlink target: http://docutils.sourceforge.net/docs/user/rst/quickref.html#external-hyperlink-targets
