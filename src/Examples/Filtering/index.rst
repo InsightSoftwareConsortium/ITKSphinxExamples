@@ -9,3 +9,5 @@ Filtering
   ImageFeature/index.rst
   FastMarching/index.rst
   Colormap/index.rst
+  ImageIntensity/index.rst
+  ImageFilterBase/index.rst
