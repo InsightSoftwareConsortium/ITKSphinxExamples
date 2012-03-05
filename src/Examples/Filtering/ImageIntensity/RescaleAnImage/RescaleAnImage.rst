@@ -20,7 +20,7 @@ Results
 
   Input image
 
-.. figure:: RescaleAnImageOutput.png
+.. figure:: RescaleAnImageOutputBaseline.png
   :scale: 50%
   :alt: Output image
 

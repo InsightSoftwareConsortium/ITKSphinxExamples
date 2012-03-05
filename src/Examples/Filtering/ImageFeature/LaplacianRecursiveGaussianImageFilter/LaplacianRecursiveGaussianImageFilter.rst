@@ -17,10 +17,10 @@ Results
 
   Input image
 
-.. figure:: LaplacianRecursiveGaussianImageFilterOutput.mha
-  :alt: Output image
+.. figure:: LaplacianRecursiveGaussianImageFilterRescaledOutputBaseline.png
+  :alt: Rescaled Output image
 
-  Output image
+  Rescaled Output image [0, 255]
 
 
 Code
