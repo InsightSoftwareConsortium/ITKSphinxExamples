@@ -155,6 +155,8 @@ if( BUILD_DOCUMENTATION )
         COMMAND ${PDFLATEX_COMPILER}
           ${SPHINX_DESTINATION}/latex/ITKExamples.tex
           -output-directory ${SPHINX_DESTINATION}/latex
+        COMMAND ${MAKEINDEX_COMPILER}
+          ${SPHINX_DESTINATION}/latex/ITKExamples.idx
         COMMAND ${PDFLATEX_COMPILER}
           ${SPHINX_DESTINATION}/latex/ITKExamples.tex
           -output-directory ${SPHINX_DESTINATION}/latex
