@@ -12,3 +12,4 @@ Filtering
   ImageIntensity/index.rst
   ImageFilterBase/index.rst
   Thresholding/index.rst
+  QuadEdgeMeshFiltering/index.rst
