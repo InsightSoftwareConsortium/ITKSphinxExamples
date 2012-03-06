@@ -11,3 +11,4 @@ Filtering
   Colormap/index.rst
   ImageIntensity/index.rst
   ImageFilterBase/index.rst
+  Thresholding/index.rst
