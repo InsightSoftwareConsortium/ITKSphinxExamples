@@ -80,8 +80,8 @@ echo -e "Git version $git_version is OK.\n"
 
 # add an "upstream" remote to make easier to maintain a fork outside of ITKExamples,
 # with an origin which is not ITKExamnples
-if [ "`git config remote.origin.url`" != "git@github.com:thewtex/ITKExamples.git" ]; then
-  echo "We advise setting git@github.com:thewtex/ITKExamples.git as your origin.
+if [ "`git config remote.origin.url`" != "git@github.com:InsightSoftwareConsortium/ITKExamples.git" ]; then
+  echo "We advise setting git@github.com:InsightSoftwareConsortium/ITKExamples.git as your origin.
 
 If you choose not to do that, then other instructions will not work as expected."
 
@@ -92,14 +92,14 @@ If you choose not to do that, then other instructions will not work as expected.
 
 Please run the following to correct the origin url:
 
-git remote set-url origin git@github.com:thewtex/ITKExamples.git
+git remote set-url origin git@github.com:InsightSoftwareConsortium/ITKExamples.git
 "
     exit 1
   else
     echo "Setting up upstream remote to the ITKExamples repository..."
     if ! git config remote.upstream.url > /dev/null ; then
-      git remote add upstream git@github.com:thewtex/ITKExamples.git
-      git remote set-url --push upstream git@github.com:thewtex/ITKExamples.git
+      git remote add upstream git@github.com:InsightSoftwareConsortium/ITKExamples.git
+      git remote set-url --push upstream git@github.com:InsightSoftwareConsortium/ITKExamples.git
       echo "Done"
     else
       echo "upstream is already configured."
@@ -107,9 +107,9 @@ git remote set-url origin git@github.com:thewtex/ITKExamples.git
     echo
     echo "WARNING: continuing with non-standard origin remote."
   fi
-elif [ "`git config remote.origin.pushurl`" != "git@github.com:thewtex/ITKExamples.git" ]; then
+elif [ "`git config remote.origin.pushurl`" != "git@github.com:InsightSoftwareConsortium/ITKExamples.git" ]; then
   echo "Setting pushurl for origin."
-  git remote set-url --push origin git@github.com:thewtex/ITKExamples.git
+  git remote set-url --push origin git@github.com:InsightSoftwareConsortium/ITKExamples.git
 else
   echo "Configuration of origin verified."
 fi

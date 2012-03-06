@@ -50,7 +50,7 @@ if GIT_DIR=.. git for-each-ref refs/remotes/origin/hooks 2>/dev/null | \
   egrep-q 'refs/remotes/origin/hooks$'; then
   git fetch .. remotes/origin/hooks
 else
-  git fetch git@github.com:thewtex/ITKExamples.git hooks
+  git fetch git@github.com:InsightSoftwareConsortium/ITKExamples.git hooks
 fi &&
 git reset --hard FETCH_HEAD || die "Failed to install hooks"
 cd ../..
