@@ -14,3 +14,4 @@ Filtering
   Thresholding/index.rst
   QuadEdgeMeshFiltering/index.rst
   ImageCompare/index.rst
+  MathematicalMorphology/index.rst
