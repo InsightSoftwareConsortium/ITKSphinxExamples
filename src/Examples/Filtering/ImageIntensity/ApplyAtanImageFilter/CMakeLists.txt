@@ -20,4 +20,6 @@ install( FILES ApplyAtanImageFilter.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME ApplyAtanImageFilterTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplyAtanImageFilter )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplyAtanImageFilter
+    ApplyAtanImageFilterOutput.mha
+)
