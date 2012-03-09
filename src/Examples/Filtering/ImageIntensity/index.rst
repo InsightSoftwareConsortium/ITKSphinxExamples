@@ -6,3 +6,4 @@ ImageIntensity
 
   RescaleAnImage/RescaleAnImage.rst
   ApplySinImageFilter/ApplySinImageFilter.rst
+  ApplyCosImageFilter/ApplyCosImageFilter.rst
