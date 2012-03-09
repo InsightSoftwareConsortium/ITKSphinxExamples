@@ -37,3 +37,4 @@ Common
   DuplicateAnImage/DuplicateAnImage.rst
   ApplyAFilterOnlyToASpecifiedRegionOfAnImage/ApplyAFilterOnlyToASpecifiedRegionOfAnImage.rst
   IterateOverARegionWithAShapedNeighborhoodIterator/IterateOverARegionWithAShapedNeighborhoodIterator.rst
+  CreateABackwardDifferenceOperator/CreateABackwardDifferenceOperator.rst
