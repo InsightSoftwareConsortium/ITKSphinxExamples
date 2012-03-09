@@ -5,3 +5,4 @@ ImageIntensity
   :maxdepth: 2
 
   RescaleAnImage/RescaleAnImage.rst
+  ApplySinImageFilter/ApplySinImageFilter.rst
