@@ -15,3 +15,4 @@ Filtering
   QuadEdgeMeshFiltering/index.rst
   ImageCompare/index.rst
   MathematicalMorphology/index.rst
+  Smoothing/index.rst

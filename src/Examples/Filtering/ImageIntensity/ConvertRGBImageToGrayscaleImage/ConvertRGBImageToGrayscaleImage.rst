@@ -14,7 +14,7 @@ Convert a RGB Image to its luminance image (grayscale one).
 Results
 -------
 
-.. figure:: itk_eg_log.png
+.. figure:: itk_eg_logo.png
   :alt: Input image
 
   Input image
