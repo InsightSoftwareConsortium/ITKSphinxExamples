@@ -8,3 +8,4 @@ ImageIntensity
   ApplySinImageFilter/ApplySinImageFilter.rst
   ApplyCosImageFilter/ApplyCosImageFilter.rst
   ApplyAtanImageFilter/ApplyAtanImageFilter.rst
+  ConvertRGBImageToGrayscaleImage/ConvertRGBImageToGrayscaleImage.rst
