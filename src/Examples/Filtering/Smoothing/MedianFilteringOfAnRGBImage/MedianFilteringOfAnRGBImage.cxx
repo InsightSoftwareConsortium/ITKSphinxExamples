@@ -13,7 +13,7 @@ namespace itk
  * This class overrides the <= and < operators to use Luminance as a sorting
  * value.
  */
-< typename TComponent = unsigned short >
+template< typename TComponent = unsigned short >
 class myRGBPixel : public RGBPixel<TComponent>
 {
 public:
