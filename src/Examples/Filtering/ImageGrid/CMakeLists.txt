@@ -3,3 +3,5 @@ compare_to_baseline( FlipAnImageOverSpecifiedAxes FlipAnImageOverSpecifiedAxesOu
 
 add_example( PadAnImageWithAConstant )
 compare_to_baseline( PadAnImageWithAConstant PadAnImageWithAConstantOutput)
+add_example( PadAnImageByMirroring )
+compare_to_baseline( PadAnImageByMirroring PadAnImageByMirroringOutput)

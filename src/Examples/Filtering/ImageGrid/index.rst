@@ -6,3 +6,4 @@ ImageGrid
 
   FlipAnImageOverSpecifiedAxes/FlipAnImageOverSpecifiedAxes.rst
   PadAnImageWithAConstant/PadAnImageWithAConstant.rst
+  PadAnImageByMirroring/PadAnImageByMirroring.rst
