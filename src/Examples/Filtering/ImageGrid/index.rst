@@ -5,3 +5,4 @@ ImageGrid
   :maxdepth: 1
 
   FlipAnImageOverSpecifiedAxes/FlipAnImageOverSpecifiedAxes.rst
+  PadAnImageWithAConstant/PadAnImageWithAConstant.rst

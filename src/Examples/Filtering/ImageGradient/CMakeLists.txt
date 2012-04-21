@@ -1,0 +1,2 @@
+add_example( ComputeGradientMagnitudeOfGrayscaleImage )
+compare_to_baseline( ComputeGradientMagnitudeOfGrayscaleImage ComputeGradientMagnitudeOfGrayscaleImageOutput)

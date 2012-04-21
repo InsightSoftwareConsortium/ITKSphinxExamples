@@ -16,3 +16,4 @@ Filtering
   ImageCompare/index.rst
   MathematicalMorphology/index.rst
   Smoothing/index.rst
+  ImageGradient/index.rst

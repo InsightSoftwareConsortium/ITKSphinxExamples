@@ -1,3 +1,5 @@
 add_example( FlipAnImageOverSpecifiedAxes )
 compare_to_baseline( FlipAnImageOverSpecifiedAxes FlipAnImageOverSpecifiedAxesOutput)
 
+add_example( PadAnImageWithAConstant )
+compare_to_baseline( PadAnImageWithAConstant PadAnImageWithAConstantOutput)
