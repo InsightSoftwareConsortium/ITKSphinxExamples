@@ -1,16 +1,16 @@
 #include "itkImage.h"
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
-#include "itkGradientMagnitudeRecursiveGaussianImageFilter.h"
+#include "itkGradientAnisotropicDiffusionImageFilter.h"
 
 int main( int argc, char* argv[] )
 {
-  if( argc != 4 )
+  if( argc != 3 )
     {
     std::cerr << "Usage: "<< std::endl;
     std::cerr << argv[0];
-    std::cerr << "<InputFileName> <OutputFileName> <Sigma>";
-    std::cerr << std::endl;
+    std::cerr << "<InputFileName> <OutputFileName> <NumberOfIterations> ";
+    std::cerr << "<Conductance>" << std::endl;
     return EXIT_FAILURE;
     }
 
@@ -26,11 +26,13 @@ int main( int argc, char* argv[] )
 
   typedef float                                     OutputPixelType;
   typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
-
-  typedef itk::GradientMagnitudeRecursiveGaussianImageFilter< InputImageType, OutputImageType > FilterType;
+  typedef itk::GradientAnisotropicDiffusionImageFilter< InputImageType,
+    OutputImageType > FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
-  filter->SetSigma( atof( argv[3] ) );
+  filter->SetNumberOfIterations( atoi( argv[3] ) );
+  filter->SetTimeStep( 0.125 );
+  filter->SetConductanceParameter( atof( argv[4] ) );
   filter->Update();
 
   typedef itk::ImageFileWriter< OutputImageType > WriterType;

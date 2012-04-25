@@ -17,3 +17,4 @@ Filtering
   MathematicalMorphology/index.rst
   Smoothing/index.rst
   ImageGradient/index.rst
+  AnisotropicSmoothing/index.rst
