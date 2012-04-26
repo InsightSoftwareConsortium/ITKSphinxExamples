@@ -1,0 +1,2 @@
+add_example( CastAnImageToAnotherType )
+compare_to_baseline( CastAnImageToAnotherType CastAnImageToAnotherTypeOutput)

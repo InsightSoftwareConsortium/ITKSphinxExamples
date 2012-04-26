@@ -16,21 +16,24 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  typedef unsigned char                           InputPixelType;
+  typedef itk::Image< InputPixelType, Dimension > InputImageType;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  typedef itk::ImageFileReader< InputImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
   reader->Update();
 
-  typedef itk::SobelEdgeDetectionImageFilter< ImageType, ImageType >
+  typedef float                                     OutputPixelType;
+  typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
+
+  typedef itk::SobelEdgeDetectionImageFilter< InputImageType, OutputImageType >
     FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->Update();
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  typedef itk::ImageFileWriter< OutputImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( filter->GetOutput() );

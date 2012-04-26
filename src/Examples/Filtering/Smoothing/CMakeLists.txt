@@ -1,0 +1,2 @@
+add_example( MedianFilteringOfAnRGBImage )
+compare_to_baseline( MedianFilteringOfAnRGBImage MedianFilteringOfAnRGBImageOutput)
