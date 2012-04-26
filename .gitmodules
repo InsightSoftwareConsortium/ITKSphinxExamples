@@ -1,9 +1,9 @@
 [submodule "utilities/ext/breathelink"]
 	path = utilities/ext/breathelink
-	url = https://thewtex@github.com/thewtex/breathelink.git
+	url = https://github.com/thewtex/breathelink.git
 [submodule "utilities/ext/breathe"]
 	path = utilities/ext/breathe
 	url = https://github.com/michaeljones/breathe
 [submodule "utilities/ext/gitstats"]
 	path = utilities/ext/gitstats
-	url = https://arnaudgelas@github.com/arnaudgelas/gitstats.git
+	url = https://github.com/arnaudgelas/gitstats.git
