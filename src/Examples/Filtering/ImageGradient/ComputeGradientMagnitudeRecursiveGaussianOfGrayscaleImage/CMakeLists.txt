@@ -20,4 +20,8 @@ install( FILES ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImage.cxx CMa
 
 enable_testing()
 add_test( NAME ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImage )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImage
+    ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
+    ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImageTestOutput.mha
+    2.
+ )
