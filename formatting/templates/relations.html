@@ -27,6 +27,15 @@
   <p class="topless">
     <a href="{{ pathto(pagename ~ ".tar.gz", 1) }}">Packed as .tar.gz</a>
   </p>
+
+  <h4>{{ _('Language') }}</h4>
+  <p class="topless">
+    <select id="languageSelection" onchange="selectLanguage()">
+      <option>All</option>
+      <option>C++</option>
+      <option>Python</option>
+    </select>
+  </p>
 {%- endif %}
 
 {%- if prev %}
