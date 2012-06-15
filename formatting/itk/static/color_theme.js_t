@@ -15,7 +15,7 @@ function setDarkTheme()
   $( 'div.sphinxsidebar h4' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
   $( 'div.sphinxsidebar a' ).css({ 'color':'{{theme_sidebarlinkcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
   $( 'div.sphinxsidebar input' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbtncolor}}' });
-  createCookie( 'color_theme', 'dark', 365 )
+  createCookie( 'color_theme', 'dark', 365 );
 }
 function setLightTheme()
 {
@@ -34,12 +34,48 @@ function setLightTheme()
   $( 'div.sphinxsidebar h3' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
   $( 'div.sphinxsidebar h4' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
   $( 'div.sphinxsidebar input' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbtncolor}}' });
-  createCookie( 'color_theme', 'light', 365 )
+  createCookie( 'color_theme', 'light', 365 );
 }
+
+function selectLanguage() {
+  var language = document.getElementById( 'languageSelection' ).value;
+  if( language == 'Python' )
+    {
+    $( "h3:contains('C++')" ).hide('fast');
+    $( "h3:contains('C++') + div").hide('fast');
+    $( "h3:contains('Python')" ).show('fast');
+    $( "h3:contains('Python') + div" ).show('fast');
+    createCookie( 'programming_language', language, 365 );
+    }
+  else if( language == 'C++' )
+    {
+    $( "h3:contains('C++')" ).show('fast');
+    $( "h3:contains('C++') + div").show('fast');
+    $( "h3:contains('Python')" ).hide('fast');
+    $( "h3:contains('Python') + div" ).hide('fast');
+    createCookie( 'programming_language', language, 365 );
+    }
+  else
+    {
+    $( "h3:contains('C++')" ).show('fast');
+    $( "h3:contains('C++') + div").show('fast');
+    $( "h3:contains('Python')" ).show('fast');
+    $( "h3:contains('Python') + div" ).show('fast');
+    createCookie( 'programming_language', '', 365 );
+    }
+}
+
 $(document).ready(function(){
   var color_theme = readCookie( 'color_theme' );
   if( color_theme == 'dark' )
     {
     setDarkTheme();
+    }
+
+  var language = readCookie( 'programming_language' );
+  if( language )
+    {
+    document.getElementById( 'languageSelection' ).value = language;
+    selectLanguage();
     }
 });
