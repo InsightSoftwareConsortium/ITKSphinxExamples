@@ -130,6 +130,7 @@ if( BUILD_DOCUMENTATION )
   set( SPHINX_DEPENDENCIES gitstats ITKDoxygenXML ITKExamplesData ITKDoxygenTAG CreateTarballs )
 
   option( DOC_WITH_LOCAL_DOXYGEN "Generate documentation with local doxygen" OFF )
+  mark_as_advanced( DOC_WITH_LOCAL_DOXYGEN )
 
   Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
 
