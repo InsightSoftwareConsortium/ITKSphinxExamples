@@ -1,5 +1,5 @@
 ExternalProject_Add( ITKDoxygenTAG
-  URL http://dl.dropbox.com/u/15135983/InsightDoxygen.tag.tar.bz2
+  URL http://public.kitware.com/pub/itk/NightlyDoxygen/InsightDoxygenDocTag.gz
   SOURCE_DIR ITKDoxygenTAG
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""

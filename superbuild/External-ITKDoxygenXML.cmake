@@ -1,5 +1,5 @@
 ExternalProject_Add( ITKDoxygenXML
-  URL http://dl.dropbox.com/u/15135983/itk-doxygen-xml.tar.bz2
+  URL http://public.kitware.com/pub/itk/NightlyDoxygen/InsightDoxygenDocXml.tar.gz
   SOURCE_DIR ITKDoxygenXML
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
