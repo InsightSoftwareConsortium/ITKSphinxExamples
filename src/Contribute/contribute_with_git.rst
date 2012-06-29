@@ -34,9 +34,9 @@ Create a new example
 --------------------
 
 To create a new example, you can make use of the python script located in the
-binary tree (/path/to/ITKExamples-build/utilities) ::
+binary tree (/path/to/ITKExamples-build/Utilities) ::
 
-  cd /path/to/ITKExamples-build/utilities
+  cd /path/to/ITKExamples-build/Utilities
   ./CreateNewExample.py /path/to/source/ITK
 
 *This script will generate cxx and rst files to be modified*

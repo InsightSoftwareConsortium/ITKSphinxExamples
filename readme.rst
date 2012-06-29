@@ -26,12 +26,12 @@ Automatic
 
 A "superbuild" is provided to automatically fetch and build everything
 that is required. The procedure is almost idential to building a normal CMake
-project - the only difference you must point cmake to ITKExamples/superbuild
+project - the only difference you must point cmake to ITKExamples/Superbuild
 instead of just ITKExamples::
 
   mkdir ~/build/ITKExamples
   cd ~/build/ITKExamples
-  cmake ~/src/ITKExamples/superbuild/
+  cmake ~/src/ITKExamples/Superbuild/
   make -j2
 
 Manual
@@ -90,7 +90,7 @@ Development setup
 
 Run the bash scipt SetupForDevelopment.sh::
 
-  $ ./utilities/SetupForDevelopment.sh
+  $ ./Utilities/SetupForDevelopment.sh
 
 .. _Breathe: https://github.com/michaeljones/breathe
 .. _CMake: http://cmake.org/

@@ -38,7 +38,7 @@ macro( add_example example_name )
   if( BUILD_DOCUMENTATION )
     if( SPHINX_HTML_OUTPUT )
       add_custom_target( ${example_name}Tarball
-        COMMAND ${PYTHON_EXECUTABLE} ${ITKExamples_SOURCE_DIR}/utilities/CreateTarball.py
+        COMMAND ${PYTHON_EXECUTABLE} ${ITKExamples_SOURCE_DIR}/Utilities/CreateTarball.py
           ${example_name} ${SPHINX_DESTINATION}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Creating tarballs for ${example_name}"

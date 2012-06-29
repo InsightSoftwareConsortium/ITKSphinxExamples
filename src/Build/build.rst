@@ -56,7 +56,7 @@ Run CMake to configure the project.
 
 - If ITK is not installed nor compiled, you can then make use of the superbuild functionality::
 
-    cmake ../superbuild/
+    cmake ../Superbuild/
 
 The superbuild will download and build all required dependencies.  If you are
 building the documentation and not using superbuild functionality, then you must

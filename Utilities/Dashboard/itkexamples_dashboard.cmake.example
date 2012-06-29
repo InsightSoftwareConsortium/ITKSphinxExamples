@@ -25,5 +25,5 @@ get_filename_component(CTEST_DASHBOARD_ROOT "${CTEST_SCRIPT_DIRECTORY}/dashboard
 # Finally, include the rest of the script that will download, build, and submit the
 # results.  For more configuration variables, see the comments at the top of
 # this script.
-#set(CTEST_SOURCE_DIRECTORY "${CTEST_DASHBOARD_ROOT}/ITKExamples/superbuild")
+#set(CTEST_SOURCE_DIRECTORY "${CTEST_DASHBOARD_ROOT}/ITKExamples/Superbuild")
 include(${CTEST_SCRIPT_DIRECTORY}/itkexamples_common.cmake)

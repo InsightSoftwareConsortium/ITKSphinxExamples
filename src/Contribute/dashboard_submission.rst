@@ -36,7 +36,7 @@ Copy the testing support script into your dashboard directory.
 
 ::
 
-  cp ~/src/ITKExamples/utilities/Dashboard/itkexamples_common.cmake .
+  cp ~/src/ITKExamples/Utilities/Dashboard/itkexamples_common.cmake .
 
 Step 2: Setup a script describing your system
 .............................................
@@ -48,11 +48,11 @@ to configure the settings unique to our system.
 
 Create a file, `itkexamples_dashboard.cmake`, to hold these settings::
 
-  cp ~/src/ITKExamples/utilities/Dashboard/itkexamples_dashboard.cmake.example itkexamples_dashboard.cmake
+  cp ~/src/ITKExamples/Utilities/Dashboard/itkexamples_dashboard.cmake.example itkexamples_dashboard.cmake
 
 You *must* edit this file to describe your local system.
 
-.. literalinclude:: ../../utilities/Dashboard/itkexamples_dashboard.cmake.example
+.. literalinclude:: ../../Utilities/Dashboard/itkexamples_dashboard.cmake.example
 
 Step 3: Configure your system to run the script on a daily basis
 ................................................................
