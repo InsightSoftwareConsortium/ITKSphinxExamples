@@ -1,9 +1,9 @@
-[submodule "utilities/ext/breathelink"]
-	path = utilities/ext/breathelink
+[submodule "Utilities/SphinxExtensions/breathelink"]
+	path = Utilities/SphinxExtensions/breathelink
 	url = https://github.com/thewtex/breathelink.git
-[submodule "utilities/ext/breathe"]
-	path = utilities/ext/breathe
+[submodule "Utilities/SphinxExtensions/breathe"]
+	path = Utilities/SphinxExtensions/breathe
 	url = https://github.com/michaeljones/breathe
-[submodule "utilities/ext/gitstats"]
-	path = utilities/ext/gitstats
+[submodule "Utilities/SphinxExtensions/gitstats"]
+	path = Utilities/SphinxExtensions/gitstats
 	url = https://github.com/arnaudgelas/gitstats.git

@@ -17,19 +17,19 @@ set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ITKExamples_BINARY_DIR}/bin )
 
 # -------------------------------------------------------------------------
 # Check to make sure the submodules have been created.
-if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/utilities/ext/breathelink/.git" )
+if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/breathelink/.git" )
   message( SEND_ERROR "The git submodules are not available.  Please run
   git submodule update --init --recursive"
   )
 endif()
 
-if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/utilities/ext/breathe/.git" )
+if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/breathe/.git" )
   message( SEND_ERROR "The git submodules are not available.  Please run
   git submodule update --init --recursive"
   )
 endif()
 
-if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/utilities/ext/gitstats/.git" )
+if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/gitstats/.git" )
   message( SEND_ERROR "The git submodules are not available.  Please run
   git submodule update --init --recursive"
   )
@@ -43,18 +43,18 @@ enable_testing()
 # ExternalData setup.  We use the CMake ExternalData features to download binary
 # files from a configurable location(s) -- including the local filesystem -- to
 # avoid storing the potentially large files in the Git history.
-set( CMAKE_MODULE_PATH ${ITKExamples_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH} )
+set( CMAKE_MODULE_PATH ${ITKExamples_SOURCE_DIR}/CMake ${CMAKE_MODULE_PATH} )
 # The CMake magic to download the data.
 set( ExternalData_SOURCE_ROOT "${ITKExamples_SOURCE_DIR}" )
 set( ExternalData_BINARY_ROOT "${ITKExamples_BINARY_DIR}" )
 
 include( ITKExamplesExternalData )
 set( _RootSubDirs
-  cmake
-  formatting
-  utilities
+  CMake
+  Formatting
+  Utilities
   src
-  superbuild
+  Superbuild
 )
 
 set( content_links )
@@ -85,10 +85,10 @@ if( BUILD_DOCUMENTATION )
   add_custom_target( copy_sources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/src"
     "${ITKExamples_BINARY_DIR}/src"
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/formatting"
-    "${ITKExamples_BINARY_DIR}/formatting"
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/utilities"
-    "${ITKExamples_BINARY_DIR}/utilities"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Formatting"
+    "${ITKExamples_BINARY_DIR}/Formatting"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Utilities"
+    "${ITKExamples_BINARY_DIR}/Utilities"
     COMMENT "Copying sources"
     )
   # For unknown reasons, this was the only effective way to ensure ITKExamplesData
@@ -96,15 +96,15 @@ if( BUILD_DOCUMENTATION )
   add_dependencies( copy_sources ITKExamplesData )
 
   add_custom_target( gitstats ALL
-    COMMAND ${ITKExamples_SOURCE_DIR}/utilities/ext/gitstats/gitstats --rst
+    COMMAND ${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/gitstats/gitstats --rst
     ${ITKExamples_SOURCE_DIR} ${ITKExamples_BINARY_DIR}/src/gitstats
     WORKING_DIRECTORY ${ITKExamples_BINARY_DIR}
     COMMENT "Running gitstats"
   )
   add_dependencies( gitstats copy_sources )
 
-  configure_file( ${ITKExamples_SOURCE_DIR}/utilities/CodeSwarm.sh.in
-    ${ITKExamples_BINARY_DIR}/utilities/CodeSwarm.sh
+  configure_file( ${ITKExamples_SOURCE_DIR}/Utilities/CodeSwarm.sh.in
+    ${ITKExamples_BINARY_DIR}/Utilities/CodeSwarm.sh
     @ONLY
   )
 
@@ -114,17 +114,17 @@ if( BUILD_DOCUMENTATION )
   )
 
   if(NOT ITKDoxygenXML_DIR )
-    include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygenXML.cmake )
+    include( ${CMAKE_SOURCE_DIR}/CMake/ITKDoxygenXML.cmake )
   endif()
 
   if(NOT ITKDoxygenTAG_DIR )
-    include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygenTAG.cmake )
+    include( ${CMAKE_SOURCE_DIR}/CMake/ITKDoxygenTAG.cmake )
   endif()
 
   # Builds the documentation.
   find_package( Sphinx REQUIRED )
 
-  set( SPHINX_CONF_DIR ${ITKExamples_BINARY_DIR}/formatting )
+  set( SPHINX_CONF_DIR ${ITKExamples_BINARY_DIR}/Formatting )
   set( SPHINX_INPUT_DIR ${ITKExamples_BINARY_DIR}/src )
   set( SPHINX_DESTINATION ${ITKExamples_BINARY_DIR} )
   set( SPHINX_DEPENDENCIES gitstats ITKDoxygenXML ITKExamplesData ITKDoxygenTAG CreateTarballs )
@@ -182,7 +182,7 @@ if( BUILD_DOCUMENTATION )
     set( ITKDoxygen_LINK_ADDRESS "http://www.itk.org/Doxygen/html" )
   endif()
 
-  add_subdirectory( formatting )
+  add_subdirectory( Formatting )
 endif()
 
 # Build the example executables?
@@ -191,8 +191,8 @@ if( BUILD_EXECUTABLES )
   add_subdirectory( src )
 endif()
 
-configure_file( ${CMAKE_SOURCE_DIR}/utilities/CreateNewExample.py.in
-  ${CMAKE_BINARY_DIR}/utilities/CreateNewExample.py
+configure_file( ${CMAKE_SOURCE_DIR}/Utilities/CreateNewExample.py.in
+  ${CMAKE_BINARY_DIR}/Utilities/CreateNewExample.py
   @ONLY
 )
 

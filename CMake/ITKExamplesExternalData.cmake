@@ -26,15 +26,18 @@ set(ExternalData_URL_TEMPLATES "" CACHE STRING
 file:///var/bigharddrive/%(algo)/%(hash)")
 mark_as_advanced(ExternalData_URL_TEMPLATES)
 list(APPEND ExternalData_URL_TEMPLATES
+  # Data published on itk.org
+  "http://www.itk.org/files/ExamplesData/%(algo)/%(hash)"
+  "http://www.itk.org/files/ExternalData/%(algo)/%(hash)"
+
+  # Data published on the Rackspace backup
+  "http://c389985.r85.cf1.rackcdn.com/%(algo)/%(hash)"
+
   # Data published on dropbox
   "http://dl.dropbox.com/u/61255957/%(algo)/%(hash)"
 
   # Data published by MIDAS
   "http://midas.kitware.com/api/rest/midas.bitstream.by.hash?hash=%(hash)&algorithm=%(algo)"
-
-  # Data published by developers using git-gerrit-push.
-  "http://www.itk.org/files/ExternalData/%(algo)/%(hash)"
-  "http://www.itk.org/files/ExamplesExternalData/%(algo)/%(hash)"
   )
 
 # Tell ExternalData commands to transform raw files to content links.

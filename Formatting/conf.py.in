@@ -19,11 +19,11 @@ import sys, os
 #sys.path.insert(0, os.path.abspath('.'))
 
 sys.path.insert( 0, os.path.abspath(os.path.join('@ITKExamples_BINARY_DIR@',
-    'utilities', 'ext', 'breathe')))
+    'Utilities', 'SphinxExtensions', 'breathe')))
 sys.path.insert( 0, os.path.abspath(os.path.join('@ITKExamples_BINARY_DIR@',
-    'utilities', 'ext', 'sphinxcontrib')))
+    'Utilities', 'SphinxExtensions', 'sphinxcontrib')))
 sys.path.insert(0, os.path.abspath(os.path.join('@ITKExamples_BINARY_DIR@',
-    'utilities', 'ext')))
+    'Utilities', 'SphinxExtensions')))
 
 
 # -- General configuration -----------------------------------------------------
