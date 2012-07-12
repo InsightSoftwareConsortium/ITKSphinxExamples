@@ -29,7 +29,7 @@ int main(int argc, char * argv[])
 
   // Create and setup a gradient filter
   typedef itk::GradientMagnitudeImageFilter<
-		  InputImageType, OutputImageType >  FilterType;
+      InputImageType, OutputImageType >  FilterType;
 
   FilterType::Pointer gradientFilter = FilterType::New();
   gradientFilter->SetInput( reader->GetOutput() );

@@ -20,4 +20,7 @@ install( FILES ComputeGradientMagnitudeOfGrayscaleImage.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME ComputeGradientMagnitudeOfGrayscaleImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeGradientMagnitudeOfGrayscaleImage )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeGradientMagnitudeOfGrayscaleImage
+    ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
+    ComputeGradientMagnitudeOfGrayscaleImageTestOutput.mha
+    )
