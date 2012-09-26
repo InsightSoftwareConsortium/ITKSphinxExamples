@@ -2,25 +2,24 @@ Compute Gradient Magnitude Recursive Gaussian Of Grayscale Image
 ================================================================
 
 .. index::
-   single: GradientMagnitudeRecursiveGaussianImageFilter
+   single: GradientMagnitudeRecursiveGaussianImageFilter, Gaussian, gradient
 
 Synopsis
 --------
 
-
-Compute the gradient magnitude of the image first smoothed with a Gaussian kernel
+Compute the gradient magnitude of the image after first smoothing with a Gaussian kernel.
 
 
 Results
 -------
 
-.. figure::
+.. figure:: Gourds.png
   :scale: 50%
   :alt: Input image
 
   Input image
 
-.. figure::
+.. figure:: ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImageTestOutput.png
   :scale: 50%
   :alt: Output image
 
