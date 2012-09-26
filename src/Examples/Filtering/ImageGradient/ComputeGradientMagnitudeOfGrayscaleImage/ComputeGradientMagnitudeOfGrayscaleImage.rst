@@ -2,7 +2,7 @@ Compute Gradient Magnitude Of Grayscale Image
 =============================================
 
 .. index::
-   single: GradientMagnitudeImageFilter
+   single: GradientMagnitudeImageFilter, gradient
 
 Synopsis
 --------
