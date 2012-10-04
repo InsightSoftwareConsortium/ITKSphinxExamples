@@ -6,3 +6,4 @@ QuadEdgeMeshFiltering
 
   ComputeNormalsOfAMesh/ComputeNormalsOfAMesh.rst
   CleanQuadEdgeMesh/CleanQuadEdgeMesh.rst
+  DelaunayConformEdgeFlipping/DelaunayConformEdgeFlipping.rst
