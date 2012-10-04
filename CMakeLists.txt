@@ -2,7 +2,7 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( ITKExamples )
 
 set( ITKExamples_MAJOR_VERSION 4 )
-set( ITKExamples_MINOR_VERSION 1 )
+set( ITKExamples_MINOR_VERSION 3 )
 set( ITKExamples_PATCH_VERSION 0 )
 
 set( ITKExamples_VERSION
@@ -176,7 +176,7 @@ if( BUILD_DOCUMENTATION )
     set( ITKDoxygen_LINK_ADDRESS ${ITKDoxygen_DIR} )
     set( SPHINX_DEPENDENCIES ${SPHINX_DEPENDENCIES} ITKDoxygen )
     if(NOT ITKDoxygen_DIR )
-      include( ${CMAKE_SOURCE_DIR}/cmake/ITKDoxygen.cmake )
+      include( ${CMAKE_SOURCE_DIR}/CMake/ITKDoxygen.cmake )
     endif()
   else()
     set( ITKDoxygen_LINK_ADDRESS "http://www.itk.org/Doxygen/html" )

@@ -154,6 +154,17 @@ ITK-SNAP
   ITK-SNAP_
 
 
+MITK
+  MITK_ is a free open-source software system for development of interactive
+  medical image processing software.
+
+.. figure:: mitk.png
+  :alt: MITK
+  :align: center
+
+  MITK_
+
+
 Paraview
   Paraview_ is a full-featured scientific visualizion GUI written with Qt_/VTK_.
   It has extensive parallel processing capabilities.
@@ -194,8 +205,9 @@ VV
 .. _FLTK:                  http://www.fltk.org/
 .. _ITKApps:               http://itk.org/ITKApps.git
 .. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
+.. _MITK:                  http://www.mitk.org/wiki/
 .. _Paraview:              http://paraview.org/
 .. _QGoImageCompare:       https://github.com/gofigure2/QGoImageCompare
 .. _Qt:                    http://qt.nokia.com/
 .. _VTK:                   http://vtk.org/
-.. _VV:                    http://www.creatis.insa-lyon.fr/rio/vv 
+.. _VV:                    http://www.creatis.insa-lyon.fr/rio/vv

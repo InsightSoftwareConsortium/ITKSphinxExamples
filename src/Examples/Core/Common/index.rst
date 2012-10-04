@@ -4,6 +4,7 @@ Common
 .. toctree::
   :maxdepth: 1
 
+  BuildAHelloWorldProgram/BuildAHelloWorldProgram.rst
   CreateAPointSet/CreateAPointSet.rst
   ReadAPointSet/ReadAPointSet.rst
   DoDataParallelThreading/DoDataParallelThreading.rst

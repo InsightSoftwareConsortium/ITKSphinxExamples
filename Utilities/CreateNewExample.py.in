@@ -120,7 +120,7 @@ def WriteExampleRSTFile( example_rst, class_name, synopsis ):
     f.write( '   single: ' + class_name + '\n\n')
 
     f.write( 'Synopsis\n' )
-    f.write( '--------\n\n\n' )
+    f.write( '--------\n\n' )
 
     if synopsis == None:
         synopsis = raw_input( 'Synopsis: ' )

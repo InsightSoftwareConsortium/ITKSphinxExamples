@@ -33,11 +33,11 @@ list(APPEND ExternalData_URL_TEMPLATES
   # Data published on the Rackspace backup
   "http://c389985.r85.cf1.rackcdn.com/%(algo)/%(hash)"
 
+  # Data published by MIDAS
+  "http://midas3.kitware.com/midas/api/rest?method=midas.bitstream.download&checksum=%(hash)"
+
   # Data published on dropbox
   "http://dl.dropbox.com/u/61255957/%(algo)/%(hash)"
-
-  # Data published by MIDAS
-  "http://midas.kitware.com/api/rest/midas.bitstream.by.hash?hash=%(hash)&algorithm=%(algo)"
   )
 
 # Tell ExternalData commands to transform raw files to content links.
