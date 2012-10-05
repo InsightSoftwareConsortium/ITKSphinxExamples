@@ -20,4 +20,10 @@ install( FILES PeronaMalikAnisotropicDiffusionOnGrayscaleImage.cxx CMakeLists.tx
 
 enable_testing()
 add_test( NAME PeronaMalikAnisotropicDiffusionOnGrayscaleImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/PeronaMalikAnisotropicDiffusionOnGrayscaleImage )
+  COMMAND
+  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/PeronaMalikAnisotropicDiffusionOnGrayscaleImage
+  ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
+  PeronaMalikAnisotropicDiffusionOnGrayscaleImageTest.mha
+  5
+  1.0
+  )

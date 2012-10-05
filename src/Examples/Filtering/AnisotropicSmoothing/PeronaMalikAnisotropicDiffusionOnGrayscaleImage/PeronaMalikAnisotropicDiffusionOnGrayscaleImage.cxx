@@ -5,12 +5,14 @@
 
 int main( int argc, char* argv[] )
 {
-  if( argc != 3 )
+  if( argc != 5 )
     {
     std::cerr << "Usage: "<< std::endl;
     std::cerr << argv[0];
-    std::cerr << "<InputFileName> <OutputFileName> <NumberOfIterations> ";
-    std::cerr << "<Conductance>" << std::endl;
+    std::cerr << " <InputFileName>";
+    std::cerr << " <OutputFileName>";
+    std::cerr << " <NumberOfIterations> ";
+    std::cerr << " <Conductance>" << std::endl;
     return EXIT_FAILURE;
     }
 
