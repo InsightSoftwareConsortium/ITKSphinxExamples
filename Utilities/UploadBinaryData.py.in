@@ -25,7 +25,8 @@ The Midas server at
 
 is an ITK community resource where any community member can upload binary data
 files.  This script automates the upload of data to the server and generation of
-the content link file.
+the content link file.  Before using this script, please go to the Midas
+website, register, and join the ITK community.
 """
 
 import argparse
@@ -39,6 +40,56 @@ sys.path.insert(0, os.path.join(helper_modules_dir, 'simplejson'))
 sys.path.insert(0, os.path.join(helper_modules_dir, 'pydas'))
 import pydas
 
+sys.path.insert(0, os.path.abspath(__file__))
+from CreateNewExample import get_group_and_module_from_class_name
+
+def run(input_file, output_file, email=None, api_key=None):
+    pydas
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=description)
+    parser.add_argument('input_file', type=argparse.FileType('r'))
+    parser.add_argument('--output', '-o', type=argparse.FileType('w'),
+            help='Name of the output content link file containing the checksum.'
+            + ' Defaults to the input_file + .md5')
+    parser.add_argument('--api-key-file', '-k', type=argparse.FileType('r'),
+            help="A file that contains your Midas user's API key.")
+    parser.add_argument('--email', '-e',
+            help="Email address associated with your Midas account.")
+    parser.add_argument('--itk-source-dir', '-i',
+            help='Path to the ITK source tree.')
+    parser.add_argument('--class-name', action='store', dest='class_name',
+            help='Class name to be demonstrated (e.g. ImageToImageFilter).' )
+    parser.add_argument('--uncategorized', '-u', action='store_true',
+            help='Classify the file as Uncategorized.  If not set, --class-name'
+            + ' and --itk-source-dir must be set (preferred).')
     args = parser.parse_args()
+
+    if args.api_key_file:
+        api_key = api_key_file.readline()
+        api_key = api_key.strip()
+    else:
+        api_key = None
+
+    if args.output_file:
+        output_file = args.output_file
+    else:
+        output_file = args.input_file + '.md5'
+
+    if args.uncategorized:
+        folders = ['Uncategorized']
+    elif args.class_name and args.itk_source_dir:
+        group_and_module = get_group_and_module_from_class_name(args.itk_source_dir,
+            args.class_name)
+        if group_and_module['bool'] == False:
+            sys.stderr.write('The given --class-name was not found.\n')
+            sys.exit(1)
+        folders = []
+        folders.append(group_and_module['Group'])
+        folders.append(group_and_module['Module'])
+    else:
+        sys.stderr.write('Either --class-name and --itk-source-dir must be ' + \
+        'specified or --uncategorized must be set.\n')
+        sys.exit(1)
+
+    run(args.input_file, output_file, email=args.email, api_key=api_key)

@@ -69,7 +69,7 @@ def space_out_camel_case(s):
     return re.sub('((?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z]))', ' ', s)
 
 # --------------------------------------------------------------------
-def GetGroupAndModuleFromClassName( itk_dir, class_name ):
+def get_group_and_module_from_class_name( itk_dir, class_name ):
 
     cmakefile = os.path.join( itk_dir, 'CMake', 'UseITK.cmake' )
     result = dict()
@@ -198,189 +198,189 @@ def WriteExampleCXXFile( example_cxx, class_name ):
     f.close()
 
 # ---------------------------------------------------------
+if __name__ == '__main__':
+    # parsing arguments
+    parser = argparse.ArgumentParser(description='Create a new example.')
 
-# parsing arguments
-parser = argparse.ArgumentParser(description='Create a new example.')
+    parser.add_argument('itk_source_dir', help='path to itk source tree' )
+    parser.add_argument('--class-name', action='store', dest='class_name',
+        help='class name to be demonstrated (e.g. ImageToImageFilter)' )
+    parser.add_argument('--example-name', action='store', dest='example_name',
+        help='example name (e.g. WriteAPointset)' )
+    parser.add_argument('--synopsis', action='store', dest='synopsis',
+        help='synopsis (e.g. Write a PointSet)' )
 
-parser.add_argument('itk_source_dir', help='path to itk source tree' )
-parser.add_argument('--class-name', action='store', dest='class_name',
-    help='class name to be demonstrated (e.g. ImageToImageFilter)' )
-parser.add_argument('--example-name', action='store', dest='example_name',
-    help='example name (e.g. WriteAPointset)' )
-parser.add_argument('--synopsis', action='store', dest='synopsis',
-    help='synopsis (e.g. Write a PointSet)' )
+    args = parser.parse_args()
 
-args = parser.parse_args()
+    # check itk_source_tree is a real source tree of ITK
+    # Note: It would work even with an outdated version of ITK
+    itk_dir = args.itk_source_dir
+    useitk_cmake = os.path.join( itk_dir, 'CMake', 'UseITK.cmake' )
 
-# check itk_source_tree is a real source tree of ITK
-# Note: It would work even with an outdated version of ITK
-itk_dir = args.itk_source_dir
-useitk_cmake = os.path.join( itk_dir, 'CMake', 'UseITK.cmake' )
+    if not os.path.exists( useitk_cmake ):
+        print ('Error: wrong path for itk source tree' )
+        sys.exit()
 
-if not os.path.exists( useitk_cmake ):
-    print ('Error: wrong path for itk source tree' )
-    sys.exit()
+    WriteAllITKHeaders( itk_dir )
 
-WriteAllITKHeaders( itk_dir )
+    NWORDS = train(words(file('listofITKheaders').read()))
 
-NWORDS = train(words(file('listofITKheaders').read()))
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
-alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    # beginning
+    temp_res = dict()
+    temp_res[ 'bool' ]= False;
 
-# beginning
-temp_res = dict()
-temp_res[ 'bool' ]= False;
+    class_name = args.class_name
+    temp_res = get_group_and_module_from_class_name( itk_dir, class_name )
 
-class_name = args.class_name
-temp_res = GetGroupAndModuleFromClassName( itk_dir, class_name )
+    while not temp_res[ 'bool' ]:
+        class_name  = raw_input( "Please enter a class: " )
+        class_name  = itkcorrect( class_name )
+        print( class_name )
 
-while not temp_res[ 'bool' ]:
-    class_name  = raw_input( "Please enter a class: " )
-    class_name  = itkcorrect( class_name )
-    print( class_name )
+        temp_res = get_group_and_module_from_class_name( args.itk_source_dir, class_name )
 
-    temp_res = GetGroupAndModuleFromClassName( args.itk_source_dir, class_name )
+    group_name = temp_res[ 'Group' ]
+    module_name = temp_res[ 'Module' ]
+    example_name = args.example_name
 
-group_name = temp_res[ 'Group' ]
-module_name = temp_res[ 'Module' ]
-example_name = args.example_name
+    if example_name == None:
+        example_name = raw_input( "Please enter an example name: " )
 
-if example_name == None:
-    example_name = raw_input( "Please enter an example name: " )
+    # Collect directories
+    root_dir = os.path.abspath( '@ITKExamples_SOURCE_DIR@' )
 
-# Collect directories
-root_dir = os.path.abspath( '@ITKExamples_SOURCE_DIR@' )
+    example_src_dir = os.path.join( root_dir, "src/Examples" )
+    example_dir = os.path.join( example_src_dir, group_name, module_name, example_name )
 
-example_src_dir = os.path.join( root_dir, "src/Examples" )
-example_dir = os.path.join( example_src_dir, group_name, module_name, example_name )
+    # if ITKExmaples/src/Examples/$group_name/$module_name/$example_name does not exist
+    if not os.path.exists( example_dir ):
 
-# if ITKExmaples/src/Examples/$group_name/$module_name/$example_name does not exist
-if not os.path.exists( example_dir ):
+        # if ITKExamples/src/Example/$group_name does not exist
+        if not os.path.exists( os.path.join( example_src_dir, group_name ) ):
 
-    # if ITKExamples/src/Example/$group_name does not exist
-    if not os.path.exists( os.path.join( example_src_dir, group_name ) ):
+          # make directory ITKExamples/src/Examples/$group_name
+          os.mkdir( os.path.join( example_src_dir, group_name ) )
 
-      # make directory ITKExamples/src/Examples/$group_name
-      os.mkdir( os.path.join( example_src_dir, group_name ) )
+          # populate ITKExamples/src/Examples/$group_name/CMakeLists.txt
+          f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ), 'a+' )
+          f.write( 'add_subdirectory( ' + group_name + ' ) \n' )
+    #      f.close()
 
-      # populate ITKExamples/src/Examples/$group_name/CMakeLists.txt
-      f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ), 'a+' )
-      f.write( 'add_subdirectory( ' + group_name + ' ) \n' )
-#      f.close()
+    #      f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ) , 'a+' )
+          f.write( '' )
+          f.close()
 
-#      f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ) , 'a+' )
-      f.write( '' )
-      f.close()
+          # populate ITKExamples/src/Examples/$group_name/index.rst
+          f=open( os.path.join( example_src_dir, group_name, 'index.rst' ), 'a+' )
+          f.write( group_name + '\n' )
+          for i in range( len( group_name ) ):
+              f.write( '=' )
+          f.write( '\n\n' )
 
-      # populate ITKExamples/src/Examples/$group_name/index.rst
-      f=open( os.path.join( example_src_dir, group_name, 'index.rst' ), 'a+' )
-      f.write( group_name + '\n' )
-      for i in range( len( group_name ) ):
-          f.write( '=' )
-      f.write( '\n\n' )
+          f.write( '.. toctree::\n' )
+          f.write( '  :maxdepth: 2\n\n' )
+          f.close()
 
-      f.write( '.. toctree::\n' )
-      f.write( '  :maxdepth: 2\n\n' )
-      f.close()
+        # if ITKExamples/src/Examples/$group_name/$module_name does not exist
+        if not os.path.exists( os.path.join( example_src_dir, group_name, module_name ) ):
 
-    # if ITKExamples/src/Examples/$group_name/$module_name does not exist
-    if not os.path.exists( os.path.join( example_src_dir, group_name, module_name ) ):
+            # make directory ITKExamples/src/Examples/$group_name/$module_name
+            os.mkdir( os.path.join( example_src_dir, group_name, module_name ) )
 
-        # make directory ITKExamples/src/Examples/$group_name/$module_name
-        os.mkdir( os.path.join( example_src_dir, group_name, module_name ) )
+            # append 'add_subdirectory( $module_name )' into ITKExamples/src/Examples/$group_name/CMakeLists.txt
+            f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ), 'a+' )
+            f.write( 'add_subdirectory( ' + module_name + ' )\n' )
+            f.close()
 
-        # append 'add_subdirectory( $module_name )' into ITKExamples/src/Examples/$group_name/CMakeLists.txt
-        f=open( os.path.join( example_src_dir, group_name, 'CMakeLists.txt' ), 'a+' )
-        f.write( 'add_subdirectory( ' + module_name + ' )\n' )
-        f.close()
+            # append '$module_name/index.rst' into ITKExamples/src/Examples/$group_name/index.rst
+            f=open( os.path.join( example_src_dir, group_name, 'index.rst' ), 'a+' )
+            f.write( '  ' + module_name + '/index.rst\n' )
+            f.close()
 
-        # append '$module_name/index.rst' into ITKExamples/src/Examples/$group_name/index.rst
-        f=open( os.path.join( example_src_dir, group_name, 'index.rst' ), 'a+' )
-        f.write( '  ' + module_name + '/index.rst\n' )
+            # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/index.rst
+            f=open( os.path.join( example_src_dir, group_name, module_name, 'index.rst' ), 'a+' )
+            f.write( module_name + '\n' )
+            for i in range( len( module_name ) ):
+                f.write( '=' )
+            f.write( '\n\n' )
+
+            f.write( '.. toctree::\n' )
+            f.write( '  :maxdepth: 2\n\n' )
+            f.close()
+        # endif
+
+        # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/CMakeLists.txt
+        f=open( os.path.join( example_src_dir, group_name, module_name, 'CMakeLists.txt' ), 'a+' )
+        f.write( 'add_example( ' + example_name + ' )\n' )
+        f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n' )
         f.close()
 
         # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/index.rst
         f=open( os.path.join( example_src_dir, group_name, module_name, 'index.rst' ), 'a+' )
-        f.write( module_name + '\n' )
-        for i in range( len( module_name ) ):
-            f.write( '=' )
-        f.write( '\n\n' )
-
-        f.write( '.. toctree::\n' )
-        f.write( '  :maxdepth: 2\n\n' )
+        f.write( '  ' + example_name + '/' + example_name + '.rst\n' )
         f.close()
-    # endif
 
-    # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/CMakeLists.txt
-    f=open( os.path.join( example_src_dir, group_name, module_name, 'CMakeLists.txt' ), 'a+' )
-    f.write( 'add_example( ' + example_name + ' )\n' )
-    f.write( 'compare_to_baseline( ' + example_name + ' ' + example_name + 'Output)\n' )
+        os.mkdir( example_dir )
+
+
+    example_base = os.path.join( example_dir, example_name )
+
+    example_rst = example_base + '.rst'
+    example_cxx = example_base + '.cxx'
+
+    WriteExampleRSTFile( example_rst, class_name, args.synopsis )
+    WriteExampleCXXFile( example_cxx, class_name )
+
+    # ---------------------------------------------------------
+    # Write CMakeLists.txt
+
+    cmakefile = os.path.join( example_dir, 'CMakeLists.txt' )
+    f=open( cmakefile, 'w' )
+
+    f.write( 'cmake_minimum_required( VERSION 2.8 )\n\n' )
+
+    f.write( 'project( ' + example_name + ' )\n\n' )
+
+    f.write( 'find_package( ITK REQUIRED )\n\n' )
+    f.write( 'include( ${ITK_USE_FILE} )\n' )
+
+    f.write( 'add_executable( ' + example_name + ' ' +  example_name + '.cxx )\n' )
+    f.write( 'target_link_libraries( ' + example_name + ' ${ITK_LIBRARIES} )\n\n' )
+
+    f.write( 'install( TARGETS ' + example_name + '\n' )
+    f.write( '  DESTINATION bin/ITKExamples/' + group_name + '/' + module_name + '\n' )
+    f.write( '  COMPONENT Runtime\n' )
+    f.write( ')\n\n' )
+
+    f.write( 'install( FILES ' + example_name + '.cxx CMakeLists.txt\n' )
+    f.write( '  DESTINATION share/ITKExamples/Code/' + group_name + '/' + module_name + '/' + example_name + '\n' )
+    f.write( '  COMPONENT Code\n' )
+    f.write( ')\n\n' )
+
+    f.write( 'enable_testing()\n' )
+    f.write( 'add_test( NAME ' + example_name + 'Test\n' )
+    f.write( '  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/' + example_name + ' )\n' )
     f.close()
 
-    # append 'add_example( $example_name )' into ITKExamples/src/Examples/$group_name/$module_name/index.rst
-    f=open( os.path.join( example_src_dir, group_name, module_name, 'index.rst' ), 'a+' )
-    f.write( '  ' + example_name + '/' + example_name + '.rst\n' )
-    f.close()
+    # ---------------------------------------------------------
+    # print instructions
+    print ( '***' )
+    print ( 'Example added successfully!' )
 
-    os.mkdir( example_dir )
+    print ( 'Please:' )
+    print ( '  1- Edit the following files:' )
+    print ( '    * ' + example_cxx )
+    print ( '    * ' + example_rst + '\n' )
 
-
-example_base = os.path.join( example_dir, example_name )
-
-example_rst = example_base + '.rst'
-example_cxx = example_base + '.cxx'
-
-WriteExampleRSTFile( example_rst, class_name, args.synopsis )
-WriteExampleCXXFile( example_cxx, class_name )
-
-# ---------------------------------------------------------
-# Write CMakeLists.txt
-
-cmakefile = os.path.join( example_dir, 'CMakeLists.txt' )
-f=open( cmakefile, 'w' )
-
-f.write( 'cmake_minimum_required( VERSION 2.8 )\n\n' )
-
-f.write( 'project( ' + example_name + ' )\n\n' )
-
-f.write( 'find_package( ITK REQUIRED )\n\n' )
-f.write( 'include( ${ITK_USE_FILE} )\n' )
-
-f.write( 'add_executable( ' + example_name + ' ' +  example_name + '.cxx )\n' )
-f.write( 'target_link_libraries( ' + example_name + ' ${ITK_LIBRARIES} )\n\n' )
-
-f.write( 'install( TARGETS ' + example_name + '\n' )
-f.write( '  DESTINATION bin/ITKExamples/' + group_name + '/' + module_name + '\n' )
-f.write( '  COMPONENT Runtime\n' )
-f.write( ')\n\n' )
-
-f.write( 'install( FILES ' + example_name + '.cxx CMakeLists.txt\n' )
-f.write( '  DESTINATION share/ITKExamples/Code/' + group_name + '/' + module_name + '/' + example_name + '\n' )
-f.write( '  COMPONENT Code\n' )
-f.write( ')\n\n' )
-
-f.write( 'enable_testing()\n' )
-f.write( 'add_test( NAME ' + example_name + 'Test\n' )
-f.write( '  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/' + example_name + ' )\n' )
-f.close()
-
-# ---------------------------------------------------------
-# print instructions
-print ( '***' )
-print ( 'Example added successfully!' )
-
-print ( 'Please:' )
-print ( '  1- Edit the following files:' )
-print ( '    * ' + example_cxx )
-print ( '    * ' + example_rst + '\n' )
-
-print ( '  2- Commit changes in the ITKExamples source directory and push' )
-print ( '$ cd @ITKExamples_SOURCE_DIR@' )
-print ( '$ git checkout -b Add_' + example_name )
-print ( '$ git add src/Examples/' + group_name + '/' + module_name )
-print ( '$ git commit -a -m "Add ' + example_name + '" ' )
-print ( '$ git checkout master' )
-print ( '$ git pull origin master' )
-print ( '$ git merge --no-ff Add_' + example_name )
-print ( '$ git push origin master' )
+    print ( '  2- Commit changes in the ITKExamples source directory and push' )
+    print ( '$ cd @ITKExamples_SOURCE_DIR@' )
+    print ( '$ git checkout -b Add_' + example_name )
+    print ( '$ git add src/Examples/' + group_name + '/' + module_name )
+    print ( '$ git commit -a -m "Add ' + example_name + '" ' )
+    print ( '$ git checkout master' )
+    print ( '$ git pull origin master' )
+    print ( '$ git merge --no-ff Add_' + example_name )
+    print ( '$ git push origin master' )
 
