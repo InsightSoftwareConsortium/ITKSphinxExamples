@@ -7,3 +7,6 @@
 [submodule "Utilities/SphinxExtensions/gitstats"]
 	path = Utilities/SphinxExtensions/gitstats
 	url = https://github.com/arnaudgelas/gitstats.git
+[submodule "Utilities/pydas"]
+	path = Utilities/pydas
+	url = https://github.com/midasplatform/pydas.git
