@@ -194,6 +194,11 @@ endif()
 configure_file( ${CMAKE_SOURCE_DIR}/Utilities/CreateNewExample.py.in
   ${CMAKE_BINARY_DIR}/Utilities/CreateNewExample.py
   @ONLY
-)
+  )
+
+configure_file( ${CMAKE_SOURCE_DIR}/Utilities/UploadBinaryData.py.in
+  ${CMAKE_BINARY_DIR}/Utilities/UploadBinaryData.py
+  @ONLY
+  )
 
 include( CPack )
