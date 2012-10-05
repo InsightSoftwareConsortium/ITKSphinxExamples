@@ -29,6 +29,15 @@ the content link file.
 """
 
 import argparse
+import os
+import sys
+
+helper_modules_dir = os.path.join(os.path.abspath('@ITKExamples_SOURCE_DIR@'),
+    'Utilities')
+sys.path.insert(0, os.path.join(helper_modules_dir, 'requests'))
+sys.path.insert(0, os.path.join(helper_modules_dir, 'simplejson'))
+sys.path.insert(0, os.path.join(helper_modules_dir, 'pydas'))
+import pydas
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=description)

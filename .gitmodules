@@ -10,3 +10,9 @@
 [submodule "Utilities/pydas"]
 	path = Utilities/pydas
 	url = https://github.com/midasplatform/pydas.git
+[submodule "Utilities/requests"]
+	path = Utilities/requests
+	url = https://github.com/kennethreitz/requests.git
+[submodule "Utilities/simplejson"]
+	path = Utilities/simplejson
+	url = https://github.com/simplejson/simplejson.git
