@@ -1,2 +1,3 @@
 add_example( PeronaMalikAnisotropicDiffusionOnGrayscaleImage )
-compare_to_baseline( PeronaMalikAnisotropicDiffusionOnGrayscaleImage PeronaMalikAnisotropicDiffusionOnGrayscaleImageOutput)
+compare_to_baseline( PeronaMalikAnisotropicDiffusionOnGrayscaleImage
+  PeronaMalikAnisotropicDiffusionOnGrayscaleImageTest )

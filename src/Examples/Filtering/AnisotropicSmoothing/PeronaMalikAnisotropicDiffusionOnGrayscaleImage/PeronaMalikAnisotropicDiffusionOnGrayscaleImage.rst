@@ -7,8 +7,7 @@ Perona Malik Anisotropic Diffusion On Grayscale Image
 Synopsis
 --------
 
-
-Perona Malik Anisotropic Diffusion for scalar valued images
+Perona Malik Anisotropic Diffusion for scalar valued images.
 
 
 Results

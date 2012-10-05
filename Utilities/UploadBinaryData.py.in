@@ -1,0 +1,159 @@
+#!/usr/bin/env python
+
+description = """
+Upload binary data to Midas.
+
+Since every local Git repository contains a copy of the entire project history,
+it is important to avoid adding large binary files directly to the repository.
+Large binary files added and removed through the history of a project will cause
+the repository to become bloated, take up too much disk space, require excessive
+time and bandwidth to download, etc.
+
+The solution to this problem adopted by this project is to store binary files,
+such as images, in a separate location outside the repository, then download the
+files at build time with CMake.
+
+A "content link" file containing an identifying MD5 checksum is stored in the
+Git repository at the path where the file would exist with the ".md5" extension
+added to the file.  CMake will find these content link files at build time,
+download them from a list of server resources, and create symlinks or copies of
+the original files at the corresponding location in the build tree.
+
+The Midas server at
+
+  http://midas3.kitware.com/midas/
+
+is an ITK community resource where any community member can upload binary data
+files.  This script automates the upload of data to the server and generation of
+the content link file.  Before using this script, please go to the Midas
+website, register, and join the ITK community.
+"""
+
+import argparse
+import hashlib
+import os
+import sys
+
+helper_modules_dir = os.path.join(os.path.abspath('@ITKExamples_SOURCE_DIR@'),
+    'Utilities')
+sys.path.insert(0, os.path.join(helper_modules_dir, 'requests'))
+sys.path.insert(0, os.path.join(helper_modules_dir, 'simplejson'))
+sys.path.insert(0, os.path.join(helper_modules_dir, 'pydas'))
+import pydas
+
+sys.path.insert(0, os.path.abspath(__file__))
+from CreateNewExample import get_group_and_module_from_class_name
+
+def run(input_file, output_file, folders, email=None, api_key=None):
+    # connect to Midas
+    midas_url = 'http://midas3.kitware.com/midas/'
+    if not api_key:
+        print('Please enter your login information for ' + midas_url)
+        pydas.login(url=midas_url, email=email)
+    else:
+        pydas.login(url=midas_url, email=email, api_key=api_key)
+    session = pydas.session
+    communicator = session.communicator
+
+    # get the MD5 checksum
+    print('Computing MD5 checksum...')
+    md5 = hashlib.md5()
+    for chunk in iter(lambda: input_file.read(128 * md5.block_size), b''):
+        md5.update(chunk)
+    md5hash = md5.hexdigest()
+    print('Checksum: ' + md5hash)
+
+    # upload to Midas
+    def get_child_folder(parent, child_name):
+        children = communicator.folder_children(session.token, parent['folder_id'])
+        for folder in children['folders']:
+            if folder['name'] == child_name:
+                return folder
+        return None
+    itk_community = communicator.get_community_by_name('ITK')
+    itk_public = get_child_folder(itk_community, 'Public')
+    itk_examples = get_child_folder(itk_public, 'ITKExamples')
+
+    current_folder = itk_examples
+    for folder in folders:
+        current_folder = get_child_folder(current_folder, folder)
+        if current_folder is None:
+            sys.stderr.write('Could not find folder ' + folder + '\n')
+            sys.exit(1)
+
+    # get the existing or create a new item to hold the file
+    item_id = None
+    if current_folder.has_key('items'):
+        for item in current_folder['items']:
+            if item['name'] == input_file.name:
+                item_id = item['item_id']
+                break
+
+    if item_id is None:
+        new_item = communicator.create_item(session.token, input_file.name,
+                current_folder['folder_id'])
+        item_id = new_item['item_id']
+
+    upload_token = communicator.generate_upload_token(session.token,
+            item_id,
+            input_file.name,
+            md5hash)
+    communicator.perform_upload(upload_token,
+            input_file.name,
+            item_id=item_id,
+            filepath=input_file.name)
+    input_file.close()
+
+    # write the content link file
+    with open(output_file, 'w') as fp:
+        fp.write(md5hash)
+        fp.write('\n')
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=description)
+    parser.add_argument('--api-key-file', '-k', type=argparse.FileType('r'),
+            help="A file that contains your Midas user's API key.")
+    parser.add_argument('--email', '-e',
+            help="Email address associated with your Midas account.")
+    parser.add_argument('--itk-source-dir', '-i',
+            help='Path to the ITK source tree.')
+    parser.add_argument('--class-name', action='store', dest='class_name',
+            help='Class name to be demonstrated (e.g. ImageToImageFilter).' )
+    parser.add_argument('--uncategorized', '-u', action='store_true',
+            help='Classify the file as Uncategorized.  If not set, --class-name'
+            + ' and --itk-source-dir must be set (preferred).')
+    parser.add_argument('--output-file', '-o',
+            help='Name of the output content link file containing the checksum.'
+            + ' Defaults to the input_file + .md5')
+    parser.add_argument('input_file', type=argparse.FileType('r'))
+    args = parser.parse_args()
+
+    if args.api_key_file:
+        api_key = api_key_file.readline()
+        api_key = api_key.strip()
+    else:
+        api_key = None
+
+    if args.output_file:
+        output_file = args.output_file
+    else:
+        output_file = args.input_file.name + '.md5'
+
+    if args.uncategorized:
+        folders = ['Uncategorized']
+    elif args.class_name and args.itk_source_dir:
+        group_and_module = get_group_and_module_from_class_name(args.itk_source_dir,
+            args.class_name)
+        if group_and_module['bool'] == False:
+            sys.stderr.write('The given --class-name was not found.\n')
+            sys.exit(1)
+        folders = []
+        folders.append(group_and_module['Group'])
+        folders.append(group_and_module['Module'])
+    else:
+        sys.stderr.write('Either --class-name and --itk-source-dir must be ' + \
+        'specified or --uncategorized must be set.\n')
+        sys.exit(1)
+
+    run(args.input_file, output_file, folders, email=args.email, api_key=api_key)
