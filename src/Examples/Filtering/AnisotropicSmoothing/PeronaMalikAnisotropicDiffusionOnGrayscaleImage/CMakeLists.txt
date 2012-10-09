@@ -11,12 +11,12 @@ target_link_libraries( PeronaMalikAnisotropicDiffusionOnGrayscaleImage ${ITK_LIB
 install( TARGETS PeronaMalikAnisotropicDiffusionOnGrayscaleImage
   DESTINATION bin/ITKExamples/Filtering/AnisotropicSmoothing
   COMPONENT Runtime
-)
+  )
 
 install( FILES PeronaMalikAnisotropicDiffusionOnGrayscaleImage.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/AnisotropicSmoothing/PeronaMalikAnisotropicDiffusionOnGrayscaleImage
   COMPONENT Code
-)
+  )
 
 enable_testing()
 add_test( NAME PeronaMalikAnisotropicDiffusionOnGrayscaleImageTest

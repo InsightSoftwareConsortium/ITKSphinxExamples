@@ -83,8 +83,10 @@ def run(input_file, output_file, folders, email=None, api_key=None):
 
     # get the existing or create a new item to hold the file
     item_id = None
-    if current_folder.has_key('items'):
-        for item in current_folder['items']:
+    current_folder_children = communicator.folder_children(session.token,
+            current_folder['folder_id'])
+    if current_folder_children.has_key('items'):
+        for item in current_folder_children['items']:
             if item['name'] == input_file.name:
                 item_id = item['item_id']
                 break
@@ -98,10 +100,13 @@ def run(input_file, output_file, folders, email=None, api_key=None):
             item_id,
             input_file.name,
             md5hash)
-    communicator.perform_upload(upload_token,
-            input_file.name,
-            item_id=item_id,
-            filepath=input_file.name)
+    if upload_token != "":
+        communicator.perform_upload(upload_token,
+                input_file.name,
+                item_id=item_id,
+                revision='head',
+                filepath=input_file.name)
+
     input_file.close()
 
     # write the content link file
@@ -130,7 +135,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.api_key_file:
-        api_key = api_key_file.readline()
+        api_key = args.api_key_file.readline()
         api_key = api_key.strip()
     else:
         api_key = None
