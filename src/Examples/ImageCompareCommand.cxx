@@ -120,7 +120,7 @@ int main(int argc, char **argv)
 
   if( !command.GetOptionWasSet("baselineImage") && !command.GetOptionWasSet("baselineImages") )
     {
-    std::cerr << "You must provide a -BaselineImage or -BaselineImages option" << std::endl;
+    std::cerr << "You must provide a --baseline-image or --baseline-images option" << std::endl;
     return EXIT_FAILURE;
     }
 
@@ -281,9 +281,9 @@ int RegressionTestImage (const char *testImageFilename, const char *baselineImag
 
   bool differenceFailed = false;
 
-  double averageIntensityDifference = diff->GetTotalDifference();
+  const double averageIntensityDifference = diff->GetTotalDifference();
 
-  unsigned long numberOfPixelsWithDifferences =
+  const unsigned long numberOfPixelsWithDifferences =
                         diff->GetNumberOfPixelsWithDifferences();
 
   if( averageIntensityDifference > 0.0 )

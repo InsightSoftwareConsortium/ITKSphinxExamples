@@ -72,7 +72,7 @@ function( compare_to_baseline example_name baseline_prefix )
   string( REPLACE Baseline "" test_image "${baseline_image}" )
   add_test( NAME ${example_name}TestBaselineComparison
     COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageCompareCommand" --test-image
-    "${test_image}" --baseline-image "${baseline_image}"
+    "${test_image}" --baseline-image "${baseline_image}" ${ARGN}
   )
   set_tests_properties( ${example_name}TestBaselineComparison
     PROPERTIES DEPENDS ${example_name}Test )
