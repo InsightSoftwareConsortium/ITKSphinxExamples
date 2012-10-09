@@ -75,9 +75,13 @@ int main(int argc, char **argv)
   command.SetOptionLongTag("baselineImage","baseline-image");
   command.AddOptionField("baselineImage","filename",MetaCommand::STRING,true);
 
+  command.SetParseFailureOnUnrecognizedOption( true );
 
-  command.Parse( argc, argv );
-
+  if( !command.Parse( argc, argv ) )
+    {
+    std::cerr << "Error during " << argv[0] << " command argument parsing." << std::endl;
+    return EXIT_FAILURE;
+    }
 
   double toleranceIntensity = 0.0;
   unsigned int  toleranceRadius = 0;
