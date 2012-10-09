@@ -250,7 +250,7 @@
 * ../ITK/Examples/Registration/ImageRegistration4.tcl
 * ../ITK/Examples/Registration/ImageRegistration16.cxx
 * ../ITK/Examples/Registration/ImageRegistration4.py
-* ../ITK/Examples/Registration/ImageRegistration2.cxx
+../ITK/Examples/Registration/ImageRegistration2.cxx
 * ../ITK/Examples/Registration/ImageRegistration19.cxx
 * ../ITK/Examples/Registration/ImageRegistration18.cxx
 * ../ITK/Examples/Registration/DeformableRegistration2.cxx

@@ -130,7 +130,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.api_key_file:
-        api_key = api_key_file.readline()
+        api_key = args.api_key_file.readline()
         api_key = api_key.strip()
     else:
         api_key = None
