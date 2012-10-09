@@ -54,8 +54,8 @@ macro( add_example example_name )
 endmacro()
 
 # For comparing example outputs to their regression baseline's.
-add_executable( ImageCompare ImageCompare.cxx )
-target_link_libraries( ImageCompare ${ITK_LIBRARIES} )
+add_executable( ImageCompareCommand ImageCompareCommand.cxx )
+target_link_libraries( ImageCompareCommand ${ITK_LIBRARIES} )
 
 # Creates a test that compares the output image of an example to its baseline
 # image.  The first argument is the example name.  It is assumed that the
@@ -71,7 +71,8 @@ function( compare_to_baseline example_name baseline_prefix )
   set( baseline_image "${CMAKE_CURRENT_BINARY_DIR}/${example_name}/${baseline_image_file}" )
   string( REPLACE Baseline "" test_image "${baseline_image}" )
   add_test( NAME ${example_name}TestBaselineComparison
-    COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageCompare" "${test_image}" "${baseline_image}"
+    COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageCompareCommand" --test-image
+    "${test_image}" --baseline-image "${baseline_image}"
   )
   set_tests_properties( ${example_name}TestBaselineComparison
     PROPERTIES DEPENDS ${example_name}Test )
