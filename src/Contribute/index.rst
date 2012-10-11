@@ -20,17 +20,17 @@ facets are important to the success of the project.
 .. toctree::
   :maxdepth: 2
 
-  write_a_new_example
-  contribute_with_web_interface
-  contribute_with_git
-  peer_review_with_gerrit
-  dashboard_submission
+  WriteANewExample
+  ContributeWithWebInterface
+  ContributeWithGit
+  PeerReviewWithGerrit
+  DashboardSubmission
 
 
-.. todo:: replace with http://itk.org/ITKExamples/
-.. _ITK Examples repository: http://mmmccormick.com/ITKExamples
+.. _ITK Examples repository: http://itk.org/ITKExamples
 .. _Git:                     http://git-scm.com/
 .. _reStructuredText:        http://docutils.sourceforge.net/rst.html
 .. _Sphinx:                  http://sphinx.pocoo.org/
 .. _Quick reStructuredText:  http://docutils.sourceforge.net/docs/user/rst/quickref.html
+.. todo:: replace with open.cdash.org
 .. _Dashboard:               http://mmmccormick.com/CDash/index.php?project=ITKExamples

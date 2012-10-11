@@ -9,10 +9,10 @@ Contents:
 .. toctree::
   :maxdepth: 2
 
-  Build/build
+  Build/Build
   Contribute/index
   Examples/index
-  download
+  Download
   Credits
 
 Index

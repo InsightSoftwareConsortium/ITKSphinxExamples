@@ -124,7 +124,7 @@ and cross-platform.
   supported, and the application integrates interface capabilities to biomedical
   research software and image informatics frameworks.
 
-.. figure:: slicer.png
+.. figure:: Slicer.png
   :alt: 3DSlicer
   :align: center
 
@@ -136,7 +136,7 @@ ImageViewer
   simple yet effect slice-based viewer works on 2D and 3D images and supports
   probing of data values.
 
-.. figure:: imageviewer.png
+.. figure:: ImageViewer.png
   :alt: ITKApps ImageViewer
   :align: center
 
@@ -147,7 +147,7 @@ ITK-SNAP
   ITK-SNAP_ is segmentation application, but it is also a nice general
   resource for visualization of the results of analysis.
 
-.. figure:: itksnap.png
+.. figure:: ITK-SNAP.png
   :alt: ITK-SNAP
   :align: center
 
@@ -158,7 +158,7 @@ MITK
   MITK_ is a free open-source software system for development of interactive
   medical image processing software.
 
-.. figure:: mitk.png
+.. figure:: MITK.png
   :alt: MITK
   :align: center
 
@@ -169,7 +169,7 @@ Paraview
   Paraview_ is a full-featured scientific visualizion GUI written with Qt_/VTK_.
   It has extensive parallel processing capabilities.
 
-.. figure:: paraview.png
+.. figure:: Paraview.png
   :alt: Paraview
   :align: center
 
@@ -182,7 +182,7 @@ QGoImageCompare
   interactively probe the location and value of pixels for both 2D and 3D
   datasets.
 
-.. figure:: qgoimagecompare.png
+.. figure:: QGoImageCompare.png
   :alt: QGoImageCompare
   :align: center
 
@@ -193,7 +193,7 @@ VV
   VV_ is an image viewer designed for fast and simple visualization of
   spatio-temporal images: 2D, 2D+t, 3D and 3D+t (or 4D) images.
 
-.. figure:: vv.png
+.. figure:: VV.png
   :alt: VV
   :align: center
 
