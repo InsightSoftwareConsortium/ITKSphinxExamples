@@ -20,4 +20,7 @@ install( FILES DelaunayConformEdgeFlipping.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME DelaunayConformEdgeFlippingTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DelaunayConformEdgeFlipping )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DelaunayConformEdgeFlipping
+  wave.vtk
+  DelaunayConformEdgeFlippingOutput.vtk
+)
