@@ -14,17 +14,17 @@ Flip the edges of one itk::QuadEdgeMesh to satisfy Delaunay condition.
 Results
 -------
 
-.. figure::
+.. figure:: InputMesh.png
   :scale: 50%
-  :alt: Input image
+  :alt: Input mesh
 
-  Input image
+  Input mesh
 
-.. figure::
+.. figure:: OutputMesh.png
   :scale: 50%
   :alt: Output image
 
-  Output image
+  Output mesh
 
 
 Code
