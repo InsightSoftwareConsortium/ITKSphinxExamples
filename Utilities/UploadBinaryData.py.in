@@ -44,8 +44,8 @@ import pydas
 sys.path.insert(0, os.path.abspath(__file__))
 from CreateNewExample import get_group_and_module_from_class_name
 
-def run(input_file, output_file, folders, email=None, api_key=None):
-    # connect to Midas
+
+def connect_to_midas(email=None, api_key=None):
     midas_url = 'http://midas3.kitware.com/midas/'
     if not api_key:
         print('Please enter your login information for ' + midas_url)
@@ -54,7 +54,10 @@ def run(input_file, output_file, folders, email=None, api_key=None):
         pydas.login(url=midas_url, email=email, api_key=api_key)
     session = pydas.session
     communicator = session.communicator
+    return session, communicator
 
+
+def upload_to_midas(input_file, output_file, folders, session, communicator):
     # get the MD5 checksum
     print('Computing MD5 checksum...')
     md5 = hashlib.md5()
@@ -82,27 +85,28 @@ def run(input_file, output_file, folders, email=None, api_key=None):
             sys.exit(1)
 
     # get the existing or create a new item to hold the file
+    item_name = os.path.basename(input_file.name)
     item_id = None
     current_folder_children = communicator.folder_children(session.token,
             current_folder['folder_id'])
     if current_folder_children.has_key('items'):
         for item in current_folder_children['items']:
-            if item['name'] == input_file.name:
+            if item['name'] == item_name:
                 item_id = item['item_id']
                 break
 
     if item_id is None:
-        new_item = communicator.create_item(session.token, input_file.name,
+        new_item = communicator.create_item(session.token, item_name,
                 current_folder['folder_id'])
         item_id = new_item['item_id']
 
     upload_token = communicator.generate_upload_token(session.token,
             item_id,
-            input_file.name,
+            item_name,
             md5hash)
     if upload_token != "":
         communicator.perform_upload(upload_token,
-                input_file.name,
+                item_name,
                 item_id=item_id,
                 revision='head',
                 filepath=input_file.name)
@@ -113,6 +117,19 @@ def run(input_file, output_file, folders, email=None, api_key=None):
     with open(output_file, 'w') as fp:
         fp.write(md5hash)
         fp.write('\n')
+
+
+def run(input_files, output_files, folders,
+        email=None, api_key=None,
+        delete=False):
+    session, communicator = connect_to_midas(email, api_key)
+
+    for ii in range(len(input_files)):
+        upload_to_midas(input_files[ii], output_files[ii], folders,
+                session, communicator)
+
+        if delete:
+            os.remove(input_files[ii].name)
 
 
 if __name__ == '__main__':
@@ -130,8 +147,12 @@ if __name__ == '__main__':
             + ' and --itk-source-dir must be set (preferred).')
     parser.add_argument('--output-file', '-o',
             help='Name of the output content link file containing the checksum.'
-            + ' Defaults to the input_file + .md5')
-    parser.add_argument('input_file', type=argparse.FileType('r'))
+            + ' Defaults to the input_file + .md5. This option should be '
+            + 'specified after the input files.', nargs='+',
+            dest='output_files')
+    parser.add_argument('input_files', type=argparse.FileType('r'), nargs='+')
+    parser.add_argument('--delete', '-d', action='store_true',
+            help='Delete the input files after upload.')
     args = parser.parse_args()
 
     if args.api_key_file:
@@ -140,10 +161,12 @@ if __name__ == '__main__':
     else:
         api_key = None
 
-    if args.output_file:
-        output_file = args.output_file
-    else:
-        output_file = args.input_file.name + '.md5'
+    output_files = []
+    for ii in range(len(args.input_files)):
+        if args.output_files and len(args.output_files) > ii:
+            output_files.append(args.output_files[ii])
+        else:
+            output_files.append(args.input_files[ii].name + '.md5')
 
     if args.uncategorized:
         folders = ['Uncategorized']
@@ -161,4 +184,15 @@ if __name__ == '__main__':
         'specified or --uncategorized must be set.\n')
         sys.exit(1)
 
-    run(args.input_file, output_file, folders, email=args.email, api_key=api_key)
+    # Check to see if the file is in the source tree, and as user if they want
+    # to delete it.
+    delete = args.delete
+    input_abspath = os.path.abspath(args.input_files[0].name)
+    if input_abspath.find('ITKExamples') != -1:
+        choice = raw_input('Delete input files after upload? [Ny]: ')
+        if choice.lower().strip() == 'y':
+            delete = True
+
+    run(args.input_files, output_files, folders,
+        email=args.email, api_key=api_key,
+        delete=delete)
