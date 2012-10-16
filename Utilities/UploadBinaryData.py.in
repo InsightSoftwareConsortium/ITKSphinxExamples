@@ -102,7 +102,7 @@ def upload_to_midas(input_file, output_file, folders, session, communicator):
 
     upload_token = communicator.generate_upload_token(session.token,
             item_id,
-            input_file.name,
+            item_name,
             md5hash)
     if upload_token != "":
         communicator.perform_upload(upload_token,
@@ -119,12 +119,17 @@ def upload_to_midas(input_file, output_file, folders, session, communicator):
         fp.write('\n')
 
 
-def run(input_files, output_files, folders, email=None, api_key=None):
+def run(input_files, output_files, folders,
+        email=None, api_key=None,
+        delete=False):
     session, communicator = connect_to_midas(email, api_key)
 
     for ii in range(len(input_files)):
         upload_to_midas(input_files[ii], output_files[ii], folders,
                 session, communicator)
+
+        if delete:
+            os.remove(input_files[ii].name)
 
 
 if __name__ == '__main__':
@@ -146,6 +151,8 @@ if __name__ == '__main__':
             + 'specified after the input files.', nargs='+',
             dest='output_files')
     parser.add_argument('input_files', type=argparse.FileType('r'), nargs='+')
+    parser.add_argument('--delete', '-d', action='store_true',
+            help='Delete the input files after upload.')
     args = parser.parse_args()
 
     if args.api_key_file:
@@ -177,4 +184,15 @@ if __name__ == '__main__':
         'specified or --uncategorized must be set.\n')
         sys.exit(1)
 
-    run(args.input_files, output_files, folders, email=args.email, api_key=api_key)
+    # Check to see if the file is in the source tree, and as user if they want
+    # to delete it.
+    delete = args.delete
+    input_abspath = os.path.abspath(args.input_files[0].name)
+    if input_abspath.find('ITKExamples') != -1:
+        choice = raw_input('Delete input files after upload? [Ny]: ')
+        if choice.lower().strip() == 'y':
+            delete = True
+
+    run(args.input_files, output_files, folders,
+        email=args.email, api_key=api_key,
+        delete=delete)
