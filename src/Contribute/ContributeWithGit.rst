@@ -22,7 +22,7 @@ Once you are done, commit your changes as follows::
   git commit -a
 
 
-Merge your changes onto master, and push your changes to the main repository ::
+Merge your changes onto master, and push your changes to the main repository::
 
   git checkout master
   git pull origin master
@@ -34,7 +34,7 @@ Create a new example
 --------------------
 
 To create a new example, you can make use of the Python script located in the
-binary tree (/path/to/ITKExamples-build/Utilities) ::
+binary tree (/path/to/ITKExamples-build/Utilities)::
 
   cd /path/to/ITKExamples-build/Utilities
   ./CreateNewExample.py /path/to/source/ITK

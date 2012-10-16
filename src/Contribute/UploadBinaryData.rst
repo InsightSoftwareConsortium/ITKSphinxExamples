@@ -97,8 +97,8 @@ summary of the usage is::
   usage: UploadBinaryData.py [-h] [--api-key-file API_KEY_FILE] [--email EMAIL]
                              [--itk-source-dir ITK_SOURCE_DIR]
                              [--class-name CLASS_NAME] [--uncategorized]
-                             [--output-file OUTPUT_FILE]
-                             input_file
+                             [--output-file OUTPUT_FILES [OUTPUT_FILES ...]]
+                             input_files [input_files ...]
 
 Note that the *API_KEY_FILE* is a simple plain text file that contains the Midas
 API key for your account on the first line.  The API key can be found in the web
