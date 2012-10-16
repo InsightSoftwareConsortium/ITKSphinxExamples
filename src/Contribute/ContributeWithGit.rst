@@ -33,7 +33,7 @@ Merge your changes onto master, and push your changes to the main repository ::
 Create a new example
 --------------------
 
-To create a new example, you can make use of the python script located in the
+To create a new example, you can make use of the Python script located in the
 binary tree (/path/to/ITKExamples-build/Utilities) ::
 
   cd /path/to/ITKExamples-build/Utilities
@@ -45,3 +45,6 @@ Note that the generated files are then located based on the group, module and
 class name to be demonstrated. For instance an example which would demonstrate
 the usage of :itkdox:`itk::Image` will be generated in
 ``src/Examples/Core/Common/``.
+
+Please do not add images directly to the repository.  Instead, use the
+:ref:`content link system <upload-binary-data>`.

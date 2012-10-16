@@ -23,6 +23,7 @@ facets are important to the success of the project.
   WriteANewExample
   ContributeWithWebInterface
   ContributeWithGit
+  UploadBinaryData
   PeerReviewWithGerrit
   DashboardSubmission
 
