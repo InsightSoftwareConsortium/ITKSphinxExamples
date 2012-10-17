@@ -103,11 +103,6 @@ if( BUILD_DOCUMENTATION )
   )
   add_dependencies( gitstats copy_sources )
 
-  configure_file( ${ITKExamples_SOURCE_DIR}/Utilities/CodeSwarm.sh.in
-    ${ITKExamples_BINARY_DIR}/Utilities/CodeSwarm.sh
-    @ONLY
-  )
-
   # A high level target that the individual targets depend on.
   add_custom_target( CreateTarballs ALL
     ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
@@ -191,14 +186,6 @@ if( BUILD_EXECUTABLES )
   add_subdirectory( src )
 endif()
 
-configure_file( ${CMAKE_SOURCE_DIR}/Utilities/CreateNewExample.py.in
-  ${CMAKE_BINARY_DIR}/Utilities/CreateNewExample.py
-  @ONLY
-  )
-
-configure_file( ${CMAKE_SOURCE_DIR}/Utilities/UploadBinaryData.py.in
-  ${CMAKE_BINARY_DIR}/Utilities/UploadBinaryData.py
-  @ONLY
-  )
+add_subdirectory( Utilities )
 
 include( CPack )

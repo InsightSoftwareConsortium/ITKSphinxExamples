@@ -184,7 +184,7 @@ if __name__ == '__main__':
         'specified or --uncategorized must be set.\n')
         sys.exit(1)
 
-    # Check to see if the file is in the source tree, and as user if they want
+    # Check to see if the file is in the source tree, and ask the user if they want
     # to delete it.
     delete = args.delete
     input_abspath = os.path.abspath(args.input_files[0].name)

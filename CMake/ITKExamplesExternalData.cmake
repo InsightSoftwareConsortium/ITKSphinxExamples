@@ -35,9 +35,6 @@ list(APPEND ExternalData_URL_TEMPLATES
 
   # Data published by MIDAS
   "http://midas3.kitware.com/midas/api/rest?method=midas.bitstream.download&checksum=%(hash)"
-
-  # Data published on dropbox
-  "http://dl.dropbox.com/u/61255957/%(algo)/%(hash)"
   )
 
 # Tell ExternalData commands to transform raw files to content links.

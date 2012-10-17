@@ -1,4 +1,4 @@
-file( DOWNLOAD http://dl.dropbox.com/u/15135983/InsightDoxygen.tag.tar.bz2
-  ${ITKDoxygenTAG_TEMP_DIR}/InsightDoxygen.tag.tar.bz2 SHOW_PROGRESS
+file( DOWNLOAD http://public.kitware.com/pub/itk/NightlyDoxygen/InsightDoxygenDocTag.gz
+  ${ITKDoxygenTAG_TEMP_DIR}/InsightDoxygen.tag.gz SHOW_PROGRESS
   )
 
