@@ -1,3 +1,3 @@
-file( DOWNLOAD http://dl.dropbox.com/u/15135983/itk-doxygen.tar.bz2
-  ${ITKDoxygen_TEMP_DIR}/itk-doxygen.tar.bz2 SHOW_PROGRESS
+file( DOWNLOAD http://public.kitware.com/pub/itk/NightlyDoxygen/InsightDoxygenDocHtml.tar.gz
+  ${ITKDoxygen_TEMP_DIR}/itk-doxygen.tar.gz SHOW_PROGRESS
   )
