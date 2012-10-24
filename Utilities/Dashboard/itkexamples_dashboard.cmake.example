@@ -3,7 +3,8 @@ set(CTEST_SITE "uberbox")
 
 # A description of the build that identifies it on the dashboard.
 # Usually it should contain the platform and a compiler description.
-set(CTEST_BUILD_NAME "linux-gcc")
+# Please end the name with "Examples".
+set(CTEST_BUILD_NAME "linux-gcc Examples")
 
 # This will set the CMAKE_BUILD_TYPE.
 set(CTEST_BUILD_CONFIGURATION Debug)
