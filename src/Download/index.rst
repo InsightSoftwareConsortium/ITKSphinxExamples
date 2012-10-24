@@ -1,0 +1,35 @@
+Download
+========
+
+Archives in various formats
+---------------------------
+
+- HTML
+- PDF
+- Text
+
+
+Individual examples
+-------------------
+
+To download the code, data, and documentation for an individual example, click
+the **Packed as .zip** or **Packed as .tar.gz** in the sidebar of an example's
+webpage.
+
+.. image:: ExampleTarball.png
+  :align: center
+  :alt: Location of the tarball links for an example.
+
+Once an example tarball has been downloaded and unpacked, follow the additional
+documentation on :ref:`how to build and run an example <build-individual-examples>`.
+
+Source repository
+-----------------
+
+The entire source tree can be downloaded with Git_:
+
+.. code-block:: bash
+
+  git clone https://github.com/InsightSoftwareConsortium/ITKExamples.git
+
+.. _Git: http://git-scm.com/
