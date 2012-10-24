@@ -1,6 +1,8 @@
 How to build and visualize
 ==========================
 
+.. _build-individual-examples:
+
 Build individual examples
 -------------------------
 
