@@ -35,6 +35,7 @@
 #   dashboard_do_coverage     = True to enable coverage (ex: gcov)
 #   dashboard_do_memcheck     = True to enable memcheck (ex: valgrind)
 #   dashboard_no_clean        = True to skip build tree wipeout
+#   dashboard_superbuild      = True to use the Superbuild
 #   CTEST_UPDATE_COMMAND      = path to svn command-line client
 #   CTEST_BUILD_FLAGS         = build tool arguments (ex: -j2)
 #   CTEST_TEST_TIMEOUT        = Per-test timeout length
@@ -136,11 +137,11 @@ if(NOT DEFINED dashboard_git_url)
   set(dashboard_git_url "https://github.com/InsightSoftwareConsortium/ITKExamples.git")
 endif()
 if(NOT DEFINED dashboard_git_branch)
-  if("${dashboard_model}" STREQUAL "Nightly")
-    set(dashboard_git_branch nightly-master)
-  else()
+  #if("${dashboard_model}" STREQUAL "Nightly")
+  #  set(dashboard_git_branch nightly-master)
+  #else()
     set(dashboard_git_branch master)
-  endif()
+  #endif()
 endif()
 if(NOT DEFINED dashboard_git_crlf)
   if(UNIX)
@@ -244,8 +245,8 @@ endif()
   # CTestConfig.cmake info here.
   set(CTEST_NIGHTLY_START_TIME "01:00:00 UTC")
   set(CTEST_DROP_METHOD "http")
-  set(CTEST_DROP_SITE "mmmccormick.com")
-  set(CTEST_DROP_LOCATION "/CDash/submit.php?project=ITKExamples")
+  set(CTEST_DROP_SITE "open.cdash.org")
+  set(CTEST_DROP_LOCATION "/submit.php?project=Insight")
   set(CTEST_DROP_SITE_CDASH TRUE)
 endif()
 
@@ -397,8 +398,13 @@ while(NOT dashboard_done)
     set(options
       -DCTEST_USE_LAUNCHERS=${CTEST_USE_LAUNCHERS}
       )
-    ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}"
-      SOURCE "${CTEST_SOURCE_DIRECTORY}" OPTIONS "${options}")
+    if( dashboard_superbuild )
+      ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}"
+        SOURCE "${CTEST_SOURCE_DIRECTORY}/Superbuild")
+    else()
+      ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}"
+        SOURCE "${CTEST_SOURCE_DIRECTORY}" OPTIONS "${options}")
+    endif()
     ctest_read_custom_files(${CTEST_BINARY_DIRECTORY})
 
     if(NOT dashboard_no_submit)
@@ -437,7 +443,11 @@ while(NOT dashboard_done)
       if(COMMAND dashboard_hook_test)
         dashboard_hook_test()
       endif()
-      ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}" INCLUDE_LABEL "^${subproj}$" ${CTEST_TEST_ARGS})
+      if(dashboard_superbuild)
+        ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}/ITKExamples-build" INCLUDE_LABEL "^${subproj}$" ${CTEST_TEST_ARGS})
+      else()
+        ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}" INCLUDE_LABEL "^${subproj}$" ${CTEST_TEST_ARGS})
+      endif()
       set(safe_message_skip 1) # Block further messages
       if(NOT dashboard_no_submit)
         ctest_submit(PARTS Test)
@@ -485,7 +495,11 @@ while(NOT dashboard_done)
     if(COMMAND dashboard_hook_test)
       dashboard_hook_test()
     endif()
-    ctest_test(${CTEST_TEST_ARGS})
+    if(dashboard_superbuild)
+      ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}/ITKExamples-build" ${CTEST_TEST_ARGS})
+    else()
+      ctest_test(${CTEST_TEST_ARGS})
+    endif()
     set(safe_message_skip 1) # Block further messages
     if(NOT dashboard_no_submit)
       ctest_submit(PARTS Test)
