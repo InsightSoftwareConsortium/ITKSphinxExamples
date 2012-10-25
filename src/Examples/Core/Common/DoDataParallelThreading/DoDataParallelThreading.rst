@@ -1,4 +1,4 @@
-Do data parallel threading
+Do Data Parallel Threading
 ==========================
 
 .. index::
