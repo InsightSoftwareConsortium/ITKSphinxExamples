@@ -22,7 +22,7 @@ Nightly submission
 You can volunteer to submit nightly testing results that ensure repository
 activity during the day will allow breakage on your system to go unnoticed.
 
-Step 1: Setup you build directory
+Step 1: Setup the build directory
 .................................
 
 You will need a directory with sufficient disk space to hold the project source
@@ -57,6 +57,9 @@ You *must* edit this file to describe your local system.
 Step 3: Configure your system to run the script on a daily basis
 ................................................................
 
+Linux or Mac
+^^^^^^^^^^^^
+
 First, test the script to ensure that it runs correctly::
 
   ctest -S ./itkexamples_dashboard.cmake -V -A
@@ -70,6 +73,35 @@ crontab::
 The following line will run the script every day at 3 AM::
 
   0 3 * * * ctest -S /home/luis/dashboards/itkexamples_dashboard.cmake -A &> /dev/null
+
+Windows
+^^^^^^^
+
+In windows, the scheduler can be accessed by entering the *Schedule tasks*
+program in the Control Panel.
+
+It may be useful to put all the nightly dashboards in a batch script and run the
+batch script daily.  When creating the new task, the Action associate with the
+task is to *Start a program*.  This script could be placed at::
+
+  C:\Dashboards\run_dashboard.bat
+
+where `run_dashboard.bat` contains::
+
+  call ctest -S C:\Dashboards\itkexamples_dashboard.cmake
+
+To schedule your Windows box to reboot nightly, set up a task that runs::
+
+  C:\Windows\System32\shutdown.exe /r /t 60 /f
+
+If you're automatically rebooting your computer every night, you also need to
+make sure the computer automatically logs in as the dashboard user when it boots
+back up.  To do this
+
+1. Enter `control userpasswords2` in the *Start*, *Run...* menu entry or a *cmd.exe* shell.
+2. Select the account of the user you want to automatically login.
+3. Uncheck the box labelled *Users must enter a user name and password to use this computer*
+4. Click OK.
 
 Thank you for contributing to the quality of the ITK Examples!
 
