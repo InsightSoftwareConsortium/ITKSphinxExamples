@@ -4,7 +4,7 @@ set(CTEST_SITE "uberbox")
 # A description of the build that identifies it on the dashboard.
 # Usually it should contain the platform and a compiler description.
 # Please end the name with "Examples".
-set(CTEST_BUILD_NAME "linux-gcc Examples")
+set(CTEST_BUILD_NAME "Linux GCC Examples")
 
 # This will set the CMAKE_BUILD_TYPE.
 set(CTEST_BUILD_CONFIGURATION Debug)
@@ -26,5 +26,5 @@ get_filename_component(CTEST_DASHBOARD_ROOT "${CTEST_SCRIPT_DIRECTORY}/dashboard
 # Finally, include the rest of the script that will download, build, and submit the
 # results.  For more configuration variables, see the comments at the top of
 # this script.
-#set(CTEST_SOURCE_DIRECTORY "${CTEST_DASHBOARD_ROOT}/ITKExamples/Superbuild")
+#set(dashboard_superbuild 1)
 include(${CTEST_SCRIPT_DIRECTORY}/itkexamples_common.cmake)
