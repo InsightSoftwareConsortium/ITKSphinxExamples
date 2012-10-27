@@ -33,5 +33,4 @@ facets are important to the success of the project.
 .. _reStructuredText:        http://docutils.sourceforge.net/rst.html
 .. _Sphinx:                  http://sphinx.pocoo.org/
 .. _Quick reStructuredText:  http://docutils.sourceforge.net/docs/user/rst/quickref.html
-.. todo:: replace with open.cdash.org
-.. _Dashboard:               http://mmmccormick.com/CDash/index.php?project=ITKExamples
+.. _Dashboard:               http://open.cdash.org/index.php?project=Insight&filtercount=1&showfilters=1&field1=groupname/string&compare1=63&value1=Examples
