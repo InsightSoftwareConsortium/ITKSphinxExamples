@@ -106,5 +106,5 @@ back up.  To do this
 Thank you for contributing to the quality of the ITK Examples!
 
 .. _CDash:                 http://cdash.org/
-.. _ITKExamples dashboard: http://mmmccormick.com/CDash/index.php?project=ITKExamples
+.. _ITKExamples dashboard: http://open.cdash.org/index.php?project=Insight&filtercount=1&showfilters=1&field1=groupname/string&compare1=63&value1=Examples
 .. _setup a cronjob:       http://en.wikipedia.org/wiki/Cron
