@@ -1,6 +1,6 @@
-add_example( ComputeGradientMagnitudeOfGrayscaleImage )
-compare_to_baseline( ComputeGradientMagnitudeOfGrayscaleImage
-  ComputeGradientMagnitudeOfGrayscaleImageTestOutput )
-add_example( ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImage )
-compare_to_baseline( ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImage
-  ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImageTestOutput )
+add_example( ComputeGradientMagnitude )
+compare_to_baseline( ComputeGradientMagnitude
+  ComputeGradientMagnitudeTestOutput )
+add_example( ComputeGradientMagnitudeRecursiveGaussian )
+compare_to_baseline( ComputeGradientMagnitudeRecursiveGaussian
+  ComputeGradientMagnitudeRecursiveGaussianTestOutput )
