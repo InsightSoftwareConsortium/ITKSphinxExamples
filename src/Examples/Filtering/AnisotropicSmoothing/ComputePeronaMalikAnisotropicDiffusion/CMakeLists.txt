@@ -25,5 +25,5 @@ add_test( NAME ComputePeronaMalikAnisotropicDiffusionTest
   ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
   ComputePeronaMalikAnisotropicDiffusionTest.mha
   5
-  1.0
+  2.0
   )

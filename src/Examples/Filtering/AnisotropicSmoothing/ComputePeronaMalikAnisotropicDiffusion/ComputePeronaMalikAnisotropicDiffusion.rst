@@ -13,17 +13,13 @@ Perona Malik Anisotropic Diffusion for scalar valued images.
 Results
 -------
 
-.. figure::
+.. figure:: ComputePeronaMalikAnisotropicDiffusionComparison.png
   :scale: 50%
-  :alt: Input image
+  :alt: Anisotropic diffusion comparison.
 
-  Input image
+  Before anisotropic diffusion (left) and after anisotropic diffusion
+  (right).
 
-.. figure::
-  :scale: 50%
-  :alt: Output image
-
-  Output image
 
 
 Code
