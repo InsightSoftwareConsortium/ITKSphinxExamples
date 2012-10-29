@@ -32,7 +32,7 @@ Code
 C++
 ...
 
-.. literalinclude:: PeronaMalikAnisotropicDiffusionOnGrayscaleImage.cxx
+.. literalinclude:: ComputePeronaMalikAnisotropicDiffusion.cxx
 
 
 Classes demonstrated
