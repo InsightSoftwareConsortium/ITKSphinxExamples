@@ -19,7 +19,7 @@ Results
 
   Input image
 
-.. figure:: ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImageTestOutput.png
+.. figure:: ComputeGradientMagnitudeRecursiveGaussianTestOutputBaseline.png
   :scale: 50%
   :alt: Output image
 
@@ -32,7 +32,7 @@ Code
 C++
 ...
 
-.. literalinclude:: ComputeGradientMagnitudeRecursiveGaussianOfGrayscaleImage.cxx
+.. literalinclude:: ComputeGradientMagnitudeRecursiveGaussian.cxx
 
 
 Classes demonstrated

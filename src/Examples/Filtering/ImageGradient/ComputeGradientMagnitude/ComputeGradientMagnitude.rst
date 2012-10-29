@@ -19,7 +19,7 @@ Results
 
   Input image
 
-.. figure:: ComputeGradientMagnitudeOfGrayscaleImageTestOutput.png
+.. figure:: ComputeGradientMagnitudeTestOutputBaseline.png
   :scale: 50%
   :alt: Output image
 
@@ -32,7 +32,7 @@ Code
 C++
 ...
 
-.. literalinclude:: ComputeGradientMagnitudeOfGrayscaleImage.cxx
+.. literalinclude:: ComputeGradientMagnitude.cxx
 
 
 Classes demonstrated
