@@ -61,9 +61,9 @@ typedef std::map< CELL_TYPE, unsigned int > CellCountType;
 // ThreadedIteratorRangePartitioner and the ThreadedImageRegionPartitioner,
 // respectively.
 
-template< class TAssociate > class ComputeCellCountThreader :
-public
-itk::DomainThreader< itk::ThreadedIndexedContainerPartitioner, TAssociate >
+template< class TAssociate >
+class ComputeCellCountThreader :
+  public itk::DomainThreader< itk::ThreadedIndexedContainerPartitioner, TAssociate >
 {
 public:
   // Standard ITK typedefs.
