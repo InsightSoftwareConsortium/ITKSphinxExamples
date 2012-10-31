@@ -7,20 +7,19 @@ Pad An Image By Mirroring
 Synopsis
 --------
 
-
 Pad an image using mirroring over the boundaries
 
 
 Results
 -------
 
-.. figure::
+.. figure:: Gourds.png
   :scale: 50%
   :alt: Input image
 
   Input image
 
-.. figure::
+.. figure:: PadAnImageByMirroringOutputBaseline.png
   :scale: 50%
   :alt: Output image
 
