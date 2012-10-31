@@ -17,17 +17,17 @@ Rigid registration between two modalities with a Viola-Wells like mutual informa
 Results
 -------
 
-.. figure:: PerformMultiModalityRegistrationWithViolaWellsMutualInformationInputImagesFigure.png
+.. figure:: PerformMultiModalityRegistrationWithMutualInformationInputImagesFigure.png
   :alt: Input images
 
   Input fixed image (left) and moving image (right);
 
-.. figure:: PerformMultiModalityRegistrationWithViolaWellsMutualInformationOutputBaseline.png
+.. figure:: PerformMultiModalityRegistrationWithMutualInformationOutputBaseline.png
   :alt: Output image
 
   Output registered image.
 
-.. figure:: PerformMultiModalityRegistrationWithViolaWellsMutualInformationCheckerboardsFigure.png
+.. figure:: PerformMultiModalityRegistrationWithMutualInformationCheckerboardsFigure.png
   :alt: Checkerboards before and after.
 
   Fixed/moving image checkerboard before (left) and after (right).
@@ -38,7 +38,7 @@ Code
 C++
 ...
 
-.. literalinclude:: PerformMultiModalityRegistrationWithViolaWellsMutualInformation.cxx
+.. literalinclude:: PerformMultiModalityRegistrationWithMutualInformation.cxx
 
 
 Classes demonstrated
