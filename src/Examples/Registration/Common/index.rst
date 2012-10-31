@@ -4,4 +4,4 @@ Common
 .. toctree::
   :maxdepth: 2
 
-  PerformMultiModalityRegistrationWithViolaWellsMutualInformation/PerformMultiModalityRegistrationWithViolaWellsMutualInformation.rst
+  PerformMultiModalityRegistrationWithMutualInformation/PerformMultiModalityRegistrationWithMutualInformation.rst
