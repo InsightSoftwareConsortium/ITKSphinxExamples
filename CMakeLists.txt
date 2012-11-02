@@ -127,14 +127,24 @@ if( BUILD_DOCUMENTATION )
   option( DOC_WITH_LOCAL_DOXYGEN "Generate documentation with local doxygen" OFF )
   mark_as_advanced( DOC_WITH_LOCAL_DOXYGEN )
 
-  Sphinx_add_targets( build ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
+  set( sphinx_target_base_name build )
+  Sphinx_add_targets( ${sphinx_target_base_name} ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES} )
 
   if( ${SPHINX_HTML_OUTPUT} )
     install( DIRECTORY ${SPHINX_DESTINATION}/html
       DESTINATION share/ITKExamples/doc
       COMPONENT Doc
       PATTERN "${SPHINX_DESTINATION}/html/*"
-    )
+      )
+    add_custom_command(TARGET ${sphinx_target_base_name}_html
+      POST_BUILD
+      COMMAND ${PYTHON_EXECUTABLE} 
+        ${ITKExamples_SOURCE_DIR}/Utilities/DocumentationTarball.py
+        ${ITKExamples_BINARY_DIR}/html
+        ${ITKExamples_BINARY_DIR}/ITKExamples-${ITKExamples_RELEASE_VERSION}-html
+      WORKING_DIRECTORY ${ITKExamples_BINARY_DIR}/html
+      COMMENT "Creating html tarballs..."
+      )
   endif()
 
   if( ${SPHINX_LATEX_OUTPUT} )
