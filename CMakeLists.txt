@@ -140,10 +140,16 @@ if( BUILD_DOCUMENTATION )
       POST_BUILD
       COMMAND ${PYTHON_EXECUTABLE} 
         ${ITKExamples_SOURCE_DIR}/Utilities/DocumentationTarball.py
-        ${ITKExamples_BINARY_DIR}/html
+        ${SPHINX_DESTINATION}/html
         ${ITKExamples_BINARY_DIR}/ITKExamples-${ITKExamples_RELEASE_VERSION}-html
       WORKING_DIRECTORY ${ITKExamples_BINARY_DIR}/html
       COMMENT "Creating html tarballs..."
+      )
+    install( FILES
+      ${ITKExamples_BINARY_DIR}/ITKExamples-${ITKExamples_RELEASE_VERSION}-html.tar.gz
+      ${ITKExamples_BINARY_DIR}/ITKExamples-${ITKExamples_RELEASE_VERSION}-html.zip
+      DESTINATION share/ITKExamples/doc/html
+      COMPONENT Doc
       )
   endif()
 

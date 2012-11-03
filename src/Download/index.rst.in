@@ -4,10 +4,12 @@ Download
 Archives in various formats
 ---------------------------
 
-- HTML
+The complete set of examples can be downloaded in various formats:
+
+- `HTML (Packed as .tar.gz) <ITKExamples-@ITKExamples_RELEASE_VERSION@-html.tar.gz>`_
+- `HTML (Packed as .zip)    <ITKExamples-@ITKExamples_RELEASE_VERSION@-html.zip>`_
 - PDF
 - Text
-
 
 Individual examples
 -------------------
