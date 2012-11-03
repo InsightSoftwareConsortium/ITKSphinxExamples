@@ -47,7 +47,7 @@ Implemented
 ^^^^^^^^^^^
 
 - Stored and editable in Git_ version control.
-- HTML / PDF output.
+- HTML / PDF / EPUB output.
 - CTest unit testing.
 - CMake ExternalData for binary data storage.
 - Individual examples can be downloaded independently, and easily built/executed/hacked.
@@ -85,6 +85,8 @@ If building the documentation:
 - Sphinx_
 - gnuplot_
 
+PDF generation requires a TeX distribution like `TeX Live`_ or MiKTeX_.
+
 Development setup
 ------------------
 
@@ -101,3 +103,5 @@ Run the bash scipt SetupForDevelopment.sh::
 .. _Github Issues: https://github.com/InsightSoftwareConsortium/ITKExamples/issues?milestone=&labels=&state=open
 .. _Python: http://python.org/
 .. _gnuplot: http://www.gnuplot.info/
+.. _TeX Live: http://www.tug.org/texlive/
+.. _MiKTeX: http://miktex.org/
