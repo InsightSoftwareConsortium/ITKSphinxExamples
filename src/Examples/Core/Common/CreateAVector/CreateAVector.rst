@@ -7,15 +7,14 @@ Create A Vector
 Synopsis
 --------
 
-
 Create a Vector
 
 
 Results
 -------
 
-
 Output::
+
   v: [1, 2, 3]
 
 Code
