@@ -178,12 +178,25 @@ if( BUILD_DOCUMENTATION )
         WORKING_DIRECTORY ${SPHINX_DESTINATION}/latex
         COMMENT "Building PDF"
         )
-
-    install( FILES ${SPHINX_DESTINATION}/latex/ITKExamples.pdf
+    install( FILES ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.pdf
       DESTINATION share/ITKExamples/doc/pdf
       COMPONENT Doc
       )
     endif()
+  endif()
+
+  if( ${SPHINX_EPUB_OUTPUT} )
+    add_custom_command( TARGET ${sphinx_target_base_name}_epub
+      POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E copy
+        ${SPHINX_DESTINATION}/epub/ITKExamples.epub
+        ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.epub
+        COMMENT "Copying EPUB"
+        )
+    install( FILES ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.epub
+      DESTINATION share/ITKExamples/doc/epub
+      COMPONENT Doc
+      )
   endif()
 
   if( DOC_WITH_LOCAL_DOXYGEN )
