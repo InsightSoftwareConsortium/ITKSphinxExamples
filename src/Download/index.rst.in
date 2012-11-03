@@ -8,7 +8,7 @@ The complete set of examples can be downloaded in various formats:
 
 - `HTML (Packed as .tar.gz) <ITKExamples-@ITKExamples_RELEASE_VERSION@-html.tar.gz>`_
 - `HTML (Packed as .zip)    <ITKExamples-@ITKExamples_RELEASE_VERSION@-html.zip>`_
-- PDF
+- `PDF                      <ITKExamples-@ITKExamples_RELEASE_VERSION@.pdf>`_
 - Text
 
 Individual examples
@@ -18,9 +18,11 @@ To download the code, data, and documentation for an individual example, click
 the **Packed as .zip** or **Packed as .tar.gz** in the sidebar of an example's
 webpage.
 
-.. image:: ExampleTarball.png
+.. figure:: ExampleTarball.png
   :align: center
   :alt: Location of the tarball links for an example.
+
+  Links to download individual examples.
 
 Once an example tarball has been downloaded and unpacked, follow the additional
 documentation on :ref:`how to build and run an example <build-individual-examples>`.

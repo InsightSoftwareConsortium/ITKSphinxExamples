@@ -162,16 +162,19 @@ if( BUILD_DOCUMENTATION )
       message("pdflatex compiler was not found. Please pass to advanced mode and provide its full path")
     else()
       # Needs to be executed twice to get table of contents.
-      add_custom_command( TARGET build_latex
+      add_custom_command( TARGET ${sphinx_target_base_name}_latex
         POST_BUILD
         COMMAND ${PDFLATEX_COMPILER}
           ${SPHINX_DESTINATION}/latex/ITKExamples.tex
           -output-directory ${SPHINX_DESTINATION}/latex
         COMMAND ${MAKEINDEX_COMPILER}
-          ${SPHINX_DESTINATION}/latex/ITKExamples.idx
+          ITKExamples.idx
         COMMAND ${PDFLATEX_COMPILER}
           ${SPHINX_DESTINATION}/latex/ITKExamples.tex
           -output-directory ${SPHINX_DESTINATION}/latex
+        COMMAND ${CMAKE_COMMAND} -E copy
+          ${SPHINX_DESTINATION}/latex/ITKExamples.pdf
+          ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.pdf
         WORKING_DIRECTORY ${SPHINX_DESTINATION}/latex
         COMMENT "Building PDF"
         )

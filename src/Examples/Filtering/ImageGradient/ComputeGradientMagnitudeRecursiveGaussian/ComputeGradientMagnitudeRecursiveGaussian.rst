@@ -19,7 +19,7 @@ Results
 
   Input image
 
-.. figure:: ComputeGradientMagnitudeRecursiveGaussianTestOutputBaseline.png
+.. figure:: ComputeGradientMagnitudeRecursiveGaussianTestOutput.png
   :scale: 50%
   :alt: Output image
 
