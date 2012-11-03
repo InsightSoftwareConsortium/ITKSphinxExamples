@@ -19,7 +19,7 @@ Results
 
   Input image
 
-.. figure:: ComputeGradientMagnitudeTestOutputBaseline.png
+.. figure:: ComputeGradientMagnitudeTestOutput.png
   :scale: 50%
   :alt: Output image
 

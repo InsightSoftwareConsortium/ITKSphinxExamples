@@ -140,10 +140,16 @@ if( BUILD_DOCUMENTATION )
       POST_BUILD
       COMMAND ${PYTHON_EXECUTABLE} 
         ${ITKExamples_SOURCE_DIR}/Utilities/DocumentationTarball.py
-        ${ITKExamples_BINARY_DIR}/html
+        ${SPHINX_DESTINATION}/html
         ${ITKExamples_BINARY_DIR}/ITKExamples-${ITKExamples_RELEASE_VERSION}-html
       WORKING_DIRECTORY ${ITKExamples_BINARY_DIR}/html
       COMMENT "Creating html tarballs..."
+      )
+    install( FILES
+      ${ITKExamples_BINARY_DIR}/ITKExamples-${ITKExamples_RELEASE_VERSION}-html.tar.gz
+      ${ITKExamples_BINARY_DIR}/ITKExamples-${ITKExamples_RELEASE_VERSION}-html.zip
+      DESTINATION share/ITKExamples/doc/html
+      COMPONENT Doc
       )
   endif()
 
@@ -156,25 +162,41 @@ if( BUILD_DOCUMENTATION )
       message("pdflatex compiler was not found. Please pass to advanced mode and provide its full path")
     else()
       # Needs to be executed twice to get table of contents.
-      add_custom_command( TARGET build_latex
+      add_custom_command( TARGET ${sphinx_target_base_name}_latex
         POST_BUILD
         COMMAND ${PDFLATEX_COMPILER}
           ${SPHINX_DESTINATION}/latex/ITKExamples.tex
           -output-directory ${SPHINX_DESTINATION}/latex
         COMMAND ${MAKEINDEX_COMPILER}
-          ${SPHINX_DESTINATION}/latex/ITKExamples.idx
+          ITKExamples.idx
         COMMAND ${PDFLATEX_COMPILER}
           ${SPHINX_DESTINATION}/latex/ITKExamples.tex
           -output-directory ${SPHINX_DESTINATION}/latex
+        COMMAND ${CMAKE_COMMAND} -E copy
+          ${SPHINX_DESTINATION}/latex/ITKExamples.pdf
+          ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.pdf
         WORKING_DIRECTORY ${SPHINX_DESTINATION}/latex
         COMMENT "Building PDF"
         )
-
-    install( FILES ${SPHINX_DESTINATION}/latex/ITKExamples.pdf
+    install( FILES ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.pdf
       DESTINATION share/ITKExamples/doc/pdf
       COMPONENT Doc
       )
     endif()
+  endif()
+
+  if( ${SPHINX_EPUB_OUTPUT} )
+    add_custom_command( TARGET ${sphinx_target_base_name}_epub
+      POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E copy
+        ${SPHINX_DESTINATION}/epub/ITKExamples.epub
+        ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.epub
+        COMMENT "Copying EPUB"
+        )
+    install( FILES ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.epub
+      DESTINATION share/ITKExamples/doc/epub
+      COMPONENT Doc
+      )
   endif()
 
   if( DOC_WITH_LOCAL_DOXYGEN )
