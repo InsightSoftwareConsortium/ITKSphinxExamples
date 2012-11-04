@@ -4,6 +4,6 @@ Binary Mathematical Morphology
 .. toctree::
   :maxdepth: 1
 
-  DilateABinaryImage/DilateABinaryImage.rst
+  DilateABinaryImage/Documentation.rst
   ErodeABinaryImage/ErodeABinaryImage.rst
 

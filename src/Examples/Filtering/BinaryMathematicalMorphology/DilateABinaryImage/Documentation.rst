@@ -26,7 +26,7 @@ Results
 
   Input binary image.
 
-.. figure:: DilateABinaryImageOutputBaseline.png
+.. figure:: OutputBaseline.png
   :scale: 50%
   :alt: Dilated output.
 
@@ -39,7 +39,7 @@ Code
 C++
 ...
 
-.. literalinclude:: DilateABinaryImage.cxx
+.. literalinclude:: Code.cxx
 
 
 Classes demonstrated
