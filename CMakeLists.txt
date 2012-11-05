@@ -2,7 +2,7 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( ITKExamples )
 
 file( READ ${CMAKE_CURRENT_SOURCE_DIR}/CMake/${PROJECT_NAME}Logo.txt logo )
-message( "${logo}" )
+message( STATUS "${logo}" )
 
 set( ITKExamples_MAJOR_VERSION 4 )
 set( ITKExamples_MINOR_VERSION 3 )
