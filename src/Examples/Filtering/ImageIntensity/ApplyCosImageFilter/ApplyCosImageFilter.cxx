@@ -1,7 +1,7 @@
 #include "itkImage.h"
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
-#include "itkSinImageFilter.h"
+#include "itkCosImageFilter.h"
 
 int main( int argc, char* argv[] )
 {
@@ -26,7 +26,7 @@ int main( int argc, char* argv[] )
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::SinImageFilter< ImageType, ImageType > FilterType;
+  typedef itk::CosImageFilter< ImageType, ImageType > FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
 
