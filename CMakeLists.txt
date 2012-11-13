@@ -19,20 +19,20 @@ set( ITKExamples_RELEASE_VERSION
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ITKExamples_BINARY_DIR}/bin )
 
 # -------------------------------------------------------------------------
-# Check to make sure the submodules have been created.
+# Check to make sure the submodules are available
+find_package( Git )
+# The UPDATING_SUBMODULES variable can be set to prevent CMake from running
+# 'git submodule update' when attempting change the commit a submodule points
+# to.
+option( UPDATING_SUBMODULES
+  "Set to ON when updating one of the Git submodules." OFF )
+if( EXISTS "${ITKExamples_SOURCE_DIR}/.git" AND GIT_EXECUTABLE AND NOT "${UPDATING_SUBMODULES}" )
+  execute_process( COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
+  WORKING_DIRECTORY "${ITKExamples_SOURCE_DIR}"
+  OUTPUT_QUIET
+  )
+endif()
 if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/breathelink/.git" )
-  message( SEND_ERROR "The git submodules are not available.  Please run
-  git submodule update --init --recursive"
-  )
-endif()
-
-if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/breathe/.git" )
-  message( SEND_ERROR "The git submodules are not available.  Please run
-  git submodule update --init --recursive"
-  )
-endif()
-
-if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/gitstats/.git" )
   message( SEND_ERROR "The git submodules are not available.  Please run
   git submodule update --init --recursive"
   )
