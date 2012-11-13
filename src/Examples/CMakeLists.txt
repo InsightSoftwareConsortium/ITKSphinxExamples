@@ -1,7 +1,10 @@
 find_package( ITK REQUIRED )
+include( ${ITK_USE_FILE} )
 
-if( ${ITK_FOUND} )
-  include( ${ITK_USE_FILE} )
+# To avoid linker issues.
+if(ITKVtkGlue_LOADED)
+  find_package( VTK REQUIRED )
+  include( ${VTK_USE_FILE} )
 endif()
 
 if( ${ITK_VERSION_MAJOR} LESS 4 )
