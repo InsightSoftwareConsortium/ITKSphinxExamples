@@ -1,0 +1,6 @@
+[hooks]
+	url = http://itk.org/ITK.git
+[gerrit]
+	project = ITKExamples
+	site = http://review.source.kitware.com
+	pushurl = $username@review.source.kitware.com:ITKExamples
