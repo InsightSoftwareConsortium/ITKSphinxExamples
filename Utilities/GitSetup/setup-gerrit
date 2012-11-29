@@ -145,3 +145,6 @@ to disable this feature (but you will be on your own).' &&
 else
 	echo 'GerritId hook already configured to "'"$hook"'".'
 fi
+
+# Prevent directly pushing to origin -- merge through Gerrit instead.
+git config remote.origin.pushurl "Use 'git gerrit-push' instead"
