@@ -27,7 +27,8 @@ int main( int argc, char* argv[] )
   typedef float                                     OutputPixelType;
   typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
 
-  typedef itk::GradientMagnitudeRecursiveGaussianImageFilter< InputImageType, OutputImageType > FilterType;
+  typedef itk::GradientMagnitudeRecursiveGaussianImageFilter<
+    InputImageType, OutputImageType >               FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetSigma( atof( argv[3] ) );

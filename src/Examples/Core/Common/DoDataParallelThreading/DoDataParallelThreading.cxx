@@ -63,7 +63,8 @@ typedef std::map< CELL_TYPE, unsigned int > CellCountType;
 
 template< class TAssociate >
 class ComputeCellCountThreader :
-  public itk::DomainThreader< itk::ThreadedIndexedContainerPartitioner, TAssociate >
+  public itk::DomainThreader<
+    itk::ThreadedIndexedContainerPartitioner, TAssociate >
 {
 public:
   // Standard ITK typedefs.

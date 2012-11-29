@@ -2,7 +2,14 @@ cmake_minimum_required( VERSION 2.8 )
 
 project( DilateABinaryImage )
 
-find_package( ITK REQUIRED )
+find_package( ITK REQUIRED
+  COMPONENTS
+  ITKBinaryMathematicalMorphology
+  ITKCommon
+  ITKIOImageBase
+  ITKMathematicalMorphology
+  ITKIOPNG
+  )
 include( ${ITK_USE_FILE} )
 
 add_executable( DilateABinaryImage DilateABinaryImage.cxx )

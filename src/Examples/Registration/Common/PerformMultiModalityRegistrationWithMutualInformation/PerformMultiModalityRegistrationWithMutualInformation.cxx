@@ -163,8 +163,10 @@ int main( int argc, char *argv[] )
   typedef itk::ImageFileReader< FixedImageType  > FixedImageReaderType;
   typedef itk::ImageFileReader< MovingImageType > MovingImageReaderType;
 
-  FixedImageReaderType::Pointer  fixedImageReader  = FixedImageReaderType::New();
-  MovingImageReaderType::Pointer movingImageReader = MovingImageReaderType::New();
+  FixedImageReaderType::Pointer  fixedImageReader  =
+    FixedImageReaderType::New();
+  MovingImageReaderType::Pointer movingImageReader =
+    MovingImageReaderType::New();
 
   fixedImageReader->SetFileName(  fixedImageFile );
   movingImageReader->SetFileName( movingImageFile );
@@ -357,7 +359,8 @@ int main( int argc, char *argv[] )
 
 
   // Generate checkerboards before and after registration
-  typedef itk::CheckerBoardImageFilter< FixedImageType > CheckerBoardFilterType;
+  typedef itk::CheckerBoardImageFilter< FixedImageType >
+    CheckerBoardFilterType;
 
   CheckerBoardFilterType::Pointer checker = CheckerBoardFilterType::New();
 
