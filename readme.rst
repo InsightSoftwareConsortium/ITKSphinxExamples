@@ -8,14 +8,12 @@ Download instructions
 
 With version of Git (>= 1.6.5)::
 
-  $ git clone --recursive git@github.com:InsightSoftwareConsortium/ITKExamples.git
+  $ git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git
 
 
 With older versions::
 
-  $ git clone git@github.com:InsightSoftwareConsortium/ITKExamples.git
-  $ cd ITKExamples
-  $ git submodule update --init
+  $ git clone https://github.com/InsightSoftwareConsortium/ITKExamples.git
 
 
 Build instructions
