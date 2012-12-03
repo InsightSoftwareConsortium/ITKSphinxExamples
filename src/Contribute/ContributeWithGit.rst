@@ -3,6 +3,26 @@
 Contribute with Git
 ===================
 
+Clone the repository and setup for development
+----------------------------------------------
+
+The entire source tree can be downloaded with Git_:
+
+.. code-block:: bash
+
+  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git
+
+
+After cloning the repository, it can be configured for development (confirm
+proper Git configuration, setup `Git hooks`_, configure your `Gerrit Code
+Review`_ account) with
+
+.. code-block:: bash
+
+  cd ITKExamples
+  ./Utilites/SetupForDevelopment.sh
+
+
 Modifying an existing example
 -----------------------------
 
@@ -22,12 +42,9 @@ Once you are done, commit your changes as follows::
   git commit -a
 
 
-Merge your changes onto master, and push your changes to the main repository::
+To submit your changes to `Gerrit Code Review`_::
 
-  git checkout master
-  git pull origin master
-  git merge --no-ff Modification
-  git branch -d Modification
+  git gerrit-push
 
 
 Create a new example
@@ -48,3 +65,8 @@ the usage of :itkdox:`itk::Image` will be generated in
 
 Please do not add images directly to the repository.  Instead, use the
 :ref:`content link system <upload-binary-data>`.
+
+
+.. _Git: http://git-scm.com/
+.. _Git hooks: http://git-scm.com/book/en/Customizing-Git-Git-Hooks
+.. _Gerrit Code Review: http://review.source.kitware.com/#/q/project:ITKExamples,n,z
