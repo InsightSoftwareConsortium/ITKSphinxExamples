@@ -7,3 +7,4 @@ ImageBase
   ReadAnImage/ReadAnImage.rst
   WriteAnImage/WriteAnImage.rst
   CreateAListOfFileNames/CreateAListOfFileNames.rst
+  ConvertFileFormats/ConvertFileFormats.rst

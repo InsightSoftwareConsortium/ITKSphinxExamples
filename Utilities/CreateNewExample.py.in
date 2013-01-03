@@ -379,8 +379,4 @@ if __name__ == '__main__':
     print ( '$ git checkout -b Add_' + example_name )
     print ( '$ git add src/Examples/' + group_name + '/' + module_name )
     print ( '$ git commit -a -m "Add ' + example_name + '" ' )
-    print ( '$ git checkout master' )
-    print ( '$ git pull origin master' )
-    print ( '$ git merge --no-ff Add_' + example_name )
-    print ( '$ git push origin master' )
-
+    print ( '$ git gerrit-push' )

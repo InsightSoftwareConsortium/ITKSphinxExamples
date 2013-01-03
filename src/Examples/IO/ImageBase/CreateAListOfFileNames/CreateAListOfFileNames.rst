@@ -7,8 +7,7 @@ Create A List Of File Names
 Synopsis
 --------
 
-
-Create a list of file names
+Create a list of numbered file names.
 
 
 Results
