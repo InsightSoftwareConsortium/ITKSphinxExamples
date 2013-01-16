@@ -39,3 +39,4 @@ Common
   ApplyAFilterOnlyToASpecifiedRegionOfAnImage/ApplyAFilterOnlyToASpecifiedRegionOfAnImage.rst
   IterateOverARegionWithAShapedNeighborhoodIterator/IterateOverARegionWithAShapedNeighborhoodIterator.rst
   CreateABackwardDifferenceOperator/CreateABackwardDifferenceOperator.rst
+  TraceMemoryBetweenPoints/TraceMemoryBetweenPoints.rst
