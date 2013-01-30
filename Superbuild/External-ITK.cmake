@@ -2,7 +2,7 @@
 # Get and build itk
 
 if( NOT ITK_TAG )
-  set( ITK_TAG "v4.2.1" )
+  set( ITK_TAG "v4.3.1" )
 endif()
 
 ExternalProject_Add( ITK
