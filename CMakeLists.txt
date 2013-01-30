@@ -2,7 +2,7 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( ITKExamples )
 
 set( ITKExamples_MAJOR_VERSION 4 )
-set( ITKExamples_MINOR_VERSION 3 )
+set( ITKExamples_MINOR_VERSION 4 )
 set( ITKExamples_PATCH_VERSION 0 )
 
 set( ITKExamples_VERSION
