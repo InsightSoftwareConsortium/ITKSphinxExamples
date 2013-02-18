@@ -134,8 +134,8 @@ and cross-platform.
 
 
 ImageViewer
-  An FLTK_-based *ImageViewer* is available in the ITKApps_ repository.  This
-  simple yet effect slice-based viewer works on 2D and 3D images and supports
+  An FLTK_-based ImageViewer_ was extracted from the ITKApps_ repository.  This
+  simple yet effective slice-based viewer works on 2D and 3D images and supports
   probing of data values.
 
 .. figure:: ImageViewer.png
@@ -205,6 +205,7 @@ VV
 .. _3DSlicer:              http://www.slicer.org/
 .. _CMake:                 http://cmake.org/
 .. _FLTK:                  http://www.fltk.org/
+.. _ImageViewer:           https://github.com/TubeTK/ImageViewer
 .. _ITKApps:               http://itk.org/ITKApps.git
 .. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
 .. _MITK:                  http://www.mitk.org/wiki/
