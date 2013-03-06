@@ -6,3 +6,4 @@ QuadEdgeMesh
 
   ExtractVertexOnMeshBoundaries/ExtractVertexOnMeshBoundaries.rst
   PrintVertexNeighbors/PrintVertexNeighbors.rst
+  GetListOfFacesAroundAGivenVertex/GetListOfFacesAroundAGivenVertex.rst
