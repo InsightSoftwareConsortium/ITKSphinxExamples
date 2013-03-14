@@ -56,6 +56,16 @@ macro( add_example example_name )
 
 endmacro()
 
+
+# Macro if the corresponding module is enabled when ITK was built
+macro( add_subdirectory_if_module_enabled _dir )
+  list( FIND ITK_MODULES_ENABLED ITK${_dir} _have )
+
+  if( NOT ${_have} EQUAL "-1" )
+    add_subdirectory( ${_dir} )
+  endif()
+endmacro()
+
 # For comparing example outputs to their regression baseline's.
 add_executable( ImageCompareCommand ImageCompareCommand.cxx )
 target_link_libraries( ImageCompareCommand ${ITK_LIBRARIES} )
