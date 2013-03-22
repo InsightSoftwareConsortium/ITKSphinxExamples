@@ -1,1 +1,1 @@
-add_subdirectory( Statistics )
+add_subdirectory_if_module_enabled( Statistics )

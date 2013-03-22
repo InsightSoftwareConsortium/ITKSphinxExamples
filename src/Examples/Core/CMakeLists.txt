@@ -1,3 +1,3 @@
-add_subdirectory( Common )
-add_subdirectory( TestKernel )
-add_subdirectory( QuadEdgeMesh )
+add_subdirectory_if_module_enabled( Common )
+add_subdirectory_if_module_enabled( TestKernel )
+add_subdirectory_if_module_enabled( QuadEdgeMesh )
