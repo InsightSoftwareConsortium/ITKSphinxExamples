@@ -13,17 +13,13 @@ Get the list of faces around a given vertex.
 Results
 -------
 
-.. figure::
-  :scale: 50%
-  :alt: Input image
+Results::
 
-  Input image
-
-.. figure::
-  :scale: 50%
-  :alt: Output image
-
-  Output image
+  79
+  1961
+  2036
+  1960
+  1
 
 
 Code
