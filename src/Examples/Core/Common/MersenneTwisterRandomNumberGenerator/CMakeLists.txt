@@ -5,7 +5,7 @@ project( MersenneTwisterRandomNumberGenerator )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( MersenneTwisterRandomNumberGenerator MersenneTwisterRandomNumberGenerator.cxx )
+add_executable( MersenneTwisterRandomNumberGenerator Code.cxx )
 target_link_libraries( MersenneTwisterRandomNumberGenerator ${ITK_LIBRARIES} )
 
 install( TARGETS MersenneTwisterRandomNumberGenerator
@@ -13,7 +13,7 @@ install( TARGETS MersenneTwisterRandomNumberGenerator
   COMPONENT Runtime
 )
 
-install( FILES MersenneTwisterRandomNumberGenerator.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/MersenneTwisterRandomNumberGenerator
   COMPONENT Code
 )

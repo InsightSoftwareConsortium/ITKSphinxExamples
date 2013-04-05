@@ -5,7 +5,7 @@ project( CreateAIndex )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CreateAIndex CreateAIndex.cxx )
+add_executable( CreateAIndex Code.cxx )
 target_link_libraries( CreateAIndex ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAIndex
@@ -13,7 +13,7 @@ install( TARGETS CreateAIndex
   COMPONENT Runtime
 )
 
-install( FILES CreateAIndex.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/CreateAIndex
   COMPONENT Code
 )

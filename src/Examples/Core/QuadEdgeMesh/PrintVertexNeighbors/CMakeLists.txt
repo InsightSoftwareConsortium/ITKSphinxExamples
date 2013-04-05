@@ -6,7 +6,7 @@ find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
 add_executable( PrintVertexNeighbors
-  PrintVertexNeighbors.cxx )
+  Code.cxx )
 target_link_libraries( PrintVertexNeighbors ${ITK_LIBRARIES} )
 
 install( TARGETS PrintVertexNeighbors
@@ -14,7 +14,7 @@ install( TARGETS PrintVertexNeighbors
   COMPONENT Runtime
   )
 
-install( FILES PrintVertexNeighbors.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/QuadEdgeMesh/PrintVertexNeighbors
   COMPONENT Code
   )

@@ -8,7 +8,7 @@ if( ${ITK_FOUND} )
   include( ${ITK_USE_FILE} )
 endif()
 
-add_executable( CovariantVectorDotProduct CovariantVectorDotProduct.cxx )
+add_executable( CovariantVectorDotProduct Code.cxx )
 target_link_libraries( CovariantVectorDotProduct ${ITK_LIBRARIES} )
 
 install( TARGETS CovariantVectorDotProduct
@@ -16,7 +16,7 @@ install( TARGETS CovariantVectorDotProduct
   COMPONENT Runtime
 )
 
-install( FILES CovariantVectorDotProduct.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/CovariantVectorDotProduct
   COMPONENT Code
 )

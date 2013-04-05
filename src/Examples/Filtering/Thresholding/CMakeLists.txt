@@ -1,2 +1,2 @@
 add_example( ThresholdAnImageUsingOtsu )
-compare_to_baseline( ThresholdAnImageUsingOtsu ThresholdAnImageUsingOtsuOutput)
+compare_to_baseline( ThresholdAnImageUsingOtsu Output)

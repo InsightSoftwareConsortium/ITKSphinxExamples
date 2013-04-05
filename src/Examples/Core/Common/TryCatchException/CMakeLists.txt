@@ -5,7 +5,7 @@ project( TryCatchException )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( TryCatchException TryCatchException.cxx )
+add_executable( TryCatchException Code.cxx )
 target_link_libraries( TryCatchException ${ITK_LIBRARIES} )
 
 install( TARGETS TryCatchException
@@ -13,7 +13,7 @@ install( TARGETS TryCatchException
   COMPONENT Runtime
 )
 
-install( FILES TryCatchException.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/TryCatchException
   COMPONENT Code
 )

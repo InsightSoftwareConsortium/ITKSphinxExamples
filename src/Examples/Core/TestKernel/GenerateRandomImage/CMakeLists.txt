@@ -5,7 +5,7 @@ project( GenerateRandomImage )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( GenerateRandomImage GenerateRandomImage.cxx )
+add_executable( GenerateRandomImage Code.cxx )
 target_link_libraries( GenerateRandomImage ${ITK_LIBRARIES} )
 
 install( TARGETS GenerateRandomImage
@@ -13,7 +13,7 @@ install( TARGETS GenerateRandomImage
   COMPONENT Runtime
 )
 
-install( FILES GenerateRandomImage.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/TestKernel/GenerateRandomImage
   COMPONENT Code
 )
@@ -21,5 +21,5 @@ install( FILES GenerateRandomImage.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME GenerateRandomImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/GenerateRandomImage
-    ${CMAKE_CURRENT_BINARY_DIR}/GenerateRandomImageOutput.png
+    ${CMAKE_CURRENT_BINARY_DIR}/Output.png
   )

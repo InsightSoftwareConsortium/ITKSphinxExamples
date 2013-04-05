@@ -6,7 +6,7 @@ find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
 add_executable( Create3DVolume
-  Create3DVolume.cxx )
+  Code.cxx )
 target_link_libraries( Create3DVolume ${ITK_LIBRARIES} )
 
 install( TARGETS Create3DVolume

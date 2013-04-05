@@ -5,7 +5,7 @@ project( WriteAnImage )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( WriteAnImage WriteAnImage.cxx )
+add_executable( WriteAnImage Code.cxx )
 target_link_libraries( WriteAnImage ${ITK_LIBRARIES} )
 
 install( TARGETS WriteAnImage
@@ -13,7 +13,7 @@ install( TARGETS WriteAnImage
   COMPONENT Runtime
 )
 
-install( FILES WriteAnImage.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Base//WriteAnImage
   COMPONENT Code
 )

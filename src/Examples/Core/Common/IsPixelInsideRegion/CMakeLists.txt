@@ -5,7 +5,7 @@ project( IsPixelInsideRegion )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( IsPixelInsideRegion IsPixelInsideRegion.cxx )
+add_executable( IsPixelInsideRegion Code.cxx )
 target_link_libraries( IsPixelInsideRegion ${ITK_LIBRARIES} )
 
 install( TARGETS IsPixelInsideRegion
@@ -13,7 +13,7 @@ install( TARGETS IsPixelInsideRegion
   COMPONENT Runtime
 )
 
-install( FILES IsPixelInsideRegion.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/IsPixelInsideRegion
   COMPONENT Code
 )

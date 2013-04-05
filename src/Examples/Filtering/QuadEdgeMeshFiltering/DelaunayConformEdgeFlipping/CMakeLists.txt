@@ -5,7 +5,7 @@ project( DelaunayConformEdgeFlipping )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( DelaunayConformEdgeFlipping DelaunayConformEdgeFlipping.cxx )
+add_executable( DelaunayConformEdgeFlipping Code.cxx )
 target_link_libraries( DelaunayConformEdgeFlipping ${ITK_LIBRARIES} )
 
 install( TARGETS DelaunayConformEdgeFlipping
@@ -13,7 +13,7 @@ install( TARGETS DelaunayConformEdgeFlipping
   COMPONENT Runtime
 )
 
-install( FILES DelaunayConformEdgeFlipping.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/QuadEdgeMeshFiltering/DelaunayConformEdgeFlipping
   COMPONENT Code
 )
@@ -22,5 +22,5 @@ enable_testing()
 add_test( NAME DelaunayConformEdgeFlippingTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DelaunayConformEdgeFlipping
   wave.vtk
-  DelaunayConformEdgeFlippingOutput.vtk
+  Output.vtk
 )

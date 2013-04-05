@@ -4,8 +4,8 @@ ImageIntensity
 .. toctree::
   :maxdepth: 2
 
-  RescaleAnImage/RescaleAnImage.rst
-  ApplySinImageFilter/ApplySinImageFilter.rst
-  ApplyCosImageFilter/ApplyCosImageFilter.rst
-  ApplyAtanImageFilter/ApplyAtanImageFilter.rst
-  ConvertRGBImageToGrayscaleImage/ConvertRGBImageToGrayscaleImage.rst
+  RescaleAnImage/Documentation.rst
+  ApplySinImageFilter/Documentation.rst
+  ApplyCosImageFilter/Documentation.rst
+  ApplyAtanImageFilter/Documentation.rst
+  ConvertRGBImageToGrayscaleImage/Documentation.rst

@@ -5,7 +5,7 @@ project( CreateABinaryBallStructuringElement )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CreateABinaryBallStructuringElement CreateABinaryBallStructuringElement.cxx )
+add_executable( CreateABinaryBallStructuringElement Code.cxx )
 target_link_libraries( CreateABinaryBallStructuringElement ${ITK_LIBRARIES} )
 
 install( TARGETS CreateABinaryBallStructuringElement
@@ -13,7 +13,7 @@ install( TARGETS CreateABinaryBallStructuringElement
   COMPONENT Runtime
 )
 
-install( FILES CreateABinaryBallStructuringElement.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/MathematicalMorphology/CreateABinaryBallStructuringElement
   COMPONENT Code
 )

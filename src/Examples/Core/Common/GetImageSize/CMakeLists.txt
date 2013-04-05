@@ -5,7 +5,7 @@ project( GetImageSize )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( GetImageSize GetImageSize.cxx )
+add_executable( GetImageSize Code.cxx )
 target_link_libraries( GetImageSize ${ITK_LIBRARIES} )
 
 install( TARGETS GetImageSize
@@ -13,7 +13,7 @@ install( TARGETS GetImageSize
   COMPONENT Runtime
 )
 
-install( FILES GetImageSize.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/GetImageSize
   COMPONENT Code
 )

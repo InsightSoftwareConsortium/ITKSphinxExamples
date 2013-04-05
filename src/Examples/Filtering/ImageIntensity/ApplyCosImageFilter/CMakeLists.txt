@@ -5,7 +5,7 @@ project( ApplyCosImageFilter )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( ApplyCosImageFilter ApplyCosImageFilter.cxx )
+add_executable( ApplyCosImageFilter Code.cxx )
 target_link_libraries( ApplyCosImageFilter ${ITK_LIBRARIES} )
 
 install( TARGETS ApplyCosImageFilter
@@ -13,7 +13,7 @@ install( TARGETS ApplyCosImageFilter
   COMPONENT Runtime
 )
 
-install( FILES ApplyCosImageFilter.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/ApplyCosImageFilter
   COMPONENT Code
 )
@@ -21,6 +21,6 @@ install( FILES ApplyCosImageFilter.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME ApplyCosImageFilterTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplyCosImageFilter
-    ${CMAKE_CURRENT_BINARY_DIR}/ApplyCosImageFilterInput.mha
-    ApplyCosImageFilterOutput.mha
+    ${CMAKE_CURRENT_BINARY_DIR}/Input.mha
+    Output.mha
 )

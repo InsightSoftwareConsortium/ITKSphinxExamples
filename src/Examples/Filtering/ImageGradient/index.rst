@@ -4,5 +4,5 @@ ImageGradient
 .. toctree::
   :maxdepth: 2
 
-  ComputeGradientMagnitude/ComputeGradientMagnitude.rst
-  ComputeGradientMagnitudeRecursiveGaussian/ComputeGradientMagnitudeRecursiveGaussian.rst
+  ComputeGradientMagnitude/Documentation.rst
+  ComputeGradientMagnitudeRecursiveGaussian/Documentation.rst

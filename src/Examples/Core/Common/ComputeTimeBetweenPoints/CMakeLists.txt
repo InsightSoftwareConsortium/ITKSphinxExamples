@@ -5,7 +5,7 @@ project( ComputeTimeBetweenPoints )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( ComputeTimeBetweenPoints ComputeTimeBetweenPoints.cxx )
+add_executable( ComputeTimeBetweenPoints Code.cxx )
 target_link_libraries( ComputeTimeBetweenPoints ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeTimeBetweenPoints
@@ -13,7 +13,7 @@ install( TARGETS ComputeTimeBetweenPoints
   COMPONENT Runtime
 )
 
-install( FILES ComputeTimeBetweenPoints.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/ComputeTimeBetweenPoints
   COMPONENT Code
 )

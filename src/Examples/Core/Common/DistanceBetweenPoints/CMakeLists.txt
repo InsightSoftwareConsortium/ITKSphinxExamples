@@ -5,7 +5,7 @@ project( DistanceBetweenPoints )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( DistanceBetweenPoints DistanceBetweenPoints.cxx )
+add_executable( DistanceBetweenPoints Code.cxx )
 target_link_libraries( DistanceBetweenPoints ${ITK_LIBRARIES} )
 
 install( TARGETS DistanceBetweenPoints
@@ -13,7 +13,7 @@ install( TARGETS DistanceBetweenPoints
   COMPONENT Runtime
 )
 
-install( FILES DistanceBetweenPoints.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/DistanceBetweenPoints
   COMPONENT Code
 )

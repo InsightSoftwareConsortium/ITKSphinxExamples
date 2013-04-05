@@ -5,7 +5,7 @@ project( CreateAListOfFileNames )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CreateAListOfFileNames CreateAListOfFileNames.cxx )
+add_executable( CreateAListOfFileNames Code.cxx )
 target_link_libraries( CreateAListOfFileNames ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAListOfFileNames
@@ -13,7 +13,7 @@ install( TARGETS CreateAListOfFileNames
   COMPONENT Runtime
 )
 
-install( FILES CreateAListOfFileNames.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/IO/ImageBase/CreateAListOfFileNames
   COMPONENT Code
 )

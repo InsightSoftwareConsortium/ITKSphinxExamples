@@ -6,7 +6,7 @@ find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
 add_executable( GetListOfFacesAroundAGivenVertex
-  GetListOfFacesAroundAGivenVertex.cxx )
+  Code.cxx )
 target_link_libraries( GetListOfFacesAroundAGivenVertex ${ITK_LIBRARIES} )
 
 install( TARGETS GetListOfFacesAroundAGivenVertex
@@ -14,7 +14,7 @@ install( TARGETS GetListOfFacesAroundAGivenVertex
   COMPONENT Runtime
   )
 
-install( FILES GetListOfFacesAroundAGivenVertex.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/QuadEdgeMesh/GetListOfFacesAroundAGivenVertex
   COMPONENT Code
   )

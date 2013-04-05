@@ -5,7 +5,7 @@ project( ImageRegionOverlap )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( ImageRegionOverlap ImageRegionOverlap.cxx )
+add_executable( ImageRegionOverlap Code.cxx )
 target_link_libraries( ImageRegionOverlap ${ITK_LIBRARIES} )
 
 install( TARGETS ImageRegionOverlap
@@ -13,7 +13,7 @@ install( TARGETS ImageRegionOverlap
   COMPONENT Runtime
 )
 
-install( FILES ImageRegionOverlap.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/ImageRegionOverlap
   COMPONENT Code
 )
@@ -21,5 +21,5 @@ install( FILES ImageRegionOverlap.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME ImageRegionOverlapTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageRegionOverlap
-    ${CMAKE_CURRENT_BINARY_DIR}/ImageRegionOverlapOutput.png
+    ${CMAKE_CURRENT_BINARY_DIR}/Output.png
   )

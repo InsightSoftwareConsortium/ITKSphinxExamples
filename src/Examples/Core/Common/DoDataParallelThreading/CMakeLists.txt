@@ -5,7 +5,7 @@ project( DoDataParallelThreading )
 find_package( ITK REQUIRED )
 include( ${ITK_USE_FILE} )
 
-add_executable( DoDataParallelThreading DoDataParallelThreading.cxx )
+add_executable( DoDataParallelThreading Code.cxx )
 target_link_libraries( DoDataParallelThreading ${ITK_LIBRARIES} )
 
 install( TARGETS DoDataParallelThreading
@@ -13,7 +13,7 @@ install( TARGETS DoDataParallelThreading
   COMPONENT Runtime
 )
 
-install( FILES DoDataParallelThreading.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/DoDataParallelThreading
   COMPONENT Code
 )

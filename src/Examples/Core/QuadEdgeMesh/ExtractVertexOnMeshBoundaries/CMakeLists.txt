@@ -6,7 +6,7 @@ find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
 add_executable( ExtractVertexOnMeshBoundaries
-  ExtractVertexOnMeshBoundaries.cxx )
+  Code.cxx )
 target_link_libraries( ExtractVertexOnMeshBoundaries ${ITK_LIBRARIES} )
 
 install( TARGETS ExtractVertexOnMeshBoundaries
@@ -14,7 +14,7 @@ install( TARGETS ExtractVertexOnMeshBoundaries
   COMPONENT Runtime
   )
 
-install( FILES ExtractVertexOnMeshBoundaries.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/QuadEdgeMesh/ExtractVertexOnMeshBoundaries
   COMPONENT Code
   )

@@ -1,2 +1,2 @@
 add_example( CombineTwoImagesWithCheckerBoardPattern )
-compare_to_baseline( CombineTwoImagesWithCheckerBoardPattern CombineTwoImagesWithCheckerBoardPatternOutput)
+compare_to_baseline( CombineTwoImagesWithCheckerBoardPattern Output)

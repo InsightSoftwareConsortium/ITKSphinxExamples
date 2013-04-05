@@ -5,7 +5,7 @@ project( ComputePeronaMalikAnisotropicDiffusion )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( ComputePeronaMalikAnisotropicDiffusion ComputePeronaMalikAnisotropicDiffusion.cxx )
+add_executable( ComputePeronaMalikAnisotropicDiffusion Code.cxx )
 target_link_libraries( ComputePeronaMalikAnisotropicDiffusion ${ITK_LIBRARIES} )
 
 install( TARGETS ComputePeronaMalikAnisotropicDiffusion
@@ -13,7 +13,7 @@ install( TARGETS ComputePeronaMalikAnisotropicDiffusion
   COMPONENT Runtime
   )
 
-install( FILES ComputePeronaMalikAnisotropicDiffusion.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/AnisotropicSmoothing/ComputePeronaMalikAnisotropicDiffusion
   COMPONENT Code
   )

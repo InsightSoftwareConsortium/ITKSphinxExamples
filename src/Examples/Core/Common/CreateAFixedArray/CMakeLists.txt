@@ -5,7 +5,7 @@ project( CreateAFixedArray )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CreateAFixedArray CreateAFixedArray.cxx )
+add_executable( CreateAFixedArray Code.cxx )
 target_link_libraries( CreateAFixedArray ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAFixedArray
@@ -13,7 +13,7 @@ install( TARGETS CreateAFixedArray
   COMPONENT Runtime
 )
 
-install( FILES CreateAFixedArray.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/CreateAFixedArray
   COMPONENT Code
 )

@@ -5,7 +5,7 @@ project( ReadAnImage )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( ReadAnImage ReadAnImage.cxx )
+add_executable( ReadAnImage Code.cxx )
 target_link_libraries( ReadAnImage ${ITK_LIBRARIES} )
 
 install( TARGETS ReadAnImage
@@ -13,7 +13,7 @@ install( TARGETS ReadAnImage
   COMPONENT Runtime
   )
 
-install( FILES ReadAnImage.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/IO/ImageBase/ReadAnImage
   COMPONENT Code
   )

@@ -5,7 +5,7 @@ project( CombineTwoImagesWithCheckerBoardPattern )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CombineTwoImagesWithCheckerBoardPattern CombineTwoImagesWithCheckerBoardPattern.cxx )
+add_executable( CombineTwoImagesWithCheckerBoardPattern Code.cxx )
 target_link_libraries( CombineTwoImagesWithCheckerBoardPattern ${ITK_LIBRARIES} )
 
 install( TARGETS CombineTwoImagesWithCheckerBoardPattern
@@ -13,7 +13,7 @@ install( TARGETS CombineTwoImagesWithCheckerBoardPattern
   COMPONENT Runtime
 )
 
-install( FILES CombineTwoImagesWithCheckerBoardPattern.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/ImageCompare/CombineTwoImagesWithCheckerBoardPattern
   COMPONENT Code
 )
@@ -21,5 +21,5 @@ install( FILES CombineTwoImagesWithCheckerBoardPattern.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME CombineTwoImagesWithCheckerBoardPatternTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CombineTwoImagesWithCheckerBoardPattern
-    CombineTwoImagesWithCheckerBoardPatternOutput.png
+    Output.png
 )

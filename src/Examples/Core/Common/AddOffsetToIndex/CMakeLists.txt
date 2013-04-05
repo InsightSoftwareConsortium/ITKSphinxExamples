@@ -5,7 +5,7 @@ project( AddOffsetToIndex )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( AddOffsetToIndex AddOffsetToIndex.cxx )
+add_executable( AddOffsetToIndex Code.cxx )
 target_link_libraries( AddOffsetToIndex ${ITK_LIBRARIES} )
 
 install( TARGETS AddOffsetToIndex
@@ -13,7 +13,7 @@ install( TARGETS AddOffsetToIndex
   COMPONENT Runtime
 )
 
-install( FILES AddOffsetToIndex.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/AddOffsetToIndex
   COMPONENT Code
 )

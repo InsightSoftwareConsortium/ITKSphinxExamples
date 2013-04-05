@@ -4,4 +4,4 @@ TIFF
 .. toctree::
   :maxdepth: 2
 
-  WriteATIFFImage/WriteATIFFImage.rst
+  WriteATIFFImage/Documentation.rst

@@ -5,7 +5,7 @@ project( WriteATIFFImage )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( WriteATIFFImage WriteATIFFImage.cxx )
+add_executable( WriteATIFFImage Code.cxx )
 target_link_libraries( WriteATIFFImage ${ITK_LIBRARIES} )
 
 install( TARGETS WriteATIFFImage
@@ -13,7 +13,7 @@ install( TARGETS WriteATIFFImage
   COMPONENT Runtime
 )
 
-install( FILES WriteATIFFImage.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/IO/TIFF/WriteATIFFImage
   COMPONENT Code
 )
@@ -21,4 +21,4 @@ install( FILES WriteATIFFImage.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME WriteATIFFImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/WriteATIFFImage
-    ${CMAKE_CURRENT_BINARY_DIR}/WriteATIFFImageOutput.tif )
+    ${CMAKE_CURRENT_BINARY_DIR}/Output.tif )

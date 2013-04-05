@@ -5,5 +5,5 @@ Binary Mathematical Morphology
   :maxdepth: 1
 
   DilateABinaryImage/Documentation.rst
-  ErodeABinaryImage/ErodeABinaryImage.rst
+  ErodeABinaryImage/Documentation.rst
 

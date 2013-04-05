@@ -4,6 +4,6 @@ QuadEdgeMesh
 .. toctree::
   :maxdepth: 2
 
-  ExtractVertexOnMeshBoundaries/ExtractVertexOnMeshBoundaries.rst
-  PrintVertexNeighbors/PrintVertexNeighbors.rst
-  GetListOfFacesAroundAGivenVertex/GetListOfFacesAroundAGivenVertex.rst
+  ExtractVertexOnMeshBoundaries/Documentation.rst
+  PrintVertexNeighbors/Documentation.rst
+  GetListOfFacesAroundAGivenVertex/Documentation.rst

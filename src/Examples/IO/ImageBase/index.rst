@@ -4,7 +4,7 @@ ImageBase
 .. toctree::
   :maxdepth: 2
 
-  ReadAnImage/ReadAnImage.rst
-  WriteAnImage/WriteAnImage.rst
-  CreateAListOfFileNames/CreateAListOfFileNames.rst
-  ConvertFileFormats/ConvertFileFormats.rst
+  ReadAnImage/Documentation.rst
+  WriteAnImage/Documentation.rst
+  CreateAListOfFileNames/Documentation.rst
+  ConvertFileFormats/Documentation.rst

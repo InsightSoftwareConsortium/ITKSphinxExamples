@@ -5,7 +5,7 @@ project( PadAnImageByMirroring )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( PadAnImageByMirroring PadAnImageByMirroring.cxx )
+add_executable( PadAnImageByMirroring Code.cxx )
 target_link_libraries( PadAnImageByMirroring ${ITK_LIBRARIES} )
 
 install( TARGETS PadAnImageByMirroring
@@ -13,7 +13,7 @@ install( TARGETS PadAnImageByMirroring
   COMPONENT Runtime
 )
 
-install( FILES PadAnImageByMirroring.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/PadAnImageByMirroring
   COMPONENT Code
 )
@@ -22,5 +22,5 @@ enable_testing()
 add_test( NAME PadAnImageByMirroringTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/PadAnImageByMirroring
     ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
-    PadAnImageByMirroringOutput.png
+    Output.png
 )

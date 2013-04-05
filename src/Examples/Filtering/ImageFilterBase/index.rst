@@ -4,4 +4,4 @@ ImageFilterBase
 .. toctree::
   :maxdepth: 2
 
-  CastAnImageToAnotherType/CastAnImageToAnotherType.rst
+  CastAnImageToAnotherType/Documentation.rst

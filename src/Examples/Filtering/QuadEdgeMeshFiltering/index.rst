@@ -4,6 +4,6 @@ QuadEdgeMeshFiltering
 .. toctree::
   :maxdepth: 2
 
-  ComputeNormalsOfAMesh/ComputeNormalsOfAMesh.rst
-  CleanQuadEdgeMesh/CleanQuadEdgeMesh.rst
-  DelaunayConformEdgeFlipping/DelaunayConformEdgeFlipping.rst
+  ComputeNormalsOfAMesh/Documentation.rst
+  CleanQuadEdgeMesh/Documentation.rst
+  DelaunayConformEdgeFlipping/Documentation.rst

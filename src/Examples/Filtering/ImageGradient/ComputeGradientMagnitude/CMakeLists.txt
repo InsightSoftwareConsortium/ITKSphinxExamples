@@ -5,7 +5,7 @@ project( ComputeGradientMagnitude )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( ComputeGradientMagnitude ComputeGradientMagnitude.cxx )
+add_executable( ComputeGradientMagnitude Code.cxx )
 target_link_libraries( ComputeGradientMagnitude ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeGradientMagnitude
@@ -13,7 +13,7 @@ install( TARGETS ComputeGradientMagnitude
   COMPONENT Runtime
 )
 
-install( FILES ComputeGradientMagnitude.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/ImageGradient/ComputeGradientMagnitude
   COMPONENT Code
 )

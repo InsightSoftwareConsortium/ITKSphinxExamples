@@ -5,7 +5,7 @@ project( GetTypeBasicInformation )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( GetTypeBasicInformation GetTypeBasicInformation.cxx )
+add_executable( GetTypeBasicInformation Code.cxx )
 target_link_libraries( GetTypeBasicInformation ${ITK_LIBRARIES} )
 
 install( TARGETS GetTypeBasicInformation
@@ -13,7 +13,7 @@ install( TARGETS GetTypeBasicInformation
   COMPONENT Runtime
 )
 
-install( FILES GetTypeBasicInformation.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/GetTypeBasicInformation
   COMPONENT Code
 )

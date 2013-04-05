@@ -5,7 +5,7 @@ project( BoundingBoxOfAPointSet )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( BoundingBoxOfAPointSet BoundingBoxOfAPointSet.cxx )
+add_executable( BoundingBoxOfAPointSet Code.cxx )
 target_link_libraries( BoundingBoxOfAPointSet ${ITK_LIBRARIES} )
 
 install( TARGETS BoundingBoxOfAPointSet
@@ -13,7 +13,7 @@ install( TARGETS BoundingBoxOfAPointSet
   COMPONENT Runtime
 )
 
-install( FILES BoundingBoxOfAPointSet.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/BoundingBoxOfAPointSet
   COMPONENT Code
 )

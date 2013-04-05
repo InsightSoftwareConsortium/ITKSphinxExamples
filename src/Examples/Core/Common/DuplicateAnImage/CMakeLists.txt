@@ -5,7 +5,7 @@ project( DuplicateAnImage )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( DuplicateAnImage DuplicateAnImage.cxx )
+add_executable( DuplicateAnImage Code.cxx )
 target_link_libraries( DuplicateAnImage ${ITK_LIBRARIES} )
 
 install( TARGETS DuplicateAnImage
@@ -13,7 +13,7 @@ install( TARGETS DuplicateAnImage
   COMPONENT Runtime
 )
 
-install( FILES DuplicateAnImage.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/DuplicateAnImage
   COMPONENT Code
 )

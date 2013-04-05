@@ -5,7 +5,7 @@ project( WatchAFilter )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( WatchAFilter WatchAFilter.cxx )
+add_executable( WatchAFilter Code.cxx )
 target_link_libraries( WatchAFilter ${ITK_LIBRARIES} )
 
 install( TARGETS WatchAFilter
@@ -13,7 +13,7 @@ install( TARGETS WatchAFilter
   COMPONENT Runtime
 )
 
-install( FILES WatchAFilter.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/WatchAFilter
   COMPONENT Code
 )

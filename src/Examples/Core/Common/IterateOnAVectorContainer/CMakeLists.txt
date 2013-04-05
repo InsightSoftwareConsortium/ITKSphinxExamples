@@ -5,7 +5,7 @@ project( IterateOnAVectorContainer )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( IterateOnAVectorContainer IterateOnAVectorContainer.cxx )
+add_executable( IterateOnAVectorContainer Code.cxx )
 target_link_libraries( IterateOnAVectorContainer ${ITK_LIBRARIES} )
 
 install( TARGETS IterateOnAVectorContainer
@@ -13,7 +13,7 @@ install( TARGETS IterateOnAVectorContainer
   COMPONENT Runtime
 )
 
-install( FILES IterateOnAVectorContainer.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/IterateOnAVectorContainer
   COMPONENT Code
 )

@@ -5,7 +5,7 @@ project( CleanQuadEdgeMesh )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CleanQuadEdgeMesh CleanQuadEdgeMesh.cxx )
+add_executable( CleanQuadEdgeMesh Code.cxx )
 target_link_libraries( CleanQuadEdgeMesh ${ITK_LIBRARIES} )
 
 install( TARGETS CleanQuadEdgeMesh
@@ -13,7 +13,7 @@ install( TARGETS CleanQuadEdgeMesh
   COMPONENT Runtime
 )
 
-install( FILES CleanQuadEdgeMesh.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/QuadEdgeMeshFiltering/CleanQuadEdgeMesh
   COMPONENT Code
 )

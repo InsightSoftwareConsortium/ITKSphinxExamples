@@ -5,7 +5,7 @@ project( ComputeNormalsOfAMesh )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( ComputeNormalsOfAMesh ComputeNormalsOfAMesh.cxx )
+add_executable( ComputeNormalsOfAMesh Code.cxx )
 target_link_libraries( ComputeNormalsOfAMesh ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeNormalsOfAMesh
@@ -13,7 +13,7 @@ install( TARGETS ComputeNormalsOfAMesh
   COMPONENT Runtime
 )
 
-install( FILES ComputeNormalsOfAMesh.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/QuadEdgeMeshFiltering/ComputeNormalsOfAMesh
   COMPONENT Code
 )

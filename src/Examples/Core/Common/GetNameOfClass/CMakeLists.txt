@@ -5,7 +5,7 @@ project( GetNameOfClass )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( GetNameOfClass GetNameOfClass.cxx )
+add_executable( GetNameOfClass Code.cxx )
 target_link_libraries( GetNameOfClass ${ITK_LIBRARIES} )
 
 install( TARGETS GetNameOfClass
@@ -13,7 +13,7 @@ install( TARGETS GetNameOfClass
   COMPONENT Runtime
 )
 
-install( FILES GetNameOfClass.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/GetNameOfClass
   COMPONENT Code
 )

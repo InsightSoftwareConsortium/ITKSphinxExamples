@@ -4,5 +4,5 @@ ImageFeature
 .. toctree::
   :maxdepth: 2
 
-  SobelEdgeDetectionImageFilter/SobelEdgeDetectionImageFilter.rst
-  LaplacianRecursiveGaussianImageFilter/LaplacianRecursiveGaussianImageFilter.rst
+  SobelEdgeDetectionImageFilter/Documentation.rst
+  LaplacianRecursiveGaussianImageFilter/Documentation.rst

@@ -5,7 +5,7 @@ project( CreateAnother )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CreateAnother CreateAnother.cxx )
+add_executable( CreateAnother Code.cxx )
 target_link_libraries( CreateAnother ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAnother
@@ -13,7 +13,7 @@ install( TARGETS CreateAnother
   COMPONENT Runtime
 )
 
-install( FILES CreateAnother.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/CreateAnother
   COMPONENT Code
 )

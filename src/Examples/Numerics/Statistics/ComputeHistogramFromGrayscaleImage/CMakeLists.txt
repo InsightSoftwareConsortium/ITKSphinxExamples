@@ -8,7 +8,7 @@ if( ${ITK_FOUND} )
   include( ${ITK_USE_FILE} )
 endif()
 
-add_executable( ComputeHistogramFromGrayscaleImage ComputeHistogramFromGrayscaleImage.cxx )
+add_executable( ComputeHistogramFromGrayscaleImage Code.cxx )
 target_link_libraries( ComputeHistogramFromGrayscaleImage ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeHistogramFromGrayscaleImage
@@ -16,7 +16,7 @@ install( TARGETS ComputeHistogramFromGrayscaleImage
   COMPONENT Runtime
 )
 
-install( FILES ComputeHistogramFromGrayscaleImage.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Numerics/Statistics/ComputeHistogramFromGrayscaleImage
   COMPONENT Code
 )

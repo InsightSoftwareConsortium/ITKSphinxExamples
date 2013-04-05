@@ -12,7 +12,7 @@ find_package( ITK REQUIRED
   )
 include( ${ITK_USE_FILE} )
 
-add_executable( ErodeABinaryImage ErodeABinaryImage.cxx )
+add_executable( ErodeABinaryImage Code.cxx )
 target_link_libraries( ErodeABinaryImage ${ITK_LIBRARIES} )
 
 install( TARGETS ErodeABinaryImage
@@ -20,12 +20,12 @@ install( TARGETS ErodeABinaryImage
   COMPONENT Runtime
 )
 
-install( FILES ErodeABinaryImage.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology/ErodeABinaryImage
   COMPONENT Code
 )
 
 enable_testing()
 add_test( NAME ErodeABinaryImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ErodeABinaryImage ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png ErodeABinaryImageOutput.png 3
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ErodeABinaryImage ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png Output.png 3
 )

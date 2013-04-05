@@ -5,7 +5,7 @@ project( BuildAHelloWorldProgram )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( BuildAHelloWorldProgram BuildAHelloWorldProgram.cxx )
+add_executable( BuildAHelloWorldProgram Code.cxx )
 target_link_libraries( BuildAHelloWorldProgram ${ITK_LIBRARIES} )
 
 install( TARGETS BuildAHelloWorldProgram
@@ -13,7 +13,7 @@ install( TARGETS BuildAHelloWorldProgram
   COMPONENT Runtime
 )
 
-install( FILES BuildAHelloWorldProgram.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/BuildAHelloWorldProgram
   COMPONENT Code
 )

@@ -5,7 +5,7 @@ project( SetPixelValueInOneImage )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( SetPixelValueInOneImage SetPixelValueInOneImage.cxx )
+add_executable( SetPixelValueInOneImage Code.cxx )
 target_link_libraries( SetPixelValueInOneImage ${ITK_LIBRARIES} )
 
 install( TARGETS SetPixelValueInOneImage
@@ -13,7 +13,7 @@ install( TARGETS SetPixelValueInOneImage
   COMPONENT Runtime
 )
 
-install( FILES SetPixelValueInOneImage.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/SetPixelValueInOneImage
   COMPONENT Code
 )
@@ -21,5 +21,5 @@ install( FILES SetPixelValueInOneImage.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME SetPixelValueInOneImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SetPixelValueInOneImage
-  ${CMAKE_CURRENT_BINARY_DIR}/SetPixelValueInOneImageOutput.png
+  ${CMAKE_CURRENT_BINARY_DIR}/Output.png
 )

@@ -5,7 +5,7 @@ project( CreateAImageRegion )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CreateAImageRegion CreateAImageRegion.cxx )
+add_executable( CreateAImageRegion Code.cxx )
 target_link_libraries( CreateAImageRegion ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAImageRegion
@@ -13,7 +13,7 @@ install( TARGETS CreateAImageRegion
   COMPONENT Runtime
 )
 
-install( FILES CreateAImageRegion.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/CreateAImageRegion
   COMPONENT Code
 )

@@ -5,7 +5,7 @@ project( ApplySinImageFilter )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( ApplySinImageFilter ApplySinImageFilter.cxx )
+add_executable( ApplySinImageFilter Code.cxx )
 target_link_libraries( ApplySinImageFilter ${ITK_LIBRARIES} )
 
 install( TARGETS ApplySinImageFilter
@@ -13,7 +13,7 @@ install( TARGETS ApplySinImageFilter
   COMPONENT Runtime
 )
 
-install( FILES ApplySinImageFilter.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/ApplySinImageFilter
   COMPONENT Code
 )
@@ -21,6 +21,6 @@ install( FILES ApplySinImageFilter.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME ApplySinImageFilterTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplySinImageFilter
-    ${CMAKE_CURRENT_BINARY_DIR}/ApplySinImageFilterInput.mha
-    ApplySinImageFilterOutput.mha
+    ${CMAKE_CURRENT_BINARY_DIR}/Input.mha
+    Output.mha
 )

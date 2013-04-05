@@ -5,7 +5,7 @@ project( CreateAVector )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CreateAVector CreateAVector.cxx )
+add_executable( CreateAVector Code.cxx )
 target_link_libraries( CreateAVector ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAVector
@@ -13,7 +13,7 @@ install( TARGETS CreateAVector
   COMPONENT Runtime
 )
 
-install( FILES CreateAVector.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/CreateAVector
   COMPONENT Code
 )

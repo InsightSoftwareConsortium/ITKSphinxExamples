@@ -5,7 +5,7 @@ project( ObserveAnEvent )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( ObserveAnEvent ObserveAnEvent.cxx )
+add_executable( ObserveAnEvent Code.cxx )
 target_link_libraries( ObserveAnEvent ${ITK_LIBRARIES} )
 
 install( TARGETS ObserveAnEvent
@@ -13,7 +13,7 @@ install( TARGETS ObserveAnEvent
   COMPONENT Runtime
 )
 
-install( FILES ObserveAnEvent.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/ObserveAnEvent
   COMPONENT Code
 )

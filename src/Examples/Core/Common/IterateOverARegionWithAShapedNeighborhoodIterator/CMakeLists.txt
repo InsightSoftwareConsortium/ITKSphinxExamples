@@ -5,7 +5,7 @@ project( IterateOverARegionWithAShapedNeighborhoodIterator )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( IterateOverARegionWithAShapedNeighborhoodIterator IterateOverARegionWithAShapedNeighborhoodIterator.cxx )
+add_executable( IterateOverARegionWithAShapedNeighborhoodIterator Code.cxx )
 target_link_libraries( IterateOverARegionWithAShapedNeighborhoodIterator ${ITK_LIBRARIES} )
 
 install( TARGETS IterateOverARegionWithAShapedNeighborhoodIterator
@@ -13,7 +13,7 @@ install( TARGETS IterateOverARegionWithAShapedNeighborhoodIterator
   COMPONENT Runtime
 )
 
-install( FILES IterateOverARegionWithAShapedNeighborhoodIterator.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/IterateOverARegionWithAShapedNeighborhoodIterator
   COMPONENT Code
 )

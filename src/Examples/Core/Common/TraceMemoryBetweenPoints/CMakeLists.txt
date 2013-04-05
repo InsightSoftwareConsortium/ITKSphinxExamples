@@ -6,7 +6,7 @@ find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
 add_executable( TraceMemoryBetweenPoints
-  TraceMemoryBetweenPoints.cxx )
+  Code.cxx )
 target_link_libraries( TraceMemoryBetweenPoints ${ITK_LIBRARIES} )
 
 install( TARGETS TraceMemoryBetweenPoints
@@ -14,7 +14,7 @@ install( TARGETS TraceMemoryBetweenPoints
   COMPONENT Runtime
   )
 
-install( FILES TraceMemoryBetweenPoints.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/TraceMemoryBetweenPoints
   COMPONENT Code
   )

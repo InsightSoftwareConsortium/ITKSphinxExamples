@@ -5,7 +5,7 @@ project( ApplyAFilterOnlyToASpecifiedRegionOfAnImage )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( ApplyAFilterOnlyToASpecifiedRegionOfAnImage ApplyAFilterOnlyToASpecifiedRegionOfAnImage.cxx )
+add_executable( ApplyAFilterOnlyToASpecifiedRegionOfAnImage Code.cxx )
 target_link_libraries( ApplyAFilterOnlyToASpecifiedRegionOfAnImage ${ITK_LIBRARIES} )
 
 install( TARGETS ApplyAFilterOnlyToASpecifiedRegionOfAnImage
@@ -13,7 +13,7 @@ install( TARGETS ApplyAFilterOnlyToASpecifiedRegionOfAnImage
   COMPONENT Runtime
 )
 
-install( FILES ApplyAFilterOnlyToASpecifiedRegionOfAnImage.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/ApplyAFilterOnlyToASpecifiedRegionOfAnImage
   COMPONENT Code
 )

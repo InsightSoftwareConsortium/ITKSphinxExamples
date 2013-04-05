@@ -8,7 +8,7 @@ if( ${ITK_FOUND} )
   include( ${ITK_USE_FILE} )
 endif()
 
-add_executable( CreateAPointSet CreateAPointSet.cxx )
+add_executable( CreateAPointSet Code.cxx )
 target_link_libraries( CreateAPointSet ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAPointSet
@@ -16,7 +16,7 @@ install( TARGETS CreateAPointSet
   COMPONENT Runtime
 )
 
-install( FILES CreateAPointSet.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/CreateAPointSet
   COMPONENT Code
 )

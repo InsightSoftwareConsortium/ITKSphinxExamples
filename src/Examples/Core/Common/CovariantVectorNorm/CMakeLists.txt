@@ -8,7 +8,7 @@ if( ${ITK_FOUND} )
   include( ${ITK_USE_FILE} )
 endif()
 
-add_executable( CovariantVectorNorm CovariantVectorNorm.cxx )
+add_executable( CovariantVectorNorm Code.cxx )
 target_link_libraries( CovariantVectorNorm ${ITK_LIBRARIES} )
 
 install( TARGETS CovariantVectorNorm
@@ -16,7 +16,7 @@ install( TARGETS CovariantVectorNorm
   COMPONENT Runtime
 )
 
-install( FILES CovariantVectorNorm.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/CovariantVectorNorm
   COMPONENT Code
 )

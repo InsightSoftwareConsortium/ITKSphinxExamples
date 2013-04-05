@@ -5,7 +5,7 @@ project( CreateAnRGBImage )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CreateAnRGBImage CreateAnRGBImage.cxx )
+add_executable( CreateAnRGBImage Code.cxx )
 target_link_libraries( CreateAnRGBImage ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAnRGBImage
@@ -13,7 +13,7 @@ install( TARGETS CreateAnRGBImage
   COMPONENT Runtime
 )
 
-install( FILES CreateAnRGBImage.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/CreateAnRGBImage
   COMPONENT Code
 )

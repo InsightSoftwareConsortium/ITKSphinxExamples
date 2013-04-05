@@ -5,7 +5,7 @@ project( CreateABackwardDifferenceOperator )
 find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
-add_executable( CreateABackwardDifferenceOperator CreateABackwardDifferenceOperator.cxx )
+add_executable( CreateABackwardDifferenceOperator Code.cxx )
 target_link_libraries( CreateABackwardDifferenceOperator ${ITK_LIBRARIES} )
 
 install( TARGETS CreateABackwardDifferenceOperator
@@ -13,7 +13,7 @@ install( TARGETS CreateABackwardDifferenceOperator
   COMPONENT Runtime
 )
 
-install( FILES CreateABackwardDifferenceOperator.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/CreateABackwardDifferenceOperator
   COMPONENT Code
 )
