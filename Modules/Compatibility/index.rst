@@ -1,6 +1,5 @@
-Segmentation
-============
+Compatibility
+=============
 
 .. toctree::
   :maxdepth: 2
-

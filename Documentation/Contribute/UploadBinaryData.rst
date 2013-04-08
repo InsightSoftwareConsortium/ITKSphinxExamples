@@ -124,4 +124,3 @@ before committing to the repository.
 .. _Midas server:                http://midas3.kitware.com/midas/community/12
 .. _Midas web interface:         Midas server_
 .. _Python:                      http://python.org/
-

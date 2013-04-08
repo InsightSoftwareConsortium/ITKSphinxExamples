@@ -27,4 +27,3 @@ add_test( NAME PerformMultiModalityRegistrationWithMutualInformationTest
   PerformMultiModalityRegistrationWithMutualInformationCheckerboardBefore.png
   PerformMultiModalityRegistrationWithMutualInformationCheckerboardAfter.png
   )
-

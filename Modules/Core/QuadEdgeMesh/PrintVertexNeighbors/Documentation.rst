@@ -1,5 +1,5 @@
 Print Vertex Neighbors
-=====================
+======================
 
 .. index::
    single: QuadEdgeMesh

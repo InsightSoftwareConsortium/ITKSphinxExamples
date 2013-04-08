@@ -1,6 +1,5 @@
-Bridge
-======
+External
+========
 
 .. toctree::
   :maxdepth: 2
-

@@ -9,11 +9,11 @@ Contents:
 .. toctree::
   :maxdepth: 2
 
-  Build/index
-  Contribute/index
-  Examples/index
-  Download/index
-  Credits
+  Documentation/Build/index
+  Documentation/Contribute/index
+  Modules/index
+  Documentation/Download/index
+  Documentation/Credits
 
 Index
 =====

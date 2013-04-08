@@ -1,5 +1,5 @@
 Credits
-=======
+==========
 
 .. toctree::
    :maxdepth: 2

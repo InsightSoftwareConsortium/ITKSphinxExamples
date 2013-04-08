@@ -1,6 +1,5 @@
-GPU
-===
+Segmentation
+============
 
 .. toctree::
   :maxdepth: 2
-

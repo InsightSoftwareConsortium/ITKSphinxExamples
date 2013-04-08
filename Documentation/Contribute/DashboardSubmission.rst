@@ -5,7 +5,7 @@ Quality control of the examples is maintained with a dashboard that collects
 configuration, build, and testings results in a CDash_ dashboard.  Examples are
 compiled nightly, executed and compared to baseline images to ensure these
 examples remain valid on all supported platforms and to ensure changes in the
-development of ITK do not adversely effect these examples. 
+development of ITK do not adversely effect these examples.
 
 Experimental submission
 -----------------------

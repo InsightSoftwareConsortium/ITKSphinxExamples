@@ -61,7 +61,7 @@ binary tree (/path/to/ITKExamples-build/Utilities)::
 Note that the generated files are then located based on the group, module and
 class name to be demonstrated. For instance an example which would demonstrate
 the usage of :itkdox:`itk::Image` will be generated in
-``src/Examples/Core/Common/``.
+``Modules/Core/Common/``.
 
 Please do not add images directly to the repository.  Instead, use the
 :ref:`content link system <upload-binary-data>`.
