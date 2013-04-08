@@ -260,3 +260,7 @@ doxylink = {
 
 # ------------------------
 breathelink_default_doxylink_role = 'itkdox'
+
+# ------------------------
+#  https://bitbucket.org/birkenfeld/sphinx/issue/1004/attributeerror-values-instance-has-no
+file_insertion_enable = True
