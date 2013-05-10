@@ -21,4 +21,9 @@ install( FILES Create3DVolume.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME Create3DVolumeTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Create3DVolume )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Create3DVolume
+    ${CMAKE_CURRENT_BINARY_DIR}/mri3D_0.mha
+    ${CMAKE_CURRENT_BINARY_DIR}/mri3D_1.mha
+    ${CMAKE_CURRENT_BINARY_DIR}/mri3D_2.mha
+    ${CMAKE_CURRENT_BINARY_DIR}/Create3DVolumeOutput.mha
+)
