@@ -7,3 +7,4 @@ ImageGrid
   FlipAnImageOverSpecifiedAxes/FlipAnImageOverSpecifiedAxes.rst
   PadAnImageWithAConstant/PadAnImageWithAConstant.rst
   PadAnImageByMirroring/PadAnImageByMirroring.rst
+  Create3DVolume/Create3DVolume.rst
