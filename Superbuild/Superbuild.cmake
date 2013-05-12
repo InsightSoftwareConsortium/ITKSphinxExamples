@@ -56,6 +56,7 @@ if( ${BUILD_DOCUMENTATION} )
   endif()
 endif()
 
+include( CTest )
 option( BUILD_TESTING "Build testing" OFF )
 
 ExternalProject_Add( ITKExamples
