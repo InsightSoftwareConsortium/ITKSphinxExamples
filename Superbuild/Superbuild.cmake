@@ -34,28 +34,6 @@ endif()
 
 option( BUILD_DOCUMENTATION "Build documentation" OFF )
 
-if( ${BUILD_DOCUMENTATION} )
-
-  option( DOC_WITH_LOCAL_DOXYGEN "Download ITK Doxygen documentation" OFF )
-
-  if( ${DOC_WITH_LOCAL_DOXYGEN} )
-    if(NOT ITKDoxygen_DIR )
-      include( ${CMAKE_SOURCE_DIR}/External-ITKDoxygen.cmake )
-      list( APPEND ITKExamples_DEPENDENCIES ITKDoxygen )
-    endif()
-  endif()
-
-  if(NOT ITKDoxygenXML_DIR )
-    include( ${CMAKE_SOURCE_DIR}/External-ITKDoxygenXML.cmake )
-    list( APPEND ITKExamples_DEPENDENCIES ITKDoxygenXML )
-  endif()
-
-  if(NOT ITKDoxygenTAG_DIR )
-    include( ${CMAKE_SOURCE_DIR}/External-ITKDoxygenTAG.cmake )
-    list( APPEND ITKExamples_DEPENDENCIES ITKDoxygenTAG )
-  endif()
-endif()
-
 include( CTest )
 option( BUILD_TESTING "Build testing" OFF )
 
