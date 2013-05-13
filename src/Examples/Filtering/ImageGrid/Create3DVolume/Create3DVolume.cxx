@@ -27,7 +27,7 @@ int main( int argc, char* argv[] )
   typedef itk::TileImageFilter< InputImageType, OutputImageType > FilterType;
   FilterType::Pointer filter = FilterType::New();
 
-  itk::FixedArray< unsigned int, OutputImageDimension > layout;
+  itk::FixedArray< unsigned int, OutputDimension > layout;
   layout[0] = 2;
   layout[1] = 2;
   layout[2] = 0;
@@ -59,7 +59,7 @@ int main( int argc, char* argv[] )
   filter->SetDefaultPixelValue( defaultValue );
   filter->Update();
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  typedef itk::ImageFileWriter< OutputImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[ argc - 1 ] );
   writer->SetInput( filter->GetOutput() );
