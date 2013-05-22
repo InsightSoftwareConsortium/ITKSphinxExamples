@@ -7,3 +7,4 @@ Core
   Common/index.rst
   TestKernel/index.rst
   QuadEdgeMesh/index.rst
+  Mesh/index.rst
