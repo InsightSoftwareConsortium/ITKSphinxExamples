@@ -27,7 +27,6 @@
 ./VectorImages/VectorImage.cxx
 ./VectorImages/VectorResampleImageFilter.cxx
 ./VectorImages/VectorImageToImageAdaptor.cxx
-./SpectralAnalysis/ForwardFFTImageFilter.cxx
 ./SpectralAnalysis/InverseFFTImageFilter.cxx
 ./SpectralAnalysis/VnlFFTRealToComplexConjugateImageFilter.cxx
 ./SpectralAnalysis/CrossCorrelationInFourierDomain.cxx

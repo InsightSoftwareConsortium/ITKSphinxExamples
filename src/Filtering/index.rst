@@ -22,3 +22,5 @@ Filtering
   QuadEdgeMeshFiltering/index.rst
   LabelMap/index.rst
   ImageStatistics/index.rst
+  ImageGradient/index.rst
+  AnisotropicSmoothing/index.rst

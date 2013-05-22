@@ -6,3 +6,4 @@ FFT
 
   FilterImageInFourierDomain/Documentation.rst
   ComputeImageSpectralDensity/Documentation.rst
+  ComputeForwardFFTImageFilter/Documentation.rst
