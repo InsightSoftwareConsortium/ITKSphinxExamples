@@ -6,3 +6,4 @@ IO
 
   ImageBase/index.rst
   TIFF/index.rst
+  Mesh/index.rst
