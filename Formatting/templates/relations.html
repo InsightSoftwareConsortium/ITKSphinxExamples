@@ -19,13 +19,25 @@
 {%- endmacro %}
 {%- set slashcount =  countslashes(pagename)|length %}
 
+{%- macro examplename(str) %}
+  {%- set slashcount = 0 %}
+  {%- for char in str %}
+    {%- if char == '/' -%}
+      {%- set slashcount = slashcount + 1 %}
+    {%- else %}
+      {%- if slashcount > 2 and slashcount < 4 %}{{ char }}{%- endif %}
+    {%- endif %}
+  {%- endfor -%}
+{%- endmacro %}
+{%- set tarballname = examplename(pagename)%}
+
 {%- if slashcount == 4 %}
   <h4>{{ _('Download') }}</h4>
   <p class="topless">
-    <a href="{{ pathto(pagename ~ ".zip", 1) }}">Packed as .zip</a>
+    <a href="{{ tarballname ~ ".zip" }}">Packed as .zip</a>
   </p>
   <p class="topless">
-    <a href="{{ pathto(pagename ~ ".tar.gz", 1) }}">Packed as .tar.gz</a>
+    <a href="{{ tarballname ~ ".tar.gz" }}">Packed as .tar.gz</a>
   </p>
 
   <h4>{{ _('Language') }}</h4>
