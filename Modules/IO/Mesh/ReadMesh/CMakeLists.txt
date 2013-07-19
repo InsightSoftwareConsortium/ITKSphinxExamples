@@ -6,7 +6,7 @@ find_package( ITK REQUIRED )
 
 include( ${ITK_USE_FILE} )
 add_executable( ReadMesh
-  ReadMesh.cxx )
+  Code.cxx )
 target_link_libraries( ReadMesh ${ITK_LIBRARIES} )
 
 install( TARGETS ReadMesh
@@ -22,6 +22,6 @@ install( FILES ReadMesh.cxx CMakeLists.txt
 enable_testing()
 
 add_test( NAME ReadMeshTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DistanceInBetween2Vertices
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadMesh
     ${CMAKE_CURRENT_BINARY_DIR}/genusZeroSurface01.vtk 0 25
 )

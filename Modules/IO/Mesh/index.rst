@@ -4,4 +4,4 @@ Mesh
 .. toctree::
   :maxdepth: 2
 
-  ReadMesh/ReadMesh.rst
+  ReadMesh/Documentation.rst
