@@ -53,7 +53,8 @@ set( _RootSubDirs
   CMake
   Formatting
   Utilities
-  src
+  Modules
+  Documentation
   Superbuild
 )
 
@@ -83,8 +84,9 @@ if( BUILD_DOCUMENTATION )
   # We must also duplicate the source tree since the images need to be present
   # with the source.
   add_custom_target( copy_sources ALL
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/src"
-    "${ITKExamples_BINARY_DIR}/src"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Modules" "${ITKExamples_BINARY_DIR}/Modules"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Documentation" "${ITKExamples_BINARY_DIR}/Documentation"
+    COMMAND ${CMAKE_COMMAND} -E copy "${ITKExamples_SOURCE_DIR}/index.rst" "${ITKExamples_BINARY_DIR}/index.rst"
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Formatting"
     "${ITKExamples_BINARY_DIR}/Formatting"
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Utilities"
@@ -97,7 +99,7 @@ if( BUILD_DOCUMENTATION )
 
   add_custom_target( gitstats ALL
     COMMAND ${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/gitstats/gitstats --rst
-    ${ITKExamples_SOURCE_DIR} ${ITKExamples_BINARY_DIR}/src/gitstats
+    ${ITKExamples_SOURCE_DIR} ${ITKExamples_BINARY_DIR}/Documentation/gitstats
     WORKING_DIRECTORY ${ITKExamples_BINARY_DIR}
     COMMENT "Running gitstats"
   )
@@ -120,7 +122,7 @@ if( BUILD_DOCUMENTATION )
   find_package( Sphinx REQUIRED )
 
   set( SPHINX_CONF_DIR ${ITKExamples_BINARY_DIR}/Formatting )
-  set( SPHINX_INPUT_DIR ${ITKExamples_BINARY_DIR}/src )
+  set( SPHINX_INPUT_DIR ${ITKExamples_BINARY_DIR} )
   set( SPHINX_DESTINATION ${ITKExamples_BINARY_DIR} )
   set( SPHINX_DEPENDENCIES gitstats ITKDoxygenXML ITKExamplesData ITKDoxygenTAG CreateTarballs )
 
@@ -138,7 +140,7 @@ if( BUILD_DOCUMENTATION )
       )
     add_custom_command(TARGET ${sphinx_target_base_name}_html
       POST_BUILD
-      COMMAND ${PYTHON_EXECUTABLE} 
+      COMMAND ${PYTHON_EXECUTABLE}
         ${ITKExamples_SOURCE_DIR}/Utilities/DocumentationTarball.py
         ${SPHINX_DESTINATION}/html
         ${ITKExamples_BINARY_DIR}/ITKExamples-${ITKExamples_RELEASE_VERSION}-html
@@ -210,12 +212,13 @@ if( BUILD_DOCUMENTATION )
   endif()
 
   add_subdirectory( Formatting )
+  add_subdirectory( Documentation )
 endif()
 
 # Build the example executables?
 option( BUILD_EXECUTABLES "Build the example executables." ON )
 if( BUILD_EXECUTABLES )
-  add_subdirectory( src )
+  add_subdirectory( Modules )
 endif()
 
 add_subdirectory( Utilities )

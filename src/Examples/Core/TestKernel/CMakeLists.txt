@@ -1,2 +1,0 @@
-add_example( GenerateRandomImage )
-compare_to_baseline( GenerateRandomImage GenerateRandomImageOutput)

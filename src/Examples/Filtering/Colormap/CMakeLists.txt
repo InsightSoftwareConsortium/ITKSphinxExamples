@@ -1,4 +1,0 @@
-add_example( CreateAnApplyCustomColorMap )
-compare_to_baseline( CreateAnApplyCustomColorMap CreateAnApplyCustomColorMapOutput)
-add_example( ApplyAColorMapToAnImage )
-compare_to_baseline( ApplyAColorMapToAnImage ApplyAColorMapToAnImageOutput)

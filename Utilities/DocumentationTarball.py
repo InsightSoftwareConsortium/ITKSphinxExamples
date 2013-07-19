@@ -33,8 +33,8 @@ tarball_top_dir = os.path.basename(output_prefix)
 output_tar = tarball_top_dir + '.tar.gz'
 output_zip = tarball_top_dir + '.zip'
 output_dir = os.path.dirname(output_prefix)
-output_download_tar = os.path.join(output_dir, 'html', 'Download', output_tar)
-output_download_zip = os.path.join(output_dir, 'html', 'Download', output_zip)
+output_download_tar = os.path.join(output_dir, 'html', 'Documentation', 'Download', output_tar)
+output_download_zip = os.path.join(output_dir, 'html', 'Documentation', 'Download', output_zip)
 
 # Remove old tarballs.
 if os.path.exists(output_download_tar):

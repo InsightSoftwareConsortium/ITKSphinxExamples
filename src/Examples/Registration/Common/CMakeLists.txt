@@ -1,2 +1,0 @@
-add_example( PerformMultiModalityRegistrationWithMutualInformation )
-compare_to_baseline( PerformMultiModalityRegistrationWithMutualInformation PerformMultiModalityRegistrationWithMutualInformationOutput)

@@ -76,7 +76,7 @@ release = '@ITKExamples_RELEASE_VERSION@'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = []
+exclude_patterns = ['Utilities', 'html']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -260,3 +260,7 @@ doxylink = {
 
 # ------------------------
 breathelink_default_doxylink_role = 'itkdox'
+
+# ------------------------
+#  https://bitbucket.org/birkenfeld/sphinx/issue/1004/attributeerror-values-instance-has-no
+file_insertion_enable = True

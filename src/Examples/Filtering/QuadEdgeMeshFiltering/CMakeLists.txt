@@ -1,5 +1,0 @@
-add_example( ComputeNormalsOfAMesh )
-add_example( CleanQuadEdgeMesh )
-# compare_to_baseline( CleanQuadEdgeMesh CleanQuadEdgeMeshOutput)
-add_example( DelaunayConformEdgeFlipping )
-# compare_to_baseline( DelaunayConformEdgeFlipping DelaunayConformEdgeFlippingOutput)
