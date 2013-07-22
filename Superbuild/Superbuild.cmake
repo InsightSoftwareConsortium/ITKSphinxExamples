@@ -33,6 +33,21 @@ if(NOT ITK_DIR)
 endif()
 
 option( BUILD_DOCUMENTATION "Build documentation" OFF )
+set( _build_doc_args )
+if( BUILD_DOCUMENTATION )
+  if( ITKDoxygen_DIR )
+    set( _build_doc_args "${_build_doc_args} -DITKDoxygen_DIR:PATH=${ITKDoxygen_DIR}" )
+  endif()
+  if( ITKDoxygenXML_DIR )
+    set( _build_doc_args "${_build_doc_args} -DITKDoxygenXML_DIR:PATH=${ITKDoxygenXML_DIR}" )
+  endif()
+  if( ITKDoxygenTAG_DIR )
+    set( _build_doc_args "${_build_doc_args} -DITKDoxygenTAG_DIR:PATH=${ITKDoxygenTAG_DIR}" )
+  endif()
+  if( DOC_WITH_LOCAL_DOXYGEN )
+    set( _build_doc_args "${_build_doc_args} -DDOC_WITH_LOCAL_DOXYGEN:PATH=${DOC_WITH_LOCAL_DOXYGEN}" )
+  endif()
+endif()
 
 include( CTest )
 option( BUILD_TESTING "Build testing" OFF )
@@ -45,14 +60,11 @@ ExternalProject_Add( ITKExamples
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS
     ${ep_common_args}
+    ${_build_doc_args}
     -DBUILD_SHARED_LIBS:BOOL=FALSE
      # ITK
     -DITK_DIR:PATH=${ITK_DIR}
-    -DITKDoxygen_DIR:PATH=${ITKDoxygen_DIR}
-    -DITKDoxygenXML_DIR:PATH=${ITKDoxygenXML_DIR}
-    -DITKDoxygenTAG_DIR:PATH=${ITKDoxygenTAG_DIR}
     -DBUILD_TESTING:BOOL=${BUILD_TESTING}
     -DBUILD_DOCUMENTATION:BOOL=${BUILD_DOCUMENTATION}
-    -DDOC_WITH_LOCAL_DOXYGEN:BOOL=${DOC_WITH_LOCAL_DOXYGEN}
   INSTALL_COMMAND ""
 )
