@@ -8,4 +8,4 @@ add_example( PadAnImageByMirroring )
 compare_to_baseline( PadAnImageByMirroring Output )
 
 add_example( Create3DVolume )
-compare_to_baseline( Create3DVolume Create3DVolumeOutput )
+compare_to_baseline( Create3DVolume Output )
