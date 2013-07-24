@@ -15,27 +15,6 @@ set( ITKExamples_RELEASE_VERSION
 
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ITKExamples_BINARY_DIR}/bin )
 
-# -------------------------------------------------------------------------
-# Check to make sure the submodules are available
-find_package( Git )
-# The UPDATING_SUBMODULES variable can be set to prevent CMake from running
-# 'git submodule update' when attempting change the commit a submodule points
-# to.
-option( UPDATING_SUBMODULES
-  "Set to ON when updating one of the Git submodules." OFF )
-if( EXISTS "${ITKExamples_SOURCE_DIR}/.git" AND GIT_EXECUTABLE AND NOT "${UPDATING_SUBMODULES}" )
-  execute_process( COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
-  WORKING_DIRECTORY "${ITKExamples_SOURCE_DIR}"
-  OUTPUT_QUIET
-  )
-endif()
-if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/breathelink/.git" )
-  message( SEND_ERROR "The git submodules are not available.  Please run
-  git submodule update --init --recursive"
-  )
-endif()
-# -------------------------------------------------------------------------
-
 include( CTest )
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
@@ -80,6 +59,26 @@ ExternalData_Add_Target( ITKExamplesData )
 # Build the documentation?
 option( BUILD_DOCUMENTATION "Build the examples documentation." OFF )
 if( BUILD_DOCUMENTATION )
+  # -------------------------------------------------------------------------
+  # Check to make sure the submodules are available
+  find_package( Git )
+  # The UPDATING_SUBMODULES variable can be set to prevent CMake from running
+  # 'git submodule update' when attempting change the commit a submodule points
+  # to.
+  option( UPDATING_SUBMODULES
+    "Set to ON when updating one of the Git submodules." OFF )
+  if( EXISTS "${ITKExamples_SOURCE_DIR}/.git" AND GIT_EXECUTABLE AND NOT "${UPDATING_SUBMODULES}" )
+    execute_process( COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
+    WORKING_DIRECTORY "${ITKExamples_SOURCE_DIR}"
+    OUTPUT_QUIET
+    )
+  endif()
+  if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/breathelink/.git" )
+    message( SEND_ERROR "The git submodules are not available.  Please run
+    git submodule update --init --recursive"
+    )
+  endif()
+  # -------------------------------------------------------------------------
 
   # We must also duplicate the source tree since the images need to be present
   # with the source.
