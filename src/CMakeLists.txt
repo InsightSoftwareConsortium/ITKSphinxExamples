@@ -1,3 +1,6 @@
+if( itk-module )
+  set( ITK_DIR ${ITK_BINARY_DIR} )
+endif()
 find_package( ITK REQUIRED )
 include( ${ITK_USE_FILE} )
 

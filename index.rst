@@ -11,7 +11,7 @@ Contents:
 
   Documentation/Build/index
   Documentation/Contribute/index
-  Modules/index
+  src/index
   Documentation/Download/index
   Documentation/Credits
 

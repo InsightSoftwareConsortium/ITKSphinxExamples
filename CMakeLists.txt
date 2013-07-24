@@ -32,7 +32,7 @@ set( _RootSubDirs
   CMake
   Formatting
   Utilities
-  Modules
+  src
   Documentation
   Superbuild
 )
@@ -83,7 +83,7 @@ if( BUILD_DOCUMENTATION )
   # We must also duplicate the source tree since the images need to be present
   # with the source.
   add_custom_target( copy_sources ALL
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Modules" "${ITKExamples_BINARY_DIR}/Modules"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/src" "${ITKExamples_BINARY_DIR}/src"
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Documentation" "${ITKExamples_BINARY_DIR}/Documentation"
     COMMAND ${CMAKE_COMMAND} -E copy "${ITKExamples_SOURCE_DIR}/index.rst" "${ITKExamples_BINARY_DIR}/index.rst"
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Formatting"
@@ -216,10 +216,13 @@ endif()
 
 # Build the example executables?
 option( BUILD_EXECUTABLES "Build the example executables." ON )
-if( BUILD_EXECUTABLES )
-  add_subdirectory( Modules )
+if( COMMAND itk_module_impl )
+  itk_module_impl()
+else()
+  if( BUILD_EXECUTABLES )
+    add_subdirectory( src )
+  endif()
+  add_subdirectory( Utilities )
+
+  include( CPack )
 endif()
-
-add_subdirectory( Utilities )
-
-include( CPack )

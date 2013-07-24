@@ -100,7 +100,7 @@ def run(itk_source_dir, externaldata_object_store,
             md5files.append(os.path.join(root, filename))
 
     for content_link in md5files:
-        if content_link.find('Modules') == -1:
+        if content_link.find('src') == -1:
             uncategorized = True
         else:
             uncategorized = False
@@ -108,7 +108,7 @@ def run(itk_source_dir, externaldata_object_store,
         if uncategorized:
             folders = ['Uncategorized']
         else:
-            group_module_path = content_link.split('Modules')[1][1:]
+            group_module_path = content_link.split('src')[1][1:]
             hiercharchy = group_module_path.split(os.path.sep)
             group = hiercharchy[0]
             module = hiercharchy[1]
