@@ -1,5 +1,5 @@
-Create3D Volume
-===============
+Append Two 3D Volumes
+=====================
 
 .. index::
    single: TileImageFilter
@@ -10,19 +10,20 @@ Create3D Volume
 Synopsis
 --------
 
-This example reads in a series of 2D images and stacks them to create a 3D image.
+Append two 3D volumes in the Z-direction.
+
 
 Results
 -------
 
-.. figure::
-  :scale: 50%
+.. figure:: Input.png
+  :scale: 70%
   :alt: Input image
 
   Input image
 
-.. figure::
-  :scale: 50%
+.. figure:: Output.png
+  :scale: 70%
   :alt: Output image
 
   Output image
@@ -34,7 +35,7 @@ Code
 C++
 ...
 
-.. literalinclude:: Create3DVolume.cxx
+.. literalinclude:: Code.cxx
 
 
 Classes demonstrated
