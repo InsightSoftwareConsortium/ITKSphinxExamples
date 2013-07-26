@@ -8,3 +8,4 @@ ImageGrid
   PadAnImageWithAConstant/Documentation.rst
   PadAnImageByMirroring/Documentation.rst
   Create3DVolume/Documentation.rst
+  AppendTwo3DVolumes/Documentation.rst

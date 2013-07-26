@@ -15,27 +15,6 @@ set( ITKExamples_RELEASE_VERSION
 
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ITKExamples_BINARY_DIR}/bin )
 
-# -------------------------------------------------------------------------
-# Check to make sure the submodules are available
-find_package( Git )
-# The UPDATING_SUBMODULES variable can be set to prevent CMake from running
-# 'git submodule update' when attempting change the commit a submodule points
-# to.
-option( UPDATING_SUBMODULES
-  "Set to ON when updating one of the Git submodules." OFF )
-if( EXISTS "${ITKExamples_SOURCE_DIR}/.git" AND GIT_EXECUTABLE AND NOT "${UPDATING_SUBMODULES}" )
-  execute_process( COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
-  WORKING_DIRECTORY "${ITKExamples_SOURCE_DIR}"
-  OUTPUT_QUIET
-  )
-endif()
-if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/breathelink/.git" )
-  message( SEND_ERROR "The git submodules are not available.  Please run
-  git submodule update --init --recursive"
-  )
-endif()
-# -------------------------------------------------------------------------
-
 include( CTest )
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
@@ -53,7 +32,7 @@ set( _RootSubDirs
   CMake
   Formatting
   Utilities
-  Modules
+  src
   Documentation
   Superbuild
 )
@@ -80,11 +59,31 @@ ExternalData_Add_Target( ITKExamplesData )
 # Build the documentation?
 option( BUILD_DOCUMENTATION "Build the examples documentation." OFF )
 if( BUILD_DOCUMENTATION )
+  # -------------------------------------------------------------------------
+  # Check to make sure the submodules are available
+  find_package( Git )
+  # The UPDATING_SUBMODULES variable can be set to prevent CMake from running
+  # 'git submodule update' when attempting change the commit a submodule points
+  # to.
+  option( UPDATING_SUBMODULES
+    "Set to ON when updating one of the Git submodules." OFF )
+  if( EXISTS "${ITKExamples_SOURCE_DIR}/.git" AND GIT_EXECUTABLE AND NOT "${UPDATING_SUBMODULES}" )
+    execute_process( COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
+    WORKING_DIRECTORY "${ITKExamples_SOURCE_DIR}"
+    OUTPUT_QUIET
+    )
+  endif()
+  if( NOT EXISTS "${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/breathelink/.git" )
+    message( SEND_ERROR "The git submodules are not available.  Please run
+    git submodule update --init --recursive"
+    )
+  endif()
+  # -------------------------------------------------------------------------
 
   # We must also duplicate the source tree since the images need to be present
   # with the source.
   add_custom_target( copy_sources ALL
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Modules" "${ITKExamples_BINARY_DIR}/Modules"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/src" "${ITKExamples_BINARY_DIR}/src"
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Documentation" "${ITKExamples_BINARY_DIR}/Documentation"
     COMMAND ${CMAKE_COMMAND} -E copy "${ITKExamples_SOURCE_DIR}/index.rst" "${ITKExamples_BINARY_DIR}/index.rst"
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKExamples_SOURCE_DIR}/Formatting"
@@ -217,10 +216,13 @@ endif()
 
 # Build the example executables?
 option( BUILD_EXECUTABLES "Build the example executables." ON )
-if( BUILD_EXECUTABLES )
-  add_subdirectory( Modules )
+if( COMMAND itk_module_impl )
+  itk_module_impl()
+else()
+  if( BUILD_EXECUTABLES )
+    add_subdirectory( src )
+  endif()
+  add_subdirectory( Utilities )
+
+  include( CPack )
 endif()
-
-add_subdirectory( Utilities )
-
-include( CPack )

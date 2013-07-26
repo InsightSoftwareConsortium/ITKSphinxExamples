@@ -6,37 +6,13 @@ A set of cookbook examples for the Insight Toolkit, ITK_.
 Download instructions
 ---------------------
 
-With version of Git (>= 1.6.5)::
-
-  $ git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git
-
-
-With older versions::
-
   $ git clone https://github.com/InsightSoftwareConsortium/ITKExamples.git
 
 
 Build instructions
 ------------------
 
-Automatic
-^^^^^^^^^
-
-A "superbuild" is provided to automatically fetch and build everything
-that is required. The procedure is almost idential to building a normal CMake
-project - the only difference you must point cmake to ITKExamples/Superbuild
-instead of just ITKExamples::
-
-  mkdir ~/build/ITKExamples
-  cd ~/build/ITKExamples
-  cmake ~/src/ITKExamples/Superbuild/
-  make -j2
-
-Manual
-^^^^^^
-
-If you want to use local installations of some of the required tools, configure
-and build ITKExamples as a typical CMake_ project.
+See the `build instructions in the documentation`_.
 
 Features
 --------
@@ -50,20 +26,22 @@ Implemented
 - CMake ExternalData for binary data storage.
 - Individual examples can be downloaded independently, and easily built/executed/hacked.
 - Download the entire docs for offline viewing.
+- Inline Doxygen class descriptions and links to Doxygen class documentation.
+- Nightly generated Gitstats for contributors.
+- Software quality dashboard.
+- Index of examples that apply to given terms and classes.
+- Quick search.
+- Script to create a new examples from a template.
+- Gerrit Code Review.
+- Selectable light/dark colorscheme.
 
 Todo
 ^^^^
 
 - Anonymous online editing.
 - Editable online with CodeMirror.
-- Peer review with Gerrit.
 
 - See `Github Issues`_ for a complete list of actions to be performed, bugs, *etc.*
-
-With funding
-^^^^^^^^^^^^
-
-- Gerrit robot builds.
 
 Build dependencies
 ------------------
@@ -93,6 +71,7 @@ Run the bash scipt SetupForDevelopment.sh::
   $ ./Utilities/SetupForDevelopment.sh
 
 .. _Breathe: https://github.com/michaeljones/breathe
+.. _build instructions in the documentation: http://itk.org/ITKExamples/Documentation/Build/index.html
 .. _CMake: http://cmake.org/
 .. _Gerrit: http://code.google.com/p/gerrit/
 .. _Git: http://git-scm.com/

@@ -45,7 +45,7 @@ After joining the `ITK Midas Community`_ as instructed above, migrate to the
 Community`_.  Select a *<GroupName>* and *<ModuleName>* corresponding
 to the location within the ITK source tree of the primary class demonstrated by your
 example.  The ITK source tree is organized into a
-*Modules/<GroupName>/<ModuleName>* structure.
+*src/<GroupName>/<ModuleName>* structure.
 
 .. figure:: MigrateToFolder.png
   :alt: Migrate to corresponding group and module folder
