@@ -384,6 +384,6 @@ if __name__ == '__main__':
     print ( '  2- Commit changes in the ITKExamples source directory and push' )
     print ( '$ cd @ITKExamples_SOURCE_DIR@' )
     print ( '$ git checkout -b Add_' + example_name )
-    print ( '$ git add src/Examples/' + group_name + '/' + module_name )
+    print ( '$ git add src/' + group_name + '/' + module_name )
     print ( '$ git commit -a -m "ENH: Add ' + example_name + '" ' )
     print ( '$ git gerrit-push' )
