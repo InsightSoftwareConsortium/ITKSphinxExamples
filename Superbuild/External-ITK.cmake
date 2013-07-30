@@ -2,7 +2,8 @@
 # Get and build itk
 
 if( NOT ITK_TAG )
-  set( ITK_TAG "v4.3.1" )
+  # ITK master 2013-07-09
+  set( ITK_TAG "d73c465ed4b65d1c81e00b4e68ef4c859a1f7e10" )
 endif()
 
 ExternalProject_Add( ITK
