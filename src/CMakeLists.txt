@@ -80,6 +80,7 @@ target_link_libraries( ImageCompareCommand ${ITK_LIBRARIES} )
 # the source tree at ${example_name}/${baseline_prefix}Baseline.ext.md5 and the
 # output of the example to compare against will be placed in the binary tree at
 # ${example_name}/${baseline_prefix}.ext.
+# Any arguments past baseline_prefix will be passed as test's properties.
 function( compare_to_baseline example_name baseline_prefix )
   file( GLOB baseline_image ${CMAKE_CURRENT_SOURCE_DIR}/${example_name}/${baseline_prefix}Baseline.* )
   string( REPLACE .md5 "" baseline_image "${baseline_image}" )
@@ -91,7 +92,9 @@ function( compare_to_baseline example_name baseline_prefix )
     "${test_image}" --baseline-image "${baseline_image}" ${ARGN}
   )
   set_tests_properties( ${example_name}TestBaselineComparison
-    PROPERTIES DEPENDS ${example_name}Test )
+    PROPERTIES DEPENDS ${example_name}Test
+    ${ARGN}
+    )
 endfunction()
 
 add_subdirectory( Bridge )

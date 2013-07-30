@@ -5,4 +5,4 @@ add_example( LaplacianRecursiveGaussianImageFilter )
 compare_to_baseline( LaplacianRecursiveGaussianImageFilter Output)
 
 add_example( SegmentBloodVessels )
-compare_to_baseline( SegmentBloodVessels Output )
+compare_to_baseline( SegmentBloodVessels Output LABELS RUNS_LONG )

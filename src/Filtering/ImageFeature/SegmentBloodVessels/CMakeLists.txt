@@ -25,3 +25,5 @@ add_test( NAME SegmentBloodVesselsTest
     Output.mha
     2.0
   )
+set_tests_properties( SegmentBloodVesselsTest PROPERTIES
+  LABELS RUNS_LONG )
