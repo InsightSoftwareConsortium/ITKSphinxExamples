@@ -352,7 +352,6 @@
 * ../ITK/Examples/Numerics/FourierDescriptors1.cxx
 * ../ITK/Examples/Filtering/GrayscaleFunctionDilateImageFilter.cxx
 * ../ITK/Examples/Filtering/CurvatureAnisotropicDiffusionImageFilter.java
-* ../ITK/Examples/Filtering/VesselnessMeasureImageFilter.cxx
 * ../ITK/Examples/Filtering/CurvatureAnisotropicDiffusionImageFilter.tcl
 * ../ITK/Examples/Filtering/FFTDirectInverse.cxx
 * ../ITK/Examples/Filtering/MeanImageFilter.py
