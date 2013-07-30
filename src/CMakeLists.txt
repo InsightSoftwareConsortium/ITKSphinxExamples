@@ -25,6 +25,12 @@ if( BUILD_DOCUMENTATION )
   endif()
 endif()
 
+if( WIN32 )
+  add_definitions( -D_SCL_SECURE_NO_WARNINGS
+    -D_CRT_SECURE_NO_WARNINGS
+    )
+endif()
+
 # A high level target that the individual targets depend on.
 #add_custom_target( CreateTarballs ALL
 #  ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
@@ -40,7 +46,6 @@ endif()
 # the Sphinx documentation for an individual example.  The Sphinx target will be
 # called ${example_name}Doc.
 macro( add_example example_name )
-
   if( BUILD_DOCUMENTATION )
     if( SPHINX_HTML_OUTPUT )
       add_custom_target( ${example_name}Tarball
@@ -56,7 +61,6 @@ macro( add_example example_name )
 
   # Process the example's CMakeLists.txt
   add_subdirectory( ${example_name} )
-
 endmacro()
 
 
