@@ -1,16 +1,17 @@
 cmake_minimum_required( VERSION 2.8.5 )
 project( ITKExamples )
 
-set( ITKExamples_MAJOR_VERSION 4 )
-set( ITKExamples_MINOR_VERSION 4 )
-set( ITKExamples_PATCH_VERSION 0 )
+find_package( ITK )
+set( ITKExamples_VERSION_MAJOR ${ITK_VERSION_MAJOR} )
+set( ITKExamples_VERSION_MINOR ${ITK_VERSION_MINOR} )
+set( ITKExamples_VERSION_PATCH ${ITK_VERSION_PATCH} )
 
 set( ITKExamples_VERSION
-  "${ITKExamples_MAJOR_VERSION}.${ITKExamples_MINOR_VERSION}"
+  "${ITKExamples_VERSION_MAJOR}.${ITKExamples_VERSION_MINOR}"
 )
 
 set( ITKExamples_RELEASE_VERSION
-   "${ITKExamples_MAJOR_VERSION}.${ITKExamples_MINOR_VERSION}.${ITKExamples_PATCH_VERSION}"
+   "${ITKExamples_VERSION_MAJOR}.${ITKExamples_VERSION_MINOR}.${ITKExamples_VERSION_PATCH}"
 )
 
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ITKExamples_BINARY_DIR}/bin )
