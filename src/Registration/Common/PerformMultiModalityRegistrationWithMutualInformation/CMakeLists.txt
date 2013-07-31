@@ -27,3 +27,5 @@ add_test( NAME PerformMultiModalityRegistrationWithMutualInformationTest
   PerformMultiModalityRegistrationWithMutualInformationCheckerboardBefore.png
   PerformMultiModalityRegistrationWithMutualInformationCheckerboardAfter.png
   )
+set_tests_properties( PerformMultiModalityRegistrationWithMutualInformationTest PROPERTIES
+  LABELS RUNS_LONG )

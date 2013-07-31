@@ -1,2 +1,3 @@
 add_example( PerformMultiModalityRegistrationWithMutualInformation )
-compare_to_baseline( PerformMultiModalityRegistrationWithMutualInformation Output)
+compare_to_baseline( PerformMultiModalityRegistrationWithMutualInformation Output
+  LABELS RUNS_LONG )
