@@ -6,13 +6,13 @@ Cut Mesh
    single: QuadEdgeMeshPolygonCell
    single: MeshFileReader
    single: MeshFileWriter
-   double: QuadEdge, GetLnext
-   double: QuadEdge, GetOnext
-   double: QuadEdgeMeshPoint, CastFrom
-   double: QuadEdgeMeshPolygonCell, GetEdgeRingEntry
-   double: QuadEdgeMesh, AddPoint
-   double: QuadEdgeMesh, AddFaceTriangle
-   double: PointSet, GetPoints
+   pair: QuadEdge; GetLnext
+   pair: QuadEdge; GetOnext
+   pair: QuadEdgeMeshPoint; CastFrom
+   pair: QuadEdgeMeshPolygonCell; GetEdgeRingEntry
+   pair: QuadEdgeMesh; AddPoint
+   pair: QuadEdgeMesh; AddFaceTriangle
+   pair: PointSet; GetPoints
 
 Synopsis
 --------
