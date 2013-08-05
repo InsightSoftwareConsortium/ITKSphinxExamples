@@ -40,3 +40,4 @@ Common
   IterateOverARegionWithAShapedNeighborhoodIterator/Documentation.rst
   CreateABackwardDifferenceOperator/Documentation.rst
   TraceMemoryBetweenPoints/Documentation.rst
+  StreamAPipeline/Documentation.rst
