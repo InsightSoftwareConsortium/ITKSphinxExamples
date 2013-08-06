@@ -194,7 +194,7 @@ def WriteExampleCXXFile( example_cxx, class_name ):
     f.write( '  //   {\n' )
     f.write( '  //   writer->Update();\n' )
     f.write( '  //   }\n' )
-    f.write( '  catch( itk::ExceptionObject & error )\n' )
+    f.write( '  // catch( itk::ExceptionObject & error )\n' )
     f.write( '  //   {\n' )
     f.write( '  //   std::cerr << "Error: " << error << std::endl;\n' )
     f.write( '  //   return EXIT_FAILURE;\n' )
