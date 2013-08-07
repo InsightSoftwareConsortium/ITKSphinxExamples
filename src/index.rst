@@ -13,6 +13,7 @@ Examples
   GPU/index.rst
   IO/index.rst
   Numerics/index.rst
+  Nonunit/index.rst
   Registration/index.rst
   Segmentation/index.rst
   Video/index.rst
