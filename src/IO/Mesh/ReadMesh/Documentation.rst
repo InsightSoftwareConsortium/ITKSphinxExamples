@@ -4,8 +4,8 @@ Read Mesh
 .. index::
    single: MeshFileReader
    single: Mesh
-   double: Mesh; GetPoint
-   double: Point; EuclideanDistanceTo
+   pair: Mesh; GetPoint
+   pair: Point; EuclideanDistanceTo
 
 Synopsis
 --------

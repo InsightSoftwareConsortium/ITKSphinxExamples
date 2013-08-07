@@ -1,6 +1,6 @@
 #include "itkVector.h"
 #include "itkQuadEdgeMesh.h"
-#include "itkVTKPolyDataReader.h"
+#include "itkMeshFileReader.h"
 #include "itkQuadEdgeMeshExtendedTraits.h"
 #include "itkNormalQuadEdgeMeshFilter.h"
 
@@ -34,7 +34,7 @@ int main( int argc, char* argv[] )
     bool,
     bool > Traits;
 
-  typedef itk::VTKPolyDataReader< InputMeshType > ReaderType;
+  typedef itk::MeshFileReader< InputMeshType > ReaderType;
   ReaderType::Pointer reader = ReaderType::New( );
   reader->SetFileName( argv[1] );
   reader->Update( );

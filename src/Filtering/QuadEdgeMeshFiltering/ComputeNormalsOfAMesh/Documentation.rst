@@ -3,6 +3,9 @@ Compute Normals Of A Mesh
 
 .. index::
    single: NormalQuadEdgeMeshFilter
+   single: QuadEdgeMesh
+   single: MeshFileReader
+   pair: NormalQuadEdgeMeshFilter; SetWeight
 
 Synopsis
 --------

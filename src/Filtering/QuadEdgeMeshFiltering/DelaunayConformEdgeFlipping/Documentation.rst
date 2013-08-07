@@ -3,6 +3,9 @@ Delaunay Conform Edge Flipping
 
 .. index::
    single: DelaunayConformingQuadEdgeMeshFilter
+   single: MeshFileReader
+   single: MeshFileWriter
+   single: QuadEdgeMesh
 
 Synopsis
 --------

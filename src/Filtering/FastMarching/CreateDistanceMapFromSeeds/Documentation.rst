@@ -3,6 +3,8 @@ Create Distance Map From Seeds
 
 .. index::
    single: FastMarchingImageFilterBase
+   single: FastMarchingImageToNodePairContainerAdaptor
+   single: ImageFileWriter
 
 Synopsis
 --------
