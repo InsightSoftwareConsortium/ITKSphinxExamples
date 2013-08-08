@@ -5,3 +5,4 @@ FastMarching
   :maxdepth: 2
 
   CreateDistanceMapFromSeeds/Documentation.rst
+  ComputeGeodesicDistanceOnMesh/Documentation.rst
