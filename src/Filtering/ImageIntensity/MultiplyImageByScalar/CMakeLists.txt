@@ -1,0 +1,23 @@
+cmake_minimum_required( VERSION 2.8 )
+
+project( MultiplyImageByScalar )
+
+find_package( ITK REQUIRED )
+include( ${ITK_USE_FILE} )
+
+add_executable( MultiplyImageByScalar Code.cxx )
+target_link_libraries( MultiplyImageByScalar ${ITK_LIBRARIES} )
+
+install( TARGETS MultiplyImageByScalar
+  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  COMPONENT Runtime
+  )
+
+install( FILES Code.cxx CMakeLists.txt
+  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/MultiplyImageByScalar
+  COMPONENT Code
+  )
+
+enable_testing()
+add_test( NAME MultiplyImageByScalarTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MultiplyImageByScalar )
