@@ -22,12 +22,14 @@ endif()
 
 set( ITKExamples_DEPENDENCIES )
 
-#if(NOT VTK_DIR)
-#  include( ${CMAKE_SOURCE_DIR}/External-VTK.cmake )
-#  list( APPEND ITKExamples_DEPENDENCIES VTK )
-#endif()
+option( ITKExamples_USE_VTK "Add VTK to the superbuild." OFF )
 
-if(NOT ITK_DIR)
+if( NOT VTK_DIR AND ITKExamples_USE_VTK )
+  include( ${CMAKE_SOURCE_DIR}/External-VTK.cmake )
+  list( APPEND ITKExamples_DEPENDENCIES VTK )
+endif()
+
+if( NOT ITK_DIR )
   include( ${CMAKE_SOURCE_DIR}/External-ITK.cmake )
   list( APPEND ITKExamples_DEPENDENCIES ITK )
 endif()
