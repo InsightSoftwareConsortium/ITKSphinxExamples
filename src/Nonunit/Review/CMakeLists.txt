@@ -1,0 +1,2 @@
+add_example( SegmentBloodVesselsWithMultiScaleHessianBasedMeasure )
+compare_to_baseline( SegmentBloodVesselsWithMultiScaleHessianBasedMeasure Output )
