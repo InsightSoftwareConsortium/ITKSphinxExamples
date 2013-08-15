@@ -170,8 +170,8 @@ def WriteExampleCXXFile( example_cxx, class_name ):
     f.write( '  //   std::cerr << std::endl;\n' )
     f.write( '  //   return EXIT_FAILURE;\n' )
     f.write( '  //   }\n\n' )
-    f.write( '  //   const char * inputFileName = argv[1];\n' )
-    f.write( '  //   const char * outputFileName = argv[2];\n' )
+    f.write( '  // const char * inputFileName = argv[1];\n' )
+    f.write( '  // const char * outputFileName = argv[2];\n\n' )
 
     f.write( '  // const unsigned int Dimension = 2;\n\n' )
 
