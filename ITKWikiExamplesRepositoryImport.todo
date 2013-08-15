@@ -201,7 +201,6 @@
 ./Developer/Exceptions.cxx
 ./Developer/ImageFilterMultipleInputsDifferentType.cxx
 ./Developer/ ImageSource.cxx
-./Developer/ConceptChecking.cxx
 ./Developer/ImageFilter.cxx
 ./Developer/ InplaceImageFilter.cxx
 ./Developer/ ImageFilterMultipleInput.cxx

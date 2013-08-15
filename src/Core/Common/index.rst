@@ -41,3 +41,6 @@ Common
   CreateABackwardDifferenceOperator/Documentation.rst
   TraceMemoryBetweenPoints/Documentation.rst
   StreamAPipeline/Documentation.rst
+  ConceptCheckingIsFloatingPoint/Documentation.rst
+  ConceptCheckingIsSameType/Documentation.rst
+  ConceptCheckingIsSameDimension/Documentation.rst
