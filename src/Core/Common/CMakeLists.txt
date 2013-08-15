@@ -36,3 +36,8 @@ add_example( CreateABackwardDifferenceOperator )
 add_example( BuildAHelloWorldProgram )
 add_example( TraceMemoryBetweenPoints )
 add_example( StreamAPipeline )
+
+# ConceptChecking
+add_example( ConceptCheckingIsFloatingPoint )
+add_example( ConceptCheckingIsSameType )
+add_example( ConceptCheckingIsSameDimension )
