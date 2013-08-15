@@ -79,6 +79,8 @@ set(CTEST_CUSTOM_WARNING_EXCEPTION
   # FFTW ExternalProject
   ".*fftw[fd]/src/fftw[fd]./*"
   "libtool: install: warning: relinking .libfftw3f?_threads.la."
+  # OpenCV
+  "opencv/modules"
 
   # Ignore clang's summary warning, assuming prior text has matched some
   # other warning expression:

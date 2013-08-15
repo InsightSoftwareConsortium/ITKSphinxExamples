@@ -29,6 +29,12 @@ if( NOT VTK_DIR AND ITKExamples_USE_VTK )
   list( APPEND ITKExamples_DEPENDENCIES VTK )
 endif()
 
+option( ITKExamples_USE_OpenCV "Add OpenCV to the superbuild" OFF )
+if( NOT OpenCV_DIR AND ITKExamples_USE_OpenCV )
+  include( ${CMAKE_SOURCE_DIR}/External-OpenCV.cmake )
+  list( APPEND ITKExamples_DEPENDENCIES OpenCV )
+endif()
+
 if( NOT ITK_DIR )
   include( ${CMAKE_SOURCE_DIR}/External-ITK.cmake )
   list( APPEND ITKExamples_DEPENDENCIES ITK )
