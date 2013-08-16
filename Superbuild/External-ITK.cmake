@@ -16,6 +16,15 @@ if( VTK_DIR OR ITKExamples_USE_VTK )
   set( _vtk_depends VTK )
 endif()
 
+set( _opencv_args )
+set( _opencv_depends )
+if( OpenCV_DIR OR ITKExamples_USE_OpenCV )
+  set( _opencv_args "-DOpenCV_DIR:PATH=${OpenCV_DIR}"
+    -DModule_ITKVideoBridgeOpenCV:BOOL=ON
+    )
+  set( _opencv_depends OpenCV )
+endif()
+
 ExternalProject_Add( ITK
   GIT_REPOSITORY "${git_protocol}://itk.org/ITK.git"
   GIT_TAG "${ITK_TAG}"
@@ -30,8 +39,9 @@ ExternalProject_Add( ITK
     -DITK_BUILD_ALL_MODULES:BOOL=ON
     -DITK_USE_REVIEW:BOOL=ON
     ${_vtk_args}
+    ${_opencv_args}
   INSTALL_COMMAND ""
-  DEPENDS ${_vtk_depends}
+  DEPENDS ${_vtk_depends} ${_opencv_depends}
 )
 
 set(ITK_DIR ${CMAKE_BINARY_DIR}/ITK-build)
