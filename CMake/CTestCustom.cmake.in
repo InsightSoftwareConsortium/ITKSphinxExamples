@@ -36,7 +36,6 @@ set(CTEST_CUSTOM_COVERAGE_EXCLUDE
 
 set(CTEST_CUSTOM_WARNING_EXCEPTION
   ${CTEST_CUSTOM_WARNING_EXCEPTION}
-  "warning LNK4221.*no public symbols found"
   "ranlib:.*file:.*has no symbols"
   "ranlib: file: .+ has no symbols"
   "libtool:.*file:.*has no symbols"
@@ -55,7 +54,7 @@ set(CTEST_CUSTOM_WARNING_EXCEPTION
   "WARNING non-zero return value in ctest"
   "Warning.*Anachronism.*"
   "attempted multiple inclusion of file"
-  "warning LNK4221: This object file does not define any previously undefined public symbols"
+  "warning LNK4221"
   ".*[/\\\\][Mm]odules[/\\\\][Tt]hird[Pp]arty[/\\\\][Dd][Ii][Cc][Oo][Mm][Pp]arser[/\\\\].*[Ww]arning.*"
   ".*[/\\\\][Mm]odules[/\\\\][Tt]hird[Pp]arty[/\\\\][Ee]xpat[/\\\\].*[Ww]arning.*"
   ".*[/\\\\][Mm]odules[/\\\\][Tt]hird[Pp]arty[/\\\\][Jj][Pp][Ee][Gg][/\\\\].*[Ww]arning.*"
