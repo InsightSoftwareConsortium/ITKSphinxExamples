@@ -2,6 +2,6 @@ ImageFilterBase
 ===============
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   CastAnImageToAnotherType/Documentation.rst

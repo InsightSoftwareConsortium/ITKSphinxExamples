@@ -2,7 +2,7 @@ Colormap
 ========
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   CreateAnApplyCustomColorMap/Documentation.rst
   ApplyAColorMapToAnImage/Documentation.rst

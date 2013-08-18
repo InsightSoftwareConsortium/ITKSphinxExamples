@@ -2,7 +2,7 @@ ImageIntensity
 ==============
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   RescaleAnImage/Documentation.rst
   ApplySinImageFilter/Documentation.rst

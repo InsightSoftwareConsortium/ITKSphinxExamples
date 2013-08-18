@@ -2,7 +2,7 @@ Transform
 =========
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   CopyANonCompositeTransform/Documentation.rst
   CopyACompositeTransform/Documentation.rst

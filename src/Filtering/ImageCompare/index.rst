@@ -2,6 +2,6 @@ ImageCompare
 ============
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   CombineTwoImagesWithCheckerBoardPattern/Documentation.rst

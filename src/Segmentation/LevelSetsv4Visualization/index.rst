@@ -2,7 +2,7 @@ LevelSetsv4Visualization
 ========================
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   VisualizeStaticDense2DLevelSetAsElevationMap/Documentation.rst
   VisualizeStaticDense2DLevelSetZeroSet/Documentation.rst

@@ -2,7 +2,7 @@ ImageBase
 =========
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   ReadAnImage/Documentation.rst
   WriteAnImage/Documentation.rst
