@@ -391,7 +391,6 @@
 * ../ITK/Examples/Filtering/CurvatureAnisotropicDiffusionImageFilter.cxx
 * ../ITK/Examples/Filtering/MorphologicalImageEnhancement.cxx
 * ../ITK/Examples/Filtering/CastImageFilter.tcl
-* ../ITK/Examples/Filtering/FFTImageFilterFourierDomainFiltering.cxx
 * ../ITK/Examples/Filtering/LaplacianRecursiveGaussianImageFilter2.cxx
 * ../ITK/Examples/Filtering/ZeroCrossingBasedEdgeDetectionImageFilter.cxx
 * ../ITK/Examples/Filtering/SurfaceExtraction.cxx

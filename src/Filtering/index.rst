@@ -18,3 +18,4 @@ Filtering
   Smoothing/index.rst
   ImageGradient/index.rst
   AnisotropicSmoothing/index.rst
+  FFT/index.rst
