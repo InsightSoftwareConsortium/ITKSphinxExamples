@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------------
-# Get and build vtk
+# Get and build OpenCV
 
 if( NOT OpenCV_TAG )
   set( OpenCV_TAG "2.3.1" )
