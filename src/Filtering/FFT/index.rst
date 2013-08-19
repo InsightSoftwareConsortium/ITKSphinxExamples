@@ -2,7 +2,7 @@ FFT
 ===
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   FilterImageInFourierDomain/Documentation.rst
   ComputeImageSpectralDensity/Documentation.rst

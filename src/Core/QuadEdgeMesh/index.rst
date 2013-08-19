@@ -2,7 +2,7 @@ QuadEdgeMesh
 ============
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   ExtractVertexOnMeshBoundaries/Documentation.rst
   PrintVertexNeighbors/Documentation.rst

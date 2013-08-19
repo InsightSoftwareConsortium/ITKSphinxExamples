@@ -2,6 +2,6 @@ Thresholding
 ============
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   ThresholdAnImageUsingOtsu/Documentation.rst

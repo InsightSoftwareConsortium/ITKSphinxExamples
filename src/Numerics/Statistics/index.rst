@@ -2,6 +2,6 @@ Statistics
 ==========
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   ComputeHistogramFromGrayscaleImage/Documentation.rst

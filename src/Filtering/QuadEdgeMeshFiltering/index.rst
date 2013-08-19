@@ -2,7 +2,7 @@ QuadEdgeMeshFiltering
 =====================
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   ComputeNormalsOfAMesh/Documentation.rst
   CleanQuadEdgeMesh/Documentation.rst

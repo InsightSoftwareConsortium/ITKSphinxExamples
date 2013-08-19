@@ -2,6 +2,6 @@ Common
 ======
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
   PerformMultiModalityRegistrationWithMutualInformation/Documentation.rst
