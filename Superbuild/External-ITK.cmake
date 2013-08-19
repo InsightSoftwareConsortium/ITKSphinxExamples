@@ -37,7 +37,7 @@ ExternalProject_Add( ITK
     -DBUILD_EXAMPLES:BOOL=OFF
     -DBUILD_TESTING:BOOL=OFF
     -DITK_BUILD_ALL_MODULES:BOOL=ON
-    -DITK_USE_REVIEW:BOOL=ON
+    -DModule_ITKReview:BOOL=ON
     ${_vtk_args}
     ${_opencv_args}
   INSTALL_COMMAND ""
