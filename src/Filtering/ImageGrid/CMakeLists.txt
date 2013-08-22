@@ -1,3 +1,6 @@
+add_example( ChangeImageOriginSpacingOrDirection )
+compare_to_baseline( ChangeImageOriginSpacingOrDirection Output )
+
 add_example( FlipAnImageOverSpecifiedAxes )
 compare_to_baseline( FlipAnImageOverSpecifiedAxes Output )
 
