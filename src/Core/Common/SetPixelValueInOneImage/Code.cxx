@@ -31,6 +31,7 @@ int main(int argc, char* argv[])
   ImageType::Pointer image = ImageType::New();
   image->SetRegions(region);
   image->Allocate();
+  image->FillBuffer( itk::NumericTraits< PixelType >::Zero );
 
   ImageType::IndexType pixelIndex;
 
