@@ -1,5 +1,5 @@
-Create3D Volume
-===============
+Create 3D Volume
+================
 
 .. index::
    single: TileImageFilter
@@ -15,17 +15,17 @@ This example reads in a series of 2D images and stacks them to create a 3D image
 Results
 -------
 
-.. figure::
+.. figure:: Input.png
   :scale: 50%
-  :alt: Input image
+  :alt: Input 2D images
 
-  Input image
+  Input 2D images
 
-.. figure::
-  :scale: 50%
-  :alt: Output image
+.. figure:: Output.png
+  :scale: 80%
+  :alt: Output 3D image
 
-  Output image
+  Single output 3D image
 
 
 Code
