@@ -26,4 +26,4 @@ add_test( NAME Create3DVolumeTest
     ${CMAKE_CURRENT_BINARY_DIR}/mri3D_1.mha
     ${CMAKE_CURRENT_BINARY_DIR}/mri3D_2.mha
     Output.mha
-)
+  )

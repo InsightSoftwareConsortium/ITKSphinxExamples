@@ -227,7 +227,6 @@
 * ../ITK/Examples/Registration/DeformableRegistration7.cxx
 * ../ITK/Examples/Registration/DisplacementFieldInitialization.cxx
 * ../ITK/Examples/Registration/DeformableRegistration9.cxx
-* ../ITK/Examples/Registration/ChangeInformationImageFilter.cxx
 * ../ITK/Examples/Registration/ImageRegistration14.cxx
 * ../ITK/Examples/Registration/DeformableRegistration5.cxx
 * ../ITK/Examples/Registration/ImageRegistration4.cxx
