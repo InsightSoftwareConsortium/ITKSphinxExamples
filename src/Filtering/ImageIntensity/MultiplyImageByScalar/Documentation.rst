@@ -1,0 +1,41 @@
+Multiply Image By Scalar
+========================
+
+.. index::
+   single: MultiplyImageFilter
+
+Synopsis
+--------
+
+Multiply one image by a given scalar value.
+
+
+Results
+-------
+
+.. figure::
+  :scale: 50%
+  :alt: Input image
+
+  Input image
+
+.. figure::
+  :scale: 50%
+  :alt: Output image
+
+  Output image
+
+
+Code
+----
+
+C++
+...
+
+.. literalinclude:: Code.cxx
+
+
+Classes demonstrated
+--------------------
+
+.. breathelink:: itk::MultiplyImageFilter

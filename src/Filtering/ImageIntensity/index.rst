@@ -9,3 +9,5 @@ ImageIntensity
   ApplyCosImageFilter/Documentation.rst
   ApplyAtanImageFilter/Documentation.rst
   ConvertRGBImageToGrayscaleImage/Documentation.rst
+  Multiply one image by a scalar/Documentation.rst
+  MultiplyImageByScalar/Documentation.rst
