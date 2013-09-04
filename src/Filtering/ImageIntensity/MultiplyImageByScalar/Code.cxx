@@ -21,21 +21,23 @@ int main( int argc, char* argv[] )
   typedef unsigned char                           InputPixelType;
   typedef itk::Image< InputPixelType, Dimension > InputImageType;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  typedef itk::ImageFileReader< InputImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
   typedef double                                    OutputPixelType;
   typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
 
-  typedef itk::MultiplyImageFilter< InputImageType, OutputImageType > FilterType;
+  typedef itk::MultiplyImageFilter< InputImageType, InputImageType, OutputImageType > FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
+  filter->SetConstant( factor );
 
   typedef itk::ImageFileWriter< OutputImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );
+
   try
     {
     writer->Update();
