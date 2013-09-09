@@ -2,8 +2,8 @@
 # Get and build itk
 
 if( NOT ITK_TAG )
-  # ITK master 2013-08-14
-  set( ITK_TAG "80fd1523d2294044c0da7bea5919f8119c1a800e" )
+  # ITK master 2013-09-08
+  set( ITK_TAG "130d80b376e61a30661d7e7fcbd98ed338dd48fb" )
 endif()
 
 set( _vtk_args )
@@ -36,7 +36,7 @@ ExternalProject_Add( ITK
     -DBUILD_SHARED_LIBS:BOOL=OFF
     -DBUILD_EXAMPLES:BOOL=OFF
     -DBUILD_TESTING:BOOL=OFF
-    -DITK_BUILD_ALL_MODULES:BOOL=ON
+    -DITK_BUILD_DEFAULT_MODULES:BOOL=ON
     -DModule_ITKReview:BOOL=ON
     ${_vtk_args}
     ${_opencv_args}
