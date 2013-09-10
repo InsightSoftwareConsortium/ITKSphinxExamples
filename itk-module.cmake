@@ -3,6 +3,7 @@ set( DOCUMENTATION "This module builds all the examples found at http://itk.org/
 itk_module(ITKExamples
   DEPENDS
     ITKCommon
+    EXCLUDE_FROM_DEFAULT
   DESCRIPTION
     "${DOCUMENTATION}"
   )
