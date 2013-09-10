@@ -20,4 +20,6 @@ install( FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME MultiplyImageByScalarTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MultiplyImageByScalar )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MultiplyImageByScalar
+    ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png 2.5 Output.mha
+)
