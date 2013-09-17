@@ -8,3 +8,4 @@ QuadEdgeMesh
   PrintVertexNeighbors/Documentation.rst
   GetListOfFacesAroundAGivenVertex/Documentation.rst
   CutMesh/Documentation.rst
+  CreateTriangularQuadEdgeMesh/Documentation.rst
