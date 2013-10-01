@@ -10,7 +10,7 @@ The entire source tree can be downloaded with Git_:
 
 .. code-block:: bash
 
-  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git
+  git clone --recursive https://itk.org/ITKExamples.git
 
 
 After cloning the repository, it can be configured for development (confirm

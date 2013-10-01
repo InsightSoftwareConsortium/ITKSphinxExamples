@@ -6,7 +6,7 @@ A set of cookbook examples for the Insight Toolkit, ITK_.
 Download instructions
 ---------------------
 
-  $ git clone https://github.com/InsightSoftwareConsortium/ITKExamples.git
+  $ git clone https://itk.org/ITKExamples.git
 
 
 Build instructions
@@ -77,7 +77,7 @@ Run the bash scipt SetupForDevelopment.sh::
 .. _Git: http://git-scm.com/
 .. _ITK: http://itk.org/
 .. _Sphinx: http://sphinx.pocoo.org/
-.. _Github Issues: https://github.com/InsightSoftwareConsortium/ITKExamples/issues?milestone=&labels=&state=open
+.. _Github Issues: https://itk.org/ITKExamples/issues?milestone=&labels=&state=open
 .. _Python: http://python.org/
 .. _gnuplot: http://www.gnuplot.info/
 .. _TeX Live: http://www.tug.org/texlive/
