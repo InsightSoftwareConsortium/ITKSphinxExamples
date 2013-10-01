@@ -44,3 +44,4 @@ Common
   ConceptCheckingIsFloatingPoint/Documentation.rst
   ConceptCheckingIsSameType/Documentation.rst
   ConceptCheckingIsSameDimension/Documentation.rst
+  ReRunPipelineWithChangingLargestPossibleRegion/Documentation.rst

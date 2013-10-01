@@ -41,3 +41,5 @@ add_example( StreamAPipeline )
 add_example( ConceptCheckingIsFloatingPoint )
 add_example( ConceptCheckingIsSameType )
 add_example( ConceptCheckingIsSameDimension )
+
+add_example( ReRunPipelineWithChangingLargestPossibleRegion )
