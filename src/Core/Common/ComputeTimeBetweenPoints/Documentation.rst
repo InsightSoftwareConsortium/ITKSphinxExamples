@@ -3,12 +3,14 @@ Compute Time Between Points
 
 .. index::
    single: TimeProbe
+   single: timer
+   single: timing
 
 Synopsis
 --------
 
 
-Compute the time between points in code. Timer. Timing.
+Compute the time between points in code.
 
 
 Results
