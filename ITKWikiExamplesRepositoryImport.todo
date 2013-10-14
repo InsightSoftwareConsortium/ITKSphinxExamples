@@ -106,7 +106,6 @@
 ./SimpleOperations/RGBPixel.cxx
 ./Meshes/WishList/VTKPolyDataWriter.cxx
 ./Meshes/ConvertToVTK.cxx
-./Meshes/QuadEdgeMeshParameterizationFilter.cxx
 ./Meshes/AddPointsAndEdges.cxx
 ./CMake/CheckForModule.cxx
 ./Math/DotProduct.cxx

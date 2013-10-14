@@ -7,3 +7,4 @@ QuadEdgeMeshFiltering
   ComputeNormalsOfAMesh/Documentation.rst
   CleanQuadEdgeMesh/Documentation.rst
   DelaunayConformEdgeFlipping/Documentation.rst
+  ComputePlanarParameterizationOfAMesh/Documentation.rst
