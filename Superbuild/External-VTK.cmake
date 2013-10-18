@@ -2,7 +2,8 @@
 # Get and build vtk
 
 if( NOT VTK_TAG )
-  set( VTK_TAG "v6.0.0" )
+  # VTK master 2013-10-11, for WebGL support.
+  set( VTK_TAG "9a8829af1c66b78b9dcce1a52dcb701546093707" )
 endif()
 
 ExternalProject_Add(VTK
@@ -14,9 +15,10 @@ ExternalProject_Add(VTK
   CMAKE_ARGS
     ${ep_common_args}
     -DBUILD_SHARED_LIBS:BOOL=TRUE
-    -DVTK_DEBUG_LEAKS:BOOL=TRUE
     -DBUILD_EXAMPLES:BOOL=OFF
     -DBUILD_TESTING:BOOL=OFF
+    -DVTK_Group_Web:BOOL=ON
+    -DVTK_WRAP_PYTHON:BOOL=ON
   INSTALL_COMMAND ""
 )
 
