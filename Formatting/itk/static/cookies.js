@@ -1,4 +1,7 @@
-function createCookie(cookie_name, value, expiration_days)
+// Everything lives in the itk namespace.
+var itk = itk || {};
+
+itk.createCookie = function(cookie_name, value, expiration_days)
 {
   var expires = '';
   if( expiration_days )
@@ -10,7 +13,7 @@ function createCookie(cookie_name, value, expiration_days)
   document.cookie = cookie_name + '=' + escape( value ) + expires
 }
 
-function readCookie(desired_cookie_name)
+itk.readCookie = function(desired_cookie_name)
 {
   var cookies = document.cookie.split(';');
   for( var ii = 0; ii < cookies.length; ++ii )
@@ -25,4 +28,3 @@ function readCookie(desired_cookie_name)
     }
   return null;
 }
-

@@ -1,5 +1,7 @@
-function setDarkTheme()
-{
+// Everything lives in the itk namespace.
+var itk = itk || {};
+
+itk.setDarkTheme = function() {
   $( 'body' ).css( 'background-color', '{{theme_footertextcolor}}' );
   $( 'a' ).css( 'color', '{{theme_relbarlinkcolor}}' );
   $( 'pre' ).css({ 'color':'{{theme_codebgcolor}}', 'background-color':'{{theme_darkcodebgcolor}}' });
@@ -15,10 +17,10 @@ function setDarkTheme()
   $( 'div.sphinxsidebar h4' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
   $( 'div.sphinxsidebar a' ).css({ 'color':'{{theme_sidebarlinkcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
   $( 'div.sphinxsidebar input' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbtncolor}}' });
-  createCookie( 'color_theme', 'dark', 365 );
+  itk.createCookie( 'color_theme', 'dark', 365 );
 }
-function setLightTheme()
-{
+
+itk.setLightTheme = function() {
   $( 'body' ).css( 'background-color', '{{theme_footerbgcolor}}' );
   $( 'a' ).css( 'color', '{{theme_relbarbgcolor}}' );
   $( 'pre' ).css({ 'color':'{{theme_codetextcolor}}', 'background-color':'{{theme_codebgcolor}}' });
@@ -34,10 +36,10 @@ function setLightTheme()
   $( 'div.sphinxsidebar h3' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
   $( 'div.sphinxsidebar h4' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbgcolor}}' });
   $( 'div.sphinxsidebar input' ).css({ 'color':'{{theme_sidebartextcolor}}', 'background-color':'{{theme_sidebarbtncolor}}' });
-  createCookie( 'color_theme', 'light', 365 );
+  itk.createCookie( 'color_theme', 'light', 365 );
 }
 
-function selectLanguage() {
+itk.selectLanguage = function() {
   var language = document.getElementById( 'languageSelection' ).value;
   if( language == 'Python' )
     {
@@ -45,7 +47,7 @@ function selectLanguage() {
     $( "h3:contains('C++') + div").hide('fast');
     $( "h3:contains('Python')" ).show('fast');
     $( "h3:contains('Python') + div" ).show('fast');
-    createCookie( 'programming_language', language, 365 );
+    itk.createCookie( 'programming_language', language, 365 );
     }
   else if( language == 'C++' )
     {
@@ -53,7 +55,7 @@ function selectLanguage() {
     $( "h3:contains('C++') + div").show('fast');
     $( "h3:contains('Python')" ).hide('fast');
     $( "h3:contains('Python') + div" ).hide('fast');
-    createCookie( 'programming_language', language, 365 );
+    itk.createCookie( 'programming_language', language, 365 );
     }
   else
     {
@@ -61,21 +63,21 @@ function selectLanguage() {
     $( "h3:contains('C++') + div").show('fast');
     $( "h3:contains('Python')" ).show('fast');
     $( "h3:contains('Python') + div" ).show('fast');
-    createCookie( 'programming_language', '', 365 );
+    itk.createCookie( 'programming_language', '', 365 );
     }
 }
 
 $(document).ready(function(){
-  var color_theme = readCookie( 'color_theme' );
+  var color_theme = itk.readCookie( 'color_theme' );
   if( color_theme == 'dark' )
     {
-    setDarkTheme();
+    itk.setDarkTheme();
     }
 
-  var language = readCookie( 'programming_language' );
+  var language = itk.readCookie( 'programming_language' );
   if( language )
     {
     document.getElementById( 'languageSelection' ).value = language;
-    selectLanguage();
+    itk.selectLanguage();
     }
 });
