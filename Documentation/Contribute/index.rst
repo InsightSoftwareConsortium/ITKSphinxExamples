@@ -7,10 +7,10 @@ the repository can be edited either with the :ref:`web interface
 <web-submission>` or the typical :ref:`text editor / version control workflow
 <text-editor-submission>` used when modifying source code.
 
-Examples code can be written in the C++, Python, or Java programming languages.
-Documentation for the examples is writted in reStructuredText_ / Sphinx_.  A
+Examples code can be written in the C++ or Python programming languages.
+Documentation for the examples is writted in reStructuredText_ / Sphinx_.
 Sphinx is a build system that uses the reStructuredText syntax with additional
-capabilies such as multi-document projects and rendering of LaTeX-style
+capabilies, such as multi-document projects and rendering of LaTeX-style
 equations.  A good reference for the easy-to-learn reStructuredText syntax is
 the `Quick reStructuredText`_ guide.
 
