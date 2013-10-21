@@ -1,5 +1,5 @@
-Write ATIFF Image
-=================
+Write A TIFF Image
+==================
 
 .. index::
   single: TIFFImageIO
