@@ -1,13 +1,24 @@
 {% extends "!layout.html" %}
-{%- set script_files = script_files + ["_static/cookies.js", "_static/color_theme.js"] %}
+{%- set script_files = script_files + ["_static/cookies.js",
+                                       "_static/color_theme.js",
+                                       "_static/webgl.js"] %}
 {% block extrahead %}
     <link rel="shortcut icon" href="{{ pathto('_static/itk_favicon.ico', 1) }}" />
 {% endblock %}
+
+{% block body %}
+  <div class="admonition note">
+    <p class="first admonition-title">Note</p>
+    <p>WebGL supported was not detected in your browser.</p>
+    <p class="last">You should really be more careful.</p>
+  </div>
+{% endblock %}
+
 {% block footer %}
     <div class="footer">
       {{ _('Select color theme') }}:
-        <button type="button" onclick="setDarkTheme()">Dark</button>
-        <button type="button" onclick="setLightTheme()">Light</button>
+        <button type="button" onclick="itk.setDarkTheme()">Dark</button>
+        <button type="button" onclick="itk.setLightTheme()">Light</button>
       <br />
       <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a>
       <br />
@@ -31,4 +42,3 @@
       and <a href="http://cmake.org/">CMake</a>.
     </div>
 {% endblock %}
-

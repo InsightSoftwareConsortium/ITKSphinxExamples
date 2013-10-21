@@ -42,7 +42,7 @@
 
   <h4>{{ _('Language') }}</h4>
   <p class="topless">
-    <select id="languageSelection" onchange="selectLanguage()">
+    <select id="languageSelection" onchange="itk.selectLanguage()">
       <option>All</option>
       <option>C++</option>
       <option>Python</option>
@@ -76,3 +76,6 @@
     </p>
   {%- endif %}
 {%- endif %}
+
+<canvas id="testCanvas" width="8" height="8" hidden>
+</canvas>
