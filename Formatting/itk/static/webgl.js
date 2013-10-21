@@ -8,7 +8,7 @@ itk.webglCheck = function() {
   if (!window.WebGLRenderingContext) {
     var getWebGLA = document.createElement("a");
     getWebGLA.setAttribute("href", "http://get.webgl.org");
-    var getWebGLAText = document.createTextNode("A browser that support the WebGl standard");
+    var getWebGLAText = document.createTextNode("A browser that supports the WebGl standard");
     getWebGLA.appendChild(getWebGLAText);
     suggestion.appendChild(getWebGLA);
     var suggestionText = document.createTextNode(" is required to view the interactive 3D visualizations.");

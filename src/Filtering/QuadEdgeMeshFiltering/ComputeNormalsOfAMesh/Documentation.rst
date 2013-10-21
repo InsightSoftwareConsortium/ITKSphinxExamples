@@ -10,7 +10,6 @@ Compute Normals Of A Mesh
 Synopsis
 --------
 
-
 Compute normals of a mesh
 
 
@@ -22,6 +21,13 @@ Results
   :alt: Input mesh
 
   Input mesh
+
+.. raw:: html
+
+  <div class="figure">
+    <iframe src="InputMesh.html" width="200" height="225" seamless></iframe>
+    <p class="caption">Interactive input mesh</p>
+  </div>
 
 Output::
 

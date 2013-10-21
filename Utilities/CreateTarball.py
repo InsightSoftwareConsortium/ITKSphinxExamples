@@ -35,6 +35,7 @@ if not os.path.exists( html_output_dir ):
 files_to_copy_to_html_output = []
 files_to_copy_to_html_output.append(os.path.join(example_dir, 'CMakeLists.txt'))
 files_to_copy_to_html_output.extend(glob.glob(os.path.join(example_dir, '*.cxx')))
+files_to_copy_to_html_output.extend(glob.glob(os.path.join(example_dir, '*.html')))
 files_to_copy_to_html_output.extend(glob.glob(os.path.join(example_dir, '*.py')))
 files_to_copy_to_html_output.extend(glob.glob(os.path.join(example_dir, '*.rst')))
 for path in files_to_copy_to_html_output:

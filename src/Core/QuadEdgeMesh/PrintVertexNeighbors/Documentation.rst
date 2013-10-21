@@ -13,7 +13,20 @@ Print the neighbors of a given vertex.
 Results
 -------
 
-Results::
+.. figure:: InputMesh.png
+  :scale: 50%
+  :alt: Input mesh
+
+  Input mesh
+
+.. raw:: html
+
+  <div class="figure">
+    <iframe src="InputMesh.html" width="400" height="300" seamless></iframe>
+    <p class="caption">Interactive input mesh</p>
+  </div>
+
+Example output::
 
   3435
   6999
