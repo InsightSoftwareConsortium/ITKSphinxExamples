@@ -16,7 +16,21 @@ Read a mesh and display the Euclidean distance in between 2 given vertices
 Results
 -------
 
+.. figure:: InputMesh.png
+  :scale: 50%
+  :alt: Input mesh
+
+  Input mesh
+
+.. raw:: html
+
+  <div class="figure">
+    <iframe src="InputMesh.html" width="200" height="225" seamless></iframe>
+    <p class="caption">Interactive input mesh</p>
+  </div>
+
 Distance::
+
   0.604093
 
 Code

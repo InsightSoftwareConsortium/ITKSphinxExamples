@@ -35,6 +35,17 @@ Results
 
   Output mesh (cut)
 
+.. raw:: html
+
+  <div class="figure">
+    <iframe src="genusZeroSurface01.html" width="200" height="225" seamless></iframe>
+    <p class="caption">Interactive input mesh</p>
+  </div>
+
+  <div class="figure">
+    <iframe src="CutMeshOutput.html" width="200" height="225" seamless></iframe>
+    <p class="caption">Interactive cut output mesh</p>
+  </div>
 
 Code
 ----
