@@ -124,6 +124,9 @@ Results
 
 Include images or text output here that results from the example.
 
+Images
+......
+
 If there was an input image, display it for reference.  The images displayed
 here should be rendered in the PNG format for display either by directly outputing
 to PNG format or by rendering with your favorite :ref:`visualization application
@@ -137,6 +140,9 @@ caption.  For instance::
 
     Dilated output.
 
+Text
+....
+
 Text output should be placed in a `literal block`_ by inserting two colons
 followed by indentation.  For instance::
 
@@ -148,6 +154,26 @@ followed by indentation.  For instance::
     Translation along Y  = 22.3275
     Optimal metric value = 4597.96
 
+PolyData
+........
+
+For data structures rendered as a PolyData, such as meshes, a screenshot of the
+input and output rendering is insightful and motivating.  The screenshot can
+be rendered with your favorite visualization, then included like the image
+renderings per above.
+
+As a supplement to the renderings, an interative 3D WebGL can be included in
+HTML output.  This can be produced with the `--webgl` flag to the VTK_ Python
+script in the repository at `Utilities/Visualization/VTKPolyData.py`.  In
+recent releases of Paraview_, it can be produced by clicking *File*, *Export
+Scene*, *WEBGL files*.  In the reStructuredText file, add::
+
+   .. raw:: html
+
+     <div class="figure">
+       <iframe src="InputMesh.html" width="200" height="225" seamless></iframe>
+       <p class="caption">Interactive input mesh</p>
+     </div>
 
 Classes demonstrated
 --------------------
@@ -176,3 +202,5 @@ Note that the breathelink directive is a custom one which makes use of:
 .. _Sphinx index directive:    http://sphinx.pocoo.org/markup/misc.html#directive-index
 .. _reStructuredText:          http://docutils.sourceforge.net/rst.html
 .. _doxylink:                  http://packages.python.org/sphinxcontrib-doxylink/
+.. _VTK:                       http://vtk.org
+.. _Paraview:                  http://paraview.org
