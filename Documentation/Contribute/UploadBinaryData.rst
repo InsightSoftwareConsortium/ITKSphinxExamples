@@ -34,7 +34,7 @@ files:
 
 Before using this script, please go to the `Midas web interface`_, register,
 and join the ITK Community.  After joining the ITK Community, send message to
-the `Insight User's mailing list`_ requesting write access to the `ITK Midas
+the `Insight Community mailing list`_ requesting write access to the `ITK Midas
 Community`_.
 
 Upload Via the Web Interface
@@ -116,11 +116,11 @@ file is desired in the build tree and add it to the repository with::
 
 before committing to the repository.
 
-.. _CMake:                       http://cmake.org/
-.. _Git:                         http://git-scm.com/
-.. _Insight User's mailing list: http://www.itk.org/mailman/listinfo/insight-users
-.. _ITK Midas Community:         Midas server_
-.. _MD5 checksum:                http://en.wikipedia.org/wiki/MD5
-.. _Midas server:                http://midas3.kitware.com/midas/community/12
-.. _Midas web interface:         Midas server_
-.. _Python:                      http://python.org/
+.. _CMake:                             http://cmake.org/
+.. _Git:                               http://git-scm.com/
+.. _Insight Community mailing list:    http://itk.org/mailman/listinfo/community
+.. _ITK Midas Community:               Midas server_
+.. _MD5 checksum:                      http://en.wikipedia.org/wiki/MD5
+.. _Midas server:                      http://midas3.kitware.com/midas/community/12
+.. _Midas web interface:               Midas server_
+.. _Python:                            http://python.org/
