@@ -18,6 +18,8 @@ configure_file( ${ITKExamples_SOURCE_DIR}/Utilities/CodeSwarm.sh.in
   @ONLY
 )
 
-file(COPY ${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/breathe/testsuite/source/_static/breathe.css
-  DESTINATION ${ITKExamples_BINARY_DIR}/html/_static
-  )
+if( BUILD_DOCUMENTATION )
+  file(COPY ${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/breathe/testsuite/source/_static/breathe.css
+    DESTINATION ${ITKExamples_BINARY_DIR}/html/_static
+    )
+endif()
