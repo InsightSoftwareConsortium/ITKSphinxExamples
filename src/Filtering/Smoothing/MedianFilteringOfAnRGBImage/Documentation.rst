@@ -3,10 +3,10 @@ Median Filtering Of An RGB Image
 
 .. index::
    single: MedianImageFilter
+   single: smooth
 
 Synopsis
 --------
-
 
 Apply median filtering on a RGB Image. The sorting of pixel is performed on their luminance.
 

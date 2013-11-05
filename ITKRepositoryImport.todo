@@ -433,7 +433,6 @@
 * ../ITK/Examples/Filtering/CurvatureFlowImageFilter.cxx
 * ../ITK/Examples/Filtering/SpatialObjectToImage3.cxx
 * ../ITK/Examples/Filtering/GradientAnisotropicDiffusionImageFilter.java
-* ../ITK/Examples/Filtering/AntiAliasBinaryImageFilter.cxx
 * ../ITK/Examples/Filtering/BinaryDilateImageFilter.tcl
 * ../ITK/Examples/Filtering/SigmoidImageFilter.cxx
 * ../ITK/Examples/Filtering/GradientAnisotropicDiffusionImageFilter.py

@@ -3,6 +3,7 @@ Perona Malik Anisotropic Diffusion On Grayscale Image
 
 .. index::
    single: GradientAnisotropicDiffusionImageFilter
+   single: smooth
 
 Synopsis
 --------
