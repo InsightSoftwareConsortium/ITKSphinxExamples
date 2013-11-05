@@ -50,7 +50,7 @@ Required
 ^^^^^^^^
 
 - CMake_ ( >= 2.8.5 )
-- ITK_  (>= 4.0.0 )
+- ITK_  ( >= 4.0.0 )
 
 Optional
 ^^^^^^^^
@@ -60,6 +60,7 @@ If building the documentation:
 - Python_ ( >= 2.7 )
 - Sphinx_
 - gnuplot_
+- dvipng_ ( for rendered equations )
 
 PDF generation requires a TeX distribution like `TeX Live`_ or MiKTeX_.
 
@@ -82,3 +83,4 @@ Run the bash scipt SetupForDevelopment.sh::
 .. _gnuplot: http://www.gnuplot.info/
 .. _TeX Live: http://www.tug.org/texlive/
 .. _MiKTeX: http://miktex.org/
+.. _dvipng: http://sourceforge.net/projects/dvipng/
