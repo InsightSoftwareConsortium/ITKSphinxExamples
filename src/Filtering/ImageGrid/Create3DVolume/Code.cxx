@@ -34,9 +34,9 @@ int main( int argc, char* argv[] )
 
   filter->SetLayout( layout );
 
-  for( int i = 1; i < argc - 1; i++ )
+  for( int ii = 1; ii < argc - 1; ++ii )
     {
-    reader->SetFileName( argv[i] );
+    reader->SetFileName( argv[ii] );
 
     try
       {
@@ -51,10 +51,10 @@ int main( int argc, char* argv[] )
     InputImageType::Pointer input = reader->GetOutput();
     input->DisconnectPipeline();
 
-    filter->SetInput( i - 1, input );
+    filter->SetInput( ii - 1, input );
     }
 
-  PixelType defaultValue = 128;
+  const PixelType defaultValue = 128;
 
   filter->SetDefaultPixelValue( defaultValue );
   filter->Update();
