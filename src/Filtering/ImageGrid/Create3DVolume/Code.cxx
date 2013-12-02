@@ -57,7 +57,6 @@ int main( int argc, char* argv[] )
   const PixelType defaultValue = 128;
 
   filter->SetDefaultPixelValue( defaultValue );
-  filter->Update();
 
   typedef itk::ImageFileWriter< OutputImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
