@@ -1,8 +1,9 @@
-Flip an image over specified axes
+Flip An Image Over Specified Axes
 =================================
 
 .. index::
   single: FlipImageFilter
+  single: flip
 
 
 Synopsis
