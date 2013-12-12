@@ -65,8 +65,14 @@ endmacro()
 
 
 # Macro if the corresponding module is enabled when ITK was built
+# Pass in the module directory path.  Also pass the module name as the second
+# argument if it is different than ITK${_dir}.
 macro( add_subdirectory_if_module_enabled _dir )
-  list( FIND ITK_MODULES_ENABLED ITK${_dir} _have )
+  set( _module_name ITK${_dir} )
+  if( "${ARGV1}" STRGREATER "" )
+    set( _module_name ${ARGV1} )
+  endif()
+  list( FIND ITK_MODULES_ENABLED ${_module_name} _have )
 
   if( NOT ${_have} EQUAL "-1" )
     add_subdirectory( ${_dir} )
