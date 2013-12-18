@@ -13,7 +13,7 @@ Convert an itk::Image (gray scale) to OpenCV cv::Mat.
 Results
 -------
 
-.. figure:: Yingyang.png
+.. figure:: Yinyang.png
   :scale: 100%
   :alt: Input image
 
