@@ -177,14 +177,14 @@ if( BUILD_DOCUMENTATION )
           -output-directory ${SPHINX_DESTINATION}/latex
         COMMAND ${CMAKE_COMMAND} -E copy
           ${SPHINX_DESTINATION}/latex/ITKExamples.pdf
-          ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.pdf
+          ${SPHINX_DESTINATION}/html/Documentation/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.pdf
         WORKING_DIRECTORY ${SPHINX_DESTINATION}/latex
         COMMENT "Building PDF"
         )
-    install( FILES ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.pdf
-      DESTINATION share/ITKExamples/doc/pdf
-      COMPONENT Doc
-      )
+      install( FILES ${SPHINX_DESTINATION}/html/Documentation/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.pdf
+        DESTINATION share/ITKExamples/doc/pdf
+        COMPONENT Doc
+        )
     endif()
   endif()
 
@@ -193,10 +193,10 @@ if( BUILD_DOCUMENTATION )
       POST_BUILD
       COMMAND ${CMAKE_COMMAND} -E copy
         ${SPHINX_DESTINATION}/epub/ITKExamples.epub
-        ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.epub
+        ${SPHINX_DESTINATION}/html/Documentation/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.epub
         COMMENT "Copying EPUB"
         )
-    install( FILES ${SPHINX_DESTINATION}/html/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.epub
+    install( FILES ${SPHINX_DESTINATION}/html/Documentation/Download/ITKExamples-${ITKExamples_RELEASE_VERSION}.epub
       DESTINATION share/ITKExamples/doc/epub
       COMPONENT Doc
       )
