@@ -11,3 +11,4 @@ ImageGrid
   AppendTwo3DVolumes/Documentation.rst
   ChangeImageOriginSpacingOrDirection/Documentation.rst
   ResampleAnImage/Documentation.rst
+  UpsampleOrDownsampleScalarImage/Documentation.rst
