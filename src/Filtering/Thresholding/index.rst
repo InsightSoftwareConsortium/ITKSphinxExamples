@@ -6,3 +6,4 @@ Thresholding
 
   ThresholdAnImageUsingOtsu/Documentation.rst
   ThresholdAnImageUsingBinary/Documentation.rst
+  ThresholdAnImage/Documentation.rst
