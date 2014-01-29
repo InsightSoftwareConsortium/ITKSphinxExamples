@@ -19,6 +19,7 @@ ExternalProject_Add(VTK
     -DBUILD_TESTING:BOOL=OFF
     -DVTK_Group_Web:BOOL=ON
     -DVTK_WRAP_PYTHON:BOOL=ON
+    -DExternalData_OBJECT_STORES:STRING=${ExternalData_OBJECT_STORES}
   INSTALL_COMMAND ""
 )
 
