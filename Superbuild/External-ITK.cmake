@@ -37,6 +37,7 @@ ExternalProject_Add( ITK
     -DBUILD_TESTING:BOOL=OFF
     -DITK_BUILD_DEFAULT_MODULES:BOOL=ON
     -DModule_ITKReview:BOOL=ON
+    -DExternalData_OBJECT_STORES:STRING=${ExternalData_OBJECT_STORES}
     ${_vtk_args}
     ${_opencv_args}
   INSTALL_COMMAND ""
