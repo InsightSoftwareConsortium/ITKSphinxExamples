@@ -134,7 +134,7 @@ endif()
 
 # Select Git source to use.
 if(NOT DEFINED dashboard_git_url)
-  set(dashboard_git_url "https://itk.org/ITKExamples.git")
+  set(dashboard_git_url "git://itk.org/ITKExamples.git")
 endif()
 if(NOT DEFINED dashboard_git_branch)
   #if("${dashboard_model}" STREQUAL "Nightly")
