@@ -6,3 +6,4 @@ Transform
 
   CopyANonCompositeTransform/Documentation.rst
   CopyACompositeTransform/Documentation.rst
+  TranslateImage/Documentation.rst
