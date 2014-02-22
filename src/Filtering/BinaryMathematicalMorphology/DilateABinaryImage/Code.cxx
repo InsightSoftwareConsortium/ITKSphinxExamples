@@ -66,9 +66,9 @@ int main(int argc, char *argv[])
     {
     writer->Update();
     }
-  catch( itk::ExceptionObject & e )
+  catch( itk::ExceptionObject & error )
     {
-    std::cerr << "Error: " << e << std::endl;
+    std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
     }
 
