@@ -32,6 +32,7 @@ website, register, and join the ITK community.
 import argparse
 import hashlib
 import os
+import subprocess
 import sys
 
 helper_modules_dir = os.path.join(os.path.abspath('@ITKExamples_SOURCE_DIR@'),
@@ -122,6 +123,17 @@ def upload_to_midas(input_file, output_file, folders, session, communicator):
 def run(input_files, output_files, folders,
         email=None, api_key=None,
         delete=False):
+    git_email_cmd = subprocess.Popen(['git', 'config', 'user.email'],
+                                     cwd=helper_modules_dir,
+                                     stdout=subprocess.PIPE)
+    if git_email_cmd.wait() is 0:
+        git_email = git_email_cmd.stdout.readline().strip()
+        email_input = raw_input('Email [' + git_email + ']: ')
+        if email_input == '':
+            email = git_email
+        else:
+            email = email_input
+
     session, communicator = connect_to_midas(email, api_key)
 
     for ii in range(len(input_files)):
