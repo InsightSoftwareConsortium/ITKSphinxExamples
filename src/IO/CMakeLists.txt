@@ -1,3 +1,3 @@
-add_subdirectory_if_module_enabled( ImageBase )
-add_subdirectory_if_module_enabled( Mesh )
-add_subdirectory_if_module_enabled( TIFF )
+add_subdirectory_if_module_enabled( ImageBase ITKIOImageBase )
+add_subdirectory_if_module_enabled( Mesh ITKIOMesh )
+add_subdirectory_if_module_enabled( TIFF ITKIOTIFF )
