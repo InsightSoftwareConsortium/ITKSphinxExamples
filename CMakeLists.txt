@@ -1,6 +1,11 @@
 cmake_minimum_required( VERSION 2.8.5 )
 project( ITKExamples )
 
+if( "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" )
+  set( CMAKE_CXX_FLAGS  "-Qunused-arguments ${CMAKE_CXX_FLAGS}" )
+  set( CMAKE_C_FLAGS    "-Qunused-arguments ${CMAKE_C_FLAGS}" )
+endif()
+
 find_package( ITK )
 set( ITKExamples_VERSION_MAJOR ${ITK_VERSION_MAJOR} )
 set( ITKExamples_VERSION_MINOR ${ITK_VERSION_MINOR} )
