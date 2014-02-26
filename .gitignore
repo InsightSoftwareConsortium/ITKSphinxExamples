@@ -25,3 +25,5 @@ CMakeLists.txt.user*
 
 # back-up files when conflicts occur
 *.orig
+
+*.DS_Store

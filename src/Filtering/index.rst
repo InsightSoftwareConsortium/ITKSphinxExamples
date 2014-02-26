@@ -20,3 +20,4 @@ Filtering
   Smoothing/index.rst
   Thresholding/index.rst
   QuadEdgeMeshFiltering/index.rst
+  LabelMap/index.rst
