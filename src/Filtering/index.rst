@@ -21,3 +21,4 @@ Filtering
   Thresholding/index.rst
   QuadEdgeMeshFiltering/index.rst
   LabelMap/index.rst
+  ImageStatistics/index.rst
