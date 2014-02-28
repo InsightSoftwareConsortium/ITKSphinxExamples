@@ -19,7 +19,7 @@ install( FILES Code.cxx CMakeLists.txt
   )
 
 enable_testing()
-add_test( NAME MaskOneImageGivenLabelMapTest1
+add_test( NAME MaskOneImageGivenLabelMapTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MaskOneImageGivenLabelMap
     ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
     ${CMAKE_CURRENT_BINARY_DIR}/2th_cthead1.png
@@ -27,7 +27,7 @@ add_test( NAME MaskOneImageGivenLabelMapTest1
     100
     0
 )
-add_test( NAME MaskOneImageGivenLabelMapTest2
+add_test( NAME MaskOneImageGivenLabelMapTestNegateCrop
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MaskOneImageGivenLabelMap
     ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
     ${CMAKE_CURRENT_BINARY_DIR}/2th_cthead1.png
