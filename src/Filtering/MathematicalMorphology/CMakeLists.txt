@@ -1,1 +1,5 @@
 add_example( CreateABinaryBallStructuringElement )
+add_example( DilateAGrayscaleImage )
+compare_to_baseline( DilateAGrayscaleImage Output )
+add_example( ErodeAGrayscaleImage )
+compare_to_baseline( ErodeAGrayscaleImage Output )
