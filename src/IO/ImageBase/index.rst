@@ -8,3 +8,4 @@ ImageBase
   WriteAnImage/Documentation.rst
   CreateAListOfFileNames/Documentation.rst
   ConvertFileFormats/Documentation.rst
+  ReadUnknownImageType/Documentation.rst
