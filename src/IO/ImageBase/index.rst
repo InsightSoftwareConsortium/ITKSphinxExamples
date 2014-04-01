@@ -9,3 +9,4 @@ ImageBase
   CreateAListOfFileNames/Documentation.rst
   ConvertFileFormats/Documentation.rst
   ReadUnknownImageType/Documentation.rst
+  RegisterIOFactories/Documentation.rst

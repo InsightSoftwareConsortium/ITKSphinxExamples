@@ -22,9 +22,9 @@ enable_testing()
 add_test( NAME ReadUnknownImageTypeTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadUnknownImageType
     ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
-)
+  )
 
 add_test( NAME ReadUnknownImageTypeTest1
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadUnknownImageType
     ${CMAKE_CURRENT_BINARY_DIR}/HeadMRVolume.mha
-)
+  )
