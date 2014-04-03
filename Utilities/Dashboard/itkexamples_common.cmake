@@ -36,6 +36,8 @@
 #   dashboard_do_memcheck     = True to enable memcheck (ex: valgrind)
 #   dashboard_no_clean        = True to skip build tree wipeout
 #   dashboard_superbuild      = True to use the Superbuild
+#   dashboard_upload_documentation = Upload the HTML .zip to the dashboard
+#   (requires BUILD_DOCUMENTATION=ON in the dashboard cache)
 #   CTEST_UPDATE_COMMAND      = path to svn command-line client
 #   CTEST_BUILD_FLAGS         = build tool arguments (ex: -j2)
 #   CTEST_TEST_TIMEOUT        = Per-test timeout length
@@ -86,7 +88,7 @@
 #
 #==========================================================================*/
 
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 2.8.5 FATAL_ERROR)
 
 set(dashboard_user_home "$ENV{HOME}")
 
@@ -180,14 +182,10 @@ endif()
 
 # Select a data store.
 if(NOT DEFINED ExternalData_OBJECT_STORES)
-  if(DEFINED "ENV{ExternalData_OBJECT_STORES}")
-    file(TO_CMAKE_PATH "$ENV{ExternalData_OBJECT_STORES}" ExternalData_OBJECT_STORES)
+  if(DEFINED dashboard_data_name)
+    set(ExternalData_OBJECT_STORES ${CTEST_DASHBOARD_ROOT}/${dashboard_data_name})
   else()
-    if(DEFINED dashboard_data_name)
-        set(ExternalData_OBJECT_STORES ${CTEST_DASHBOARD_ROOT}/${dashboard_data_name})
-    else()
-        set(ExternalData_OBJECT_STORES ${CTEST_DASHBOARD_ROOT}/ExternalData)
-    endif()
+    set(ExternalData_OBJECT_STORES ${CTEST_DASHBOARD_ROOT}/ExternalData)
   endif()
 endif()
 
@@ -436,9 +434,15 @@ while(NOT dashboard_done)
       ctest_submit(PARTS Test)
     endif()
 
-    #if(COMMAND dashboard_hook_submit)
-    #  dashboard_hook_submit()
-    #endif()
+    if(dashboard_upload_documentation)
+      if(dashboard_superbuild)
+        file(GLOB zip_doc "${CTEST_BINARY_DIRECTORY}/ITKExamples-build/*.zip")
+      else()
+        file(GLOB zip_doc "${CTEST_BINARY_DIRECTORY}/*.zip")
+      endif()
+      ctest_upload(FILES ${zip_doc})
+      ctest_submit(PARTS Upload)
+    endif()
 
     if(COMMAND dashboard_hook_end)
       dashboard_hook_end()
