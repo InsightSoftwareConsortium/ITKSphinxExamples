@@ -1,5 +1,3 @@
-cmake_minimum_required( VERSION 2.8 )
-
 project( CreateAFixedArray )
 
 find_package( ITK REQUIRED )
