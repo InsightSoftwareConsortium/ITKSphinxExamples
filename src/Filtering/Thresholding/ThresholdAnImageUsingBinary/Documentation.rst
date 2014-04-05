@@ -35,6 +35,10 @@ C++
 
 .. literalinclude:: Code.cxx
 
+Python
+...
+
+.. literalinclude:: BinaryThresholdImageFilter.py
 
 Classes demonstrated
 --------------------
