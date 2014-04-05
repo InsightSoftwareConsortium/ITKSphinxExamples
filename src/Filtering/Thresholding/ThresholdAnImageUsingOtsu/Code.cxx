@@ -16,24 +16,29 @@ int main( int argc, char* argv[] )
     }
 
   const unsigned int Dimension = 2;
-
   typedef  unsigned char  PixelType;
+  typedef  itk::SizeValueType  SizeType;
+
+  const char * InputImage = argv[1];
+  const char * OutputImage = argv[2];
+
+  const SizeType NumberOfHistogramBins = static_cast<SizeType>(atoi( argv[3] ) );
+  const SizeType NumberOfThresholds = static_cast<SizeType>(atoi( argv[4] ) );
+  const PixelType LabelOffset = static_cast<PixelType>(atoi( argv[5] ) );
 
   typedef itk::Image< PixelType, Dimension >  ImageType;
 
   typedef itk::ImageFileReader< ImageType > ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
-  reader->Update();
+  reader->SetFileName( InputImage );
 
   typedef itk::OtsuMultipleThresholdsImageFilter< ImageType, ImageType >
     FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
-  filter->SetNumberOfHistogramBins( atoi( argv[3] ) );
-  filter->SetNumberOfThresholds( atoi( argv[4] ) );
-  filter->SetLabelOffset( atoi( argv[5] ) );
-  filter->Update();
+  filter->SetNumberOfHistogramBins( NumberOfHistogramBins );
+  filter->SetNumberOfThresholds( NumberOfThresholds );
+  filter->SetLabelOffset( LabelOffset );
 
   FilterType::ThresholdVectorType thresholds = filter->GetThresholds();
 
@@ -51,13 +56,21 @@ int main( int argc, char* argv[] )
   rescaler->SetInput( filter->GetOutput() );
   rescaler->SetOutputMinimum( 0 );
   rescaler->SetOutputMaximum( 255 );
-  rescaler->Update();
 
   typedef itk::ImageFileWriter< ImageType >  WriterType;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( argv[2] );
+  writer->SetFileName( OutputImage );
   writer->SetInput( rescaler->GetOutput() );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & e )
+    {
+    std::cerr << "Error: " << e << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }
