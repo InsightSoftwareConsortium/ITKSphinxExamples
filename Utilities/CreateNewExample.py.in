@@ -346,8 +346,6 @@ if __name__ == '__main__':
     cmakefile = os.path.join( example_dir, 'CMakeLists.txt' )
     f=open( cmakefile, 'w' )
 
-    f.write( 'cmake_minimum_required( VERSION 2.8 )\n\n' )
-
     f.write( 'project( ' + example_name + ' )\n\n' )
 
     f.write( 'find_package( ITK REQUIRED )\n' )

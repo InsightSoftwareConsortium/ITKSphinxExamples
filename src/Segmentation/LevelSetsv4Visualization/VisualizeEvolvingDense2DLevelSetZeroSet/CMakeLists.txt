@@ -1,5 +1,3 @@
-cmake_minimum_required( VERSION 2.8 )
-
 project( VisualizeEvolvingDense2DLevelSetZeroSet )
 
 find_package( ITK REQUIRED )
