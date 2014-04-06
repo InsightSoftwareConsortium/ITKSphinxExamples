@@ -36,7 +36,7 @@ C++
 .. literalinclude:: Code.cxx
 
 Python
-...
+......
 
 .. literalinclude:: OtsuThresholdImageFilter.py
 

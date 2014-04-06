@@ -39,7 +39,7 @@ C++
 .. literalinclude:: Code.cxx
 
 Python
-...
+......
 
 .. literalinclude:: ErodeAGrayscaleImage.py
 
