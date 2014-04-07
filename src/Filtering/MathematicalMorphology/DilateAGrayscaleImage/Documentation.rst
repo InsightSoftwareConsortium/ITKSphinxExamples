@@ -40,7 +40,7 @@ C++
 .. literalinclude:: Code.cxx
 
 Python
-...
+......
 
 .. literalinclude:: DilateAGrayscaleImage.py
 
