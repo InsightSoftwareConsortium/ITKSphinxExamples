@@ -1,5 +1,5 @@
-add_example( CannyEdgeDetectionImageFilter )
-compare_to_baseline( CannyEdgeDetectionImageFilter Output)
+add_example( DetectEdgesWithCannyFilter )
+compare_to_baseline( DetectEdgesWithCannyFilter Output)
 
 add_example( SobelEdgeDetectionImageFilter )
 compare_to_baseline( SobelEdgeDetectionImageFilter Output)
