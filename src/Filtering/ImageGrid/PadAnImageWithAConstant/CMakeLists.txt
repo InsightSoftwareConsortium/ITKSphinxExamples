@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( PadAnImageWithAConstant )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( PadAnImageWithAConstant Code.cxx )
 target_link_libraries( PadAnImageWithAConstant ${ITK_LIBRARIES} )
 

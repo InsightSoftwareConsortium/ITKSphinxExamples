@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( WriteAnImage )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( WriteAnImage Code.cxx )
 target_link_libraries( WriteAnImage ${ITK_LIBRARIES} )
 

@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( TryCatchException )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( TryCatchException Code.cxx )
 target_link_libraries( TryCatchException ${ITK_LIBRARIES} )
 

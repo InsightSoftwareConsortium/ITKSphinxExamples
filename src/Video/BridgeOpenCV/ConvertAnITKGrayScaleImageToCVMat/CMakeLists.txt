@@ -3,10 +3,9 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( ConvertAnITKGrayScaleImageToCVMat )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
-add_executable( ConvertAnITKGrayScaleImageToCVMat
-  Code.cxx )
+
+add_executable( ConvertAnITKGrayScaleImageToCVMat Code.cxx )
 target_link_libraries( ConvertAnITKGrayScaleImageToCVMat ${ITK_LIBRARIES} )
 
 install( TARGETS ConvertAnITKGrayScaleImageToCVMat

@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( Create3DVolume )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( Create3DVolume
   Code.cxx )
 target_link_libraries( Create3DVolume ${ITK_LIBRARIES} )

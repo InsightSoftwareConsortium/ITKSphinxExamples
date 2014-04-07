@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( ApplyCosImageFilter )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( ApplyCosImageFilter Code.cxx )
 target_link_libraries( ApplyCosImageFilter ${ITK_LIBRARIES} )
 

@@ -3,10 +3,9 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( ReadMesh )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
-add_executable( ReadMesh
-  Code.cxx )
+
+add_executable( ReadMesh Code.cxx )
 target_link_libraries( ReadMesh ${ITK_LIBRARIES} )
 
 install( TARGETS ReadMesh
