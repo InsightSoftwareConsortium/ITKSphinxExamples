@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( ComputePeronaMalikAnisotropicDiffusion )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( ComputePeronaMalikAnisotropicDiffusion Code.cxx )
 target_link_libraries( ComputePeronaMalikAnisotropicDiffusion ${ITK_LIBRARIES} )
 

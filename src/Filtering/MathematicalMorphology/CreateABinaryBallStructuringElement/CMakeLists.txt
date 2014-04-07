@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( CreateABinaryBallStructuringElement )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( CreateABinaryBallStructuringElement Code.cxx )
 target_link_libraries( CreateABinaryBallStructuringElement ${ITK_LIBRARIES} )
 

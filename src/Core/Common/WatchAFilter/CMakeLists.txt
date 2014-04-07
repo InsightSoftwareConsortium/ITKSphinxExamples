@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( WatchAFilter )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( WatchAFilter Code.cxx )
 target_link_libraries( WatchAFilter ${ITK_LIBRARIES} )
 

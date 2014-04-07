@@ -3,10 +3,9 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( ExtractVertexOnMeshBoundaries )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
-add_executable( ExtractVertexOnMeshBoundaries
-  Code.cxx )
+
+add_executable( ExtractVertexOnMeshBoundaries Code.cxx )
 target_link_libraries( ExtractVertexOnMeshBoundaries ${ITK_LIBRARIES} )
 
 install( TARGETS ExtractVertexOnMeshBoundaries

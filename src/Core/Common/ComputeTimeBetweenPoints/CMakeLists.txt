@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( ComputeTimeBetweenPoints )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( ComputeTimeBetweenPoints Code.cxx )
 target_link_libraries( ComputeTimeBetweenPoints ${ITK_LIBRARIES} )
 

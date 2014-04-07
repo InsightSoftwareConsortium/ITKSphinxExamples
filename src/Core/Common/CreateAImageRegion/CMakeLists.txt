@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( CreateAImageRegion )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( CreateAImageRegion Code.cxx )
 target_link_libraries( CreateAImageRegion ${ITK_LIBRARIES} )
 

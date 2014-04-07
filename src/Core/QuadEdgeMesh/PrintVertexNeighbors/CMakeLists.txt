@@ -3,10 +3,9 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( PrintVertexNeighbors )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
-add_executable( PrintVertexNeighbors
-  Code.cxx )
+
+add_executable( PrintVertexNeighbors Code.cxx )
 target_link_libraries( PrintVertexNeighbors ${ITK_LIBRARIES} )
 
 install( TARGETS PrintVertexNeighbors

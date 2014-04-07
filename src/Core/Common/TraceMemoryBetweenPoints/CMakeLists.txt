@@ -3,10 +3,9 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( TraceMemoryBetweenPoints )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
-add_executable( TraceMemoryBetweenPoints
-  Code.cxx )
+
+add_executable( TraceMemoryBetweenPoints Code.cxx )
 target_link_libraries( TraceMemoryBetweenPoints ${ITK_LIBRARIES} )
 
 install( TARGETS TraceMemoryBetweenPoints

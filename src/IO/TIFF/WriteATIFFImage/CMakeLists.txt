@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( WriteATIFFImage )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( WriteATIFFImage Code.cxx )
 target_link_libraries( WriteATIFFImage ${ITK_LIBRARIES} )
 

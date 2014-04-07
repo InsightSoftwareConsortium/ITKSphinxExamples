@@ -3,8 +3,8 @@ cmake_minimum_required( VERSION 2.8.5 )
 project( CreateDistanceMapFromSeeds )
 
 find_package( ITK REQUIRED )
-
 include( ${ITK_USE_FILE} )
+
 add_executable( CreateDistanceMapFromSeeds Code.cxx )
 target_link_libraries( CreateDistanceMapFromSeeds ${ITK_LIBRARIES} )
 
