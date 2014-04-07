@@ -1,3 +1,5 @@
+cmake_minimum_required( VERSION 2.8.5 )
+
 project( ExtractVertexOnMeshBoundaries )
 
 find_package( ITK REQUIRED )
