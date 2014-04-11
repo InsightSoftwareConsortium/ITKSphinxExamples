@@ -17,16 +17,17 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef float                                   InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension > InputImageType;
+  const char * inputImage = argv[1];
+  const char * outputImage = argv[2];
+
+  typedef float                                     InputPixelType;
+  typedef unsigned char                             OutputPixelType;
+  typedef itk::Image< InputPixelType, Dimension >   InputImageType;
+  typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
 
   typedef itk::ImageFileReader< InputImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
-  reader->Update();
-
-  typedef unsigned char                             OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
+  reader->SetFileName( inputImage );
 
   typedef itk::RescaleIntensityImageFilter< InputImageType, InputImageType >
     RescaleType;
@@ -34,18 +35,25 @@ int main( int argc, char* argv[] )
   rescale->SetInput( reader->GetOutput() );
   rescale->SetOutputMinimum( 0 );
   rescale->SetOutputMaximum( itk::NumericTraits< OutputPixelType >::max() );
-  rescale->Update();
 
   typedef itk::CastImageFilter< InputImageType, OutputImageType > FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( rescale->GetOutput() );
-  filter->Update();
 
   typedef itk::ImageFileWriter< OutputImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( argv[2] );
+  writer->SetFileName( outputImage );
   writer->SetInput( filter->GetOutput() );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & e )
+    {
+    std::cerr << "Error: " << e << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

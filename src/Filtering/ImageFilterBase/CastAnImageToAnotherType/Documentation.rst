@@ -29,6 +29,10 @@ C++
 
 .. literalinclude:: Code.cxx
 
+Python
+......
+
+.. literalinclude:: CastImageFilter.py
 
 Classes demonstrated
 --------------------
