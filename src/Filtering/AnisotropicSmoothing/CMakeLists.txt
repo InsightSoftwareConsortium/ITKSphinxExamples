@@ -1,6 +1,8 @@
 add_example( ComputePeronaMalikAnisotropicDiffusion )
 compare_to_baseline( ComputePeronaMalikAnisotropicDiffusion
   ComputePeronaMalikAnisotropicDiffusionTest )
+add_example( ComputeCurvatureFlow )
+compare_to_baseline( ComputeCurvatureFlow Output)
 add_example( ComputeCurvatureAnisotropicDiffusion )
 compare_to_baseline( ComputeCurvatureAnisotropicDiffusion Output --tolerance-intensity 5)
 add_example( ComputeGradientAnisotropicDiffusion )
