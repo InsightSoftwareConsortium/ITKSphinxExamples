@@ -13,6 +13,9 @@ int main(int argc, char * argv[])
     return EXIT_FAILURE;
     }
 
+  const char * inputFileName = argv[1];
+  const char * outputFileName = argv[2];
+
   const unsigned int Dimension = 2;
 
   typedef unsigned char                           InputPixelType;
@@ -24,8 +27,7 @@ int main(int argc, char * argv[])
   // Create and setup a reader
   typedef itk::ImageFileReader< InputImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
-  reader->Update();
+  reader->SetFileName( inputFileName );
 
   // Create and setup a gradient filter
   typedef itk::GradientMagnitudeImageFilter<
@@ -33,13 +35,21 @@ int main(int argc, char * argv[])
 
   FilterType::Pointer gradientFilter = FilterType::New();
   gradientFilter->SetInput( reader->GetOutput() );
-  gradientFilter->Update();
 
   typedef itk::ImageFileWriter< OutputImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( argv[2] );
+  writer->SetFileName( outputFileName );
   writer->SetInput( gradientFilter->GetOutput() );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }
