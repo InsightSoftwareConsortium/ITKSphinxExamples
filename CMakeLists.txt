@@ -133,6 +133,7 @@ if( BUILD_DOCUMENTATION )
   endif()
 
   # Builds the documentation.
+  find_package( PythonInterp REQUIRED )
   find_package( Sphinx REQUIRED )
 
   set( SPHINX_CONF_DIR ${ITKExamples_BINARY_DIR}/Formatting )

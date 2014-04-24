@@ -15,7 +15,7 @@ if( ${ITK_VERSION_MAJOR} LESS 4 )
 endif()
 
 if( BUILD_DOCUMENTATION )
-  find_package( PythonInterp )
+  find_package( PythonInterp REQUIRED )
 
   # Set here the proper version of Python required to be able to build
   # tarballs for each example
