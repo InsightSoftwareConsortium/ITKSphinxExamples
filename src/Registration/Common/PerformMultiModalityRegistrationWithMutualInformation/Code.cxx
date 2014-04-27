@@ -378,7 +378,6 @@ int main( int argc, char *argv[] )
   if( argc > 4 )
     {
     writer->SetFileName( checkerBoardBefore );
-    writer->Update();
     }
 
   // After registration
@@ -386,7 +385,16 @@ int main( int argc, char *argv[] )
   if( argc > 5 )
     {
     writer->SetFileName( checkerBoardAfter );
+    }
+
+  try
+    {
     writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
     }
 
   return EXIT_SUCCESS;

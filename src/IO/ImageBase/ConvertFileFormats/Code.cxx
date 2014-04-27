@@ -25,14 +25,14 @@ int main( int argc, char* argv[] )
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( reader->GetOutput() );
+
   try
     {
     writer->Update();
     }
-  catch( itk::ExceptionObject & exception )
+  catch( itk::ExceptionObject & error )
     {
-    std::cerr << "Error during Update() " << std::endl;
-    std::cerr << exception << std::endl;
+    std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
     }
 

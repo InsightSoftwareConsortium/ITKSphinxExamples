@@ -32,16 +32,6 @@ int main( int argc, char* argv[] )
   MeshReaderType::Pointer meshReader = MeshReaderType::New();
   meshReader->SetFileName( inputMeshName );
 
-  try
-    {
-    meshReader->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
-    std::cerr << "Error: " << error << std::endl;
-    return EXIT_FAILURE;
-    }
-
   typedef unsigned char                           InputPixelType;
   typedef itk::Image< InputPixelType, Dimension > InputImageType;
   typedef itk::ImageFileReader< InputImageType >  ImageReaderType;
@@ -49,32 +39,12 @@ int main( int argc, char* argv[] )
   ImageReaderType::Pointer imageReader = ImageReaderType::New();
   imageReader->SetFileName( inputImageName );
 
-  try
-    {
-    imageReader->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
-    std::cerr << "Error: " << error << std::endl;
-    return EXIT_FAILURE;
-    }
-
   typedef unsigned char                             OutputPixelType;
   typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
 
   typedef itk::CastImageFilter< InputImageType, OutputImageType > CastFilterType;
   CastFilterType::Pointer cast = CastFilterType::New();
   cast->SetInput( imageReader->GetOutput() );
-
-  try
-    {
-    cast->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
-    std::cerr << "Error: " << error << std::endl;
-    return EXIT_FAILURE;
-    }
 
   typedef itk::TriangleMeshToBinaryImageFilter< MeshType, OutputImageType > FilterType;
   FilterType::Pointer filter = FilterType::New();

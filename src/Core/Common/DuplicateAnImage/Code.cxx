@@ -13,7 +13,6 @@ int main(int, char *[])
 
   RandomSourceType::Pointer randomImageSource = RandomSourceType::New();
   randomImageSource->SetNumberOfThreads(1); // to produce non-random results
-  randomImageSource->Update();
 
   ImageType::Pointer image = randomImageSource->GetOutput();
 

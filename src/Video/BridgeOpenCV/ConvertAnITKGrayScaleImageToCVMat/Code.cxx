@@ -24,7 +24,16 @@ int main( int argc, char* argv[] )
   typedef itk::ImageFileReader< ImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
-  reader->Update();
+
+  try
+    {
+    reader->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   cv::Mat img = itk::OpenCVImageBridge::ITKImageToCVMat< ImageType >( reader->GetOutput() );
 

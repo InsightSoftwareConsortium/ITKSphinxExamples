@@ -6,7 +6,6 @@
 
 int main( int argc, char* argv[] )
 {
-  // ** ERROR MESSAGE AND HELP ** //
   if( argc != 5 )
     {
     std::cout <<"Requires 4 arguments: " << std::endl;
@@ -28,8 +27,6 @@ int main( int argc, char* argv[] )
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[4];
 
-
-  // ** TYPEDEF **
   typedef double                                                  CoordType;
   const unsigned int Dimension = 3;
 
@@ -41,14 +38,11 @@ int main( int argc, char* argv[] )
 
   typedef itk::ParameterizationQuadEdgeMeshFilter< MeshType, MeshType, SolverTraits >   ParametrizationType;
 
-
-  // ** READ THE FILE IN **
   ReaderType::Pointer reader = ReaderType::New( );
   reader->SetFileName( inputFileName );
 
   MeshType::Pointer mesh = reader->GetOutput( );
 
-  // ** CHOSE< COMPUTE AND SET BORDER TRANSFORM **
   BorderTransformType::Pointer border_transform = BorderTransformType::New( );
   border_transform->SetInput( reader->GetOutput() );
 
@@ -111,14 +105,13 @@ int main( int argc, char* argv[] )
       return EXIT_FAILURE;
     }
 
-  // ** WRITE OUTPUT **
   WriterType::Pointer writer = WriterType::New( );
   writer->SetInput( param->GetOutput( ) );
   writer->SetFileName( outputFileName );
 
   try
     {
-    writer->Update( );
+    writer->Update();
     }
   catch( itk::ExceptionObject & error )
     {

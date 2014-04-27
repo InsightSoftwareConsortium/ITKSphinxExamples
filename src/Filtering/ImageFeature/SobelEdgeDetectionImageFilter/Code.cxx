@@ -22,7 +22,6 @@ int main( int argc, char* argv[] )
   typedef itk::ImageFileReader< InputImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
-  reader->Update();
 
   typedef float                                     OutputPixelType;
   typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
@@ -31,13 +30,21 @@ int main( int argc, char* argv[] )
     FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
-  filter->Update();
 
   typedef itk::ImageFileWriter< OutputImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( filter->GetOutput() );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

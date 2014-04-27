@@ -36,7 +36,6 @@ int main( int argc, char* argv[] )
   typedef itk::ImageFileReader< InputImageType >   ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
-  reader->Update();
 
   InputImageType::Pointer input = reader->GetOutput();
 
@@ -54,14 +53,12 @@ int main( int argc, char* argv[] )
   otsu->SetInput( input );
   otsu->SetNumberOfHistogramBins( 256 );
   otsu->SetNumberOfThresholds( 1 );
-  otsu->Update();
 
   typedef itk::RescaleIntensityImageFilter< LevelSetImageType, LevelSetImageType > RescaleType;
   RescaleType::Pointer rescaler = RescaleType::New();
   rescaler->SetInput( otsu->GetOutput() );
   rescaler->SetOutputMinimum( 0 );
   rescaler->SetOutputMaximum( 1 );
-  rescaler->Update();
 
   // convert a binary mask to a level-set function
   typedef itk::BinaryImageToLevelSetImageAdaptor< LevelSetImageType,
@@ -83,7 +80,15 @@ int main( int argc, char* argv[] )
       vtkSmartPointer<vtkRenderWindowInteractor>::New();
   renderWindowInteractor->SetRenderWindow( visualizer->GetRenderWindow() );
 
-  visualizer->Update();
+  try
+    {
+    visualizer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   bool interactive = ( atoi( argv[2] ) != 0 );
   if( interactive )

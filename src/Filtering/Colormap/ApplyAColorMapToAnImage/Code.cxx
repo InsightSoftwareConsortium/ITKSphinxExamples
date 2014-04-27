@@ -24,7 +24,6 @@ int main( int argc, char* argv[] )
   typedef itk::ImageFileReader< ImageType > ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
-  reader->Update();
 
   typedef itk::RescaleIntensityImageFilter< ImageType, ImageType >
     RescaleFilterType;
@@ -32,7 +31,6 @@ int main( int argc, char* argv[] )
   rescaleFilter->SetInput( reader->GetOutput() );
   rescaleFilter->SetOutputMinimum( 0 );
   rescaleFilter->SetOutputMaximum( 255 );
-  rescaleFilter->Update();
 
   typedef itk::RGBPixel< unsigned char >        RGBPixelType;
   typedef itk::Image< RGBPixelType, Dimension > RGBImageType;
@@ -42,13 +40,21 @@ int main( int argc, char* argv[] )
   RGBFilterType::Pointer rgbfilter = RGBFilterType::New();
   rgbfilter->SetInput( rescaleFilter->GetOutput() );
   rgbfilter->SetColormap( RGBFilterType::Hot );
-  rgbfilter->Update();
 
   typedef  itk::ImageFileWriter< RGBImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( rgbfilter->GetOutput() );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

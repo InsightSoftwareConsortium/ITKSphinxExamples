@@ -85,6 +85,7 @@ int main( int argc, char* argv[] )
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );
+
   try
     {
     writer->Update();

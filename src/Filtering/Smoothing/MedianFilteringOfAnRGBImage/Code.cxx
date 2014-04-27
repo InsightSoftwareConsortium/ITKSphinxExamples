@@ -64,7 +64,6 @@ int main(int argc, char * argv[])
 
   medianFilter->SetRadius( radius );
   medianFilter->SetInput( reader->GetOutput() );
-  medianFilter->Update();
 
   // Cast the custom myRBGPixel's to RGBPixel's
   typedef itk::RGBPixel< unsigned char >                      RGBPixelType;
@@ -72,13 +71,21 @@ int main(int argc, char * argv[])
   typedef itk::CastImageFilter< MyImageType, RGBImageType >   CastType;
   CastType::Pointer cast = CastType::New();
   cast->SetInput( medianFilter->GetOutput() );
-  cast->Update();
 
   typedef itk::ImageFileWriter< RGBImageType >                WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( cast->GetOutput() );
   writer->SetFileName( argv[2] );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

@@ -32,16 +32,6 @@ int main( int argc, char* argv[] )
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  try
-    {
-    reader->Update();
-    }
-  catch( itk::ExceptionObject& e )
-    {
-    std::cerr << "Error: " << e << std::endl;
-    return EXIT_FAILURE;
-    }
-
   MeshPointer mesh = reader->GetOutput();
 
   MeshPointer output = MeshType::New();
