@@ -41,13 +41,21 @@ int main(int argc, char *argv[])
     CheckerBoardFilterType::New();
   checkerBoardFilter->SetInput1(image1);
   checkerBoardFilter->SetInput2(image2);
-  checkerBoardFilter->Update();
 
   typedef itk::ImageFileWriter< ImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( checkerBoardFilter->GetOutput() );
   writer->SetFileName( argv[1] );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

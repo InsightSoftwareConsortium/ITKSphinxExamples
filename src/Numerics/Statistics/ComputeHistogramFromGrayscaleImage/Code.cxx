@@ -23,16 +23,6 @@ int main(int argc, char* argv[])
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  try
-    {
-    reader->Update();
-    }
-  catch( itk::ExceptionObject & e )
-    {
-    std::cerr << "Error: " << e << std::endl;
-    return EXIT_FAILURE;
-    }
-
   ImageType::Pointer image = reader->GetOutput();
 
   typedef itk::Statistics::ImageToHistogramFilter< ImageType >
@@ -56,7 +46,16 @@ int main(int argc, char* argv[])
   imageToHistogramFilter->SetHistogramBinMinimum( lowerBound );
   imageToHistogramFilter->SetHistogramBinMaximum( upperBound );
   imageToHistogramFilter->SetHistogramSize( size );
-  imageToHistogramFilter->Update();
+
+  try
+    {
+    imageToHistogramFilter->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   ImageToHistogramFilterType::HistogramType* histogram =
     imageToHistogramFilter->GetOutput();

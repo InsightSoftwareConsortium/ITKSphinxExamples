@@ -28,7 +28,6 @@ int main( int argc, char* argv[] )
     RandomImageSourceType::New();
   randomImageSource->SetNumberOfThreads(1); // to produce non-random results
   randomImageSource->SetSize(size);
-  randomImageSource->Update();
 
   typedef float OutputPixelType;
   typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
@@ -36,13 +35,21 @@ int main( int argc, char* argv[] )
   typedef itk::AtanImageFilter< InputImageType, OutputImageType > FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( randomImageSource->GetOutput() );
-  filter->Update();
 
   typedef itk::ImageFileWriter< OutputImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[1] );
   writer->SetInput( filter->GetOutput() );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

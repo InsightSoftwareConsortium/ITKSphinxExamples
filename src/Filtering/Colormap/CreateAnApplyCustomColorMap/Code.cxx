@@ -33,7 +33,6 @@ int main(int argc, char* argv[] )
   typedef itk::ImageFileReader< ImageType > ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
-  reader->Update();
 
   typedef itk::Function::CustomColormapFunction< PixelType, RGBPixelType >
     ColormapType;
@@ -73,13 +72,21 @@ int main(int argc, char* argv[] )
 
   colormapFilter1->SetInput( reader->GetOutput() );
   colormapFilter1->SetColormap( colormap );
-  colormapFilter1->Update();
 
   typedef itk::ImageFileWriter< RGBImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( colormapFilter1->GetOutput() );
   writer->SetFileName( argv[2] );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

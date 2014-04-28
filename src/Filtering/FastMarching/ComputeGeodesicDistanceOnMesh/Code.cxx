@@ -34,7 +34,6 @@ int main( int argc, char* argv[] )
   typedef itk::MeshFileReader< MeshType > ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
-  reader->Update();
 
   typedef itk::FastMarchingQuadEdgeMeshFilterBase< MeshType, MeshType >
     FastMarchingType;
@@ -72,29 +71,18 @@ int main( int argc, char* argv[] )
   fmmFilter->SetTrialPoints( trial );
   fmmFilter->SetStoppingCriterion( criterion );
 
-  try
-    {
-    fmmFilter->Update();
-    }
-  catch( itk::ExceptionObject & excep )
-    {
-    std::cerr << "Exception caught !" << std::endl;
-    std::cerr << excep << std::endl;
-    return EXIT_FAILURE;
-    }
-
   typedef itk::MeshFileWriter< MeshType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( fmmFilter->GetOutput() );
   writer->SetFileName( argv[2] );
+
   try
     {
     writer->Update();
     }
-  catch( itk::ExceptionObject & excep )
+  catch( itk::ExceptionObject & error )
     {
-    std::cerr << "Exception caught !" << std::endl;
-    std::cerr << excep << std::endl;
+    std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
     }
 

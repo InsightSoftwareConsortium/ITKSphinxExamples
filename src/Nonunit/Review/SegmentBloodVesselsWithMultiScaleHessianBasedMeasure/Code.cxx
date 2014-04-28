@@ -76,6 +76,7 @@ int main( int argc, char* argv[] )
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( rescaleFilter->GetOutput() );
+
   try
     {
     writer->Update();

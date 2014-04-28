@@ -61,7 +61,16 @@ int main(int argc, char *argv[])
   writer->SetFileName(outputFilename);
   writer->SetInput(image);
   writer->SetImageIO(tiffIO);
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

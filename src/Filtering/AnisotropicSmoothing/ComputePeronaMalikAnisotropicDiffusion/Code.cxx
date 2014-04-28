@@ -24,7 +24,6 @@ int main( int argc, char* argv[] )
   typedef itk::ImageFileReader< InputImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
-  reader->Update();
 
   typedef float                                     OutputPixelType;
   typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
@@ -35,13 +34,21 @@ int main( int argc, char* argv[] )
   filter->SetNumberOfIterations( atoi( argv[3] ) );
   filter->SetTimeStep( 0.125 );
   filter->SetConductanceParameter( atof( argv[4] ) );
-  filter->Update();
 
   typedef itk::ImageFileWriter< OutputImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( filter->GetOutput() );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }

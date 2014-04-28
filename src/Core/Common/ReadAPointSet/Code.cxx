@@ -39,10 +39,9 @@ int main( int argc, char *argv[] )
     {
     polyDataReader->Update();
     }
-  catch( itk::ExceptionObject & excp )
+  catch( itk::ExceptionObject & error )
     {
-    std::cerr << "Error during Update() " << std::endl;
-    std::cerr << excp << std::endl;
+    std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
     }
 

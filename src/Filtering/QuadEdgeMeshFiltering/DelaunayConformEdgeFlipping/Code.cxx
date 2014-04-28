@@ -24,16 +24,6 @@ int main( int argc, char* argv[] )
   typedef itk::MeshFileReader< MeshType >                    ReaderType;
   ReaderType::Pointer reader = ReaderType::New( );
   reader->SetFileName( argv[1] );
-  try
-    {
-    reader->Update( );
-    }
-  catch( itk::ExceptionObject & excp )
-    {
-    std::cerr << "Exception thrown while reading the input file " << std::endl;
-    std::cerr << excp << std::endl;
-    return EXIT_FAILURE;
-    }
 
   // Process the mesh.
   MeshType::Pointer mesh = reader->GetOutput( );
@@ -41,14 +31,22 @@ int main( int argc, char* argv[] )
   DelaunayConformFilterType;
   DelaunayConformFilterType::Pointer filter = DelaunayConformFilterType::New();
   filter->SetInput( mesh );
-  filter->Update();
 
   // Write the output.
   typedef itk::MeshFileWriter< MeshType >                    WriterType;
   WriterType::Pointer writer = WriterType::New( );
   writer->SetInput( filter->GetOutput( ) );
   writer->SetFileName( argv[2] );
-  writer->Update( );
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   std::cout << "Number of Edge flipped performed: "
             << filter->GetNumberOfEdgeFlips() <<std::endl;

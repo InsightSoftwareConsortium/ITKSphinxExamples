@@ -25,7 +25,6 @@ int main(int, char *[])
   randomImageSource->SetNumberOfThreads(1); // to produce non-random results
   randomImageSource->SetSize(bigSize);
   randomImageSource->GetOutput()->SetRequestedRegion(smallSize);
-  randomImageSource->Update();
 
   std::cout << "Created random image." << std::endl;
 

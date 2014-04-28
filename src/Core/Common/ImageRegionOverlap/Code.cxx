@@ -123,17 +123,15 @@ int main( int argc, char *argv[] )
   writer->SetFileName( out_file_name );
   writer->SetInput( image );
 
-
   try
     {
     writer->Update();
     }
-  catch( itk::ExceptionObject & excep )
+  catch( itk::ExceptionObject & error )
     {
-    std::cerr << "Exception caught !" << std::endl;
-    std::cerr << excep << std::endl;
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
     }
-
 
   return EXIT_SUCCESS;
 }

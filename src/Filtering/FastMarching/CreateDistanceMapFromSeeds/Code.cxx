@@ -99,18 +99,25 @@ int main(int argc, char* argv[] )
 
   adaptor->SetTrialImage( TrialImage.GetPointer() );
   adaptor->SetTrialValue( 1.0 );
-
   adaptor->Update();
 
   marcher->SetAlivePoints( adaptor->GetAlivePoints() );
   marcher->SetTrialPoints( adaptor->GetTrialPoints() );
-  marcher->Update();
 
   typedef itk::ImageFileWriter< FloatImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( marcher->GetOutput() );
   writer->SetFileName( argv[1] );
-  writer->Update();
+
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }
