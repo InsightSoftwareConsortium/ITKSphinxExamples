@@ -1,3 +1,6 @@
+add_example( ComputeLaplacian )
+compare_to_baseline( ComputeLaplacian Output)
+
 add_example( DetectEdgesWithCannyFilter )
 compare_to_baseline( DetectEdgesWithCannyFilter Output)
 
