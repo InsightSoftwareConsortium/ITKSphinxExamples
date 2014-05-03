@@ -109,8 +109,20 @@ your name, then selecting the *Api* tab.
   :alt: Location of the API key.
   :align: center
 
-Move the content link file to the source tree at the location where the actual
-file is desired in the build tree and add it to the repository with::
+An example call to the binary data upload script looks like:
+
+.. code-block:: bash
+
+  cd ~/bin/ITKExamples-build
+  ./Utilities/UploadBinaryData.py \
+    -i ~/src/ITK \
+    --class-name ExpNegativeImageFilter \
+    --delete \
+    ~/src/ITKExamples/src/Filtering/ImageIntensity/ApplyExpNegativeImageFilter/Output{Baseline.mha,.png}
+
+Move the content link file, if necessary, to the source tree at the location
+where the actual file is desired in the build tree and add it to the
+repository with::
 
   git add path/to/file.md5
 
