@@ -10,3 +10,4 @@ ImageGrid
   Create3DVolume/Documentation.rst
   AppendTwo3DVolumes/Documentation.rst
   ChangeImageOriginSpacingOrDirection/Documentation.rst
+  ResampleAnImage/Documentation.rst
