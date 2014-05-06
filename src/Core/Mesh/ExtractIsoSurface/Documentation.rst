@@ -13,18 +13,11 @@ Extract the iso surface as one itk::Mesh from a 3D itk::Image
 Results
 -------
 
-.. figure::
+.. figure:: MeshAndVolume.png
   :scale: 50%
-  :alt: Input image
+  :alt: Input image and resulting mesh
 
-  Input image
-
-.. figure::
-  :scale: 50%
-  :alt: Output image
-
-  Output image
-
+  Input 3D image with iso-surface mesh
 
 Code
 ----
