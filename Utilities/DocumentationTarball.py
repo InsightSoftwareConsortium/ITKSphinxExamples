@@ -21,7 +21,7 @@ import sys
 import tarfile
 import zipfile
 
-if len(sys.argv) < 3:
+if len(sys.argv) != 3:
     print('usage: ' + sys.argv[0] + ' input_directory output_prefix')
     sys.exit(1)
 

@@ -21,7 +21,7 @@
 import sys
 import itk
 
-if len(sys.argv) < 7:
+if len(sys.argv) != 7:
     print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
           "<lowerThreshold> <upperThreshold> <outsideValue> <insideValue>")
     sys.exit(1)

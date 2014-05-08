@@ -22,7 +22,7 @@ import sys
 
 import itk
 
-if len(sys.argv) < 4:
+if len(sys.argv) != 4:
     print("Usage: " + sys.argv[0] + " <InputImage> <OutputImage> <AxisToFlip>")
     sys.exit(1)
 

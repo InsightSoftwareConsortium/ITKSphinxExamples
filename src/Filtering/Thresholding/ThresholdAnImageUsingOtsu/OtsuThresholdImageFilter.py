@@ -21,7 +21,7 @@
 import sys
 import itk
 
-if len(sys.argv) < 6:
+if len(sys.argv) != 6:
     print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
           "<numberOfHistogramBins> <numberOfThresholds> <labelOffset>")
     sys.exit(1)
