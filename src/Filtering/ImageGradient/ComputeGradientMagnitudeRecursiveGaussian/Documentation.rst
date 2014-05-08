@@ -37,7 +37,7 @@ C++
 Python
 ......
 
-.. literalinclude:: ComputeGradientMagnitudeImageFilter.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------

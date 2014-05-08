@@ -37,7 +37,7 @@ C++
 Python
 ......
 
-.. literalinclude:: ComputeGradientAnisotropicDiffusion.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------

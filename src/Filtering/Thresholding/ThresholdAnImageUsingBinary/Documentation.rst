@@ -38,7 +38,7 @@ C++
 Python
 ......
 
-.. literalinclude:: BinaryThresholdImageFilter.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------

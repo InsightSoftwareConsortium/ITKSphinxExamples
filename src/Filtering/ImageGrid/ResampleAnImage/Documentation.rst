@@ -39,7 +39,7 @@ C++
 Python
 ......
 
-.. literalinclude:: ResampleImageFilter.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------

@@ -32,7 +32,7 @@ C++
 Python
 ......
 
-.. literalinclude:: CastImageFilter.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------

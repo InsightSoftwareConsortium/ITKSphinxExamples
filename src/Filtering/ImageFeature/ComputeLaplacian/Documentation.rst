@@ -37,7 +37,7 @@ C++
 Python
 ......
 
-.. literalinclude:: ComputeLaplacian.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------
