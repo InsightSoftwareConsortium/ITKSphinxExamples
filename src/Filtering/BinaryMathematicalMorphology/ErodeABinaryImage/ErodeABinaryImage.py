@@ -22,7 +22,7 @@ import sys
 
 import itk
 
-if len(sys.argv) < 4:
+if len(sys.argv) != 4:
     print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> <radius>")
     sys.exit(1)
 

@@ -3,7 +3,7 @@
 import sys
 import itk
 
-if len(sys.argv) < 3:
+if len(sys.argv) != 3:
     print("Usage: " + sys.argv[0] + " <input1> <input2> <input3> ... <output>")
     sys.exit(1)
 

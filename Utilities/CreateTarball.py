@@ -16,7 +16,7 @@ import tarfile
 import zipfile
 
 
-if len(sys.argv) < 3:
+if len(sys.argv) != 3:
     print('usage: ' + sys.argv[0] + ' <example_name> <SPHINX_DESTINATION>')
     sys.exit(1)
 
