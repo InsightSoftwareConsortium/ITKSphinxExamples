@@ -11,3 +11,4 @@ ImageIntensity
   ApplyAtanImageFilter/Documentation.rst
   ConvertRGBImageToGrayscaleImage/Documentation.rst
   MultiplyImageByScalar/Documentation.rst
+  ComputeSigmoid/Documentation.rst
