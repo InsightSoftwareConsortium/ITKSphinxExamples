@@ -38,7 +38,7 @@ C++
 Python
 ......
 
-.. literalinclude:: OtsuThresholdImageFilter.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------

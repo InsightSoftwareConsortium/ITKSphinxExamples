@@ -42,7 +42,7 @@ C++
 Python
 ......
 
-.. literalinclude:: DilateAGrayscaleImage.py
+.. literalinclude:: Code.py
 
 
 Classes demonstrated

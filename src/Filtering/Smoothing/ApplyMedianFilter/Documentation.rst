@@ -36,7 +36,7 @@ C++
 Python
 ......
 
-.. literalinclude:: MedianImageFilter.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------

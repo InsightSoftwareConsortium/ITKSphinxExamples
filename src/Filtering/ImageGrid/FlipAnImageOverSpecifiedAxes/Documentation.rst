@@ -39,7 +39,7 @@ C++
 Python
 ......
 
-.. literalinclude:: FlipAnImageOverSpecifiedAxes.py
+.. literalinclude:: Code.py
 
 
 Classes demonstrated

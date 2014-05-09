@@ -37,7 +37,7 @@ C++
 Python
 ......
 
-.. literalinclude:: CurvatureAnisotropicDiffusionImageFilter.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------

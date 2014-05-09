@@ -37,7 +37,7 @@ C++
 Python
 ......
 
-.. literalinclude:: ComputeCurvatureFlow.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------

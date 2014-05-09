@@ -38,7 +38,7 @@ C++
 Python
 ......
 
-.. literalinclude:: ApplyExpNegativeImageFilter.py
+.. literalinclude:: Code.py
 
 
 Classes demonstrated

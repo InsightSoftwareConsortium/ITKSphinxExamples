@@ -36,7 +36,7 @@ C++
 Python
 ......
 
-.. literalinclude:: MeanImageFilter.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------

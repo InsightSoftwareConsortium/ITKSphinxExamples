@@ -35,7 +35,7 @@ C++
 Python
 ......
 
-.. literalinclude:: CannyEdgeDetectionImageFilter.py
+.. literalinclude:: Code.py
 
 Classes demonstrated
 --------------------
