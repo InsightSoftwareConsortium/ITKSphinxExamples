@@ -6,4 +6,4 @@ Mesh
 
   ConvertTriangleMeshToBinaryImage/Documentation.rst
   ExtractIsoSurface/Documentation.rst
-  TranslateOneQuadEdgeMesh/Documentation.rst
+  TranslateOneMesh/Documentation.rst
