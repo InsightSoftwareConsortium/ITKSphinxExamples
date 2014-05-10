@@ -10,8 +10,7 @@ The entire source tree can be downloaded with Git_:
 
 .. code-block:: bash
 
-  git clone --recursive https://itk.org/ITKExamples.git
-
+  git clone --recursive http://itk.org/ITKExamples.git
 
 After cloning the repository, it can be configured for development (confirm
 proper Git configuration, setup `Git hooks`_, configure your `Gerrit Code
