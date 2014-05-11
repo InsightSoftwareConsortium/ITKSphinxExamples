@@ -5,3 +5,5 @@ compare_to_baseline( ApplyMedianFilter Output )
 add_example( MedianFilteringOfAnRGBImage )
 compare_to_baseline( MedianFilteringOfAnRGBImage
   Output --tolerance-intensity 2.0e1 )
+add_example( SmoothWithRecursiveGaussian )
+compare_to_baseline( SmoothWithRecursiveGaussian Output )

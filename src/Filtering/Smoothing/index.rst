@@ -7,3 +7,4 @@ Smoothing
   ApplyMeanFilter/Documentation.rst
   ApplyMedianFilter/Documentation.rst
   MedianFilteringOfAnRGBImage/Documentation.rst
+  SmoothWithRecursiveGaussian/Documentation.rst
