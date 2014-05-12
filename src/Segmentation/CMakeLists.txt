@@ -1,1 +1,2 @@
 add_subdirectory_if_module_enabled( LevelSetsv4Visualization )
+add_subdirectory_if_module_enabled( LabelVoting )
