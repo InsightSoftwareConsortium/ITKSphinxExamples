@@ -24,7 +24,7 @@ foreach( i RANGE 0 2 )
   add_test( NAME ApplyAccumulateImageFilterTest${i}
     COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplyAccumulateImageFilter
       ${CMAKE_CURRENT_BINARY_DIR}/HeadMRVolume.mha
-      ${CMAKE_CURRENT_BINARY_DIR}/Output${i}.mha
+      ${CMAKE_CURRENT_BINARY_DIR}/ApplyAccumulateImageFilterTestOutput${i}.mha
       ${i}
   )
 endforeach()

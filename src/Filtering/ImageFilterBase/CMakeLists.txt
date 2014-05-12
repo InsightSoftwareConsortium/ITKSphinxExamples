@@ -1,2 +1,2 @@
 add_example( CastAnImageToAnotherType )
-compare_to_baseline( CastAnImageToAnotherType Output)
+compare_to_baseline( EXAMPLE_NAME CastAnImageToAnotherType BASELINE_PREFIX OutputBaseline )
