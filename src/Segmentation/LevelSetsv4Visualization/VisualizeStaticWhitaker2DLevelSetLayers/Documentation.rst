@@ -43,4 +43,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::VTKVisualize2DLevelSetAsZeroSet
+.. breathelink:: itk::VTKVisualize2DSparseLevelSetLayers
