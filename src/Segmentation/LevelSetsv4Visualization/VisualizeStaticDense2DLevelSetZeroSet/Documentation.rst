@@ -2,7 +2,7 @@ Visualize A Static Dense 2D Level-Set Zero-Set
 ==============================================
 
 .. index::
-   single: VTKVisualize2DLevelSetAsZeroSet
+   single: VTKVisualizeImageLevelSetIsoValues
    single: BinaryImageToLevelSetImageAdaptor
    single: LevelSetDenseImage
 
@@ -42,4 +42,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::VTKVisualize2DLevelSetAsZeroSet
+.. breathelink:: itk::VTKVisualizeImageLevelSetIsoValues
