@@ -17,3 +17,6 @@ compare_to_baseline( AppendTwo3DVolumes Output )
 
 add_example( ResampleAnImage )
 compare_to_baseline( ResampleAnImage Output )
+
+add_example( UpsampleOrDownsampleScalarImage )
+compare_to_baseline( UpsampleOrDownsampleScalarImage Output )
