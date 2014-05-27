@@ -6,7 +6,7 @@ A set of cookbook examples for the Insight Toolkit, ITK_.
 Download instructions
 ---------------------
 
-  $ git clone https://itk.org/ITKExamples.git
+  $ git clone --recursive http://itk.org/ITKExamples.git
 
 
 Build instructions
