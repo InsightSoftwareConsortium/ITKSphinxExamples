@@ -13,7 +13,8 @@ if( "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" )
   set( CMAKE_C_FLAGS    "-Qunused-arguments ${CMAKE_C_FLAGS}" )
 endif()
 
-find_package( ITK )
+# To get the ITK version.  Optional if we are building as an ITK module.
+find_package( ITK QUIET )
 set( ITKExamples_VERSION_MAJOR ${ITK_VERSION_MAJOR} )
 set( ITKExamples_VERSION_MINOR ${ITK_VERSION_MINOR} )
 set( ITKExamples_VERSION_PATCH ${ITK_VERSION_PATCH} )
