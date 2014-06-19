@@ -1,6 +1,6 @@
-set( DOCUMENTATION "This module builds all the examples found at http://itk.org/ITKExamples" )
+set( DOCUMENTATION "This module builds the examples found at http://itk.org/ITKExamples" )
 
-itk_module(ITKExamples
+itk_module(SphinxExamples
   DEPENDS
     ITKCommon
     EXCLUDE_FROM_DEFAULT
