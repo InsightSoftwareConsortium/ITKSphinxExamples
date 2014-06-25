@@ -21,14 +21,24 @@ add_example( GetNameOfClass )
 add_example( CreateAImageRegion )
 add_example( IsPixelInsideRegion )
 add_example( ImageRegionIntersection )
+
 add_example( ImageRegionOverlap )
-compare_to_baseline( ImageRegionOverlap Output)
+compare_to_baseline(
+  EXAMPLE_NAME ImageRegionOverlap
+  BASELINE_PREFIX OutputBaseline
+)
+
 add_example( CreateAIndex )
 add_example( CreateASize )
 add_example( GetImageSize )
 add_example( CreateAnRGBImage )
+
 add_example( SetPixelValueInOneImage )
-compare_to_baseline( SetPixelValueInOneImage Output)
+compare_to_baseline(
+  EXAMPLE_NAME SetPixelValueInOneImage
+  BASELINE_PREFIX OutputBaseline
+)
+
 add_example( DuplicateAnImage )
 add_example( ApplyAFilterOnlyToASpecifiedRegionOfAnImage )
 add_example( IterateOverARegionWithAShapedNeighborhoodIterator )

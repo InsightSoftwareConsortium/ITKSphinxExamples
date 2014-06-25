@@ -1,6 +1,9 @@
 add_example( ComputeGradientMagnitude )
-compare_to_baseline( ComputeGradientMagnitude
-  ComputeGradientMagnitudeTestOutput )
+compare_to_baseline( EXAMPLE_NAME ComputeGradientMagnitude
+  BASELINE_PREFIX ComputeGradientMagnitudeTestOutputBaseline
+)
+
 add_example( ComputeGradientMagnitudeRecursiveGaussian )
-compare_to_baseline( ComputeGradientMagnitudeRecursiveGaussian
-  ComputeGradientMagnitudeRecursiveGaussianTestOutput )
+compare_to_baseline( EXAMPLE_NAME ComputeGradientMagnitudeRecursiveGaussian
+  BASELINE_PREFIX ComputeGradientMagnitudeRecursiveGaussianTestOutputBaseline
+)

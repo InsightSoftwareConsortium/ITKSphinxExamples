@@ -1,2 +1,2 @@
 add_example( MaskOneImageGivenLabelMap )
-compare_to_baseline( MaskOneImageGivenLabelMap Output1 )
+compare_to_baseline( EXAMPLE_NAME MaskOneImageGivenLabelMap BASELINE_PREFIX Output1Baseline )

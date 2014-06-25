@@ -1,16 +1,23 @@
 add_example( RescaleAnImage )
-compare_to_baseline( RescaleAnImage Output )
+compare_to_baseline( EXAMPLE_NAME RescaleAnImage BASELINE_PREFIX OutputBaseline )
+
 add_example( ApplySinImageFilter )
-compare_to_baseline( ApplySinImageFilter Output --tolerance-intensity 1.0e-6 )
+compare_to_baseline( EXAMPLE_NAME ApplySinImageFilter BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-intensity 1.0e-6 )
+
 add_example( ApplyCosImageFilter )
-compare_to_baseline( ApplyCosImageFilter Output --tolerance-intensity 1.0e-6 )
+compare_to_baseline( EXAMPLE_NAME ApplyCosImageFilter BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-intensity 1.0e-6 )
+
 add_example( ApplyAtanImageFilter )
-compare_to_baseline( ApplyAtanImageFilter Output )
+compare_to_baseline( EXAMPLE_NAME ApplyAtanImageFilter BASELINE_PREFIX OutputBaseline )
+
 add_example( ConvertRGBImageToGrayscaleImage )
-compare_to_baseline( ConvertRGBImageToGrayscaleImage Output )
+compare_to_baseline( EXAMPLE_NAME ConvertRGBImageToGrayscaleImage BASELINE_PREFIX OutputBaseline )
+
 add_example( MultiplyImageByScalar )
-compare_to_baseline( MultiplyImageByScalar Output )
+compare_to_baseline( EXAMPLE_NAME MultiplyImageByScalar BASELINE_PREFIX OutputBaseline )
+
 add_example( ApplyExpNegativeImageFilter )
-compare_to_baseline( ApplyExpNegativeImageFilter Output )
+compare_to_baseline( EXAMPLE_NAME ApplyExpNegativeImageFilter BASELINE_PREFIX OutputBaseline )
+
 add_example( ComputeSigmoid )
-compare_to_baseline( ComputeSigmoid Output )
+compare_to_baseline( EXAMPLE_NAME ComputeSigmoid BASELINE_PREFIX OutputBaseline )

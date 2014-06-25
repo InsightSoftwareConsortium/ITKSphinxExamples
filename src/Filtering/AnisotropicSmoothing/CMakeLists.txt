@@ -1,9 +1,13 @@
 add_example( ComputePeronaMalikAnisotropicDiffusion )
-compare_to_baseline( ComputePeronaMalikAnisotropicDiffusion
-  ComputePeronaMalikAnisotropicDiffusionTest )
+compare_to_baseline( EXAMPLE_NAME ComputePeronaMalikAnisotropicDiffusion
+  BASELINE_PREFIX ComputePeronaMalikAnisotropicDiffusionTestBaseline )
+
 add_example( ComputeCurvatureFlow )
-compare_to_baseline( ComputeCurvatureFlow Output)
+compare_to_baseline( EXAMPLE_NAME ComputeCurvatureFlow BASELINE_PREFIX OutputBaseline )
+
 add_example( ComputeCurvatureAnisotropicDiffusion )
-compare_to_baseline( ComputeCurvatureAnisotropicDiffusion Output --tolerance-intensity 5)
+compare_to_baseline( EXAMPLE_NAME ComputeCurvatureAnisotropicDiffusion
+  BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-intensity 5)
+
 add_example( ComputeGradientAnisotropicDiffusion )
-compare_to_baseline( ComputeGradientAnisotropicDiffusion Output --tolerance-intensity 5)
+compare_to_baseline( EXAMPLE_NAME ComputeGradientAnisotropicDiffusion BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-intensity 5)
