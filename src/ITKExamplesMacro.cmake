@@ -59,10 +59,10 @@ endmacro()
 #                                                   // example
 #   EXAMPLE_NAME myAwesomeExampleName
 #   BASELINE_PREFIX myBaselineImagePrefix
-#   [TEST_IMAGE_PREFIX myAwesomeExampleOutputImagePrefix] // this argument is optional and meant
-#                                                   // to be used when there would be several
-#                                                   // baseline comparison tests based on one given
-#                                                   // example
+#   [TEST_IMAGE myAwesomeExampleOutputImagePrefix.png] // this argument is optional and meant
+#                                                      // to be used when there would be several
+#                                                      // baseline comparison tests based on one given
+#                                                      // example
 #   [OPTIONS myListOfOptions]
 #   [DEPENDS myListOfDependencies]
 # )
@@ -76,7 +76,7 @@ function( compare_to_baseline )
 
   set( oneValueArgs
     EXAMPLE_NAME
-    TEST_IMAGE_PREFIX
+    TEST_IMAGE
     BASELINE_PREFIX
     TEST_NAME
   )
@@ -111,11 +111,10 @@ function( compare_to_baseline )
   get_filename_component( baseline_image_file "${baseline_image}" NAME )
   set( baseline_image "${CMAKE_CURRENT_BINARY_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${baseline_image_file}" )
 
-  if( NOT LOCAL_COMPARISON_TEST_IMAGE_PREFIX )
+  if( NOT LOCAL_COMPARISON_TEST_IMAGE )
     string( REPLACE Baseline "" test_image "${baseline_image}" )
   else()
-    file( GLOB test_image ${CMAKE_CURRENT_BINARY_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${LOCAL_COMPARISON_TEST_IMAGE_PREFIX}.* )
-    list( GET test_image 0 test_image )
+    set( test_image ${CMAKE_CURRENT_BINARY_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${LOCAL_COMPARISON_TEST_IMAGE} )
   endif()
 
   set( test_name )
