@@ -243,6 +243,8 @@ latex_logo = latex_logo
 # If false, no module index is generated.
 #latex_domain_indices = True
 
+# -- Options for linkcheck build  ----------------------------------------------
+linkcheck_anchors = False
 
 # -- Options for manual page output --------------------------------------------
 
