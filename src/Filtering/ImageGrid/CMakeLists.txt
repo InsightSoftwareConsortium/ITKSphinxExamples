@@ -41,3 +41,9 @@ compare_to_baseline(
   EXAMPLE_NAME UpsampleOrDownsampleScalarImage
   BASELINE_PREFIX OutputBaseline
 )
+
+add_example( PasteImageIntoAnotherOne )
+compare_to_baseline(
+  EXAMPLE_NAME PasteImageIntoAnotherOne
+  BASELINE_PREFIX OutputBaseline
+)
