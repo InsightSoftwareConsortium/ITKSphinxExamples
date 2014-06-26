@@ -12,7 +12,7 @@ import hashlib
 import os
 import sys
 
-helper_modules_dir = os.path.join(os.path.abspath('/home/matt/progs/ITKExamples'),
+helper_modules_dir = os.path.join(os.path.abspath('@CMAKE_SOURCE_DIR@'),
     'Utilities')
 sys.path.insert(0, os.path.join(helper_modules_dir, 'requests'))
 sys.path.insert(0, os.path.join(helper_modules_dir, 'simplejson'))
