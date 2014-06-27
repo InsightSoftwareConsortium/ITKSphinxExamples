@@ -47,3 +47,9 @@ compare_to_baseline(
   EXAMPLE_NAME PasteImageIntoAnotherOne
   BASELINE_PREFIX OutputBaseline
 )
+
+add_example( PermuteAxesOfAnImage )
+compare_to_baseline(
+  EXAMPLE_NAME PermuteAxesOfAnImage
+  BASELINE_PREFIX OutputBaseline
+)

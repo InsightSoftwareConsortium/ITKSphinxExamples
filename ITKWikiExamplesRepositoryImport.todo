@@ -276,9 +276,7 @@
 ./ImageProcessing/BinaryImageToLabelMapFilter.cxx
 ./ImageProcessing/ShapeOpeningLabelMapFilter.cxx
 ./ImageProcessing/UnaryFunctorImageFilter.cxx
-./ImageProcessing/PermuteAxesImageFilter.cxx
 ./ImageProcessing/IntensityWindowingImageFilter.cxx
-./ImageProcessing/LaplacianImageFilter.cxx
 ./ImageProcessing/MultiplyByConstantImageFilter.cxx
 ./ImageProcessing/RecursiveMultiResolutionPyramidImageFilter.cxx
 ./ImageProcessing/BinaryFunctorImageFilter.cxx
