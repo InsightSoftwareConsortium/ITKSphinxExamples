@@ -211,6 +211,6 @@ VV
 .. _MITK:                  http://www.mitk.org/wiki/
 .. _Paraview:              http://paraview.org/
 .. _QGoImageCompare:       https://github.com/gofigure2/QGoImageCompare
-.. _Qt:                    http://qt.nokia.com/
+.. _Qt:                    http://qt-project.org/
 .. _VTK:                   http://vtk.org/
 .. _VV:                    http://www.creatis.insa-lyon.fr/rio/vv

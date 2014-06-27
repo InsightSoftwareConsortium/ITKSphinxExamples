@@ -194,7 +194,7 @@ Note that the breathelink directive is a custom one which makes use of:
 
 .. _Breathe:                   https://github.com/michaeljones/breathe
 .. _external hyperlink target: http://docutils.sourceforge.net/docs/user/rst/quickref.html#external-hyperlink-targets
-.. _doxygenclass directive:    http://michaeljones.github.com/breathe/class.html
+.. _doxygenclass directive:    http://breathe.readthedocs.org/en/latest/class.html
 .. _figure directive:          http://docutils.sourceforge.net/docs/ref/rst/directives.html#figure
 .. _literalinclude directive:  http://sphinx.pocoo.org/markup/code.html?highlight=literalinclude#directive-literalinclude
 .. _literal block:             http://docutils.sourceforge.net/docs/user/rst/quickref.html#literal-blocks
