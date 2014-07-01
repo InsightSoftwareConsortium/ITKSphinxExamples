@@ -1,5 +1,5 @@
-ApplyAffineTransformFromHomogeneousMatrixAndResample
-====================================================
+Apply Affine Transform From Homogeneous Matrix And Resample
+===========================================================
 
 .. index::
    single: AffineTransform
