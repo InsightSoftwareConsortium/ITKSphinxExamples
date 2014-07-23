@@ -33,9 +33,3 @@ C++
 ...
 
 .. literalinclude:: Code.cxx
-
-
-Classes demonstrated
---------------------
-
-.. breathelink:: itk::MirrorPadImageFilter
