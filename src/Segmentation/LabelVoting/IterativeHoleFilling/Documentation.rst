@@ -19,7 +19,7 @@ Results
 
   Input image
 
-.. figure:: Output.png
+.. figure:: OutputBaseline.png
   :scale: 50%
   :alt: Output image
 
