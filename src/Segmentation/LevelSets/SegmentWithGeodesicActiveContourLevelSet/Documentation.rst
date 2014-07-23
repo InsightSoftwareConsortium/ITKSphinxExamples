@@ -32,16 +32,14 @@ Results
 
   .. image:: Evolution.gif
     :scale: 50%
-    :alt: Output images
+    :alt: Evolution of the segmentation depending on the number of iterations (10 to 500).
 
-    Evolution of the segmentation depending on the number of iterations (10 to 500).
+Used parameters:
 
-    Used paramters:
-
-    * Left ventricle: 81 114 5.0 1.0 -0.5 3.0 2.0
-    * Right ventricle: 99 114 5.0 1.0 -0.5 3.0 2.0
-    * White matter: 56 92 5.0 1.0 -0.3 2.0 10.0
-    * Gray matter: 40 90 5.0 .5 -0.3 2.0 10.0
+* Left ventricle: 81 114 5.0 1.0 -0.5 3.0 2.0
+* Right ventricle: 99 114 5.0 1.0 -0.5 3.0 2.0
+* White matter: 56 92 5.0 1.0 -0.3 2.0 10.0
+* Gray matter: 40 90 5.0 .5 -0.3 2.0 10.0
 
 
 Code
