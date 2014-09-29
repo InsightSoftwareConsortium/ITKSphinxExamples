@@ -12,3 +12,4 @@ ImageIntensity
   ConvertRGBImageToGrayscaleImage/Documentation.rst
   MultiplyImageByScalar/Documentation.rst
   ComputeSigmoid/Documentation.rst
+  MultiplyTwoImages/Documentation.rst

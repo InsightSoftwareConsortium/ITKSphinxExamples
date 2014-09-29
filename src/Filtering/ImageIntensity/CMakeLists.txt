@@ -21,3 +21,6 @@ compare_to_baseline( EXAMPLE_NAME ApplyExpNegativeImageFilter BASELINE_PREFIX Ou
 
 add_example( ComputeSigmoid )
 compare_to_baseline( EXAMPLE_NAME ComputeSigmoid BASELINE_PREFIX OutputBaseline )
+
+add_example( MultiplyTwoImages )
+compare_to_baseline( EXAMPLE_NAME MultiplyTwoImages BASELINE_PREFIX OutputBaseline )
