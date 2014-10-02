@@ -13,13 +13,13 @@ Multiply two images
 Results
 -------
 
-.. figure::
+.. figure:: Gourds.png
   :scale: 50%
   :alt: Input image
 
   Input image
 
-.. figure::
+.. figure:: Output.png
   :scale: 50%
   :alt: Output image
 
