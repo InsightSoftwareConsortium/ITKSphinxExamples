@@ -15,11 +15,17 @@ Results
 
 .. figure:: Gourds.png
   :scale: 50%
-  :alt: Input image
+  :alt: Input image 1
 
-  Input image
+  Input image 1
 
-.. figure:: Output.png
+.. figure:: mask.png
+  :scale: 50%
+  :alt: Input image 2
+
+  Input image 2
+
+.. figure:: OutputMultiply.png
   :scale: 50%
   :alt: Output image
 
