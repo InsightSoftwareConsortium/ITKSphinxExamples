@@ -4,7 +4,10 @@ Compute Forward FFT
 .. index::
    single: ForwardFFTImageFilter
    single: ComplexToRealImageFilter
+   single: ComplexToImaginaryImageFilter
+   single: ComplexToModulusImageFilter
    single: RescaleIntensityImageFilter
+   single: WrapPadImageFilter
    single: NumericTraits
    single: ImageFileReader
    single: ImageFileWriter
@@ -12,31 +15,31 @@ Compute Forward FFT
 Synopsis
 --------
 
-Compute forward FFT of an image
+Compute forward FFT of an image.
 
 
 Results
 -------
 
-.. figure::
+.. figure:: HeadMRVolume.png
   :scale: 50%
   :alt: Input image
 
   Input image
 
-.. figure::
+.. figure:: Real.png
   :scale: 50%
   :alt: Real image
 
   Output Real image
 
-.. figure::
+.. figure:: Complex.png
   :scale: 50%
   :alt: Imaginary image
 
   Output Imaginary image
 
-.. figure::
+.. figure:: Modulus.png
   :scale: 50%
   :alt: Modulus image
 
@@ -57,5 +60,11 @@ Classes demonstrated
 .. breathelink:: itk::ForwardFFTImageFilter
 
 .. breathelink:: itk::ComplexToRealImageFilter
+
+.. breathelink:: itk::ComplexToImaginaryImageFilter
+
+.. breathelink:: itk::ComplexToModulusImageFilter
+
+.. breathelink:: itk::WrapPadImageFilter
 
 .. breathelink:: itk::RescaleIntensityImageFilter

@@ -15,6 +15,24 @@ compare_to_baseline(
 add_example( ComputeForwardFFT )
 compare_to_baseline(
   EXAMPLE_NAME ComputeForwardFFT
-  BASELINE_PREFIX OutputBaseline
+  TEST_NAME ComputeForwardFFTTestRealBaselineComparison
+  BASELINE_PREFIX OutputRealBaseline
   OPTIONS --tolerance-intensity 5
+  TEST_IMAGE OutputReal.mha
+)
+
+compare_to_baseline(
+  EXAMPLE_NAME ComputeForwardFFT
+  TEST_NAME ComputeForwardFFTTestComplexBaselineComparison
+  BASELINE_PREFIX OutputComplexBaseline
+  OPTIONS --tolerance-intensity 5
+  TEST_IMAGE OutputComplex.mha
+)
+
+compare_to_baseline(
+  EXAMPLE_NAME ComputeForwardFFT
+  TEST_NAME ComputeForwardFFTTestModulusBaselineComparison
+  BASELINE_PREFIX OutputModulusBaseline
+  OPTIONS --tolerance-intensity 5
+  TEST_IMAGE OutputModulus.mha
 )

@@ -1,6 +1,7 @@
 #include "itkImage.h"
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
+#include "itkWrapPadImageFilter.h"
 #include "itkForwardFFTImageFilter.h"
 #include "itkComplexToRealImageFilter.h"
 #include "itkComplexToImaginaryImageFilter.h"
@@ -18,6 +19,11 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
+  const char * inputFileName = argv[1];
+  const char * realFileName = argv[2];
+  const char * imaginaryFileName = argv[3];
+  const char * modulusFileName = argv[4];
+
   const unsigned int Dimension = 3;
 
   typedef float                                   FloatPixelType;
@@ -25,16 +31,26 @@ int main( int argc, char* argv[] )
 
   typedef itk::ImageFileReader< FloatImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
-  reader->Update();
+  reader->SetFileName( inputFileName );
 
   typedef unsigned char UnsignedCharPixelType;
   typedef itk::Image< UnsignedCharPixelType, Dimension > UnsignedCharImageType;
 
+  // Some FFT filter implementations, like VNL's, need the image size to be a
+  // multiple of small prime numbers.
+  typedef itk::WrapPadImageFilter< FloatImageType, FloatImageType > PadFilterType;
+  PadFilterType::Pointer padFilter = PadFilterType::New();
+  padFilter->SetInput( reader->GetOutput() );
+  PadFilterType::SizeType padding;
+  // Input size is [48, 62, 42].  Pad to [48, 64, 48].
+  padding[0] = 0;
+  padding[1] = 2;
+  padding[2] = 6;
+  padFilter->SetPadUpperBound( padding );
+
   typedef itk::ForwardFFTImageFilter< FloatImageType > FFTType;
   FFTType::Pointer fftFilter = FFTType::New();
-  fftFilter->SetInput( reader->GetOutput() );
-  fftFilter->Update();
+  fftFilter->SetInput( padFilter->GetOutput() );
 
   typedef FFTType::OutputImageType FFTOutputImageType;
 
@@ -42,54 +58,72 @@ int main( int argc, char* argv[] )
   typedef itk::ComplexToRealImageFilter< FFTOutputImageType, FloatImageType> RealFilterType;
   RealFilterType::Pointer realFilter = RealFilterType::New();
   realFilter->SetInput(fftFilter->GetOutput());
-  realFilter->Update();
 
   typedef itk::RescaleIntensityImageFilter< FloatImageType, UnsignedCharImageType > RescaleFilterType;
   RescaleFilterType::Pointer realRescaleFilter = RescaleFilterType::New();
   realRescaleFilter->SetInput(realFilter->GetOutput());
   realRescaleFilter->SetOutputMinimum( itk::NumericTraits< UnsignedCharPixelType >::min() );
   realRescaleFilter->SetOutputMaximum( itk::NumericTraits< UnsignedCharPixelType >::max() );
-  realRescaleFilter->Update();
 
   typedef itk::ImageFileWriter< UnsignedCharImageType > WriterType;
   WriterType::Pointer realWriter = WriterType::New();
-  realWriter->SetFileName( argv[2] );
+  realWriter->SetFileName( realFileName );
   realWriter->SetInput( realRescaleFilter->GetOutput() );
-  realWriter->Update();
+  try
+    {
+    realWriter->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   // Extract the imaginary part
   typedef itk::ComplexToImaginaryImageFilter< FFTOutputImageType, FloatImageType> ImaginaryFilterType;
   ImaginaryFilterType::Pointer imaginaryFilter = ImaginaryFilterType::New();
   imaginaryFilter->SetInput(fftFilter->GetOutput());
-  imaginaryFilter->Update();
 
   RescaleFilterType::Pointer imaginaryRescaleFilter = RescaleFilterType::New();
   imaginaryRescaleFilter->SetInput(imaginaryFilter->GetOutput());
   imaginaryRescaleFilter->SetOutputMinimum( itk::NumericTraits< UnsignedCharPixelType >::min() );
   imaginaryRescaleFilter->SetOutputMaximum( itk::NumericTraits< UnsignedCharPixelType >::max() );
-  imaginaryRescaleFilter->Update();
 
   WriterType::Pointer complexWriter = WriterType::New();
-  complexWriter->SetFileName( argv[3] );
+  complexWriter->SetFileName( imaginaryFileName );
   complexWriter->SetInput( imaginaryRescaleFilter->GetOutput() );
-  complexWriter->Update();
+  try
+    {
+    complexWriter->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   // Compute the magnitude
   typedef itk::ComplexToModulusImageFilter< FFTOutputImageType, FloatImageType> ModulusFilterType;
   ModulusFilterType::Pointer modulusFilter = ModulusFilterType::New();
   modulusFilter->SetInput(fftFilter->GetOutput());
-  modulusFilter->Update();
 
   RescaleFilterType::Pointer magnitudeRescaleFilter = RescaleFilterType::New();
   magnitudeRescaleFilter->SetInput(modulusFilter->GetOutput());
   magnitudeRescaleFilter->SetOutputMinimum( itk::NumericTraits< UnsignedCharPixelType >::min() );
   magnitudeRescaleFilter->SetOutputMaximum( itk::NumericTraits< UnsignedCharPixelType >::max() );
-  magnitudeRescaleFilter->Update();
 
   WriterType::Pointer magnitudeWriter = WriterType::New();
-  magnitudeWriter->SetFileName( argv[4] );
+  magnitudeWriter->SetFileName( modulusFileName );
   magnitudeWriter->SetInput( magnitudeRescaleFilter->GetOutput() );
-  magnitudeWriter->Update();
+  try
+    {
+    magnitudeWriter->Update();
+    }
+  catch( itk::ExceptionObject & error )
+    {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+    }
 
   return EXIT_SUCCESS;
 }
