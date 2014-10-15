@@ -321,7 +321,7 @@ if __name__ == '__main__':
         # append 'add_example( $example_name )' into ITKExamples/src/$group_name/$module_name/CMakeLists.txt
         f=open( os.path.join( example_src_dir, group_name, module_name, 'CMakeLists.txt' ), 'a+' )
         f.write( '\nadd_example( ' + example_name + ' )\n' )
-        f.write( 'compare_to_baseline( ' + example_name + ' Output )\n' )
+        f.write( 'compare_to_baseline( EXAMPLE_NAME ' + example_name + ' BASELINE_PREFIX OutputBaseline )\n' )
         f.close()
 
         # append 'add_example( $example_name )' into ITKExamples/src/$group_name/$module_name/index.rst
