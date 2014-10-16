@@ -4,7 +4,6 @@ project( ErodeAGrayscaleImage )
 
 find_package( ITK REQUIRED
   COMPONENTS
-  ITKGrayscaleMathematicalMorphology
   ITKCommon
   ITKIOImageBase
   ITKMathematicalMorphology
