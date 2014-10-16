@@ -49,7 +49,7 @@ Build dependencies
 Required
 ^^^^^^^^
 
-- CMake_ ( >= 2.8.5 )
+- CMake_ ( >= 2.8.6 )
 - ITK_  ( >= 4.0.0 )
 
 Optional
