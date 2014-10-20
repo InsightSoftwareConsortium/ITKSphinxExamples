@@ -39,6 +39,8 @@ if( NOT OpenCV_DIR AND ITKExamples_USE_OpenCV )
   list( APPEND ITKExamples_DEPENDENCIES OpenCV )
 endif()
 
+option( ITKExamples_USE_WRAP_PYTHON "Add ITK Python wrapping to the superbuild" OFF )
+
 if( NOT ITK_DIR )
   include( ${CMAKE_SOURCE_DIR}/External-ITK.cmake )
   list( APPEND ITKExamples_DEPENDENCIES ITK )
