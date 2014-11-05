@@ -30,6 +30,7 @@ macro( add_example example_name )
 
   # Process the example's CMakeLists.txt
   add_subdirectory( ${example_name} )
+
 endmacro()
 
 
@@ -69,6 +70,8 @@ endmacro()
 #
 # Note:
 # * By default TEST_NAME is set to ${EXAMPLE_NAME}TestBaselineComparison
+# * For Python the comparison test is added automatically
+
 function( compare_to_baseline )
 
   set( options
@@ -131,7 +134,31 @@ function( compare_to_baseline )
       ${LOCAL_COMPARISON_OPTIONS}
   )
 
- set_tests_properties( ${test_name}
+  set_tests_properties( ${test_name}
     PROPERTIES DEPENDS ${depends}
     )
+
+  get_property( has_python_test GLOBAL PROPERTY ${depends}HASPYTHONTEST )
+  if( ${has_python_test} )
+
+    set( python_test_name ${test_name}Python )
+    string( REPLACE Baseline Python test_image "${baseline_image}" )
+
+    # Add the comparison for the Python test output
+    # Use the same baseline image as for the c++ output
+    add_test( NAME ${python_test_name}
+      COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageCompareCommand"
+        --test-image "${test_image}"
+        --baseline-image "${baseline_image}"
+        ${LOCAL_COMPARISON_OPTIONS}
+    )
+
+    # Depend on the Python test.
+    set( depends ${depends}Python )
+    set_tests_properties( ${python_test_name}
+      PROPERTIES DEPENDS ${depends}
+    )
+
+  endif()
+
 endfunction()
