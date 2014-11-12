@@ -10,3 +10,4 @@ ImageBase
   ConvertFileFormats/Documentation.rst
   ReadUnknownImageType/Documentation.rst
   RegisterIOFactories/Documentation.rst
+  GenerateSlicesFromVolume/Documentation.rst
