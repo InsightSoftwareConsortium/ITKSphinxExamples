@@ -14,3 +14,4 @@ ImageGrid
   UpsampleOrDownsampleScalarImage/Documentation.rst
   PasteImageIntoAnotherOne/Documentation.rst
   PermuteAxesOfAnImage/Documentation.rst
+  ResampleAVectorImage/Documentation.rst

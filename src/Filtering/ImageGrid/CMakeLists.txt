@@ -53,3 +53,8 @@ compare_to_baseline(
   EXAMPLE_NAME PermuteAxesOfAnImage
   BASELINE_PREFIX OutputBaseline
 )
+
+add_example( ResampleAVectorImage )
+compare_to_baseline(
+  EXAMPLE_NAME ResampleAVectorImage
+  BASELINE_PREFIX OutputBaseline )
