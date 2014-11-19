@@ -17,13 +17,13 @@ The Python wrapping for the LinearInterpolateImageFunction using vector images w
 Results
 -------
 
-.. figure::
+.. figure:: VisibleWomanHeadSlice.png
   :scale: 50%
   :alt: Input image
 
   Input image
 
-.. figure::
+.. figure:: OutputBaseline.png
   :scale: 50%
   :alt: Output image
 
