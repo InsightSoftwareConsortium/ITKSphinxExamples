@@ -122,7 +122,7 @@ highlight_language = 'c++'
 
 logo = os.path.join('static', 'itk_eg_logo.png')
 latex_logo = os.path.join('static', 'itk_eg_logo.png')
-#'itk_eg_logo_latex.eps')
+html_favicon = os.path.join('static', 'itk_favicon.ico')
 
 # -- Options for HTML output ---------------------------------------------------
 
@@ -151,7 +151,7 @@ html_logo = logo
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = 'itk_favicon.ico'
+html_favicon = html_favicon
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
