@@ -24,8 +24,8 @@ import itk
 
 from distutils.version import StrictVersion as VS
 if VS(itk.Version.GetITKVersion()) < VS("4.7.0"):
-	print("ITK 4.7.0 is required (see example documentation).")
-	sys.exit(1)
+    print("ITK 4.7.0 is required (see example documentation).")
+    sys.exit(1)
 
 if len(sys.argv) != 3:
     print("Usage: " + sys.argv[0] + " [inputImage] [outputImage]")
