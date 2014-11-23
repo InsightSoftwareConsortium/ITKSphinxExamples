@@ -125,11 +125,11 @@ if( BUILD_DOCUMENTATION )
   )
 
   if(NOT ITKDoxygenXML_DIR )
-    include( ${CMAKE_SOURCE_DIR}/CMake/ITKDoxygenXML.cmake )
+    include( ${ITKExamples_SOURCE_DIR}/CMake/ITKDoxygenXML.cmake )
   endif()
 
   if(NOT ITKDoxygenTAG_DIR )
-    include( ${CMAKE_SOURCE_DIR}/CMake/ITKDoxygenTAG.cmake )
+    include( ${ITKExamples_SOURCE_DIR}/CMake/ITKDoxygenTAG.cmake )
   endif()
 
   # Builds the documentation.
