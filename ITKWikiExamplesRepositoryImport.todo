@@ -211,7 +211,6 @@
 ./ImageSegmentation/ExtractLargestConnectedComponentFromBinaryImage.cxx
 ./Metrics/MeanSquaresImageToImageMetric.cxx
 ./ImageProcessing/SubtractImageFilter_Constant.cxx
-./ImageProcessing/RegionOfInterestImageFilter.cxx
 ./ImageProcessing/BinaryImageToShapeLabelMapFilter.cxx
 ./ImageProcessing/AndImageFilter.cxx
 ./ImageProcessing/MaximumImageFilter.cxx
