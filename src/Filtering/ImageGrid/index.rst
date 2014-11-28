@@ -15,3 +15,4 @@ ImageGrid
   PasteImageIntoAnotherOne/Documentation.rst
   PermuteAxesOfAnImage/Documentation.rst
   ResampleAVectorImage/Documentation.rst
+  ExtractRegionOfInterestInOneImage/Documentation.rst
