@@ -8,7 +8,7 @@ int main( int argc, char* argv[] )
     {
     std::cerr << "Usage: "<< std::endl;
     std::cerr << argv[0];
-    std::cerr << " <InputFileName> <OutputFileName>"
+    std::cerr << " <InputFileName> <OutputFileName>";
     std::cerr << " <start x> <end x> <start y> <end y>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
