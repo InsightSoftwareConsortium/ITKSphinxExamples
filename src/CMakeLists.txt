@@ -1,5 +1,8 @@
 if( itk-module )
   set( ITK_DIR ${ITK_BINARY_DIR} )
+  if( NOT EXISTS "${ITK_DIR}/ITKConfig.cmake" )
+    return()
+  endif()
 endif()
 find_package( ITK REQUIRED )
 include( ${ITK_USE_FILE} )
