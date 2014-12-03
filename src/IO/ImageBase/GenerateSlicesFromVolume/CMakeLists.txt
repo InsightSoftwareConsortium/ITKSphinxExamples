@@ -43,7 +43,7 @@ add_test( NAME ${example_name}Test
     ${output_image}
 )
 
-if( ${ITK_WRAP_PYTHON} AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
+if( ITK_WRAP_PYTHON AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
   add_test( NAME ${example_name}TestPython
   COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     ${input_image}
