@@ -232,7 +232,7 @@ int main( int argc, char* argv[] )
   typedef itk::ImageIOBase::IOComponentType IOComponentType;
   const IOComponentType componentType = imageIO->GetComponentType();
 
-  std::cout << "Pixel Type is "
+  std::cout << "Component Type is "
             << imageIO->GetComponentTypeAsString( componentType )
             << std::endl;
 
