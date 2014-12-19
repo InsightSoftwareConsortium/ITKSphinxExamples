@@ -2,8 +2,7 @@
 # Get and build vtk
 
 if( NOT VTK_TAG )
-  # VTK master 2013-10-11, for WebGL support.
-  set( VTK_TAG "9a8829af1c66b78b9dcce1a52dcb701546093707" )
+  set( VTK_TAG "v6.1.0" )
 endif()
 
 ExternalProject_Add(VTK
