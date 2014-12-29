@@ -7,3 +7,26 @@ add_example( ComputeGradientMagnitudeRecursiveGaussian )
 compare_to_baseline( EXAMPLE_NAME ComputeGradientMagnitudeRecursiveGaussian
   BASELINE_PREFIX ComputeGradientMagnitudeRecursiveGaussianTestOutputBaseline
 )
+
+add_example( ApplyGradientRecursiveGaussianImageFilter )
+compare_to_baseline(
+  EXAMPLE_NAME ApplyGradientRecursiveGaussianImageFilter
+  TEST_NAME ApplyGradientRecursiveGaussianImageFilterTestBaselineComparisonX
+  BASELINE_PREFIX ApplyGradientRecursiveGaussianImageFilterTestOutputBaselineX
+  DEPENDS ApplyGradientRecursiveGaussianImageFilter
+  TEST_IMAGE OutputX.png
+)
+compare_to_baseline(
+  EXAMPLE_NAME ApplyGradientRecursiveGaussianImageFilter
+  TEST_NAME ApplyGradientRecursiveGaussianImageFilterTestBaselineComparisonY
+  BASELINE_PREFIX ApplyGradientRecursiveGaussianImageFilterTestOutputBaselineY
+  DEPENDS ApplyGradientRecursiveGaussianImageFilter
+  TEST_IMAGE OutputY.png
+)
+compare_to_baseline(
+  EXAMPLE_NAME ApplyGradientRecursiveGaussianImageFilter
+  TEST_NAME ApplyGradientRecursiveGaussianImageFilterTestBaselineComparisonMagnitude
+  BASELINE_PREFIX ApplyGradientRecursiveGaussianImageFilterTestOutputBaselineMagnitude
+  DEPENDS ApplyGradientRecursiveGaussianImageFilter
+  TEST_IMAGE OutputMagnitude.png
+)
