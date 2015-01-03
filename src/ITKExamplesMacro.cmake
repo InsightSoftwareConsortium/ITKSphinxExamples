@@ -142,7 +142,7 @@ function( compare_to_baseline )
   if( ${has_python_test} )
 
     set( python_test_name ${test_name}Python )
-    string( REPLACE Baseline Python test_image "${baseline_image}" )
+    string( REPLACE . "Python." test_image "${test_image}" )
 
     # Add the comparison for the Python test output
     # Use the same baseline image as for the c++ output
