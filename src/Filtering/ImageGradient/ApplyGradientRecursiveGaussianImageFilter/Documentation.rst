@@ -33,7 +33,7 @@ Results
 
   Gradient along X direction
 
- .. figure:: OutputY.png
+.. figure:: OutputY.png
   :scale: 50%
   :alt: Gradient along Y direction
 
