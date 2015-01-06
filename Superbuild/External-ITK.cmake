@@ -24,6 +24,11 @@ if( OpenCV_DIR OR ITKExamples_USE_OpenCV )
   set( _opencv_depends OpenCV )
 endif()
 
+set( _wrap_python_args )
+if( ITKExamples_USE_WRAP_PYTHON )
+  set( _wrap_python_args -DITK_WRAP_PYTHON:BOOL=ON )
+endif()
+
 ExternalProject_Add( ITK
   GIT_REPOSITORY "${git_protocol}://itk.org/ITK.git"
   GIT_TAG "${ITK_TAG}"
@@ -40,6 +45,7 @@ ExternalProject_Add( ITK
     -DExternalData_OBJECT_STORES:STRING=${ExternalData_OBJECT_STORES}
     ${_vtk_args}
     ${_opencv_args}
+    ${_wrap_python_args}
   INSTALL_COMMAND ""
   DEPENDS ${_vtk_depends} ${_opencv_depends}
 )
