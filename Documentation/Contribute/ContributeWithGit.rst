@@ -46,6 +46,8 @@ To submit your changes to `Gerrit Code Review`_::
   git gerrit-push
 
 
+.. _CreateNewExample:
+
 Create a new example
 --------------------
 

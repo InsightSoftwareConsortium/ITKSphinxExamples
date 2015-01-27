@@ -46,6 +46,10 @@ For instance, an examples that demonstrates the *BinaryDilateImageFilter* would
 be placed in the *src/Filtering/BinaryMathematicalMorphology/*
 directory.
 
+Note that when adding new examples, both *CMakeLists.txt* and *index.rst* files
+for the tree should be updated (to enforce the examples to be compiled, tested
+and to appear in the sphinx documentation). For this reason, we recommend to
+use the provided python script *CreateNewExample.py* see :ref:`CreateNewExample`
 
 Title
 -----
