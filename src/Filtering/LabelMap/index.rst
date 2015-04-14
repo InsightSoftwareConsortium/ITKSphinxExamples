@@ -5,6 +5,7 @@ LabelMap
   :maxdepth: 1
 
   MaskOneImageGivenLabelMap/Documentation.rst
+  RemoveHolesNotConnectedToImageBoundaries/Documentation.rst
 
 
 Note about this module:

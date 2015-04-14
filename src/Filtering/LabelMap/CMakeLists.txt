@@ -1,2 +1,5 @@
 add_example( MaskOneImageGivenLabelMap )
 compare_to_baseline( EXAMPLE_NAME MaskOneImageGivenLabelMap BASELINE_PREFIX Output1Baseline )
+
+add_example( RemoveHolesNotConnectedToImageBoundaries )
+compare_to_baseline( EXAMPLE_NAME RemoveHolesNotConnectedToImageBoundaries BASELINE_PREFIX OutputBaseline )
