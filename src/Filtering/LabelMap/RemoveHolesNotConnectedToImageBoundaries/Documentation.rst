@@ -36,6 +36,11 @@ C++
 
 .. literalinclude:: Code.cxx
 
+Python
+......
+
+.. literalinclude:: Code.py
+
 
 Classes demonstrated
 --------------------
