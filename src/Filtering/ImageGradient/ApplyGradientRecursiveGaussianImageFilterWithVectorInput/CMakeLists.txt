@@ -19,8 +19,8 @@ install( TARGETS ${example_name}
 )
 
 set( python_file )
-if(EXISTS Code.py )
-  set( ${python_file} Code.py )
+if( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
+  set( python_file Code.py )
 endif()
 
 install( FILES Code.cxx CMakeLists.txt ${python_file}
