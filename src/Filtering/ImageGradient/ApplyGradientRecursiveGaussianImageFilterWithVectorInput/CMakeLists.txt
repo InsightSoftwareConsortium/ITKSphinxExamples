@@ -1,20 +1,18 @@
 cmake_minimum_required( VERSION 2.8.6 )
 
-set( example_name ApplyGradientRecursiveGaussianImageFilterWithVectorInput )
-set( folder Filtering/ImageGradient/ )
 set( input_image ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png )
 set( output_image Output1X.png Output1Y.png Output2X.png Output2Y.png )
 
-project( ${example_name} )
+project( ApplyGradientRecursiveGaussianImageFilterWithVectorInput )
 
 find_package( ITK REQUIRED )
 include( ${ITK_USE_FILE} )
 
-add_executable( ${example_name} Code.cxx )
-target_link_libraries( ${example_name} ${ITK_LIBRARIES} )
+add_executable( ApplyGradientRecursiveGaussianImageFilterWithVectorInput Code.cxx )
+target_link_libraries( ApplyGradientRecursiveGaussianImageFilterWithVectorInput ${ITK_LIBRARIES} )
 
-install( TARGETS ${example_name}
-  DESTINATION bin/ITKExamples/${folder}
+install( TARGETS ApplyGradientRecursiveGaussianImageFilterWithVectorInput
+  DESTINATION bin/ITKExamples/Filtering/ImageGradient/
   COMPONENT Runtime
 )
 
@@ -24,26 +22,26 @@ if( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
 endif()
 
 install( FILES Code.cxx CMakeLists.txt ${python_file}
-  DESTINATION share/ITKExamples/Code/${folder}/${example_name}
+  DESTINATION share/ITKExamples/Code/Filtering/ImageGradient/ApplyGradientRecursiveGaussianImageFilterWithVectorInput
   COMPONENT Code
 )
 
 enable_testing()
 
-add_test( NAME ${example_name}Test
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${example_name}
+add_test( NAME ApplyGradientRecursiveGaussianImageFilterWithVectorInputTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplyGradientRecursiveGaussianImageFilterWithVectorInput
   ${input_image}
   ${output_image}
 )
 
 if( ITK_WRAP_PYTHON AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
   string( REPLACE . "Python." output_image "${output_image}" )
-  add_test( NAME ${example_name}TestPython
+  add_test( NAME ApplyGradientRecursiveGaussianImageFilterWithVectorInputTestPython
   COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     ${input_image}
     ${output_image}
   )
-  set_property( GLOBAL PROPERTY ${example_name}TestHASPYTHONTEST TRUE )
+  set_property( GLOBAL PROPERTY ApplyGradientRecursiveGaussianImageFilterWithVectorInputTestHASPYTHONTEST TRUE )
 elseif()
-  set_property( GLOBAL PROPERTY ${example_name}TestHASPYTHONTEST FALSE )
+  set_property( GLOBAL PROPERTY ApplyGradientRecursiveGaussianImageFilterWithVectorInputTestHASPYTHONTEST FALSE )
 endif()
