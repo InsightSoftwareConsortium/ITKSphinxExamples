@@ -20,3 +20,6 @@ compare_to_baseline( EXAMPLE_NAME ExtractGivenLabelObject
 
 add_example( ApplyMorphologicalClosingOnAllLabelObjects )
 compare_to_baseline( EXAMPLE_NAME ApplyMorphologicalClosingOnAllLabelObjects BASELINE_PREFIX OutputBaseline )
+
+add_example( ApplyMorphologicalClosingOnSpecificLabelObject )
+compare_to_baseline( EXAMPLE_NAME ApplyMorphologicalClosingOnSpecificLabelObject BASELINE_PREFIX OutputBaseline )

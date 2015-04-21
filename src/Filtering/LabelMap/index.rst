@@ -8,7 +8,7 @@ LabelMap
   RemoveHolesNotConnectedToImageBoundaries/Documentation.rst
   ExtractGivenLabelObject/Documentation.rst
   ApplyMorphologicalClosingOnAllLabelObjects/Documentation.rst
-
+  ApplyMorphologicalClosingOnSpecificLabelObject/Documentation.rst
 
 Note about this module:
 -----------------------
