@@ -369,7 +369,11 @@ if __name__ == '__main__':
     cmakefile = os.path.join(example_dir, 'CMakeLists.txt')
     f = open(cmakefile, 'w')
 
-    f.write('cmake_minimum_required( VERSION 2.8.6 )\n')
+    f.write('cmake_minimum_required( VERSION 2.8.6 )\n\n')
+
+    f.write('set( input_image ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png )\n')
+    f.write('set( output_image Output.png )\n')
+    f.write('set( test_options )\n\n')
 
     f.write('project( ' + example_name + ' )\n\n')
 
@@ -385,19 +389,50 @@ if __name__ == '__main__':
         '  DESTINATION bin/ITKExamples/' +
         group_name + '/' + module_name + '\n')
     f.write('  COMPONENT Runtime\n')
-    f.write('  )\n\n')
+    f.write(')\n\n')
 
-    f.write('install( FILES Code.cxx CMakeLists.txt\n')
+    f.write('set( python_file ) \n')
+    f.write('if( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )\n')
+    f.write('  set( python_file Code.py ) \n')
+    f.write('endif() \n\n')
+
+    f.write('install( FILES Code.cxx CMakeLists.txt ${python_file} \n')
     f.write(
         '  DESTINATION share/ITKExamples/Code/' +
-        group_name + '/' + module_name + '/' + example_name + '\n')
+        group_name + '/' + module_name + '/' + example_name + '/\n')
     f.write('  COMPONENT Code\n')
-    f.write('  )\n\n')
+    f.write(')\n\n')
 
-    f.write('enable_testing()\n')
+    f.write('enable_testing()\n\n')
+
     f.write('add_test( NAME ' + example_name + 'Test\n')
     f.write(
-        '  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/' + example_name + ' )\n')
+        '  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/' + example_name + '\n')
+    f.write('  ${input_image}\n')
+    f.write('  ${output_image}\n')
+    f.write('  ${test_options}\n')
+    f.write(')\n\n')
+
+    f.write(
+        'if( ITK_WRAP_PYTHON AND EXISTS ' +
+        '${CMAKE_CURRENT_SOURCE_DIR}/Code.py )\n')
+    f.write('  string( REPLACE . "Python." output_image "${output_image}" )\n')
+    f.write('  add_test( NAME ' + example_name + 'TestPython\n')
+    f.write(
+        '  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py\n')
+    f.write('    ${input_image}\n')
+    f.write('    ${output_image}\n')
+    f.write('    ${test_options}\n')
+    f.write('  )\n')
+    f.write(
+        '  set_property( GLOBAL PROPERTY ' +
+        example_name + 'TestHASPYTHONTEST TRUE )\n')
+    f.write('elseif()\n')
+    f.write(
+        '  set_property( GLOBAL PROPERTY ' +
+        example_name + 'TestHASPYTHONTEST FALSE )\n')
+    f.write('endif()\n')
+
     f.close()
 
     # ---------------------------------------------------------
