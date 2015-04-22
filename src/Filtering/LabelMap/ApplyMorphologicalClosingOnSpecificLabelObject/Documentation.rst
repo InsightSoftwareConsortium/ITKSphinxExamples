@@ -13,6 +13,7 @@ Synopsis
 Apply BinaryMorphologicalClosingFilter on one LabelObject of given LabelMap.
 
 In details:
+
 * read one Image
 * convert the LabelImage into one LabelMap
 * extract the LabelObject of interest using LabelSelectionLabelMapFilter
