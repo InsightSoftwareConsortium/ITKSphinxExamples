@@ -24,3 +24,4 @@ Filtering
   ImageStatistics/index.rst
   ImageGradient/index.rst
   AnisotropicSmoothing/index.rst
+  ImageFusion/index.rst

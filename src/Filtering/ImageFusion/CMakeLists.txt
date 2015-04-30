@@ -1,0 +1,3 @@
+
+add_example( OverlayLabelMapOnTopOfAnImage )
+compare_to_baseline( EXAMPLE_NAME OverlayLabelMapOnTopOfAnImage BASELINE_PREFIX OutputBaseline )
