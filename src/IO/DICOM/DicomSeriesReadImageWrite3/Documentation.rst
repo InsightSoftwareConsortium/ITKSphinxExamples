@@ -1,5 +1,5 @@
-Dicom Series Read Image Write3
-==============================
+Dicom Series Read Image Write
+=============================
 
 .. index::
    pair: GDCMSeriesFileNames; GDCMImageIO
@@ -16,6 +16,7 @@ then it behaves like DicomSeriesReadImageWrite2.cxx
 (writing just the requested series with the specified name).
 
 Based on DicomSeriesReadImageWrite2.cxx
+
 Author: Dženan Zukić <dzenan.zukic@kitware.com>
 
 

@@ -1,5 +1,5 @@
-Mesh
-====
+DICOM
+=====
 
 .. toctree::
   :maxdepth: 1
