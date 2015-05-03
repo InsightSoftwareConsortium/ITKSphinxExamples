@@ -1,5 +1,9 @@
 cmake_minimum_required( VERSION 2.8.6 )
 
+set( input_image ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png )
+set( output_image Output.png )
+set( test_options 5 0.125 )
+
 project( ComputeCurvatureFlow )
 
 find_package( ITK REQUIRED )
@@ -13,7 +17,12 @@ install( TARGETS ComputeCurvatureFlow
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt
+set( python_file )
+if( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
+  set( python_file Code.py )
+endif()
+
+install( FILES Code.cxx CMakeLists.txt ${python_file}
   DESTINATION share/ITKExamples/Code/Filtering/AnisotropicSmoothing/ComputeCurvatureFlow
   COMPONENT Code
   )
@@ -21,8 +30,20 @@ install( FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME ComputeCurvatureFlowTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeCurvatureFlow
-  ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
-  Output.png
-  5
-  0.125
+  ${input_image}
+  ${output_image}
+  ${test_options}
 )
+
+if( ITK_WRAP_PYTHON AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
+  string( REPLACE . "Python." output_image "${output_image}" )
+  add_test( NAME ComputeCurvatureFlowTestPython
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    ${input_image}
+    ${output_image}
+    ${test_options}
+  )
+  set_property( GLOBAL PROPERTY ComputeCurvatureFlowTestHASPYTHONTEST TRUE )
+elseif()
+  set_property( GLOBAL PROPERTY ComputeCurvatureFlowTestHASPYTHONTEST FALSE )
+endif()
