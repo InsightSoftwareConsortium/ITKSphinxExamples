@@ -48,7 +48,7 @@ castfilter = CastFilterType.New()
 castfilter.SetInput(reader)
 
 FilterType = itk.GradientAnisotropicDiffusionImageFilter[
-    InputImageType, OutputImageType]
+    OutputImageType, OutputImageType]
 gradientfilter = FilterType.New()
 gradientfilter.SetInput(castfilter.GetOutput())
 gradientfilter.SetNumberOfIterations(numberOfIterations)
