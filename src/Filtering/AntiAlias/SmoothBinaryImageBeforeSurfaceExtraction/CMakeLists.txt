@@ -17,12 +17,7 @@ install( TARGETS SmoothBinaryImageBeforeSurfaceExtraction
   COMPONENT Runtime
 )
 
-set( python_file )
-if( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
-  set( python_file Code.py )
-endif()
-
-install( FILES Code.cxx CMakeLists.txt ${python_file}
+install( FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKExamples/Code/Filtering/AntiAlias/SmoothBinaryImageBeforeSurfaceExtraction
   COMPONENT Code
 )
@@ -35,7 +30,7 @@ add_test( NAME SmoothBinaryImageBeforeSurfaceExtractionTest
   ${test_options}
 )
 
-if( ITK_WRAP_PYTHON AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
+if( ITK_WRAP_PYTHON )
   string( REPLACE . "Python." output_image "${output_image}" )
   add_test( NAME SmoothBinaryImageBeforeSurfaceExtractionTestPython
   COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
