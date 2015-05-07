@@ -1,5 +1,9 @@
 cmake_minimum_required( VERSION 2.8.6 )
 
+set( input_image ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png )
+set( output_image Output.png )
+set( test_options )
+
 project( ApplyAColorMapToAnImage )
 
 find_package( ITK REQUIRED )
@@ -13,7 +17,12 @@ install( TARGETS ApplyAColorMapToAnImage
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx CMakeLists.txt
+set( python_file )
+if( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
+  set( python_file Code.py )
+endif()
+
+install( FILES Code.cxx CMakeLists.txt ${python_file}
   DESTINATION share/ITKExamples/Code/Filtering/Colormap/ApplyAColorMapToAnImage
   COMPONENT Code
 )
@@ -21,6 +30,20 @@ install( FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME ApplyAColorMapToAnImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplyAColorMapToAnImage
-    ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
-    Output.png
+  ${input_image}
+  ${output_image}
+  ${test_options}
 )
+
+if( ITK_WRAP_PYTHON AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
+  string( REPLACE . "Python." output_image "${output_image}" )
+  add_test( NAME ApplyAColorMapToAnImageTestPython
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    ${input_image}
+    ${output_image}
+    ${test_options}
+  )
+  set_property( GLOBAL PROPERTY ApplyAColorMapToAnImageTestHASPYTHONTEST TRUE )
+elseif()
+  set_property( GLOBAL PROPERTY ApplyAColorMapToAnImageTestHASPYTHONTEST FALSE )
+endif()

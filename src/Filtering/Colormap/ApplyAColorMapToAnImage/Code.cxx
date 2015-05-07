@@ -25,20 +25,13 @@ int main( int argc, char* argv[] )
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::RescaleIntensityImageFilter< ImageType, ImageType >
-    RescaleFilterType;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
-  rescaleFilter->SetInput( reader->GetOutput() );
-  rescaleFilter->SetOutputMinimum( 0 );
-  rescaleFilter->SetOutputMaximum( 255 );
-
   typedef itk::RGBPixel< unsigned char >        RGBPixelType;
   typedef itk::Image< RGBPixelType, Dimension > RGBImageType;
 
   typedef itk::ScalarToRGBColormapImageFilter< ImageType, RGBImageType>
     RGBFilterType;
   RGBFilterType::Pointer rgbfilter = RGBFilterType::New();
-  rgbfilter->SetInput( rescaleFilter->GetOutput() );
+  rgbfilter->SetInput( reader->GetOutput() );
   rgbfilter->SetColormap( RGBFilterType::Hot );
 
   typedef  itk::ImageFileWriter< RGBImageType > WriterType;
