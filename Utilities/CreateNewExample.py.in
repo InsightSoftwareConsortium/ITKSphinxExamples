@@ -391,12 +391,7 @@ if __name__ == '__main__':
     f.write('  COMPONENT Runtime\n')
     f.write(')\n\n')
 
-    f.write('set( python_file ) \n')
-    f.write('if( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )\n')
-    f.write('  set( python_file Code.py ) \n')
-    f.write('endif() \n\n')
-
-    f.write('install( FILES Code.cxx CMakeLists.txt ${python_file} \n')
+    f.write('install( FILES Code.cxx CMakeLists.txt # Code.py \n')
     f.write(
         '  DESTINATION share/ITKExamples/Code/' +
         group_name + '/' + module_name + '/' + example_name + '/\n')
@@ -413,25 +408,25 @@ if __name__ == '__main__':
     f.write('  ${test_options}\n')
     f.write(')\n\n')
 
+    f.write('# if( ITK_WRAP_PYTHON AND EXISTS )\n')
     f.write(
-        'if( ITK_WRAP_PYTHON AND EXISTS ' +
-        '${CMAKE_CURRENT_SOURCE_DIR}/Code.py )\n')
-    f.write('  string( REPLACE . "Python." output_image "${output_image}" )\n')
-    f.write('  add_test( NAME ' + example_name + 'TestPython\n')
+        '#   string( REPLACE . "Python." output_image "${output_image}" )\n')
+    f.write('#   add_test( NAME ' + example_name + 'TestPython\n')
     f.write(
-        '  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py\n')
-    f.write('    ${input_image}\n')
-    f.write('    ${output_image}\n')
-    f.write('    ${test_options}\n')
-    f.write('  )\n')
+        '#   COMMAND ${PYTHON_EXECUTABLE} ' +
+        '${CMAKE_CURRENT_SOURCE_DIR}/Code.py\n')
+    f.write('#     ${input_image}\n')
+    f.write('#     ${output_image}\n')
+    f.write('#     ${test_options}\n')
+    f.write('#   )\n')
     f.write(
-        '  set_property( GLOBAL PROPERTY ' +
+        '#   set_property( GLOBAL PROPERTY ' +
         example_name + 'TestHASPYTHONTEST TRUE )\n')
-    f.write('elseif()\n')
+    f.write('# elseif()\n')
     f.write(
-        '  set_property( GLOBAL PROPERTY ' +
+        '#   set_property( GLOBAL PROPERTY ' +
         example_name + 'TestHASPYTHONTEST FALSE )\n')
-    f.write('endif()\n')
+    f.write('# endif()\n')
 
     f.close()
 

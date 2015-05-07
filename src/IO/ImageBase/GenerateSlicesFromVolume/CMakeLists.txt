@@ -23,12 +23,7 @@ install( TARGETS GenerateSlicesFromVolume
   COMPONENT Runtime
   )
 
-set( python_file )
-if( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
-  set( python_file Code.py )
-endif()
-
-install( FILES Code.cxx CMakeLists.txt ${python_file}
+install( FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKExamples/Code/IO/ImageBase/GenerateSlicesFromVolume
   COMPONENT Code
 )
@@ -41,7 +36,7 @@ add_test( NAME GenerateSlicesFromVolumeTest
     ${output_image}
 )
 
-if( ITK_WRAP_PYTHON AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
+if( ITK_WRAP_PYTHON )
   add_test( NAME GenerateSlicesFromVolumeTestPython
   COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     ${input_image}
