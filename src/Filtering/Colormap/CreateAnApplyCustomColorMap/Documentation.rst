@@ -9,8 +9,9 @@ Create An Apply Custom Color Map
 Synopsis
 --------
 
+Create and apply a custom colormap.
 
-Create and apply a custom colormap
+Note: The wrapping for Python of the CustomColormapFunction and the MersenneTwisterRandomVariateGenerator were introduced in ITK 4.8.0.
 
 
 Results
@@ -34,6 +35,11 @@ C++
 ...
 
 .. literalinclude:: Code.cxx
+
+Python
+......
+
+.. literalinclude:: Code.py
 
 
 Classes demonstrated
