@@ -1,10 +1,13 @@
 cmake_minimum_required( VERSION 2.8.6 )
-if(POLICY CMP0025)
-  cmake_policy(SET CMP0025 NEW)
-endif()
-if(POLICY CMP0042)
-  cmake_policy(SET CMP0042 NEW)
-endif()
+foreach(p
+  CMP0025
+  CMP0042
+  CMP0054
+  )
+  if(POLICY ${p})
+    cmake_policy(SET ${p} NEW)
+  endif()
+endforeach()
 
 project( ITKExamples )
 
