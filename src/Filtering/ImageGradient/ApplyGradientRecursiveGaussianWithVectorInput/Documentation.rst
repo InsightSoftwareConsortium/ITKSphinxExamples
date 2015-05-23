@@ -32,25 +32,25 @@ Results
 
   Input image (first image)
 
-.. figure:: ApplyGradientRecursiveGaussianImageFilterWithVectorInputTestOutputBaseline1X.png
+.. figure:: ApplyGradientRecursiveGaussianWithVectorInputTestOutputBaseline1X.png
   :scale: 50%
   :alt: Gradient along X direction (first image)
 
   Gradient along X direction (first image)
 
-.. figure:: ApplyGradientRecursiveGaussianImageFilterWithVectorInputTestOutputBaseline1Y.png
+.. figure:: ApplyGradientRecursiveGaussianWithVectorInputTestOutputBaseline1Y.png
   :scale: 50%
   :alt: Gradient along Y direction (first image)
 
   Gradient along Y direction (first image)
 
-.. figure:: ApplyGradientRecursiveGaussianImageFilterWithVectorInputTestOutputBaseline2X.png
+.. figure:: ApplyGradientRecursiveGaussianWithVectorInputTestOutputBaseline2X.png
   :scale: 50%
   :alt: Gradient along X direction (second image)
 
   Gradient along X direction (second image)
 
-.. figure:: ApplyGradientRecursiveGaussianImageFilterWithVectorInputTestOutputBaseline2Y.png
+.. figure:: ApplyGradientRecursiveGaussianWithVectorInputTestOutputBaseline2Y.png
   :scale: 50%
   :alt: Gradient along Y direction (second image)
 
