@@ -1,5 +1,9 @@
 cmake_minimum_required( VERSION 2.8.6 )
 
+set( input_image ${CMAKE_CURRENT_BINARY_DIR}/sf4.png )
+set( output_image Output.png )
+set( test_options )
+
 project( CreateAnApplyCustomColorMap )
 
 find_package( ITK REQUIRED )
@@ -13,7 +17,7 @@ install( TARGETS CreateAnApplyCustomColorMap
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKExamples/Code/Filtering/Colormap/CreateAnApplyCustomColorMap
   COMPONENT Code
 )
@@ -21,6 +25,20 @@ install( FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME CreateAnApplyCustomColorMapTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateAnApplyCustomColorMap
-  ${CMAKE_CURRENT_BINARY_DIR}/sf4.png
-  Output.png
+  ${input_image}
+  ${output_image}
+  ${test_options}
 )
+
+if( ITK_WRAP_PYTHON )
+  string( REPLACE . "Python." output_image "${output_image}" )
+  add_test( NAME CreateAnApplyCustomColorMapTestPython
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    ${input_image}
+    ${output_image}
+    ${test_options}
+  )
+  set_property( GLOBAL PROPERTY CreateAnApplyCustomColorMapTestHASPYTHONTEST TRUE )
+elseif()
+  set_property( GLOBAL PROPERTY CreateAnApplyCustomColorMapTestHASPYTHONTEST FALSE )
+endif()
