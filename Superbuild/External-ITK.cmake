@@ -24,9 +24,11 @@ if( OpenCV_DIR OR ITKExamples_USE_OpenCV )
   set( _opencv_depends OpenCV )
 endif()
 
+set(use_shared_libs OFF)
 set( _wrap_python_args )
 if( ITKExamples_USE_WRAP_PYTHON )
-  set( _wrap_python_args -DITK_WRAP_PYTHON:BOOL=ON )
+  set(use_shared_libs ON)
+  set( _wrap_python_args -DITK_WRAP_PYTHON:BOOL=ON)
 endif()
 
 ExternalProject_Add( ITK
@@ -37,7 +39,7 @@ ExternalProject_Add( ITK
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS
     ${ep_common_args}
-    -DBUILD_SHARED_LIBS:BOOL=OFF
+    -DBUILD_SHARED_LIBS:BOOL=${use_shared_libs}
     -DBUILD_EXAMPLES:BOOL=OFF
     -DBUILD_TESTING:BOOL=OFF
     -DITK_BUILD_DEFAULT_MODULES:BOOL=ON
