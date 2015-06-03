@@ -18,14 +18,14 @@ endif()
 
 if( CMAKE_HOST_WIN32 )
   string( LENGTH "${ITKExamples_SOURCE_DIR}" source_len )
-  if( ${source_len} GREATER 25 )
+  if( ${source_len} GREATER 30 )
     message( FATAL_ERROR
-    "The build directory is currently too long, ${source_len} characters. "
+    "The source directory is currently too long, ${source_len} characters. "
     "Please move the Examples build directory to a shorter path."
     )
   endif()
   string( LENGTH "${ITKExamples_BINARY_DIR}" binary_len )
-  if( ${binary_len} GREATER 25 )
+  if( ${binary_len} GREATER 30 )
     message( FATAL_ERROR
     "The build directory is currently too long, ${binary_len} characters. "
     "Please set the Examples build directory to a shorter path."
