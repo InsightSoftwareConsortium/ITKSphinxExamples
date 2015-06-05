@@ -51,11 +51,11 @@ CovDimension = 4
 
 PixelType = itk.UC
 ImageType = itk.Image[PixelType, ImageDimension]
-DoublePixelType = itk.D
-DoubleImageType = itk.Image[DoublePixelType, ImageDimension]
-VecPixelType = itk.Vector[DoublePixelType, VectorDimension]
+FloatPixelType = itk.F
+FloatImageType = itk.Image[FloatPixelType, ImageDimension]
+VecPixelType = itk.Vector[FloatPixelType, VectorDimension]
 VecImageType = itk.Image[VecPixelType, ImageDimension]
-CovPixelType = itk.CovariantVector[DoublePixelType, CovDimension]
+CovPixelType = itk.CovariantVector[FloatPixelType, CovDimension]
 CovImageType = itk.Image[CovPixelType, ImageDimension]
 
 ReaderType = itk.ImageFileReader[ImageType]
@@ -68,14 +68,14 @@ inverter = InvertType.New()
 inverter.SetInput(reader.GetOutput())
 
 # Cast the image to double type.
-CasterType = itk.CastImageFilter[ImageType, DoubleImageType]
+CasterType = itk.CastImageFilter[ImageType, FloatImageType]
 caster = CasterType.New()
 caster2 = CasterType.New()
 
 # Create an image, were each pixel has 2 values: first value is the value
 # coming from the input image, second value is coming from the inverted
 # image
-ComposeType = itk.ComposeImageFilter[DoubleImageType, VecImageType]
+ComposeType = itk.ComposeImageFilter[FloatImageType, VecImageType]
 composer = ComposeType.New()
 caster.SetInput(reader.GetOutput())
 composer.SetInput(0, caster.GetOutput())
@@ -91,12 +91,12 @@ gradientfilter.SetInput(composer.GetOutput())
 
 # Set up the filter to select each gradient
 IndexSelectionType = itk.VectorIndexSelectionCastImageFilter[
-    CovImageType, DoubleImageType]
+    CovImageType, FloatImageType]
 indexSelectionFilter = IndexSelectionType.New()
 indexSelectionFilter.SetInput(gradientfilter.GetOutput())
 
 # Rescale for png output
-RescalerType = itk.RescaleIntensityImageFilter[DoubleImageType, ImageType]
+RescalerType = itk.RescaleIntensityImageFilter[FloatImageType, ImageType]
 rescaler = RescalerType.New()
 rescaler.SetOutputMinimum(itk.NumericTraits[PixelType].min())
 rescaler.SetOutputMaximum(itk.NumericTraits[PixelType].max())

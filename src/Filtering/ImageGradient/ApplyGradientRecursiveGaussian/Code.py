@@ -47,13 +47,13 @@ filenames.append(outputFileNameY)
 # Input and output are png files, use unsigned char
 PixelType = itk.UC
 ImageType = itk.Image[PixelType, Dimension]
-# Double type for GradientRecursiveGaussianImageFilter
-DoublePixelType = itk.D
-DoubleImageType = itk.Image[DoublePixelType, Dimension]
+# Float type for GradientRecursiveGaussianImageFilter
+FloatPixelType = itk.F
+FloatImageType = itk.Image[FloatPixelType, Dimension]
 # The output of GradientRecursiveGaussianImageFilter
 # are images of the gradient along X and Y, so the type of
 # the output is a covariant vector of dimension 2 (X, Y)
-CovPixelType = itk.CovariantVector[DoublePixelType, Dimension]
+CovPixelType = itk.CovariantVector[FloatPixelType, Dimension]
 CovImageType = itk.Image[CovPixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[ImageType]
@@ -66,12 +66,12 @@ gradientFilter.SetInput(reader.GetOutput())
 
 # Allows to select the X or Y output images
 IndexSelectionType = itk.VectorIndexSelectionCastImageFilter[
-    CovImageType, DoubleImageType]
+    CovImageType, FloatImageType]
 indexSelectionFilter = IndexSelectionType.New()
 indexSelectionFilter.SetInput(gradientFilter.GetOutput())
 
 # Rescale for png output
-RescalerType = itk.RescaleIntensityImageFilter[DoubleImageType, ImageType]
+RescalerType = itk.RescaleIntensityImageFilter[FloatImageType, ImageType]
 rescaler = RescalerType.New()
 rescaler.SetOutputMinimum(itk.NumericTraits[PixelType].min())
 rescaler.SetOutputMaximum(itk.NumericTraits[PixelType].max())
@@ -89,7 +89,7 @@ for i in range(2):
 
 # Compute the magnitude of the vector and output the image
 MagnitudeType = itk.VectorMagnitudeImageFilter[
-    CovImageType, DoubleImageType]
+    CovImageType, FloatImageType]
 magnitudeFilter = MagnitudeType.New()
 magnitudeFilter.SetInput(gradientFilter.GetOutput())
 
