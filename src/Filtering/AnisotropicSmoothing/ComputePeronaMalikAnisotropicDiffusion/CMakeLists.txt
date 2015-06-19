@@ -11,6 +11,7 @@ find_package( ITK REQUIRED
   ITKAnisotropicSmoothing
   ITKCommon
   ITKIOImageBase
+  ITKIOMeta
   ITKIOPNG
   )
 include( ${ITK_USE_FILE} )
