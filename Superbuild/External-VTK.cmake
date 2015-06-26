@@ -2,7 +2,7 @@
 # Get and build vtk
 
 if( NOT VTK_TAG )
-  set( VTK_TAG "v6.1.0" )
+  set( VTK_TAG "v6.2.0" )
 endif()
 
 ExternalProject_Add(VTK
