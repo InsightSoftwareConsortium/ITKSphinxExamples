@@ -50,6 +50,7 @@ ExternalProject_Add( ITK
     ${_wrap_python_args}
   INSTALL_COMMAND ""
   DEPENDS ${_vtk_depends} ${_opencv_depends}
+  LOG_BUILD 0
 )
 
 set(ITK_DIR ${CMAKE_BINARY_DIR}/ITK-build)
