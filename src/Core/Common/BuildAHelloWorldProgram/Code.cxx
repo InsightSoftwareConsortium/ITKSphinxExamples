@@ -1,6 +1,6 @@
 #include "itkImage.h"
 
-int main( int argc, char* argv[] )
+int main( int, char* [] )
 {
   typedef itk::Image< unsigned short, 3 > ImageType;
   ImageType::Pointer image = ImageType::New();

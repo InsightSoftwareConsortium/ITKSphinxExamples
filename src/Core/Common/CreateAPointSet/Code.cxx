@@ -1,7 +1,7 @@
 #include "itkPoint.h"
 #include "itkPointSet.h"
 
-int main(int argc, char* argv[])
+int main(int, char* [])
 {
   typedef float PixelType;
   const unsigned int Dimension = 3;

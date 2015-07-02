@@ -54,6 +54,7 @@ int main( int argc, char* argv[] )
   resample->SetReferenceImage( input );
   resample->UseReferenceImageOn();
   resample->SetSize( size );
+  resample->SetDefaultPixelValue( defaultValue );
 
   const unsigned int Radius = 3;
   typedef itk::WindowedSincInterpolateImageFunction< ImageType, Radius > InterpolatorType;

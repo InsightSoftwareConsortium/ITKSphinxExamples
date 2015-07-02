@@ -52,7 +52,6 @@ int main( int argc, char* argv[] )
     ++pIt;
     }
 
-  typedef FastMarchingType::NodeType              NodeType;
   typedef FastMarchingType::NodePairType          NodePairType;
   typedef FastMarchingType::NodePairContainerType NodePairContainerType;
 

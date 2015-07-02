@@ -1,6 +1,6 @@
 #include "itkEuler3DTransform.h"
 
-int main( int argc, char* argv[] )
+int main( int, char* [] )
 {
   typedef itk::Euler3DTransform< float > TransformType;
 

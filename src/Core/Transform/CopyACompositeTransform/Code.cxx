@@ -3,7 +3,7 @@
 #include "itkCompositeTransform.h"
 #include "itkCompositeTransformIOHelper.h"
 
-int main( int argc, char* argv[] )
+int main( int , char* [] )
 {
   typedef float ScalarType;
   const unsigned int Dimension = 3;

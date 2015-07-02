@@ -31,10 +31,6 @@ int main(int argc, char* argv[] )
   FastMarchingType::Pointer marcher = FastMarchingType::New();
   marcher->SetStoppingCriterion( criterion );
 
-  typedef FastMarchingType::NodeType              NodeType;
-  typedef FastMarchingType::NodePairType          NodePairType;
-  typedef FastMarchingType::NodePairContainerType NodePairContainerType;
-
   // specify the size of the output image
   FloatImageType::SizeType size = {{64,64}};
   marcher->SetOutputSize( size );
