@@ -1,13 +1,13 @@
 #include "itkImage.h"
 #include "itkConceptChecking.h"
 
-template< class TImage >
-void IsPixelTypeFloatingPoint(const TImage* const image)
+template< typename TImage >
+void IsPixelTypeFloatingPoint(const TImage* const)
 {
   itkConceptMacro( nameOfCheck, ( itk::Concept::IsFloatingPoint< typename TImage::PixelType > ) );
 }
 
-int main( int argc, char* argv[] )
+int main( int, char* [] )
 {
   const unsigned int Dimension = 2;
   typedef itk::Image< float, Dimension >  FloatImageType;

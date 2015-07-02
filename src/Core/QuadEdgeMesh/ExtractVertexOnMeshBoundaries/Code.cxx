@@ -2,8 +2,14 @@
 #include "itkVTKPolyDataReader.h"
 #include "itkQuadEdgeMeshBoundaryEdgesMeshFunction.h"
 
-int main( int argc, char* argv[] )
+int main( int argc, char* argv [] )
 {
+  if( argc != 2 )
+    {
+    std::cerr << "Usage: " << argv[0] << " <InputFileName>" << std::endl;
+    return EXIT_FAILURE;
+    }
+
   const unsigned int Dimension = 3;
   typedef double CoordType;
 

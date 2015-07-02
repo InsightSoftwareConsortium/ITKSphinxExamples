@@ -1,12 +1,12 @@
 #include "itkImage.h"
 #include "itkConceptChecking.h"
 
-template< class TImage, class TValue >
-void CheckIfPixelTypeIsTheSameAs( const TImage* const image )
+template< typename TImage, class TValue >
+void CheckIfPixelTypeIsTheSameAs( const TImage* const )
 {
   itkConceptMacro( nameOfCheck, ( itk::Concept::SameType< typename TImage::PixelType, TValue > ) );
 }
-int main( int argc, char* argv[] )
+int main( int, char* [] )
 {
   const unsigned int Dimension = 2;
   typedef unsigned char                      PixelType;

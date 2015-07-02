@@ -9,6 +9,7 @@ void LongFunction()
   for(int i = 0; i < itk::NumericTraits< int >::max() / 100; i++)
     {
     double a = 0;
+    (void)a;
     }
 }
 

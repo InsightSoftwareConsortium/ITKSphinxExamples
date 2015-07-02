@@ -201,7 +201,7 @@ private:
 };
 
 
-int main( int argc, char* argv[] )
+int main( int, char* [] )
 {
   // Our cells.
   static const CELL_TYPE cellsArr[] =

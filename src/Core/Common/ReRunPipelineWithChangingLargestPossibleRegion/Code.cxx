@@ -24,8 +24,8 @@ int main( int argc, char* argv[] )
   typedef itk::NumericSeriesFileNames NameGeneratorType;
   NameGeneratorType::Pointer nameGenerator = NameGeneratorType::New();
   nameGenerator->SetSeriesFormat( seriesFormat );
-  nameGenerator->SetStartIndex( 0 );
-  nameGenerator->SetEndIndex( 2 );
+  nameGenerator->SetStartIndex( startIndex );
+  nameGenerator->SetEndIndex( endIndex );
   std::vector< std::string > fileNames = nameGenerator->GetFileNames();
 
   typedef itk::ImageSeriesReader< ImageType >  ReaderType;
