@@ -13,7 +13,11 @@ int main( int, char* [] )
   parameters[4] = 5.0;
   parameters[5] = 6.0;
   transform->SetParameters( parameters );
-  TransformType::ParametersType fixedParameters( 3 );
+#if defined(ITK_FIXED_PARAMETERS_ARE_DOUBLE) // After 4.8.1
+   TransformType::FixedParametersType fixedParameters(3);
+#else                                         //Pre 4.8.1
+  TransformType::ParametersType fixedParameters(3);
+#endif
   fixedParameters[0] = -3.5;
   fixedParameters[1] = -4.5;
   fixedParameters[2] = -5.5;
