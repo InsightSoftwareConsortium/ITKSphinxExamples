@@ -20,7 +20,6 @@ if len(sys.argv) != 3:
     print('usage: ' + sys.argv[0] + ' <example_name> <SPHINX_DESTINATION>')
     sys.exit(1)
 
-
 # Collect our directories.
 cwd = os.getcwd()
 example_name = sys.argv[1]
@@ -65,6 +64,10 @@ files_for_tarball.append(tarball_cmakelist)
 inputs = glob.glob(os.path.join(example_dir, '*.md5'))
 for path in inputs:
     files_for_tarball.append(path[:-4])
+
+# Remove duplicates.
+files_for_tarball = set(files_for_tarball)
+
 with tarfile.open(os.path.join(html_output_dir, example_name + '.tar.gz'), \
         'w:gz', dereference=True) as tarfile:
     example_dir_idx = example_dir.index(example_name)
