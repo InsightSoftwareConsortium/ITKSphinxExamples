@@ -1,13 +1,3 @@
-{#
-    basic/relations.html
-    ~~~~~~~~~~~~~~~~~~~~
-
-    Sphinx sidebar template: relation links.
-
-    :copyright: Copyright 2007-2011 by the Sphinx team, see AUTHORS.
-    :license: BSD, see LICENSE for details.
-#}
-
 {# emit a * for every slash so they can be counted #}
 {%- macro countslashes(str) %}
   {%- set slashcount = 0 %}
@@ -32,50 +22,59 @@
 {%- set tarballname = examplename(pagename)%}
 
 {%- if slashcount == 4 %}
-  <h4>{{ _('Download') }}</h4>
-  <p class="topless">
-    <a href="{{ tarballname ~ ".zip" }}">Packed as .zip</a>
-  </p>
-  <p class="topless">
-    <a href="{{ tarballname ~ ".tar.gz" }}">Packed as .tar.gz</a>
-  </p>
-
-  <h4>{{ _('Language') }}</h4>
-  <p class="topless">
-    <select id="languageSelection" onchange="itk.selectLanguage()">
-      <option>All</option>
-      <option>C++</option>
-      <option>Python</option>
-    </select>
-  </p>
+  <li class="dropdown">
+    <a role="button"
+       id="dDownload"
+       data-toggle="dropdown"
+       data-target="#"
+       href="#"><span class="glyphicon glyphicon-download-alt"></span> <span class="hidden-sm hidden-tablet">&nbsp; {{ _('Download') }} <b class="caret"> </span></b></a>
+    <ul class="dropdown-menu"
+        role="menu"
+        aria-labelledby="dDownload">
+      <li><a href="{{ tarballname ~ ".zip" }}">Packed as .zip</a></li>
+      <li><a href="{{ tarballname ~ ".tar.gz" }}">Packed as .tar.gz</a></li>
+    </ul>
+  </li>
 {%- endif %}
 
 {%- if prev %}
   {%- if slashcount == 4 %}
-    <h4>{{ _('Previous example') }}</h4>
-    <p class="topless">
-      <a href="{{ prev.link|e }}" title="{{ _('previous example') }}">{{ prev.title }}</a>
-    </p>
+  <li>
+    <a href="{{ prev.link|e }}" title="{{ _('Previous example: ') + prev.title|striptags }}">
+      {%- if theme_bootstrap_version == "2" -%}<span class="icon-chevron-left visible-tablet"></span>{%- endif -%}
+      {%- if theme_bootstrap_version == "3" -%}<span class="glyphicon glyphicon-chevron-left visible-sm"></span>{%- endif -%}
+      <span class="hidden-sm hidden-tablet">{{ "&laquo;"|safe }} Previous example</span>
+    </a>
+  </li>
   {%- else %}
-    <h4>{{ _('Previous topic') }}</h4>
-    <p class="topless">
-      <a href="{{ prev.link|e }}" title="{{ _('previous chapter') }}">{{ prev.title }}</a>
-    </p>
+  <li>
+    <a href="{{ prev.link|e }}" title="{{ _('Previous topic: ') + prev.title|striptags }}">
+      {%- if theme_bootstrap_version == "2" -%}<span class="icon-chevron-left visible-tablet"></span>{%- endif -%}
+      {%- if theme_bootstrap_version == "3" -%}<span class="glyphicon glyphicon-chevron-left visible-sm"></span>{%- endif -%}
+      <span class="hidden-sm hidden-tablet">{{ "&laquo;"|safe }} {{ prev.title|striptags|truncate(length=16, killwords=True) }}</span>
+    </a>
+  </li>
   {%- endif %}
 {%- endif %}
 {%- if next %}
   {%- if slashcount == 4 %}
-    <h4>{{ _('Next example') }}</h4>
-    <p class="topless">
-      <a href="{{ next.link|e }}" title="{{ _('next example') }}">{{ next.title }}</a>
-    </p>
+  <li>
+    <a href="{{ next.link|e }}" title="{{ _('Next example: ') + next.title|striptags }}">
+      {%- if theme_bootstrap_version == "2" -%}<span class="icon-chevron-right visible-tablet"></span>{%- endif -%}
+      {%- if theme_bootstrap_version == "3" -%}<span class="glyphicon glyphicon-chevron-right visible-sm"></span>{%- endif -%}
+      <span class="hidden-sm hidden-tablet">Next example {{ "&raquo;"|safe }}</span>
+    </a>
+  </li>
   {%- else %}
-    <h4>{{ _('Next topic') }}</h4>
-    <p class="topless">
-      <a href="{{ next.link|e }}" title="{{ _('next chapter') }}">{{ next.title }}</a>
-    </p>
+  <li>
+    <a href="{{ next.link|e }}" title="{{ _('Next topic: ') + next.title|striptags }}">
+      {%- if theme_bootstrap_version == "2" -%}<span class="icon-chevron-right visible-tablet"></span>{%- endif -%}
+      {%- if theme_bootstrap_version == "3" -%}<span class="glyphicon glyphicon-chevron-right visible-sm"></span>{%- endif -%}
+      <span class="hidden-sm hidden-tablet">{{ next.title|striptags|truncate(length=16, killwords=True) }} {{ "&raquo;"|safe }}</span>
+    </a>
   {%- endif %}
 {%- endif %}
+
 
 <canvas id="testCanvas" width="8" height="8" hidden>
 </canvas>

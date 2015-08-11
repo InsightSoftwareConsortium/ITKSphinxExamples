@@ -16,3 +16,6 @@
 [submodule "Utilities/simplejson"]
 	path = Utilities/simplejson
 	url = https://github.com/simplejson/simplejson.git
+[submodule "Utilities/SphinxExtensions/sphinx-bootstrap-theme"]
+	path = Utilities/SphinxExtensions/sphinx-bootstrap-theme
+	url = https://github.com/ryan-roemer/sphinx-bootstrap-theme
