@@ -13,6 +13,11 @@ if( VTK_DIR OR ITKExamples_USE_VTK )
     -DModule_ITKLevelSetsv4Visualization:BOOL=ON
     )
   set( _vtk_depends VTK )
+else()
+  set( _vtk_args
+    -DModule_ITKVtkGlue:BOOL=OFF
+    -DModule_ITKLevelSetsv4Visualization:BOOL=OFF
+    )
 endif()
 
 set( _opencv_args )
@@ -22,6 +27,10 @@ if( OpenCV_DIR OR ITKExamples_USE_OpenCV )
     -DModule_ITKVideoBridgeOpenCV:BOOL=ON
     )
   set( _opencv_depends OpenCV )
+else()
+  set( _opencv_args
+    -DModule_ITKVideoBridgeOpenCV:BOOL=OFF
+    )
 endif()
 
 set(use_shared_libs OFF)
@@ -29,6 +38,8 @@ set( _wrap_python_args )
 if( ITKExamples_USE_WRAP_PYTHON )
   set(use_shared_libs ON)
   set( _wrap_python_args -DITK_WRAP_PYTHON:BOOL=ON)
+else()
+  set( _wrap_python_args -DITK_WRAP_PYTHON:BOOL=OFF)
 endif()
 
 ExternalProject_Add( ITK
