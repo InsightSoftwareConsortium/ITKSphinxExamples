@@ -13,6 +13,11 @@ import fnmatch
 import collections
 
 
+get_input = input
+if sys.version_info[:2] <= (2, 7):
+    get_input = raw_input
+
+
 def write_all_itk_headers(itk_source_dir):
 
     output = file('listofITKheaders', 'w')
@@ -125,7 +130,7 @@ def write_example_rst_file(example_rst, class_name, synopsis):
     f.write('--------\n\n')
 
     if synopsis is None:
-        synopsis = raw_input('Synopsis: ')
+        synopsis = get_input('Synopsis: ')
     f.write(synopsis + '\n\n\n')
 
     f.write('Results\n')
@@ -250,7 +255,7 @@ if __name__ == '__main__':
     temp_res = get_group_and_module_from_class_name(itk_dir, class_name)
 
     while not temp_res['bool']:
-        class_name = raw_input("Please enter a class: ")
+        class_name = get_input("Please enter a class: ")
         class_name = itkcorrect(class_name)
         print(class_name)
 
@@ -262,7 +267,7 @@ if __name__ == '__main__':
     example_name = args.example_name
 
     if example_name is None:
-        example_name = raw_input("Please enter an example name: ")
+        example_name = get_input("Please enter an example name: ")
 
     # Collect directories
     root_dir = os.path.abspath('@ITKExamples_SOURCE_DIR@')
