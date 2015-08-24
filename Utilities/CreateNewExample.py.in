@@ -92,7 +92,7 @@ def get_group_and_module_from_class_name(itk_dir, class_name):
 
         if len(path) != 0:
 
-            temp = path.split('/')
+            temp = path.split(os.path.sep)
             depth = len(temp)
 
             result['Module'] = temp[depth - 2]
