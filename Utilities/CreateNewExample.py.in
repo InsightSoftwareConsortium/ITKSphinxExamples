@@ -12,13 +12,19 @@ import re
 import fnmatch
 import collections
 
+try:
+    # Python 3
+    from io import StringIO
+except ImportError:
+    # Python 2
+    from cStringIO import StringIO
 
 def write_all_itk_headers(itk_source_dir):
-
-    output = file('listofITKheaders', 'w')
+    output = StringIO()
     for root, dirs, files in os.walk(os.path.join(itk_source_dir, 'Modules')):
         for f in fnmatch.filter(files, 'itk*.h'):
-            output.write(f + '\n')
+            output.write(f + u'\n')
+    return output
 
 
 def words(text):
@@ -236,9 +242,9 @@ if __name__ == '__main__':
         print ('Error: wrong path for itk source tree')
         sys.exit()
 
-    write_all_itk_headers(itk_dir)
+    itk_headers = write_all_itk_headers(itk_dir)
 
-    NWORDS = train(words(file('listofITKheaders').read()))
+    NWORDS = train(words(itk_headers.getvalue()))
 
     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
