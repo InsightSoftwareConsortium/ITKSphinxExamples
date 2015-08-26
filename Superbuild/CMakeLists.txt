@@ -6,6 +6,8 @@ endif( COMMAND CMAKE_POLICY )
 
 project( ITKExamples )
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../CMake")
+
 if( CMAKE_HOST_WIN32 )
   string( LENGTH "${ITKExamples_SOURCE_DIR}" source_len )
   if( ${source_len} GREATER 20 )
