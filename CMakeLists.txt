@@ -131,9 +131,11 @@ if( BUILD_DOCUMENTATION )
   # was built before build_html.
   add_dependencies( copy_sources ITKExamplesData )
 
+  configure_file("${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/RunGitStats.cmake.in"
+    "${ITKExamples_BINARY_DIR}/Utilities/SphinxExtensions/RunGitStats.cmake"
+    @ONLY)
   add_custom_target( gitstats ALL
-    COMMAND ${ITKExamples_SOURCE_DIR}/Utilities/SphinxExtensions/gitstats/gitstats --rst
-    ${ITKExamples_SOURCE_DIR} ${ITKExamples_BINARY_DIR}/Documentation/gitstats
+    COMMAND ${CMAKE_COMMAND} -P "${ITKExamples_BINARY_DIR}/Utilities/SphinxExtensions/RunGitStats.cmake"
     WORKING_DIRECTORY ${ITKExamples_BINARY_DIR}
     COMMENT "Running gitstats"
   )

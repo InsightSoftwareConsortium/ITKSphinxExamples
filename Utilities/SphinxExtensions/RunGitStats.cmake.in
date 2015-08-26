@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 2.8)
+
+set(Python_ADDITIONAL_VERSIONS 2)
+find_package(PythonInterp QUIET)
+if(NOT PYTHONINTERP_FOUND)
+  message(FATAL_ERROR "gitstats requires a Python 2 interpreter")
+endif()
+
+execute_process(COMMAND ${PYTHON_EXECUTABLE}
+  "@ITKExamples_SOURCE_DIR@/Utilities/SphinxExtensions/gitstats/gitstats"
+  --rst "@ITKExamples_SOURCE_DIR@"
+  "@ITKExamples_BINARY_DIR@/Documentation/gitstats"
+  WORKING_DIRECTORY "@ITKExamples_BINARY_DIR@"
+  OUTPUT_QUIET
+  ERROR_QUIET
+  ERROR_VARIABLE error
+  RESULT_VARIABLE result)
+
+if(NOT ${result} EQUAL 0)
+  message(FATAL_ERROR "Error running gitstats: ${error}")
+endif()
