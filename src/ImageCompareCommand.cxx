@@ -26,6 +26,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 #define ITK_TEST_DIMENSION_MAX 6
 
@@ -375,7 +376,7 @@ int RegressionTestImage (const char *testImageFilename,
        << numberOfPixelsWithDifferences
        <<  "</DartMeasurement>" << std::endl;
 
-      itksys_ios::ostringstream diffName;
+      std::ostringstream diffName;
       diffName << testImageFilename << ".diff.png";
       try
         {
@@ -411,7 +412,7 @@ int RegressionTestImage (const char *testImageFilename,
       std::cout << diffName.str();
       std::cout << "</DartMeasurementFile>" << std::endl;
       }
-    itksys_ios::ostringstream baseName;
+    std::ostringstream baseName;
     baseName << testImageFilename << ".base.png";
     try
       {
@@ -447,7 +448,7 @@ int RegressionTestImage (const char *testImageFilename,
     std::cout << baseName.str();
     std::cout << "</DartMeasurementFile>" << std::endl;
 
-    itksys_ios::ostringstream testName;
+    std::ostringstream testName;
     testName << testImageFilename << ".test.png";
     try
       {
