@@ -42,18 +42,25 @@ int main(int argc, char* argv[])
 
   nameGenerator->SetUseSeriesDetails(true);
   nameGenerator->AddSeriesRestriction("0008|0021");
-
   nameGenerator->SetDirectory(argv[1]);
 
   try
     {
-    std::cout << "The directory: ";
-    std::cout << argv[1] << std::endl;
-    std::cout << "Contains the following DICOM Series: ";
-    std::cout << std::endl;
+    gdcm::FileList *flist = nameGenerator->GetSeriesHelper()->GetFirstSingleSerieUIDFileSet();
+    if (flist)
+      {
+      std::cout << "The directory: ";
+      std::cout << argv[1] << std::endl;
+      std::cout << "Contains the following DICOM Series: ";
+      std::cout << std::endl;
+      }
+    else
+      {
+      std::cout << "No DICOMs in: " << argv[1] << std::endl;
+      return EXIT_SUCCESS;
+      }
 
     typedef std::vector< std::string >    SeriesIdContainer;
-
     const SeriesIdContainer & seriesUID = nameGenerator->GetSeriesUIDs();
 
     SeriesIdContainer::const_iterator seriesItr = seriesUID.begin();
