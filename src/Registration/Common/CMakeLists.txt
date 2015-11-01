@@ -1,3 +1,6 @@
 add_example( PerformMultiModalityRegistrationWithMutualInformation )
 compare_to_baseline( EXAMPLE_NAME PerformMultiModalityRegistrationWithMutualInformation BASELINE_PREFIX OutputBaseline
   OPTIONS LABELS RUNS_LONG )
+
+add_example( Perform2DTranslationRegistrationWithMeanSquares )
+compare_to_baseline( EXAMPLE_NAME Perform2DTranslationRegistrationWithMeanSquares BASELINE_PREFIX OutputBaseline )
