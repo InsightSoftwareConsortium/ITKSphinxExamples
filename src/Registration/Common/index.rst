@@ -5,3 +5,4 @@ Common
   :maxdepth: 1
 
   PerformMultiModalityRegistrationWithMutualInformation/Documentation.rst
+  Perform2DTranslationRegistrationWithMeanSquares/Documentation.rst
