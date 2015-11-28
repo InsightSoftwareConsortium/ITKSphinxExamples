@@ -15,6 +15,7 @@
  *  limitations under the License.
  *
  *=========================================================================*/
+
 #include "itkDomainThreader.h"
 #include "itkThreadedIndexedContainerPartitioner.h"
 

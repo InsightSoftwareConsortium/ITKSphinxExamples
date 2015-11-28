@@ -157,7 +157,8 @@ def write_example_rst_file(example_rst, class_name, synopsis):
 
     f.write('C++\n')
     f.write('...\n\n')
-    f.write('.. literalinclude:: Code.cxx\n\n\n')
+    f.write('.. literalinclude:: Code.cxx\n')
+    f.write('   :lines: 18-\n\n\n')
 
     f.write('Classes demonstrated\n')
     f.write('--------------------\n')
@@ -170,6 +171,25 @@ def write_example_rst_file(example_rst, class_name, synopsis):
 def write_example_cxx_file(example_cxx, class_name):
 
     f = open(example_cxx, 'w')
+
+    f.write('/*=========================================================================\n')
+    f.write(' *\n')
+    f.write(' *  Copyright Insight Software Consortium\n')
+    f.write(' *\n')
+    f.write(' *  Licensed under the Apache License, Version 2.0 (the "License");\n')
+    f.write(' *  you may not use this file except in compliance with the License.\n')
+    f.write(' *  You may obtain a copy of the License at\n')
+    f.write(' *\n')
+    f.write(' *         http://www.apache.org/licenses/LICENSE-2.0.txt\n')
+    f.write(' *\n')
+    f.write(' *  Unless required by applicable law or agreed to in writing, software\n')
+    f.write(' *  distributed under the License is distributed on an "AS IS" BASIS,\n')
+    f.write(' *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n')
+    f.write(' *  See the License for the specific language governing permissions and\n')
+    f.write(' *  limitations under the License.\n')
+    f.write(' *\n')
+    f.write(' *=========================================================================*/\n\n')
+
     f.write('// #include \"itkImageFileReader.h\"\n')
     f.write('// #include \"itkImageFileWriter.h\"\n')
     f.write('#include \"itk' + class_name + '.h\"\n\n')

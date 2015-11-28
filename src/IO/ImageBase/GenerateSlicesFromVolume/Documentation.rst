@@ -40,8 +40,10 @@ C++
 ...
 
 .. literalinclude:: Code.cxx
+   :lines: 18-
 
 .. literalinclude:: Code.py
+   :lines: 1, 20-
 
 Classes demonstrated
 --------------------
