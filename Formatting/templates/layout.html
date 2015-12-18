@@ -1,6 +1,6 @@
 {% extends "!layout.html" %}
 {%- set script_files = script_files + ["_static/cookies.js",
-                                       "_static/color_theme.js",
+                                       "_static/language.js",
                                        "_static/webgl.js"] %}
 {% block extrahead %}
     <link rel="shortcut icon" href="{{ pathto('_static/itk_favicon.ico', 1) }}" />
@@ -16,10 +16,6 @@
 
 {% block footer %}
     <div class="footer">
-      {{ _('Select color theme') }}:
-        <button type="button" onclick="itk.setDarkTheme()">Dark</button>
-        <button type="button" onclick="itk.setLightTheme()">Light</button>
-      <br />
       <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a>
       <br />
       Documentation and code by the
@@ -37,8 +33,6 @@
       <br />
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{
       sphinx_version|e }},
-      <a href="https://github.com/michaeljones/breathe">Breathe</a>,
-      <a href="http://git-scm.com/">Git</a>,
       and <a href="http://cmake.org/">CMake</a>.
     </div>
 {% endblock %}
