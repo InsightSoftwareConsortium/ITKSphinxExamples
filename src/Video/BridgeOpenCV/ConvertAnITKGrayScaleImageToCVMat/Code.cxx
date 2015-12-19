@@ -22,6 +22,10 @@
 
 // includes from OpenCV
 #include "cv.h"
+#if CV_VERSION_MAJOR > 2
+#include "opencv2/opencv.hpp" // cv::imwrite
+#endif
+
 
 int main( int argc, char* argv[] )
 {
