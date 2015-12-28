@@ -2,8 +2,8 @@
 # Get and build itk
 
 if( NOT ITK_TAG )
-  # ITK master 2015-12-19
-  set( ITK_TAG "37166e7297c0002e2bf1ea0e936fde921bd28c19" )
+  # ITK release 2016-01-19
+  set( ITK_TAG "774576c7f17dd5fcca9f1e0028c98b1c42b93e18" )
 endif()
 
 set( _vtk_args )
@@ -34,24 +34,39 @@ else()
     )
 endif()
 
-set(use_shared_libs OFF)
-set( _wrap_python_args )
-if( ITKExamples_USE_WRAP_PYTHON )
-  set(use_shared_libs ON)
-  set(_wrap_python_args -DITK_WRAP_PYTHON:BOOL=ON)
-  find_package(PythonLibs)
+set(_wrap_python_args )
+if(ITKExamples_USE_WRAP_PYTHON)
+  set(_python_depends)
+  if(NOT EXISTS PYTHON_EXECUTABLE)
+    set(_python_depends Python)
+  endif()
+  list(APPEND _wrap_python_args "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/Python-install")
+  list(APPEND _wrap_python_args -DITK_WRAP_PYTHON:BOOL=ON)
+  list(APPEND _wrap_python_args
+    "-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON_EXECUTABLE}"
+    "-DPYTHON_INCLUDE_DIR:PATH=${PYTHON_INCLUDE_DIR}"
+    "-DPYTHON_LIBRARY:PATH=${PYTHON_LIBRARY}"
+    )
+  if(UNIX)
+    list(APPEND _wrap_python_args "-DPY_SITE_PACKAGES_PATH:PATH=${PY_SITE_PACKAGES_PATH}")
+  endif()
   find_package(NumPy)
   if(NUMPY_FOUND)
     list(APPEND _wrap_python_args -DModule_BridgeNumPy:BOOL=ON)
   else()
     list(APPEND _wrap_python_args -DModule_BridgeNumPy:BOOL=OFF)
   endif()
+  list(APPEND _wrap_python_args INSTALL_COMMAND ${CMAKE_COMMAND} -E copy
+    "${CMAKE_BINARY_DIR}/ITK-build/Wrapping/Generators/Python/${CMAKE_CFG_INTDIR}/WrapITK.pth"
+    "${PY_SITE_PACKAGES_PATH}"
+    )
 else()
   set(_wrap_python_args -DITK_WRAP_PYTHON:BOOL=OFF
-    -DModule_BridgeNumPy:BOOL=OFF)
+    -DModule_BridgeNumPy:BOOL=OFF
+    INSTALL_COMMAND "")
 endif()
 
-ExternalProject_Add( ITK
+ExternalProject_Add(ITK
   GIT_REPOSITORY "${git_protocol}://itk.org/ITK.git"
   GIT_TAG "${ITK_TAG}"
   SOURCE_DIR ITK
@@ -59,17 +74,21 @@ ExternalProject_Add( ITK
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS
     ${ep_common_args}
-    -DBUILD_SHARED_LIBS:BOOL=${use_shared_libs}
+    -DBUILD_SHARED_LIBS:BOOL=OFF
     -DBUILD_EXAMPLES:BOOL=OFF
     -DBUILD_TESTING:BOOL=OFF
     -DITK_BUILD_DEFAULT_MODULES:BOOL=ON
     -DModule_ITKReview:BOOL=ON
+    -DITK_LEGACY_SILENT:BOOL=ON
     -DExternalData_OBJECT_STORES:STRING=${ExternalData_OBJECT_STORES}
+    "-DITK_USE_SYSTEM_ZLIB:BOOL=ON"
+    "-DZLIB_ROOT:PATH=${ZLIB_ROOT}"
+    "-DZLIB_INCLUDE_DIR:PATH=${ZLIB_INCLUDE_DIR}"
+    "-DZLIB_LIBRARY:FILEPATH=${ZLIB_LIBRARY}"
     ${_vtk_args}
     ${_opencv_args}
     ${_wrap_python_args}
-  INSTALL_COMMAND ""
-  DEPENDS ${_vtk_depends} ${_opencv_depends}
+  DEPENDS ${_vtk_depends} ${_opencv_depends} ${_python_depends} zlib
   LOG_BUILD 0
 )
 
