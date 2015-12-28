@@ -46,21 +46,34 @@ if( NOT ITK_DIR )
   list( APPEND ITKExamples_DEPENDENCIES ITK )
 endif()
 
-option( BUILD_DOCUMENTATION "Build documentation" OFF )
-set( _build_doc_args )
-if( BUILD_DOCUMENTATION )
-  if( ITKDoxygen_DIR )
-    set( _build_doc_args "${_build_doc_args} -DITKDoxygen_DIR:PATH=${ITKDoxygen_DIR}" )
+option(BUILD_DOCUMENTATION "Build documentation" OFF)
+set(_build_doc_args)
+if(BUILD_DOCUMENTATION)
+  if(ITKDoxygen_DIR)
+    list(APPEND _build_doc_args "-DITKDoxygen_DIR:PATH=${ITKDoxygen_DIR}")
   endif()
-  if( ITKDoxygenXML_DIR )
-    set( _build_doc_args "${_build_doc_args} -DITKDoxygenXML_DIR:PATH=${ITKDoxygenXML_DIR}" )
+  if(ITKDoxygenXML_DIR)
+    list(APPEND _build_doc_args "-DITKDoxygenXML_DIR:PATH=${ITKDoxygenXML_DIR}")
   endif()
-  if( ITKDoxygenTAG_DIR )
-    set( _build_doc_args "${_build_doc_args} -DITKDoxygenTAG_DIR:PATH=${ITKDoxygenTAG_DIR}" )
+  if(ITKDoxygenTAG_DIR)
+    list(APPEND _build_doc_args "-DITKDoxygenTAG_DIR:PATH=${ITKDoxygenTAG_DIR}")
   endif()
-  if( DOC_WITH_LOCAL_DOXYGEN )
-    set( _build_doc_args "${_build_doc_args} -DDOC_WITH_LOCAL_DOXYGEN:PATH=${DOC_WITH_LOCAL_DOXYGEN}" )
+  if(DOC_WITH_LOCAL_DOXYGEN)
+    list(APPEND _build_doc_args "-DDOC_WITH_LOCAL_DOXYGEN:PATH=${DOC_WITH_LOCAL_DOXYGEN}")
   endif()
+  find_package(Sphinx REQUIRED)
+  list(APPEND _build_doc_args
+    "-DSPHINX_EXECUTABLE:PATH=${SPHINX_EXECUTABLE}"
+    "-DSPHINX_DEVHELP_OUTPUT:PATH=${SPHINX_DEVHELP_OUTPUT}"
+    "-DSPHINX_DIRHTML_OUTPUT:PATH=${SPHINX_DIRHTML_OUTPUT}"
+    "-DSPHINX_EPUB_OUTPUT:PATH=${SPHINX_EPUB_OUTPUT}"
+    "-DSPHINX_HTMLHELP_OUTPUT:PATH=${SPHINX_HTMLHELP_OUTPUT}"
+    "-DSPHINX_HTML_OUTPUT:PATH=${SPHINX_HTML_OUTPUT}"
+    "-DSPHINX_LATEX_OUTPUT:PATH=${SPHINX_LATEX_OUTPUT}"
+    "-DSPHINX_MAN_OUTPUT:PATH=${SPHINX_MAN_OUTPUT}"
+    "-DSPHINX_QTHELP_OUTPUT:PATH=${SPHINX_QTHELP_OUTPUT}"
+    "-DSPHINX_TEXT_OUTPUT:PATH=${SPHINX_TEXT_OUTPUT}"
+    )
 endif()
 
 include( CTest )
