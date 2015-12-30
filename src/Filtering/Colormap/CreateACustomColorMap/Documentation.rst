@@ -1,5 +1,5 @@
-Create An Apply Custom Color Map
-================================
+Create a Custom Color Map
+=========================
 
 .. index::
    single: CustomColormapFunction
