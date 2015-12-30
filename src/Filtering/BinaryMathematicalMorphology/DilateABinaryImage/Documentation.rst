@@ -20,17 +20,23 @@ In this example, the white regions are enlarged.
 Results
 -------
 
-.. figure:: Yinyang.png
+.. |input| image:: Yinyang.png
   :scale: 50%
   :alt: Input yin-yang image.
 
-  Input binary image.
-
-.. figure:: OutputBaseline.png
+.. |output| image:: OutputBaseline.png
   :scale: 50%
   :alt: Dilated output.
 
-  Dilated output.
+.. |input_caption| replace:: Input binary image.
+
+.. |output_caption| replace:: Dilated output image.
+
++-----------------+------------------+
+|     |input|     |     |output|     |
++                 +                  +
+| |input_caption| | |output_caption| |
++-----------------+------------------+
 
 
 Code
