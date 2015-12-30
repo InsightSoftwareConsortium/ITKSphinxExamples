@@ -1,4 +1,4 @@
-Erode a binary image
+Erode a Binary Image
 ====================
 
 .. index::
