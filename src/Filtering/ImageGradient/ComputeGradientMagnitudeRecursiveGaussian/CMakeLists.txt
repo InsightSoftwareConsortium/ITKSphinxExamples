@@ -25,3 +25,12 @@ add_test( NAME ComputeGradientMagnitudeRecursiveGaussianTest
     ComputeGradientMagnitudeRecursiveGaussianTestOutput.mha
     2.
  )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME ComputeGradientMagnitudeRecursiveGaussianTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
+      ComputeGradientMagnitudeRecursiveGaussianTestOutputPython.mha
+      2.
+   )
+endif()

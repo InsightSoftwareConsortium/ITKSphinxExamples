@@ -27,4 +27,16 @@ add_test( NAME ThresholdAnImageUsingBinaryTest
     150
     0
     255
-)
+  )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME ThresholdAnImageUsingBinaryTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
+      OutputPython.png
+      50
+      150
+      0
+      255
+    )
+endif()

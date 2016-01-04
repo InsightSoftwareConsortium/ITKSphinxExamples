@@ -33,12 +33,9 @@ add_test( NAME ApplyAColorMapToAnImageTest
 if( ITK_WRAP_PYTHON )
   string( REPLACE . "Python." output_image "${output_image}" )
   add_test( NAME ApplyAColorMapToAnImageTestPython
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
-    ${input_image}
-    ${output_image}
-    ${test_options}
-  )
-  set_property( GLOBAL PROPERTY ApplyAColorMapToAnImageTestHASPYTHONTEST TRUE )
-elseif()
-  set_property( GLOBAL PROPERTY ApplyAColorMapToAnImageTestHASPYTHONTEST FALSE )
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${input_image}
+      ${output_image}
+      ${test_options}
+    )
 endif()

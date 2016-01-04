@@ -24,6 +24,17 @@ add_test( NAME DetectEdgesWithCannyFilterTest
     ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
     Output.png
     1
-    30
     15
-)
+    30
+  )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME DetectEdgesWithCannyFilterTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
+      OutputPython.png
+      1
+      15
+      30
+    )
+endif()

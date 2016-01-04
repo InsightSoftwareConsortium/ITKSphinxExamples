@@ -21,6 +21,14 @@ install( FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME ComputeLaplacianTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeLaplacian
-  ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
-  Output.png
-)
+    ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
+    Output.png
+  )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME ComputeLaplacianTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
+      OutputPython.png
+    )
+endif()

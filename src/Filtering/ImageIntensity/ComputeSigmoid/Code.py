@@ -39,20 +39,17 @@ outputMaximum = int(sys.argv[4])
 alpha = float(sys.argv[5])
 beta = float(sys.argv[6])
 
-ReaderType = itk.ImageFileReader[ImageType]
-reader = ReaderType.New()
+reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputImage)
 
-FilterType = itk.SigmoidImageFilter[ImageType, ImageType]
-sigmoidFilter = FilterType.New()
+sigmoidFilter = itk.SigmoidImageFilter[ImageType, ImageType].New()
 sigmoidFilter.SetInput(reader.GetOutput())
 sigmoidFilter.SetOutputMinimum(outputMinimum)
 sigmoidFilter.SetOutputMaximum(outputMaximum)
 sigmoidFilter.SetAlpha(alpha)
 sigmoidFilter.SetBeta(beta)
 
-WriterType = itk.ImageFileWriter[ImageType]
-writer = WriterType.New()
+writer = itk.ImageFileWriter[ImageType].New()
 writer.SetFileName(outputImage)
 writer.SetInput(sigmoidFilter.GetOutput())
 

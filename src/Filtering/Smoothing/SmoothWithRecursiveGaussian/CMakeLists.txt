@@ -24,4 +24,13 @@ add_test( NAME SmoothWithRecursiveGaussianTest
     ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
     Output.png
     3
-)
+  )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME SmoothWithRecursiveGaussianTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
+      OutputPython.png
+      3
+    )
+endif()

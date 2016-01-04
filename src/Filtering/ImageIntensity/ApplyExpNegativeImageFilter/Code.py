@@ -32,24 +32,17 @@ outputFileName = sys.argv[2]
 k = float(sys.argv[3])
 
 Dimension = 2
+PixelType = itk.F
+ImageType = itk.Image[PixelType, Dimension]
 
-InputPixelType = itk.UC
-InputImageType = itk.Image[InputPixelType, Dimension]
-
-ReaderType = itk.ImageFileReader[InputImageType]
-reader = ReaderType.New()
+reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputFileName)
 
-OutputPixelType = itk.D
-OutputImageType = itk.Image[OutputPixelType, Dimension]
-
-FilterType = itk.ExpNegativeImageFilter[InputImageType, OutputImageType]
-expFilter = FilterType.New()
+expFilter = itk.ExpNegativeImageFilter[ImageType, ImageType].New()
 expFilter.SetInput(reader.GetOutput())
 expFilter.SetFactor(k)
 
-WriterType = itk.ImageFileWriter[OutputImageType]
-writer = WriterType.New()
+writer = itk.ImageFileWriter[ImageType].New()
 writer.SetFileName(outputFileName)
 writer.SetInput(expFilter.GetOutput())
 

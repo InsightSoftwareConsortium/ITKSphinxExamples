@@ -444,19 +444,12 @@ if __name__ == '__main__':
         '#   string( REPLACE . "Python." output_image "${output_image}" )\n')
     f.write('#   add_test( NAME ' + example_name + 'TestPython\n')
     f.write(
-        '#   COMMAND ${PYTHON_EXECUTABLE} ' +
+        '#     COMMAND ${PYTHON_EXECUTABLE} ' +
         '${CMAKE_CURRENT_SOURCE_DIR}/Code.py\n')
-    f.write('#     ${input_image}\n')
-    f.write('#     ${output_image}\n')
-    f.write('#     ${test_options}\n')
-    f.write('#   )\n')
-    f.write(
-        '#   set_property( GLOBAL PROPERTY ' +
-        example_name + 'TestHASPYTHONTEST TRUE )\n')
-    f.write('# elseif()\n')
-    f.write(
-        '#   set_property( GLOBAL PROPERTY ' +
-        example_name + 'TestHASPYTHONTEST FALSE )\n')
+    f.write('#       ${input_image}\n')
+    f.write('#       ${output_image}\n')
+    f.write('#       ${test_options}\n')
+    f.write('#     )\n')
     f.write('# endif()\n')
 
     f.close()

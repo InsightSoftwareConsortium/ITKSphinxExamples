@@ -33,26 +33,23 @@ int main( int argc, char* argv[] )
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
-  double k = atof( argv[3] );
+  const double k = atof( argv[3] );
 
   const unsigned int Dimension = 2;
+  typedef float                              PixelType;
+  typedef itk::Image< PixelType, Dimension > ImageType;
 
-  typedef unsigned char                           InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension > InputImageType;
-
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  typedef itk::ImageFileReader< ImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef double                                    OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
-  typedef itk::ExpNegativeImageFilter< InputImageType, OutputImageType >
+  typedef itk::ExpNegativeImageFilter< ImageType, ImageType >
     FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetFactor( k );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  typedef itk::ImageFileWriter< ImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

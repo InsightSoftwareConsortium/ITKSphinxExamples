@@ -21,30 +21,28 @@
 import sys
 import itk
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> ")
+if len(sys.argv) != 4:
+    print("Usage: " + sys.argv[0] + " <InputImage> <OutputImage> <Sigma>")
     sys.exit(1)
 
 inputImage = sys.argv[1]
 outputImage = sys.argv[2]
+sigma = float(sys.argv[3])
 
-InputPixelType = itk.UC
-OutputPixelType = itk.F
+PixelType = itk.F
 Dimension = 2
+ImageType = itk.Image[PixelType, Dimension]
 
-InputImageType = itk.Image[InputPixelType, Dimension]
-OutputImageType = itk.Image[OutputPixelType, Dimension]
-
-ReaderType = itk.ImageFileReader[InputImageType]
-reader = ReaderType.New()
+reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputImage)
 
-FilterType = itk.GradientMagnitudeImageFilter[InputImageType, InputImageType]
-gradientMagnitudeImageFilter = FilterType.New()
+gradientMagnitudeImageFilter = itk.GradientMagnitudeRecursiveGaussianImageFilter[
+        ImageType,
+        ImageType].New()
 gradientMagnitudeImageFilter.SetInput(reader.GetOutput())
+gradientMagnitudeImageFilter.SetSigma(sigma)
 
-WriterType = itk.ImageFileWriter[OutputImageType]
-writer = WriterType.New()
+writer = itk.ImageFileWriter[ImageType].New()
 writer.SetFileName(outputImage)
 writer.SetInput(gradientMagnitudeImageFilter.GetOutput())
 

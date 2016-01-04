@@ -31,28 +31,29 @@ int main( int argc, char* argv[] )
     std::cerr << std::endl;
     return EXIT_FAILURE;
     }
+  const char * inputImage = argv[1];
+  const char * outputImage = argv[2];
+  const double sigma = atof( argv[3] );
 
   const unsigned int Dimension = 2;
+  typedef float PixelType;
+  typedef itk::Image< PixelType, Dimension > ImageType;
 
-  typedef unsigned char                           InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension > InputImageType;
-
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  typedef itk::ImageFileReader< ImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName( inputImage );
 
-  typedef float                                     OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
+  typedef itk::Image< PixelType, Dimension >  ImageType;
 
   typedef itk::GradientMagnitudeRecursiveGaussianImageFilter<
-    InputImageType, OutputImageType >               FilterType;
+    ImageType, ImageType >               FilterType;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
-  filter->SetSigma( atof( argv[3] ) );
+  filter->SetSigma( sigma );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  typedef itk::ImageFileWriter< ImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( argv[2] );
+  writer->SetFileName( outputImage );
   writer->SetInput( filter->GetOutput() );
 
   try

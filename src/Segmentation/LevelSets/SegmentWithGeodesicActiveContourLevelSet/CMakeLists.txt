@@ -25,25 +25,55 @@ add_test(NAME GeodesicActiveContourLeftVentricleTest
     ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
     Output1.png
     81 114 5.0 1.0 -0.5 3.0 2.0 800
-)
+  )
 
 add_test(NAME GeodesicActiveContourRightVentricleTest
     COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentWithGeodesicActiveContourLevelSet
     ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
     Output2.png
     99 114 5.0 1.0 -0.5 3.0 2.0 800
-)
+  )
 
 add_test(NAME GeodesicActiveContourWhiteMatterTest
     COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentWithGeodesicActiveContourLevelSet
     ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
     Output3.png
     56 92 5.0 1.0 -0.3 2.0 10.0 800
-)
+  )
 
 add_test(NAME GeodesicActiveContourGrayMatterTest
     COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentWithGeodesicActiveContourLevelSet
     ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
     Output4.png
     40 90 5.0 .5 -0.3 2.0 10.0 800
-)
+  )
+
+if( ITK_WRAP_PYTHON )
+  add_test(NAME GeodesicActiveContourLeftVentricleTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
+      Output1Python.png
+      81 114 5.0 1.0 -0.5 3.0 2.0 800
+    )
+
+  add_test(NAME GeodesicActiveContourRightVentricleTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
+      Output2Python.png
+      99 114 5.0 1.0 -0.5 3.0 2.0 800
+    )
+
+  add_test(NAME GeodesicActiveContourWhiteMatterTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
+      Output3Python.png
+      56 92 5.0 1.0 -0.3 2.0 10.0 800
+    )
+
+  add_test(NAME GeodesicActiveContourGrayMatterTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
+      Output4Python.png
+      40 90 5.0 .5 -0.3 2.0 10.0 800
+    )
+endif()

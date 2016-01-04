@@ -35,25 +35,21 @@ OutputPixelType = itk.UC
 InputImageType = itk.Image[InputPixelType, Dimension]
 OutputImageType = itk.Image[OutputPixelType, Dimension]
 
-ReaderType = itk.ImageFileReader[InputImageType]
-reader = ReaderType.New()
+reader = itk.ImageFileReader[InputImageType].New()
 reader.SetFileName(inputImage)
 
-RescaleFilterType = itk.RescaleIntensityImageFilter[
+rescaler = itk.RescaleIntensityImageFilter[
     InputImageType,
-    InputImageType]
-rescaler = RescaleFilterType.New()
+    InputImageType].New()
 rescaler.SetInput(reader.GetOutput())
 rescaler.SetOutputMinimum(0)
 outputPixelTypeMaximum = itk.NumericTraits[OutputPixelType].max()
 rescaler.SetOutputMaximum(outputPixelTypeMaximum)
 
-CastImageFilterType = itk.CastImageFilter[InputImageType, OutputImageType]
-castImageFilter = CastImageFilterType.New()
+castImageFilter = itk.CastImageFilter[InputImageType, OutputImageType].New()
 castImageFilter.SetInput(rescaler.GetOutput())
 
-WriterType = itk.ImageFileWriter[OutputImageType]
-writer = WriterType.New()
+writer = itk.ImageFileWriter[OutputImageType].New()
 writer.SetFileName(outputImage)
 writer.SetInput(castImageFilter.GetOutput())
 
