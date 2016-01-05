@@ -7,14 +7,18 @@ Try Catch Exception
 Synopsis
 --------
 
-
-Try and catch an itk Exception
+Try and catch an `itk::ExceptionObject`. The exception is printed to console
+output. This can provide more information when a program crashes, including
+where the exception occurred and its description. Exceptions in ITK are
+usually only thrown during calls to `->Update()`, so only the `->Update()`
+call is added to the `try` block.
 
 
 Results
 -------
 
 Output::
+
   ExceptionObject caught !
 
   itk::ImageFileReaderException (0x20cece0)
