@@ -18,17 +18,23 @@ Erode regions by using a specified kernel, also known as a structuring element. 
 Results
 -------
 
-.. figure:: Yinyang.png
+.. |input| image:: Yinyang.png
   :scale: 50%
   :alt: Input yin-yang image.
 
-  Input binary image.
-
-.. figure:: OutputBaseline.png
+.. |output| image:: OutputBaseline.png
   :scale: 50%
   :alt: Eroded output.
 
-  Eroded output.
+.. |input_caption| replace:: Input binary image.
+
+.. |output_caption| replace:: Eroded output image.
+
++-----------------+------------------+
+|     |input|     |     |output|     |
++                 +                  +
+| |input_caption| | |output_caption| |
++-----------------+------------------+
 
 
 Code
