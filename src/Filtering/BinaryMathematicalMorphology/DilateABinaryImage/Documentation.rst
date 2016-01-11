@@ -1,4 +1,4 @@
-Dilate a binary image
+Dilate a Binary Image
 =====================
 
 .. index::
