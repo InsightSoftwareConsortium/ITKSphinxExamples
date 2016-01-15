@@ -21,3 +21,8 @@ install( FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME ComputeTimeBetweenPointsTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeTimeBetweenPoints )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME ComputeTimeBetweenPointsTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py )
+endif()
