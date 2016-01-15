@@ -25,4 +25,14 @@ add_test( NAME ThresholdAnImageTest
     ${CMAKE_CURRENT_BINARY_DIR}/Output.png
     64
     128
-)
+  )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME ThresholdAnImageTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
+      ${CMAKE_CURRENT_BINARY_DIR}/OutputPython.png
+      64
+      128
+    )
+endif()

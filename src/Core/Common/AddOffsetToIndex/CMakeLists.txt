@@ -24,9 +24,6 @@ add_test( NAME AddOffsetToIndexTest
 
 if( ITK_WRAP_PYTHON )
   add_test( NAME AddOffsetToIndexTestPython
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
-  )
-  set_property( GLOBAL PROPERTY AddOffsetToIndexTestHASPYTHONTEST TRUE )
-elseif()
-  set_property( GLOBAL PROPERTY AddOffsetToIndexTestHASPYTHONTEST FALSE )
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    )
 endif()

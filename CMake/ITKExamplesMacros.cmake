@@ -53,26 +53,31 @@ endmacro()
 #
 # Usage:
 # compare_to_baseline(
-#   [TEST_NAME myAwesomeExampleBaselineComparison1] // this argument is optional and meant
+#   [TEST_NAME myAwesomeExampleBaselineComparison1] // This argument is optional and meant
 #                                                   // to be used when there would be several
 #                                                   // baseline comparison tests based on one given
-#                                                   // example
+#                                                   // example. By default TEST_NAME is
+#                                                   // ${EXAMPLE_NAME}TestBaselineComparison.
+#
 #   EXAMPLE_NAME myAwesomeExampleName
+#
 #   BASELINE_PREFIX myBaselineImagePrefix
-#   [TEST_IMAGE myAwesomeExampleOutputImagePrefix.png] // this argument is optional and meant
+#
+#   [TEST_IMAGE myAwesomeExampleOutputImagePrefix.png] // This argument is optional and meant
 #                                                      // to be used when there would be several
 #                                                      // baseline comparison tests based on one given
-#                                                      // example
-#   [OPTIONS myListOfOptions]
-#   [DEPENDS myListOfDependencies]
-# )
+#                                                      // example.
 #
-# Note:
-# * By default TEST_NAME is set to ${EXAMPLE_NAME}TestBaselineComparison
-# * For Python the comparison test is added automatically
-
+#   [OPTIONS myListOfOptions]        // Options to pass to ImageCompareCommand.
+#
+#   [DEPENDS myListOfDependencies]   // Other tests that the comparison test will
+#                                    // depend on. By default, the dependency is assumed
+#                                    // to be ${EXAMPLE_NAME}Test. For Python, the comparison
+#                                    // test is added automatically. It is expected that
+#                                    // the default corresponding Python test is named
+#                                    // ${EXAMPLE_NAME}TestPython.
+# )
 function(compare_to_baseline)
-
   set(options)
 
   set(oneValueArgs
@@ -131,13 +136,11 @@ function(compare_to_baseline)
       --baseline-image "${baseline_image}"
       ${LOCAL_COMPARISON_OPTIONS}
     )
-
   set_tests_properties(${test_name}
     PROPERTIES DEPENDS ${depends}
     )
 
-  get_property(has_python_test GLOBAL PROPERTY ${depends}HASPYTHONTEST)
-  if(${has_python_test})
+  if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/Code.py")
     set(python_test_name ${test_name}Python)
     string(REPLACE . "Python." test_image "${test_image}")
 
@@ -151,9 +154,12 @@ function(compare_to_baseline)
       )
 
     # Depend on the Python test.
-    set(depends ${depends}Python)
-    set_tests_properties( ${python_test_name}
-      PROPERTIES DEPENDS ${depends}
+    set(python_depends )
+    foreach(dependency ${depends})
+      list(APPEND python_depends ${dependency}Python)
+    endforeach()
+    set_tests_properties(${python_test_name}
+      PROPERTIES DEPENDS ${python_depends}
       )
   endif()
 endfunction()

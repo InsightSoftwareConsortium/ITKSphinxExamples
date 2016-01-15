@@ -34,18 +34,14 @@ Dimension = 2
 
 ImageType = itk.Image[PixelType, Dimension]
 
-ReaderType = itk.ImageFileReader[ImageType]
-reader = ReaderType.New()
+reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputImage)
 
-FilterType = itk.MeanImageFilter[ImageType, ImageType]
-meanFilter = FilterType.New()
-
+meanFilter = itk.MeanImageFilter[ImageType, ImageType].New()
 meanFilter.SetInput(reader.GetOutput())
 meanFilter.SetRadius(radius)
 
-WriterType = itk.ImageFileWriter[ImageType]
-writer = WriterType.New()
+writer = itk.ImageFileWriter[ImageType].New()
 writer.SetFileName(outputImage)
 writer.SetInput(meanFilter.GetOutput())
 

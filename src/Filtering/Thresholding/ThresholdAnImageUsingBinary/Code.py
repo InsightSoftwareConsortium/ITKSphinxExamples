@@ -38,13 +38,10 @@ Dimension = 2
 
 ImageType = itk.Image[PixelType, Dimension]
 
-ReaderType = itk.ImageFileReader[ImageType]
-reader = ReaderType.New()
+reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputImage)
 
-FilterType = itk.BinaryThresholdImageFilter[ImageType, ImageType]
-thresholdFilter = FilterType.New()
-
+thresholdFilter = itk.BinaryThresholdImageFilter[ImageType, ImageType].New()
 thresholdFilter.SetInput(reader.GetOutput())
 
 thresholdFilter.SetLowerThreshold(lowerThreshold)
@@ -52,8 +49,7 @@ thresholdFilter.SetUpperThreshold(upperThreshold)
 thresholdFilter.SetOutsideValue(outsideValue)
 thresholdFilter.SetInsideValue(insideValue)
 
-WriterType = itk.ImageFileWriter[ImageType]
-writer = WriterType.New()
+writer = itk.ImageFileWriter[ImageType].New()
 writer.SetFileName(outputImage)
 writer.SetInput(thresholdFilter.GetOutput())
 

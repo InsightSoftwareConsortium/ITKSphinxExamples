@@ -39,14 +39,11 @@ if( ITK_WRAP_PYTHON )
   string( REPLACE . "Python." output_image2 "${output_image2}" )
   string( REPLACE . "Python." output_image3 "${output_image3}" )
   add_test( NAME Perform2DTranslationRegistrationWithMeanSquaresTestPython
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
-  ${input_image1}
-  ${input_image2}
-  ${output_image1}
-  ${output_image2}
-  ${output_image3}
-  )
-  set_property( GLOBAL PROPERTY Perform2DTranslationRegistrationWithMeanSquaresTestHASPYTHONTEST TRUE )
-elseif()
-  set_property( GLOBAL PROPERTY Perform2DTranslationRegistrationWithMeanSquaresTestHASPYTHONTEST FALSE )
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    ${input_image1}
+    ${input_image2}
+    ${output_image1}
+    ${output_image2}
+    ${output_image3}
+    )
 endif()

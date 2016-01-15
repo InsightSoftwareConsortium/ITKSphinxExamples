@@ -22,15 +22,15 @@ import sys
 import itk
 
 if len(sys.argv) != 6:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-          "<variance> <lowerThreshold> <upperThreshold>")
+    print("Usage: " + sys.argv[0] + " <InputImage> <OutputImage> "
+          "<Variance> <LowerThreshold> <UpperThreshold>")
     sys.exit(1)
 
 inputImage = sys.argv[1]
 outputImage = sys.argv[2]
-variance = int(sys.argv[3])
-lowerThreshold = int(sys.argv[4])
-upperThreshold = int(sys.argv[5])
+variance = float(sys.argv[3])
+lowerThreshold = float(sys.argv[4])
+upperThreshold = float(sys.argv[5])
 
 InputPixelType = itk.F
 OutputPixelType = itk.UC
@@ -39,28 +39,25 @@ Dimension = 2
 InputImageType = itk.Image[InputPixelType, Dimension]
 OutputImageType = itk.Image[OutputPixelType, Dimension]
 
-ReaderType = itk.ImageFileReader[InputImageType]
-reader = ReaderType.New()
+reader = itk.ImageFileReader[InputImageType].New()
 reader.SetFileName(inputImage)
 
-FilterType = itk.CannyEdgeDetectionImageFilter[InputImageType, InputImageType]
-cannyFilter = FilterType.New()
-
+cannyFilter = itk.CannyEdgeDetectionImageFilter[
+    InputImageType,
+    InputImageType].New()
 cannyFilter.SetInput(reader.GetOutput())
 cannyFilter.SetVariance(variance)
 cannyFilter.SetLowerThreshold(lowerThreshold)
 cannyFilter.SetUpperThreshold(upperThreshold)
 
-RescaleFilterType = itk.RescaleIntensityImageFilter[
+rescaler = itk.RescaleIntensityImageFilter[
     InputImageType,
-    OutputImageType]
-rescaler = RescaleFilterType.New()
+    OutputImageType].New()
 rescaler.SetInput(cannyFilter.GetOutput())
 rescaler.SetOutputMinimum(0)
 rescaler.SetOutputMaximum(255)
 
-WriterType = itk.ImageFileWriter[OutputImageType]
-writer = WriterType.New()
+writer = itk.ImageFileWriter[OutputImageType].New()
 writer.SetFileName(outputImage)
 writer.SetInput(rescaler.GetOutput())
 

@@ -36,19 +36,16 @@ Dimension = 2
 
 ImageType = itk.Image[PixelType, Dimension]
 
-ReaderType = itk.ImageFileReader[ImageType]
-reader = ReaderType.New()
+reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputImage)
 
-FilterType = itk.ThresholdImageFilter[ImageType]
-thresholdFilter = FilterType.New()
+thresholdFilter = itk.ThresholdImageFilter[ImageType].New()
 
 thresholdFilter.SetInput(reader.GetOutput())
 thresholdFilter.ThresholdOutside(lowerThreshold, upperThreshold)
 thresholdFilter.SetOutsideValue(0)
 
-WriterType = itk.ImageFileWriter[ImageType]
-writer = WriterType.New()
+writer = itk.ImageFileWriter[ImageType].New()
 writer.SetFileName(outputImage)
 writer.SetInput(thresholdFilter.GetOutput())
 

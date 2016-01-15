@@ -33,12 +33,9 @@ add_test( NAME ComputeCurvatureAnisotropicDiffusionTest
 if( ITK_WRAP_PYTHON )
   string( REPLACE . "Python." output_image "${output_image}" )
   add_test( NAME ComputeCurvatureAnisotropicDiffusionTestPython
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
-    ${input_image}
-    ${output_image}
-    ${test_options}
-  )
-  set_property( GLOBAL PROPERTY ComputeCurvatureAnisotropicDiffusionTestHASPYTHONTEST TRUE )
-elseif()
-  set_property( GLOBAL PROPERTY ComputeCurvatureAnisotropicDiffusionTestHASPYTHONTEST FALSE )
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${input_image}
+      ${output_image}
+      ${test_options}
+    )
 endif()

@@ -35,21 +35,18 @@ Dimension = 2
 
 ImageType = itk.Image[PixelType, Dimension]
 
-ReaderType = itk.ImageFileReader[ImageType]
-reader = ReaderType.New()
+reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputImage)
 
 StructuringElementType = itk.FlatStructuringElement[Dimension]
 structuringElement = StructuringElementType.Ball(radiusValue)
 
-GrayscaleFilterType = itk.GrayscaleDilateImageFilter[
-    ImageType, ImageType, StructuringElementType]
-grayscaleFilter = GrayscaleFilterType.New()
+grayscaleFilter = itk.GrayscaleDilateImageFilter[
+    ImageType, ImageType, StructuringElementType].New()
 grayscaleFilter.SetInput(reader.GetOutput())
 grayscaleFilter.SetKernel(structuringElement)
 
-WriterType = itk.ImageFileWriter[ImageType]
-writer = WriterType.New()
+writer = itk.ImageFileWriter[ImageType].New()
 writer.SetFileName(outputImage)
 writer.SetInput(grayscaleFilter.GetOutput())
 

@@ -13,12 +13,29 @@ install( TARGETS FlipAnImageOverSpecifiedAxes
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/FlipAnImageOverSpecifiedAxes
   COMPONENT Code
 )
 
 enable_testing()
+
+set( input_image ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png )
+set( output_image Output.png )
+
 add_test( NAME FlipAnImageOverSpecifiedAxesTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/FlipAnImageOverSpecifiedAxes ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png Output.png 0
-)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/FlipAnImageOverSpecifiedAxes
+    ${input_image}
+    ${output_image}
+    0
+  )
+
+if( ITK_WRAP_PYTHON )
+  string( REPLACE . "Python." output_image "${output_image}" )
+  add_test( NAME FlipAnImageOverSpecifiedAxesTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${input_image}
+      ${output_image}
+      0
+    )
+endif()

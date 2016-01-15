@@ -32,11 +32,8 @@ add_test( NAME ResampleAVectorImageTest
 if( ITK_WRAP_PYTHON )
   string( REPLACE . "Python." output_image "${output_image}" )
   add_test( NAME ResampleAVectorImageTestPython
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
-    ${input_image}
-    ${output_image}
-  )
-  set_property( GLOBAL PROPERTY ResampleAVectorImageTestHASPYTHONTEST TRUE )
-elseif()
-  set_property( GLOBAL PROPERTY ResampleAVectorImageTestHASPYTHONTEST FALSE )
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${input_image}
+      ${output_image}
+    )
 endif()

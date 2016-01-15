@@ -37,27 +37,24 @@ Dimension = 2
 
 ImageType = itk.Image[PixelType, Dimension]
 
-ReaderType = itk.ImageFileReader[ImageType]
-reader = ReaderType.New()
+reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputImage)
 
-FilterType = itk.OtsuMultipleThresholdsImageFilter[ImageType, ImageType]
-thresholdFilter = FilterType.New()
-
+thresholdFilter = itk.OtsuMultipleThresholdsImageFilter[
+        ImageType,
+        ImageType].New()
 thresholdFilter.SetInput(reader.GetOutput())
 
 thresholdFilter.SetNumberOfHistogramBins(numberOfHistogramBins)
 thresholdFilter.SetNumberOfThresholds(numberOfThresholds)
 thresholdFilter.SetLabelOffset(labelOffset)
 
-RescaleFilterType = itk.RescaleIntensityImageFilter[ImageType, ImageType]
-rescaler = RescaleFilterType.New()
+rescaler = itk.RescaleIntensityImageFilter[ImageType, ImageType].New()
 rescaler.SetInput( thresholdFilter.GetOutput() )
 rescaler.SetOutputMinimum( 0 )
 rescaler.SetOutputMaximum( 255 )
 
-WriterType = itk.ImageFileWriter[ImageType]
-writer = WriterType.New()
+writer = itk.ImageFileWriter[ImageType].New()
 writer.SetFileName(outputImage)
 writer.SetInput(rescaler.GetOutput())
 

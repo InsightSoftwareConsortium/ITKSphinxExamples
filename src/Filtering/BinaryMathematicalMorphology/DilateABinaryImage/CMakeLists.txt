@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 2.8.6 )
+cmake_minimum_required( VERSION 2.8.9 )
 
 set( input_image ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png )
 set( output_image Output.png )
@@ -41,12 +41,9 @@ add_test( NAME DilateABinaryImageTest
 if( ITK_WRAP_PYTHON )
   string( REPLACE . "Python." output_image "${output_image}" )
   add_test( NAME DilateABinaryImageTestPython
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
-    ${input_image}
-    ${output_image}
-    ${test_options}
-  )
-  set_property( GLOBAL PROPERTY DilateABinaryImageTestHASPYTHONTEST TRUE )
-elseif()
-  set_property( GLOBAL PROPERTY DilateABinaryImageTestHASPYTHONTEST FALSE )
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${input_image}
+      ${output_image}
+      ${test_options}
+    )
 endif()
