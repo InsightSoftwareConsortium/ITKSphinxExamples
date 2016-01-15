@@ -41,3 +41,5 @@ LongFunction()
 clock.Stop()
 print('Mean: ' + str(clock.GetMean()))
 print('Total: ' + str(clock.GetTotal()))
+
+clock.Report()

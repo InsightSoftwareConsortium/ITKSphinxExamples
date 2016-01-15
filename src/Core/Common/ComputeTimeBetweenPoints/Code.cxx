@@ -49,5 +49,7 @@ int main(int, char *[])
   std::cout << "Mean: " << clock.GetMean() << std::endl;
   std::cout << "Total: " << clock.GetTotal() << std::endl;
 
+  clock.Report();
+
   return EXIT_SUCCESS;
 }
