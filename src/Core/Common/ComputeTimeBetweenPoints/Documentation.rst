@@ -17,6 +17,7 @@ Results
 -------
 
 Output::
+
   Mean: 0.0777099
   Total: 0.0777099
   Mean: 0.0777299
