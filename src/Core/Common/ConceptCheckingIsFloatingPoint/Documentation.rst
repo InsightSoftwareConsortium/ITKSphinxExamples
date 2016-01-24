@@ -2,7 +2,7 @@ Concept Checking Is Floating Point
 ==================================
 
 .. index::
-   pair: ConceptChecking, IsFloatingPoint
+   pair: ConceptChecking; IsFloatingPoint
 
 Synopsis
 --------
