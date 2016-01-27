@@ -36,7 +36,7 @@ endif()
 add_executable(ImageCompareCommand ImageCompareCommand.cxx)
 target_link_libraries(ImageCompareCommand ${ITK_LIBRARIES})
 
-include(${CMAKE_SOURCE_DIR}/CMake/ITKExamplesMacros.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/../CMake/ITKExamplesMacros.cmake)
 
 add_subdirectory(Bridge)
 add_subdirectory(Core)
