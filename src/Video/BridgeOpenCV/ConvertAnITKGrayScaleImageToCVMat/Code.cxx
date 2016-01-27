@@ -27,6 +27,10 @@
 #endif
 
 
+#if CV_VERSION_MAJOR > 2
+#include "opencv2/opencv.hpp" // cv::imwrite
+#endif
+
 int main( int argc, char* argv[] )
 {
   if( argc != 3 )
