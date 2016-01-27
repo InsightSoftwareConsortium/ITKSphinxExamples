@@ -36,9 +36,9 @@ int main( int , char* [] )
   eulerParameters[4] = 5.0;
   eulerParameters[5] = 6.0;
   eulerTransform->SetParameters( eulerParameters );
-#if defined(ITK_FIXED_PARAMETERS_ARE_DOUBLE) // After 4.8.1
+#if defined(ITK_FIXED_PARAMETERS_ARE_DOUBLE)
   EulerTransformType::FixedParametersType eulerFixedParameters( Dimension );
-#else                                         //Pre 4.8.1
+#else
   EulerTransformType::ParametersType eulerFixedParameters( Dimension );
 #endif
   eulerFixedParameters[0] = -3.5;
