@@ -140,7 +140,7 @@ function(compare_to_baseline)
     PROPERTIES DEPENDS ${depends}
     )
 
-  if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/Code.py")
+  if(ITK_WRAP_PYTHON AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/Code.py")
     set(python_test_name ${test_name}Python)
     string(REPLACE . "Python." test_image "${test_image}")
 
