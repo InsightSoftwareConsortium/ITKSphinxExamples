@@ -63,7 +63,7 @@ if(ITKExamples_USE_WRAP_PYTHON)
 else()
   set(_wrap_python_args -DITK_WRAP_PYTHON:BOOL=OFF
     -DModule_BridgeNumPy:BOOL=OFF
-    INSTALL_COMMAND "")
+    INSTALL_COMMAND ${CMAKE_COMMAND} -E echo "ITK install skipped")
 endif()
 
 ExternalProject_Add(ITK
