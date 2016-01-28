@@ -32,7 +32,7 @@ add_test( NAME CreateACustomColorMapTest
 
 if( ITK_WRAP_PYTHON )
   string( REPLACE . "Python." output_image "${output_image}" )
-  add_test( NAME CreateAnApplyCustomColorMapTestPython
+  add_test( NAME CreateACustomColorMapTestPython
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       ${output_image}
