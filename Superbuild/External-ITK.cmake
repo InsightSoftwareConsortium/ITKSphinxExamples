@@ -2,8 +2,8 @@
 # Get and build itk
 
 if( NOT ITK_TAG )
-  # ITK release 2016-01-19
-  set( ITK_TAG "774576c7f17dd5fcca9f1e0028c98b1c42b93e18" )
+  # ITK release 2016-01-30
+  set( ITK_TAG "v4.9.0" )
 endif()
 
 set( _vtk_args )
