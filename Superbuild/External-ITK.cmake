@@ -13,7 +13,9 @@ if( VTK_DIR OR ITKExamples_USE_VTK )
     -DModule_ITKVtkGlue:BOOL=ON
     -DModule_ITKLevelSetsv4Visualization:BOOL=ON
     )
-  set( _vtk_depends VTK )
+  if( NOT VTK_DIR )
+    set( _vtk_depends VTK )
+  endif()
 else()
   set( _vtk_args
     -DModule_ITKVtkGlue:BOOL=OFF
@@ -27,7 +29,9 @@ if( OpenCV_DIR OR ITKExamples_USE_OpenCV )
   set( _opencv_args "-DOpenCV_DIR:PATH=${OpenCV_DIR}"
     -DModule_ITKVideoBridgeOpenCV:BOOL=ON
     )
-  set( _opencv_depends OpenCV )
+  if( NOT OpenCV_DIR )
+    set( _opencv_depends OpenCV )
+  endif()
 else()
   set( _opencv_args
     -DModule_ITKVideoBridgeOpenCV:BOOL=OFF
