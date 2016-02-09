@@ -20,28 +20,36 @@
 #include "itkRandomImageSource.h"
 #include "itkStreamingImageFilter.h"
 
-int main( int, char* [] )
+int main( int argc, char* argv[] )
 {
-  const unsigned int Dimension = 2;
+  if( argc != 2 )
+    {
+    std::cerr << "Usage: " << argv[0] << " <NumberOfSplits>" << std::endl;
+    return EXIT_FAILURE;
+    }
+  int numberOfSplits = atoi( argv[1] );
 
+  const unsigned int Dimension = 2;
   typedef unsigned char                      PixelType;
   typedef itk::Image< PixelType, Dimension > ImageType;
 
   typedef itk::RandomImageSource< ImageType > SourceType;
   SourceType::Pointer source = SourceType::New();
   ImageType::SizeType size;
-  size.Fill( 3 );
+  size.Fill( numberOfSplits );
   source->SetSize( size );
 
   typedef itk::PipelineMonitorImageFilter< ImageType > MonitorFilterType;
   MonitorFilterType::Pointer monitorFilter = MonitorFilterType::New();
   monitorFilter->SetInput( source->GetOutput() );
+  // If ITK was built with the Debug CMake configuration, the filter
+  // automatically outputs status information to the console
   monitorFilter->DebugOn();
 
   typedef itk::StreamingImageFilter< ImageType, ImageType > StreamingFilterType;
   StreamingFilterType::Pointer streamingFilter = StreamingFilterType::New();
   streamingFilter->SetInput( monitorFilter->GetOutput() );
-  streamingFilter->SetNumberOfStreamDivisions( 3 );
+  streamingFilter->SetNumberOfStreamDivisions( numberOfSplits );
 
   try
     {
@@ -51,6 +59,18 @@ int main( int, char* [] )
     {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
+    }
+
+  std::cout << "The output LargestPossibleRegion is: "
+    << streamingFilter->GetOutput()->GetLargestPossibleRegion() << std::endl;
+  std::cout << std::endl;
+
+  const MonitorFilterType::RegionVectorType updatedRequestedRegions =
+    monitorFilter->GetUpdatedRequestedRegions();
+  std::cout << "Updated RequestedRegions's:" << std::endl;
+  for( size_t ii = 0; ii < updatedRequestedRegions.size(); ++ii )
+    {
+    std::cout << "  " << updatedRequestedRegions[ii] << std::endl;
     }
 
   return EXIT_SUCCESS;
