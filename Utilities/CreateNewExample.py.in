@@ -190,51 +190,51 @@ def write_example_cxx_file(example_cxx, class_name):
     f.write(' *\n')
     f.write(' *=========================================================================*/\n\n')
 
-    f.write('// #include \"itkImageFileReader.h\"\n')
-    f.write('// #include \"itkImageFileWriter.h\"\n')
+    f.write('//#include \"itkImageFileReader.h\"\n')
+    f.write('//#include \"itkImageFileWriter.h\"\n')
     f.write('#include \"itk' + class_name + '.h\"\n\n')
 
     f.write('int main( int argc, char* argv[] )\n')
     f.write('{\n')
-    f.write('  // if( argc != 3 )\n')
-    f.write('  //   {\n')
-    f.write('  //   std::cerr << "Usage: "<< std::endl;\n')
-    f.write('  //   std::cerr << argv[0];\n')
-    f.write('  //   std::cerr << " <InputFileName> <OutputFileName>\";\n')
-    f.write('  //   std::cerr << std::endl;\n')
-    f.write('  //   return EXIT_FAILURE;\n')
-    f.write('  //   }\n\n')
-    f.write('  // const char * inputFileName = argv[1];\n')
-    f.write('  // const char * outputFileName = argv[2];\n\n')
+    f.write('  //if( argc != 3 )\n')
+    f.write('  //  {\n')
+    f.write('  //  std::cerr << "Usage: "<< std::endl;\n')
+    f.write('  //  std::cerr << argv[0];\n')
+    f.write('  //  std::cerr << " <InputFileName> <OutputFileName>\";\n')
+    f.write('  //  std::cerr << std::endl;\n')
+    f.write('  //  return EXIT_FAILURE;\n')
+    f.write('  //  }\n\n')
+    f.write('  //const char * inputFileName = argv[1];\n')
+    f.write('  //const char * outputFileName = argv[2];\n\n')
 
-    f.write('  // const unsigned int Dimension = 2;\n\n')
+    f.write('  //const unsigned int Dimension = 2;\n\n')
 
-    f.write('  // typedef unsigned char                      PixelType;\n')
-    f.write('  // typedef itk::Image< PixelType, Dimension > ImageType;\n\n')
+    f.write('  //typedef unsigned char                      PixelType;\n')
+    f.write('  //typedef itk::Image< PixelType, Dimension > ImageType;\n\n')
 
-    f.write('  // typedef itk::ImageFileReader< ImageType >  ReaderType;\n')
-    f.write('  // ReaderType::Pointer reader = ReaderType::New();\n')
-    f.write('  // reader->SetFileName( inputFileName );\n\n')
+    f.write('  //typedef itk::ImageFileReader< ImageType >  ReaderType;\n')
+    f.write('  //ReaderType::Pointer reader = ReaderType::New();\n')
+    f.write('  //reader->SetFileName( inputFileName );\n\n')
 
     f.write(
         '  // typedef itk::' + class_name +
         '< ImageType, ImageType > FilterType;\n')
-    f.write('  // FilterType::Pointer filter = FilterType::New();\n')
-    f.write('  // filter->SetInput( reader->GetOutput() );\n\n')
+    f.write('  //FilterType::Pointer filter = FilterType::New();\n')
+    f.write('  //filter->SetInput( reader->GetOutput() );\n\n')
 
-    f.write('  // typedef itk::ImageFileWriter< ImageType > WriterType;\n')
-    f.write('  // WriterType::Pointer writer = WriterType::New();\n')
-    f.write('  // writer->SetFileName( outputFileName );\n')
-    f.write('  // writer->SetInput( filter->GetOutput() );\n')
-    f.write('  // try\n')
-    f.write('  //   {\n')
-    f.write('  //   writer->Update();\n')
-    f.write('  //   }\n')
-    f.write('  // catch( itk::ExceptionObject & error )\n')
-    f.write('  //   {\n')
-    f.write('  //   std::cerr << "Error: " << error << std::endl;\n')
-    f.write('  //   return EXIT_FAILURE;\n')
-    f.write('  //   }\n\n')
+    f.write('  //typedef itk::ImageFileWriter< ImageType > WriterType;\n')
+    f.write('  //WriterType::Pointer writer = WriterType::New();\n')
+    f.write('  //writer->SetFileName( outputFileName );\n')
+    f.write('  //writer->SetInput( filter->GetOutput() );\n')
+    f.write('  //try\n')
+    f.write('  //  {\n')
+    f.write('  //  writer->Update();\n')
+    f.write('  //  }\n')
+    f.write('  //catch( itk::ExceptionObject & error )\n')
+    f.write('  //  {\n')
+    f.write('  //  std::cerr << "Error: " << error << std::endl;\n')
+    f.write('  //  return EXIT_FAILURE;\n')
+    f.write('  //  }\n\n')
 
     f.write('  return EXIT_SUCCESS;\n')
     f.write('}\n')
@@ -314,7 +314,7 @@ if __name__ == '__main__':
             # populate ITKExamples/src/$group_name/CMakeLists.txt
             f = open(os.path.join(
                 example_src_dir, group_name, 'CMakeLists.txt'), 'a+')
-            f.write('add_subdirectory( ' + group_name + ' ) \n')
+            f.write('add_subdirectory(' + group_name + ') \n')
 
             f.write('')
             f.close()
@@ -343,7 +343,7 @@ if __name__ == '__main__':
             f = open(os.path.join(
                 example_src_dir, group_name, 'CMakeLists.txt'), 'a+')
             f.write(
-                'add_subdirectory_if_module_enabled( ' + module_name + ' )\n')
+                'add_subdirectory_if_module_enabled(' + module_name + ')\n')
             f.close()
 
             # append '$module_name/index.rst' into
@@ -371,10 +371,10 @@ if __name__ == '__main__':
         # into ITKExamples/src/$group_name/$module_name/CMakeLists.txt
         f = open(os.path.join(
             example_src_dir, group_name, module_name, 'CMakeLists.txt'), 'a+')
-        f.write('\nadd_example( ' + example_name + ' )\n')
+        f.write('\nadd_example(' + example_name + ')\n')
         f.write(
-            'compare_to_baseline( EXAMPLE_NAME ' +
-            example_name + ' BASELINE_PREFIX OutputBaseline )\n')
+            'compare_to_baseline(EXAMPLE_NAME ' + example_name +
+            '\n  BASELINE_PREFIX OutputBaseline\n  )\n')
         f.close()
 
         # append 'add_example( $example_name )' into
@@ -400,57 +400,56 @@ if __name__ == '__main__':
     cmakefile = os.path.join(example_dir, 'CMakeLists.txt')
     f = open(cmakefile, 'w')
 
-    f.write('cmake_minimum_required( VERSION 2.8.6 )\n\n')
+    f.write('cmake_minimum_required(VERSION 2.8.9)\n\n')
 
-    f.write('set( input_image ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png )\n')
-    f.write('set( output_image Output.png )\n')
-    f.write('set( test_options )\n\n')
+    f.write('project(' + example_name + ')\n\n')
 
-    f.write('project( ' + example_name + ' )\n\n')
+    f.write('find_package(ITK REQUIRED)\n')
+    f.write('include(${ITK_USE_FILE})\n\n\n')
 
-    f.write('find_package( ITK REQUIRED )\n')
-    f.write('include( ${ITK_USE_FILE} )\n\n')
-
-    f.write('add_executable( ' + example_name + ' Code.cxx )\n')
+    f.write('add_executable(' + example_name + ' Code.cxx)\n')
     f.write(
-        'target_link_libraries( ' + example_name + ' ${ITK_LIBRARIES} )\n\n')
+        'target_link_libraries(' + example_name + ' ${ITK_LIBRARIES})\n\n')
 
-    f.write('install( TARGETS ' + example_name + '\n')
-    f.write(
-        '  DESTINATION bin/ITKExamples/' +
+    f.write('install(TARGETS ' + example_name + '\n')
+    f.write('  DESTINATION bin/ITKExamples/' +
         group_name + '/' + module_name + '\n')
     f.write('  COMPONENT Runtime\n')
-    f.write(')\n\n')
+    f.write('  )\n\n')
 
-    f.write('install( FILES Code.cxx CMakeLists.txt # Code.py \n')
+    f.write('install(FILES Code.cxx CMakeLists.txt # Code.py\n')
     f.write(
         '  DESTINATION share/ITKExamples/Code/' +
         group_name + '/' + module_name + '/' + example_name + '/\n')
     f.write('  COMPONENT Code\n')
-    f.write(')\n\n')
+    f.write('  )\n\n\n')
 
-    f.write('enable_testing()\n\n')
+    f.write('enable_testing()\n')
 
-    f.write('add_test( NAME ' + example_name + 'Test\n')
+    f.write('set(input_image ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png)\n')
+    f.write('set(output_image Output.png)\n')
+    f.write('set(test_options)\n\n')
+
+    f.write('add_test(NAME ' + example_name + 'Test\n')
     f.write(
         '  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/' + example_name + '\n')
-    f.write('  ${input_image}\n')
-    f.write('  ${output_image}\n')
-    f.write('  ${test_options}\n')
-    f.write(')\n\n')
+    f.write('    ${input_image}\n')
+    f.write('    ${output_image}\n')
+    f.write('    ${test_options}\n')
+    f.write('  )\n\n')
 
-    f.write('# if( ITK_WRAP_PYTHON AND EXISTS )\n')
+    f.write('#if(ITK_WRAP_PYTHON)\n')
     f.write(
-        '#   string( REPLACE . "Python." output_image "${output_image}" )\n')
-    f.write('#   add_test( NAME ' + example_name + 'TestPython\n')
+        '#  string(REPLACE . "Python." output_image "${output_image}")\n')
+    f.write('#  add_test(NAME ' + example_name + 'TestPython\n')
     f.write(
-        '#     COMMAND ${PYTHON_EXECUTABLE} ' +
+        '#    COMMAND ${PYTHON_EXECUTABLE} ' +
         '${CMAKE_CURRENT_SOURCE_DIR}/Code.py\n')
-    f.write('#       ${input_image}\n')
-    f.write('#       ${output_image}\n')
-    f.write('#       ${test_options}\n')
-    f.write('#     )\n')
-    f.write('# endif()\n')
+    f.write('#      ${input_image}\n')
+    f.write('#      ${output_image}\n')
+    f.write('#      ${test_options}\n')
+    f.write('#    )\n')
+    f.write('#endif()\n')
 
     f.close()
 
