@@ -2,7 +2,7 @@
 # Get and build vtk
 
 if(NOT VTK_TAG)
-  set(VTK_TAG "v6.2.0")
+  set(VTK_TAG "v7.0.0")
 endif()
 
 ExternalProject_Add(VTK
@@ -18,6 +18,7 @@ ExternalProject_Add(VTK
     -DBUILD_EXAMPLES:BOOL=OFF
     -DBUILD_TESTING:BOOL=OFF
     -DVTK_Group_Web:BOOL=ON
+    -DModule_vtkImagingMath:BOOL=ON
     -DVTK_WRAP_PYTHON:BOOL=ON
     -DExternalData_OBJECT_STORES:STRING=${ExternalData_OBJECT_STORES}
     "-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON_EXECUTABLE}"
