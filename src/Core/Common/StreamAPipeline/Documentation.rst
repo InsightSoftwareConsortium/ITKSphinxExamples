@@ -20,100 +20,24 @@ Results
 
 Output::
 
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 244
-  PipelineMonitorImageFilter (0x128de70): GenerateOutputInformation called
+  The output LargestPossibleRegion is: ImageRegion (0x8dc420)
+    Dimension: 2
+    Index: [0, 0]
+    Size: [3, 3]
 
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 271
-  PipelineMonitorImageFilter (0x128de70): EnlargeOutputRequestRegion: ImageRegion (0x1292568)
+
+  Updated RequestedRegions's:
+    ImageRegion (0x8dce80)
     Dimension: 2
     Index: [0, 0]
     Size: [3, 1]
 
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 285
-  PipelineMonitorImageFilter (0x128de70): GenerateInputRequestRegion: ImageRegion (0x128dd78)
-    Dimension: 2
-    Index: [0, 0]
-    Size: [3, 1]
-
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 257
-  PipelineMonitorImageFilter (0x128de70): After PropagateRequestedRegion: ImageRegion (0x128dd78)
-    Dimension: 2
-    Index: [0, 0]
-    Size: [3, 1]
-
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 302
-  PipelineMonitorImageFilter (0x128de70): GenerateData Buffered: ImageRegion (0x128dda0)
-    Dimension: 2
-    Index: [0, 0]
-    Size: [3, 1]
-   Requested:ImageRegion (0x128dd78)
-    Dimension: 2
-    Index: [0, 0]
-    Size: [3, 1]
-
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 271
-  PipelineMonitorImageFilter (0x128de70): EnlargeOutputRequestRegion: ImageRegion (0x1292568)
+    ImageRegion (0x8dcea8)
     Dimension: 2
     Index: [0, 1]
     Size: [3, 1]
 
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 285
-  PipelineMonitorImageFilter (0x128de70): GenerateInputRequestRegion: ImageRegion (0x128dd78)
-    Dimension: 2
-    Index: [0, 1]
-    Size: [3, 1]
-
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 257
-  PipelineMonitorImageFilter (0x128de70): After PropagateRequestedRegion: ImageRegion (0x128dd78)
-    Dimension: 2
-    Index: [0, 1]
-    Size: [3, 1]
-
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 302
-  PipelineMonitorImageFilter (0x128de70): GenerateData Buffered: ImageRegion (0x128dda0)
-    Dimension: 2
-    Index: [0, 1]
-    Size: [3, 1]
-   Requested:ImageRegion (0x128dd78)
-    Dimension: 2
-    Index: [0, 1]
-    Size: [3, 1]
-
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 271
-  PipelineMonitorImageFilter (0x128de70): EnlargeOutputRequestRegion: ImageRegion (0x1292568)
-    Dimension: 2
-    Index: [0, 2]
-    Size: [3, 1]
-
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 285
-  PipelineMonitorImageFilter (0x128de70): GenerateInputRequestRegion: ImageRegion (0x128dd78)
-    Dimension: 2
-    Index: [0, 2]
-    Size: [3, 1]
-
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 257
-  PipelineMonitorImageFilter (0x128de70): After PropagateRequestedRegion: ImageRegion (0x128dd78)
-    Dimension: 2
-    Index: [0, 2]
-    Size: [3, 1]
-
-
-  Debug: In ITK/Modules/Core/TestKernel/include/itkPipelineMonitorImageFilter.hxx, line 302
-  PipelineMonitorImageFilter (0x128de70): GenerateData Buffered: ImageRegion (0x128dda0)
-    Dimension: 2
-    Index: [0, 2]
-    Size: [3, 1]
-   Requested:ImageRegion (0x128dd78)
+    ImageRegion (0x8dced0)
     Dimension: 2
     Index: [0, 2]
     Size: [3, 1]
@@ -127,6 +51,12 @@ C++
 
 .. literalinclude:: Code.cxx
    :lines: 18-
+
+Python
+......
+
+.. literalinclude:: Code.py
+   :lines: 1, 20-
 
 
 Classes demonstrated

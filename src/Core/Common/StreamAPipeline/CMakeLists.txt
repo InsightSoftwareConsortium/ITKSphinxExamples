@@ -20,4 +20,13 @@ install( FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME StreamAPipelineTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/StreamAPipeline )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/StreamAPipeline
+    3
+  )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME StreamAPipelineTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      3
+    )
+endif()
