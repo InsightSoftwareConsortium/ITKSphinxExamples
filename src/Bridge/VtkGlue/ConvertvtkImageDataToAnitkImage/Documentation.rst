@@ -7,7 +7,12 @@ Convert vtkImageData to an itk::Image
 Synopsis
 --------
 
-Convert vtkImageData to an itk::Image in a processing pipeline.
+Convert vtkImageData to an itk::Image in a processing pipeline.  This transfers
+the image buffer data along with image size, pixel spacing, and origin. Since
+`vtkImageData` does not yet support an orientation matrix, the direction
+cosines are lost. This requires `Module_ITKVtkGlue` to be turned on in ITK's
+CMake configuration.
+
 
 
 Results
