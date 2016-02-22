@@ -1,9 +1,11 @@
 {% extends "!layout.html" %}
 {%- set script_files = script_files + ["_static/cookies.js",
                                        "_static/language.js",
+                                       "_static/pace.min.js",
                                        "_static/webgl.js"] %}
 {% block extrahead %}
     <link rel="shortcut icon" href="{{ pathto('_static/itk_favicon.ico', 1) }}" />
+    <link rel="stylesheet" href="{{ pathto('_static/pace.css', 1) }}" />
 {% endblock %}
 
 {% block body %}
