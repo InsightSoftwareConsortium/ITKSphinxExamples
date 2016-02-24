@@ -7,3 +7,4 @@ VtkGlue
   ConvertAnitkImageTovtkImageData/Documentation.rst
   ConvertAnRGBitkImageTovtkImageData/Documentation.rst
   ConvertvtkImageDataToAnitkImage/Documentation.rst
+  ConvertRGBvtkImageDataToAnitkImage/Documentation.rst

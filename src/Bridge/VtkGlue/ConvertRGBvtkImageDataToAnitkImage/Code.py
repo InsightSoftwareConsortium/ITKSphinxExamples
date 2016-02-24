@@ -28,20 +28,18 @@ if len(sys.argv) < 2:
 imageFileName = sys.argv[1]
 
 Dimension = 2
-PixelType = itk.UC
+PixelComponentType = itk.UC
+PixelType = itk.RGBPixel[PixelComponentType]
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = vtk.vtkPNGReader()
 reader.SetFileName(imageFileName)
 reader.SetDataScalarTypeToUnsignedChar()
 
-magnitude = vtk.vtkImageMagnitude()
-magnitude.SetInputConnection(reader.GetOutputPort())
-magnitude.Update()
-
 vtkToItkFilter = itk.VTKImageToImageFilter[ImageType].New()
-vtkToItkFilter.SetInput(magnitude.GetOutput())
+vtkToItkFilter.SetInput(reader.GetOutput())
 
+reader.Update()
 vtkToItkFilter.Update()
 myitkImage = vtkToItkFilter.GetOutput()
 print(myitkImage)
