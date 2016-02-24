@@ -1,3 +1,4 @@
 add_example(ConvertAnitkImageTovtkImageData)
 add_example(ConvertAnRGBitkImageTovtkImageData)
 add_example(ConvertvtkImageDataToAnitkImage)
+add_example(ConvertRGBvtkImageDataToAnitkImage)

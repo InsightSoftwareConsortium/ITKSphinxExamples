@@ -5,6 +5,7 @@ project(ConvertAnRGBitkImageTovtkImageData)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
+
 add_executable(ConvertAnRGBitkImageTovtkImageData Code.cxx)
 target_link_libraries(ConvertAnRGBitkImageTovtkImageData ${ITK_LIBRARIES})
 
@@ -17,6 +18,7 @@ install(FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKExamples/Code/Bridge/VtkGlue/ConvertAnRGBitkImageTovtkImageData/
   COMPONENT Code
   )
+
 
 enable_testing()
 
