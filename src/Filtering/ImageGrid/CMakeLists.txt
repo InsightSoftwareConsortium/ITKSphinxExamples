@@ -19,10 +19,12 @@ compare_to_baseline(
 )
 
 add_example( Create3DVolume )
-compare_to_baseline(
-  EXAMPLE_NAME Create3DVolume
-  BASELINE_PREFIX OutputBaseline
-)
+# There is currently an issue with the TileImageFilter SetDefaultPixelValue in
+# the Python wrapping. See https://issues.itk.org/jira/browse/ITK-3422
+#compare_to_baseline(
+  #EXAMPLE_NAME Create3DVolume
+  #BASELINE_PREFIX OutputBaseline
+#)
 
 add_example( AppendTwo3DVolumes )
 compare_to_baseline(
