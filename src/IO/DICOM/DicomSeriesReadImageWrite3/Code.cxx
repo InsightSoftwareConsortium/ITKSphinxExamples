@@ -27,44 +27,48 @@ int main(int argc, char* argv[])
   if (argc < 2)
     {
     std::cerr << "Usage: " << std::endl;
-    std::cerr << argv[0] << " DicomDirectory  [outputFileName  seriesName]"
-      << std::endl;
-    return EXIT_FAILURE;
+    std::cerr << argv[0] << " [DicomDirectory  [outputFileName  seriesName]]";
+    std::cerr << "\nIf DicomDirectory is not specified, current directory is used\n";
     }
 
   typedef signed short    PixelType;
   const unsigned int      Dimension = 3;
   typedef itk::Image< PixelType, Dimension >         ImageType;
   typedef itk::ImageSeriesReader< ImageType >        ReaderType;
+  std::string dirName = "."; //current directory by default
+  if (argc > 1)
+    {
+    dirName = argv[1];
+    }
 
   typedef itk::GDCMSeriesFileNames NamesGeneratorType;
   NamesGeneratorType::Pointer nameGenerator = NamesGeneratorType::New();
 
   nameGenerator->SetUseSeriesDetails(true);
   nameGenerator->AddSeriesRestriction("0008|0021");
-  nameGenerator->SetDirectory(argv[1]);
+  nameGenerator->SetGlobalWarningDisplay(false);
+  nameGenerator->SetDirectory(dirName);
 
   try
     {
-    gdcm::FileList *flist = nameGenerator->GetSeriesHelper()->GetFirstSingleSerieUIDFileSet();
-    if (flist)
+    typedef std::vector< std::string >    SeriesIdContainer;
+    const SeriesIdContainer & seriesUID = nameGenerator->GetSeriesUIDs();
+    SeriesIdContainer::const_iterator seriesItr = seriesUID.begin();
+    SeriesIdContainer::const_iterator seriesEnd = seriesUID.end();
+
+    if (seriesItr != seriesEnd)
       {
       std::cout << "The directory: ";
-      std::cout << argv[1] << std::endl;
+      std::cout << dirName << std::endl;
       std::cout << "Contains the following DICOM Series: ";
       std::cout << std::endl;
       }
     else
       {
-      std::cout << "No DICOMs in: " << argv[1] << std::endl;
+      std::cout << "No DICOMs in: " << dirName << std::endl;
       return EXIT_SUCCESS;
       }
 
-    typedef std::vector< std::string >    SeriesIdContainer;
-    const SeriesIdContainer & seriesUID = nameGenerator->GetSeriesUIDs();
-
-    SeriesIdContainer::const_iterator seriesItr = seriesUID.begin();
-    SeriesIdContainer::const_iterator seriesEnd = seriesUID.end();
     while (seriesItr != seriesEnd)
       {
       std::cout << seriesItr->c_str() << std::endl;
@@ -106,7 +110,7 @@ int main(int argc, char* argv[])
         }
       else
         {
-        outFileName = argv[1] + std::string("/") + seriesIdentifier + ".nrrd";
+        outFileName = dirName + std::string("/") + seriesIdentifier + ".nrrd";
         }
       writer->SetFileName(outFileName);
       writer->UseCompressionOn();
