@@ -6,7 +6,7 @@ A set of cookbook examples for the Insight Toolkit, ITK_.
 Download instructions
 ---------------------
 
-  $ git clone --recursive http://itk.org/ITKExamples.git
+  $ git clone --recursive https://itk.org/ITKExamples.git
 
 
 Build instructions
@@ -72,11 +72,11 @@ Run the bash scipt SetupForDevelopment.sh::
   $ ./Utilities/SetupForDevelopment.sh
 
 .. _Breathe: https://github.com/michaeljones/breathe
-.. _build instructions in the documentation: http://itk.org/ITKExamples/Documentation/Build/index.html
+.. _build instructions in the documentation: https://itk.org/ITKExamples/Documentation/Build/index.html
 .. _CMake: http://cmake.org/
 .. _Gerrit: http://code.google.com/p/gerrit/
 .. _Git: http://git-scm.com/
-.. _ITK: http://itk.org/
+.. _ITK: https://itk.org/
 .. _Sphinx: http://sphinx.pocoo.org/
 .. _Github Issues: https://itk.org/ITKExamples/issues?milestone=&labels=&state=open
 .. _Python: http://python.org/

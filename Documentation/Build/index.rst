@@ -206,7 +206,7 @@ VV
 .. _CMake:                 http://cmake.org/
 .. _FLTK:                  http://www.fltk.org/
 .. _ImageViewer:           https://github.com/TubeTK/ImageViewer
-.. _ITKApps:               http://itk.org/ITKApps.git
+.. _ITKApps:               https://itk.org/ITKApps.git
 .. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
 .. _MITK:                  http://www.mitk.org/wiki/
 .. _Paraview:              http://paraview.org/

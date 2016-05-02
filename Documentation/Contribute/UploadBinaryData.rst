@@ -130,7 +130,7 @@ before committing to the repository.
 
 .. _CMake:                             http://cmake.org/
 .. _Git:                               http://git-scm.com/
-.. _Insight Community mailing list:    http://itk.org/mailman/listinfo/community
+.. _Insight Community mailing list:    https://itk.org/mailman/listinfo/community
 .. _ITK Midas Community:               http://midas3.kitware.com/midas/community/12
 .. _MD5 checksum:                      http://en.wikipedia.org/wiki/MD5
 .. _Midas server:                      http://midas3.kitware.com/midas/
