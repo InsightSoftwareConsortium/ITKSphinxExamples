@@ -28,7 +28,7 @@ facets are important to the success of the project.
   DashboardSubmission
 
 
-.. _ITK Examples repository: http://itk.org/ITKExamples
+.. _ITK Examples repository: https://itk.org/ITKExamples
 .. _Git:                     http://git-scm.com/
 .. _reStructuredText:        http://docutils.sourceforge.net/rst.html
 .. _Sphinx:                  http://sphinx.pocoo.org/

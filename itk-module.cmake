@@ -1,4 +1,4 @@
-set( DOCUMENTATION "This module builds the examples found at http://itk.org/ITKExamples" )
+set( DOCUMENTATION "This module builds the examples found at https://itk.org/ITKExamples" )
 
 itk_module(SphinxExamples
   DEPENDS
