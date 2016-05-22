@@ -115,7 +115,7 @@ private:
                                   const itk::ThreadIdType threadId )
     {
     // Look only at the range of cells by the set of indices in the subDomain.
-    for( size_t ii = subDomain[0]; ii <= subDomain[1]; ++ii )
+    for( itk::IndexValueType ii = subDomain[0]; ii <= subDomain[1]; ++ii )
       {
       switch( this->m_Associate->m_Cells[ii] )
         {
