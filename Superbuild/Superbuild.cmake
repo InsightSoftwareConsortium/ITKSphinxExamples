@@ -29,6 +29,7 @@ else()
 endif()
 
 set(ITKExamples_DEPENDENCIES )
+set(ITK_DEPENDENCIES )
 
 # Used by ITK, VTK, and Python -- always build it.
 include(${CMAKE_SOURCE_DIR}/External-zlib.cmake)
@@ -37,6 +38,7 @@ option(ITKExamples_USE_OpenCV "Add OpenCV to the superbuild" OFF)
 if(NOT OpenCV_DIR AND ITKExamples_USE_OpenCV)
   include(${CMAKE_SOURCE_DIR}/External-OpenCV.cmake)
   list(APPEND ITKExamples_DEPENDENCIES OpenCV)
+  list(APPEND ITK_DEPENDENCIES OpenCV)
 endif()
 
 option(ITKExamples_USE_VTK "Add VTK to the superbuild." OFF)
@@ -51,6 +53,7 @@ endif()
 if(NOT VTK_DIR AND ITKExamples_USE_VTK)
   include(${CMAKE_SOURCE_DIR}/External-VTK.cmake)
   list(APPEND ITKExamples_DEPENDENCIES VTK)
+  list(APPEND ITK_DEPENDENCIES VTK)
 endif()
 
 if(NOT ITK_DIR)
