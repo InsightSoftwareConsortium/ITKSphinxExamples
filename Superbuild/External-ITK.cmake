@@ -7,15 +7,11 @@ if( NOT ITK_TAG )
 endif()
 
 set( _vtk_args )
-set( _vtk_depends )
 if( VTK_DIR OR ITKExamples_USE_VTK )
   set( _vtk_args "-DVTK_DIR:PATH=${VTK_DIR}"
     -DModule_ITKVtkGlue:BOOL=ON
     -DModule_ITKLevelSetsv4Visualization:BOOL=ON
     )
-  if( NOT VTK_DIR )
-    set( _vtk_depends VTK )
-  endif()
 else()
   set( _vtk_args
     -DModule_ITKVtkGlue:BOOL=OFF
@@ -24,14 +20,10 @@ else()
 endif()
 
 set( _opencv_args )
-set( _opencv_depends )
 if( OpenCV_DIR OR ITKExamples_USE_OpenCV )
   set( _opencv_args "-DOpenCV_DIR:PATH=${OpenCV_DIR}"
     -DModule_ITKVideoBridgeOpenCV:BOOL=ON
     )
-  if( NOT OpenCV_DIR )
-    set( _opencv_depends OpenCV )
-  endif()
 else()
   set( _opencv_args
     -DModule_ITKVideoBridgeOpenCV:BOOL=OFF
@@ -92,7 +84,7 @@ ExternalProject_Add(ITK
     ${_vtk_args}
     ${_opencv_args}
     ${_wrap_python_args}
-  DEPENDS ${_vtk_depends} ${_opencv_depends} ${_python_depends} zlib
+  DEPENDS ${ITK_DEPENDENCIES} ${_python_depends} zlib
   LOG_BUILD 0
 )
 
