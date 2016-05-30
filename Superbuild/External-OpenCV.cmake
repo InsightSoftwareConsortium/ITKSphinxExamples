@@ -2,7 +2,7 @@
 # Get and build OpenCV
 
 if( NOT OpenCV_TAG )
-  set( OpenCV_TAG "3.0.0" )
+  set( OpenCV_TAG "3.1.0" )
 endif()
 
 ExternalProject_Add(OpenCV
