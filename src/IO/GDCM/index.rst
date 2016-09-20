@@ -1,5 +1,5 @@
-DICOM
-=====
+GDCM
+====
 
 .. toctree::
   :maxdepth: 1
