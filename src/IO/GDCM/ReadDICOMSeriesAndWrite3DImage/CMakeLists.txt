@@ -17,7 +17,9 @@ install( FILES Code.cxx CMakeLists.txt
   COMPONENT Code
   )
 
-# we need images for testing
-# enable_testing()
-# add_test( NAME ReadDICOMSeriesAndWrite3DImage
-#   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadDICOMSeriesAndWrite3DImage )
+enable_testing()
+add_test( NAME ReadDICOMSeriesAndWrite3DImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadDICOMSeriesAndWrite3DImage
+    "${CMAKE_CURRENT_BINARY_DIR}"
+    "${CMAKE_CURRENT_BINARY_DIR}/Image3D.nrrd"
+    )

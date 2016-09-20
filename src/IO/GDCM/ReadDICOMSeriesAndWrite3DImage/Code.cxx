@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
       typedef itk::ImageFileWriter< ImageType > WriterType;
       WriterType::Pointer writer = WriterType::New();
       std::string outFileName;
-      if (argc > 3)
+      if (argc > 2)
         {
         outFileName = argv[2];
         }
