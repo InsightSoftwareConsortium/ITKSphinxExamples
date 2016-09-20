@@ -1,5 +1,5 @@
-Dicom Series Read Image Write
-=============================
+Read DICOM Series and Write 3D Image
+====================================
 
 .. index::
    pair: GDCMSeriesFileNames; GDCMImageIO
