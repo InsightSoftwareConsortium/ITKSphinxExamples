@@ -1,1 +1,1 @@
-add_example( DicomSeriesReadImageWrite3 )
+add_example( ReadDICOMSeriesAndWrite3DImage )
