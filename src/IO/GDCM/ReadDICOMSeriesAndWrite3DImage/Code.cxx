@@ -27,19 +27,18 @@ int main(int argc, char* argv[])
   if (argc < 2)
     {
     std::cerr << "Usage: " << std::endl;
-    std::cerr << argv[0] << " [DicomDirectory  [outputFileName  seriesName]]";
+    std::cerr << argv[0] << " [DicomDirectory  [outputFileName  [seriesName]]]";
     std::cerr << "\nIf DicomDirectory is not specified, current directory is used\n";
     }
-
-  typedef signed short    PixelType;
-  const unsigned int      Dimension = 3;
-  typedef itk::Image< PixelType, Dimension >         ImageType;
-  typedef itk::ImageSeriesReader< ImageType >        ReaderType;
   std::string dirName = "."; //current directory by default
   if (argc > 1)
     {
     dirName = argv[1];
     }
+
+  typedef signed short    PixelType;
+  const unsigned int      Dimension = 3;
+  typedef itk::Image< PixelType, Dimension >         ImageType;
 
   typedef itk::GDCMSeriesFileNames NamesGeneratorType;
   NamesGeneratorType::Pointer nameGenerator = NamesGeneratorType::New();
@@ -92,9 +91,10 @@ int main(int argc, char* argv[])
       std::cout << "\nReading: ";
       std::cout << seriesIdentifier << std::endl;
       typedef std::vector< std::string >   FileNamesContainer;
-      FileNamesContainer fileNames;
-      fileNames = nameGenerator->GetFileNames(seriesIdentifier);
+      FileNamesContainer fileNames =
+        nameGenerator->GetFileNames(seriesIdentifier);
 
+      typedef itk::ImageSeriesReader< ImageType > ReaderType;
       ReaderType::Pointer reader = ReaderType::New();
       typedef itk::GDCMImageIO       ImageIOType;
       ImageIOType::Pointer dicomIO = ImageIOType::New();

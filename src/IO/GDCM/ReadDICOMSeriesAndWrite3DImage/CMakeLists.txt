@@ -12,7 +12,7 @@ install( TARGETS ReadDICOMSeriesAndWrite3DImage
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKExamples/Code/IO/GDCM/ReadDICOMSeriesAndWrite3DImage
   COMPONENT Code
   )
@@ -23,3 +23,12 @@ add_test( NAME ReadDICOMSeriesAndWrite3DImage
     "${CMAKE_CURRENT_BINARY_DIR}"
     "${CMAKE_CURRENT_BINARY_DIR}/Image3D.nrrd"
     )
+
+if( ITK_WRAP_PYTHON )
+  string( REPLACE . "Python." output_image "${output_image}" )
+  add_test( NAME ReadDICOMSeriesAndWrite3DImagePython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      "${CMAKE_CURRENT_BINARY_DIR}"
+      "${CMAKE_CURRENT_BINARY_DIR}/Image3D.Python.nrrd"
+    )
+endif()
