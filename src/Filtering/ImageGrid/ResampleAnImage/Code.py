@@ -46,8 +46,8 @@ size = inputImage.GetLargestPossibleRegion().GetSize()
 spacing = inputImage.GetSpacing()
 
 centralPixel = itk.Index[Dimension]()
-centralPixel[0] = size[0] / 2
-centralPixel[1] = size[1] / 2
+centralPixel[0] = int(size[0] / 2)
+centralPixel[1] = int(size[1] / 2)
 centralPoint = itk.Point[ScalarType, Dimension]()
 centralPoint[0] = centralPixel[0]
 centralPoint[1] = centralPixel[1]
