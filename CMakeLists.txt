@@ -91,6 +91,12 @@ foreach(link ${content_links})
 endforeach()
 ExternalData_Add_Target( ITKExamplesData )
 
+if(${ITK_WRAP_PYTHON})
+  # Use the same Python interpreter as ITK to run the tests.
+  find_package( PythonInterp ${ITK_WRAP_PYTHON_VERSION} REQUIRED )
+  mark_as_advanced( PythonInterp )
+endif()
+
 # Build the documentation?
 option( BUILD_DOCUMENTATION "Build the examples documentation." OFF )
 if( BUILD_DOCUMENTATION )
