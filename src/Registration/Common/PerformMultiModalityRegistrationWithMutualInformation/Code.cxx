@@ -253,6 +253,10 @@ int main( int argc, char *argv[] )
 
   metric->SetNumberOfSpatialSamples( numberOfSamples );
 
+  // For consistent results when regression testing.
+  metric->ReinitializeSeed( 121212 );
+
+
   //  Since larger values of mutual information indicate better matches than
   //  smaller values, we need to maximize the cost function in this example.
   //  By default the GradientDescentOptimizer class is set to minimize the
