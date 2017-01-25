@@ -13,7 +13,7 @@ install( TARGETS ObserveAnEvent
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx CMakeLists.txt
+install( FILES Code.cxx Code.py CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/ObserveAnEvent
   COMPONENT Code
 )
@@ -21,3 +21,9 @@ install( FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME ObserveAnEventTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ObserveAnEvent )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME ObserveAnEventTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    )
+endif()
