@@ -13,7 +13,7 @@ install( TARGETS StreamAPipeline
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt
+install( FILES Code.cxx Code.py CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Core/Common/StreamAPipeline
   COMPONENT Code
   )
