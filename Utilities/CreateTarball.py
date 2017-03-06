@@ -61,9 +61,9 @@ with open(tarball_cmakelist, 'w') as new_list_file:
 files_for_tarball = files_for_tarball[1:]
 files_for_tarball.append(tarball_cmakelist)
 
-inputs = glob.glob(os.path.join(example_dir, '*.md5'))
+inputs = glob.glob(os.path.join(example_dir, '*.sha512'))
 for path in inputs:
-    files_for_tarball.append(path[:-4])
+    files_for_tarball.append(path[:-7])
 
 # Remove duplicates.
 files_for_tarball = set(files_for_tarball)

@@ -78,12 +78,12 @@ set( content_links )
 # corresponding locations in the binary tree.
 foreach( _dir ${_RootSubDirs} )
   file( GLOB_RECURSE ${_dir}_content_links
-    RELATIVE "${ITKExamples_SOURCE_DIR}" "${_dir}/*.md5" )
+    RELATIVE "${ITKExamples_SOURCE_DIR}" "${_dir}/*.sha512" )
   set( content_links ${content_links} ${${_dir}_content_links} )
 endforeach()
 
 foreach(link ${content_links})
-  string( REGEX REPLACE "\\.md5$" "" link ${link} )
+  string( REGEX REPLACE "\\.sha512$" "" link ${link} )
   ExternalData_Expand_Arguments( ITKExamplesData
     link_location
     DATA{${link}}
