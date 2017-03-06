@@ -63,7 +63,7 @@ else()
 endif()
 
 ExternalProject_Add(ITK
-  GIT_REPOSITORY "${git_protocol}://itk.org/ITK.git"
+  GIT_REPOSITORY "${git_protocol}://github.com/InsightSoftwareConsortium/ITK.git"
   GIT_TAG "${ITK_TAG}"
   SOURCE_DIR ITK
   BINARY_DIR ITK-build
