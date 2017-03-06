@@ -3,11 +3,6 @@ configure_file( ${CMAKE_SOURCE_DIR}/Utilities/CreateNewExample.py.in
   @ONLY
   )
 
-configure_file( ${CMAKE_SOURCE_DIR}/Utilities/ArchiveBinaryData.py.in
-  ${CMAKE_BINARY_DIR}/Utilities/ArchiveBinaryData.py
-  @ONLY
-  )
-
 configure_file( ${ITKExamples_SOURCE_DIR}/Utilities/CodeSwarm.sh.in
   ${ITKExamples_BINARY_DIR}/Utilities/CodeSwarm.sh
   @ONLY
