@@ -7,15 +7,6 @@
 [submodule "Utilities/SphinxExtensions/gitstats"]
 	path = Utilities/SphinxExtensions/gitstats
 	url = https://github.com/arnaudgelas/gitstats.git
-[submodule "Utilities/pydas"]
-	path = Utilities/pydas
-	url = https://github.com/midasplatform/pydas.git
-[submodule "Utilities/requests"]
-	path = Utilities/requests
-	url = https://github.com/kennethreitz/requests.git
-[submodule "Utilities/simplejson"]
-	path = Utilities/simplejson
-	url = https://github.com/simplejson/simplejson.git
 [submodule "Utilities/SphinxExtensions/sphinx-bootstrap-theme"]
 	path = Utilities/SphinxExtensions/sphinx-bootstrap-theme
 	url = https://github.com/ryan-roemer/sphinx-bootstrap-theme
