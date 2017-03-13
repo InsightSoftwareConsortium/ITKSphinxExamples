@@ -152,7 +152,7 @@ a parent folder id from the web interface.
 
   The **Unique ID** can be copied into the command line.
 
-Use both the API key and the folder id the `girder-cli`. For example,
+Use both the API key and the folder ID when calling `girder-cli`. For example,
 
 .. code-block:: bash
 
@@ -190,12 +190,11 @@ Download the Content Link
   Finally, click on the **Download key file** icon to download the key file.
 
 Move the content link file to the source tree at the location
-where the actual file is desired in the build tree and add it to the
-repository with::
+where the actual file is desired in the build tree. Stage the new file to
+your commit::
 
-  git add path/to/file.sha512
+  git add -- path/to/file.sha512
 
-before committing to the repository.
 
 .. _CMake:                             https://cmake.org/
 .. _Git:                               https://git-scm.com/
