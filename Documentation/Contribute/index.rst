@@ -20,8 +20,8 @@ facets are important to the success of the project.
 .. toctree::
   :maxdepth: 2
 
-  WriteANewExample
   ContributeWithGit
+  WriteANewExample
   UploadBinaryData
   PeerReviewWithGerrit
   DashboardSubmission
