@@ -93,8 +93,19 @@ ExternalData_Add_Target( ITKExamplesData )
 
 if(${ITK_WRAP_PYTHON})
   # Use the same Python interpreter as ITK to run the tests.
-  find_package( PythonInterp ${ITK_WRAP_PYTHON_VERSION} REQUIRED )
-  mark_as_advanced( PythonInterp )
+  find_package(PythonInterp ${ITK_WRAP_PYTHON_VERSION} REQUIRED)
+  mark_as_advanced(PYTHON_EXECUTABLE)
+endif()
+find_package(PythonInterp)
+if(PYTHON_EXECUTABLE AND NOT ITK_WRAP_PYTHON)
+  execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import itk"
+    RESULT_VARIABLE _have_itk_return_code
+    OUTPUT_QUIET
+    ERROR_QUIET
+    )
+  if(_have_itk_return_code EQUAL 0)
+    set(ITK_WRAP_PYTHON 1)
+  endif()
 endif()
 
 # Build the documentation?
