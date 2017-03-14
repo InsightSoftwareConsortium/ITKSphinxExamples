@@ -98,7 +98,7 @@ ExternalProject_Add(ITKExamples
   DEPENDS ${ITKExamples_DEPENDENCIES}
   DOWNLOAD_COMMAND ""
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..
-  BINARY_DIR ITKExamples-build
+  BINARY_DIR ITKEx-build
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS
     ${ep_common_args}
