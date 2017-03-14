@@ -158,7 +158,12 @@ def write_example_rst_file(example_rst, class_name, synopsis):
     f.write('C++\n')
     f.write('...\n\n')
     f.write('.. literalinclude:: Code.cxx\n')
-    f.write('   :lines: 18-\n\n\n')
+    f.write('   :lines: 18-\n\n')
+
+    f.write('Python\n')
+    f.write('......\n\n')
+    f.write('.. literalinclude:: Code.py\n')
+    f.write('   :lines: 1, 20-\n\n\n')
 
     f.write('Classes demonstrated\n')
     f.write('--------------------\n')
@@ -241,7 +246,7 @@ def write_example_cxx_file(example_cxx, class_name):
     f.close()
 
 
-def write_example_py_file(example_cxx, class_name):
+def write_example_py_file(example_py, class_name):
 
     f = open(example_py, 'w')
 
@@ -291,6 +296,10 @@ def write_example_py_file(example_cxx, class_name):
 
     f.close()
 
+    st = os.stat(example_py)
+    os.chmod(example_py, st.st_mode | 0o0111)
+
+
 if __name__ == '__main__':
     # parsing arguments
     parser = argparse.ArgumentParser(description='Create a new example.')
@@ -333,7 +342,6 @@ if __name__ == '__main__':
     while not temp_res['bool']:
         class_name = get_input("Please enter a class: ")
         class_name = itkcorrect(class_name)
-        print(class_name)
 
         temp_res = get_group_and_module_from_class_name(
             args.itk_source_dir, class_name)
@@ -440,9 +448,11 @@ if __name__ == '__main__':
 
     example_rst = os.path.join(example_dir, 'Documentation.rst')
     example_cxx = os.path.join(example_dir, 'Code.cxx')
+    example_py = os.path.join(example_dir, 'Code.py')
 
     write_example_rst_file(example_rst, class_name, args.synopsis)
     write_example_cxx_file(example_cxx, class_name)
+    write_example_py_file(example_py, class_name)
 
     # ---------------------------------------------------------
     # Write CMakeLists.txt
@@ -489,6 +499,7 @@ if __name__ == '__main__':
     f.write('  )\n\n')
 
     f.write('if(ITK_WRAP_PYTHON)\n')
+    f.write('  find_package(PythonInterp REQUIRED)\n')
     f.write(
         '  string(REPLACE . "Python." output_image "${output_image}")\n')
     f.write('  add_test(NAME ' + example_name + 'TestPython\n')
@@ -511,6 +522,7 @@ if __name__ == '__main__':
     print ('Please:')
     print ('  1- Edit the following files:')
     print ('    * ' + example_cxx)
+    print ('    * ' + example_py)
     print ('    * ' + example_rst + '\n')
 
     print ('  2- Commit changes in the ITKExamples source directory and push')
