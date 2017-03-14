@@ -19,9 +19,16 @@
 #==========================================================================*/
 
 import itk
+import platform
 
-CoordType = itk.F
 Dimension = 3
+CoordType = itk.ctype('float')
+# Windows requires unsigned long long for 64-bit identifiers
+if platform.system() == 'Windows':
+    ElementIdentifierType = itk.ctype('unsigned long long')
+else:
+    ElementIdentifierType = itk.ctype('unsigned long')
+
 
 MeshTraits = itk.DefaultStaticMeshTraits[CoordType, Dimension, Dimension]
 PointSetType = itk.PointSet[CoordType, Dimension, MeshTraits]
@@ -48,8 +55,10 @@ points.InsertElement(0, p0)
 points.InsertElement(1, p1)
 points.InsertElement(2, p2)
 
-VecContType = itk.VectorContainer[itk.UL, itk.Point[CoordType, Dimension]]
-BoundingBoxType = itk.BoundingBox[itk.UL, Dimension, CoordType, VecContType]
+VecContType = itk.VectorContainer[ElementIdentifierType,
+        itk.Point[CoordType, Dimension]]
+BoundingBoxType = itk.BoundingBox[ElementIdentifierType,
+        Dimension, CoordType, VecContType]
 
 boundingBox = BoundingBoxType.New()
 boundingBox.SetPoints(points)
