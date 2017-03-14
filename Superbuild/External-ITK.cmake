@@ -34,10 +34,10 @@ set(_wrap_python_args )
 if(ITKExamples_USE_WRAP_PYTHON)
   set(_python_depends)
   if(NOT EXISTS PYTHON_EXECUTABLE)
-    set(_python_depends Python)
+    set(_python_depends ITKPython)
   endif()
   set(_wrap_python_args
-    "-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON_EXECUTABLE}"
+    "-DPYTHON_EXECUTABLE:FILEPATH=${ITKPYTHON_EXECUTABLE}"
     )
 endif()
 
