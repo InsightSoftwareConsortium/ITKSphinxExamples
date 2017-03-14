@@ -28,7 +28,7 @@ Run CMake to configure the project.
 
 Build the project, and run the test::
 
-  make
+  cmake --build .
   ctest -V
 
 
@@ -37,41 +37,48 @@ Build the project, and run the test::
 Build all examples and the documentation
 ----------------------------------------
 
-Download the tarball. Unpack the example::
+Clone the repository::
 
-  tar xvzf ITKExamples.tar.gz
+  git clone --recursive https://itk.org/ITKExamples.git ITKEx
 
-Move to the build directory::
+Make a build directory::
 
-  cd ITKExamples/build
+  mkdir ITKEx-build
+  cd ITKEx-build
 
 Run CMake to configure the project.
 
+- If ITK is not installed nor compiled, you can then make use of the superbuild functionality::
+
+    cmake ../ITKEx/Superbuild/
+
 - If ITK (Version 4.0.0 or above) is installed::
 
-    cmake ..
+    cmake ../ITKEx/
 
 - If ITK (Version 4.0.0 or above) is not installed but compiled on your
   system, you will need to specify the path to your ITK build::
 
-    cmake -DITK_DIR=/home/luis/itk_build ..
+    cmake -DITK_DIR=/home/luis/itk_build ../ITKEx/
 
-- If ITK is not installed nor compiled, you can then make use of the superbuild functionality::
-
-    cmake ../Superbuild/
 
 The superbuild will download and build all required dependencies.  If you are
 building the documentation and not using superbuild functionality, then you must
 have all the required dependencies installed, which are listed in the
-*readme.rst* file located at the root of the source tree.  If you just want to
+*README.rst* file located at the root of the source tree.  If you just want to
 build the examples and not their documentation, set *BUILD_DOCUMENTATION* to
 *OFF* in your CMake configuration.
 
-Build the project (will generate the documentation and all examples)::
+Build the project (this will generate the documentation and all examples)::
 
-  make
+  cmake --build .
 
-Run the tests::
+Run the tests with a superbuild::
+
+  cd ITKEx-build
+  ctest -V
+
+Run the tests without a superbuild::
 
   ctest -V
 
