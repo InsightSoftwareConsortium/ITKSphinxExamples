@@ -21,7 +21,6 @@ facets are important to the success of the project.
   :maxdepth: 2
 
   WriteANewExample
-  ContributeWithWebInterface
   ContributeWithGit
   UploadBinaryData
   PeerReviewWithGerrit
