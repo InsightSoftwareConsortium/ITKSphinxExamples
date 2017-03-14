@@ -10,7 +10,12 @@ The entire source tree can be downloaded with Git_:
 
 .. code-block:: bash
 
-  git clone --recursive https://itk.org/ITKExamples.git
+  git clone --recursive https://itk.org/ITKExamples.git ITKEx
+
+.. note::
+
+  Due to path length limitations on Windows, it is recommended to clone into a
+  short directory like *ITKEx*.
 
 After cloning the repository, it can be configured for development (confirm
 proper Git configuration, setup `Git hooks`_, configure your `Gerrit Code
@@ -18,7 +23,7 @@ Review`_ account) with
 
 .. code-block:: bash
 
-  cd ITKExamples
+  cd ITKEx
   ./Utilites/SetupForDevelopment.sh
 
 
