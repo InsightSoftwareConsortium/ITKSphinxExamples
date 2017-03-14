@@ -43,7 +43,7 @@ endif()
 
 option(ITKExamples_USE_VTK "Add VTK to the superbuild." OFF)
 
-option(ITKExamples_USE_WRAP_PYTHON "Add ITK Python wrapping to the superbuild" OFF)
+option(ITKExamples_USE_WRAP_PYTHON "Enable downloads of the ITK Python wrapping to the superbuild" ON)
 if(NOT EXISTS PYTHON_EXECUTABLE AND ITKExamples_USE_WRAP_PYTHON OR ITKExamples_USE_VTK)
   include(${CMAKE_SOURCE_DIR}/External-Python.cmake)
   list(APPEND ITKExamples_DEPENDENCIES Python)
