@@ -24,7 +24,7 @@ Review`_ account) with
 .. code-block:: bash
 
   cd ITKEx
-  ./Utilites/SetupForDevelopment.sh
+  ./Utilities/SetupForDevelopment.sh
 
 
 Modifying an existing example
