@@ -36,30 +36,9 @@ if(ITKExamples_USE_WRAP_PYTHON)
   if(NOT EXISTS PYTHON_EXECUTABLE)
     set(_python_depends Python)
   endif()
-  list(APPEND _wrap_python_args "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/Python-install")
-  list(APPEND _wrap_python_args -DITK_WRAP_PYTHON:BOOL=ON)
-  list(APPEND _wrap_python_args
+  set(_wrap_python_args
     "-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON_EXECUTABLE}"
-    "-DPYTHON_INCLUDE_DIR:PATH=${PYTHON_INCLUDE_DIR}"
-    "-DPYTHON_LIBRARY:PATH=${PYTHON_LIBRARY}"
     )
-  if(UNIX)
-    list(APPEND _wrap_python_args "-DPY_SITE_PACKAGES_PATH:PATH=${PY_SITE_PACKAGES_PATH}")
-  endif()
-  find_package(NumPy)
-  if(NUMPY_FOUND)
-    list(APPEND _wrap_python_args -DModule_BridgeNumPy:BOOL=ON)
-  else()
-    list(APPEND _wrap_python_args -DModule_BridgeNumPy:BOOL=OFF)
-  endif()
-  list(APPEND _wrap_python_args INSTALL_COMMAND ${CMAKE_COMMAND} -E copy
-    "${CMAKE_BINARY_DIR}/ITK-build/Wrapping/Generators/Python/${CMAKE_CFG_INTDIR}/WrapITK.pth"
-    "${PY_SITE_PACKAGES_PATH}"
-    )
-else()
-  set(_wrap_python_args -DITK_WRAP_PYTHON:BOOL=OFF
-    -DModule_BridgeNumPy:BOOL=OFF
-    INSTALL_COMMAND ${CMAKE_COMMAND} -E echo "ITK install skipped")
 endif()
 
 ExternalProject_Add(ITK
@@ -84,6 +63,7 @@ ExternalProject_Add(ITK
     ${_vtk_args}
     ${_opencv_args}
     ${_wrap_python_args}
+  INSTALL_COMMAND ${CMAKE_COMMAND} -E echo "ITK install skipped"
   DEPENDS ${ITK_DEPENDENCIES} ${_python_depends} zlib
   LOG_BUILD 0
 )
