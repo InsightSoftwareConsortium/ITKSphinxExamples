@@ -5,8 +5,22 @@
 #  SPHINX_EXECUTABLE
 #  SPHINX_FOUND
 
+set(_python_paths )
+find_package(PythonInterp)
+if(PYTHON_EXECUTABLE)
+  get_filename_component(_python_dir "${PYTHON_EXECUTABLE}" DIRECTORY)
+  list(APPEND _python_paths
+    "${_python_dir}"
+    "${_python_dir}/Scripts"
+    )
+endif()
+
+
 find_program(SPHINX_EXECUTABLE
-  NAMES sphinx-build
+  NAMES
+    sphinx-build sphinx-build.exe
+  HINTS
+    ${_python_paths}
   PATHS
     /usr/bin
     /usr/local/bin
