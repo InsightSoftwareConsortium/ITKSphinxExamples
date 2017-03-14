@@ -18,7 +18,7 @@ set(ep_common_args
   -DCMAKE_CXX_COMPILER:STRING=${CMAKE_CXX_COMPILER}
   -DCMAKE_C_COMPILER:STRING=${CMAKE_C_COMPILER}
   -DCMAKE_GENERATOR:STRING=${CMAKE_GENERATOR}
-  -DCMAKE_RUNTIME_OUTPUT_DIRECTORY:PATH=${CMAKE_BINARY_DIR}/ITKExamples-build/bin
+  -DCMAKE_RUNTIME_OUTPUT_DIRECTORY:PATH=${CMAKE_BINARY_DIR}/ITKEx-build/bin
   )
 
 # Compute -G arg for configuring external projects with the same CMake generator:
@@ -96,6 +96,7 @@ option(BUILD_TESTING "Build testing" OFF)
 
 ExternalProject_Add(ITKExamples
   DEPENDS ${ITKExamples_DEPENDENCIES}
+  PREFIX ITKEx-prefix
   DOWNLOAD_COMMAND ""
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..
   BINARY_DIR ITKEx-build
