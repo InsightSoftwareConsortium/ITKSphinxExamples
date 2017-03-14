@@ -3,7 +3,19 @@
 # virtualenv to install the ITK package on Linux or Mac
 
 if(WIN32)
-  message(FATAL_ERROR "Not supported yet")
+  # python.org 64 bit Windows Python with the itk and sphinx packages installed
+  set(_itk_python_dir "${CMAKE_CURRENT_BINARY_DIR}/itkpython")
+  set(ITKPYTHON_EXECUTABLE "${_itk_python_dir}/python.exe" CACHE FILEPATH "Python executable with the ITK package installed" FORCE)
+  ExternalProject_Add(ITKPython
+    URL "https://data.kitware.com/api/v1/file/58c760808d777f0aef5d798e/download"
+    URL_MD5 "440580cec3b86903da26f0246637024f"
+    DOWNLOAD_NAME itkpython.zip
+    DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}
+    SOURCE_DIR ${_itk_python_dir}
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    )
 else()
   find_package(PythonInterp REQUIRED)
 
