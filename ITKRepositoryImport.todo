@@ -359,8 +359,6 @@
 * ../ITK/Examples/Filtering/SigmoidImageFilter.java
 * ../ITK/Examples/Filtering/DerivativeImageFilter.cxx
 * ../ITK/Examples/Filtering/SignedDanielssonDistanceMapImageFilter.cxx
-* ../ITK/Examples/Filtering/CannyEdgeDetectionImageFilter.py
-* ../ITK/Examples/Filtering/CannyEdgeDetectionImageFilter.tcl
 * ../ITK/Examples/Filtering/CurvatureFlowImageFilter.tcl
 * ../ITK/Examples/Filtering/ThresholdImageFilter.java
 * ../ITK/Examples/Filtering/MedianImageFilter.tcl
@@ -368,7 +366,6 @@
 * ../ITK/Examples/Filtering/DiffusionTensor3DReconstructionImageFilter.cxx
 * ../ITK/Examples/Filtering/CastImageFilter.java
 * ../ITK/Examples/Filtering/BinaryThresholdImageFilter.java
-* ../ITK/Examples/Filtering/CannyEdgeDetectionImageFilter.java
 * ../ITK/Examples/Filtering/BinaryThresholdImageFilter.cxx
 * ../ITK/Examples/Filtering/GradientRecursiveGaussianImageFilter.cxx
 * ../ITK/Examples/Filtering/GradientMagnitudeRecursiveGaussianImageFilter.py
@@ -449,7 +446,6 @@
 * ../ITK/Examples/Filtering/LaplacianImageFilter.cxx
 * ../ITK/Examples/Filtering/OtsuThresholdImageFilter.cxx
 * ../ITK/Examples/Filtering/ScaleSpaceGenerator2D.cxx
-* ../ITK/Examples/Filtering/CannyEdgeDetectionImageFilter.cxx
 * ../ITK/Examples/Filtering/BinaryErodeImageFilter.java
 * ../ITK/Examples/Filtering/ThresholdImageFilter.tcl
 * ../ITK/Examples/Filtering/VectorGradientAnisotropicDiffusionImageFilter.cxx
