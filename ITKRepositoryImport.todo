@@ -445,7 +445,6 @@
 * ../ITK/Examples/Filtering/BinaryErodeImageFilter.tcl
 * ../ITK/Examples/Filtering/RGBGradientAnisotropicDiffusionImageFilter.cxx
 * ../ITK/Examples/Filtering/MathematicalMorphologyGrayscaleFilters.cxx
-* ../ITK/Examples/Filtering/WarpImageFilter1.cxx
 * ../ITK/Examples/Filtering/LaplacianImageFilter.cxx
 * ../ITK/Examples/Filtering/OtsuThresholdImageFilter.cxx
 * ../ITK/Examples/Filtering/ScaleSpaceGenerator2D.cxx
