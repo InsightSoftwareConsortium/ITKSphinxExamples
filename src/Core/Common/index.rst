@@ -46,3 +46,4 @@ Common
   ConceptCheckingIsSameDimension/Documentation.rst
   ReRunPipelineWithChangingLargestPossibleRegion/Documentation.rst
   CreateAnImageOfVectors/Documentation.rst
+  FlipImageFilter/Documentation.rst
