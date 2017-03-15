@@ -19,8 +19,21 @@ install( FILES Code.cxx CMakeLists.txt
 )
 
 enable_testing()
+set(input_image ${CMAKE_CURRENT_BINARY_DIR}/itk_eg_logo.png)
+set(output_image Output.png)
+
 add_test( NAME ConvertRGBImageToGrayscaleImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ConvertRGBImageToGrayscaleImage
-    ${CMAKE_CURRENT_BINARY_DIR}/itk_eg_logo.png
-    Output.png
+    ${input_image}
+    ${output_image}
 )
+
+if(ITK_WRAP_PYTHON)
+  find_package(PythonInterp REQUIRED)
+  string(REPLACE . "Python." output_image "${output_image}")
+  add_test(NAME ConvertRGBImageToGrayscaleImageTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${input_image}
+      ${output_image}
+    )
+endif()

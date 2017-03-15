@@ -453,5 +453,4 @@
 * ../ITK/Examples/Filtering/BinaryErodeImageFilter.java
 * ../ITK/Examples/Filtering/ThresholdImageFilter.tcl
 * ../ITK/Examples/Filtering/VectorGradientAnisotropicDiffusionImageFilter.cxx
-* ../ITK/Examples/Filtering/RGBToGrayscale.cxx
 * ../ITK/Examples/Filtering/ResampleImageFilter8.cxx
