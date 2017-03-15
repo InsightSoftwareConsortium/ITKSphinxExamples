@@ -1,1 +1,2 @@
 add_example( ComputeHistogramFromGrayscaleImage )
+add_example(HistogramCreationAndBinAccess)

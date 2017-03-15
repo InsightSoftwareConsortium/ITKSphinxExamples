@@ -105,6 +105,13 @@
 * ../ITK/Examples/Statistics/PointSetToListSampleAdaptor.cxx
 * ../ITK/Examples/Statistics/ImageMutualInformation1.cxx
 * ../ITK/Examples/Statistics/Histogram.cxx
+  * Creation and basic bin access are covered by HistogramCreationAndBinAccess.
+  * This leaves out:
+    * Use of measurement vectors,
+    * Conversion of them to/from indices,
+    * Bounds checking,
+    * Getting various statistics, and
+    * Percentile calculation.
 * ../ITK/Examples/Statistics/ImageHistogram1.cxx
 * ../ITK/Examples/Statistics/SelectiveSubsampleGenerator.cxx
 * ../ITK/Examples/Statistics/NeighborhoodSampler.cxx
