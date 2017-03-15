@@ -50,3 +50,4 @@ Common
   ImageReadExtractFilterInsertWrite/Documentation.rst
   ReadWriteVectorImage/Documentation.rst
   CreateAnImage/Documentation.rst
+  ImportPixelBufferIntoAnImage/Documentation.rst

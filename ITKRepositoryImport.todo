@@ -17,7 +17,6 @@
 * ../ITK/Examples/DataRepresentation/Mesh/Mesh2.cxx
 * ../ITK/Examples/DataRepresentation/Mesh/PointSet3.cxx
 * ../ITK/Examples/DataRepresentation/Containers/TreeContainer.cxx
-* ../ITK/Examples/DataRepresentation/Image/Image5.cxx
 * ../ITK/Examples/DataRepresentation/Image/Image1.cxx
 * ../ITK/Examples/DataRepresentation/Image/ImageAdaptor1.cxx
 * ../ITK/Examples/DataRepresentation/Image/RGBImage.cxx

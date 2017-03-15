@@ -68,3 +68,8 @@ compare_to_baseline(EXAMPLE_NAME ImageReadExtractFilterInsertWrite
   BASELINE_PREFIX OutputBaseline
   )
 add_example(CreateAnImage)
+
+add_example(ImportPixelBufferIntoAnImage)
+compare_to_baseline(EXAMPLE_NAME ImportPixelBufferIntoAnImage
+  BASELINE_PREFIX OutputBaseline
+  )
