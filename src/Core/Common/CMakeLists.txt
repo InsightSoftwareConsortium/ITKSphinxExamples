@@ -67,3 +67,4 @@ add_example(ImageReadExtractFilterInsertWrite)
 compare_to_baseline(EXAMPLE_NAME ImageReadExtractFilterInsertWrite
   BASELINE_PREFIX OutputBaseline
   )
+add_example(CreateAnImage)
