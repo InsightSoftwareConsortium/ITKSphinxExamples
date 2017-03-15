@@ -45,3 +45,4 @@ Common
   ConceptCheckingIsSameType/Documentation.rst
   ConceptCheckingIsSameDimension/Documentation.rst
   ReRunPipelineWithChangingLargestPossibleRegion/Documentation.rst
+  CreateAnImageOfVectors/Documentation.rst

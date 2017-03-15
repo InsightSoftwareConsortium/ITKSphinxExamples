@@ -53,3 +53,5 @@ add_example( ConceptCheckingIsSameType )
 add_example( ConceptCheckingIsSameDimension )
 
 add_example( ReRunPipelineWithChangingLargestPossibleRegion )
+
+add_example(CreateAnImageOfVectors)
