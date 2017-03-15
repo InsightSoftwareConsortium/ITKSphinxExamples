@@ -4,6 +4,7 @@ Mesh
 .. toctree::
   :maxdepth: 1
 
+  AccessDataInCells/Documentation.rst
   AddPointsAndEdges/Documentation.rst
   CalculateAreaAndVolumeOfSimplexMesh/Documentation.rst
   ConvertMeshToUnstructeredGrid/Documentation.rst

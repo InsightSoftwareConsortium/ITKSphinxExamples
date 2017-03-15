@@ -9,6 +9,8 @@ add_example( ExtractIsoSurface )
 add_example( TranslateOneMesh )
 #compare_to_baseline( TranslateOneMesh Output )
 
+add_example(AccessDataInCells)
+
 add_example(AddPointsAndEdges)
 add_example(CalculateAreaAndVolumeOfSimplexMesh)
 
