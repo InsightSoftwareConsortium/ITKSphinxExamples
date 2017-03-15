@@ -47,3 +47,4 @@ Common
   ReRunPipelineWithChangingLargestPossibleRegion/Documentation.rst
   CreateAnImageOfVectors/Documentation.rst
   FlipImageFilter/Documentation.rst
+  ReadWriteVectorImage/Documentation.rst
