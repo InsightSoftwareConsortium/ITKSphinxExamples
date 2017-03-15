@@ -7,3 +7,6 @@ compare_to_baseline( EXAMPLE_NAME MedianFilteringOfAnRGBImage
   BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-intensity 2.0e1 )
 add_example( SmoothWithRecursiveGaussian )
 compare_to_baseline( EXAMPLE_NAME SmoothWithRecursiveGaussian BASELINE_PREFIX OutputBaseline )
+
+add_example(BlurringAnImageUsingABinomialKernel)
+compare_to_baseline( EXAMPLE_NAME BlurringAnImageUsingABinomialKernel BASELINE_PREFIX OutputBaseline )
