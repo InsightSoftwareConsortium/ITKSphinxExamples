@@ -166,7 +166,7 @@ input and output rendering is insightful and motivating.  The screenshot can
 be rendered with your favorite visualization, then included like the image
 renderings per above.
 
-As a supplement to the renderings, an interative 3D WebGL can be included in
+As a supplement to the renderings, an interactive 3D WebGL can be included in
 HTML output.  This can be produced with the `--webgl` flag to the VTK_ Python
 script in the repository at `Utilities/Visualization/VTKPolyData.py`.  In
 recent releases of Paraview_, it can be produced by clicking *File*, *Export
