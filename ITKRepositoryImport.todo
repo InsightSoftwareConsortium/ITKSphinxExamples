@@ -57,7 +57,6 @@
 * ../ITK/Examples/IO/DicomSeriesReadImageWrite2.cxx
 * ../ITK/Examples/IO/DicomSeriesReadSeriesWrite.cxx
 * ../ITK/Examples/IO/DicomImageReadPrintTags.cxx
-* ../ITK/Examples/IO/VectorImageReadWrite.cxx
 * ../ITK/Examples/IO/ImageReadDicomSeriesWrite.cxx
 * ../ITK/Examples/IO/ImageReadRegionOfInterestWrite.cxx
 * ../ITK/Examples/IO/itk.dic
