@@ -8,3 +8,4 @@ Smoothing
   ApplyMedianFilter/Documentation.rst
   MedianFilteringOfAnRGBImage/Documentation.rst
   SmoothWithRecursiveGaussian/Documentation.rst
+  BlurringAnImageUsingABinomialKernel/Documentation.rst
