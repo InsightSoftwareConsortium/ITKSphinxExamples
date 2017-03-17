@@ -148,10 +148,8 @@
 ./Smoothing/MinMaxCurvatureFlowImageFilter.cxx
 ./Smoothing/MeanImageFilter.cxx
 ./Smoothing/BinaryMinMaxCurvatureFlowImageFilter.cxx
-./Smoothing/BinomialBlurImageFilter.cxx
 ./Smoothing/VectorGradientAnisotropicDiffusionImageFilter.cxx
 ./Smoothing/SmoothingRecursiveGaussianImageFilter.cxx
-./Smoothing/MedianImageFilter.cxx
 ./Smoothing/AntiAliasBinaryImageFilter.cxx
 ./Smoothing/CurvatureFlowImageFilter.cxx
 ./Smoothing/BilateralImageFilter.cxx
@@ -231,7 +229,6 @@
 ./ImageProcessing/MaskImageFilter.cxx
 ./ImageProcessing/BinaryThinningImageFilter.cxx
 ./ImageProcessing/LabelStatisticsImageFilter.cxx
-./ImageProcessing/ExtractImageFilter.cxx
 ./ImageProcessing/AddPixelAccessor.cxx
 ./ImageProcessing/HammingWindowFunction.cxx
 ./ImageProcessing/LabelMapToLabelImageFilter.cxx
@@ -261,7 +258,6 @@
 ./ImageProcessing/ZeroCrossingImageFilter.cxx
 ./ImageProcessing/ClampImageFilter.cxx
 ./ImageProcessing/AddConstantToImageFilter.cxx
-./ImageProcessing/PasteImageFilter.cxx
 ./ImageProcessing/BinaryStatisticsOpeningImageFilter.cxx
 ./ImageProcessing/ValuedRegionalMaximaImageFilter.cxx
 ./ImageProcessing/RelabelComponentImageFilter.cxx
