@@ -63,3 +63,8 @@ compare_to_baseline(
 
 add_example( ExtractRegionOfInterestInOneImage )
 compare_to_baseline( EXAMPLE_NAME ExtractRegionOfInterestInOneImage BASELINE_PREFIX OutputBaseline )
+
+add_example(WarpAnImageUsingADeformationField)
+compare_to_baseline(EXAMPLE_NAME WarpAnImageUsingADeformationField
+  BASELINE_PREFIX OutputBaseline
+  )

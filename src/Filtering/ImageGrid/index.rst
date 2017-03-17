@@ -16,3 +16,4 @@ ImageGrid
   PermuteAxesOfAnImage/Documentation.rst
   ResampleAVectorImage/Documentation.rst
   ExtractRegionOfInterestInOneImage/Documentation.rst
+  WarpAnImageUsingADeformationField/Documentation.rst
