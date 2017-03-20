@@ -49,3 +49,4 @@ Common
   FlipImageFilter/Documentation.rst
   ImageReadExtractFilterInsertWrite/Documentation.rst
   ReadWriteVectorImage/Documentation.rst
+  CreateAnImage/Documentation.rst
