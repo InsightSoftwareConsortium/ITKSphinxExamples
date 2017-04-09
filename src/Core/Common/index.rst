@@ -26,7 +26,7 @@ Common
   CreateAFixedArray/Documentation.rst
   AddOffsetToIndex/Documentation.rst
   GetNameOfClass/Documentation.rst
-  CreateAImageRegion/Documentation.rst
+  CreateAnImageRegion/Documentation.rst
   IsPixelInsideRegion/Documentation.rst
   ImageRegionIntersection/Documentation.rst
   ImageRegionOverlap/Documentation.rst
