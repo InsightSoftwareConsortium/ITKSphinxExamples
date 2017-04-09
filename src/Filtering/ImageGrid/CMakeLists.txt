@@ -1,5 +1,10 @@
 add_example( ChangeImageOriginSpacingOrDirection )
 
+add_example(FlipImageFilter)
+compare_to_baseline(EXAMPLE_NAME FlipImageFilter
+  BASELINE_PREFIX OutputBaseline
+  )
+
 add_example( FlipAnImageOverSpecifiedAxes )
 compare_to_baseline(
   EXAMPLE_NAME FlipAnImageOverSpecifiedAxes

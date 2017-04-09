@@ -54,10 +54,6 @@ add_example( ConceptCheckingIsSameDimension )
 
 add_example( ReRunPipelineWithChangingLargestPossibleRegion )
 add_example(CreateAnImageOfVectors)
-add_example(FlipImageFilter)
-compare_to_baseline(EXAMPLE_NAME FlipImageFilter
-  BASELINE_PREFIX OutputBaseline
-  )
 add_example(ReadWriteVectorImage)
 compare_to_baseline(EXAMPLE_NAME ReadWriteVectorImage
   BASELINE_PREFIX OutputBaseline
