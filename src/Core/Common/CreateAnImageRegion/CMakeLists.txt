@@ -19,7 +19,7 @@ install( FILES Code.cxx Code.py CMakeLists.txt
 )
 
 enable_testing()
-set(testOutputRegex "^  RTTI typeinfo:   itk::Image<unsigned char, 3u>")
+set(testOutputRegex "ImageRegion")
 add_test( NAME CreateAnImageRegionTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateAnImageRegion )
 set_tests_properties(CreateAnImageRegionTest PROPERTIES

@@ -32,3 +32,5 @@ RegionType = itk.ImageRegion[Dimension]
 region = RegionType()
 region.SetIndex(index)
 region.SetSize(size)
+
+print(region)
