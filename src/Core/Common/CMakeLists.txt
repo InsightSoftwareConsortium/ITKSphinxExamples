@@ -18,7 +18,7 @@ add_example( CreateAnother )
 add_example( CreateAFixedArray )
 add_example( AddOffsetToIndex )
 add_example( GetNameOfClass )
-add_example( CreateAImageRegion )
+add_example( CreateAnImageRegion )
 add_example( IsPixelInsideRegion )
 add_example( ImageRegionIntersection )
 
