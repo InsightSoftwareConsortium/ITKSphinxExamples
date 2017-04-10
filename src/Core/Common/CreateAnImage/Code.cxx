@@ -24,14 +24,14 @@ int main( int argc, char* argv[] )
   ImageType::Pointer image = ImageType::New();
 
   ImageType::IndexType start;
-  start[0] =   0;  // first index on X
-  start[1] =   0;  // first index on Y
-  start[2] =   0;  // first index on Z
+  start[0] = 0;  // first index on X
+  start[1] = 0;  // first index on Y
+  start[2] = 0;  // first index on Z
 
   ImageType::SizeType  size;
-  size[0]  = 200;  // size along X
-  size[1]  = 200;  // size along Y
-  size[2]  = 200;  // size along Z
+  size[0] = 200;  // size along X
+  size[1] = 200;  // size along Y
+  size[2] = 200;  // size along Z
 
   ImageType::RegionType region;
   region.SetSize( size );
