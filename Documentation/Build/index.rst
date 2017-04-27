@@ -1,13 +1,47 @@
-How to build and visualize
-==========================
+How to build, run, and visualize
+================================
+
+.. _run-python-examples:
+
+The Python examples do not need to be built. First, install Python from
+`python.org <https://www.python.org/>`_, `Anaconda
+<https://www.continuum.io/downloads>`_, or a system package manager like
+Ubuntu Linux `apt <https://help.ubuntu.com/lts/serverguide/apt.html>`_
+or macOS `Homebrew <https://brew.sh/>`_.
+
+Next, install the *itk* package::
+
+  python -m pip install --upgrade pip
+  python -m pip install itk -f https://github.com/InsightSoftwareConsortium/ITKPythonPackage/releases/tag/latest
+
+.. figure:: DownloadExampleHighlighted.png
+  :alt: Download an example
+  :align: center
+  :width: 600
+
+  Download `an example
+  <https://itk.org/ITKExamples/src/Filtering/BinaryMathematicalMorphology/DilateABinaryImage/Documentation.html>`_
+  by clicking the *Download* button.
+
+Download the *example.tar.gz* or *example.zip* file from the link on the top
+of an example's webpage.  Unpack the example. For example,
+
+::
+
+  tar xvzf example.tar.gz
+
+Finally, run the example::
+
+  python examples/Code.py
+
 
 .. _build-individual-examples:
 
 Build individual examples
 -------------------------
 
-Download the *example.tar.gz* or *example.zip* file from the link in the left
-hand column of the example's webpage.  Unpack the example::
+Download the *example.tar.gz* or *example.zip* file from the link on the top
+of the example's webpage.  Unpack the example::
 
   tar xvzf example.tar.gz
 
