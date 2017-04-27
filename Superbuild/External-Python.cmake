@@ -31,6 +31,6 @@ else()
     SOURCE_DIR ${_virtualenv_SOURCE_DIR}
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ${PYTHON_EXECUTABLE} "${_virtualenv_script}" "${_itk_venv}"
-    INSTALL_COMMAND ${ITKPYTHON_EXECUTABLE} -m pip install itk sphinx -f https://github.com/InsightSoftwareConsortium/ITKPythonPackage/releases/tag/nightly
+    INSTALL_COMMAND ${ITKPYTHON_EXECUTABLE} -m pip install itk sphinx -f https://github.com/InsightSoftwareConsortium/ITKPythonPackage/releases/tag/latest
     )
 endif()
