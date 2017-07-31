@@ -12,7 +12,7 @@ or macOS `Homebrew <https://brew.sh/>`_.
 Next, install the *itk* package::
 
   python -m pip install --upgrade pip
-  python -m pip install itk -f https://github.com/InsightSoftwareConsortium/ITKPythonPackage/releases/tag/latest
+  python -m pip install itk
 
 .. figure:: DownloadExampleHighlighted.png
   :alt: Download an example
