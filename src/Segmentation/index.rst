@@ -7,3 +7,4 @@ Segmentation
   LevelSetsv4Visualization/index.rst
   LabelVoting/index.rst
   LevelSets/index.rst
+  Watersheds/index.rst
