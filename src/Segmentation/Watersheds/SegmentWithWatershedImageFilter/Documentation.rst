@@ -38,7 +38,7 @@ Python
 ......
 
 .. literalinclude:: Code.py
-   :lines: 1, 20-
+   :lines: 1, 18-
 
 
 Classes demonstrated

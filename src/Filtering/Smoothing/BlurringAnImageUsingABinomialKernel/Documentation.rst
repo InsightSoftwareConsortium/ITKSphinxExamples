@@ -43,7 +43,7 @@ Python
 
 .. literalinclude:: Code.py
    :language: python
-   :lines: 1, 20-
+   :lines: 1, 18-
 
 
 Classes demonstrated
