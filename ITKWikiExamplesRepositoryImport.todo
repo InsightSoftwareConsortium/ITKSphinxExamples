@@ -15,7 +15,6 @@
 ./Broken/ImageProcessing/GradientOfVectorImage.cxx
 ./Segmentation/LabelMapContourOverlayImageFilter.cxx
 ./Segmentation/VoronoiDiagram2DGenerator.cxx
-./Segmentation/WatershedImageFilter.cxx
 ./Segmentation/ContourExtractor2DImageFilter.cxx
 ./Segmentation/SimpleContourExtractorImageFilter.cxx
 ./DICOM/ResampleDICOM.cxx
