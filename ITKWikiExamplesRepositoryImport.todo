@@ -44,7 +44,6 @@
 ./Iterators/ConstantBoundaryCondition.cxx
 ./Iterators/ImageRegionConstIterator.cxx
 ./Iterators/NeighborhoodIterator.cxx
-./NeedDemo/ImageProcessing/AdaptiveHistogramEqualizationImageFilter.cxx
 ./WishList/Segmentation/MeanShiftClustering.cxx
 ./WishList/Segmentation/SinglephaseChanAndVeseSparseFieldLevelSetSegmentation.cxx
 ./WishList/Segmentation/EstimatePCAModel.cxx
