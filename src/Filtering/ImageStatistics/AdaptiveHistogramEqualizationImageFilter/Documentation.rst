@@ -26,20 +26,24 @@ Results
 -------
 
 .. |input_image| image:: sf4.png
-   :align: middle
+   :align: center
    :alt: Input image
 .. |input_image_histogram| image:: sf4_histogram.png
-   :align: middle
+   :align: center
    :alt: Input image histogram
 .. |output_image| image:: AdaptiveHistogramEqualizationImageFilter06Baseline.png
-   :align: middle
+   :align: center
    :alt: Output image
 .. |output_image_histogram| image:: AdaptiveHistogramEqualizationImageFilter06Baseline_histogram.png
-   :align: middle
+   :align: center
    :alt: Output image histogram
 
 +-------------------------+--------------------------+
+|       Input image       |       Output image       |
++-------------------------+--------------------------+
 |      |input_image|      |      |output_image|      |
++-------------------------+--------------------------+
+|  Input image histogram  |  Output image histogram  |
 +-------------------------+--------------------------+
 | |input_image_histogram| | |output_image_histogram| |
 +-------------------------+--------------------------+
