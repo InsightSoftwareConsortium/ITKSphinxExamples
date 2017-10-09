@@ -6,6 +6,8 @@ A set of cookbook examples for the Insight Toolkit, ITK_.
 Download instructions
 ---------------------
 
+Clone the repository using Git::
+
   $ git clone --recursive https://itk.org/ITKExamples.git
 
 
@@ -67,7 +69,7 @@ PDF generation requires a TeX distribution like `TeX Live`_ or MiKTeX_.
 Development setup
 ------------------
 
-Run the bash scipt SetupForDevelopment.sh::
+Run the bash script ``SetupForDevelopment.sh``::
 
   $ ./Utilities/SetupForDevelopment.sh
 
