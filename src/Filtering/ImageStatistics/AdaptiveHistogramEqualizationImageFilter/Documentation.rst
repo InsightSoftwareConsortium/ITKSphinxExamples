@@ -38,15 +38,22 @@ Results
    :align: center
    :alt: Output image histogram
 
-+-------------------------+--------------------------+
-|       Input image       |       Output image       |
-+-------------------------+--------------------------+
-|      |input_image|      |      |output_image|      |
-+-------------------------+--------------------------+
-|  Input image histogram  |  Output image histogram  |
-+-------------------------+--------------------------+
-| |input_image_histogram| | |output_image_histogram| |
-+-------------------------+--------------------------+
+.. |input_image_caption| replace:: Input image.
+.. |input_image_histogram_caption| replace:: Input image histogram.
+.. |output_image_caption| replace:: Output image.
+.. |output_image_histogram_caption| replace:: Output image histogram.
+
+.. tabularcolumns:: |c|c|
+
++                                   +                                    +
+|           |input_image|           |           |output_image|           |
++                                   +                                    +
+|        |input_image_caption|      |       |output_image_caption|       |
++                                   +                                    +
+|      |input_image_histogram|      |      |output_image_histogram|      |
++                                   +                                    +
+|  |input_image_histogram_caption|  |  |output_image_histogram_caption|  |
++-----------------------------------+------------------------------------+
 
 
 Code
