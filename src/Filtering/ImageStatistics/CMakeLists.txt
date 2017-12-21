@@ -2,7 +2,7 @@
 add_example(AdaptiveHistogramEqualizationImageFilter)
 compare_to_baseline(EXAMPLE_NAME AdaptiveHistogramEqualizationImageFilter
   TEST_NAME AdaptiveHistogramEqualizationImageFilterTest01BaselineComparison
-  BASELINE_PREFIX AdaptiveHistogramEqualizationImageFilterTest01Baseline
+  BASELINE_PREFIX AdaptiveHistogramEqualizationImageFilter01Baseline
   DEPENDS AdaptiveHistogramEqualizationImageFilterTest01
   TEST_IMAGE AdaptiveHistogramEqualizationImageFilterTest01.png
   )
