@@ -52,9 +52,6 @@ int main( int argc, char* argv[] )
   typedef float                                                             LevelSetPixelType;
   typedef itk::WhitakerSparseLevelSetImage< LevelSetPixelType, Dimension >  LevelSetType;
 
-  typedef LevelSetType::OutputType                      LevelSetOutputType;
-  typedef LevelSetType::OutputRealType                  LevelSetRealType;
-
   // Generate a binary mask that will be used as initialization for the level
   // set evolution.
   typedef itk::OtsuMultipleThresholdsImageFilter< InputImageType, InputImageType > OtsuFilterType;

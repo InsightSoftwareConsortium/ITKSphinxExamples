@@ -61,9 +61,6 @@ int main( int argc, char* argv[] )
   typedef itk::Image< LevelSetPixelType, Dimension >    LevelSetImageType;
   typedef itk::LevelSetDenseImage< LevelSetImageType >  LevelSetType;
 
-  typedef LevelSetType::OutputType                      LevelSetOutputType;
-  typedef LevelSetType::OutputRealType                  LevelSetRealType;
-
   // Generate a binary mask that will be used as initialization for the level
   // set evolution.
   typedef itk::OtsuMultipleThresholdsImageFilter< InputImageType, LevelSetImageType > OtsuFilterType;
