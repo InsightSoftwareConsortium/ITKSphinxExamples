@@ -47,7 +47,6 @@ Common
   ReRunPipelineWithChangingLargestPossibleRegion/Documentation.rst
   CreateAnImageOfVectors/Documentation.rst
   FlipImageFilter/Documentation.rst
-  ImageReadExtractFilterInsertWrite/Documentation.rst
   ReadWriteVectorImage/Documentation.rst
   CreateAnImage/Documentation.rst
   ImportPixelBufferIntoAnImage/Documentation.rst
