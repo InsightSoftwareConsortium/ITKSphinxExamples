@@ -21,24 +21,22 @@ if len(sys.argv) != 4:
     print('Usage: ' + sys.argv[0] +
           ' input3DImageFile  output3DImageFile  sliceNumber')
     sys.exit(1)
+inputFilename = sys.argv[1]
+outputFilename = sys.argv[2]
 
 Dimension = 3
 PixelType = itk.ctype('short')
 ImageType = itk.Image[PixelType, Dimension]
 
-# Here we recover the file names from the command line arguments
-inputFilename = sys.argv[1]
-outputFilename = sys.argv[2]
 reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputFilename)
 reader.Update()
+inputImage = reader.GetOutput()
 
-extractFilter = itk.ExtractImageFilter[ImageType, ImageType].New()
-extractFilter.SetInput(reader.GetOutput())
+extractFilter = itk.ExtractImageFilter.New(inputImage)
 extractFilter.SetDirectionCollapseToSubmatrix()
 
 # set up the extraction region [one slice]
-inputImage = reader.GetOutput()
 inputRegion = inputImage.GetBufferedRegion()
 size = inputRegion.GetSize()
 size[2] = 1  # we extract along z direction
@@ -50,10 +48,8 @@ desiredRegion.SetSize(size)
 desiredRegion.SetIndex(start)
 
 extractFilter.SetExtractionRegion(desiredRegion)
-pasteFilter = itk.PasteImageFilter[ImageType].New()
-medianFilter = itk.MedianImageFilter[ImageType, ImageType].New()
-extractFilter.SetInput(inputImage)
-medianFilter.SetInput(extractFilter.GetOutput())
+pasteFilter = itk.PasteImageFilter.New(inputImage)
+medianFilter = itk.MedianImageFilter.New(extractFilter)
 pasteFilter.SetSourceImage(medianFilter.GetOutput())
 pasteFilter.SetDestinationImage(inputImage)
 pasteFilter.SetDestinationIndex(start)
@@ -67,7 +63,4 @@ medianFilter.UpdateLargestPossibleRegion()
 medianImage = medianFilter.GetOutput()
 pasteFilter.SetSourceRegion(medianImage.GetBufferedRegion())
 
-writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(outputFilename)
-writer.SetInput(pasteFilter.GetOutput())
-writer.Update()
+itk.imwrite(pasteFilter.GetOutput(), outputFilename)
