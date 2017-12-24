@@ -56,4 +56,4 @@ Python
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::Histogram
+.. breathelink:: itk::Statistics::Histogram
