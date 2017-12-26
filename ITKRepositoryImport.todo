@@ -358,7 +358,6 @@
 * ../ITK/Examples/Filtering/CurvatureAnisotropicDiffusionImageFilter.tcl
 * ../ITK/Examples/Filtering/FFTDirectInverse.cxx
 * ../ITK/Examples/Filtering/MeanImageFilter.py
-* ../ITK/Examples/Filtering/FlipImageFilter.cxx
 * ../ITK/Examples/Filtering/RGBCurvatureAnisotropicDiffusionImageFilter.cxx
 * ../ITK/Examples/Filtering/SigmoidImageFilter.java
 * ../ITK/Examples/Filtering/DerivativeImageFilter.cxx

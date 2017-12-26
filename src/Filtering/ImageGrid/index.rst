@@ -17,3 +17,4 @@ ImageGrid
   ResampleAVectorImage/Documentation.rst
   ExtractRegionOfInterestInOneImage/Documentation.rst
   WarpAnImageUsingADeformationField/Documentation.rst
+  ProcessA2DSliceOfA3DImage/Documentation.rst

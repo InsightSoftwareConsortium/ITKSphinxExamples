@@ -68,3 +68,8 @@ add_example(WarpAnImageUsingADeformationField)
 compare_to_baseline(EXAMPLE_NAME WarpAnImageUsingADeformationField
   BASELINE_PREFIX OutputBaseline
   )
+
+add_example(ProcessA2DSliceOfA3DImage)
+compare_to_baseline(EXAMPLE_NAME ProcessA2DSliceOfA3DImage
+  BASELINE_PREFIX OutputBaseline
+  )

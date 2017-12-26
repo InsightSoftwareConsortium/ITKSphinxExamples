@@ -1,5 +1,5 @@
-Image Read Extract Filter Insert Write
-======================================
+Process A 2D Slice Of A 3D Image
+================================
 
 .. index::
    single: ExtractImageFilter
