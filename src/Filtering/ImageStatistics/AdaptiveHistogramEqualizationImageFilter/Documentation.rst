@@ -26,16 +26,19 @@ Results
 -------
 
 .. |input_image| image:: sf4.png
-   :align: center
+   :align: middle
    :alt: Input image
+
 .. |input_image_histogram| image:: sf4_histogram.png
-   :align: center
+   :align: middle
    :alt: Input image histogram
+
 .. |output_image| image:: AdaptiveHistogramEqualizationImageFilter06Baseline.png
-   :align: center
+   :align: middle
    :alt: Output image
+
 .. |output_image_histogram| image:: AdaptiveHistogramEqualizationImageFilter06Baseline_histogram.png
-   :align: center
+   :align: middle
    :alt: Output image histogram
 
 .. |input_image_caption| replace:: Input image.
@@ -45,15 +48,13 @@ Results
 
 .. tabularcolumns:: |c|c|
 
-+                                   +                                    +
-|           |input_image|           |           |output_image|           |
-+                                   +                                    +
-|        |input_image_caption|      |       |output_image_caption|       |
-+                                   +                                    +
-|      |input_image_histogram|      |      |output_image_histogram|      |
-+                                   +                                    +
-|  |input_image_histogram_caption|  |  |output_image_histogram_caption|  |
-+-----------------------------------+------------------------------------+
+===================================   ====================================
+            |input_image|                       |output_image|
+         |input_image_caption|              |output_image_caption|
+-----------------------------------   ------------------------------------
+       |input_image_histogram|             |output_image_histogram|
+   |input_image_histogram_caption|     |output_image_histogram_caption|
+===================================   ====================================
 
 
 Code

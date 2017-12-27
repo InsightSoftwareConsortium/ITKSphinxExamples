@@ -3,7 +3,7 @@ How to write a new example
 
 In this section we describe how to write an example by walking through the
 sections of an example's reStructuredText_ file.  The mechanics of submitting an
-example via the :ref:`web interface <web-submission>` or :ref:`Git/Gerrit
+example via :ref:`Git/Gerrit
 directly <text-editor-submission>` are covered in other sections.
 
 

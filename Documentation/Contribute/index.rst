@@ -3,8 +3,7 @@ Contribute
 
 The ITK Examples are stored in the Git_ distributed version control system, and
 the mainline repository can be found at `ITK Examples repository`_.  Files in
-the repository can be edited either with the :ref:`web interface
-<web-submission>` or the typical :ref:`text editor / version control workflow
+the repository can be edited via the typical :ref:`text editor / version control workflow
 <text-editor-submission>` used when modifying source code.
 
 Examples code can be written in the C++ or Python programming languages.

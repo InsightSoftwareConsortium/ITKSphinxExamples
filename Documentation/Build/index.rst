@@ -243,15 +243,15 @@ VV
   VV_
 
 
-.. _3DSlicer:              http://www.slicer.org/
-.. _CMake:                 http://cmake.org/
-.. _FLTK:                  http://www.fltk.org/
-.. _ImageViewer:           https://github.com/TubeTK/ImageViewer
+.. _3DSlicer:              https://www.slicer.org/
+.. _CMake:                 https://cmake.org/
+.. _FLTK:                  http://www.fltk.org/index.php
+.. _ImageViewer:           https://github.com/KitwareMedical/ImageViewer
 .. _ITKApps:               https://itk.org/ITKApps.git
 .. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
-.. _MITK:                  http://www.mitk.org/wiki/
-.. _Paraview:              http://paraview.org/
+.. _MITK:                  http://www.mitk.org/wiki/MITK
+.. _Paraview:              https://www.paraview.org/
 .. _QGoImageCompare:       https://github.com/gofigure2/QGoImageCompare
 .. _Qt:                    http://qt-project.org/
-.. _VTK:                   http://vtk.org/
-.. _VV:                    http://www.creatis.insa-lyon.fr/rio/vv
+.. _VTK:                   https://vtk.org/
+.. _VV:                    https://www.creatis.insa-lyon.fr/rio/vv
