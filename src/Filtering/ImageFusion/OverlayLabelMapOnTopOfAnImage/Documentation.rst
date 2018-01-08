@@ -41,6 +41,13 @@ C++
 .. literalinclude:: Code.cxx
    :lines: 18-
 
+Python
+......
+
+.. literalinclude:: Code.py
+   :language: python
+   :lines: 1, 18-
+
 
 Classes demonstrated
 --------------------
