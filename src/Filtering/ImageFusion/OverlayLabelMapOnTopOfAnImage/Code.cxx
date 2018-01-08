@@ -43,16 +43,18 @@ int main( int argc, char* argv[] )
   typedef unsigned char                      PixelType;
   typedef itk::Image< PixelType, Dimension > ImageType;
 
+
   typedef itk::ImageFileReader< ImageType >  ReaderType;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
+  ReaderType::Pointer labelReader = ReaderType::New();
+  labelReader->SetFileName( labelFileName );
+
+
   typedef PixelType LabelType;
   typedef itk::LabelObject< LabelType, Dimension > LabelObjectType;
   typedef itk::LabelMap< LabelObjectType > LabelMapType;
-
-  ReaderType::Pointer labelReader = ReaderType::New();
-  labelReader->SetFileName( labelFileName );
 
   typedef itk::LabelImageToLabelMapFilter< ImageType, LabelMapType > ConverterType;
   ConverterType::Pointer converter = ConverterType::New();
@@ -63,6 +65,7 @@ int main( int argc, char* argv[] )
   filter->SetInput( converter->GetOutput() );
   filter->SetFeatureImage( reader->GetOutput() );
   filter->SetOpacity( 0.5 );
+
 
   typedef itk::ImageFileWriter< FilterType::OutputImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
