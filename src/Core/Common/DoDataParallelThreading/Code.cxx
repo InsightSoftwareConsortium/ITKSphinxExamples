@@ -87,7 +87,7 @@ protected:
   ComputeCellCountThreader() {}
 
 private:
-  virtual void BeforeThreadedExecution()
+  void BeforeThreadedExecution() override
     {
     // Reset the counts for all cell types to zero.
     this->m_Associate->m_CellCount[NEURON]          = 0;
@@ -111,8 +111,8 @@ private:
       }
     }
 
-  virtual void ThreadedExecution( const DomainType & subDomain,
-                                  const itk::ThreadIdType threadId )
+  void ThreadedExecution( const DomainType & subDomain,
+                                  const itk::ThreadIdType threadId ) override
     {
     // Look only at the range of cells by the set of indices in the subDomain.
     for( itk::IndexValueType ii = subDomain[0]; ii <= subDomain[1]; ++ii )
@@ -133,7 +133,7 @@ private:
       }
     }
 
-  virtual void AfterThreadedExecution()
+  void AfterThreadedExecution() override
     {
     // Accumulate the cell counts per thread in the associate's total cell
     // count.
