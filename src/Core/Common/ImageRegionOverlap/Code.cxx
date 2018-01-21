@@ -16,8 +16,8 @@
  *
  *=========================================================================*/
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <cstdlib>
+#include <cstdio>
 
 #include "itkRGBPixel.h"
 #include "itkImageRegionIterator.h"

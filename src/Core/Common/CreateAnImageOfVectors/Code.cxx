@@ -19,7 +19,7 @@
 #include "itkVector.h"
 #include "itkImage.h"
 
-int main( int argc, char* argv[] )
+int main( int , char* [] )
 {
   typedef itk::Vector< float, 3 >       PixelType;
   typedef itk::Image< PixelType, 3 >    ImageType;

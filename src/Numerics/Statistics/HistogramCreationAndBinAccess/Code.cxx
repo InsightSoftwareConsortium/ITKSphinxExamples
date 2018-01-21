@@ -23,7 +23,6 @@ int main()
 {
   typedef float                                         MeasurementType;
   typedef itk::Statistics::DenseFrequencyContainer2     FrequencyContainerType;
-  typedef FrequencyContainerType::AbsoluteFrequencyType FrequencyType;
 
   const unsigned int numberOfComponents = 2;
   typedef itk::Statistics::Histogram< MeasurementType,

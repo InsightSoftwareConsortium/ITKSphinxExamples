@@ -50,11 +50,7 @@ int main( int argc, char* argv[] )
 
   InputImageType::Pointer input = reader->GetOutput();
 
-  typedef float                                     LevelSetPixelType;
   typedef itk::ShiSparseLevelSetImage< Dimension >  LevelSetType;
-
-  typedef LevelSetType::OutputType                  LevelSetOutputType;
-  typedef LevelSetType::OutputRealType              LevelSetRealType;
 
   // Generate a binary mask that will be used as initialization for the level
   // set evolution.

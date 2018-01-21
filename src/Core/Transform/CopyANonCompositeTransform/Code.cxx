@@ -31,6 +31,7 @@ int main( int, char* [] )
   parameters[4] = 5.0;
   parameters[5] = 6.0;
   transform->SetParameters( parameters );
+
   TransformType::FixedParametersType fixedParameters( 3 );
   fixedParameters[0] = -3.5;
   fixedParameters[1] = -4.5;

@@ -36,6 +36,7 @@ int main( int , char* [] )
   eulerParameters[4] = 5.0;
   eulerParameters[5] = 6.0;
   eulerTransform->SetParameters( eulerParameters );
+
   EulerTransformType::FixedParametersType eulerFixedParameters( Dimension );
   eulerFixedParameters[0] = -3.5;
   eulerFixedParameters[1] = -4.5;
