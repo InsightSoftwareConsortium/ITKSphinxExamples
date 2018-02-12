@@ -36,7 +36,7 @@ class MyCommand: public itk::Command
         {
         return;
         }
-      const itk::ProcessObject * processObject =
+      const auto * processObject =
         dynamic_cast< const itk::ProcessObject * >( caller );
       if( ! processObject )
         {

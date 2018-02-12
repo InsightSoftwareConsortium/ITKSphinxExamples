@@ -96,11 +96,9 @@ int main( int argc, char* argv[] )
   typedef itk::QuadEdgeMeshPolygonCell< MeshType::CellType > PolygonType;
 
   // iterate on the faces to be added into resulting mesh
-  for( std::set< MeshType::CellIdentifier >::iterator fIt = facesSet.begin();
-       fIt != facesSet.end();
-       ++fIt )
+  for(std::__1::__tree_const_iterator<unsigned long, std::__1::__tree_node<unsigned long, void *> *, long>::value_type fIt : facesSet)
     {
-    PolygonType* face = dynamic_cast< PolygonType* >( cells->ElementAt( *fIt ) );
+    auto* face = dynamic_cast< PolygonType* >( cells->ElementAt( fIt ) );
     MeshType::PointIdentifier id[3];
 
     if( face )

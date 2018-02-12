@@ -33,7 +33,7 @@ int main( int argc, char* argv[] )
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
-  unsigned int accumulateDimension = static_cast< unsigned int >( atoi( argv[3] ) );
+  auto accumulateDimension = static_cast< unsigned int >( atoi( argv[3] ) );
 
   const unsigned int Dimension = 3;
 

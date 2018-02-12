@@ -52,8 +52,8 @@ int main(int argc, char* argv[])
     {
     typedef std::vector< std::string >    SeriesIdContainer;
     const SeriesIdContainer & seriesUID = nameGenerator->GetSeriesUIDs();
-    SeriesIdContainer::const_iterator seriesItr = seriesUID.begin();
-    SeriesIdContainer::const_iterator seriesEnd = seriesUID.end();
+    auto seriesItr = seriesUID.begin();
+    auto seriesEnd = seriesUID.end();
 
     if (seriesItr != seriesEnd)
       {

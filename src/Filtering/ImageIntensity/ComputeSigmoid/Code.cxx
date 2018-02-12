@@ -41,8 +41,8 @@ int main( int argc, char* argv[] )
   typedef itk::Image< PixelType, Dimension > ImageType;
   typedef float                              ScalarType;
 
-  const PixelType outputMinimum = static_cast<PixelType>(atoi( argv[3] ) );
-  const PixelType outputMaximum = static_cast<PixelType>(atoi( argv[4] ) );
+  const auto outputMinimum = static_cast<PixelType>(atoi( argv[3] ) );
+  const auto outputMaximum = static_cast<PixelType>(atoi( argv[4] ) );
   const ScalarType alpha = atof( argv[5] );
   const ScalarType beta  = atof( argv[6] );
 

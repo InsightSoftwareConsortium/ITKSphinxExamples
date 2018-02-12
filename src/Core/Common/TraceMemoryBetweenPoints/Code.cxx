@@ -28,7 +28,7 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  const unsigned int N = static_cast< unsigned int >( atoi( argv[1] ) );
+  const auto N = static_cast< unsigned int >( atoi( argv[1] ) );
 
   if( N == 0 )
     {
@@ -50,7 +50,7 @@ int main( int argc, char* argv[] )
   std::cout << std::endl;
 
   memoryProbe.Start();
-  char* a = new char[N];
+  auto* a = new char[N];
   // The memory must be used for it to be counted.
   for(unsigned int i = 0; i < N; ++i)
     {

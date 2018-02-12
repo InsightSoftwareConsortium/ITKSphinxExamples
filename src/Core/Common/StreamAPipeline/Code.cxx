@@ -68,9 +68,9 @@ int main( int argc, char* argv[] )
   const MonitorFilterType::RegionVectorType updatedRequestedRegions =
     monitorFilter->GetUpdatedRequestedRegions();
   std::cout << "Updated RequestedRegions's:" << std::endl;
-  for( size_t ii = 0; ii < updatedRequestedRegions.size(); ++ii )
+  for(const auto & updatedRequestedRegion : updatedRequestedRegions)
     {
-    std::cout << "  " << updatedRequestedRegions[ii] << std::endl;
+    std::cout << "  " << updatedRequestedRegion << std::endl;
     }
 
   return EXIT_SUCCESS;
