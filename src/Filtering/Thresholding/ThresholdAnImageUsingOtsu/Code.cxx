@@ -40,9 +40,9 @@ int main( int argc, char* argv[] )
   const char * InputImage = argv[1];
   const char * OutputImage = argv[2];
 
-  const SizeType NumberOfHistogramBins = static_cast<SizeType>(atoi( argv[3] ) );
-  const SizeType NumberOfThresholds = static_cast<SizeType>(atoi( argv[4] ) );
-  const PixelType LabelOffset = static_cast<PixelType>(atoi( argv[5] ) );
+  const auto NumberOfHistogramBins = static_cast<SizeType>(atoi( argv[3] ) );
+  const auto NumberOfThresholds = static_cast<SizeType>(atoi( argv[4] ) );
+  const auto LabelOffset = static_cast<PixelType>(atoi( argv[5] ) );
 
   typedef itk::Image< PixelType, Dimension >  ImageType;
 
@@ -62,9 +62,9 @@ int main( int argc, char* argv[] )
 
   std::cout << "Thresholds:" << std::endl;
 
-  for( size_t i = 0; i < thresholds.size(); i++ )
+  for(double threshold : thresholds)
     {
-    std:: cout << thresholds[i] << std::endl;
+    std:: cout << threshold << std::endl;
     }
 
   std::cout << std::endl;

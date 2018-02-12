@@ -230,9 +230,9 @@ int main( int, char* [] )
   singleThreadedCellCount[NEURON] = 0;
   singleThreadedCellCount[ASTROCYTE] = 0;
   singleThreadedCellCount[OLIGODENDROCYTE] = 0;
-  for( size_t ii = 0; ii < cells.size(); ++ii )
+  for(auto & cell : cells)
     {
-    switch( cells[ii] )
+    switch( cell )
       {
     case NEURON:
       // Accumulate in the per thread cell count.

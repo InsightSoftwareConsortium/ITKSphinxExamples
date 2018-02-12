@@ -45,7 +45,7 @@ int main( int argc, char* argv[] )
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
-  const PixelType label = static_cast< PixelType >( atoi( argv[3] ) );
+  const auto label = static_cast< PixelType >( atoi( argv[3] ) );
   const unsigned int radiusValue = atoi( argv[4] );
 
   typedef itk::ImageFileReader< ImageType >  ReaderType;

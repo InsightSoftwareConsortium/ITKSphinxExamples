@@ -39,10 +39,10 @@ int main( int argc, char * argv[] )
   const char * InputImage = argv[1];
   const char * OutputImage = argv[2];
 
-  const PixelType LowerThreshold = static_cast<PixelType>(atoi( argv[3] ) );
-  const PixelType UpperThreshold = static_cast<PixelType>(atoi( argv[4] ) );
-  const PixelType OutsideValue = static_cast<PixelType>(atoi( argv[5] ) );
-  const PixelType InsideValue = static_cast<PixelType>(atoi( argv[6] ) );
+  const auto LowerThreshold = static_cast<PixelType>(atoi( argv[3] ) );
+  const auto UpperThreshold = static_cast<PixelType>(atoi( argv[4] ) );
+  const auto OutsideValue = static_cast<PixelType>(atoi( argv[5] ) );
+  const auto InsideValue = static_cast<PixelType>(atoi( argv[6] ) );
 
   typedef itk::Image< PixelType, Dimension >  ImageType;
 

@@ -35,15 +35,11 @@ int main( int argc, char* argv[] )
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
 
-  const itk::IndexValueType startx =
-    static_cast< itk::IndexValueType >( atoi( argv[3] ) );
-  const itk::IndexValueType endx =
-    static_cast< itk::IndexValueType >( atoi( argv[4] ) );
+  const auto startx = static_cast< itk::IndexValueType >( atoi( argv[3] ) );
+  const auto endx = static_cast< itk::IndexValueType >( atoi( argv[4] ) );
 
-  const itk::IndexValueType starty =
-    static_cast< itk::IndexValueType >( atoi( argv[5] ) );
-  const itk::IndexValueType endy =
-    static_cast< itk::IndexValueType >( atoi( argv[6] ) );
+  const auto starty = static_cast< itk::IndexValueType >( atoi( argv[5] ) );
+  const auto endy = static_cast< itk::IndexValueType >( atoi( argv[6] ) );
 
   const unsigned int Dimension = 2;
 

@@ -30,9 +30,9 @@ int main(int, char *[])
   std::vector< std::string > fileNames =
     numericSeriesFileNames->GetFileNames();
 
-  for(size_t i = 0; i < fileNames.size(); ++i)
+  for(const auto & fileName : fileNames)
     {
-    std::cout << fileNames[i] << std::endl;
+    std::cout << fileName << std::endl;
     }
 
   std::cout << std::endl;
@@ -43,9 +43,9 @@ int main(int, char *[])
 
   fileNames = numericSeriesFileNames->GetFileNames();
 
-  for(size_t i = 0; i < fileNames.size(); ++i)
+  for(const auto & fileName : fileNames)
     {
-    std::cout << fileNames[i] << std::endl;
+    std::cout << fileName << std::endl;
     }
 
   return EXIT_SUCCESS;

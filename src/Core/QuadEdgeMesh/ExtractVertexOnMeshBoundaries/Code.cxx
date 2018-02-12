@@ -72,7 +72,7 @@ int main( int argc, char* argv [] )
 
   std::cout << "There are " << list->size() << " borders on this mesh" << std::endl;
 
-  EdgeListIterator it = list->begin();
+  auto it = list->begin();
   const EdgeListIterator end = list->end();
 
   size_t i = 0;

@@ -66,7 +66,7 @@ int main( int argc, char* argv[] )
   // practical application, you may get this buffer from some other library
   // using a different data structure to represent the images.
   const unsigned int numberOfPixels =  size[0] * size[1];
-  PixelType * localBuffer = new PixelType[ numberOfPixels ];
+  auto * localBuffer = new PixelType[ numberOfPixels ];
   const double radius = 80.0;
   // Here we fill up the buffer with a binary sphere.
   const double radius2 = radius * radius;

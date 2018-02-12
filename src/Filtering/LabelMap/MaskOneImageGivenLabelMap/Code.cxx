@@ -40,11 +40,11 @@ int main( int argc, char* argv[] )
   typedef unsigned char                      PixelType;
   typedef itk::Image< PixelType, Dimension > ImageType;
 
-  const char * inputFileName                = argv[1];
-  const char * labelMapFileName             = argv[2];
-  const char * outputFileName               = argv[3];
-  const PixelType label                     = static_cast< PixelType >( atoi( argv[4] ) );
-  const PixelType background                = static_cast< PixelType >( atoi( argv[5] ) );
+  const char * inputFileName = argv[1];
+  const char * labelMapFileName = argv[2];
+  const char * outputFileName = argv[3];
+  const auto label = static_cast< PixelType >( atoi( argv[4] ) );
+  const auto background = static_cast< PixelType >( atoi( argv[5] ) );
   bool negated                              = false;
   bool crop                                 = false;
   ImageType::SizeValueType borderSize = 0;

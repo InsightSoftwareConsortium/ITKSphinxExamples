@@ -79,8 +79,7 @@ public:
 
   void Execute(const itk::Object * object, const itk::EventObject & event) override
     {
-    OptimizerPointer optimizer =
-      dynamic_cast< OptimizerPointer >( object );
+    auto optimizer = dynamic_cast< OptimizerPointer >( object );
     if( ! itk::IterationEvent().CheckEvent( &event ) )
       {
       return;
@@ -248,8 +247,7 @@ int main( int argc, char *argv[] )
   //  behavior of the metric values as the iterations progress.
   const unsigned int numberOfPixels = fixedImageRegion.GetNumberOfPixels();
 
-  const unsigned int numberOfSamples =
-                        static_cast< unsigned int >( numberOfPixels * 0.01 );
+  const auto numberOfSamples = static_cast< unsigned int >( numberOfPixels * 0.01 );
 
   metric->SetNumberOfSpatialSamples( numberOfSamples );
 
