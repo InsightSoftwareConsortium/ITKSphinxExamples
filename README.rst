@@ -1,6 +1,9 @@
 ITK Examples
 ============
 
+.. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=shield
+   :target: https://github.com/InsightSoftwareConsortium/ITKExamples/blob/master/LICENSE
+
 A set of cookbook examples for the Insight Toolkit, ITK_.
 
 Download instructions
