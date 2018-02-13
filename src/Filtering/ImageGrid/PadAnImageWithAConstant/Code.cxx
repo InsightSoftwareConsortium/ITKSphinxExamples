@@ -35,10 +35,10 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                       PixelType;
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
@@ -48,14 +48,14 @@ int main( int argc, char* argv[] )
   ImageType::SizeType upperExtendRegion;
   upperExtendRegion.Fill( atoi( argv[4] ) );
 
-  typedef itk::ConstantPadImageFilter< ImageType, ImageType > FilterType;
+  using FilterType = itk::ConstantPadImageFilter< ImageType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetPadLowerBound(lowerExtendRegion);
   filter->SetPadUpperBound(upperExtendRegion);
   filter->SetConstant( atoi( argv[5] ) );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( filter->GetOutput() );

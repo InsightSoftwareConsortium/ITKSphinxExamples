@@ -21,10 +21,9 @@
 int main(int, char *[])
 {
   const unsigned int Dimension = 3;
-  typedef float PixelType;
+  using PixelType = float;
 
-  typedef itk::BinaryBallStructuringElement< PixelType, Dimension >
-    StructuringElementType;
+  using StructuringElementType = itk::BinaryBallStructuringElement< PixelType, Dimension >;
   StructuringElementType structuringElement;
   structuringElement.SetRadius(5);
   structuringElement.CreateStructuringElement();

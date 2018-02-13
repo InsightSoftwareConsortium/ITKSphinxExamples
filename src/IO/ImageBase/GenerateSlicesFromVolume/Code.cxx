@@ -41,18 +41,17 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > InputImageType;
+  using PixelType = unsigned char;
+  using InputImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef unsigned char OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension > RescaleImageType;
+  using OutputPixelType = unsigned char;
+  using RescaleImageType = itk::Image< OutputPixelType, Dimension >;
 
-  typedef itk::RescaleIntensityImageFilter< InputImageType, RescaleImageType >
-    RescaleFilterType;
+  using RescaleFilterType = itk::RescaleIntensityImageFilter< InputImageType, RescaleImageType >;
   RescaleFilterType::Pointer rescale = RescaleFilterType::New();
   rescale->SetInput( reader->GetOutput() );
   rescale->SetOutputMinimum( 0 );
@@ -70,10 +69,9 @@ int main( int argc, char* argv[] )
   fnames->SetIncrementIndex( 1 );
   fnames->SetSeriesFormat( format.c_str() );
 
-  typedef itk::Image< OutputPixelType, 2 > OutputImageType;
+  using OutputImageType = itk::Image< OutputPixelType, 2 >;
 
-  typedef itk::ImageSeriesWriter< RescaleImageType, OutputImageType >
-    WriterType;
+  using WriterType = itk::ImageSeriesWriter< RescaleImageType, OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( rescale->GetOutput() );
   writer->SetFileNames( fnames->GetFileNames() );

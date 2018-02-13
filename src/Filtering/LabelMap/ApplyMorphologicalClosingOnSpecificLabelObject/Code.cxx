@@ -40,61 +40,61 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
   const auto label = static_cast< PixelType >( atoi( argv[3] ) );
   const unsigned int radiusValue = atoi( argv[4] );
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::LabelObject< PixelType, Dimension >  LabelObjectType;
-  typedef itk::LabelMap< LabelObjectType >          LabelMapType;
+  using LabelObjectType = itk::LabelObject< PixelType, Dimension >;
+  using LabelMapType = itk::LabelMap< LabelObjectType >;
 
-  typedef itk::LabelImageToLabelMapFilter< ImageType, LabelMapType > LabelImageToLabelMapFilterType;
+  using LabelImageToLabelMapFilterType = itk::LabelImageToLabelMapFilter< ImageType, LabelMapType >;
   LabelImageToLabelMapFilterType::Pointer labelMapConverter = LabelImageToLabelMapFilterType::New();
   labelMapConverter->SetInput( reader->GetOutput() );
   labelMapConverter->SetBackgroundValue( itk::NumericTraits< PixelType >::Zero );
 
-  typedef itk::LabelSelectionLabelMapFilter< LabelMapType > SelectorType;
+  using SelectorType = itk::LabelSelectionLabelMapFilter< LabelMapType >;
   SelectorType::Pointer selector = SelectorType::New();
   selector->SetInput( labelMapConverter->GetOutput() );
   selector->SetLabel( label );
 
-  typedef itk::FlatStructuringElement< Dimension > StructuringElementType;
+  using StructuringElementType = itk::FlatStructuringElement< Dimension >;
   StructuringElementType::RadiusType radius;
   radius.Fill( radiusValue );
 
   StructuringElementType structuringElement = StructuringElementType::Ball( radius );
 
-  typedef itk::BinaryMorphologicalClosingImageFilter< ImageType, ImageType, StructuringElementType > MorphologicalFilterType;
+  using MorphologicalFilterType = itk::BinaryMorphologicalClosingImageFilter< ImageType, ImageType, StructuringElementType >;
   MorphologicalFilterType::Pointer closingFilter = MorphologicalFilterType::New();
 
-  typedef itk::ObjectByObjectLabelMapFilter< LabelMapType > ObjectByObjectLabelMapFilterType;
+  using ObjectByObjectLabelMapFilterType = itk::ObjectByObjectLabelMapFilter< LabelMapType >;
   ObjectByObjectLabelMapFilterType::Pointer objectByObjectLabelMapFilter = ObjectByObjectLabelMapFilterType::New();
   objectByObjectLabelMapFilter->SetInput( selector->GetOutput( 0 ) );
   objectByObjectLabelMapFilter->SetBinaryInternalOutput( true );
   objectByObjectLabelMapFilter->SetFilter( closingFilter );
 
-  typedef itk::MergeLabelMapFilter< LabelMapType > MergeLabelFilterType;
+  using MergeLabelFilterType = itk::MergeLabelMapFilter< LabelMapType >;
   MergeLabelFilterType::Pointer merger = MergeLabelFilterType::New();
   merger->SetInput( 0, objectByObjectLabelMapFilter->GetOutput( 0 ) );
   merger->SetInput( 1, selector->GetOutput( 1 ) );
   merger->SetMethod( MergeLabelFilterType::KEEP );
 
-  typedef itk::LabelUniqueLabelMapFilter< LabelMapType > UniqueLabelMapFilterType;
+  using UniqueLabelMapFilterType = itk::LabelUniqueLabelMapFilter< LabelMapType >;
   UniqueLabelMapFilterType::Pointer unique = UniqueLabelMapFilterType::New();
   unique->SetInput( merger->GetOutput() );
 
-  typedef itk::LabelMapToLabelImageFilter< LabelMapType, ImageType > LabelMapToLabelImageFilterType;
+  using LabelMapToLabelImageFilterType = itk::LabelMapToLabelImageFilter< LabelMapType, ImageType >;
   LabelMapToLabelImageFilterType::Pointer labelImageConverter = LabelMapToLabelImageFilterType::New();
   labelImageConverter->SetInput( unique->GetOutput() );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( labelImageConverter->GetOutput() );

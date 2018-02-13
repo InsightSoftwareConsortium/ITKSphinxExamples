@@ -32,11 +32,11 @@ int main( int argc, char* argv[] )
   // We select the data type used to represent the image pixels. We
   // assume that the external block of memory uses the same data type to
   // represent the pixels.
-  typedef unsigned char   PixelType;
+  using PixelType = unsigned char;
   const unsigned int Dimension = 2;
 
-  typedef itk::Image< PixelType, Dimension > ImageType;
-  typedef itk::ImportImageFilter< PixelType, Dimension >   ImportFilterType;
+  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImportFilterType = itk::ImportImageFilter< PixelType, Dimension >;
   ImportFilterType::Pointer importFilter = ImportFilterType::New();
   // This filter requires the user to specify the size of the image to be
   // produced as output.  The `SetRegion()` method is used to this end.
@@ -103,7 +103,7 @@ int main( int argc, char* argv[] )
                                   importImageFilterWillOwnTheBuffer );
   // Finally, we can connect the output of this filter to a pipeline.
   // For simplicity we just use a writer here, but it could be any other filter.
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
 
   writer->SetFileName( argv[1] );

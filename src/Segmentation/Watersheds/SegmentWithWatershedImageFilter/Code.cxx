@@ -45,25 +45,24 @@ int main( int argc, char *argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef itk::Image< unsigned char, Dimension >        InputImageType;
-  typedef itk::Image< float, Dimension >                FloatImageType;
-  typedef itk::RGBPixel< unsigned char >                RGBPixelType;
-  typedef itk::Image< RGBPixelType, Dimension >         RGBImageType;
-  typedef itk::Image< itk::IdentifierType, Dimension >  LabeledImageType;
+  using InputImageType = itk::Image< unsigned char, Dimension >;
+  using FloatImageType = itk::Image< float, Dimension >;
+  using RGBPixelType = itk::RGBPixel< unsigned char >;
+  using RGBImageType = itk::Image< RGBPixelType, Dimension >;
+  using LabeledImageType = itk::Image< itk::IdentifierType, Dimension >;
 
-  typedef itk::ImageFileReader< InputImageType > FileReaderType;
+  using FileReaderType = itk::ImageFileReader< InputImageType >;
   FileReaderType::Pointer reader = FileReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::GradientMagnitudeImageFilter< InputImageType, FloatImageType >
-    GradientMagnitudeImageFilterType;
+  using GradientMagnitudeImageFilterType = itk::GradientMagnitudeImageFilter< InputImageType, FloatImageType >;
   GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter =
     GradientMagnitudeImageFilterType::New();
 
   gradientMagnitudeImageFilter->SetInput( reader->GetOutput() );
   gradientMagnitudeImageFilter->Update();
 
-  typedef itk::WatershedImageFilter< FloatImageType > WatershedFilterType;
+  using WatershedFilterType = itk::WatershedImageFilter< FloatImageType >;
   WatershedFilterType::Pointer watershed = WatershedFilterType::New();
 
   float threshold = atof( argv[3] );
@@ -75,14 +74,13 @@ int main( int argc, char *argv[] )
   watershed->SetInput( gradientMagnitudeImageFilter->GetOutput() );
   watershed->Update();
 
-  typedef itk::ScalarToRGBColormapImageFilter< LabeledImageType, RGBImageType>
-    RGBFilterType;
+  using RGBFilterType = itk::ScalarToRGBColormapImageFilter< LabeledImageType, RGBImageType>;
   RGBFilterType::Pointer colormapImageFilter = RGBFilterType::New();
   colormapImageFilter->SetColormap( RGBFilterType::Jet );
   colormapImageFilter->SetInput( watershed->GetOutput() );
   colormapImageFilter->Update();
 
-  typedef itk::ImageFileWriter< RGBImageType > FileWriterType;
+  using FileWriterType = itk::ImageFileWriter< RGBImageType >;
   FileWriterType::Pointer writer = FileWriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( colormapImageFilter->GetOutput() );

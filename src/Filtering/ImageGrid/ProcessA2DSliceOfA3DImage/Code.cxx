@@ -33,12 +33,12 @@ int main( int argc, char ** argv )
     return EXIT_FAILURE;
     }
 
-  typedef short PixelType;
+  using PixelType = short;
 
-  typedef itk::Image< PixelType, 3 > ImageType;
+  using ImageType = itk::Image< PixelType, 3 >;
 
-  typedef itk::ImageFileReader< ImageType > ReaderType;
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
+  using WriterType = itk::ImageFileWriter< ImageType >;
 
   // Here we recover the file names from the command line arguments
   const char * inputFilename  = argv[1];
@@ -60,8 +60,7 @@ int main( int argc, char ** argv )
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFilename );
 
-  typedef itk::ExtractImageFilter< ImageType, ImageType >
-    ExtractFilterType;
+  using ExtractFilterType = itk::ExtractImageFilter< ImageType, ImageType >;
   ExtractFilterType::Pointer extractFilter = ExtractFilterType::New();
   extractFilter->SetDirectionCollapseToSubmatrix();
 
@@ -78,10 +77,10 @@ int main( int argc, char ** argv )
   desiredRegion.SetIndex( start );
 
   extractFilter->SetExtractionRegion( desiredRegion );
-  typedef itk::PasteImageFilter< ImageType > PasteFilterType;
+  using PasteFilterType = itk::PasteImageFilter< ImageType >;
   PasteFilterType::Pointer pasteFilter = PasteFilterType::New();
-  typedef itk::MedianImageFilter< ImageType,
-                                  ImageType > MedianFilterType;
+  using MedianFilterType = itk::MedianImageFilter< ImageType,
+                                  ImageType >;
   MedianFilterType::Pointer medianFilter = MedianFilterType::New();
   extractFilter->SetInput( inputImage );
   medianFilter->SetInput( extractFilter->GetOutput() );

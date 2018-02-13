@@ -54,33 +54,33 @@ int main( int argc, char* argv[] )
   const unsigned int VectorDimension = 2;
   const unsigned int CovDimension =    4;
 
-  typedef unsigned char                                           PixelType;
-  typedef itk::Image< PixelType, ImageDimension >                 ImageType;
-  typedef double                                                  DoublePixelType;
-  typedef itk::Image< DoublePixelType, ImageDimension >           DoubleImageType;
-  typedef itk::Vector< DoublePixelType, VectorDimension >         VecPixelType;
-  typedef itk::Image< VecPixelType, ImageDimension >              VecImageType;
-  typedef itk::CovariantVector< DoublePixelType, CovDimension >   CovPixelType;
-  typedef itk::Image< CovPixelType, ImageDimension >              CovImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, ImageDimension >;
+  using DoublePixelType = double;
+  using DoubleImageType = itk::Image< DoublePixelType, ImageDimension >;
+  using VecPixelType = itk::Vector< DoublePixelType, VectorDimension >;
+  using VecImageType = itk::Image< VecPixelType, ImageDimension >;
+  using CovPixelType = itk::CovariantVector< DoublePixelType, CovDimension >;
+  using CovImageType = itk::Image< CovPixelType, ImageDimension >;
 
-  typedef itk::ImageFileReader< ImageType > ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
   // Invert the input image
-  typedef itk::InvertIntensityImageFilter< ImageType, ImageType > InvertType;
+  using InvertType = itk::InvertIntensityImageFilter< ImageType, ImageType >;
   InvertType::Pointer inverter = InvertType::New();
   inverter->SetInput( reader->GetOutput() );
 
   // Cast the image to double type.
-  typedef itk::CastImageFilter< ImageType, DoubleImageType > CasterType;
+  using CasterType = itk::CastImageFilter< ImageType, DoubleImageType >;
   CasterType::Pointer caster = CasterType::New();
   CasterType::Pointer caster2 = CasterType::New();
 
   // Create an image, were each pixel has 2 values: first value is the value
   // coming from the input image, second value is coming from the inverted
   // image
-  typedef itk::ComposeImageFilter< DoubleImageType, VecImageType > ComposeType;
+  using ComposeType = itk::ComposeImageFilter< DoubleImageType, VecImageType >;
   ComposeType::Pointer composer = ComposeType::New();
   caster->SetInput( reader->GetOutput() );
   composer->SetInput( 0, caster->GetOutput() );
@@ -89,28 +89,28 @@ int main( int argc, char* argv[] )
 
   // Apply the gradient filter on the two images, this will return and image
   // with 4 values per pixel: two X and Y gradients
-  typedef itk::GradientRecursiveGaussianImageFilter< VecImageType, CovImageType > FilterType;
+  using FilterType = itk::GradientRecursiveGaussianImageFilter< VecImageType, CovImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( composer->GetOutput() );
 
   // Set up the filter to select each gradient
-  typedef itk::VectorIndexSelectionCastImageFilter< CovImageType, DoubleImageType > IndexSelectionType;
+  using IndexSelectionType = itk::VectorIndexSelectionCastImageFilter< CovImageType, DoubleImageType >;
   IndexSelectionType::Pointer indexSelectionFilter = IndexSelectionType::New();
   indexSelectionFilter->SetInput( filter->GetOutput() );
 
   // Rescale for png output
-  typedef itk::RescaleIntensityImageFilter< DoubleImageType, ImageType > RescalerType;
+  using RescalerType = itk::RescaleIntensityImageFilter< DoubleImageType, ImageType >;
   RescalerType::Pointer rescaler = RescalerType::New();
   rescaler->SetOutputMinimum( itk::NumericTraits< PixelType >::min() );
   rescaler->SetOutputMaximum( itk::NumericTraits< PixelType >::max() );
   rescaler->SetInput( indexSelectionFilter->GetOutput() );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( rescaler->GetOutput() );
 
   // Write the X and Y images
-  for( int i = 0; i<4 ;++i )
+  for( int i = 0; i<4;++i )
   {
     indexSelectionFilter->SetIndex( i );
     writer->SetFileName( filenames[i] );

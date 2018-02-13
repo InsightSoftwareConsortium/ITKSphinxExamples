@@ -22,7 +22,7 @@ int main(int, char *[])
 {
   const unsigned int Dimension = 2;
 
-  typedef itk::ImageRegion< Dimension > RegionType;
+  using RegionType = itk::ImageRegion< Dimension >;
   RegionType::SizeType size;
   size.Fill(3);
 

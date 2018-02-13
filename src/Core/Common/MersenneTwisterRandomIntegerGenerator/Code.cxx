@@ -20,7 +20,7 @@
 
 int main(int, char*[])
 {
-  typedef itk::Statistics::MersenneTwisterRandomVariateGenerator GeneratorType;
+  using GeneratorType = itk::Statistics::MersenneTwisterRandomVariateGenerator;
   GeneratorType::Pointer generator = GeneratorType::New();
   generator->Initialize();
 

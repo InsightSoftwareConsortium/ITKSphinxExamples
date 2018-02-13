@@ -32,14 +32,14 @@ int main( int argc, char *argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                       PixelType;
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType > FileReaderType;
+  using FileReaderType = itk::ImageFileReader< ImageType >;
   FileReaderType::Pointer reader = FileReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::AdaptiveHistogramEqualizationImageFilter< ImageType > AdaptiveHistogramEqualizationImageFilterType;
+  using AdaptiveHistogramEqualizationImageFilterType = itk::AdaptiveHistogramEqualizationImageFilter< ImageType >;
   AdaptiveHistogramEqualizationImageFilterType::Pointer adaptiveHistogramEqualizationImageFilter = AdaptiveHistogramEqualizationImageFilterType::New();
 
   float alpha = atof( argv[3] );
@@ -57,7 +57,7 @@ int main( int argc, char *argv[] )
 
   adaptiveHistogramEqualizationImageFilter->Update();
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( adaptiveHistogramEqualizationImageFilter->GetOutput() );

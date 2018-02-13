@@ -40,16 +40,16 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef float                              PixelType;
-  typedef itk::Image< PixelType, Dimension > RealImageType;
+  using PixelType = float;
+  using RealImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< RealImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< RealImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
   // Some FFT filter implementations, like VNL's, need the image size to be a
   // multiple of small prime numbers.
-  typedef itk::WrapPadImageFilter< RealImageType, RealImageType > PadFilterType;
+  using PadFilterType = itk::WrapPadImageFilter< RealImageType, RealImageType >;
   PadFilterType::Pointer padFilter = PadFilterType::New();
   padFilter->SetInput( reader->GetOutput() );
   PadFilterType::SizeType padding;
@@ -59,33 +59,31 @@ int main( int argc, char* argv[] )
   padding[2] = 6;
   padFilter->SetPadUpperBound( padding );
 
-  typedef itk::ForwardFFTImageFilter< RealImageType > ForwardFFTFilterType;
-  typedef ForwardFFTFilterType::OutputImageType ComplexImageType;
+  using ForwardFFTFilterType = itk::ForwardFFTImageFilter< RealImageType >;
+  using ComplexImageType = ForwardFFTFilterType::OutputImageType;
   ForwardFFTFilterType::Pointer forwardFFTFilter = ForwardFFTFilterType::New();
   forwardFFTFilter->SetInput( padFilter->GetOutput() );
 
-  typedef itk::ComplexToModulusImageFilter< ComplexImageType, RealImageType >
-     ComplexToModulusFilterType;
+  using ComplexToModulusFilterType = itk::ComplexToModulusImageFilter< ComplexImageType, RealImageType >;
   ComplexToModulusFilterType::Pointer complexToModulusFilter
     = ComplexToModulusFilterType::New();
   complexToModulusFilter->SetInput( forwardFFTFilter->GetOutput() );
 
   // Window and shift the output for visualization.
-  typedef unsigned short                           OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
-  typedef itk::IntensityWindowingImageFilter< RealImageType, OutputImageType >
-    WindowingFilterType;
+  using OutputPixelType = unsigned short;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
+  using WindowingFilterType = itk::IntensityWindowingImageFilter< RealImageType, OutputImageType >;
   WindowingFilterType::Pointer windowingFilter
     = WindowingFilterType::New();
   windowingFilter->SetInput( complexToModulusFilter->GetOutput() );
   windowingFilter->SetWindowMinimum( 0 );
   windowingFilter->SetWindowMaximum( 20000 );
 
-  typedef itk::FFTShiftImageFilter< OutputImageType, OutputImageType > FFTShiftFilterType;
+  using FFTShiftFilterType = itk::FFTShiftImageFilter< OutputImageType, OutputImageType >;
   FFTShiftFilterType::Pointer fftShiftFilter = FFTShiftFilterType::New();
   fftShiftFilter->SetInput( windowingFilter->GetOutput() );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( fftShiftFilter->GetOutput() );

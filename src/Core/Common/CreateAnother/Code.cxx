@@ -22,7 +22,7 @@
 template< class TImage >
 void CreateImage(typename TImage::Pointer image)
 {
-  typedef TImage ImageType;
+  using ImageType = TImage;
   typename ImageType::IndexType start;
   start.Fill(0);
 
@@ -39,11 +39,11 @@ void CreateImage(typename TImage::Pointer image)
 int main(int, char*[])
 {
   const unsigned int Dimension = 2;
-  typedef double PixelType;
+  using PixelType = double;
 
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::AbsImageFilter<ImageType, ImageType> FilterType;
+  using FilterType = itk::AbsImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
   FilterType::Pointer filter2 =
     dynamic_cast<FilterType*>(filter->CreateAnother().GetPointer());

@@ -24,8 +24,8 @@ template< class TImage >
 int ReadImage( const char* fileName,
                typename TImage::Pointer image )
 {
-  typedef TImage                            ImageType;
-  typedef itk::ImageFileReader< ImageType > ImageReaderType;
+  using ImageType = TImage;
+  using ImageReaderType = itk::ImageFileReader< ImageType >;
 
   typename ImageReaderType::Pointer reader = ImageReaderType::New();
   reader->SetFileName( fileName );
@@ -58,8 +58,8 @@ int ReadScalarImage( const char* inputFileName,
 
     case itk::ImageIOBase::UCHAR:
       {
-      typedef unsigned char PixelType;
-      typedef itk::Image< PixelType, VDimension > ImageType;
+      using PixelType = unsigned char;
+      using ImageType = itk::Image< PixelType, VDimension >;
 
       typename ImageType::Pointer image = ImageType::New();
 
@@ -74,8 +74,8 @@ int ReadScalarImage( const char* inputFileName,
 
     case itk::ImageIOBase::CHAR:
       {
-      typedef char PixelType;
-      typedef itk::Image< PixelType, VDimension > ImageType;
+      using PixelType = char;
+      using ImageType = itk::Image< PixelType, VDimension >;
 
       typename ImageType::Pointer image = ImageType::New();
 
@@ -90,8 +90,8 @@ int ReadScalarImage( const char* inputFileName,
 
     case itk::ImageIOBase::USHORT:
       {
-      typedef unsigned short PixelType;
-      typedef itk::Image< PixelType, VDimension > ImageType;
+      using PixelType = unsigned short;
+      using ImageType = itk::Image< PixelType, VDimension >;
 
       typename ImageType::Pointer image = ImageType::New();
 
@@ -106,8 +106,8 @@ int ReadScalarImage( const char* inputFileName,
 
     case itk::ImageIOBase::SHORT:
       {
-      typedef short PixelType;
-      typedef itk::Image< PixelType, VDimension > ImageType;
+      using PixelType = short;
+      using ImageType = itk::Image< PixelType, VDimension >;
 
       typename ImageType::Pointer image = ImageType::New();
 
@@ -122,8 +122,8 @@ int ReadScalarImage( const char* inputFileName,
 
     case itk::ImageIOBase::UINT:
       {
-      typedef unsigned int PixelType;
-      typedef itk::Image< PixelType, VDimension > ImageType;
+      using PixelType = unsigned int;
+      using ImageType = itk::Image< PixelType, VDimension >;
 
       typename ImageType::Pointer image = ImageType::New();
 
@@ -138,8 +138,8 @@ int ReadScalarImage( const char* inputFileName,
 
     case itk::ImageIOBase::INT:
       {
-      typedef int PixelType;
-      typedef itk::Image< PixelType, VDimension > ImageType;
+      using PixelType = int;
+      using ImageType = itk::Image< PixelType, VDimension >;
 
       typename ImageType::Pointer image = ImageType::New();
 
@@ -154,8 +154,8 @@ int ReadScalarImage( const char* inputFileName,
 
     case itk::ImageIOBase::ULONG:
       {
-      typedef unsigned long PixelType;
-      typedef itk::Image< PixelType, VDimension > ImageType;
+      using PixelType = unsigned long;
+      using ImageType = itk::Image< PixelType, VDimension >;
 
       typename ImageType::Pointer image = ImageType::New();
 
@@ -170,8 +170,8 @@ int ReadScalarImage( const char* inputFileName,
 
     case itk::ImageIOBase::LONG:
       {
-      typedef long PixelType;
-      typedef itk::Image< PixelType, VDimension > ImageType;
+      using PixelType = long;
+      using ImageType = itk::Image< PixelType, VDimension >;
 
       typename ImageType::Pointer image = ImageType::New();
 
@@ -186,8 +186,8 @@ int ReadScalarImage( const char* inputFileName,
 
     case itk::ImageIOBase::FLOAT:
       {
-      typedef float PixelType;
-      typedef itk::Image< PixelType, VDimension > ImageType;
+      using PixelType = float;
+      using ImageType = itk::Image< PixelType, VDimension >;
 
       typename ImageType::Pointer image = ImageType::New();
 
@@ -202,8 +202,8 @@ int ReadScalarImage( const char* inputFileName,
 
     case itk::ImageIOBase::DOUBLE:
       {
-      typedef double PixelType;
-      typedef itk::Image< PixelType, VDimension > ImageType;
+      using PixelType = double;
+      using ImageType = itk::Image< PixelType, VDimension >;
 
       typename ImageType::Pointer image = ImageType::New();
 
@@ -240,14 +240,14 @@ int main( int argc, char* argv[] )
   imageIO->SetFileName( inputFileName );
   imageIO->ReadImageInformation();
 
-  typedef itk::ImageIOBase::IOPixelType     IOPixelType;
+  using IOPixelType = itk::ImageIOBase::IOPixelType;
   const IOPixelType pixelType = imageIO->GetPixelType();
 
   std::cout << "Pixel Type is "
             << itk::ImageIOBase::GetPixelTypeAsString( pixelType )
             << std::endl;
 
-  typedef itk::ImageIOBase::IOComponentType IOComponentType;
+  using IOComponentType = itk::ImageIOBase::IOComponentType;
   const IOComponentType componentType = imageIO->GetComponentType();
 
   std::cout << "Component Type is "

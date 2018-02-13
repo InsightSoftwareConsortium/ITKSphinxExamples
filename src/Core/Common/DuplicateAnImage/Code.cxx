@@ -23,18 +23,18 @@
 int main(int, char *[])
 {
   const unsigned int Dimension = 2;
-  typedef unsigned char PixelType;
+  using PixelType = unsigned char;
 
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::RandomImageSource< ImageType > RandomSourceType;
+  using RandomSourceType = itk::RandomImageSource< ImageType >;
 
   RandomSourceType::Pointer randomImageSource = RandomSourceType::New();
   randomImageSource->SetNumberOfThreads(1); // to produce non-random results
 
   ImageType::Pointer image = randomImageSource->GetOutput();
 
-  typedef itk::ImageDuplicator< ImageType > DuplicatorType;
+  using DuplicatorType = itk::ImageDuplicator< ImageType >;
   DuplicatorType::Pointer duplicator = DuplicatorType::New();
   duplicator->SetInputImage(image);
   duplicator->Update();

@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                       PixelType;
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   ImageType::IndexType start;
   start.Fill(0);
@@ -54,13 +54,13 @@ int main(int argc, char *argv[])
   image2->Allocate();
   image2->FillBuffer( 255 );
 
-  typedef itk::CheckerBoardImageFilter< ImageType > CheckerBoardFilterType;
+  using CheckerBoardFilterType = itk::CheckerBoardImageFilter< ImageType >;
   CheckerBoardFilterType::Pointer checkerBoardFilter =
     CheckerBoardFilterType::New();
   checkerBoardFilter->SetInput1(image1);
   checkerBoardFilter->SetInput2(image2);
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( checkerBoardFilter->GetOutput() );
   writer->SetFileName( argv[1] );

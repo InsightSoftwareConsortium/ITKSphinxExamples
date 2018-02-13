@@ -36,20 +36,19 @@ int main( int argc, char* argv[] )
   const double k = atof( argv[3] );
 
   const unsigned int Dimension = 2;
-  typedef float                              PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = float;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::ExpNegativeImageFilter< ImageType, ImageType >
-    FilterType;
+  using FilterType = itk::ExpNegativeImageFilter< ImageType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetFactor( k );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

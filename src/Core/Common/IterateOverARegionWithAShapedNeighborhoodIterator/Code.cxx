@@ -30,10 +30,10 @@ int main(int, char*[])
   // demonstration purposes it is best to use the int
   // type, however in real applications iterators have
   // no problems with char type images.
-  //typedef itk::Image<unsigned char, 2>  ImageType;
-  typedef unsigned int PixelType;
+  //using ImageType = itk::Image<unsigned char, 2>;
+  using PixelType = unsigned int;
 
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   ImageType::Pointer image = ImageType::New();
 
@@ -49,7 +49,7 @@ int main(int, char*[])
   image->Allocate();
   image->FillBuffer(0);
 
-  typedef itk::ShapedNeighborhoodIterator<ImageType> IteratorType;
+  using IteratorType = itk::ShapedNeighborhoodIterator<ImageType>;
   IteratorType::RadiusType radius;
   radius.Fill(1);
 

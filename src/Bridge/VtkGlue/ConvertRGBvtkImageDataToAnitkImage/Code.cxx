@@ -36,16 +36,16 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                       PixelComponentType;
-  typedef itk::RGBPixel< PixelComponentType > PixelType;
-  typedef itk::Image< PixelType, Dimension  > ImageType;
+  using PixelComponentType = unsigned char;
+  using PixelType = itk::RGBPixel< PixelComponentType >;
+  using ImageType = itk::Image< PixelType, Dimension  >;
 
   vtkSmartPointer< vtkPNGReader > reader =
     vtkSmartPointer< vtkPNGReader >::New();
   reader->SetFileName( inputFileName );
   reader->SetDataScalarTypeToUnsignedChar();
 
-  typedef itk::VTKImageToImageFilter< ImageType > FilterType;
+  using FilterType = itk::VTKImageToImageFilter< ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
 

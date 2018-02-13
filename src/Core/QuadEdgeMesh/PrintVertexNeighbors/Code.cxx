@@ -31,9 +31,9 @@ int main( int argc, char* argv[] )
     }
 
   const unsigned int Dimension = 3;
-  typedef double  CoordinateType;
-  typedef itk::QuadEdgeMesh< CoordinateType, Dimension >  MeshType;
-  typedef itk::MeshFileReader< MeshType >                 ReaderType;
+  using CoordinateType = double;
+  using MeshType = itk::QuadEdgeMesh< CoordinateType, Dimension >;
+  using ReaderType = itk::MeshFileReader< MeshType >;
 
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );

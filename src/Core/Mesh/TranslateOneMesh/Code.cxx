@@ -38,14 +38,14 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef double                            PixelType;
-  typedef itk::Mesh< PixelType, Dimension > MeshType;
+  using PixelType = double;
+  using MeshType = itk::Mesh< PixelType, Dimension >;
 
-  typedef itk::MeshFileReader< MeshType >  ReaderType;
+  using ReaderType = itk::MeshFileReader< MeshType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::TranslationTransform< MeshType::PointType::CoordRepType, Dimension > TransformType;
+  using TransformType = itk::TranslationTransform< MeshType::PointType::CoordRepType, Dimension >;
   TransformType::Pointer translation = TransformType::New();
 
   TransformType::OutputVectorType displacement;
@@ -53,12 +53,12 @@ int main( int argc, char* argv[] )
 
   translation->Translate( displacement );
 
-  typedef itk::TransformMeshFilter< MeshType, MeshType, TransformType > FilterType;
+  using FilterType = itk::TransformMeshFilter< MeshType, MeshType, TransformType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetTransform( translation );
 
-  typedef itk::MeshFileWriter< MeshType > WriterType;
+  using WriterType = itk::MeshFileWriter< MeshType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

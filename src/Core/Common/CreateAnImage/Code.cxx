@@ -20,7 +20,7 @@
 
 int main( int , char* [] )
 {
-  typedef itk::Image< unsigned char, 3 > ImageType;
+  using ImageType = itk::Image< unsigned char, 3 >;
   ImageType::Pointer image = ImageType::New();
 
   ImageType::IndexType start;

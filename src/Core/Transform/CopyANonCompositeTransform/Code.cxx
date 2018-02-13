@@ -20,7 +20,7 @@
 
 int main( int, char* [] )
 {
-  typedef itk::Euler3DTransform< float > TransformType;
+  using TransformType = itk::Euler3DTransform< float >;
 
   TransformType::Pointer transform = TransformType::New();
   TransformType::ParametersType parameters( 6 );

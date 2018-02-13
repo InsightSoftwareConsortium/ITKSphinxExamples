@@ -35,8 +35,8 @@ template< typename TComponent = unsigned short >
 class myRGBPixel : public RGBPixel<TComponent>
 {
 public:
-  typedef myRGBPixel           Self;
-  typedef RGBPixel<TComponent> Superclass;
+  using Self = myRGBPixel;
+  using Superclass = RGBPixel<TComponent>;
 
   using RGBPixel<TComponent>::operator=;
 
@@ -65,16 +65,16 @@ int main(int argc, char * argv[])
   // Setup types
   const unsigned int Dimension = 2;
 
-  typedef itk::myRGBPixel< unsigned char >      MyPixelType;
-  typedef itk::Image< MyPixelType, Dimension >  MyImageType;
+  using MyPixelType = itk::myRGBPixel< unsigned char >;
+  using MyImageType = itk::Image< MyPixelType, Dimension >;
 
   // Create and setup a reader
-  typedef itk::ImageFileReader< MyImageType >                 ReaderType;
+  using ReaderType = itk::ImageFileReader< MyImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
   // Create and setup a median filter
-  typedef itk::MedianImageFilter< MyImageType, MyImageType >  FilterType;
+  using FilterType = itk::MedianImageFilter< MyImageType, MyImageType >;
   FilterType::Pointer medianFilter = FilterType::New();
 
   FilterType::InputSizeType radius;
@@ -84,13 +84,13 @@ int main(int argc, char * argv[])
   medianFilter->SetInput( reader->GetOutput() );
 
   // Cast the custom myRBGPixel's to RGBPixel's
-  typedef itk::RGBPixel< unsigned char >                      RGBPixelType;
-  typedef itk::Image< RGBPixelType, Dimension >               RGBImageType;
-  typedef itk::CastImageFilter< MyImageType, RGBImageType >   CastType;
+  using RGBPixelType = itk::RGBPixel< unsigned char >;
+  using RGBImageType = itk::Image< RGBPixelType, Dimension >;
+  using CastType = itk::CastImageFilter< MyImageType, RGBImageType >;
   CastType::Pointer cast = CastType::New();
   cast->SetInput( medianFilter->GetOutput() );
 
-  typedef itk::ImageFileWriter< RGBImageType >                WriterType;
+  using WriterType = itk::ImageFileWriter< RGBImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( cast->GetOutput() );
   writer->SetFileName( argv[2] );

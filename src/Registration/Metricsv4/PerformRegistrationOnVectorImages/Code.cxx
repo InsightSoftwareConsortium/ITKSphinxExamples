@@ -63,13 +63,13 @@ int main(int argc, char *argv[])
 
   // The input images have red, blue, and green pixel components.
   const unsigned int NumberOfPixelComponents = 3;
-  typedef float                                                      PixelComponentType;
-  typedef itk::Vector< PixelComponentType, NumberOfPixelComponents > InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension >                    InputImageType;
+  using PixelComponentType = float;
+  using InputPixelType = itk::Vector< PixelComponentType, NumberOfPixelComponents >;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
 
-  typedef double                                                     ParametersValueType;
+  using ParametersValueType = double;
 
-  typedef itk::ImageFileReader< InputImageType > ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer fixedImageReader = ReaderType::New();
   fixedImageReader->SetFileName( fixedImageFile );
   ReaderType::Pointer movingImageReader = ReaderType::New();
@@ -89,17 +89,15 @@ int main(int argc, char *argv[])
   InputImageType::Pointer fixedImage = fixedImageReader->GetOutput();
   InputImageType::Pointer movingImage = movingImageReader->GetOutput();
 
-  typedef itk::AffineTransform< ParametersValueType, Dimension >
-    AffineTransformType;
+  using AffineTransformType = itk::AffineTransform< ParametersValueType, Dimension >;
   AffineTransformType::Pointer affineTransform = AffineTransformType::New();
 
-  typedef itk::GaussianSmoothingOnUpdateDisplacementFieldTransform<
-    ParametersValueType, Dimension > DisplacementTransformType;
+  using DisplacementTransformType = itk::GaussianSmoothingOnUpdateDisplacementFieldTransform<
+    ParametersValueType, Dimension >;
   DisplacementTransformType::Pointer displacementTransform =
     DisplacementTransformType::New();
 
-  typedef DisplacementTransformType::DisplacementFieldType
-    DisplacementFieldType;
+  using DisplacementFieldType = DisplacementTransformType::DisplacementFieldType;
   DisplacementFieldType::Pointer displacementField =
     DisplacementFieldType::New();
 
@@ -121,25 +119,20 @@ int main(int argc, char *argv[])
   displacementTransform->SetGaussianSmoothingVarianceForTheTotalField( 6.0 );
 
   // Identity transform for fixed image
-  typedef itk::IdentityTransform< ParametersValueType, Dimension >
-    IdentityTransformType;
+  using IdentityTransformType = itk::IdentityTransform< ParametersValueType, Dimension >;
   IdentityTransformType::Pointer identityTransform =
     IdentityTransformType::New();
 
   // The metric
-  typedef itk::Image< double, Dimension>
-    VirtualImageType;
-  typedef itk::VectorImageToImageMetricTraitsv4<
-    InputImageType, InputImageType, VirtualImageType, InputPixelType::Length >
-      MetricTraitsType;
-  typedef itk::MeanSquaresImageToImageMetricv4<
-    InputImageType, InputImageType, VirtualImageType, double, MetricTraitsType >
-      MetricType;
-  typedef MetricType::FixedSampledPointSetType
-    PointSetType;
+  using VirtualImageType = itk::Image< double, Dimension>;
+  using MetricTraitsType = itk::VectorImageToImageMetricTraitsv4<
+    InputImageType, InputImageType, VirtualImageType, InputPixelType::Length >;
+  using MetricType = itk::MeanSquaresImageToImageMetricv4<
+    InputImageType, InputImageType, VirtualImageType, double, MetricTraitsType >;
+  using PointSetType = MetricType::FixedSampledPointSetType;
   MetricType::Pointer metric = MetricType::New();
 
-  typedef PointSetType::PointType PointType;
+  using PointType = PointSetType::PointType;
   PointSetType::Pointer pointSet = PointSetType::New();
   itk::ImageRegionIteratorWithIndex< InputImageType > fixedImageIt( fixedImage,
     fixedImage->GetLargestPossibleRegion() );
@@ -173,8 +166,7 @@ int main(int argc, char *argv[])
   metric->SetUseFixedImageGradientFilter( gaussian );
   metric->Initialize();
 
-  typedef itk::RegistrationParameterScalesFromPhysicalShift< MetricType >
-    RegistrationParameterScalesFromShiftType;
+  using RegistrationParameterScalesFromShiftType = itk::RegistrationParameterScalesFromPhysicalShift< MetricType >;
   RegistrationParameterScalesFromShiftType::Pointer shiftScaleEstimator =
     RegistrationParameterScalesFromShiftType::New();
   shiftScaleEstimator->SetMetric( metric );
@@ -184,7 +176,7 @@ int main(int argc, char *argv[])
   // Affine registration
   //
   std::cout << "First do an affine registration..." << std::endl;
-  typedef itk::GradientDescentOptimizerv4 OptimizerType;
+  using OptimizerType = itk::GradientDescentOptimizerv4;
   OptimizerType::Pointer  optimizer = OptimizerType::New();
   optimizer->SetMetric( metric );
   optimizer->SetNumberOfIterations( numberOfAffineIterations );
@@ -198,7 +190,7 @@ int main(int argc, char *argv[])
   //
   std::cout << "Now, add the displacement field to the composite transform..."
     << std::endl;
-  typedef itk::CompositeTransform< ParametersValueType, Dimension> CompositeType;
+  using CompositeType = itk::CompositeTransform< ParametersValueType, Dimension>;
   CompositeType::Pointer compositeTransform = CompositeType::New();
   compositeTransform->AddTransform( affineTransform );
   compositeTransform->AddTransform( displacementTransform );
@@ -231,8 +223,7 @@ int main(int argc, char *argv[])
     }
 
   // Warp the image with the displacement field
-  typedef itk::ResampleImageFilter< InputImageType, InputImageType >
-    ResampleFilterType;
+  using ResampleFilterType = itk::ResampleImageFilter< InputImageType, InputImageType >;
   ResampleFilterType::Pointer resampler = ResampleFilterType::New();
   resampler->SetTransform( compositeTransform );
   resampler->SetInput( movingImageReader->GetOutput() );
@@ -240,16 +231,13 @@ int main(int argc, char *argv[])
   resampler->SetUseReferenceImage( true );
 
   // Write the warped image into a file
-  typedef itk::Vector< unsigned char, NumberOfPixelComponents >
-    OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension >
-    OutputImageType;
-  typedef itk::CastImageFilter< InputImageType, OutputImageType >
-    CastFilterType;
+  using OutputPixelType = itk::Vector< unsigned char, NumberOfPixelComponents >;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
+  using CastFilterType = itk::CastImageFilter< InputImageType, OutputImageType >;
   CastFilterType::Pointer caster = CastFilterType::New();
   caster->SetInput( resampler->GetOutput() );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer =  WriterType::New();
   writer->SetFileName( resampledMovingImageFile );
   writer->SetInput( caster->GetOutput() );

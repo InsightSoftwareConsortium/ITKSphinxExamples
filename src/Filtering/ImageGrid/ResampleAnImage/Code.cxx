@@ -40,11 +40,11 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                       PixelType;
-  typedef itk::Image< PixelType, Dimension >  ImageType;
-  typedef double                              ScalarType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
+  using ScalarType = double;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
   reader->Update();
@@ -62,7 +62,7 @@ int main( int argc, char* argv[] )
   centralPoint[0] = centralPixel[0];
   centralPoint[1] = centralPixel[1];
 
-  typedef itk::ScaleTransform< ScalarType, Dimension > ScaleTransformType;
+  using ScaleTransformType = itk::ScaleTransform< ScalarType, Dimension >;
   ScaleTransformType::Pointer scaleTransform = ScaleTransformType::New();
 
   ScaleTransformType::ParametersType parameters = scaleTransform->GetParameters();
@@ -72,10 +72,10 @@ int main( int argc, char* argv[] )
   scaleTransform->SetParameters( parameters );
   scaleTransform->SetCenter( centralPoint );
 
-  typedef itk::LinearInterpolateImageFunction< ImageType, ScalarType > LinearInterpolatorType;
+  using LinearInterpolatorType = itk::LinearInterpolateImageFunction< ImageType, ScalarType >;
   LinearInterpolatorType::Pointer interpolator = LinearInterpolatorType::New();
 
-  typedef itk::ResampleImageFilter< ImageType, ImageType > ResampleFilterType;
+  using ResampleFilterType = itk::ResampleImageFilter< ImageType, ImageType >;
   ResampleFilterType::Pointer resampleFilter = ResampleFilterType::New();
 
   resampleFilter->SetInput( inputImage );
@@ -84,7 +84,7 @@ int main( int argc, char* argv[] )
   resampleFilter->SetSize( size );
   resampleFilter->SetOutputSpacing( spacing );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( resampleFilter->GetOutput() );

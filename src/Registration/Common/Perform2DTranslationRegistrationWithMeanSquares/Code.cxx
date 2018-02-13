@@ -49,21 +49,21 @@ int main( int argc, char *argv[] )
   const char * differenceImageBeforeFile = argv[5];
 
   const    unsigned int    Dimension = 2;
-  typedef  float           PixelType;
+  using PixelType = float;
 
-  typedef itk::Image< PixelType, Dimension >  FixedImageType;
-  typedef itk::Image< PixelType, Dimension >  MovingImageType;
+  using FixedImageType = itk::Image< PixelType, Dimension >;
+  using MovingImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::TranslationTransform< double, Dimension > TransformType;
-  typedef itk::RegularStepGradientDescentOptimizerv4<double> OptimizerType;
+  using TransformType = itk::TranslationTransform< double, Dimension >;
+  using OptimizerType = itk::RegularStepGradientDescentOptimizerv4<double>;
 
-  typedef itk::MeanSquaresImageToImageMetricv4<
+  using MetricType = itk::MeanSquaresImageToImageMetricv4<
                                           FixedImageType,
-                                          MovingImageType >    MetricType;
+                                          MovingImageType >;
 
-  typedef itk::ImageRegistrationMethodv4<
+  using RegistrationType = itk::ImageRegistrationMethodv4<
                                     FixedImageType,
-                                    MovingImageType   >    RegistrationType;
+                                    MovingImageType   >;
 
   MetricType::Pointer         metric        = MetricType::New();
   OptimizerType::Pointer      optimizer     = OptimizerType::New();
@@ -74,13 +74,13 @@ int main( int argc, char *argv[] )
   registration->SetMetric(        metric        );
   registration->SetOptimizer(     optimizer     );
 
-  typedef itk::LinearInterpolateImageFunction<
+  using FixedLinearInterpolatorType = itk::LinearInterpolateImageFunction<
                                         FixedImageType,
-                                        double > FixedLinearInterpolatorType;
+                                        double >;
 
-  typedef itk::LinearInterpolateImageFunction<
+  using MovingLinearInterpolatorType = itk::LinearInterpolateImageFunction<
                                         MovingImageType,
-                                        double > MovingLinearInterpolatorType;
+                                        double >;
 
   FixedLinearInterpolatorType::Pointer fixedInterpolator =
     FixedLinearInterpolatorType::New();
@@ -90,8 +90,8 @@ int main( int argc, char *argv[] )
   metric->SetFixedInterpolator(  fixedInterpolator  );
   metric->SetMovingInterpolator(  movingInterpolator  );
 
-  typedef itk::ImageFileReader< FixedImageType  >   FixedImageReaderType;
-  typedef itk::ImageFileReader< MovingImageType >   MovingImageReaderType;
+  using FixedImageReaderType = itk::ImageFileReader< FixedImageType  >;
+  using MovingImageReaderType = itk::ImageFileReader< MovingImageType >;
   FixedImageReaderType::Pointer   fixedImageReader     = FixedImageReaderType::New();
   MovingImageReaderType::Pointer  movingImageReader    = MovingImageReaderType::New();
 
@@ -167,18 +167,18 @@ int main( int argc, char *argv[] )
   std::cout << " Iterations    = " << numberOfIterations << std::endl;
   std::cout << " Metric value  = " << bestValue          << std::endl;
 
-  typedef itk::CompositeTransform<
+  using CompositeTransformType = itk::CompositeTransform<
                                  double,
-                                 Dimension > CompositeTransformType;
+                                 Dimension >;
   CompositeTransformType::Pointer outputCompositeTransform =
     CompositeTransformType::New();
   outputCompositeTransform->AddTransform( movingInitialTransform );
   outputCompositeTransform->AddTransform(
     registration->GetModifiableTransform() );
 
-  typedef itk::ResampleImageFilter<
+  using ResampleFilterType = itk::ResampleImageFilter<
                             MovingImageType,
-                            FixedImageType >    ResampleFilterType;
+                            FixedImageType >;
 
   ResampleFilterType::Pointer resampler = ResampleFilterType::New();
   resampler->SetInput( movingImageReader->GetOutput() );
@@ -192,15 +192,15 @@ int main( int argc, char *argv[] )
   resampler->SetOutputDirection( fixedImage->GetDirection() );
   resampler->SetDefaultPixelValue( 100 );
 
-  typedef unsigned char                            OutputPixelType;
+  using OutputPixelType = unsigned char;
 
-  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
-  typedef itk::CastImageFilter<
+  using CastFilterType = itk::CastImageFilter<
                         FixedImageType,
-                        OutputImageType >          CastFilterType;
+                        OutputImageType >;
 
-  typedef itk::ImageFileWriter< OutputImageType >  WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
 
   WriterType::Pointer      writer =  WriterType::New();
   CastFilterType::Pointer  caster =  CastFilterType::New();
@@ -211,19 +211,19 @@ int main( int argc, char *argv[] )
   writer->SetInput( caster->GetOutput()   );
   writer->Update();
 
-  typedef itk::SubtractImageFilter<
+  using DifferenceFilterType = itk::SubtractImageFilter<
                                   FixedImageType,
                                   FixedImageType,
-                                  FixedImageType > DifferenceFilterType;
+                                  FixedImageType >;
 
   DifferenceFilterType::Pointer difference = DifferenceFilterType::New();
 
   difference->SetInput1( fixedImageReader->GetOutput() );
   difference->SetInput2( resampler->GetOutput() );
 
-  typedef itk::RescaleIntensityImageFilter<
+  using RescalerType = itk::RescaleIntensityImageFilter<
                                   FixedImageType,
-                                  OutputImageType >   RescalerType;
+                                  OutputImageType >;
 
   RescalerType::Pointer intensityRescaler = RescalerType::New();
 

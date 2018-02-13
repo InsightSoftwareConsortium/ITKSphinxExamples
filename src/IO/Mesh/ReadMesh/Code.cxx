@@ -33,10 +33,10 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef double                                  CoordinateType;
-  typedef itk::Mesh< CoordinateType, Dimension >  MeshType;
+  using CoordinateType = double;
+  using MeshType = itk::Mesh< CoordinateType, Dimension >;
 
-  typedef itk::MeshFileReader< MeshType >  ReaderType;
+  using ReaderType = itk::MeshFileReader< MeshType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
   reader->Update();

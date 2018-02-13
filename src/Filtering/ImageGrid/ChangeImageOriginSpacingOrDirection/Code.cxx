@@ -62,10 +62,10 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
   try
@@ -80,7 +80,7 @@ int main( int argc, char* argv[] )
   ImageType::ConstPointer inputImage = reader->GetOutput();
   std::cout << "Original image: " << inputImage << std::endl;
 
-  typedef itk::ChangeInformationImageFilter< ImageType > FilterType;
+  using FilterType = itk::ChangeInformationImageFilter< ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
 

@@ -31,21 +31,21 @@ int main(int argc, char* argv[])
   const char * outputFileName = argv[1];
 
   const unsigned int Dimension = 2;
-  typedef unsigned char PixelType;
+  using PixelType = unsigned char;
 
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   ImageType::SizeType size;
   size.Fill( 10 );
 
-  typedef itk::RandomImageSource< ImageType > RandomImageSourceType;
+  using RandomImageSourceType = itk::RandomImageSource< ImageType >;
 
   RandomImageSourceType::Pointer randomImageSource =
     RandomImageSourceType::New();
   randomImageSource->SetNumberOfThreads(1); // to produce reproducible results
   randomImageSource->SetSize( size );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( randomImageSource->GetOutput() );

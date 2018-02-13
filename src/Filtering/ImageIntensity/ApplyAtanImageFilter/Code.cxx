@@ -33,28 +33,28 @@ int main( int argc, char* argv[] )
     }
 
   const unsigned int Dimension = 2;
-  typedef unsigned char InputPixelType;
+  using InputPixelType = unsigned char;
 
-  typedef itk::Image< InputPixelType, Dimension >  InputImageType;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
 
   InputImageType::SizeType size;
   size.Fill( 100 );
 
-  typedef itk::RandomImageSource< InputImageType > RandomImageSourceType;
+  using RandomImageSourceType = itk::RandomImageSource< InputImageType >;
 
   RandomImageSourceType::Pointer randomImageSource =
     RandomImageSourceType::New();
   randomImageSource->SetNumberOfThreads(1); // to produce non-random results
   randomImageSource->SetSize(size);
 
-  typedef float OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
+  using OutputPixelType = float;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
-  typedef itk::AtanImageFilter< InputImageType, OutputImageType > FilterType;
+  using FilterType = itk::AtanImageFilter< InputImageType, OutputImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( randomImageSource->GetOutput() );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[1] );
   writer->SetInput( filter->GetOutput() );

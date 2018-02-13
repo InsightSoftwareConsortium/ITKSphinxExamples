@@ -166,7 +166,7 @@ int main(int argc, char **argv)
     else
       {
 
-      typedef std::list< std::string >::const_iterator  nameIterator;
+      using nameIterator = std::list< std::string >::const_iterator;
       nameIterator baselineImageItr = baselineImageFilenames.begin();
       while( baselineImageItr != baselineImageFilenames.end() )
         {
@@ -236,10 +236,10 @@ int RegressionTestImage (const char *testImageFilename,
 {
   // Use the factory mechanism to read the test
   // and baseline files and convert them to double
-  typedef itk::Image<double,ITK_TEST_DIMENSION_MAX>         ImageType;
-  typedef itk::Image<unsigned char,ITK_TEST_DIMENSION_MAX>  OutputType;
-  typedef itk::Image<unsigned char,2>                       DiffOutputType;
-  typedef itk::ImageFileReader<ImageType>                   ReaderType;
+  using ImageType = itk::Image<double,ITK_TEST_DIMENSION_MAX>;
+  using OutputType = itk::Image<unsigned char,ITK_TEST_DIMENSION_MAX>;
+  using DiffOutputType = itk::Image<unsigned char,2>;
+  using ReaderType = itk::ImageFileReader<ImageType>;
 
   // Read the baseline file
   ReaderType::Pointer baselineReader = ReaderType::New();
@@ -289,7 +289,7 @@ int RegressionTestImage (const char *testImageFilename,
     }
 
   // Now compare the two images
-  typedef itk::Testing::ComparisonImageFilter<ImageType,ImageType> DiffType;
+  using DiffType = itk::Testing::ComparisonImageFilter<ImageType,ImageType>;
   DiffType::Pointer diff = DiffType::New();
     diff->SetValidInput(baselineReader->GetOutput());
     diff->SetTestInput(testReader->GetOutput());
@@ -325,10 +325,10 @@ int RegressionTestImage (const char *testImageFilename,
 
   if (reportErrors)
     {
-    typedef itk::RescaleIntensityImageFilter<ImageType,OutputType> RescaleType;
-    typedef itk::ExtractImageFilter<OutputType,DiffOutputType>     ExtractType;
-    typedef itk::ImageFileWriter<DiffOutputType>                   WriterType;
-    typedef itk::ImageRegion<ITK_TEST_DIMENSION_MAX>               RegionType;
+    using RescaleType = itk::RescaleIntensityImageFilter<ImageType,OutputType>;
+    using ExtractType = itk::ExtractImageFilter<OutputType,DiffOutputType>;
+    using WriterType = itk::ImageFileWriter<DiffOutputType>;
+    using RegionType = itk::ImageRegion<ITK_TEST_DIMENSION_MAX>;
 
     OutputType::IndexType index;
     index.Fill(0);

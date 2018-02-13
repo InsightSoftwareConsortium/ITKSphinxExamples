@@ -47,43 +47,43 @@ int main( int argc, char* argv[] )
   const unsigned int Dimension = 2;
 
   // Input and output are png files, use unsigned char
-  typedef unsigned char                              PixelType;
-  typedef itk::Image< PixelType, Dimension >         ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
   // Double type for GradientRecursiveGaussianImageFilter
-  typedef double                                     DoublePixelType;
-  typedef itk::Image< DoublePixelType, Dimension >   DoubleImageType;
+  using DoublePixelType = double;
+  using DoubleImageType = itk::Image< DoublePixelType, Dimension >;
   // The output of GradientRecursiveGaussianImageFilter
   // are images of the gradient along X and Y, so the type of
   // the output is a covariant vector of dimension 2 (X, Y)
-  typedef itk::CovariantVector< DoublePixelType, Dimension > CovPixelType;
-  typedef itk::Image< CovPixelType, Dimension >              CovImageType;
+  using CovPixelType = itk::CovariantVector< DoublePixelType, Dimension >;
+  using CovImageType = itk::Image< CovPixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::GradientRecursiveGaussianImageFilter< ImageType, CovImageType > FilterType;
+  using FilterType = itk::GradientRecursiveGaussianImageFilter< ImageType, CovImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
 
   // Allows to select the X or Y output images
-  typedef itk::VectorIndexSelectionCastImageFilter< CovImageType, DoubleImageType > IndexSelectionType;
+  using IndexSelectionType = itk::VectorIndexSelectionCastImageFilter< CovImageType, DoubleImageType >;
   IndexSelectionType::Pointer indexSelectionFilter = IndexSelectionType::New();
   indexSelectionFilter->SetInput( filter->GetOutput() );
 
   // Rescale for png output
-  typedef itk::RescaleIntensityImageFilter< DoubleImageType, ImageType > RescalerType;
+  using RescalerType = itk::RescaleIntensityImageFilter< DoubleImageType, ImageType >;
   RescalerType::Pointer rescaler = RescalerType::New();
   rescaler->SetOutputMinimum( itk::NumericTraits< PixelType >::min() );
   rescaler->SetOutputMaximum( itk::NumericTraits< PixelType >::max() );
   rescaler->SetInput( indexSelectionFilter->GetOutput() );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( rescaler->GetOutput() );
 
   // Write the X and Y images
-  for( int i = 0; i<2 ;++i )
+  for( int i = 0; i<2;++i )
   {
 
     writer->SetFileName( filenames[i] );
@@ -101,7 +101,7 @@ int main( int argc, char* argv[] )
   }
 
   // Compute the magnitude of the vector and output the image
-  typedef itk::VectorMagnitudeImageFilter< CovImageType, DoubleImageType > MagnitudeType;
+  using MagnitudeType = itk::VectorMagnitudeImageFilter< CovImageType, DoubleImageType >;
   MagnitudeType::Pointer magnitudeFilter = MagnitudeType::New();
   magnitudeFilter->SetInput( filter->GetOutput() );
 

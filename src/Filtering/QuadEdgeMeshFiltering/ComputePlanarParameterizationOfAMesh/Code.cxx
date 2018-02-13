@@ -45,16 +45,16 @@ int main( int argc, char* argv[] )
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[4];
 
-  typedef double                                                  CoordType;
+  using CoordType = double;
   const unsigned int Dimension = 3;
 
-  typedef itk::QuadEdgeMesh< CoordType, Dimension >               MeshType;
-  typedef itk::MeshFileReader< MeshType >                         ReaderType;
-  typedef itk::MeshFileWriter< MeshType >                         WriterType;
-  typedef itk::BorderQuadEdgeMeshFilter< MeshType, MeshType >     BorderTransformType;
-  typedef VNLIterativeSparseSolverTraits< CoordType >             SolverTraits;
+  using MeshType = itk::QuadEdgeMesh< CoordType, Dimension >;
+  using ReaderType = itk::MeshFileReader< MeshType >;
+  using WriterType = itk::MeshFileWriter< MeshType >;
+  using BorderTransformType = itk::BorderQuadEdgeMeshFilter< MeshType, MeshType >;
+  using SolverTraits = VNLIterativeSparseSolverTraits< CoordType >;
 
-  typedef itk::ParameterizationQuadEdgeMeshFilter< MeshType, MeshType, SolverTraits >   ParametrizationType;
+  using ParametrizationType = itk::ParameterizationQuadEdgeMeshFilter< MeshType, MeshType, SolverTraits >;
 
   ReaderType::Pointer reader = ReaderType::New( );
   reader->SetFileName( inputFileName );

@@ -37,14 +37,14 @@ int main(int argc, char * argv[])
   const char * outputFileName = argv[2];
   const int radiusValue = atoi( argv[3] );
 
-  typedef unsigned char                       PixelType;
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType > ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::MeanImageFilter< ImageType, ImageType >  FilterType;
+  using FilterType = itk::MeanImageFilter< ImageType, ImageType >;
   FilterType::Pointer meanFilter = FilterType::New();
 
   FilterType::InputSizeType radius;
@@ -53,7 +53,7 @@ int main(int argc, char * argv[])
   meanFilter->SetRadius( radius );
   meanFilter->SetInput( reader->GetOutput() );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( meanFilter->GetOutput() );
   writer->SetFileName( outputFileName );

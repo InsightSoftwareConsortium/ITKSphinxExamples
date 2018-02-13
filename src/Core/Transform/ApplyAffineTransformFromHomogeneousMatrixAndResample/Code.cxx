@@ -34,13 +34,13 @@ int main( int argc, char* argv[] )
     }
 
   const unsigned int Dimension = 2;
-  typedef double ScalarType;
+  using ScalarType = double;
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
   const auto defaultValue = static_cast< ScalarType >( atof( argv[3] ) );
 
-  typedef itk::Matrix< ScalarType, Dimension + 1, Dimension + 1 > MatrixType;
+  using MatrixType = itk::Matrix< ScalarType, Dimension + 1, Dimension + 1 >;
   MatrixType matrix;
   matrix[0][0] = std::cos( 0.05 );
   matrix[0][1] = std::sin( 0.05 );
@@ -54,10 +54,10 @@ int main( int argc, char* argv[] )
   matrix[2][1] = -20.;
   matrix[2][2] = 1.;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
   reader->Update();
@@ -66,7 +66,7 @@ int main( int argc, char* argv[] )
 
   const ImageType::SizeType& size = input->GetLargestPossibleRegion().GetSize();
 
-  typedef itk::ResampleImageFilter< ImageType, ImageType > ResampleImageFilterType;
+  using ResampleImageFilterType = itk::ResampleImageFilter< ImageType, ImageType >;
   ResampleImageFilterType::Pointer resample = ResampleImageFilterType::New();
   resample->SetInput( input );
   resample->SetReferenceImage( input );
@@ -75,12 +75,12 @@ int main( int argc, char* argv[] )
   resample->SetDefaultPixelValue( defaultValue );
 
   const unsigned int Radius = 3;
-  typedef itk::WindowedSincInterpolateImageFunction< ImageType, Radius > InterpolatorType;
+  using InterpolatorType = itk::WindowedSincInterpolateImageFunction< ImageType, Radius >;
   InterpolatorType::Pointer interpolator = InterpolatorType::New();
 
   resample->SetInterpolator( interpolator );
 
-  typedef itk::AffineTransform< ScalarType, Dimension > TransformType;
+  using TransformType = itk::AffineTransform< ScalarType, Dimension >;
   TransformType::Pointer transform = TransformType::New();
 
   // get transform parameters from MatrixType
@@ -100,7 +100,7 @@ int main( int argc, char* argv[] )
 
   resample->SetTransform( transform );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( resample->GetOutput() );

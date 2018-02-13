@@ -36,23 +36,22 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType > ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::RGBPixel< unsigned char >        RGBPixelType;
-  typedef itk::Image< RGBPixelType, Dimension > RGBImageType;
+  using RGBPixelType = itk::RGBPixel< unsigned char >;
+  using RGBImageType = itk::Image< RGBPixelType, Dimension >;
 
-  typedef itk::ScalarToRGBColormapImageFilter< ImageType, RGBImageType>
-    RGBFilterType;
+  using RGBFilterType = itk::ScalarToRGBColormapImageFilter< ImageType, RGBImageType>;
   RGBFilterType::Pointer rgbfilter = RGBFilterType::New();
   rgbfilter->SetInput( reader->GetOutput() );
   rgbfilter->SetColormap( RGBFilterType::Hot );
 
-  typedef  itk::ImageFileWriter< RGBImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< RGBImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( rgbfilter->GetOutput() );

@@ -22,7 +22,7 @@ int main(int, char *[])
 {
   const unsigned int Dimension = 2;
 
-  typedef itk::Index< Dimension > IndexType;
+  using IndexType = itk::Index< Dimension >;
 
   IndexType index;
 

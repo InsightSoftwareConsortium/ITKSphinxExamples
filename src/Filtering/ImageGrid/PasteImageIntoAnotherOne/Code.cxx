@@ -40,14 +40,14 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   ImageType::IndexType index;
   index[0] = startX;
   index[1] = startY;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer sourceReader = ReaderType::New();
   sourceReader->SetFileName( sourceFileName );
   sourceReader->Update();
@@ -55,14 +55,14 @@ int main( int argc, char* argv[] )
   ReaderType::Pointer destinationReader = ReaderType::New();
   destinationReader->SetFileName( destinationFileName );
 
-  typedef itk::PasteImageFilter< ImageType, ImageType > FilterType;
+  using FilterType = itk::PasteImageFilter< ImageType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetSourceImage( sourceReader->GetOutput() );
   filter->SetSourceRegion( sourceReader->GetOutput()->GetLargestPossibleRegion() );
   filter->SetDestinationImage( destinationReader->GetOutput() );
   filter->SetDestinationIndex( index );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

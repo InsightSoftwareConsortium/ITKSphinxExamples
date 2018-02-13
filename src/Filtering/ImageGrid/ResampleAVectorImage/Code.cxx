@@ -40,25 +40,25 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                       PixelComponentType;
-  typedef itk::RGBPixel< PixelComponentType > PixelType;
-  typedef itk::Image< PixelType,  Dimension > ImageType;
+  using PixelComponentType = unsigned char;
+  using PixelType = itk::RGBPixel< PixelComponentType >;
+  using ImageType = itk::Image< PixelType,  Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::ResampleImageFilter< ImageType, ImageType >  FilterType;
+  using FilterType = itk::ResampleImageFilter< ImageType, ImageType >;
 
   FilterType::Pointer filter = FilterType::New();
 
-  typedef itk::LinearInterpolateImageFunction< ImageType, double >  InterpolatorType;
+  using InterpolatorType = itk::LinearInterpolateImageFunction< ImageType, double >;
 
   InterpolatorType::Pointer interpolator = InterpolatorType::New();
 
   filter->SetInterpolator( interpolator );
 
-  typedef itk::IdentityTransform< double, Dimension >  TransformType;
+  using TransformType = itk::IdentityTransform< double, Dimension >;
   TransformType::Pointer transform = TransformType::New();
 
   filter->SetTransform( transform );
@@ -90,7 +90,7 @@ int main( int argc, char* argv[] )
   filter->SetSize( size );
   filter->SetInput( reader->GetOutput() );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

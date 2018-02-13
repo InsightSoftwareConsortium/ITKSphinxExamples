@@ -36,18 +36,18 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader1 = ReaderType::New();
   reader1->SetFileName( inputFileName1 );
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader2 = ReaderType::New();
   reader2->SetFileName( inputFileName2 );
 
-  typedef itk::TileImageFilter< ImageType, ImageType > TileFilterType;
+  using TileFilterType = itk::TileImageFilter< ImageType, ImageType >;
   TileFilterType::Pointer tileFilter = TileFilterType::New();
   tileFilter->SetInput( 0, reader1->GetOutput() );
   tileFilter->SetInput( 1, reader2->GetOutput() );
@@ -57,7 +57,7 @@ int main( int argc, char* argv[] )
   layout[2] = 2;
   tileFilter->SetLayout( layout );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( tileFilter->GetOutput() );

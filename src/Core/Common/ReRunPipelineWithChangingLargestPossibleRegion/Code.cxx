@@ -36,17 +36,17 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::NumericSeriesFileNames NameGeneratorType;
+  using NameGeneratorType = itk::NumericSeriesFileNames;
   NameGeneratorType::Pointer nameGenerator = NameGeneratorType::New();
   nameGenerator->SetSeriesFormat( seriesFormat );
   nameGenerator->SetStartIndex( startIndex );
   nameGenerator->SetEndIndex( endIndex );
   std::vector< std::string > fileNames = nameGenerator->GetFileNames();
 
-  typedef itk::ImageSeriesReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageSeriesReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileNames( fileNames );
 

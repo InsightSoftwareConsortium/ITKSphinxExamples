@@ -37,25 +37,25 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                           InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension > InputImageType;
+  using InputPixelType = unsigned char;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
 
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader1 = ReaderType::New();
   reader1->SetFileName( inputFileName1 );
 
   ReaderType::Pointer reader2 = ReaderType::New();
   reader2->SetFileName( inputFileName2 );
 
-  typedef unsigned int                              OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
+  using OutputPixelType = unsigned int;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
-  typedef itk::MultiplyImageFilter< InputImageType, InputImageType, OutputImageType > FilterType;
+  using FilterType = itk::MultiplyImageFilter< InputImageType, InputImageType, OutputImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput1( reader1->GetOutput() );
   filter->SetInput2( reader2->GetOutput() );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

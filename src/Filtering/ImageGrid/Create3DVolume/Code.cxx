@@ -35,14 +35,14 @@ int main( int argc, char* argv[] )
   const unsigned int InputDimension   = 2;
   const unsigned int OutputDimension  = 3;
 
-  typedef unsigned char                             PixelType;
-  typedef itk::Image< PixelType, InputDimension >   InputImageType;
-  typedef itk::Image< PixelType, OutputDimension >  OutputImageType;
+  using PixelType = unsigned char;
+  using InputImageType = itk::Image< PixelType, InputDimension >;
+  using OutputImageType = itk::Image< PixelType, OutputDimension >;
 
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader = ReaderType::New();
 
-  typedef itk::TileImageFilter< InputImageType, OutputImageType > FilterType;
+  using FilterType = itk::TileImageFilter< InputImageType, OutputImageType >;
   FilterType::Pointer filter = FilterType::New();
 
   itk::FixedArray< unsigned int, OutputDimension > layout;
@@ -76,7 +76,7 @@ int main( int argc, char* argv[] )
 
   filter->SetDefaultPixelValue( defaultValue );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[ argc - 1 ] );
   writer->SetInput( filter->GetOutput() );

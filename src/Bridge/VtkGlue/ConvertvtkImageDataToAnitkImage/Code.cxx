@@ -36,8 +36,8 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   vtkSmartPointer< vtkPNGReader > reader =
     vtkSmartPointer< vtkPNGReader >::New();
@@ -49,7 +49,7 @@ int main( int argc, char* argv[] )
   magnitude->SetInputConnection( reader->GetOutputPort() );
   magnitude->Update();
 
-  typedef itk::VTKImageToImageFilter< ImageType > FilterType;
+  using FilterType = itk::VTKImageToImageFilter< ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( magnitude->GetOutput() );
 

@@ -32,16 +32,15 @@ int main(int argc, char* argv[] )
     }
 
   // create a fastmarching object
-  typedef float PixelType;
+  using PixelType = float;
   const unsigned int Dimension = 2;
 
-  typedef itk::Image< PixelType, Dimension > FloatImageType;
+  using FloatImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::FastMarchingThresholdStoppingCriterion< FloatImageType,
-    FloatImageType > CriterionType;
+  using CriterionType = itk::FastMarchingThresholdStoppingCriterion< FloatImageType,
+    FloatImageType >;
 
-  typedef itk::FastMarchingImageFilterBase< FloatImageType, FloatImageType >
-    FastMarchingType;
+  using FastMarchingType = itk::FastMarchingImageFilterBase< FloatImageType, FloatImageType >;
 
   CriterionType::Pointer criterion = CriterionType::New();
   criterion->SetThreshold( 100. );
@@ -103,8 +102,8 @@ int main(int argc, char* argv[] )
 
   marcher->SetInput( speedImage );
 
-  typedef itk::FastMarchingImageToNodePairContainerAdaptor< FloatImageType,
-      FloatImageType, FloatImageType > AdaptorType;
+  using AdaptorType = itk::FastMarchingImageToNodePairContainerAdaptor< FloatImageType,
+      FloatImageType, FloatImageType >;
 
   AdaptorType::Pointer adaptor = AdaptorType::New();
 
@@ -118,7 +117,7 @@ int main(int argc, char* argv[] )
   marcher->SetAlivePoints( adaptor->GetAlivePoints() );
   marcher->SetTrialPoints( adaptor->GetTrialPoints() );
 
-  typedef itk::ImageFileWriter< FloatImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< FloatImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( marcher->GetOutput() );
   writer->SetFileName( argv[1] );

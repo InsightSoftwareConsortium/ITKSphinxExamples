@@ -36,25 +36,25 @@ int main(int argc, char * argv[])
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                           InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension > InputImageType;
+  using InputPixelType = unsigned char;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
 
-  typedef float                                      OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension >   OutputImageType;
+  using OutputPixelType = float;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
   // Create and setup a reader
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
   // Create and setup a gradient filter
-  typedef itk::GradientMagnitudeImageFilter<
-      InputImageType, OutputImageType >  FilterType;
+  using FilterType = itk::GradientMagnitudeImageFilter<
+      InputImageType, OutputImageType >;
 
   FilterType::Pointer gradientFilter = FilterType::New();
   gradientFilter->SetInput( reader->GetOutput() );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( gradientFilter->GetOutput() );

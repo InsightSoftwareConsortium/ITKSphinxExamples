@@ -22,9 +22,9 @@
 int main(int, char *[])
 {
   const unsigned int Dimension = 2;
-  typedef itk::RGBPixel< unsigned char > RGBPixelType;
+  using RGBPixelType = itk::RGBPixel< unsigned char >;
 
-  typedef itk::Image< RGBPixelType, Dimension > RGBImageType;
+  using RGBImageType = itk::Image< RGBPixelType, Dimension >;
   RGBImageType::Pointer image = RGBImageType::New();
 
   return EXIT_SUCCESS;

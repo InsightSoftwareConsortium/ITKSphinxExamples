@@ -39,19 +39,18 @@ int main(int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  typedef unsigned char                   PixelType;
-  typedef itk::RGBPixel< unsigned char >  RGBPixelType;
+  using PixelType = unsigned char;
+  using RGBPixelType = itk::RGBPixel< unsigned char >;
 
-  typedef itk::Image< RGBPixelType, 2 >   RGBImageType;
-  typedef itk::Image< PixelType, 2 >      ImageType;
+  using RGBImageType = itk::Image< RGBPixelType, 2 >;
+  using ImageType = itk::Image< PixelType, 2 >;
 
 
-  typedef itk::ImageFileReader< ImageType > ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::Function::CustomColormapFunction< PixelType, RGBPixelType >
-    ColormapType;
+  using ColormapType = itk::Function::CustomColormapFunction< PixelType, RGBPixelType >;
   ColormapType::Pointer colormap = ColormapType::New();
 
   ColormapType::ChannelType redChannel;
@@ -82,14 +81,13 @@ int main(int argc, char* argv[] )
   colormap->SetGreenChannel( greenChannel );
   colormap->SetBlueChannel( blueChannel );
 
-  typedef itk::ScalarToRGBColormapImageFilter< ImageType, RGBImageType >
-    ColormapFilterType;
+  using ColormapFilterType = itk::ScalarToRGBColormapImageFilter< ImageType, RGBImageType >;
   ColormapFilterType::Pointer colormapFilter1 = ColormapFilterType::New();
 
   colormapFilter1->SetInput( reader->GetOutput() );
   colormapFilter1->SetColormap( colormap );
 
-  typedef itk::ImageFileWriter< RGBImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< RGBImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( colormapFilter1->GetOutput() );
   writer->SetFileName( argv[2] );

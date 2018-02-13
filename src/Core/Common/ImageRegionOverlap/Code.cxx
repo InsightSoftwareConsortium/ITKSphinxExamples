@@ -37,12 +37,12 @@ int main( int argc, char *argv[] )
   const char * out_file_name = argv[1];
 
   const unsigned int Dimension = 2;
-  typedef itk::RGBPixel< unsigned char >           RGBPixelType;
-  typedef itk::Image< RGBPixelType, Dimension >    RGBImageType;
-  typedef RGBImageType::RegionType                 RegionType;
-  typedef RGBImageType::IndexType                  IndexType;
-  typedef RGBImageType::SizeType                   SizeType;
-  typedef itk::ImageRegionIterator< RGBImageType > IteratorType;
+  using RGBPixelType = itk::RGBPixel< unsigned char >;
+  using RGBImageType = itk::Image< RGBPixelType, Dimension >;
+  using RegionType = RGBImageType::RegionType;
+  using IndexType = RGBImageType::IndexType;
+  using SizeType = RGBImageType::SizeType;
+  using IteratorType = itk::ImageRegionIterator< RGBImageType >;
 
 
   IndexType index;
@@ -136,7 +136,7 @@ int main( int argc, char *argv[] )
     }
 
   // Writer
-  typedef itk::ImageFileWriter< RGBImageType > FileWriterType;
+  using FileWriterType = itk::ImageFileWriter< RGBImageType >;
   FileWriterType::Pointer writer = FileWriterType::New();
   writer->SetFileName( out_file_name );
   writer->SetInput( image );

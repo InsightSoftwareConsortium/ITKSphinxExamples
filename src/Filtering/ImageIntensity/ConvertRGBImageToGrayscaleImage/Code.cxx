@@ -34,23 +34,22 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                           ComponentType;
-  typedef itk::RGBPixel< ComponentType >          InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension > InputImageType;
+  using ComponentType = unsigned char;
+  using InputPixelType = itk::RGBPixel< ComponentType >;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
 
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef unsigned char                             OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
+  using OutputPixelType = unsigned char;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
-  typedef itk::RGBToLuminanceImageFilter< InputImageType, OutputImageType >
-    FilterType;
+  using FilterType = itk::RGBToLuminanceImageFilter< InputImageType, OutputImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( filter->GetOutput() );

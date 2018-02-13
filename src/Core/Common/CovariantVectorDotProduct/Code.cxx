@@ -21,9 +21,9 @@
 int main( int, char* [] )
 {
   const unsigned int Dimension = 3;
-  typedef double CoordType;
+  using CoordType = double;
 
-  typedef itk::CovariantVector< CoordType, Dimension > VectorType;
+  using VectorType = itk::CovariantVector< CoordType, Dimension >;
 
   VectorType u;
   u[0] = -1.;

@@ -21,9 +21,9 @@
 int main(int, char*[])
 {
   const unsigned int Dimension = 2;
-  typedef unsigned char PixelType;
+  using PixelType = unsigned char;
 
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   // Big region
   ImageType::RegionType bigRegion;

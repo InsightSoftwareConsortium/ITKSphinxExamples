@@ -31,12 +31,12 @@ int main( int argc, char* argv[] )
     std::cerr << " <input filename> <output filename>" << std::endl;
     return EXIT_FAILURE;
     }
-  typedef float   PixelType;
-  typedef double  CoordType;
+  using PixelType = float;
+  using CoordType = double;
 
   const unsigned int Dimension = 3;
 
-  typedef itk::QuadEdgeMeshExtendedTraits <
+  using Traits = itk::QuadEdgeMeshExtendedTraits <
     PixelType,  // type of data for vertices
     Dimension,  // geometrical dimension of space
     2,          // Mac topological dimension of a cell
@@ -45,16 +45,15 @@ int main( int argc, char* argv[] )
     PixelType,  // type of data for cell
     bool,       // type of data for primal edges
     bool        // type of data for dual edges
-  > Traits;
+  >;
 
-  typedef itk::QuadEdgeMesh< PixelType, Dimension, Traits > MeshType;
+  using MeshType = itk::QuadEdgeMesh< PixelType, Dimension, Traits >;
 
-  typedef itk::MeshFileReader< MeshType > ReaderType;
+  using ReaderType = itk::MeshFileReader< MeshType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::FastMarchingQuadEdgeMeshFilterBase< MeshType, MeshType >
-    FastMarchingType;
+  using FastMarchingType = itk::FastMarchingQuadEdgeMeshFilterBase< MeshType, MeshType >;
 
   MeshType::Pointer mesh = reader->GetOutput();
 
@@ -70,16 +69,15 @@ int main( int argc, char* argv[] )
     ++pIt;
     }
 
-  typedef FastMarchingType::NodePairType          NodePairType;
-  typedef FastMarchingType::NodePairContainerType NodePairContainerType;
+  using NodePairType = FastMarchingType::NodePairType;
+  using NodePairContainerType = FastMarchingType::NodePairContainerType;
 
   NodePairContainerType::Pointer trial = NodePairContainerType::New();
 
   NodePairType nodePair( 0, 0. );
   trial->push_back( nodePair );
 
-  typedef itk::FastMarchingThresholdStoppingCriterion< MeshType, MeshType >
-      CriterionType;
+  using CriterionType = itk::FastMarchingThresholdStoppingCriterion< MeshType, MeshType >;
   CriterionType::Pointer criterion = CriterionType::New();
   criterion->SetThreshold( 100. );
 
@@ -88,7 +86,7 @@ int main( int argc, char* argv[] )
   fmmFilter->SetTrialPoints( trial );
   fmmFilter->SetStoppingCriterion( criterion );
 
-  typedef itk::MeshFileWriter< MeshType > WriterType;
+  using WriterType = itk::MeshFileWriter< MeshType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( fmmFilter->GetOutput() );
   writer->SetFileName( argv[2] );

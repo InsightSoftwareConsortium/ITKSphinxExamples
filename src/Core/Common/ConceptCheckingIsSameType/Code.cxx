@@ -27,13 +27,13 @@ void CheckIfPixelTypeIsTheSameAs( const TImage* const )
 int main( int, char* [] )
 {
   const unsigned int Dimension = 2;
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
   ImageType::Pointer image = ImageType::New();
 
   CheckIfPixelTypeIsTheSameAs< ImageType, unsigned char >( image.GetPointer() );
 
-  typedef itk::Image< PixelType, Dimension > ImageType2;
+  using ImageType2 = itk::Image< PixelType, Dimension >;
 
   CheckIfPixelTypeIsTheSameAs< ImageType, ImageType2::PixelType >( image.GetPointer() );
 

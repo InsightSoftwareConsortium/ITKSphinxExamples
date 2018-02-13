@@ -47,37 +47,37 @@ int main( int argc, char* argv[] )
   // Image Dimension
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                            InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension >  InputImageType;
+  using InputPixelType = unsigned char;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
 
   // Read input image (to be processed).
-  typedef itk::ImageFileReader< InputImageType >   ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
   InputImageType::Pointer input = reader->GetOutput();
 
-  typedef float                                         LevelSetPixelType;
-  typedef itk::Image< LevelSetPixelType, Dimension >    LevelSetImageType;
-  typedef itk::LevelSetDenseImage< LevelSetImageType >  LevelSetType;
+  using LevelSetPixelType = float;
+  using LevelSetImageType = itk::Image< LevelSetPixelType, Dimension >;
+  using LevelSetType = itk::LevelSetDenseImage< LevelSetImageType >;
 
   // Generate a binary mask that will be used as initialization for the level
   // set evolution.
-  typedef itk::OtsuMultipleThresholdsImageFilter< InputImageType, LevelSetImageType > OtsuFilterType;
+  using OtsuFilterType = itk::OtsuMultipleThresholdsImageFilter< InputImageType, LevelSetImageType >;
   OtsuFilterType::Pointer otsu = OtsuFilterType::New();
   otsu->SetInput( input );
   otsu->SetNumberOfHistogramBins( 256 );
   otsu->SetNumberOfThresholds( 1 );
 
-  typedef itk::RescaleIntensityImageFilter< LevelSetImageType, LevelSetImageType > RescaleType;
+  using RescaleType = itk::RescaleIntensityImageFilter< LevelSetImageType, LevelSetImageType >;
   RescaleType::Pointer rescaler = RescaleType::New();
   rescaler->SetInput( otsu->GetOutput() );
   rescaler->SetOutputMinimum( 0 );
   rescaler->SetOutputMaximum( 1 );
 
   // convert a binary mask to a level-set function
-  typedef itk::BinaryImageToLevelSetImageAdaptor< LevelSetImageType,
-    LevelSetType > BinaryImageToLevelSetType;
+  using BinaryImageToLevelSetType = itk::BinaryImageToLevelSetImageAdaptor< LevelSetImageType,
+    LevelSetType >;
 
   BinaryImageToLevelSetType::Pointer adaptor = BinaryImageToLevelSetType::New();
   adaptor->SetInputImage( rescaler->GetOutput() );
@@ -86,7 +86,7 @@ int main( int argc, char* argv[] )
   LevelSetType::Pointer levelSet = adaptor->GetLevelSet();
 
   // Create the visualizer
-  typedef itk::VTKVisualizeImageLevelSetIsoValues< InputImageType, LevelSetType > VisualizationType;
+  using VisualizationType = itk::VTKVisualizeImageLevelSetIsoValues< InputImageType, LevelSetType >;
   VisualizationType::Pointer visualizer = VisualizationType::New();
   visualizer->SetInputImage( input );
   visualizer->SetLevelSet( levelSet );
