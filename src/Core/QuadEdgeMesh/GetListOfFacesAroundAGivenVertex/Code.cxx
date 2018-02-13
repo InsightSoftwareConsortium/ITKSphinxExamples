@@ -32,10 +32,10 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef double                                    PixelType;
-  typedef itk::QuadEdgeMesh< PixelType, Dimension > MeshType;
+  using PixelType = double;
+  using MeshType = itk::QuadEdgeMesh< PixelType, Dimension >;
 
-  typedef itk::MeshFileReader< MeshType >  ReaderType;
+  using ReaderType = itk::MeshFileReader< MeshType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
   try

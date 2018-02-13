@@ -35,30 +35,29 @@ int main(int argc, char *argv[])
   const char * outputImage = argv[2];
   const unsigned int radiusValue = atoi( argv[3] );
 
-  typedef unsigned char PixelType;
+  using PixelType = unsigned char;
   const unsigned int Dimension = 2;
 
-  typedef itk::Image< PixelType, Dimension >    ImageType;
-  typedef itk::ImageFileReader< ImageType >     ReaderType;
+  using ImageType = itk::Image< PixelType, Dimension >;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputImage );
 
-  typedef itk::FlatStructuringElement< Dimension >
-    StructuringElementType;
+  using StructuringElementType = itk::FlatStructuringElement< Dimension >;
   StructuringElementType::RadiusType radius;
   radius.Fill( radiusValue );
   StructuringElementType structuringElement =
     StructuringElementType::Ball( radius );
 
-  typedef itk::BinaryDilateImageFilter< ImageType, ImageType,
-    StructuringElementType > BinaryDilateImageFilterType;
+  using BinaryDilateImageFilterType = itk::BinaryDilateImageFilter< ImageType, ImageType,
+    StructuringElementType >;
 
   BinaryDilateImageFilterType::Pointer dilateFilter =
     BinaryDilateImageFilterType::New();
   dilateFilter->SetInput( reader->GetOutput() );
   dilateFilter->SetKernel( structuringElement );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( dilateFilter->GetOutput() );
   writer->SetFileName( outputImage );

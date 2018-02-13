@@ -30,20 +30,19 @@ int main(int argc, char* argv[])
     }
 
   const unsigned int Dimension = 2;
-  typedef unsigned char PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   const unsigned int MeasurementVectorSize = 1; // Grayscale
   const auto binsPerDimension = static_cast< unsigned int >( atoi( argv[2] ) );
 
-  typedef itk::ImageFileReader< ImageType > ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
   ImageType::Pointer image = reader->GetOutput();
 
-  typedef itk::Statistics::ImageToHistogramFilter< ImageType >
-    ImageToHistogramFilterType;
+  using ImageToHistogramFilterType = itk::Statistics::ImageToHistogramFilter< ImageType >;
 
   ImageToHistogramFilterType::HistogramType::MeasurementVectorType
     lowerBound(binsPerDimension);
@@ -51,7 +50,7 @@ int main(int argc, char* argv[])
 
   ImageToHistogramFilterType::HistogramType::MeasurementVectorType
     upperBound(binsPerDimension);
-  upperBound.Fill(255) ;
+  upperBound.Fill(255);
 
   ImageToHistogramFilterType::HistogramType::SizeType
     size(MeasurementVectorSize);

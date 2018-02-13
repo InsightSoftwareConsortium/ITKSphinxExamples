@@ -37,8 +37,8 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   const char * inputFileName = argv[1];
   const char * labelMapFileName = argv[2];
@@ -56,22 +56,22 @@ int main( int argc, char* argv[] )
     borderSize = static_cast< ImageType::SizeValueType >( atoi( argv[8] ) );
   }
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader1 = ReaderType::New();
   reader1->SetFileName( inputFileName );
 
   ReaderType::Pointer reader2 = ReaderType::New();
   reader2->SetFileName( labelMapFileName );
 
-  typedef itk::LabelObject< PixelType, Dimension >  LabelObjectType;
-  typedef itk::LabelMap< LabelObjectType >          LabelMapType;
+  using LabelObjectType = itk::LabelObject< PixelType, Dimension >;
+  using LabelMapType = itk::LabelMap< LabelObjectType >;
 
   // convert the label image into a LabelMap
-  typedef itk::LabelImageToLabelMapFilter< ImageType, LabelMapType > LabelImage2LabelMapType;
+  using LabelImage2LabelMapType = itk::LabelImageToLabelMapFilter< ImageType, LabelMapType >;
   LabelImage2LabelMapType::Pointer convert = LabelImage2LabelMapType::New();
   convert->SetInput( reader2->GetOutput() );
 
-  typedef itk::LabelMapMaskImageFilter< LabelMapType, ImageType > FilterType;
+  using FilterType = itk::LabelMapMaskImageFilter< LabelMapType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( convert->GetOutput() );
   filter->SetFeatureImage( reader1->GetOutput() );
@@ -99,7 +99,7 @@ int main( int argc, char* argv[] )
 
   filter->SetCropBorder( border );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

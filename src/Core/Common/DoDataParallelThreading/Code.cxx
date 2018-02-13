@@ -27,9 +27,9 @@ enum CELL_TYPE {
 };
 
 // Type to hold our list of cells to count.
-typedef std::vector< CELL_TYPE >            CellContainerType;
+using CellContainerType = std::vector< CELL_TYPE >;
 // Type to hold the count for each CELL_TYPE.
-typedef std::map< CELL_TYPE, unsigned int > CellCountType;
+using CellCountType = std::map< CELL_TYPE, unsigned int >;
 
 
 // This class performs the multi-threaded cell type counting for the
@@ -68,16 +68,16 @@ class ComputeCellCountThreader :
     itk::ThreadedIndexedContainerPartitioner, TAssociate >
 {
 public:
-  // Standard ITK typedefs.
-  typedef ComputeCellCountThreader            Self;
-  typedef itk::DomainThreader<
+  // Standard ITK type alias.
+  using Self = ComputeCellCountThreader;
+  using Superclass = itk::DomainThreader<
     itk::ThreadedIndexedContainerPartitioner,
-    TAssociate >                              Superclass;
-  typedef itk::SmartPointer< Self >           Pointer;
-  typedef itk::SmartPointer< const Self >     ConstPointer;
+    TAssociate >;
+  using Pointer = itk::SmartPointer< Self >;
+  using ConstPointer = itk::SmartPointer< const Self >;
 
   // The domain is an index range.
-  typedef typename Superclass::DomainType DomainType;
+  using DomainType = typename Superclass::DomainType;
 
   // This creates the ::New() method for instantiating the class.
   itkNewMacro( Self );
@@ -159,9 +159,9 @@ private:
 class CellCounter
 {
 public:
-  typedef CellCounter Self;
+  using Self = CellCounter;
 
-  typedef ComputeCellCountThreader< Self > ComputeCellCountThreaderType;
+  using ComputeCellCountThreaderType = ComputeCellCountThreader< Self >;
 
   // Constructor.  Create our Threader class instance.
   CellCounter()

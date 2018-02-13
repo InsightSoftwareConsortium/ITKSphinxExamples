@@ -50,10 +50,10 @@ class MyCommand: public itk::Command
 int main(int, char*[])
 {
   const unsigned int Dimension = 2;
-  typedef unsigned char PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::GaussianImageSource< ImageType >  SourceType;
+  using SourceType = itk::GaussianImageSource< ImageType >;
   SourceType::Pointer source = SourceType::New();
 
   ImageType::SizeType size;

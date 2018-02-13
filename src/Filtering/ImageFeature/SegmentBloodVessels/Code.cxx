@@ -47,17 +47,16 @@ int main( int argc, char *argv[] )
     }
 
   const   unsigned int        Dimension = 3;
-  typedef double              InputPixelType;
-  typedef float               OutputPixelType;
-  typedef itk::Image< InputPixelType, Dimension >   InputImageType;
-  typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
+  using InputPixelType = double;
+  using OutputPixelType = float;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputImage );
 
-  typedef itk::HessianRecursiveGaussianImageFilter< InputImageType >
-    HessianFilterType;
+  using HessianFilterType = itk::HessianRecursiveGaussianImageFilter< InputImageType >;
   HessianFilterType::Pointer hessianFilter = HessianFilterType::New();
   hessianFilter->SetInput( reader->GetOutput() );
   if( sigma )
@@ -65,8 +64,7 @@ int main( int argc, char *argv[] )
     hessianFilter->SetSigma( atof( sigma ) );
     }
 
-  typedef itk::Hessian3DToVesselnessMeasureImageFilter< OutputPixelType >
-    VesselnessMeasureFilterType;
+  using VesselnessMeasureFilterType = itk::Hessian3DToVesselnessMeasureImageFilter< OutputPixelType >;
   VesselnessMeasureFilterType::Pointer vesselnessFilter = VesselnessMeasureFilterType::New();
   vesselnessFilter->SetInput( hessianFilter->GetOutput() );
   if( alpha1 )
@@ -78,7 +76,7 @@ int main( int argc, char *argv[] )
     vesselnessFilter->SetAlpha2( atof( alpha2 ) );
     }
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( vesselnessFilter->GetOutput() );
   writer->SetFileName( outputImage );

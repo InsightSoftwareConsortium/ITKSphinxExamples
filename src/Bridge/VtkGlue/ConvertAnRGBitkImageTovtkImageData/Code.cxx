@@ -35,15 +35,15 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                       PixelComponentType;
-  typedef itk::RGBPixel< PixelComponentType > PixelType;
-  typedef itk::Image< PixelType, Dimension  > ImageType;
+  using PixelComponentType = unsigned char;
+  using PixelType = itk::RGBPixel< PixelComponentType >;
+  using ImageType = itk::Image< PixelType, Dimension  >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::ImageToVTKImageFilter< ImageType > FilterType;
+  using FilterType = itk::ImageToVTKImageFilter< ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
 

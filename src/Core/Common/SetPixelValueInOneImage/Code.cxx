@@ -29,9 +29,9 @@ int main(int argc, char* argv[])
     }
 
   const unsigned int Dimension = 2;
-  typedef unsigned char PixelType;
+  using PixelType = unsigned char;
 
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   ImageType::RegionType region;
 
@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
 
   image->SetPixel( pixelIndex, 200 );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetInput( image );
   writer->SetFileName( argv[1] );

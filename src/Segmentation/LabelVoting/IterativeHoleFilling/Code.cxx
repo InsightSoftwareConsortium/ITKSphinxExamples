@@ -40,14 +40,14 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::VotingBinaryIterativeHoleFillingImageFilter< ImageType > FilterType;
+  using FilterType = itk::VotingBinaryIterativeHoleFillingImageFilter< ImageType >;
   FilterType::InputSizeType radius;
   radius.Fill( r );
 
@@ -59,7 +59,7 @@ int main( int argc, char* argv[] )
   filter->SetForegroundValue( itk::NumericTraits< PixelType >::max() );
   filter->SetMaximumNumberOfIterations( numberOfIterations );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

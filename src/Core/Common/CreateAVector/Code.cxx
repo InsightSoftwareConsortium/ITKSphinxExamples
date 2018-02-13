@@ -21,9 +21,9 @@
 int main(int, char*[])
 {
   const unsigned int Dimension = 3;
-  typedef double CoordType;
+  using CoordType = double;
 
-  typedef itk::Vector<CoordType, Dimension> VectorType;
+  using VectorType = itk::Vector<CoordType, Dimension>;
 
   VectorType v;
   v[0] = 1.0;

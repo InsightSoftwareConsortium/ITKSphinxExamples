@@ -22,14 +22,14 @@
 
 int main(int, char*[])
 {
-  typedef float CoordType;
+  using CoordType = float;
   const unsigned int Dimension = 3;
 
-  typedef itk::PointSet< CoordType, Dimension >   PointSetType;
+  using PointSetType = itk::PointSet< CoordType, Dimension >;
 
-  typedef PointSetType::PointIdentifier         PointIdentifier;
-  typedef PointSetType::PointType               PointType;
-  typedef PointSetType::PointsContainerPointer  PointsContainerPointer;
+  using PointIdentifier = PointSetType::PointIdentifier;
+  using PointType = PointSetType::PointType;
+  using PointsContainerPointer = PointSetType::PointsContainerPointer;
 
   PointSetType::Pointer   pointSet = PointSetType::New();
   PointsContainerPointer  points = pointSet->GetPoints();
@@ -45,8 +45,7 @@ int main(int, char*[])
   points->InsertElement(1, p1);
   points->InsertElement(2, p2);
 
-  typedef itk::BoundingBox< PointIdentifier, Dimension, CoordType >
-    BoundingBoxType;
+  using BoundingBoxType = itk::BoundingBox< PointIdentifier, Dimension, CoordType >;
 
   BoundingBoxType::Pointer boundingBox = BoundingBoxType::New();
   boundingBox->SetPoints(points);

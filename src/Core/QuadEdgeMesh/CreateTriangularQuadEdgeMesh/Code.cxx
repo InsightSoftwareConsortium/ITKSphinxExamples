@@ -34,22 +34,22 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef double                                    CoordType;
-  typedef itk::QuadEdgeMesh< CoordType, Dimension > MeshType;
+  using CoordType = double;
+  using MeshType = itk::QuadEdgeMesh< CoordType, Dimension >;
 
   MeshType::Pointer mesh = MeshType::New();
 
-  typedef MeshType::PointsContainer         PointsContainer;
-  typedef MeshType::PointsContainerPointer  PointsContainerPointer;
+  using PointsContainer = MeshType::PointsContainer;
+  using PointsContainerPointer = MeshType::PointsContainerPointer;
 
   PointsContainerPointer points = PointsContainer::New();
   points->Reserve( 100 );
 
-  typedef MeshType::PointType               PointType;
+  using PointType = MeshType::PointType;
   PointType p;
   p[2] = 0.;
 
-  typedef MeshType::PointIdentifier         PointIdentifier;
+  using PointIdentifier = MeshType::PointIdentifier;
   PointIdentifier k = 0;
 
   for( int i = 0; i < 10; i++ )
@@ -79,7 +79,7 @@ int main( int argc, char* argv[] )
     k++;
     }
 
-  typedef itk::MeshFileWriter< MeshType > WriterType;
+  using WriterType = itk::MeshFileWriter< MeshType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( mesh );

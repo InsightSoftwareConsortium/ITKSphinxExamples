@@ -37,15 +37,15 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
   reader->UpdateOutputInformation();
 
-  typedef itk::TranslationTransform< double, Dimension > TransformType;
+  using TransformType = itk::TranslationTransform< double, Dimension >;
 
   TransformType::OutputVectorType vector;
   vector[0] = atof( argv[3] );
@@ -54,13 +54,13 @@ int main( int argc, char* argv[] )
   TransformType::Pointer translation = TransformType::New();
   translation->Translate( vector );
 
-  typedef itk::ResampleImageFilter<ImageType, ImageType> ResampleImageFilterType;
+  using ResampleImageFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
   ResampleImageFilterType::Pointer resampleFilter = ResampleImageFilterType::New();
   resampleFilter->SetTransform( translation.GetPointer() );
   resampleFilter->SetInput( reader->GetOutput() );
   resampleFilter->SetSize( reader->GetOutput()->GetLargestPossibleRegion().GetSize() );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( resampleFilter->GetOutput() );

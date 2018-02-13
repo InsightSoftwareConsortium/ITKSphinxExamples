@@ -36,24 +36,24 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                           InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension > InputImageType;
+  using InputPixelType = unsigned char;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
 
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef float                                     OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
-  typedef itk::GradientAnisotropicDiffusionImageFilter< InputImageType,
-    OutputImageType > FilterType;
+  using OutputPixelType = float;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
+  using FilterType = itk::GradientAnisotropicDiffusionImageFilter< InputImageType,
+    OutputImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetNumberOfIterations( atoi( argv[3] ) );
   filter->SetTimeStep( 0.125 );
   filter->SetConductanceParameter( atof( argv[4] ) );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( filter->GetOutput() );

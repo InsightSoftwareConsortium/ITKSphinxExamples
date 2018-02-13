@@ -38,31 +38,31 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef float                                    InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension >  InputImageType;
-  typedef unsigned char                            OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
+  using InputPixelType = float;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
+  using OutputPixelType = unsigned char;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
   const int numberOfIterations     = atoi( argv[3] );
   const InputPixelType timeStep    = atof( argv[4] );
 
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::CurvatureFlowImageFilter< InputImageType, InputImageType > FilterType;
+  using FilterType = itk::CurvatureFlowImageFilter< InputImageType, InputImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetNumberOfIterations( numberOfIterations );
   filter->SetTimeStep( timeStep );
 
-  typedef itk::RescaleIntensityImageFilter< InputImageType, OutputImageType > RescaleType;
+  using RescaleType = itk::RescaleIntensityImageFilter< InputImageType, OutputImageType >;
   RescaleType::Pointer rescaler = RescaleType::New();
   rescaler->SetInput( filter->GetOutput() );
   rescaler->SetOutputMinimum( itk::NumericTraits< OutputPixelType >::min() );
   rescaler->SetOutputMaximum( itk::NumericTraits< OutputPixelType >::max() );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( rescaler->GetOutput() );

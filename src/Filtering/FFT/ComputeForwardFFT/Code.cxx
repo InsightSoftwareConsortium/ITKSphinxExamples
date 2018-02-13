@@ -44,19 +44,19 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef float                                   FloatPixelType;
-  typedef itk::Image< FloatPixelType, Dimension > FloatImageType;
+  using FloatPixelType = float;
+  using FloatImageType = itk::Image< FloatPixelType, Dimension >;
 
-  typedef itk::ImageFileReader< FloatImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< FloatImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef unsigned char UnsignedCharPixelType;
-  typedef itk::Image< UnsignedCharPixelType, Dimension > UnsignedCharImageType;
+  using UnsignedCharPixelType = unsigned char;
+  using UnsignedCharImageType = itk::Image< UnsignedCharPixelType, Dimension >;
 
   // Some FFT filter implementations, like VNL's, need the image size to be a
   // multiple of small prime numbers.
-  typedef itk::WrapPadImageFilter< FloatImageType, FloatImageType > PadFilterType;
+  using PadFilterType = itk::WrapPadImageFilter< FloatImageType, FloatImageType >;
   PadFilterType::Pointer padFilter = PadFilterType::New();
   padFilter->SetInput( reader->GetOutput() );
   PadFilterType::SizeType padding;
@@ -66,24 +66,24 @@ int main( int argc, char* argv[] )
   padding[2] = 6;
   padFilter->SetPadUpperBound( padding );
 
-  typedef itk::ForwardFFTImageFilter< FloatImageType > FFTType;
+  using FFTType = itk::ForwardFFTImageFilter< FloatImageType >;
   FFTType::Pointer fftFilter = FFTType::New();
   fftFilter->SetInput( padFilter->GetOutput() );
 
-  typedef FFTType::OutputImageType FFTOutputImageType;
+  using FFTOutputImageType = FFTType::OutputImageType;
 
   // Extract the real part
-  typedef itk::ComplexToRealImageFilter< FFTOutputImageType, FloatImageType> RealFilterType;
+  using RealFilterType = itk::ComplexToRealImageFilter< FFTOutputImageType, FloatImageType>;
   RealFilterType::Pointer realFilter = RealFilterType::New();
   realFilter->SetInput(fftFilter->GetOutput());
 
-  typedef itk::RescaleIntensityImageFilter< FloatImageType, UnsignedCharImageType > RescaleFilterType;
+  using RescaleFilterType = itk::RescaleIntensityImageFilter< FloatImageType, UnsignedCharImageType >;
   RescaleFilterType::Pointer realRescaleFilter = RescaleFilterType::New();
   realRescaleFilter->SetInput(realFilter->GetOutput());
   realRescaleFilter->SetOutputMinimum( itk::NumericTraits< UnsignedCharPixelType >::min() );
   realRescaleFilter->SetOutputMaximum( itk::NumericTraits< UnsignedCharPixelType >::max() );
 
-  typedef itk::ImageFileWriter< UnsignedCharImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< UnsignedCharImageType >;
   WriterType::Pointer realWriter = WriterType::New();
   realWriter->SetFileName( realFileName );
   realWriter->SetInput( realRescaleFilter->GetOutput() );
@@ -98,7 +98,7 @@ int main( int argc, char* argv[] )
     }
 
   // Extract the imaginary part
-  typedef itk::ComplexToImaginaryImageFilter< FFTOutputImageType, FloatImageType> ImaginaryFilterType;
+  using ImaginaryFilterType = itk::ComplexToImaginaryImageFilter< FFTOutputImageType, FloatImageType>;
   ImaginaryFilterType::Pointer imaginaryFilter = ImaginaryFilterType::New();
   imaginaryFilter->SetInput(fftFilter->GetOutput());
 
@@ -121,7 +121,7 @@ int main( int argc, char* argv[] )
     }
 
   // Compute the magnitude
-  typedef itk::ComplexToModulusImageFilter< FFTOutputImageType, FloatImageType> ModulusFilterType;
+  using ModulusFilterType = itk::ComplexToModulusImageFilter< FFTOutputImageType, FloatImageType>;
   ModulusFilterType::Pointer modulusFilter = ModulusFilterType::New();
   modulusFilter->SetInput(fftFilter->GetOutput());
 

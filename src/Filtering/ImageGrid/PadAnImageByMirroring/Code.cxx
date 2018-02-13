@@ -34,10 +34,10 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                       PixelType;
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
@@ -49,13 +49,13 @@ int main( int argc, char* argv[] )
   upperBound[0] = 50;
   upperBound[1] = 40;
 
-  typedef itk::MirrorPadImageFilter< ImageType, ImageType > FilterType;
+  using FilterType = itk::MirrorPadImageFilter< ImageType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetPadLowerBound( lowerBound );
   filter->SetPadUpperBound( upperBound );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( filter->GetOutput() );

@@ -55,17 +55,16 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef float                              PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = float;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::SymmetricSecondRankTensor< double, Dimension > HessianPixelType;
-  typedef itk::Image< HessianPixelType, Dimension >           HessianImageType;
-  typedef itk::HessianToObjectnessMeasureImageFilter< HessianImageType, ImageType >
-    ObjectnessFilterType;
+  using HessianPixelType = itk::SymmetricSecondRankTensor< double, Dimension >;
+  using HessianImageType = itk::Image< HessianPixelType, Dimension >;
+  using ObjectnessFilterType = itk::HessianToObjectnessMeasureImageFilter< HessianImageType, ImageType >;
   ObjectnessFilterType::Pointer objectnessFilter = ObjectnessFilterType::New();
   objectnessFilter->SetBrightObject( false );
   objectnessFilter->SetScaleObjectnessMeasure( false );
@@ -73,8 +72,7 @@ int main( int argc, char* argv[] )
   objectnessFilter->SetBeta( 1.0 );
   objectnessFilter->SetGamma( 5.0 );
 
-  typedef itk::MultiScaleHessianBasedMeasureImageFilter< ImageType, HessianImageType, ImageType >
-    MultiScaleEnhancementFilterType;
+  using MultiScaleEnhancementFilterType = itk::MultiScaleHessianBasedMeasureImageFilter< ImageType, HessianImageType, ImageType >;
   MultiScaleEnhancementFilterType::Pointer multiScaleEnhancementFilter =
     MultiScaleEnhancementFilterType::New();
   multiScaleEnhancementFilter->SetInput( reader->GetOutput() );
@@ -84,13 +82,12 @@ int main( int argc, char* argv[] )
   multiScaleEnhancementFilter->SetSigmaMaximum( sigmaMaximum );
   multiScaleEnhancementFilter->SetNumberOfSigmaSteps( numberOfSigmaSteps );
 
-  typedef itk::Image< unsigned char, Dimension > OutputImageType;
-  typedef itk::RescaleIntensityImageFilter< ImageType, OutputImageType >
-    RescaleFilterType;
+  using OutputImageType = itk::Image< unsigned char, Dimension >;
+  using RescaleFilterType = itk::RescaleIntensityImageFilter< ImageType, OutputImageType >;
   RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput( multiScaleEnhancementFilter->GetOutput() );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( rescaleFilter->GetOutput() );

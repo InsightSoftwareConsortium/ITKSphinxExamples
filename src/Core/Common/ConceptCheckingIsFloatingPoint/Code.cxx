@@ -28,11 +28,11 @@ void IsPixelTypeFloatingPoint(const TImage* const)
 int main( int, char* [] )
 {
   const unsigned int Dimension = 2;
-  typedef itk::Image< float, Dimension >  FloatImageType;
+  using FloatImageType = itk::Image< float, Dimension >;
   FloatImageType::Pointer f = FloatImageType::New();
   IsPixelTypeFloatingPoint( f.GetPointer() );
 
-  typedef itk::Image< double, Dimension > DoubleImageType;
+  using DoubleImageType = itk::Image< double, Dimension >;
   DoubleImageType::Pointer d = DoubleImageType::New();
   IsPixelTypeFloatingPoint( d.GetPointer() );
 

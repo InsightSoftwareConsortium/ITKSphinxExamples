@@ -34,24 +34,23 @@ int main( int argc, char* argv[] )
 
   // Basic types.
   const unsigned int    Dimension = 3;
-  typedef double        CoordType;
+  using CoordType = double;
 
-  typedef itk::QuadEdgeMesh< CoordType, Dimension >          MeshType;
+  using MeshType = itk::QuadEdgeMesh< CoordType, Dimension >;
 
   // Read the file in.
-  typedef itk::MeshFileReader< MeshType >                    ReaderType;
+  using ReaderType = itk::MeshFileReader< MeshType >;
   ReaderType::Pointer reader = ReaderType::New( );
   reader->SetFileName( argv[1] );
 
   // Process the mesh.
   MeshType::Pointer mesh = reader->GetOutput( );
-  typedef itk::DelaunayConformingQuadEdgeMeshFilter< MeshType, MeshType >
-  DelaunayConformFilterType;
+  using DelaunayConformFilterType = itk::DelaunayConformingQuadEdgeMeshFilter< MeshType, MeshType >;
   DelaunayConformFilterType::Pointer filter = DelaunayConformFilterType::New();
   filter->SetInput( mesh );
 
   // Write the output.
-  typedef itk::MeshFileWriter< MeshType >                    WriterType;
+  using WriterType = itk::MeshFileWriter< MeshType >;
   WriterType::Pointer writer = WriterType::New( );
   writer->SetInput( filter->GetOutput( ) );
   writer->SetFileName( argv[2] );

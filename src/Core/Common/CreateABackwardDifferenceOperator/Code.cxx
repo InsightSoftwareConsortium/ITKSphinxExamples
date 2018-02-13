@@ -20,11 +20,10 @@
 
 int main(int, char*[])
 {
-  typedef float PixelType;
+  using PixelType = float;
   const unsigned int Dimension = 2;
 
-  typedef itk::BackwardDifferenceOperator< PixelType, Dimension >
-    BackwardDifferenceOperatorType;
+  using BackwardDifferenceOperatorType = itk::BackwardDifferenceOperator< PixelType, Dimension >;
   BackwardDifferenceOperatorType backwardDifferenceOperator;
 
   // Create the operator for the X axis derivative

@@ -53,30 +53,30 @@ int main( int argc, char* argv[] )
 
   const unsigned int                Dimension = 2;
 
-  typedef float                                    InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension >  InputImageType;
-  typedef unsigned char                            OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
+  using InputPixelType = float;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
+  using OutputPixelType = unsigned char;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
-  typedef  itk::ImageFileReader< InputImageType >  ReaderType;
-  typedef  itk::ImageFileWriter< OutputImageType > WriterType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
 
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef  itk::CurvatureAnisotropicDiffusionImageFilter< InputImageType, InputImageType > SmoothingFilterType;
+  using SmoothingFilterType = itk::CurvatureAnisotropicDiffusionImageFilter< InputImageType, InputImageType >;
   SmoothingFilterType::Pointer smoothing = SmoothingFilterType::New();
   smoothing->SetTimeStep( 0.125 );
   smoothing->SetNumberOfIterations( 5 );
   smoothing->SetConductanceParameter( 9.0 );
   smoothing->SetInput( reader->GetOutput() );
 
-  typedef  itk::GradientMagnitudeRecursiveGaussianImageFilter< InputImageType, InputImageType > GradientFilterType;
+  using GradientFilterType = itk::GradientMagnitudeRecursiveGaussianImageFilter< InputImageType, InputImageType >;
   GradientFilterType::Pointer  gradientMagnitude = GradientFilterType::New();
   gradientMagnitude->SetSigma( sigma );
   gradientMagnitude->SetInput( smoothing->GetOutput() );
 
-  typedef  itk::SigmoidImageFilter< InputImageType, InputImageType > SigmoidFilterType;
+  using SigmoidFilterType = itk::SigmoidImageFilter< InputImageType, InputImageType >;
   SigmoidFilterType::Pointer sigmoid = SigmoidFilterType::New();
   sigmoid->SetOutputMinimum( 0.0 );
   sigmoid->SetOutputMaximum( 1.0 );
@@ -84,10 +84,10 @@ int main( int argc, char* argv[] )
   sigmoid->SetBeta( beta );
   sigmoid->SetInput( gradientMagnitude->GetOutput() );
 
-  typedef  itk::FastMarchingImageFilter< InputImageType, InputImageType > FastMarchingFilterType;
+  using FastMarchingFilterType = itk::FastMarchingImageFilter< InputImageType, InputImageType >;
   FastMarchingFilterType::Pointer  fastMarching = FastMarchingFilterType::New();
 
-  typedef  itk::GeodesicActiveContourLevelSetImageFilter< InputImageType, InputImageType >  GeodesicActiveContourFilterType;
+  using GeodesicActiveContourFilterType = itk::GeodesicActiveContourLevelSetImageFilter< InputImageType, InputImageType >;
   GeodesicActiveContourFilterType::Pointer geodesicActiveContour = GeodesicActiveContourFilterType::New();
   geodesicActiveContour->SetPropagationScaling( propagationScaling );
   geodesicActiveContour->SetCurvatureScaling( 1.0 );
@@ -97,7 +97,7 @@ int main( int argc, char* argv[] )
   geodesicActiveContour->SetInput( fastMarching->GetOutput() );
   geodesicActiveContour->SetFeatureImage( sigmoid->GetOutput() );
 
-  typedef itk::BinaryThresholdImageFilter< InputImageType, OutputImageType > ThresholdingFilterType;
+  using ThresholdingFilterType = itk::BinaryThresholdImageFilter< InputImageType, OutputImageType >;
   ThresholdingFilterType::Pointer thresholder = ThresholdingFilterType::New();
   thresholder->SetLowerThreshold( -1000.0 );
   thresholder->SetUpperThreshold( 0.0 );
@@ -105,8 +105,8 @@ int main( int argc, char* argv[] )
   thresholder->SetInsideValue( itk::NumericTraits< OutputPixelType >::max() );
   thresholder->SetInput( geodesicActiveContour->GetOutput() );
 
-  typedef FastMarchingFilterType::NodeContainer  NodeContainer;
-  typedef FastMarchingFilterType::NodeType       NodeType;
+  using NodeContainer = FastMarchingFilterType::NodeContainer;
+  using NodeType = FastMarchingFilterType::NodeType;
 
   InputImageType::IndexType  seedPosition;
   seedPosition[0] = seedPosX;
@@ -123,7 +123,7 @@ int main( int argc, char* argv[] )
   fastMarching->SetTrialPoints( seeds );
   fastMarching->SetSpeedConstant( 1.0 );
 
-  typedef itk::RescaleIntensityImageFilter< InputImageType, OutputImageType > CastFilterType;
+  using CastFilterType = itk::RescaleIntensityImageFilter< InputImageType, OutputImageType >;
 
   CastFilterType::Pointer caster1 = CastFilterType::New();
   CastFilterType::Pointer caster2 = CastFilterType::New();
@@ -195,7 +195,7 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  typedef itk::ImageFileWriter< InputImageType > InternalWriterType;
+  using InternalWriterType = itk::ImageFileWriter< InputImageType >;
 
   InternalWriterType::Pointer mapWriter = InternalWriterType::New();
   mapWriter->SetInput( fastMarching->GetOutput() );

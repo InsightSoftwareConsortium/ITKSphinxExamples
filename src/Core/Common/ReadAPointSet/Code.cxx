@@ -36,20 +36,20 @@ int main( int argc, char *argv[] )
   std::string InputFilename = argv[1];
   std::cout << "Input file: " << InputFilename << std::endl;
 
-  //typedef itk::PointSet<double, 3 > PointSetType;
+  //using PointSetType = itk::PointSet<double, 3 >;
   //PointSetType::Pointer pointsSet = PointSetType::New();
-  //typedef PointSetType::PointType PointType;
+  //using PointType = PointSetType::PointType;
 
   const unsigned int Dimension = 3;
 
-  typedef float                               CoordType;
-  typedef itk::Mesh< CoordType, Dimension >   MeshType;
+  using CoordType = float;
+  using MeshType = itk::Mesh< CoordType, Dimension >;
 
-  typedef itk::VTKPolyDataReader< MeshType >  ReaderType;
+  using ReaderType = itk::VTKPolyDataReader< MeshType >;
   ReaderType::Pointer  polyDataReader = ReaderType::New();
 
-  typedef ReaderType::PointType   PointType;
-  typedef ReaderType::VectorType  VectorType;
+  using PointType = ReaderType::PointType;
+  using VectorType = ReaderType::VectorType;
 
   polyDataReader->SetFileName( InputFilename.c_str() );
 

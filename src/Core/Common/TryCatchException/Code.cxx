@@ -22,10 +22,10 @@
 int main(int, char *[])
 {
   const unsigned int Dimension = 2;
-  typedef double PixelType;
+  using PixelType = double;
 
-  typedef itk::Image< PixelType, Dimension >  ImageType;
-  typedef itk::ImageFileReader< ImageType >   ReaderType;
+  using ImageType = itk::Image< PixelType, Dimension >;
+  using ReaderType = itk::ImageFileReader< ImageType >;
 
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( "nofile.png" );

@@ -37,20 +37,20 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
-  typedef float                              ScalarType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
+  using ScalarType = float;
 
   const auto outputMinimum = static_cast<PixelType>(atoi( argv[3] ) );
   const auto outputMaximum = static_cast<PixelType>(atoi( argv[4] ) );
   const ScalarType alpha = atof( argv[5] );
   const ScalarType beta  = atof( argv[6] );
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::SigmoidImageFilter< ImageType, ImageType > FilterType;
+  using FilterType = itk::SigmoidImageFilter< ImageType, ImageType >;
   FilterType::Pointer sigmoidFilter = FilterType::New();
   sigmoidFilter->SetInput( reader->GetOutput() );
   sigmoidFilter->SetOutputMinimum( outputMinimum );
@@ -58,7 +58,7 @@ int main( int argc, char* argv[] )
   sigmoidFilter->SetAlpha( alpha );
   sigmoidFilter->SetBeta( beta );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( sigmoidFilter->GetOutput() );

@@ -40,11 +40,11 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
@@ -52,22 +52,22 @@ int main( int argc, char* argv[] )
   labelReader->SetFileName( labelFileName );
 
 
-  typedef PixelType LabelType;
-  typedef itk::LabelObject< LabelType, Dimension > LabelObjectType;
-  typedef itk::LabelMap< LabelObjectType > LabelMapType;
+  using LabelType = PixelType;
+  using LabelObjectType = itk::LabelObject< LabelType, Dimension >;
+  using LabelMapType = itk::LabelMap< LabelObjectType >;
 
-  typedef itk::LabelImageToLabelMapFilter< ImageType, LabelMapType > ConverterType;
+  using ConverterType = itk::LabelImageToLabelMapFilter< ImageType, LabelMapType >;
   ConverterType::Pointer converter = ConverterType::New();
   converter->SetInput( labelReader->GetOutput() );
 
-  typedef itk::LabelMapOverlayImageFilter< LabelMapType, ImageType > FilterType;
+  using FilterType = itk::LabelMapOverlayImageFilter< LabelMapType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( converter->GetOutput() );
   filter->SetFeatureImage( reader->GetOutput() );
   filter->SetOpacity( 0.5 );
 
 
-  typedef itk::ImageFileWriter< FilterType::OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< FilterType::OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

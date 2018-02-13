@@ -34,7 +34,7 @@ int main( int argc, char * argv[] )
     }
 
   const unsigned int Dimension = 2;
-  typedef  unsigned char  PixelType;
+  using PixelType = unsigned char;
 
   const char * InputImage = argv[1];
   const char * OutputImage = argv[2];
@@ -44,14 +44,13 @@ int main( int argc, char * argv[] )
   const auto OutsideValue = static_cast<PixelType>(atoi( argv[5] ) );
   const auto InsideValue = static_cast<PixelType>(atoi( argv[6] ) );
 
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType > ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( InputImage );
 
-  typedef itk::BinaryThresholdImageFilter< ImageType, ImageType >
-    FilterType;
+  using FilterType = itk::BinaryThresholdImageFilter< ImageType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetLowerThreshold( LowerThreshold );
@@ -59,7 +58,7 @@ int main( int argc, char * argv[] )
   filter->SetOutsideValue( OutsideValue );
   filter->SetInsideValue( InsideValue );
 
-  typedef itk::ImageFileWriter< ImageType >  WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( OutputImage );
   writer->SetInput( filter->GetOutput() );

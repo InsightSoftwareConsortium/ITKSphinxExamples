@@ -42,29 +42,29 @@ int main( int argc, char* argv[] )
   const char * outputImageName  = argv[3];
 
   const unsigned int Dimension = 3;
-  typedef double MeshPixelType;
+  using MeshPixelType = double;
 
-  typedef itk::Mesh< MeshPixelType, Dimension > MeshType;
+  using MeshType = itk::Mesh< MeshPixelType, Dimension >;
 
-  typedef itk::MeshFileReader< MeshType >  MeshReaderType;
+  using MeshReaderType = itk::MeshFileReader< MeshType >;
   MeshReaderType::Pointer meshReader = MeshReaderType::New();
   meshReader->SetFileName( inputMeshName );
 
-  typedef unsigned char                           InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension > InputImageType;
-  typedef itk::ImageFileReader< InputImageType >  ImageReaderType;
+  using InputPixelType = unsigned char;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
+  using ImageReaderType = itk::ImageFileReader< InputImageType >;
 
   ImageReaderType::Pointer imageReader = ImageReaderType::New();
   imageReader->SetFileName( inputImageName );
 
-  typedef unsigned char                             OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension >  OutputImageType;
+  using OutputPixelType = unsigned char;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
-  typedef itk::CastImageFilter< InputImageType, OutputImageType > CastFilterType;
+  using CastFilterType = itk::CastImageFilter< InputImageType, OutputImageType >;
   CastFilterType::Pointer cast = CastFilterType::New();
   cast->SetInput( imageReader->GetOutput() );
 
-  typedef itk::TriangleMeshToBinaryImageFilter< MeshType, OutputImageType > FilterType;
+  using FilterType = itk::TriangleMeshToBinaryImageFilter< MeshType, OutputImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( meshReader->GetOutput() );
   filter->SetInfoImage( cast->GetOutput() );
@@ -79,7 +79,7 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputImageName );
   writer->SetInput( filter->GetOutput() );

@@ -60,17 +60,17 @@
 class CommandIterationUpdate : public itk::Command
 {
 public:
-  typedef  CommandIterationUpdate   Self;
-  typedef  itk::Command             Superclass;
-  typedef  itk::SmartPointer<Self>  Pointer;
+  using Self = CommandIterationUpdate;
+  using Superclass = itk::Command;
+  using Pointer = itk::SmartPointer<Self>;
   itkNewMacro( Self );
 
 protected:
   CommandIterationUpdate() {};
 
 public:
-  typedef   itk::GradientDescentOptimizer     OptimizerType;
-  typedef   const OptimizerType   *           OptimizerPointer;
+  using OptimizerType = itk::GradientDescentOptimizer;
+  using OptimizerPointer = const OptimizerType   *;
 
   void Execute(itk::Object *caller, const itk::EventObject & event) override
     {
@@ -111,30 +111,30 @@ int main( int argc, char *argv[] )
   const char * checkerBoardAfter = argv[5];
 
   const    unsigned int    Dimension = 2;
-  typedef  unsigned short  PixelType;
+  using PixelType = unsigned short;
 
-  typedef itk::Image< PixelType, Dimension >  FixedImageType;
-  typedef itk::Image< PixelType, Dimension >  MovingImageType;
+  using FixedImageType = itk::Image< PixelType, Dimension >;
+  using MovingImageType = itk::Image< PixelType, Dimension >;
 
   //  It is convenient to work with an internal image type because mutual
   //  information will perform better on images with a normalized statistical
   //  distribution. The fixed and moving images will be normalized and
   //  converted to this internal type.
-  typedef float                                      InternalPixelType;
-  typedef itk::Image< InternalPixelType, Dimension > InternalImageType;
+  using InternalPixelType = float;
+  using InternalImageType = itk::Image< InternalPixelType, Dimension >;
 
-  typedef itk::TranslationTransform< double, Dimension > TransformType;
-  typedef itk::GradientDescentOptimizer                  OptimizerType;
-  typedef itk::LinearInterpolateImageFunction<
+  using TransformType = itk::TranslationTransform< double, Dimension >;
+  using OptimizerType = itk::GradientDescentOptimizer;
+  using InterpolatorType = itk::LinearInterpolateImageFunction<
                                     InternalImageType,
-                                    double             > InterpolatorType;
-  typedef itk::ImageRegistrationMethod<
+                                    double             >;
+  using RegistrationType = itk::ImageRegistrationMethod<
                                     InternalImageType,
-                                    InternalImageType >  RegistrationType;
+                                    InternalImageType >;
 
-  typedef itk::MutualInformationImageToImageMetric<
+  using MetricType = itk::MutualInformationImageToImageMetric<
                                           InternalImageType,
-                                          InternalImageType >    MetricType;
+                                          InternalImageType >;
 
 
   TransformType::Pointer      transform     = TransformType::New();
@@ -159,8 +159,8 @@ int main( int argc, char *argv[] )
   metric->SetFixedImageStandardDeviation(  0.4 );
   metric->SetMovingImageStandardDeviation( 0.4 );
 
-  typedef itk::ImageFileReader< FixedImageType  > FixedImageReaderType;
-  typedef itk::ImageFileReader< MovingImageType > MovingImageReaderType;
+  using FixedImageReaderType = itk::ImageFileReader< FixedImageType  >;
+  using MovingImageReaderType = itk::ImageFileReader< MovingImageType >;
 
   FixedImageReaderType::Pointer  fixedImageReader  =
     FixedImageReaderType::New();
@@ -170,15 +170,9 @@ int main( int argc, char *argv[] )
   fixedImageReader->SetFileName(  fixedImageFile );
   movingImageReader->SetFileName( movingImageFile );
 
-  typedef itk::NormalizeImageFilter<
-                                FixedImageType,
-                                InternalImageType
-                                        > FixedNormalizeFilterType;
+  using FixedNormalizeFilterType = itk::NormalizeImageFilter< FixedImageType, InternalImageType >;
 
-  typedef itk::NormalizeImageFilter<
-                                MovingImageType,
-                                InternalImageType
-                                              > MovingNormalizeFilterType;
+  using MovingNormalizeFilterType = itk::NormalizeImageFilter< MovingImageType, InternalImageType >;
 
   FixedNormalizeFilterType::Pointer fixedNormalizer =
                                             FixedNormalizeFilterType::New();
@@ -186,10 +180,7 @@ int main( int argc, char *argv[] )
   MovingNormalizeFilterType::Pointer movingNormalizer =
                                             MovingNormalizeFilterType::New();
 
-  typedef itk::DiscreteGaussianImageFilter<
-                                      InternalImageType,
-                                      InternalImageType
-                                                    > GaussianFilterType;
+  using GaussianFilterType = itk::DiscreteGaussianImageFilter< InternalImageType, InternalImageType >;
 
   GaussianFilterType::Pointer fixedSmoother  = GaussianFilterType::New();
   GaussianFilterType::Pointer movingSmoother = GaussianFilterType::New();
@@ -212,7 +203,7 @@ int main( int argc, char *argv[] )
        fixedNormalizer->GetOutput()->GetBufferedRegion();
   registration->SetFixedImageRegion( fixedImageRegion );
 
-  typedef RegistrationType::ParametersType ParametersType;
+  using ParametersType = RegistrationType::ParametersType;
   ParametersType initialParameters( transform->GetNumberOfParameters() );
 
   initialParameters[0] = 0.0;  // Initial offset in mm along X
@@ -318,9 +309,9 @@ int main( int argc, char *argv[] )
   std::cout << " Numb. Samples = " << numberOfSamples    << std::endl;
 
 
-  typedef itk::ResampleImageFilter<
+  using ResampleFilterType = itk::ResampleImageFilter<
                             MovingImageType,
-                            FixedImageType >    ResampleFilterType;
+                            FixedImageType >;
 
   TransformType::Pointer finalTransform = TransformType::New();
 
@@ -341,15 +332,15 @@ int main( int argc, char *argv[] )
   resample->SetDefaultPixelValue( 100 );
 
 
-  typedef  unsigned char  OutputPixelType;
+  using OutputPixelType = unsigned char;
 
-  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
-  typedef itk::CastImageFilter<
+  using CastFilterType = itk::CastImageFilter<
                         FixedImageType,
-                        OutputImageType > CastFilterType;
+                        OutputImageType >;
 
-  typedef itk::ImageFileWriter< OutputImageType >  WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
 
   WriterType::Pointer      writer =  WriterType::New();
   CastFilterType::Pointer  caster =  CastFilterType::New();
@@ -361,8 +352,7 @@ int main( int argc, char *argv[] )
 
 
   // Generate checkerboards before and after registration
-  typedef itk::CheckerBoardImageFilter< FixedImageType >
-    CheckerBoardFilterType;
+  using CheckerBoardFilterType = itk::CheckerBoardImageFilter< FixedImageType >;
 
   CheckerBoardFilterType::Pointer checker = CheckerBoardFilterType::New();
 

@@ -37,16 +37,16 @@ int main( int argc, char* argv[] )
   const char * outputFileName = argv[2];
 
   const unsigned int Dimension = 3;
-  typedef double CoordType;
-  typedef itk::QuadEdgeMesh< CoordType, Dimension > MeshType;
-  typedef MeshType::Pointer                         MeshPointer;
-  typedef MeshType::PointsContainerPointer          MeshPointsContainerPointer;
-  typedef MeshType::PointsContainerIterator         MeshPointsContainerIterator;
-  typedef MeshType::PointType                       MeshPointType;
-  typedef MeshType::PointIdentifier                 MeshPointIdentifier;
-  typedef MeshType::CellIdentifier                  MeshCellIdentifier;
+  using CoordType = double;
+  using MeshType = itk::QuadEdgeMesh< CoordType, Dimension >;
+  using MeshPointer = MeshType::Pointer;
+  using MeshPointsContainerPointer = MeshType::PointsContainerPointer;
+  using MeshPointsContainerIterator = MeshType::PointsContainerIterator;
+  using MeshPointType = MeshType::PointType;
+  using MeshPointIdentifier = MeshType::PointIdentifier;
+  using MeshCellIdentifier = MeshType::CellIdentifier;
 
-  typedef itk::MeshFileReader< MeshType > ReaderType;
+  using ReaderType = itk::MeshFileReader< MeshType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
@@ -93,7 +93,7 @@ int main( int argc, char* argv[] )
 
   MeshType::CellsContainerPointer cells = mesh->GetCells();
 
-  typedef itk::QuadEdgeMeshPolygonCell< MeshType::CellType > PolygonType;
+  using PolygonType = itk::QuadEdgeMeshPolygonCell< MeshType::CellType >;
 
   // iterate on the faces to be added into resulting mesh
   for(std::__1::__tree_const_iterator<unsigned long, std::__1::__tree_node<unsigned long, void *> *, long>::value_type fIt : facesSet)
@@ -132,7 +132,7 @@ int main( int argc, char* argv[] )
     }
 
   // save the corresponding mesh
-  typedef itk::MeshFileWriter< MeshType > MeshWriterType;
+  using MeshWriterType = itk::MeshFileWriter< MeshType >;
   MeshWriterType::Pointer writer = MeshWriterType::New();
   writer->SetInput( output );
   writer->SetFileName( outputFileName );

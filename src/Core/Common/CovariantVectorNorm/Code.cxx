@@ -20,7 +20,7 @@
 
 int main(int, char*[])
 {
-  typedef itk::CovariantVector<double, 3> VectorType;
+  using VectorType = itk::CovariantVector<double, 3>;
   VectorType v;
   v[0] = 1.0;
   v[1] = 2.0;

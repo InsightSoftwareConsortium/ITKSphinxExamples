@@ -29,10 +29,10 @@ int main( int argc, char* argv [] )
     }
 
   const unsigned int Dimension = 3;
-  typedef double CoordType;
+  using CoordType = double;
 
-  typedef itk::QuadEdgeMesh< CoordType, Dimension > MeshType;
-  typedef itk::VTKPolyDataReader< MeshType >        VTKReaderType;
+  using MeshType = itk::QuadEdgeMesh< CoordType, Dimension >;
+  using VTKReaderType = itk::VTKPolyDataReader< MeshType >;
 
   VTKReaderType::Pointer reader = VTKReaderType::New();
   reader->SetFileName( argv[1] );
@@ -49,18 +49,18 @@ int main( int argc, char* argv [] )
 
   MeshType::Pointer mesh = reader->GetOutput();
 
-  typedef itk::QuadEdgeMeshBoundaryEdgesMeshFunction< MeshType > BoundaryExtractorType;
+  using BoundaryExtractorType = itk::QuadEdgeMeshBoundaryEdgesMeshFunction< MeshType >;
 
   BoundaryExtractorType::Pointer extractor = BoundaryExtractorType::New();
 
-  typedef MeshType::PointIdentifier     MeshPointIdentifier;
+  using MeshPointIdentifier = MeshType::PointIdentifier;
 
-  typedef MeshType::QEType              MeshQEType;
-  typedef MeshQEType::IteratorGeom      MeshIteratorGeom;
+  using MeshQEType = MeshType::QEType;
+  using MeshIteratorGeom = MeshQEType::IteratorGeom;
 
-  typedef MeshType::EdgeListType        EdgeListType;
-  typedef MeshType::EdgeListPointerType EdgeListPointer;
-  typedef EdgeListType::iterator        EdgeListIterator;
+  using EdgeListType = MeshType::EdgeListType;
+  using EdgeListPointer = MeshType::EdgeListPointerType;
+  using EdgeListIterator = EdgeListType::iterator;
 
   EdgeListPointer list = extractor->Evaluate( *mesh );
 

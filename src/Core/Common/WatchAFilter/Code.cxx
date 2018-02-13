@@ -24,7 +24,7 @@
 template< class TImage >
 void CreateImage(typename TImage::Pointer image)
 {
-  typedef TImage ImageType;
+  using ImageType = TImage;
 
   // Create an image with 2 connected components
   typename ImageType::RegionType region;
@@ -52,15 +52,14 @@ void CreateImage(typename TImage::Pointer image)
 int main(int, char *[])
 {
   const unsigned int Dimension = 2;
-  typedef unsigned char PixelType;
+  using PixelType = unsigned char;
 
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   ImageType::Pointer image = ImageType::New();
   CreateImage< ImageType >(image);
 
-  typedef itk::ThresholdImageFilter <ImageType>
-          ThresholdImageFilterType;
+  using ThresholdImageFilterType = itk::ThresholdImageFilter <ImageType>;
 
   ThresholdImageFilterType::Pointer thresholdFilter
           = ThresholdImageFilterType::New();

@@ -29,10 +29,10 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
     }
 
-  typedef unsigned char PixelType;
+  using PixelType = unsigned char;
 
-  typedef itk::Image< PixelType, 2 >        ImageType;
-  typedef itk::ImageFileReader< ImageType > ReaderType;
+  using ImageType = itk::Image< PixelType, 2 >;
+  using ReaderType = itk::ImageFileReader< ImageType >;
 
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );

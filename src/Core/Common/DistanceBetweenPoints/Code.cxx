@@ -24,9 +24,9 @@
 int main(int, char *[])
 {
   const unsigned int Dimension = 3;
-  typedef double CoordType;
+  using CoordType = double;
 
-  typedef itk::Point< CoordType, Dimension > PointType;
+  using PointType = itk::Point< CoordType, Dimension >;
 
   PointType p0;
   p0[0] = 0.0;

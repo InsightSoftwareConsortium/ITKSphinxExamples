@@ -34,9 +34,9 @@ int main(int argc, char *argv[])
     }
 
   const unsigned int    Dimension = 2;
-  typedef unsigned char PixelType;
+  using PixelType = unsigned char;
 
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   ImageType::RegionType region;
   ImageType::IndexType start;
@@ -69,8 +69,8 @@ int main(int argc, char *argv[])
     ++imageIterator;
     }
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
-  typedef itk::TIFFImageIO                  TIFFIOType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
+  using TIFFIOType = itk::TIFFImageIO;
 
   TIFFIOType::Pointer tiffIO = TIFFIOType::New();
   tiffIO->SetPixelType(itk::ImageIOBase::SCALAR);

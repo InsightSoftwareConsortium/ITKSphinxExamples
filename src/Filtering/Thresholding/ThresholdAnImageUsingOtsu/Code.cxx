@@ -34,8 +34,8 @@ int main( int argc, char* argv[] )
     }
 
   const unsigned int Dimension = 2;
-  typedef  unsigned char  PixelType;
-  typedef  itk::SizeValueType  SizeType;
+  using PixelType = unsigned char;
+  using SizeType = itk::SizeValueType;
 
   const char * InputImage = argv[1];
   const char * OutputImage = argv[2];
@@ -44,14 +44,13 @@ int main( int argc, char* argv[] )
   const auto NumberOfThresholds = static_cast<SizeType>(atoi( argv[4] ) );
   const auto LabelOffset = static_cast<PixelType>(atoi( argv[5] ) );
 
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType > ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( InputImage );
 
-  typedef itk::OtsuMultipleThresholdsImageFilter< ImageType, ImageType >
-    FilterType;
+  using FilterType = itk::OtsuMultipleThresholdsImageFilter< ImageType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetNumberOfHistogramBins( NumberOfHistogramBins );
@@ -69,13 +68,13 @@ int main( int argc, char* argv[] )
 
   std::cout << std::endl;
 
-  typedef itk::RescaleIntensityImageFilter< ImageType, ImageType > RescaleType;
+  using RescaleType = itk::RescaleIntensityImageFilter< ImageType, ImageType >;
   RescaleType::Pointer rescaler = RescaleType::New();
   rescaler->SetInput( filter->GetOutput() );
   rescaler->SetOutputMinimum( 0 );
   rescaler->SetOutputMaximum( 255 );
 
-  typedef itk::ImageFileWriter< ImageType >  WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( OutputImage );
   writer->SetInput( rescaler->GetOutput() );

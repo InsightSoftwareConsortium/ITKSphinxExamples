@@ -23,9 +23,9 @@
 int main(int, char *[])
 {
   const unsigned int Dimension = 2;
-  typedef float PixelType;
+  using PixelType = float;
 
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   ImageType::SizeType smallSize;
   smallSize.Fill(10);
@@ -38,7 +38,7 @@ int main(int, char *[])
   ImageType::SizeType bigSize;
   bigSize.Fill(10000);
 
-  typedef itk::RandomImageSource<ImageType> RandomSourceType;
+  using RandomSourceType = itk::RandomImageSource<ImageType>;
   RandomSourceType::Pointer randomImageSource = RandomSourceType::New();
   randomImageSource->SetNumberOfThreads(1); // to produce non-random results
   randomImageSource->SetSize(bigSize);
@@ -46,8 +46,7 @@ int main(int, char *[])
 
   std::cout << "Created random image." << std::endl;
 
-  typedef itk::DerivativeImageFilter<ImageType, ImageType >
-    DerivativeImageFilterType;
+  using DerivativeImageFilterType = itk::DerivativeImageFilter<ImageType, ImageType >;
 
   DerivativeImageFilterType::Pointer derivativeFilter =
     DerivativeImageFilterType::New();

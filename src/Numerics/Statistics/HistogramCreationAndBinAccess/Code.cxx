@@ -21,12 +21,12 @@
 
 int main()
 {
-  typedef float                                         MeasurementType;
-  typedef itk::Statistics::DenseFrequencyContainer2     FrequencyContainerType;
+  using MeasurementType = float;
+  using FrequencyContainerType = itk::Statistics::DenseFrequencyContainer2;
 
   const unsigned int numberOfComponents = 2;
-  typedef itk::Statistics::Histogram< MeasurementType,
-    FrequencyContainerType > HistogramType;
+  using HistogramType = itk::Statistics::Histogram< MeasurementType,
+    FrequencyContainerType >;
 
   HistogramType::Pointer histogram = HistogramType::New();
   histogram->SetMeasurementVectorSize( numberOfComponents );

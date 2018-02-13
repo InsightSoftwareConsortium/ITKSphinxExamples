@@ -214,20 +214,20 @@ def write_example_cxx_file(example_cxx, class_name):
 
     f.write('  //const unsigned int Dimension = 2;\n\n')
 
-    f.write('  //typedef unsigned char                      PixelType;\n')
-    f.write('  //typedef itk::Image< PixelType, Dimension > ImageType;\n\n')
+    f.write('  //using PixelType = unsigned char;\n')
+    f.write('  //using ImageType = itk::Image< PixelType, Dimension >;\n\n')
 
-    f.write('  //typedef itk::ImageFileReader< ImageType >  ReaderType;\n')
+    f.write('  //using ReaderType = itk::ImageFileReader< ImageType >;\n')
     f.write('  //ReaderType::Pointer reader = ReaderType::New();\n')
     f.write('  //reader->SetFileName( inputFileName );\n\n')
 
     f.write(
-        '  // typedef itk::' + class_name +
-        '< ImageType, ImageType > FilterType;\n')
+        '  // using FilterType = itk::' + class_name +
+        '< ImageType, ImageType >;\n')
     f.write('  //FilterType::Pointer filter = FilterType::New();\n')
     f.write('  //filter->SetInput( reader->GetOutput() );\n\n')
 
-    f.write('  //typedef itk::ImageFileWriter< ImageType > WriterType;\n')
+    f.write('  //using WriterType = itk::ImageFileWriter< ImageType >;\n')
     f.write('  //WriterType::Pointer writer = WriterType::New();\n')
     f.write('  //writer->SetFileName( outputFileName );\n')
     f.write('  //writer->SetInput( filter->GetOutput() );\n')

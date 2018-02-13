@@ -24,9 +24,9 @@ int main(int, char *[])
 {
   const unsigned int Dimension = 2;
 
-  typedef itk::ImageRegion< Dimension > RegionType;
-  typedef RegionType::SizeType          SizeType;
-  typedef RegionType::IndexType         IndexType;
+  using RegionType = itk::ImageRegion< Dimension >;
+  using SizeType = RegionType::SizeType;
+  using IndexType = RegionType::IndexType;
 
   SizeType size;
   size.Fill(3);

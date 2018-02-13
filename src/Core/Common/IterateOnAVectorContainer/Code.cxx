@@ -22,10 +22,10 @@
 int main(int, char*[])
 {
   const unsigned int Dimension = 2;
-  typedef double CoordType;
+  using CoordType = double;
 
-  typedef itk::Point< CoordType, Dimension >    PointType;
-  typedef itk::VectorContainer<int, PointType>  VectorContainerType;
+  using PointType = itk::Point< CoordType, Dimension >;
+  using VectorContainerType = itk::VectorContainer<int, PointType>;
 
   PointType p0;
   p0[0] = 1.0;

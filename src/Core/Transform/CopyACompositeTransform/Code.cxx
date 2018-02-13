@@ -23,10 +23,10 @@
 
 int main( int , char* [] )
 {
-  typedef float ScalarType;
+  using ScalarType = float;
   const unsigned int Dimension = 3;
 
-  typedef itk::Euler3DTransform< ScalarType > EulerTransformType;
+  using EulerTransformType = itk::Euler3DTransform< ScalarType >;
   EulerTransformType::Pointer eulerTransform = EulerTransformType::New();
   EulerTransformType::ParametersType eulerParameters( 6 );
   eulerParameters[0] = 0.1;
@@ -43,7 +43,7 @@ int main( int , char* [] )
   eulerFixedParameters[2] = -5.5;
   eulerTransform->SetFixedParameters( eulerFixedParameters );
 
-  typedef itk::ScaleTransform< ScalarType, Dimension > ScaleTransformType;
+  using ScaleTransformType = itk::ScaleTransform< ScalarType, Dimension >;
   ScaleTransformType::Pointer scaleTransform = ScaleTransformType::New();
   ScaleTransformType::ParametersType scaleParameters( Dimension );
   scaleParameters[0] = 0.6;
@@ -51,7 +51,7 @@ int main( int , char* [] )
   scaleParameters[2] = 0.8;
   scaleTransform->SetParameters( scaleParameters );
 
-  typedef itk::CompositeTransform< ScalarType, Dimension > CompositeTransformType;
+  using CompositeTransformType = itk::CompositeTransform< ScalarType, Dimension >;
   CompositeTransformType::Pointer compositeTransform = CompositeTransformType::New();
   compositeTransform->AddTransform( eulerTransform );
   compositeTransform->AddTransform( scaleTransform );

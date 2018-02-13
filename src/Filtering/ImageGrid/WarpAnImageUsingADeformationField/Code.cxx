@@ -39,18 +39,18 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef float VectorComponentType;
-  typedef itk::Vector< VectorComponentType, Dimension > VectorPixelType;
+  using VectorComponentType = float;
+  using VectorPixelType = itk::Vector< VectorComponentType, Dimension >;
 
-  typedef itk::Image< VectorPixelType, Dimension > DisplacementFieldType;
+  using DisplacementFieldType = itk::Image< VectorPixelType, Dimension >;
 
-  typedef unsigned char PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType > ReaderType;
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
+  using WriterType = itk::ImageFileWriter< ImageType >;
 
-  typedef itk::ImageFileReader< DisplacementFieldType > FieldReaderType;
+  using FieldReaderType = itk::ImageFileReader< DisplacementFieldType >;
 
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
@@ -61,11 +61,11 @@ int main( int argc, char* argv[] )
 
   DisplacementFieldType::ConstPointer deformationField = fieldReader->GetOutput();
 
-  typedef itk::WarpImageFilter< ImageType, ImageType, DisplacementFieldType > FilterType;
+  using FilterType = itk::WarpImageFilter< ImageType, ImageType, DisplacementFieldType >;
 
   FilterType::Pointer filter = FilterType::New();
 
-  typedef itk::LinearInterpolateImageFunction< ImageType, double > InterpolatorType;
+  using InterpolatorType = itk::LinearInterpolateImageFunction< ImageType, double >;
 
   InterpolatorType::Pointer interpolator = InterpolatorType::New();
 

@@ -21,8 +21,8 @@
 
 int main( int , char* [] )
 {
-  typedef itk::Vector< float, 3 >       PixelType;
-  typedef itk::Image< PixelType, 3 >    ImageType;
+  using PixelType = itk::Vector< float, 3 >;
+  using ImageType = itk::Image< PixelType, 3 >;
 
   // Then the image object can be created
   ImageType::Pointer image = ImageType::New();

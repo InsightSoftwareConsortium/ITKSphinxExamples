@@ -21,17 +21,17 @@
 
 int main(int, char* [])
 {
-  typedef float PixelType;
+  using PixelType = float;
   const unsigned int Dimension = 3;
 
-  typedef itk::PointSet< PixelType, Dimension >   PointSetType;
+  using PointSetType = itk::PointSet< PixelType, Dimension >;
   PointSetType::Pointer  PointSet = PointSetType::New();
 
-  typedef PointSetType::PointsContainerPointer PointsContainerPointer;
+  using PointsContainerPointer = PointSetType::PointsContainerPointer;
   PointsContainerPointer  points = PointSet->GetPoints();
 
   // Create points
-  typedef PointSetType::PointType PointType;
+  using PointType = PointSetType::PointType;
   PointType p0, p1, p2;
 
   p0[0]=  0.0; p0[1]= 0.0; p0[2]= 0.0;

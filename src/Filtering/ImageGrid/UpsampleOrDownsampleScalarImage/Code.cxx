@@ -34,8 +34,8 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
@@ -47,7 +47,7 @@ int main( int argc, char* argv[] )
     outputSize[dim] = atoi( argv[k++] );
     }
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
   reader->UpdateOutputInformation();
@@ -70,9 +70,9 @@ int main( int argc, char* argv[] )
   std::cout << "Output Size: " << outputSize << std::endl;
   std::cout << "Output Spacing: " << outputSpacing << std::endl;
 
-  typedef double TransformPrecisionType;
-  typedef itk::IdentityTransform< TransformPrecisionType, Dimension > TransformType;
-  typedef itk::ResampleImageFilter< ImageType, ImageType > FilterType;
+  using TransformPrecisionType = double;
+  using TransformType = itk::IdentityTransform< TransformPrecisionType, Dimension >;
+  using FilterType = itk::ResampleImageFilter< ImageType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( inputImage );
   filter->SetSize( outputSize );
@@ -80,7 +80,7 @@ int main( int argc, char* argv[] )
   filter->SetOutputOrigin( inputImage->GetOrigin() );
   filter->SetTransform( TransformType::New() );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

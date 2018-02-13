@@ -33,14 +33,14 @@ int main(int argc, char* argv[])
 
   const unsigned Dimension = 2;
 
-  typedef unsigned char                       PixelType;
-  typedef itk::Image< PixelType, Dimension >  ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >   ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::FlipImageFilter< ImageType >   FlipImageFilterType;
+  using FlipImageFilterType = itk::FlipImageFilter< ImageType >;
 
   FlipImageFilterType::Pointer flipFilter
           = FlipImageFilterType::New ();
@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 
   flipFilter->SetFlipAxes( flipAxes );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( flipFilter->GetOutput() );

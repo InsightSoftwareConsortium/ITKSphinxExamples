@@ -40,31 +40,31 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< ImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
   auto lowerThreshold = static_cast< PixelType >( atoi( argv[3] ) );
   auto upperThreshold = static_cast< PixelType >( atoi( argv[4] ) );
 
-  typedef itk::BinaryThresholdImageFilter< ImageType, ImageType > BinaryThresholdFilterType;
+  using BinaryThresholdFilterType = itk::BinaryThresholdImageFilter< ImageType, ImageType >;
   BinaryThresholdFilterType::Pointer threshold = BinaryThresholdFilterType::New();
   threshold->SetInput( reader->GetOutput() );
   threshold->SetLowerThreshold( lowerThreshold );
   threshold->SetUpperThreshold( upperThreshold );
   threshold->SetOutsideValue( 0 );
 
-  typedef itk::Mesh< double, Dimension > MeshType;
+  using MeshType = itk::Mesh< double, Dimension >;
 
-  typedef itk::BinaryMask3DMeshSource< ImageType, MeshType > FilterType;
+  using FilterType = itk::BinaryMask3DMeshSource< ImageType, MeshType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( threshold->GetOutput() );
   filter->SetObjectValue( 255 );
 
-  typedef itk::MeshFileWriter< MeshType > WriterType;
+  using WriterType = itk::MeshFileWriter< MeshType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( filter->GetOutput() );

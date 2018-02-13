@@ -37,26 +37,26 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 2;
 
-  typedef float                                    InputPixelType;
-  typedef itk::Image< InputPixelType, Dimension >  InputImageType;
-  typedef unsigned char                            OutputPixelType;
-  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
+  using InputPixelType = float;
+  using InputImageType = itk::Image< InputPixelType, Dimension >;
+  using OutputPixelType = unsigned char;
+  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
-  typedef itk::ImageFileReader< InputImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  typedef itk::LaplacianImageFilter< InputImageType, InputImageType > FilterType;
+  using FilterType = itk::LaplacianImageFilter< InputImageType, InputImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
 
-  typedef itk::RescaleIntensityImageFilter< InputImageType, OutputImageType > RescaleType;
+  using RescaleType = itk::RescaleIntensityImageFilter< InputImageType, OutputImageType >;
   RescaleType::Pointer rescaler = RescaleType::New();
   rescaler->SetInput( filter->GetOutput() );
   rescaler->SetOutputMinimum( itk::NumericTraits< OutputPixelType >::min() );
   rescaler->SetOutputMaximum( itk::NumericTraits< OutputPixelType >::max() );
 
-  typedef itk::ImageFileWriter< OutputImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( rescaler->GetOutput() );

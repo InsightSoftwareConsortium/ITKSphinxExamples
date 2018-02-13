@@ -32,17 +32,17 @@ int main( int argc, char* argv[] )
 
   const unsigned int VectorDimension = 4;
 
-  typedef itk::Vector< float, VectorDimension >    PixelType;
+  using PixelType = itk::Vector< float, VectorDimension >;
 
   const unsigned int ImageDimension = 3;
 
-  typedef itk::Image< PixelType, ImageDimension > ImageType;
+  using ImageType = itk::Image< PixelType, ImageDimension >;
 
-  typedef itk::ImageFileReader< ImageType > ReaderType;
+  using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( argv[1] );
 
-  typedef itk::ImageFileWriter< ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( argv[2] );
   writer->SetInput( reader->GetOutput() );

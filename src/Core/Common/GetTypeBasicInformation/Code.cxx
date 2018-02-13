@@ -20,7 +20,7 @@
 
 int main(int, char* [] )
 {
-  typedef float MyType;
+  using MyType = float;
 
   std::cout << "Min: " << itk::NumericTraits< MyType >::min() << std::endl;
   std::cout << "Max: " << itk::NumericTraits< MyType >::max() << std::endl;

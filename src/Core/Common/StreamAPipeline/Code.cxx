@@ -30,23 +30,23 @@ int main( int argc, char* argv[] )
   int numberOfSplits = atoi( argv[1] );
 
   const unsigned int Dimension = 2;
-  typedef unsigned char                      PixelType;
-  typedef itk::Image< PixelType, Dimension > ImageType;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::RandomImageSource< ImageType > SourceType;
+  using SourceType = itk::RandomImageSource< ImageType >;
   SourceType::Pointer source = SourceType::New();
   ImageType::SizeType size;
   size.Fill( numberOfSplits );
   source->SetSize( size );
 
-  typedef itk::PipelineMonitorImageFilter< ImageType > MonitorFilterType;
+  using MonitorFilterType = itk::PipelineMonitorImageFilter< ImageType >;
   MonitorFilterType::Pointer monitorFilter = MonitorFilterType::New();
   monitorFilter->SetInput( source->GetOutput() );
   // If ITK was built with the Debug CMake configuration, the filter
   // automatically outputs status information to the console
   monitorFilter->DebugOn();
 
-  typedef itk::StreamingImageFilter< ImageType, ImageType > StreamingFilterType;
+  using StreamingFilterType = itk::StreamingImageFilter< ImageType, ImageType >;
   StreamingFilterType::Pointer streamingFilter = StreamingFilterType::New();
   streamingFilter->SetInput( monitorFilter->GetOutput() );
   streamingFilter->SetNumberOfStreamDivisions( numberOfSplits );

@@ -47,16 +47,16 @@ int main( int argc, char* argv[] )
 
   const unsigned int Dimension = 3;
 
-  typedef float                              PixelType;
-  typedef itk::Image< PixelType, Dimension > RealImageType;
+  using PixelType = float;
+  using RealImageType = itk::Image< PixelType, Dimension >;
 
-  typedef itk::ImageFileReader< RealImageType >  ReaderType;
+  using ReaderType = itk::ImageFileReader< RealImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
   // Some FFT filter implementations, like VNL's, need the image size to be a
   // multiple of small prime numbers.
-  typedef itk::WrapPadImageFilter< RealImageType, RealImageType > PadFilterType;
+  using PadFilterType = itk::WrapPadImageFilter< RealImageType, RealImageType >;
   PadFilterType::Pointer padFilter = PadFilterType::New();
   padFilter->SetInput( reader->GetOutput() );
   PadFilterType::SizeType padding;
@@ -66,8 +66,8 @@ int main( int argc, char* argv[] )
   padding[2] = 6;
   padFilter->SetPadUpperBound( padding );
 
-  typedef itk::ForwardFFTImageFilter< RealImageType > ForwardFFTFilterType;
-  typedef ForwardFFTFilterType::OutputImageType ComplexImageType;
+  using ForwardFFTFilterType = itk::ForwardFFTImageFilter< RealImageType >;
+  using ComplexImageType = ForwardFFTFilterType::OutputImageType;
   ForwardFFTFilterType::Pointer forwardFFTFilter = ForwardFFTFilterType::New();
   forwardFFTFilter->SetInput( padFilter->GetOutput() );
 
@@ -82,7 +82,7 @@ int main( int argc, char* argv[] )
     }
 
   // A Gaussian is used here to create a low-pass filter.
-  typedef itk::GaussianImageSource< RealImageType > GaussianSourceType;
+  using GaussianSourceType = itk::GaussianImageSource< RealImageType >;
   GaussianSourceType::Pointer gaussianSource = GaussianSourceType::New();
   gaussianSource->SetNormalized( true );
   ComplexImageType::ConstPointer transformedInput
@@ -114,24 +114,22 @@ int main( int argc, char* argv[] )
   gaussianSource->SetSigma( sigma );
   gaussianSource->SetMean( mean );
 
-  typedef itk::FFTShiftImageFilter< RealImageType, RealImageType > FFTShiftFilterType;
+  using FFTShiftFilterType = itk::FFTShiftImageFilter< RealImageType, RealImageType >;
   FFTShiftFilterType::Pointer fftShiftFilter = FFTShiftFilterType::New();
   fftShiftFilter->SetInput( gaussianSource->GetOutput() );
 
-  typedef itk::MultiplyImageFilter< ComplexImageType,
+  using MultiplyFilterType = itk::MultiplyImageFilter< ComplexImageType,
                                     RealImageType,
-                                    ComplexImageType >
-                                      MultiplyFilterType;
+                                    ComplexImageType >;
   MultiplyFilterType::Pointer multiplyFilter = MultiplyFilterType::New();
   multiplyFilter->SetInput1( forwardFFTFilter->GetOutput() );
   multiplyFilter->SetInput2( fftShiftFilter->GetOutput() );
 
-  typedef itk::InverseFFTImageFilter< ComplexImageType, RealImageType >
-    InverseFilterType;
+  using InverseFilterType = itk::InverseFFTImageFilter< ComplexImageType, RealImageType >;
   InverseFilterType::Pointer inverseFFTFilter = InverseFilterType::New();
   inverseFFTFilter->SetInput( multiplyFilter->GetOutput() );
 
-  typedef itk::ImageFileWriter< RealImageType > WriterType;
+  using WriterType = itk::ImageFileWriter< RealImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
   writer->SetInput( inverseFFTFilter->GetOutput() );
