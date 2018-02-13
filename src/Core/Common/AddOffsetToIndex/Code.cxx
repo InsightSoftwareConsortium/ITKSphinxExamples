@@ -23,7 +23,7 @@
 
 int main(int, char * [])
 {
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   itk::Index< Dimension > index;
   index.Fill( 5 );

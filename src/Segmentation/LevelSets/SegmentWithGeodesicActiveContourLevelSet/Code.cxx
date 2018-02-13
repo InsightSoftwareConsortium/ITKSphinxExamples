@@ -51,7 +51,7 @@ int main( int argc, char* argv[] )
   const double numberOfIterations = atoi( argv[10] );
   const double seedValue =          - initialDistance;
 
-  const unsigned int                Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using InputPixelType = float;
   using InputImageType = itk::Image< InputPixelType, Dimension >;

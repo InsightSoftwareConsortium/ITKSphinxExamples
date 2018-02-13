@@ -35,7 +35,7 @@ int main( int argc, char* argv[] )
   const char * outputImage = argv[2];
   const double sigma = atof( argv[3] );
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using PixelType = float;
   using ImageType = itk::Image< PixelType, Dimension >;
 

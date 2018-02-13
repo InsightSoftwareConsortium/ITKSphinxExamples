@@ -39,7 +39,7 @@ int main( int argc, char* argv[] )
   std::string format =  std::string( outputFileName ) +
                         std::string( "-%d.png" );
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using PixelType = unsigned char;
   using InputImageType = itk::Image< PixelType, Dimension >;

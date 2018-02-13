@@ -21,7 +21,7 @@
 int main(int, char*[])
 {
   using PixelType = float;
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using BackwardDifferenceOperatorType = itk::BackwardDifferenceOperator< PixelType, Dimension >;
   BackwardDifferenceOperatorType backwardDifferenceOperator;

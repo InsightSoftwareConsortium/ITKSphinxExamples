@@ -34,7 +34,7 @@ int main( int argc, char* argv[] )
   const char * metaImageFileName = argv[1];
   const char * pngFileName = argv[2];
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using PixelType = unsigned char;
   using ImageType = itk::Image< PixelType, Dimension >;

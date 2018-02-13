@@ -34,7 +34,7 @@ int main( int argc, char* argv[] )
   unsigned int startIndex = atoi( argv[2] );
   unsigned int endIndex = atoi( argv[3] );
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using PixelType = unsigned char;
   using ImageType = itk::Image< PixelType, Dimension >;

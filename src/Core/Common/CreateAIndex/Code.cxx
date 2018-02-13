@@ -20,7 +20,7 @@
 
 int main(int, char *[])
 {
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using IndexType = itk::Index< Dimension >;
 

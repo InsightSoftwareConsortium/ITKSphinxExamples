@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
   const unsigned int radiusValue = atoi( argv[3] );
 
   using PixelType = unsigned char;
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using ImageType = itk::Image< PixelType, Dimension >;
   using ReaderType = itk::ImageFileReader< ImageType >;

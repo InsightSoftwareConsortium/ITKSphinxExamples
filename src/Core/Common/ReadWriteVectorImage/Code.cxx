@@ -30,11 +30,11 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  const unsigned int VectorDimension = 4;
+  constexpr unsigned int VectorDimension = 4;
 
   using PixelType = itk::Vector< float, VectorDimension >;
 
-  const unsigned int ImageDimension = 3;
+  constexpr unsigned int ImageDimension = 3;
 
   using ImageType = itk::Image< PixelType, ImageDimension >;
 

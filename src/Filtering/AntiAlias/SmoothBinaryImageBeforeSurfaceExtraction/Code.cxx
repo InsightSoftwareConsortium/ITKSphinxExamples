@@ -50,7 +50,7 @@ int main( int argc, char* argv[] )
     numberOfLayers = atoi( argv[5] );
     }
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using PixelType = float;
 

@@ -36,7 +36,7 @@ int main( int argc, char *argv[] )
     }
   const char * out_file_name = argv[1];
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using RGBPixelType = itk::RGBPixel< unsigned char >;
   using RGBImageType = itk::Image< RGBPixelType, Dimension >;
   using RegionType = RGBImageType::RegionType;

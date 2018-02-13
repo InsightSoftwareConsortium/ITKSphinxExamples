@@ -30,7 +30,7 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
   using CoordinateType = double;
   using MeshType = itk::QuadEdgeMesh< CoordinateType, Dimension >;
   using ReaderType = itk::MeshFileReader< MeshType >;

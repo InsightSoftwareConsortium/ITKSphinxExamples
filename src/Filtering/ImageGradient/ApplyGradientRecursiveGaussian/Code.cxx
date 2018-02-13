@@ -44,7 +44,7 @@ int main( int argc, char* argv[] )
   filenames[0] = outputFileNameX;
   filenames[1] = outputFileNameY;
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   // Input and output are png files, use unsigned char
   using PixelType = unsigned char;

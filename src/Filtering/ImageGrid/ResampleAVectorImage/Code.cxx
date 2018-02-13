@@ -38,7 +38,7 @@ int main( int argc, char* argv[] )
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using PixelComponentType = unsigned char;
   using PixelType = itk::RGBPixel< PixelComponentType >;

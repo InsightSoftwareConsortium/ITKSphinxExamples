@@ -31,7 +31,7 @@ int main(int argc, char * argv[])
     return EXIT_FAILURE;
     }
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];

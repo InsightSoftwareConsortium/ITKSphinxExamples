@@ -21,7 +21,7 @@
 
 int main(int, char *[])
 {
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using RGBPixelType = itk::RGBPixel< unsigned char >;
 
   using RGBImageType = itk::Image< RGBPixelType, Dimension >;

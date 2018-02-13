@@ -32,7 +32,7 @@ int main( int argc, char* argv[] )
 
   const char * outputFileName = argv[1];
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using CoordType = double;
   using MeshType = itk::QuadEdgeMesh< CoordType, Dimension >;

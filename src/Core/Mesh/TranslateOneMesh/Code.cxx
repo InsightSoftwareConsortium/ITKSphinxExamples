@@ -36,7 +36,7 @@ int main( int argc, char* argv[] )
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using PixelType = double;
   using MeshType = itk::Mesh< PixelType, Dimension >;

@@ -45,7 +45,7 @@ int main( int argc, char* argv[] )
     sigmaValue = atof( argv[3] );
     }
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using PixelType = float;
   using RealImageType = itk::Image< PixelType, Dimension >;

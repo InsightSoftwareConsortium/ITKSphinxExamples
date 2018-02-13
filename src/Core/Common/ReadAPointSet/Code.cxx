@@ -40,7 +40,7 @@ int main( int argc, char *argv[] )
   //PointSetType::Pointer pointsSet = PointSetType::New();
   //using PointType = PointSetType::PointType;
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using CoordType = float;
   using MeshType = itk::Mesh< CoordType, Dimension >;

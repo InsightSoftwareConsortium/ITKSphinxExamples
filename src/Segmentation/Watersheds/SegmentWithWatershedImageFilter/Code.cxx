@@ -43,7 +43,7 @@ int main( int argc, char *argv[] )
     return EXIT_FAILURE;
     }
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using InputImageType = itk::Image< unsigned char, Dimension >;
   using FloatImageType = itk::Image< float, Dimension >;
