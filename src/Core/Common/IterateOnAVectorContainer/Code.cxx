@@ -21,7 +21,7 @@
 
 int main(int, char*[])
 {
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using CoordType = double;
 
   using PointType = itk::Point< CoordType, Dimension >;

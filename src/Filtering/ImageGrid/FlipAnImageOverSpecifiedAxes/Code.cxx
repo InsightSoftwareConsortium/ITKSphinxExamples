@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
     return EXIT_FAILURE;
     }
 
-  const unsigned Dimension = 2;
+  constexpr unsigned Dimension  = 2;
 
   using PixelType = unsigned char;
   using ImageType = itk::Image< PixelType, Dimension >;

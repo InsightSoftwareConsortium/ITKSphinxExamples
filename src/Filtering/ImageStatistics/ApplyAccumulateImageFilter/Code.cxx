@@ -35,7 +35,7 @@ int main( int argc, char* argv[] )
   const char * outputFileName = argv[2];
   auto accumulateDimension = static_cast< unsigned int >( atoi( argv[3] ) );
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using InputPixelType = unsigned char;
   using InputImageType = itk::Image< InputPixelType, Dimension >;

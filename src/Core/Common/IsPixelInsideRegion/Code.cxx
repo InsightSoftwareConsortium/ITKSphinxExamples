@@ -22,7 +22,7 @@
 
 int main(int, char *[])
 {
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using RegionType = itk::ImageRegion< Dimension >;
   using SizeType = RegionType::SizeType;

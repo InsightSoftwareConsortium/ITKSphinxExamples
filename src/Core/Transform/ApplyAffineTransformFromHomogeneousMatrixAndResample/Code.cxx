@@ -33,7 +33,7 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using ScalarType = double;
 
   const char * inputFileName = argv[1];
@@ -74,7 +74,7 @@ int main( int argc, char* argv[] )
   resample->SetSize( size );
   resample->SetDefaultPixelValue( defaultValue );
 
-  const unsigned int Radius = 3;
+  constexpr unsigned int Radius = 3;
   using InterpolatorType = itk::WindowedSincInterpolateImageFunction< ImageType, Radius >;
   InterpolatorType::Pointer interpolator = InterpolatorType::New();
 

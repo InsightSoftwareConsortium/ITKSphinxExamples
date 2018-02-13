@@ -35,7 +35,7 @@ int main( int argc, char* argv[] )
   const char * outputFileName = argv[2];
   const double k = atof( argv[3] );
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using PixelType = float;
   using ImageType = itk::Image< PixelType, Dimension >;
 

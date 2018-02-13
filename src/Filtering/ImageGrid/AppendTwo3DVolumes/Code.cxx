@@ -34,7 +34,7 @@ int main( int argc, char* argv[] )
   const char * inputFileName2 = argv[2];
   const char * outputFileName = argv[3];
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using PixelType = unsigned char;
   using ImageType = itk::Image< PixelType, Dimension >;

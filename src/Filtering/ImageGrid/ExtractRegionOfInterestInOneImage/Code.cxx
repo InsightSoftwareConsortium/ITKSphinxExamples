@@ -41,7 +41,7 @@ int main( int argc, char* argv[] )
   const auto starty = static_cast< itk::IndexValueType >( atoi( argv[5] ) );
   const auto endy = static_cast< itk::IndexValueType >( atoi( argv[6] ) );
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using PixelType = unsigned char;
   using ImageType = itk::Image< PixelType, Dimension >;

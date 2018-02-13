@@ -32,8 +32,8 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  const unsigned int InputDimension   = 2;
-  const unsigned int OutputDimension  = 3;
+  constexpr unsigned int InputDimension = 2;
+  constexpr unsigned int OutputDimension = 3;
 
   using PixelType = unsigned char;
   using InputImageType = itk::Image< PixelType, InputDimension >;
@@ -72,7 +72,7 @@ int main( int argc, char* argv[] )
     filter->SetInput( ii - 1, input );
     }
 
-  const PixelType defaultValue = 128;
+  constexpr PixelType defaultValue  = 128;
 
   filter->SetDefaultPixelValue( defaultValue );
 

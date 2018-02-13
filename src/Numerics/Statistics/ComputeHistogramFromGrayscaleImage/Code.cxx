@@ -29,11 +29,11 @@ int main(int argc, char* argv[])
     return EXIT_FAILURE;
     }
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
   using ImageType = itk::Image< PixelType, Dimension >;
 
-  const unsigned int MeasurementVectorSize = 1; // Grayscale
+  constexpr unsigned int MeasurementVectorSize = 1; // Grayscale
   const auto binsPerDimension = static_cast< unsigned int >( atoi( argv[2] ) );
 
   using ReaderType = itk::ImageFileReader< ImageType >;

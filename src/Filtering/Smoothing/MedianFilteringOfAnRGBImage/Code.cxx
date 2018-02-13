@@ -63,7 +63,7 @@ int main(int argc, char * argv[])
     }
 
   // Setup types
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using MyPixelType = itk::myRGBPixel< unsigned char >;
   using MyImageType = itk::Image< MyPixelType, Dimension >;

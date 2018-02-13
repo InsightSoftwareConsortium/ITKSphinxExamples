@@ -53,7 +53,7 @@ int main( int argc, char* argv[] )
     numberOfSigmaSteps = atoi( argv[5] );
     }
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using PixelType = float;
   using ImageType = itk::Image< PixelType, Dimension >;

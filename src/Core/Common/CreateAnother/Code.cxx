@@ -38,7 +38,7 @@ void CreateImage(typename TImage::Pointer image)
 
 int main(int, char*[])
 {
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using PixelType = double;
 
   using ImageType = itk::Image< PixelType, Dimension >;

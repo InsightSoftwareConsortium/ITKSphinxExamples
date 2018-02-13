@@ -30,7 +30,7 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
   using CoordinateType = double;
   using MeshType = itk::QuadEdgeMesh< CoordinateType, Dimension >;
   using ReaderType = itk::MeshFileReader< MeshType >;
@@ -52,7 +52,7 @@ int main( int argc, char* argv[] )
   auto id = static_cast< MeshType::PointIdentifier >( atoi( argv[2] ) );
 
   MeshType::QEType* qe = mesh->FindEdge( id );
-  if( qe == NULL )
+  if( qe == nullptr )
     {
     std::cerr << "Error: either this vertex does not exist, either this vertex is not connected." << std::endl;
     return EXIT_FAILURE;

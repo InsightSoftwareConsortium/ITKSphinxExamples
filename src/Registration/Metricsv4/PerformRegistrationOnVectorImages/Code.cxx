@@ -59,10 +59,10 @@ int main(int argc, char *argv[])
     numberOfDisplacementIterations = atoi( argv[5] );
     }
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   // The input images have red, blue, and green pixel components.
-  const unsigned int NumberOfPixelComponents = 3;
+  constexpr unsigned int NumberOfPixelComponents = 3;
   using PixelComponentType = float;
   using InputPixelType = itk::Vector< PixelComponentType, NumberOfPixelComponents >;
   using InputImageType = itk::Image< InputPixelType, Dimension >;

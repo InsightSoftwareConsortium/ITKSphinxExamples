@@ -23,7 +23,7 @@
 
 int main(int, char*[])
 {
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   // Notice that char type pixel values will not appear
   // properly on the command prompt therefore for the

@@ -110,7 +110,7 @@ int main( int argc, char *argv[] )
   const char * checkerBoardBefore = argv[4];
   const char * checkerBoardAfter = argv[5];
 
-  const    unsigned int    Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using PixelType = unsigned short;
 
   using FixedImageType = itk::Image< PixelType, Dimension >;

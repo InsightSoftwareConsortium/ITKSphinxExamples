@@ -38,7 +38,7 @@ int main( int argc, char* argv[] )
   int majorityThreshold = atoi( argv[4] );
   unsigned int numberOfIterations = atoi( argv[5] );
 
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using PixelType = unsigned char;
   using ImageType = itk::Image< PixelType, Dimension >;

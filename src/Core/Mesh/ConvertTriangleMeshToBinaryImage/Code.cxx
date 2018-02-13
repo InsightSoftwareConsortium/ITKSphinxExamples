@@ -41,7 +41,7 @@ int main( int argc, char* argv[] )
   const char * inputMeshName    = argv[2];
   const char * outputImageName  = argv[3];
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
   using MeshPixelType = double;
 
   using MeshType = itk::Mesh< MeshPixelType, Dimension >;

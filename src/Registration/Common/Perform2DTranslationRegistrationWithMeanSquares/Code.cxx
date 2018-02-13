@@ -48,7 +48,7 @@ int main( int argc, char *argv[] )
   const char * differenceImageAfterFile = argv[4];
   const char * differenceImageBeforeFile = argv[5];
 
-  const    unsigned int    Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using PixelType = float;
 
   using FixedImageType = itk::Image< PixelType, Dimension >;
@@ -122,7 +122,7 @@ int main( int argc, char *argv[] )
   optimizer->SetRelaxationFactor( 0.5 );
   optimizer->SetNumberOfIterations( 200 );
 
-  const unsigned int numberOfLevels = 1;
+  constexpr unsigned int numberOfLevels = 1;
 
   RegistrationType::ShrinkFactorsArrayType shrinkFactorsPerLevel;
   shrinkFactorsPerLevel.SetSize( 1 );

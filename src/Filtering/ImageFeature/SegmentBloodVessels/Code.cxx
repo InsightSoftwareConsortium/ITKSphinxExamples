@@ -30,23 +30,23 @@ int main( int argc, char *argv[] )
     }
   const char * inputImage = argv[1];
   const char * outputImage = argv[2];
-  char * sigma = NULL;
+  char * sigma = nullptr;
   if( argc > 3 )
     {
     sigma = argv[3];
     }
-  char * alpha1 = NULL;
+  char * alpha1 = nullptr;
   if( argc > 4 )
     {
     alpha1 = argv[4];
     }
-  char * alpha2 = NULL;
+  char * alpha2 = nullptr;
   if( argc > 5 )
     {
     alpha2 = argv[5];
     }
 
-  const   unsigned int        Dimension = 3;
+  constexpr unsigned int Dimension = 3;
   using InputPixelType = double;
   using OutputPixelType = float;
   using InputImageType = itk::Image< InputPixelType, Dimension >;

@@ -33,7 +33,7 @@ int main( int argc, char* argv[] )
     }
 
   // Basic types.
-  const unsigned int    Dimension = 3;
+  constexpr unsigned int Dimension = 3;
   using CoordType = double;
 
   using MeshType = itk::QuadEdgeMesh< CoordType, Dimension >;

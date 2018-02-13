@@ -24,7 +24,7 @@
 int main( int , char* [] )
 {
   using ScalarType = float;
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using EulerTransformType = itk::Euler3DTransform< ScalarType >;
   EulerTransformType::Pointer eulerTransform = EulerTransformType::New();

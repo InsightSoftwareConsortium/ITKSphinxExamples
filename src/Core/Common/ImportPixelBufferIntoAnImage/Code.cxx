@@ -33,7 +33,7 @@ int main( int argc, char* argv[] )
   // assume that the external block of memory uses the same data type to
   // represent the pixels.
   using PixelType = unsigned char;
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using ImageType = itk::Image< PixelType, Dimension >;
   using ImportFilterType = itk::ImportImageFilter< PixelType, Dimension >;
@@ -67,7 +67,7 @@ int main( int argc, char* argv[] )
   // using a different data structure to represent the images.
   const unsigned int numberOfPixels =  size[0] * size[1];
   auto * localBuffer = new PixelType[ numberOfPixels ];
-  const double radius = 80.0;
+  constexpr double radius = 80.0;
   // Here we fill up the buffer with a binary sphere.
   const double radius2 = radius * radius;
   PixelType * it = localBuffer;

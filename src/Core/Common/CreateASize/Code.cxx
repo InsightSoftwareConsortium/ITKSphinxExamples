@@ -20,7 +20,7 @@
 
 int main(int, char *[])
 {
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   itk::Size< Dimension > size;
 
   // Method 1

@@ -34,7 +34,7 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  const unsigned int     Dimension = 2;
+  constexpr unsigned int Dimension = 2;
   using InputPixelType = float;
   using OutputPixelType = unsigned char;
 

@@ -42,7 +42,7 @@ int main( int argc, char* argv[] )
   const char * imaginaryFileName = argv[3];
   const char * modulusFileName = argv[4];
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using FloatPixelType = float;
   using FloatImageType = itk::Image< FloatPixelType, Dimension >;

@@ -33,7 +33,7 @@ int main(int argc, char* argv[] )
 
   // create a fastmarching object
   using PixelType = float;
-  const unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
   using FloatImageType = itk::Image< PixelType, Dimension >;
 

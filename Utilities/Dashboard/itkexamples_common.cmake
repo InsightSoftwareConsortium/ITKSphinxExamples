@@ -148,9 +148,9 @@ endif()
 if(NOT DEFINED dashboard_git_crlf)
   if(UNIX)
     set(dashboard_git_crlf false)
-  else(UNIX)
+  else()
     set(dashboard_git_crlf true)
-  endif(UNIX)
+  endif()
 endif()
 
 # Look for a GIT command-line client.
@@ -269,7 +269,7 @@ foreach(req
   if(NOT DEFINED ${req})
     message(FATAL_ERROR "The containing script must set ${req}")
   endif()
-endforeach(req)
+endforeach()
 
 # Print summary information.
 foreach(v
@@ -286,7 +286,7 @@ foreach(v
     CTEST_USE_LAUNCHERS
     )
   set(vars "${vars}  ${v}=[${${v}}]\n")
-endforeach(v)
+endforeach()
 message("Dashboard script configuration:\n${vars}\n")
 
 # Git does not update submodules by default so they appear as local
@@ -329,7 +329,7 @@ ${cache_build_type}
 ${cache_make_program}
 ${dashboard_cache}
 ")
-endmacro(write_cache)
+endmacro()
 
 # Start with a fresh build tree.
 file(MAKE_DIRECTORY "${CTEST_BINARY_DIRECTORY}")

@@ -50,9 +50,9 @@ int main( int argc, char* argv[] )
   filenames[2] = outputFileName2X;
   filenames[3] = outputFileName2Y;
 
-  const unsigned int ImageDimension =  2;
-  const unsigned int VectorDimension = 2;
-  const unsigned int CovDimension =    4;
+  constexpr unsigned int ImageDimension = 2;
+  constexpr unsigned int VectorDimension = 2;
+  constexpr unsigned int CovDimension = 4;
 
   using PixelType = unsigned char;
   using ImageType = itk::Image< PixelType, ImageDimension >;

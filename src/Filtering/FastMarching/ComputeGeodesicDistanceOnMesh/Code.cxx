@@ -34,7 +34,7 @@ int main( int argc, char* argv[] )
   using PixelType = float;
   using CoordType = double;
 
-  const unsigned int Dimension = 3;
+  constexpr unsigned int Dimension = 3;
 
   using Traits = itk::QuadEdgeMeshExtendedTraits <
     PixelType,  // type of data for vertices
