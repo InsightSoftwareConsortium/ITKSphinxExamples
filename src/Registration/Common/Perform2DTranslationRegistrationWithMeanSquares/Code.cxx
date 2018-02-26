@@ -158,10 +158,8 @@ int main( int argc, char *argv[] )
   resampler->SetInput( movingImageReader->GetOutput() );
   resampler->SetTransform( outputCompositeTransform );
   auto fixedImage = fixedImageReader->GetOutput();
-  resampler->SetSize( fixedImage->GetLargestPossibleRegion().GetSize() );
-  resampler->SetOutputOrigin( fixedImage->GetOrigin() );
-  resampler->SetOutputSpacing( fixedImage->GetSpacing() );
-  resampler->SetOutputDirection( fixedImage->GetDirection() );
+  resampler->SetUseReferenceImage( true );
+  resampler->SetReferenceImage( fixedImage );
   resampler->SetDefaultPixelValue( 100 );
 
   using OutputPixelType = unsigned char;
