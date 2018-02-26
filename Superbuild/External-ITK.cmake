@@ -1,9 +1,9 @@
 #---------------------------------------------------------------------------
 # Get and build itk
 
-if( NOT ITK_TAG )
-  # 2017-12-21
-  set( ITK_TAG "v4.13.0" )
+if(NOT ITK_TAG)
+  # 2018-02-23 master
+  set( ITK_TAG "06c6b05e0cf5b912375b2d189d10d7a92b4f4164" )
 endif()
 
 set( _vtk_args )
