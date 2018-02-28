@@ -33,21 +33,19 @@ outputImageFile = sys.argv[3]
 differenceImageAfterFile = sys.argv[4]
 differenceImageBeforeFile = sys.argv[5]
 
-
-Dimension = 2
 PixelType = itk.ctype('float')
-
-FixedImageType = itk.Image[PixelType, Dimension]
-MovingImageType = itk.Image[PixelType, Dimension]
 
 fixedImage = itk.imread(fixedImageFile, PixelType)
 movingImage = itk.imread(movingImageFile, PixelType)
 
+Dimension = fixedImage.GetImageDimension()
+FixedImageType = itk.Image[PixelType, Dimension]
+MovingImageType = itk.Image[PixelType, Dimension]
 
 TransformType = itk.TranslationTransform[itk.D, Dimension]
 initialTransform = TransformType.New()
 
-optimizer = itk.RegularStepGradientDescentOptimizerv4[itk.D].New(
+optimizer = itk.RegularStepGradientDescentOptimizerv4.New(
         LearningRate=4,
         MinimumStepLength=0.001,
         RelaxationFactor=0.5,
