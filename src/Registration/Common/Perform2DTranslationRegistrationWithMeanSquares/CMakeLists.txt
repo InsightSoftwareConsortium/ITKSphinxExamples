@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 2.8.6 )
+cmake_minimum_required(VERSION 3.10.2)
 
 set( input_image1 ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySliceBorder20.png )
 set( input_image2 ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySliceShifted13x17y.png )
