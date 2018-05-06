@@ -1,18 +1,12 @@
-# ITK Jenkins Dashboard Script
-#
-# This script will include all CTest configuration files found up one
-# directory from this script, then include itk_common.cmake.
-#
-# Configuration files should match the globbing pattern
-# [0-9][0-9]*CTestConfig.cmake.
-#
-# These configuration files can be provided with the Jenkins Config File
-# Provider Plugin.
+# ITKExamples Jenkins Dashboard Script
 #
 #
 # Corresponding Jenkins build shell commands are:
 #
 #  cd $WORKSPACE
+#  export PLATFORM=Linux
+#  export COMPILER=GCC-7.3.0
+#  export BUILD_DESCRIPTION=-PR
 #  rm -rf ITKExamples-dashboard
 #  git clone -b dashboard --single-branch #  https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
 #  ctest -S ITKExamples-dashboard/jenkins_dashboard.cmake -VV
@@ -35,27 +29,22 @@ set(CTEST_DASHBOARD_ROOT "${workspace}")
 #       --> Additional Behaviors
 #           --> Checkout to a sub-directory
 # Set "Local subdirectory for repo" to ITKExamples-src
-set(dashboard_source_name "ITKExamples-src")
-set(dashboard_binary_name "ITKExamples-bin")
+set(dashboard_source_name "ITKExamples")
+set(dashboard_binary_name "ITKExamples-build")
 set(CTEST_SITE "$ENV{NODE_NAME}")
 set(dashboard_do_cache 1)
+set(CTEST_CMAKE_GENERATOR "Ninja")
+set(dashboard_superbuild 1)
+set(CTEST_BUILD_CONFIGURATION MinSizeRel)
 
-file(GLOB config_files "${CTEST_SCRIPT_DIRECTORY}/../CTest-config/[0-9][0-9]-*CTestConfig.cmake")
-list(SORT config_files)
-foreach(config IN LISTS config_files)
-  message(STATUS "Including ${config}...")
-  file(READ "${config}" config_content)
-  message("${config_content}")
-  include(${config})
-endforeach()
-
-# The "platform" and "compiler" variables should be set in the
-# *CTestConfig.cmake variables to set the CTEST_BUILD_NAME.
+# The "platform" and "compiler" environmental variables should be set in the
+# Jenkins item build configuration.
 # An optional "build_description" variable may be set.
 if(NOT CTEST_BUILD_NAME)
-  if(platform AND compiler)
-    set(CTEST_BUILD_NAME "${platform}-${compiler}${build_description}")
-  endif()
+  set(CTEST_BUILD_NAME "$ENV{PLATFORM}-$ENV{COMPILER}$ENV{BUILD_DESCRIPTION}")
+endif()
+if(NOT CTEST_SITE)
+  set(CTEST_SITE "$ENV{NODE_NAME}")
 endif()
 string(TIMESTAMP build_date "%Y-%m-%d")
 message("CDash Build Identifier: ${build_date} ${CTEST_BUILD_NAME}")

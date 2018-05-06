@@ -107,7 +107,7 @@ endif()
 
 # Select the model (Nightly, Experimental, Continuous).
 if(NOT DEFINED dashboard_model)
-  set(dashboard_model Nightly)
+  set(dashboard_model Experimental)
 endif()
 if(NOT "${dashboard_model}" MATCHES "^(Nightly|Experimental|Continuous)$")
   message(FATAL_ERROR "dashboard_model must be Nightly, Experimental, or Continuous: dashboard_model='${dashboard_model}'")
@@ -426,7 +426,7 @@ while(NOT dashboard_done)
     set(options
       -DCTEST_USE_LAUNCHERS=${CTEST_USE_LAUNCHERS}
       )
-    if( dashboard_superbuild )
+    if(dashboard_superbuild)
       ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}"
         SOURCE "${CTEST_SOURCE_DIRECTORY}/Superbuild"
         RETURN_VALUE configure_return)
@@ -449,7 +449,7 @@ while(NOT dashboard_done)
       dashboard_hook_test()
     endif()
     if(dashboard_superbuild)
-      ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}/ITKExamples-build" ${CTEST_TEST_ARGS}
+      ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}/ITKEx-build" ${CTEST_TEST_ARGS}
                  RETURN_VALUE test_return)
     else()
       ctest_test(${CTEST_TEST_ARGS} RETURN_VALUE test_return)
@@ -465,7 +465,7 @@ while(NOT dashboard_done)
 
     if(dashboard_upload_documentation)
       if(dashboard_superbuild)
-        file(GLOB zip_doc "${CTEST_BINARY_DIRECTORY}/ITKExamples-build/*.zip")
+        file(GLOB zip_doc "${CTEST_BINARY_DIRECTORY}/ITKEx-build/*.zip")
       else()
         file(GLOB zip_doc "${CTEST_BINARY_DIRECTORY}/*.zip")
       endif()
