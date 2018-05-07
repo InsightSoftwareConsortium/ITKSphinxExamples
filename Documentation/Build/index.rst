@@ -73,7 +73,7 @@ Build all examples and the documentation
 
 Clone the repository::
 
-  git clone --recursive https://itk.org/ITKExamples.git ITKEx
+  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKEx
 
 Make a build directory::
 
