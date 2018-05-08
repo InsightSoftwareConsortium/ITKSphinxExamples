@@ -11,7 +11,7 @@ Download instructions
 
 Clone the repository using Git::
 
-  $ git clone --recursive https://itk.org/ITKExamples.git
+  $ git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git
 
 
 Build instructions
@@ -37,7 +37,7 @@ Implemented
 - Index of examples that apply to given terms and classes.
 - Quick search.
 - Script to create a new examples from a template.
-- Gerrit Code Review.
+- GitHub community development.
 - Selectable light/dark colorscheme.
 
 Todo
@@ -54,7 +54,7 @@ Build dependencies
 Required
 ^^^^^^^^
 
-- CMake_ ( >= 2.8.6 )
+- CMake_ ( >= 3.10.2 )
 - ITK_  ( >= 4.0.0 )
 
 Optional
@@ -83,7 +83,7 @@ Run the bash script ``SetupForDevelopment.sh``::
 .. _Git: http://git-scm.com/
 .. _ITK: https://itk.org/
 .. _Sphinx: http://sphinx.pocoo.org/
-.. _Github Issues: https://itk.org/ITKExamples/issues?milestone=&labels=&state=open
+.. _Github Issues: https://github.com/InsightSoftwareConsortium/ITKExamples/issues
 .. _Python: http://python.org/
 .. _gnuplot: http://www.gnuplot.info/
 .. _TeX Live: http://www.tug.org/texlive/

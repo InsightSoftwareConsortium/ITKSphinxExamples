@@ -10,7 +10,7 @@ The entire source tree can be downloaded with Git_:
 
 .. code-block:: bash
 
-  git clone --recursive https://itk.org/ITKExamples.git ITKEx
+  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKEx
 
 .. note::
 
@@ -18,8 +18,8 @@ The entire source tree can be downloaded with Git_:
   short directory like *ITKEx*.
 
 After cloning the repository, it can be configured for development (confirm
-proper Git configuration, setup `Git hooks`_, configure your `Gerrit Code
-Review`_ account) with
+proper Git configuration, setup `Git hooks`_, configure your `GitHub account`_)
+with
 
 .. code-block:: bash
 
@@ -46,9 +46,9 @@ Once you are done, commit your changes as follows::
   git commit -a
 
 
-To submit your changes to `Gerrit Code Review`_::
+To submit your changes to `GitHub`_::
 
-  git gerrit-push
+  git review-push
 
 
 .. _CreateNewExample:
@@ -75,4 +75,5 @@ Please do not add images directly to the repository.  Instead, use the
 
 .. _Git: http://git-scm.com/
 .. _Git hooks: http://git-scm.com/book/en/Customizing-Git-Git-Hooks
-.. _Gerrit Code Review: http://review.source.kitware.com/#/q/project:ITKExamples,n,z
+.. _GitHub account: https://github.com/login
+.. _GitHub: https://github.com/InsightSoftwareConsortium/ITKExamples.git
