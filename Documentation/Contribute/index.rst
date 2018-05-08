@@ -22,7 +22,7 @@ facets are important to the success of the project.
   ContributeWithGit
   WriteANewExample
   UploadBinaryData
-  PeerReviewWithGerrit
+  PeerReviewWithGitHub
   DashboardSubmission
 
 
