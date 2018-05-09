@@ -30,7 +30,7 @@ set(CTEST_DASHBOARD_ROOT "${workspace}")
 #           --> Checkout to a sub-directory
 # Set "Local subdirectory for repo" to ITKExamples-src
 set(dashboard_source_name "ITKExamples")
-set(dashboard_binary_name "ITKExamples-build")
+set(dashboard_binary_name "ITKEx-bld")
 set(CTEST_SITE "$ENV{NODE_NAME}")
 set(dashboard_do_cache 1)
 set(CTEST_CMAKE_GENERATOR "Ninja")
