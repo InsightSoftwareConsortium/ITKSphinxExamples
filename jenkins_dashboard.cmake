@@ -6,7 +6,7 @@
 #  cd $WORKSPACE
 #  export PLATFORM=Linux
 #  export COMPILER=GCC-7.3.0
-#  export BUILD_DESCRIPTION=-PR
+#  export BUILD_DESCRIPTION=-Examples-PR
 #  rm -rf ITKExamples-dashboard
 #  git clone -b dashboard --single-branch #  https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
 #  ctest -S ITKExamples-dashboard/jenkins_dashboard.cmake -VV
@@ -19,7 +19,7 @@
 #  rd /s /q ITKExamples-dashboard
 #  git clone -b dashboard --single-branch
 #  https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
-#  ctest -S ITKExamples-dashboard/jenkins_dashboard.cmake -VV
+#  C:\"BuildTools\Common7\Tools\VsDevCmd.bat" -arch=amd64 & ctest -S ITKExamples-dashboard/jenkins_dashboard.cmake -VV -j 4
 
 file(TO_CMAKE_PATH "$ENV{WORKSPACE}" workspace)
 set(CTEST_DASHBOARD_ROOT "${workspace}")
@@ -42,9 +42,6 @@ set(CTEST_BUILD_CONFIGURATION MinSizeRel)
 # An optional "build_description" variable may be set.
 if(NOT CTEST_BUILD_NAME)
   set(CTEST_BUILD_NAME "$ENV{PLATFORM}-$ENV{COMPILER}$ENV{BUILD_DESCRIPTION}")
-endif()
-if(NOT CTEST_SITE)
-  set(CTEST_SITE "$ENV{NODE_NAME}")
 endif()
 string(TIMESTAMP build_date "%Y-%m-%d")
 message("CDash Build Identifier: ${build_date} ${CTEST_BUILD_NAME}")
