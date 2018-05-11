@@ -65,3 +65,6 @@ add_example(ImportPixelBufferIntoAnImage)
 compare_to_baseline(EXAMPLE_NAME ImportPixelBufferIntoAnImage
   BASELINE_PREFIX OutputBaseline
   )
+
+add_example(FilterAndParallelizeImageRegion)
+add_example(UseParallelizeImageRegion)
