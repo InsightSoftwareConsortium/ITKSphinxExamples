@@ -32,7 +32,11 @@ if [[ $# -lt 1 ]]; then
     repo_name=$(git config -f "$config" --get github.repo-name)
     url="https://api.$host/repos/$organization_name/$repo_name/pulls?sort=updated;direction=desc"
     pr_prompt=$(curl -s "https://api.$host/repos/$organization_name/$repo_name/pulls?sort=updated;direction=desc" \
-      | $python_exe -c "import sys, json; res = json.load(sys.stdin); [print(str(pr['number']) + ': ' + pr['title']) for pr in res];")
+      | $python_exe -c "import sys, json; res = json.load(sys.stdin); [print(str(pr['number']) + ': ' + str(pr['title'])) for pr in res] if 'pr' in res else sys.exit(1);")
+    if [ $? -ne 0 ]; then
+      usage
+      exit 1
+    fi
     echo "$pr_prompt"
     echo ""
     pr_number=$(echo "$pr_prompt" | sed -n -e "s/\([[:alnum:]]\+\).*/\1/p" | tail -n1)
