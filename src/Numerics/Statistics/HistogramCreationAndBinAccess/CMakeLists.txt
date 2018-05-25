@@ -22,7 +22,7 @@ install(FILES Code.cxx CMakeLists.txt Code.py
 
 enable_testing()
 
-set(HistogramCreationAndBinAccessTest_Regex "^Frequency of the bin at index \\[0, 2\\] is 5 and the bin's instance identifier is 6")
+set(HistogramCreationAndBinAccessTest_Regex "Frequency of the bin at index \\[0, 2\\] is 5 and the bin's instance identifier is 6")
 
 add_test(NAME HistogramCreationAndBinAccessTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/HistogramCreationAndBinAccess

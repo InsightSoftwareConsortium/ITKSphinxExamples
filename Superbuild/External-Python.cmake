@@ -4,6 +4,8 @@
 
 if(WIN32)
   # python.org 64 bit Windows Python with the itk and sphinx packages installed
+  # Todo: needs update
+  message(FATAL_ERROR "ITKExamples_USE_WRAP_PYTHON without PYTHON_EXECUTABLE set is currently not supported on Windows.")
   set(_itk_python_dir "${CMAKE_CURRENT_BINARY_DIR}/itkpython")
   set(ITKPYTHON_EXECUTABLE "${_itk_python_dir}/python.exe" CACHE FILEPATH "Python executable with the ITK package installed" FORCE)
   ExternalProject_Add(ITKPython
@@ -31,6 +33,6 @@ else()
     SOURCE_DIR ${_virtualenv_SOURCE_DIR}
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ${PYTHON_EXECUTABLE} "${_virtualenv_script}" "${_itk_venv}"
-    INSTALL_COMMAND ${ITKPYTHON_EXECUTABLE} -m pip install itk sphinx -f https://github.com/InsightSoftwareConsortium/ITKPythonPackage/releases/tag/latest
+    INSTALL_COMMAND ${ITKPYTHON_EXECUTABLE} -m pip install --pre itk sphinx
     )
 endif()
