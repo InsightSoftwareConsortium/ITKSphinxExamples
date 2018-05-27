@@ -7,7 +7,6 @@ Use ParallelizeImageRegion
 Synopsis
 --------
 
-
 This example demonstrates how to use MultiThreaderBase::ParallelizeImageRegion
 to apply a non-trivial operation for all pixels in an image in parallel.
 Doing something like this in a multi-threaded way

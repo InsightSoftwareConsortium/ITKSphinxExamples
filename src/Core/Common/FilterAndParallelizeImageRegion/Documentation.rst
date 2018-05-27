@@ -7,7 +7,6 @@ Filter and ParallelizeImageRegion Comparison
 Synopsis
 --------
 
-
 This example demonstrates how to take advantage of MultiThreaderBase::ParallelizeImageRegion.
 A comparison is made with LogImageFilter for purpose of computing log(1+x), where x is pixel value.
 
@@ -18,7 +17,6 @@ previously required the definition of an entire class.
 
 Results
 -------
-
 
 Output:
   | LogImageFilter and ParallelizeImageRegion generate the same result.
