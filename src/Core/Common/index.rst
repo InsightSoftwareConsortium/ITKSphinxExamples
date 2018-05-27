@@ -49,3 +49,5 @@ Common
   ReadWriteVectorImage/Documentation.rst
   CreateAnImage/Documentation.rst
   ImportPixelBufferIntoAnImage/Documentation.rst
+  UseParallelizeImageRegion/Documentation.rst
+  FilterAndParallelizeImageRegion/Documentation.rst
