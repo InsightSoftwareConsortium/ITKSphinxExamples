@@ -8,16 +8,16 @@ Synopsis
 --------
 
 This example demonstrates how to use MultiThreaderBase::ParallelizeImageRegion
-to apply a non-trivial operation for all pixels in an image in parallel.
-Doing something like this in a multi-threaded way
-before ITK 5.0 required a class to be created.
+to apply a non-trivial operation for all pixels in an image, in parallel.  To
+perform a multi-threaded operation like this prior ITK 5.0 required the
+creation of a  class.
 
 
 Results
 -------
 
 
-.. figure:: CellsFluorescence1Out.png
+.. figure:: CellsFluorescence1.png
   :scale: 100%
   :alt: Segmentation and custom colorization.
 
