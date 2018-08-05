@@ -100,6 +100,7 @@ int main(int argc, char* argv[])
       ImageIOType::Pointer dicomIO = ImageIOType::New();
       reader->SetImageIO(dicomIO);
       reader->SetFileNames(fileNames);
+      reader->ForceOrthogonalDirectionOff(); //properly read CTs with gantry tilt
 
       using WriterType = itk::ImageFileWriter< ImageType >;
       WriterType::Pointer writer = WriterType::New();
