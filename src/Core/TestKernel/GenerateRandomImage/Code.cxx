@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 
   RandomImageSourceType::Pointer randomImageSource =
     RandomImageSourceType::New();
-  randomImageSource->SetNumberOfThreads(1); // to produce reproducible results
+  randomImageSource->SetNumberOfWorkUnits(1); // to produce reproducible results
   randomImageSource->SetSize( size );
 
   using WriterType = itk::ImageFileWriter< ImageType >;

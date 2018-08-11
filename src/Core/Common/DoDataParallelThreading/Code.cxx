@@ -101,7 +101,7 @@ private:
     // on the current system.  It will also be truncated if, for example, the
     // number of cells in the CellContainer is smaller than the number of cores
     // available.
-    const itk::ThreadIdType numberOfThreads = this->GetNumberOfThreadsUsed();
+    const itk::ThreadIdType numberOfThreads = this->GetNumberOfWorkUnitsUsed();
     this->m_CellCountPerThread.resize( numberOfThreads );
     for( itk::ThreadIdType ii = 0; ii < numberOfThreads; ++ii )
       {
@@ -137,7 +137,7 @@ private:
     {
     // Accumulate the cell counts per thread in the associate's total cell
     // count.
-    const itk::ThreadIdType numberOfThreads = this->GetNumberOfThreadsUsed();
+    const itk::ThreadIdType numberOfThreads = this->GetNumberOfWorkUnitsUsed();
     for( itk::ThreadIdType ii = 0; ii < numberOfThreads; ++ii )
       {
       this->m_Associate->m_CellCount[NEURON] +=
