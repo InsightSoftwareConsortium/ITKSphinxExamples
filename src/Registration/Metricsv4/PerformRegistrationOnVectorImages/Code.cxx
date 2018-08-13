@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
       ++count;
     }
   metric->SetFixedSampledPointSet( pointSet );
-  metric->SetUseFixedSampledPointSet( true );
+  metric->SetUseSampledPointSet( true );
 
 
   // Assign images and transforms.
@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
   // previously computed affine transformation.
   compositeTransform->SetOnlyMostRecentTransformToOptimizeOn();
   metric->SetMovingTransform( compositeTransform );
-  metric->SetUseFixedSampledPointSet( false );
+  metric->SetUseSampledPointSet( false );
   metric->Initialize();
 
   // Optimizer

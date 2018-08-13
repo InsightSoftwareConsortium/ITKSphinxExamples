@@ -30,7 +30,7 @@ int main(int, char *[])
   using RandomSourceType = itk::RandomImageSource< ImageType >;
 
   RandomSourceType::Pointer randomImageSource = RandomSourceType::New();
-  randomImageSource->SetNumberOfThreads(1); // to produce non-random results
+  randomImageSource->SetNumberOfWorkUnits(1); // to produce non-random results
 
   ImageType::Pointer image = randomImageSource->GetOutput();
 

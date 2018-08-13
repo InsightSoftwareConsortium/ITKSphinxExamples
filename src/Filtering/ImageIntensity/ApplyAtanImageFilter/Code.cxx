@@ -44,7 +44,7 @@ int main( int argc, char* argv[] )
 
   RandomImageSourceType::Pointer randomImageSource =
     RandomImageSourceType::New();
-  randomImageSource->SetNumberOfThreads(1); // to produce non-random results
+  randomImageSource->SetNumberOfWorkUnits(1); // to produce non-random results
   randomImageSource->SetSize(size);
 
   using OutputPixelType = float;

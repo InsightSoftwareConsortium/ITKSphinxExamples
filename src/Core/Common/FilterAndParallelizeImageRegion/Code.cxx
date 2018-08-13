@@ -79,7 +79,7 @@ int main(int, char *[])
   randomImageSource->SetSize(region.GetSize());
   // we don't want overflow on 1+x operation, so set max pixel value
   randomImageSource->SetMax(itk::NumericTraits< PixelType >::max() - 1);
-  randomImageSource->SetNumberOfThreads(1); // to produce deterministic results
+  randomImageSource->SetNumberOfWorkUnits(1); // to produce deterministic results
   randomImageSource->Update();
 
   ImageType::Pointer image = randomImageSource->GetOutput();
