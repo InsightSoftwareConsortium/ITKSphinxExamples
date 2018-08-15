@@ -64,6 +64,7 @@ for uid in seriesUID:
     dicomIO = itk.GDCMImageIO.New()
     reader.SetImageIO(dicomIO)
     reader.SetFileNames(fileNames)
+    reader.ForceOrthogonalDirectionOff()
 
     writer = itk.ImageFileWriter[ImageType].New()
     outFileName = os.path.join(dirName, seriesIdentifier + '.nrrd')
