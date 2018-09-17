@@ -1,0 +1,25 @@
+jobs:
+- job: Linux
+  timeoutInMinutes: 0
+  cancelTimeoutInMinutes: 60
+  pool:
+    vmImage: ubuntu-16.04
+  steps:
+    - script: |
+        set -x
+
+        # Azure checkout submodules options does not currently work
+        pushd $(Build.SourcesDirectory)
+        git submodule update --init --recursive
+        popd
+
+        git clone -b dashboard --single-branch https://github.com/thewtex/ITKExamples.git ITKExamples-dashboard
+
+        sudo apt-get -yy install ninja-build
+
+        c++ --version
+        cmake --version
+
+        ctest -S ITKExamples-dashboard/azure_dashboard.cmake -VV -j 4
+      displayName: Build and Test
+      workingDirectory: $(Agent.BuildDirectory)
