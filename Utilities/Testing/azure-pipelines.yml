@@ -23,3 +23,28 @@ jobs:
         ctest -S ITKExamples-dashboard/azure_dashboard.cmake -VV -j 4
       displayName: Build and Test
       workingDirectory: $(Agent.BuildDirectory)
+
+- job: macOS
+  timeoutInMinutes: 0
+  cancelTimeoutInMinutes: 60
+  pool:
+    vmImage: 'macOS 10.13'
+  steps:
+    - script: |
+        set -x
+
+        # Azure checkout submodules options does not currently work
+        pushd $(Build.SourcesDirectory)
+        git submodule update --init --recursive
+        popd
+
+        git clone -b dashboard --single-branch https://github.com/thewtex/ITKExamples.git ITKExamples-dashboard
+
+        sudo pip3 install ninja
+
+        c++ --version
+        cmake --version
+
+        ctest -S ITKExamples-dashboard/azure_dashboard.cmake -VV -j 4
+      displayName: Build and Test
+      workingDirectory: $(Agent.BuildDirectory)
