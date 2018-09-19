@@ -15,7 +15,7 @@ jobs:
 
         git clone -b dashboard --single-branch https://github.com/thewtex/ITKExamples.git ITKExamples-dashboard
 
-        sudo apt-get -yy install ninja-build
+        sudo pip3 install ninja
 
         c++ --version
         cmake --version
