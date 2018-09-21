@@ -23,7 +23,7 @@ numberOfComponents = 2
 histogram = itk.Histogram.New(MeasurementVectorSize=numberOfComponents)
 
 # We initialize it as a 3x3 histogram with equal size intervals.
-size = itk.Size[numberOfComponents]()
+size = itk.Array.UL(numberOfComponents)
 size.Fill(3)
 
 lowerBound = 1.1, 2.6
