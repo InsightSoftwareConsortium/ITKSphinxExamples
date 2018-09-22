@@ -42,7 +42,7 @@ int main()
   upperBound[0] = 7.1;
   upperBound[1] = 8.6;
 
-  histogram->Initialize(size, lowerBound, upperBound );
+  histogram->Initialize( size, lowerBound, upperBound );
 
   // Now the histogram is ready for storing frequency values. There
   // are three ways of accessing data elements in the histogram:
