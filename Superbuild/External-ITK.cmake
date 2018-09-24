@@ -6,26 +6,26 @@ if(NOT ITK_TAG)
   set(ITK_TAG "48ff8821533ef4a4fac7b81e2800e796132a1216")
 endif()
 
-set( _vtk_args )
-if( VTK_DIR OR ITKExamples_USE_VTK )
+set(_vtk_args)
+if(VTK_DIR OR ITKExamples_USE_VTK)
   set( _vtk_args "-DVTK_DIR:PATH=${VTK_DIR}"
     -DModule_ITKVtkGlue:BOOL=ON
     -DModule_ITKLevelSetsv4Visualization:BOOL=ON
     )
 else()
-  set( _vtk_args
+  set(_vtk_args
     -DModule_ITKVtkGlue:BOOL=OFF
     -DModule_ITKLevelSetsv4Visualization:BOOL=OFF
     )
 endif()
 
-set( _opencv_args )
-if( OpenCV_DIR OR ITKExamples_USE_OpenCV )
+set(_opencv_args )
+if(OpenCV_DIR OR ITKExamples_USE_OpenCV)
   set( _opencv_args "-DOpenCV_DIR:PATH=${OpenCV_DIR}"
     -DModule_ITKVideoBridgeOpenCV:BOOL=ON
     )
 else()
-  set( _opencv_args
+  set(_opencv_args
     -DModule_ITKVideoBridgeOpenCV:BOOL=OFF
     )
 endif()
@@ -38,6 +38,13 @@ if(ITKExamples_USE_WRAP_PYTHON)
   endif()
   set(_wrap_python_args
     "-DPYTHON_EXECUTABLE:FILEPATH=${ITKPYTHON_EXECUTABLE}"
+    )
+endif()
+
+set(_apple_args)
+if(APPLE)
+  set(_apple_args
+    "-DBUILD_SHARED_LIBS:BOOL=ON"
     )
 endif()
 
@@ -63,6 +70,7 @@ ExternalProject_Add(ITK
     ${_vtk_args}
     ${_opencv_args}
     ${_wrap_python_args}
+    ${_apple_args}
   INSTALL_COMMAND ${CMAKE_COMMAND} -E echo "ITK install skipped"
   DEPENDS ${ITK_DEPENDENCIES} ${_python_depends} zlib
   LOG_BUILD 0
