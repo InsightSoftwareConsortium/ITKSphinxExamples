@@ -142,7 +142,10 @@ function(compare_to_baseline)
 
   if(ITK_WRAP_PYTHON AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/Code.py")
     set(python_test_name ${test_name}Python)
-    string(REPLACE . "Python." test_image "${test_image}")
+    get_filename_component(test_image_we "${test_image}" NAME_WE)
+    get_filename_component(test_image_dir "${test_image}" DIRECTORY)
+    get_filename_component(test_image_ext "${test_image}" EXT)
+    set(test_image "${test_image_dir}/${test_image_we}Python${test_image_ext}")
 
     # Add the comparison for the Python test output
     # Use the same baseline image as for the c++ output
