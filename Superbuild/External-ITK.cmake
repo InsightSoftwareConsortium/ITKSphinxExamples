@@ -2,8 +2,8 @@
 # Get and build itk
 
 if(NOT ITK_TAG)
-  # 2018-09-24
-  set(ITK_TAG "48ff8821533ef4a4fac7b81e2800e796132a1216")
+  # 2018-09-26
+  set(ITK_TAG "b784f6355a88650f13345025ece292dd60a0d98c")
 endif()
 
 set(_vtk_args)
