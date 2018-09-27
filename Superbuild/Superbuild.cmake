@@ -31,8 +31,10 @@ endif()
 set(ITKExamples_DEPENDENCIES )
 set(ITK_DEPENDENCIES )
 
-# Used by ITK, VTK, and Python -- always build it.
-include(${CMAKE_SOURCE_DIR}/External-zlib.cmake)
+# Used by ITK, VTK, -- always build it.
+if(NOT WIN32 OR ITKExamples_USE_VTK AND NOT VTK_DIR)
+  include(${CMAKE_SOURCE_DIR}/External-zlib.cmake)
+endif()
 
 option(ITKExamples_USE_OpenCV "Add OpenCV to the superbuild" OFF)
 if(NOT OpenCV_DIR AND ITKExamples_USE_OpenCV)
