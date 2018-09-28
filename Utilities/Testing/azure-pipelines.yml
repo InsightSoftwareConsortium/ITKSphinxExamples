@@ -13,7 +13,7 @@ jobs:
         git submodule update --init --recursive
         popd
 
-        git clone -b dashboard --single-branch https://github.com/thewtex/ITKExamples.git ITKExamples-dashboard
+        git clone -b dashboard --single-branch https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
 
         sudo pip3 install ninja
         sudo apt-get install -y python3-venv
@@ -39,7 +39,7 @@ jobs:
         git submodule update --init --recursive
         popd
 
-        git clone -b dashboard --single-branch https://github.com/thewtex/ITKExamples.git ITKExamples-dashboard
+        git clone -b dashboard --single-branch https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
 
         sudo pip3 install ninja
 
@@ -57,7 +57,7 @@ jobs:
     vmImage: 'vs2017-win2016'
   steps:
     - script: |
-        git clone -b dashboard --single-branch https://github.com/thewtex/ITKExamples.git ITKExamples-dashboard
+        git clone -b dashboard --single-branch https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
 
         pip3 install ninja
 
