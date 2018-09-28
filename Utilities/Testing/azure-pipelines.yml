@@ -13,7 +13,7 @@ jobs:
         git submodule update --init --recursive
         popd
 
-        git clone -b dashboard --single-branch https://github.com/thewtex/ITKExamples.git ITKExamples-dashboard
+        git clone -b dashboard --single-branch https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
 
         sudo pip3 install ninja
         sudo apt-get install -y python3-venv
@@ -39,13 +39,33 @@ jobs:
         git submodule update --init --recursive
         popd
 
-        git clone -b dashboard --single-branch https://github.com/thewtex/ITKExamples.git ITKExamples-dashboard
+        git clone -b dashboard --single-branch https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
 
         sudo pip3 install ninja
 
         c++ --version
         cmake --version
 
+        ctest -S ITKExamples-dashboard/azure_dashboard.cmake -VV -j 4
+      displayName: Build and Test
+      workingDirectory: $(Agent.BuildDirectory)
+
+- job: Windows
+  timeoutInMinutes: 0
+  cancelTimeoutInMinutes: 60
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+    - script: |
+        git clone -b dashboard --single-branch https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
+
+        pip3 install ninja
+
+        cmake --version
+
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+        set CC=cl.exe
+        set CXX=cl.exe
         ctest -S ITKExamples-dashboard/azure_dashboard.cmake -VV -j 4
       displayName: Build and Test
       workingDirectory: $(Agent.BuildDirectory)
