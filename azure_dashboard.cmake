@@ -30,7 +30,7 @@ if(NOT CTEST_BUILD_NAME)
     set(pr "")
   endif()
   set(CTEST_BUILD_NAME
-    "$ENV{AGENT_OS}-Build$ENV{BUILD_BUILDID}${pr}${branch}")
+    "$ENV{AGENT_OS}-Examples-Build$ENV{BUILD_BUILDID}${pr}${branch}")
 endif()
 
 string(TIMESTAMP build_date "%Y-%m-%d")
