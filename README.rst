@@ -81,8 +81,7 @@ Run the bash script ``SetupForDevelopment.sh``::
 
 .. _Breathe: https://github.com/michaeljones/breathe
 .. _build instructions in the documentation: https://itk.org/ITKExamples/Documentation/Build/index.html
-.. _CMake: http://cmake.org/
-.. _Gerrit: http://code.google.com/p/gerrit/
+.. _CMake: https://cmake.org/
 .. _Git: http://git-scm.com/
 .. _ITK: https://itk.org/
 .. _Sphinx: http://sphinx.pocoo.org/
