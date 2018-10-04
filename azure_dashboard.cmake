@@ -6,7 +6,7 @@ set(CTEST_DASHBOARD_ROOT "${workspace}")
 file(RELATIVE_PATH dashboard_source_name "${workspace}" "$ENV{BUILD_SOURCESDIRECTORY}")
 # Short for Windows path length limitations
 set(dashboard_binary_name "ITKEx-bld")
-set(CTEST_SITE "$ENV{AGENT_MACHINENAME}")
+set(CTEST_SITE "Azure.$ENV{AGENT_MACHINENAME}")
 set(dashboard_do_cache 1)
 set(dashboard_cache "$ENV{dashboard_cache}")
 set(CTEST_CMAKE_GENERATOR "Ninja")
