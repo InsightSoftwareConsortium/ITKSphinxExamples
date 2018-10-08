@@ -80,18 +80,5 @@ echo "Pushing to $remote"
 push_stdout=$(git push --porcelain $force $dry_run "$remote" $refspecs); push_exit=$?
 echo "$push_stdout"
 
-if test $push_exit -eq 0; then
-  topic="$(git symbolic-ref HEAD | sed -e 's|^refs/heads/||')"
-  pushurl="$(git config --get remote."$remote".pushurl || git config --get remote."$remote".url)"
-  username=$(echo $pushurl | sed -n -e "s/git@$host:\([[:alnum:]]\+\).*/\1/p")
-  if test -n "$username"; then
-    echo '
-Preview the pull request by visiting:
-
-  https://'"$host"'/'"$organization_name"'/'"$repo_name"'/compare/master...'"$username"':'"$topic"'
-'
-  fi
-fi
-
 # Reproduce the push exit code.
 exit $push_exit
