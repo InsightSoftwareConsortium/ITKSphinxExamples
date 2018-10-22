@@ -99,7 +99,7 @@ int main( int argc, char* argv[] )
   BinaryImageToLevelSetType::Pointer adaptor = BinaryImageToLevelSetType::New();
   adaptor->SetInputImage( binary );
   adaptor->Initialize();
-  LevelSetType::Pointer levelSet = adaptor->GetLevelSet();
+  LevelSetType::Pointer levelSet = adaptor->GetModifiableLevelSet();
 
   // The Heaviside function
   using HeavisideFunctionType = itk::SinRegularizedHeavisideStepFunction< LevelSetRealType, LevelSetRealType >;

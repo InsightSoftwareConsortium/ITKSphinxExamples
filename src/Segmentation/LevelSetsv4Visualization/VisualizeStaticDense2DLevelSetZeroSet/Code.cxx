@@ -83,7 +83,7 @@ int main( int argc, char* argv[] )
   adaptor->SetInputImage( rescaler->GetOutput() );
   adaptor->Initialize();
 
-  LevelSetType::Pointer levelSet = adaptor->GetLevelSet();
+  LevelSetType::Pointer levelSet = adaptor->GetModifiableLevelSet();
 
   // Create the visualizer
   using VisualizationType = itk::VTKVisualizeImageLevelSetIsoValues< InputImageType, LevelSetType >;
