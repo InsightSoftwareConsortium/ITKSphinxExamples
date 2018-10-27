@@ -28,9 +28,9 @@
 #include "itkGradientMagnitudeImageFilter.h"
 
 // Run with:
-// ./WatershedImageFilter threshold level
+// ./SegmentWithWatershedImageFilter inputImageFile outputImageFile threshold level
 // e.g.
-// ./WatershedImageFilter 0.005 .5
+// ./SegmentWithWatershedImageFilter BrainProtonDensitySlice.png OutBrainWatershed.png 0.005 .5
 // (A rule of thumb is to set the Threshold to be about 1 / 100 of the Level.)
 
 int main( int argc, char *argv[] )

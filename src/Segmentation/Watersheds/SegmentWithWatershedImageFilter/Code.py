@@ -17,10 +17,10 @@
 # Run with:
 # ./WatershedImageFilter.py <InputFileName> <OutputFileName> <Threshold> <Level>
 # e.g.
-# ./WatershedImageFilter.py BrainProtonDensitySlice.png OutBrainWatersehd.png 0.005 .5
+# ./WatershedImageFilter.py BrainProtonDensitySlice.png OutBrainWatershed.png 0.005 .5
 # (A rule of thumb is to set the Threshold to be about 1 / 100 of the Level.)
 #
-#  threshold:  is used to set the absolute minimum height value used during processing. 
+#  threshold: absolute minimum height value used during processing.
 #        Raising this threshold percentage effectively decreases the number of local minima in the input, 
 #        resulting in an initial segmentation with fewer regions. 
 #        The assumption is that the shallow regions that thresholding removes are of of less interest.
@@ -31,7 +31,7 @@
 #        A level of 1.0 is analogous to flooding the image up to a 
 #        depth that is 100 percent of the maximum value in the image. 
 #        A level of 0.0 produces the basic segmentation, which will typically be very oversegmented. 
-#        Level values of interest are typically low (i.e. less than about 0.40 or 40% ), 
+#        Level values of interest are typically low (i.e. less than about 0.40 or 40%),
 #        since higher values quickly start to undersegment the image.
 
 import sys
