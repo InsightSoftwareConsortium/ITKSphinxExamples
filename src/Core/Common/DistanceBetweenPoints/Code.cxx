@@ -58,7 +58,7 @@ int main(int, char *[])
   PointType::RealType dist2 = p0.SquaredEuclideanDistanceTo(p1);
   std::cout << "Dist2: " << dist2 << std::endl;
 
-  if( vnl_math_abs( dist2 - dist * dist ) < vnl_math::eps )
+  if( std::abs( dist2 - dist * dist ) < vnl_math::eps )
     {
     std::cerr << "dist2 != dist * dist" << std::endl;
     return EXIT_FAILURE;
