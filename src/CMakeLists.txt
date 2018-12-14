@@ -19,12 +19,15 @@ endif()
 
 if(BUILD_DOCUMENTATION)
   find_package(PythonInterp REQUIRED)
-
-  # Set here the proper version of Python required to be able to build
-  # tarballs for each example
-  set(PYTHON_REQUIRED_VERSION 2.7)
-  if(${PYTHON_VERSION_STRING} VERSION_LESS ${PYTHON_REQUIRED_VERSION})
-    message(SEND_ERROR "Building the documentation requires Python >= ${PYTHON_REQUIRED_VERSION}")
+  if(NOT PYTHONINTERP_FOUND)
+    message(SEND_ERROR "Building the documentation requires Python")
+  else()
+    # Set here the proper version of Python required to be able to build
+    # tarballs for each example
+    set(PYTHON_REQUIRED_VERSION 2.7)
+    if(${PYTHON_VERSION_STRING} VERSION_LESS ${PYTHON_REQUIRED_VERSION})
+      message(SEND_ERROR "Building the documentation requires Python >= ${PYTHON_REQUIRED_VERSION}")
+    endif()
   endif()
 endif()
 
