@@ -43,17 +43,17 @@ int main( int argc, char* argv[] )
   reader->SetFileName( argv[1] );
 
   ImageType::SizeType lowerExtendRegion;
-  lowerExtendRegion.Fill( atoi( argv[3] ) );
+  lowerExtendRegion.Fill( std::stoi( argv[3] ) );
 
   ImageType::SizeType upperExtendRegion;
-  upperExtendRegion.Fill( atoi( argv[4] ) );
+  upperExtendRegion.Fill( std::stoi( argv[4] ) );
 
   using FilterType = itk::ConstantPadImageFilter< ImageType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
   filter->SetPadLowerBound(lowerExtendRegion);
   filter->SetPadUpperBound(upperExtendRegion);
-  filter->SetConstant( atoi( argv[5] ) );
+  filter->SetConstant( std::stoi( argv[5] ) );
 
   using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();

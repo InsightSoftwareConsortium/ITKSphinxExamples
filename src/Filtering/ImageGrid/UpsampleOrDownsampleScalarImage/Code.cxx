@@ -44,7 +44,7 @@ int main( int argc, char* argv[] )
 
   for( unsigned int dim = 0, k = 3; dim < Dimension; dim++ )
     {
-    outputSize[dim] = atoi( argv[k++] );
+    outputSize[dim] = std::stoi( argv[k++] );
     }
 
   using ReaderType = itk::ImageFileReader< ImageType >;

@@ -33,7 +33,7 @@ int main( int argc, char* argv[] )
     }
   const char * inputImage = argv[1];
   const char * outputImage = argv[2];
-  const unsigned int radiusValue = atoi( argv[3] );
+  const unsigned int radiusValue = std::stoi( argv[3] );
 
   using PixelType = unsigned char;
   constexpr unsigned int Dimension = 2;

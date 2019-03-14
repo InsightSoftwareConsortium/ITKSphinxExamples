@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
   using ImageType = itk::Image< PixelType, Dimension >;
 
   constexpr unsigned int MeasurementVectorSize = 1; // Grayscale
-  const auto binsPerDimension = static_cast< unsigned int >( atoi( argv[2] ) );
+  const auto binsPerDimension = static_cast< unsigned int >( std::stoi( argv[2] ) );
 
   using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();

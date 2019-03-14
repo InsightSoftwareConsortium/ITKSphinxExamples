@@ -50,7 +50,7 @@ int main( int argc, char* argv[] )
   unsigned int numberOfSigmaSteps = 10;
   if( argc > 5 )
     {
-    numberOfSigmaSteps = atoi( argv[5] );
+    numberOfSigmaSteps = std::stoi( argv[5] );
     }
 
   constexpr unsigned int Dimension = 2;

@@ -44,8 +44,8 @@ int main( int argc, char* argv[] )
   using FilterType = itk::RescaleIntensityImageFilter< ImageType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
-  filter->SetOutputMinimum( atoi( argv[3] ) );
-  filter->SetOutputMaximum( atoi( argv[4] ) );
+  filter->SetOutputMinimum( std::stoi( argv[3] ) );
+  filter->SetOutputMaximum( std::stoi( argv[4] ) );
 
   using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();

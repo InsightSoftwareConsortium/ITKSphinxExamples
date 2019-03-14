@@ -35,11 +35,11 @@ int main( int argc, char* argv[] )
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
 
-  const auto startx = static_cast< itk::IndexValueType >( atoi( argv[3] ) );
-  const auto endx = static_cast< itk::IndexValueType >( atoi( argv[4] ) );
+  const auto startx = static_cast< itk::IndexValueType >( std::stoi( argv[3] ) );
+  const auto endx = static_cast< itk::IndexValueType >( std::stoi( argv[4] ) );
 
-  const auto starty = static_cast< itk::IndexValueType >( atoi( argv[5] ) );
-  const auto endy = static_cast< itk::IndexValueType >( atoi( argv[6] ) );
+  const auto starty = static_cast< itk::IndexValueType >( std::stoi( argv[5] ) );
+  const auto endy = static_cast< itk::IndexValueType >( std::stoi( argv[6] ) );
 
   constexpr unsigned int Dimension = 2;
 
