@@ -30,7 +30,7 @@ using LabeledImageType = itk::Image< itk::IdentifierType, Dimension >;
 
 OutputImageType::Pointer segmentationAndCustomColorization(InputImageType::Pointer inImage)
 {
-  typedef itk::WatershedImageFilter<InputImageType> WatershedFilterType;
+  using WatershedFilterType = itk::WatershedImageFilter<InputImageType>;
   WatershedFilterType::Pointer watershed = WatershedFilterType::New();
   watershed->SetThreshold(0.05);
   watershed->SetLevel(0.3);
