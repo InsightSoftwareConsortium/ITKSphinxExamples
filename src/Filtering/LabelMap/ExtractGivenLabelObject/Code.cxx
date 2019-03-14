@@ -44,7 +44,7 @@ int main( int argc, char* argv[] )
   const char * outputFileName[2];
   outputFileName[0] = argv[2];
   outputFileName[1] = argv[3];
-  const auto label = static_cast< PixelType >( atoi( argv[4] ) );
+  const auto label = static_cast< PixelType >( std::stoi( argv[4] ) );
 
   using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();

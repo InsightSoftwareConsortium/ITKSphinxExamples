@@ -78,7 +78,7 @@ int main(int argc, char * argv[])
   FilterType::Pointer medianFilter = FilterType::New();
 
   FilterType::InputSizeType radius;
-  radius.Fill( atoi( argv[3] ) );
+  radius.Fill( std::stoi( argv[3] ) );
 
   medianFilter->SetRadius( radius );
   medianFilter->SetInput( reader->GetOutput() );

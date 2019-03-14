@@ -40,15 +40,15 @@ int main( int argc, char* argv[] )
 
   const char * inputFileName =      argv[1];
   const char * outputFileName =     argv[2];
-  const int seedPosX =              atoi( argv[3] );
-  const int seedPosY =              atoi( argv[4] );
+  const int seedPosX =              std::stoi( argv[3] );
+  const int seedPosY =              std::stoi( argv[4] );
 
   const double initialDistance =    atof( argv[5] );
   const double sigma =              atof( argv[6] );
   const double alpha =              atof( argv[7] );
   const double beta  =              atof( argv[8] );
   const double propagationScaling = atof( argv[9] );
-  const double numberOfIterations = atoi( argv[10] );
+  const double numberOfIterations = std::stoi( argv[10] );
   const double seedValue =          - initialDistance;
 
   constexpr unsigned int Dimension = 2;

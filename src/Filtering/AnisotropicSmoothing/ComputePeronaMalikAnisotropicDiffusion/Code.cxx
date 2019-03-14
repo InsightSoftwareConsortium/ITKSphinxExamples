@@ -49,7 +49,7 @@ int main( int argc, char* argv[] )
     OutputImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
-  filter->SetNumberOfIterations( atoi( argv[3] ) );
+  filter->SetNumberOfIterations( std::stoi( argv[3] ) );
   filter->SetTimeStep( 0.125 );
   filter->SetConductanceParameter( atof( argv[4] ) );
 

@@ -70,7 +70,7 @@ int main( int argc, char ** argv )
   ImageType::SizeType size = inputRegion.GetSize();
   size[2] = 1; // we extract along z direction
   ImageType::IndexType start = inputRegion.GetIndex();
-  const unsigned int sliceNumber = atoi( argv[3] );
+  const unsigned int sliceNumber = std::stoi( argv[3] );
   start[2] = sliceNumber;
   ImageType::RegionType desiredRegion;
   desiredRegion.SetSize(  size  );

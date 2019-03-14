@@ -52,11 +52,11 @@ int main(int argc, char *argv[])
   unsigned int numberOfDisplacementIterations = 2;
   if( argc >= 5 )
     {
-    numberOfAffineIterations = atoi( argv[4] );
+    numberOfAffineIterations = std::stoi( argv[4] );
     }
   if( argc >= 6 )
     {
-    numberOfDisplacementIterations = atoi( argv[5] );
+    numberOfDisplacementIterations = std::stoi( argv[5] );
     }
 
   constexpr unsigned int Dimension = 2;

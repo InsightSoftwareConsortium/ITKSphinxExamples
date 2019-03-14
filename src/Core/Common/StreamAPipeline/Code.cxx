@@ -27,7 +27,7 @@ int main( int argc, char* argv[] )
     std::cerr << "Usage: " << argv[0] << " <NumberOfSplits>" << std::endl;
     return EXIT_FAILURE;
     }
-  int numberOfSplits = atoi( argv[1] );
+  int numberOfSplits = std::stoi( argv[1] );
 
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;

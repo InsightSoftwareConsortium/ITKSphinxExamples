@@ -35,8 +35,8 @@ int main( int argc, char* argv[] )
   const char * destinationFileName  = argv[2];
   const char * outputFileName       = argv[3];
 
-  int startX = atoi( argv[4] );
-  int startY = atoi( argv[5] );
+  int startX = std::stoi( argv[4] );
+  int startY = std::stoi( argv[5] );
 
   constexpr unsigned int Dimension = 2;
 

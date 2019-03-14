@@ -50,7 +50,7 @@ int main( int argc, char* argv[] )
 
   MeshType::Pointer mesh = reader->GetOutput();
 
-  MeshType::PointIdentifier id = atoi( argv[2] );
+  MeshType::PointIdentifier id = std::stoi( argv[2] );
 
   MeshType::QEType* qe = mesh->FindEdge( id );
 

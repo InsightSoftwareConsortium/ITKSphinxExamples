@@ -45,8 +45,8 @@ int main( int argc, char* argv[] )
 
   if( argc == 4 )
     {
-    MeshType::PointIdentifier id1 = atoi( argv[2] );
-    MeshType::PointIdentifier id2 = atoi( argv[3] );
+    MeshType::PointIdentifier id1 = std::stoi( argv[2] );
+    MeshType::PointIdentifier id2 = std::stoi( argv[3] );
 
     MeshType::PointType p = mesh->GetPoint( id1 );
     MeshType::PointType q = mesh->GetPoint( id2 );

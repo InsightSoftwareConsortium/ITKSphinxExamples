@@ -96,7 +96,7 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  bool interactive = ( atoi( argv[2] ) != 0 );
+  bool interactive = ( std::stoi( argv[2] ) != 0 );
   if( interactive )
     {
     renderWindowInteractor->Start();

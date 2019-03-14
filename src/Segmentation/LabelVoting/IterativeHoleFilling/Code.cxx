@@ -34,9 +34,9 @@ int main( int argc, char* argv[] )
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
 
-  int r = atoi( argv[3] );
-  int majorityThreshold = atoi( argv[4] );
-  unsigned int numberOfIterations = atoi( argv[5] );
+  int r = std::stoi( argv[3] );
+  int majorityThreshold = std::stoi( argv[4] );
+  unsigned int numberOfIterations = std::stoi( argv[5] );
 
   constexpr unsigned int Dimension = 2;
 

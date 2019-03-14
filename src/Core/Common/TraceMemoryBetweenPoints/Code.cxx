@@ -28,7 +28,7 @@ int main( int argc, char* argv[] )
     return EXIT_FAILURE;
     }
 
-  const auto N = static_cast< unsigned int >( atoi( argv[1] ) );
+  const auto N = static_cast< unsigned int >( std::stoi( argv[1] ) );
 
   if( N == 0 )
     {

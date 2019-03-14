@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
   flipFilter->SetInput( reader->GetOutput() );
 
   FlipImageFilterType::FlipAxesArrayType flipAxes;
-  if( atoi( argv[3] ) == 0 )
+  if( std::stoi( argv[3] ) == 0 )
     {
     flipAxes[0] = true;
     flipAxes[1] = false;

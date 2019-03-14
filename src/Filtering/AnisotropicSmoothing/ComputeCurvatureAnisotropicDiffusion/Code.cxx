@@ -43,7 +43,7 @@ int main( int argc, char* argv[] )
   using OutputPixelType = unsigned char;
   using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
-  const int numberOfIterations     = atoi( argv[3] );
+  const int numberOfIterations     = std::stoi( argv[3] );
   const InputPixelType timeStep    = atof( argv[4] );
   const InputPixelType conductance = atof( argv[5] );
 

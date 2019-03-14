@@ -48,7 +48,7 @@ int main( int argc, char *argv[] )
   float beta = atof( argv[4] );
   adaptiveHistogramEqualizationImageFilter->SetBeta( beta );
 
-  int radiusSize = atoi( argv[5] );
+  int radiusSize = std::stoi( argv[5] );
   AdaptiveHistogramEqualizationImageFilterType::ImageSizeType radius;
   radius.Fill( radiusSize );
   adaptiveHistogramEqualizationImageFilter->SetRadius( radius );

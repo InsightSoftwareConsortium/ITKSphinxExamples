@@ -31,8 +31,8 @@ int main( int argc, char* argv[] )
     }
 
   const char * seriesFormat = argv[1];
-  unsigned int startIndex = atoi( argv[2] );
-  unsigned int endIndex = atoi( argv[3] );
+  unsigned int startIndex = std::stoi( argv[2] );
+  unsigned int endIndex = std::stoi( argv[3] );
 
   constexpr unsigned int Dimension = 3;
 

@@ -43,8 +43,8 @@ int main( int argc, char* argv[] )
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  unsigned char lowerThreshold = atoi( argv[3] );
-  unsigned char upperThreshold = atoi( argv[4] );
+  unsigned char lowerThreshold = std::stoi( argv[3] );
+  unsigned char upperThreshold = std::stoi( argv[4] );
 
   using FilterType = itk::ThresholdImageFilter< ImageType >;
   FilterType::Pointer filter = FilterType::New();

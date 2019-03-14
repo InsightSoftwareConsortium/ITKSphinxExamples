@@ -42,12 +42,12 @@ int main( int argc, char* argv[] )
   int numberOfIterations = 50;
   if( argc > 4 )
     {
-    numberOfIterations = atoi( argv[4] );
+    numberOfIterations = std::stoi( argv[4] );
     }
   int numberOfLayers = 2;
   if( argc > 5 )
     {
-    numberOfLayers = atoi( argv[5] );
+    numberOfLayers = std::stoi( argv[5] );
     }
 
   constexpr unsigned int Dimension = 2;

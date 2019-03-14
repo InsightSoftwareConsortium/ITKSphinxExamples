@@ -43,17 +43,17 @@ int main( int argc, char* argv[] )
   const char * inputFileName = argv[1];
   const char * labelMapFileName = argv[2];
   const char * outputFileName = argv[3];
-  const auto label = static_cast< PixelType >( atoi( argv[4] ) );
-  const auto background = static_cast< PixelType >( atoi( argv[5] ) );
+  const auto label = static_cast< PixelType >( std::stoi( argv[4] ) );
+  const auto background = static_cast< PixelType >( std::stoi( argv[5] ) );
   bool negated                              = false;
   bool crop                                 = false;
   ImageType::SizeValueType borderSize = 0;
 
   if( argc == 9 )
   {
-    negated = ( atoi( argv[6] ) == 1 );
-    crop    = ( atoi( argv[7] ) == 1 );
-    borderSize = static_cast< ImageType::SizeValueType >( atoi( argv[8] ) );
+    negated = ( std::stoi( argv[6] ) == 1 );
+    crop    = ( std::stoi( argv[7] ) == 1 );
+    borderSize = static_cast< ImageType::SizeValueType >( std::stoi( argv[8] ) );
   }
 
   using ReaderType = itk::ImageFileReader< ImageType >;

@@ -55,7 +55,7 @@ int main( int argc, char* argv[] )
 
   InputImageType::Pointer input = reader->GetOutput();
 
-  int numberOfIterations = atoi( argv[2] );
+  int numberOfIterations = std::stoi( argv[2] );
 
   using LevelSetPixelType = float;
   using LevelSetImageType = itk::Image< LevelSetPixelType, Dimension >;

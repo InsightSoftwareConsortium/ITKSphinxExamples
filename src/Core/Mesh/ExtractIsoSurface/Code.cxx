@@ -47,8 +47,8 @@ int main( int argc, char* argv[] )
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputFileName );
 
-  auto lowerThreshold = static_cast< PixelType >( atoi( argv[3] ) );
-  auto upperThreshold = static_cast< PixelType >( atoi( argv[4] ) );
+  auto lowerThreshold = static_cast< PixelType >( std::stoi( argv[3] ) );
+  auto upperThreshold = static_cast< PixelType >( std::stoi( argv[4] ) );
 
   using BinaryThresholdFilterType = itk::BinaryThresholdImageFilter< ImageType, ImageType >;
   BinaryThresholdFilterType::Pointer threshold = BinaryThresholdFilterType::New();
