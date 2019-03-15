@@ -247,7 +247,7 @@ VV
 .. _CMake:                 https://cmake.org/
 .. _FLTK:                  http://www.fltk.org/index.php
 .. _ImageViewer:           https://github.com/KitwareMedical/ImageViewer
-.. _ITKApps:               https://itk.org/ITKApps.git
+.. _ITKApps:               https://github.com/InsightSoftwareConsortium/ITKApps
 .. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
 .. _MITK:                  http://www.mitk.org/wiki/MITK
 .. _Paraview:              https://www.paraview.org/
