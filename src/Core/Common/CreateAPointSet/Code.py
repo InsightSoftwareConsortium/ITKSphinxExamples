@@ -23,8 +23,7 @@ import itk
 PixelType = itk.F
 Dimension = 3
 
-MeshTraits = itk.DefaultStaticMeshTraits[PixelType, Dimension, Dimension]
-PointSetType = itk.PointSet[PixelType, Dimension, MeshTraits]
+PointSetType = itk.PointSet[PixelType, Dimension]
 PointSet = PointSetType.New()
 
 points = PointSet.GetPoints()

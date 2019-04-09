@@ -26,8 +26,7 @@ else:
     ElementIdentifierType = itk.ctype('unsigned long')
 
 
-MeshTraits = itk.DefaultStaticMeshTraits[CoordType, Dimension, Dimension]
-PointSetType = itk.PointSet[CoordType, Dimension, MeshTraits]
+PointSetType = itk.PointSet[CoordType, Dimension]
 
 pointSet = PointSetType.New()
 points = pointSet.GetPoints()
