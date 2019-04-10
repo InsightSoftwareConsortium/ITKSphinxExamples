@@ -8,7 +8,7 @@ jobs:
   timeoutInMinutes: 0
   cancelTimeoutInMinutes: 60
   pool:
-    vmImage: ubuntu-16.04
+    vmImage: 'ubuntu-16.04'
   steps:
     - script: |
         set -x
@@ -30,7 +30,7 @@ jobs:
         cmake --version
 
         ctest -S ITKExamples-dashboard/azure_dashboard.cmake -VV -j 4
-      displayName: Build and Test
+      displayName: 'Build and Test'
       workingDirectory: $(Agent.BuildDirectory)
 
 - job: macOS
@@ -57,7 +57,7 @@ jobs:
         cmake --version
 
         ctest -S ITKExamples-dashboard/azure_dashboard.cmake -VV -j 4
-      displayName: Build and Test
+      displayName: 'Build and Test'
       workingDirectory: $(Agent.BuildDirectory)
 
 - job: Windows
@@ -79,5 +79,55 @@ jobs:
         set CC=cl.exe
         set CXX=cl.exe
         ctest -S ITKExamples-dashboard/azure_dashboard.cmake -VV -j 4
+      displayName: 'Build and Test'
+      workingDirectory: $(Agent.BuildDirectory)
+
+- job: Documentation
+  timeoutInMinutes: 0
+  cancelTimeoutInMinutes: 80
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '3.7'
+        architecture: 'x64'
+
+    - bash: |
+        git clone -b dashboard --single-branch https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
+
+        cat > ITKExamples-dashboard/dashboard.cmake << EOF
+        set(CTEST_BUILD_CONFIGURATION "MinSizeRel")
+        set(CTEST_CMAKE_GENERATOR "Ninja")
+        set(dashboard_cache "
+        BUILD_SHARED_LIBS:BOOL=ON
+        BUILD_TESTING:BOOL=ON
+        BUILD_DOCUMENTATION:BOOL=ON
+        PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python3
+        ")
+        include(\$ENV{AGENT_BUILDDIRECTORY}/ITKExamples-dashboard/azure_dashboard.cmake)
+        EOF
+        cat ITKExamples-dashboard/dashboard.cmake
+      workingDirectory: $(Agent.BuildDirectory)
+      displayName: 'Configure CTest script'
+
+    - script: |
+        set -x
+
+        # Azure checkout submodules options does not currently work
+        pushd $(Build.SourcesDirectory)
+        git submodule update --init --recursive
+        popd
+
+        git clone -b dashboard --single-branch https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKExamples-dashboard
+
+        python -m pip install ninja sphinx
+        sudo apt-get update
+        sudo apt-get install -y python3-venv gnuplot dvipng
+
+        c++ --version
+        cmake --version
+
+        ctest -S ITKExamples-dashboard/dashboard.cmake -VV -j 4
       displayName: Build and Test
       workingDirectory: $(Agent.BuildDirectory)
