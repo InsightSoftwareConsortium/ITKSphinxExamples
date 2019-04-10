@@ -7,9 +7,8 @@ file(RELATIVE_PATH dashboard_source_name "${workspace}" "$ENV{BUILD_SOURCESDIREC
 # Short for Windows path length limitations
 set(dashboard_binary_name "ITKEx-bld")
 set(CTEST_SITE "Azure.$ENV{AGENT_MACHINENAME}")
-set(dashboard_do_cache 1)
-set(dashboard_cache "$ENV{dashboard_cache}")
 set(CTEST_CMAKE_GENERATOR "Ninja")
+set(dashboard_do_cache 1)
 set(dashboard_superbuild 1)
 set(CTEST_BUILD_CONFIGURATION MinSizeRel)
 # We are building a pull request that has already been checked out.
