@@ -25,7 +25,7 @@ if(BUILD_DOCUMENTATION)
     # Set here the proper version of Python required to be able to build
     # tarballs for each example
     set(PYTHON_REQUIRED_VERSION 2.7)
-    if(${PYTHON_VERSION_STRING} VERSION_LESS ${PYTHON_REQUIRED_VERSION})
+    if("${PYTHON_VERSION_STRING}" VERSION_LESS ${PYTHON_REQUIRED_VERSION})
       message(SEND_ERROR "Building the documentation requires Python >= ${PYTHON_REQUIRED_VERSION}")
     endif()
   endif()
