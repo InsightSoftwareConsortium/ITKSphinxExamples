@@ -20,7 +20,6 @@
 #include "itkImageFileWriter.h"
 #include "itkScalarToRGBPixelFunctor.h"
 #include "itkUnaryFunctorImageFilter.h"
-#include "itkVectorCastImageFilter.h"
 #include "itkVectorGradientAnisotropicDiffusionImageFilter.h"
 #include "itkWatershedImageFilter.h"
 #include "itkRescaleIntensityImageFilter.h"
