@@ -20,5 +20,5 @@ Some filters are available to compute the usual attributes values related to the
 
 Implementations were taken from the `Insight Journal paper`_ or  here_.
 
-.. _here: http://hdl.handle.net/1926/584
-.. _Insight Journal paper: http://www.insight-journal.org/browse/publication/176
+.. _here: https://hdl.handle.net/1926/584
+.. _Insight Journal paper: https://www.insight-journal.org/browse/publication/176

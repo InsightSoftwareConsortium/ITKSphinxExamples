@@ -63,5 +63,5 @@ Classes demonstrated
 
 .. breathelink:: itk::HessianRecursiveGaussianImageFilter
 
-.. _Hessian: http://en.wikipedia.org/wiki/Hessian_matrix
-.. _Circle of Willis: http://en.wikipedia.org/wiki/Circle_of_Willis
+.. _Hessian: https://en.wikipedia.org/wiki/Hessian_matrix
+.. _Circle of Willis: https://en.wikipedia.org/wiki/Circle_of_Willis

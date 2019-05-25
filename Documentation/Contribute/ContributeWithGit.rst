@@ -73,7 +73,7 @@ Please do not add images directly to the repository.  Instead, use the
 :ref:`content link system <upload-binary-data>`.
 
 
-.. _Git: http://git-scm.com/
-.. _Git hooks: http://git-scm.com/book/en/Customizing-Git-Git-Hooks
+.. _Git: https://git-scm.com/
+.. _Git hooks: https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
 .. _GitHub account: https://github.com/login
-.. _GitHub: https://github.com/InsightSoftwareConsortium/ITKExamples.git
+.. _GitHub: https://github.com/InsightSoftwareConsortium/ITKExamples

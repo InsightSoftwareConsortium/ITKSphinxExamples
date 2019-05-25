@@ -7,7 +7,7 @@ itk.webglCheck = function() {
 
   if (!window.WebGLRenderingContext) {
     var getWebGLA = document.createElement("a");
-    getWebGLA.setAttribute("href", "http://get.webgl.org");
+    getWebGLA.setAttribute("href", "https://get.webgl.org");
     var getWebGLAText = document.createTextNode("A browser that supports the WebGl standard");
     getWebGLA.appendChild(getWebGLAText);
     suggestion.appendChild(getWebGLA);
@@ -23,7 +23,7 @@ itk.webglCheck = function() {
       var preSuggestionText = document.createTextNode("WebGL could not be loaded. ");
       suggestion.appendChild(preSuggestionText);
       var getWebGLA = document.createElement("a");
-      getWebGLA.setAttribute("href", "http://get.webgl.org/troubleshooting");
+      getWebGLA.setAttribute("href", "https://get.webgl.org/troubleshooting");
       var getWebGLAText = document.createTextNode("A different browser or video drivers ");
       getWebGLA.appendChild(getWebGLAText);
       suggestion.appendChild(getWebGLA);
