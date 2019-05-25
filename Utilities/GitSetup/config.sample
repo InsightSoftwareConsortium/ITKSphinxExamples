@@ -3,7 +3,7 @@
 # Copy to "config" and edit as necessary.
 
 [hooks]
-	url = http://public.kitware.com/GitSetup.git
+	url = https://public.kitware.com/GitSetup.git
 	#branch = hooks
 
 [ssh]
@@ -17,6 +17,6 @@
 
 [gerrit]
 	#project = Project
-	site = http://review.source.kitware.com
+	site = https://review.source.kitware.com
 	# pushurl placeholder "$username" is literal
 	pushurl = $username@review.source.kitware.com:Project
