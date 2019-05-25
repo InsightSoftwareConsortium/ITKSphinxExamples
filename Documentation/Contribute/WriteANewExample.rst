@@ -198,13 +198,13 @@ Note that the breathelink directive is a custom one which makes use of:
 
 .. _Breathe:                   https://github.com/michaeljones/breathe
 .. _external hyperlink target: http://docutils.sourceforge.net/docs/user/rst/quickref.html#external-hyperlink-targets
-.. _doxygenclass directive:    http://breathe.readthedocs.org/en/latest/class.html
+.. _doxygenclass directive:    https://breathe.readthedocs.io/en/latest/class.html
 .. _figure directive:          http://docutils.sourceforge.net/docs/ref/rst/directives.html#figure
 .. _literalinclude directive:  http://sphinx.pocoo.org/markup/code.html?highlight=literalinclude#directive-literalinclude
 .. _literal block:             http://docutils.sourceforge.net/docs/user/rst/quickref.html#literal-blocks
 .. _Pygments:                  http://pygments.org/
 .. _Sphinx index directive:    http://sphinx.pocoo.org/markup/misc.html#directive-index
 .. _reStructuredText:          http://docutils.sourceforge.net/rst.html
-.. _doxylink:                  http://packages.python.org/sphinxcontrib-doxylink/
-.. _VTK:                       http://vtk.org
-.. _Paraview:                  http://paraview.org
+.. _doxylink:                  https://pythonhosted.org/sphinxcontrib-doxylink/
+.. _VTK:                       https://vtk.org
+.. _Paraview:                  https://www.paraview.org

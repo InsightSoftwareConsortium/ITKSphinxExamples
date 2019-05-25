@@ -82,12 +82,12 @@ Run the bash script ``SetupForDevelopment.sh``::
 .. _Breathe: https://github.com/michaeljones/breathe
 .. _build instructions in the documentation: https://itk.org/ITKExamples/Documentation/Build/index.html
 .. _CMake: https://cmake.org/
-.. _Git: http://git-scm.com/
+.. _Git: https://git-scm.com/
 .. _ITK: https://itk.org/
 .. _Sphinx: http://sphinx.pocoo.org/
 .. _Github Issues: https://github.com/InsightSoftwareConsortium/ITKExamples/issues
-.. _Python: http://python.org/
-.. _gnuplot: http://www.gnuplot.info/
-.. _TeX Live: http://www.tug.org/texlive/
-.. _MiKTeX: http://miktex.org/
-.. _dvipng: http://sourceforge.net/projects/dvipng/
+.. _Python: https://python.org/
+.. _gnuplot: https://www.gnuplot.info/
+.. _TeX Live: https://www.tug.org/texlive/
+.. _MiKTeX: https://miktex.org/
+.. _dvipng: https://sourceforge.net/projects/dvipng/

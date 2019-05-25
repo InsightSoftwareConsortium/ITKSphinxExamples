@@ -18,15 +18,17 @@ if(${ITK_VERSION_MAJOR} LESS 4)
 endif()
 
 if(BUILD_DOCUMENTATION)
-  find_package(PythonInterp REQUIRED)
-  if(NOT PYTHONINTERP_FOUND)
-    message(SEND_ERROR "Building the documentation requires Python")
-  else()
-    # Set here the proper version of Python required to be able to build
-    # tarballs for each example
-    set(PYTHON_REQUIRED_VERSION 2.7)
-    if("${PYTHON_VERSION_STRING}" VERSION_LESS ${PYTHON_REQUIRED_VERSION})
-      message(SEND_ERROR "Building the documentation requires Python >= ${PYTHON_REQUIRED_VERSION}")
+  if(NOT PYTHON_EXECUTABLE)
+    find_package(PythonInterp 3.6 REQUIRED)
+    if(NOT PYTHONINTERP_FOUND)
+      message(SEND_ERROR "Building the documentation requires Python")
+    else()
+      # Set here the proper version of Python required to be able to build
+      # tarballs for each example
+      set(PYTHON_REQUIRED_VERSION 3.6)
+      if("${PYTHON_VERSION_STRING}" VERSION_LESS ${PYTHON_REQUIRED_VERSION})
+        message(SEND_ERROR "Building the documentation requires Python >= ${PYTHON_REQUIRED_VERSION}: ${PYTHON_VERSION_STRING} found at ${PYTHON_EXECUTABLE}")
+      endif()
     endif()
   endif()
 endif()

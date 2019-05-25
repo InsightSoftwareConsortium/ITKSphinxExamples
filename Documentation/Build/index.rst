@@ -5,7 +5,7 @@ How to build, run, and visualize
 
 The Python examples do not need to be built. First, install Python from
 `python.org <https://www.python.org/>`_, `Anaconda
-<https://www.continuum.io/downloads>`_, or a system package manager like
+<https://www.anaconda.com/distribution>`_, or a system package manager like
 Ubuntu Linux `apt <https://help.ubuntu.com/lts/serverguide/apt.html>`_
 or macOS `Homebrew <https://brew.sh/>`_.
 
@@ -245,13 +245,13 @@ VV
 
 .. _3DSlicer:              https://www.slicer.org/
 .. _CMake:                 https://cmake.org/
-.. _FLTK:                  http://www.fltk.org/index.php
+.. _FLTK:                  https://www.fltk.org/index.php
 .. _ImageViewer:           https://github.com/KitwareMedical/ImageViewer
 .. _ITKApps:               https://github.com/InsightSoftwareConsortium/ITKApps
 .. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
 .. _MITK:                  http://www.mitk.org/wiki/MITK
 .. _Paraview:              https://www.paraview.org/
 .. _QGoImageCompare:       https://github.com/gofigure2/QGoImageCompare
-.. _Qt:                    http://qt-project.org/
+.. _Qt:                    https://www.qt.io/developers/
 .. _VTK:                   https://vtk.org/
 .. _VV:                    https://www.creatis.insa-lyon.fr/rio/vv

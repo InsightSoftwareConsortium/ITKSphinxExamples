@@ -36,4 +36,4 @@ The entire source tree can be downloaded with Git_:
 
   git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git
 
-.. _Git: http://git-scm.com/
+.. _Git: https://git-scm.com/
