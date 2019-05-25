@@ -1,5 +1,5 @@
 [hooks]
-	url = http://public.kitware.com/GitSetup.git
+	url = public.kitware.com/GitSetup.git
 [upstream]
 	url = https://github.com/InsightSoftwareConsortium/ITKExamples.git
 	remote = upstream
