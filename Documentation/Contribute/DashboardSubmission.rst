@@ -53,6 +53,7 @@ Create a file, `itkexamples_dashboard.cmake`, to hold these settings::
 You *must* edit this file to describe your local system.
 
 .. literalinclude:: ../../Utilities/Dashboard/itkexamples_dashboard.cmake.example
+   :language: cmake
 
 Step 3: Configure your system to run the script on a daily basis
 ................................................................
@@ -62,15 +63,21 @@ Linux or Mac
 
 First, test the script to ensure that it runs correctly::
 
+.. code-block:: bash
+
   ctest -S ./itkexamples_dashboard.cmake -V -A
 
 Did everything work?  Do you see your build on the `ITKExamples dashboard`_?
 If so, continue to `setup a cronjob`_ that will run the script daily.  Edit your
 crontab::
 
+.. code-block:: bash
+
   crontab -e
 
 The following line will run the script every day at 3 AM::
+
+.. code-block:: bash
 
   0 3 * * * ctest -S /home/luis/dashboards/itkexamples_dashboard.cmake -A &> /dev/null
 
@@ -84,13 +91,19 @@ It may be useful to put all the nightly dashboards in a batch script and run the
 batch script daily.  When creating the new task, the Action associate with the
 task is to *Start a program*.  This script could be placed at::
 
+.. code-block:: bash
+
   C:\Dashboards\run_dashboard.bat
 
 where `run_dashboard.bat` contains::
 
+.. code-block:: bash
+
   call ctest -S C:\Dashboards\itkexamples_dashboard.cmake
 
 To schedule your Windows box to reboot nightly, set up a task that runs::
+
+.. code-block:: bash
 
   C:\Windows\System32\shutdown.exe /r /t 60 /f
 

@@ -18,7 +18,7 @@ filters.
 Results
 -------
 
-Output::
+.. code-block:: none
 
   The output LargestPossibleRegion is: ImageRegion (0x8dc420)
     Dimension: 2

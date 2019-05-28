@@ -19,6 +19,7 @@ Results
 
 Output::
 
+.. code-block:: none
   Mean: 0.00756311416626
   Total: 0.00756311416626
   Mean: 0.00671458244324
@@ -46,6 +47,7 @@ C++
 ...
 
 .. literalinclude:: Code.cxx
+   :language: c++
    :lines: 18-
 
 Python

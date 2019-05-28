@@ -15,7 +15,7 @@ Copy a non-CompositeTransform.
 Results
 -------
 
-::
+.. code-block:: none
 
   Original transform: Euler3DTransform (0x132e880)
     RTTI typeinfo:   itk::Euler3DTransform<float>

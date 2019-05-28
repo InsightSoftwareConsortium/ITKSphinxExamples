@@ -31,7 +31,7 @@ components.
 
 Output from the code below:
 
-::
+.. code-block:: none
 
    Frequency of the bin at index [0, 2] is 5 and the bin's instance identifier is 6
 
