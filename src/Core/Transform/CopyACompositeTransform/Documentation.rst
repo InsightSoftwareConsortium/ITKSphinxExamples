@@ -15,7 +15,7 @@ Copy a CompositeTransform.
 Results
 -------
 
-::
+.. code-block:: none
 
   Original transform: CompositeTransform (0x173cdb0)
     RTTI typeinfo:   itk::CompositeTransform<float, 3u>

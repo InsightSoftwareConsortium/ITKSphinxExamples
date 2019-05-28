@@ -17,7 +17,7 @@ call is added to the `try` block.
 Results
 -------
 
-Output::
+.. code-block:: none
 
   ExceptionObject caught !
 
