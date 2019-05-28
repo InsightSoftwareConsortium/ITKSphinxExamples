@@ -7,6 +7,7 @@ foreach( i RANGE 1 6 )
     TEST_NAME AdaptiveHistogramEqualizationImageFilterTest0${i}BaselineComparison
     TEST_IMAGE AdaptiveHistogramEqualizationImageFilterTest0${i}.png
     BASELINE_PREFIX AdaptiveHistogramEqualizationImageFilter0${i}Baseline
+    OPTIONS --tolerance-intensity 1
     DEPENDS AdaptiveHistogramEqualizationImageFilterTest0${i}
   )
 
