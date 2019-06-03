@@ -1,15 +1,56 @@
-cmake_minimum_required(VERSION 3.10.2 FATAL_ERROR)
-foreach(p
-    ## Only policies introduced after the cmake_minimum_required
-    ## version need to explicitly be set to NEW.
-    CMP0070 #3.10.0 Define ``file(GENERATE)`` behavior for relative paths.
-    CMP0071 #3.10.0 Let ``AUTOMOC`` and ``AUTOUIC`` process ``GENERATED`` files.
-    CMP0074 #3.12.0 `find_package()`` uses ``<PackageName>_ROOT`` variables.
-    )
-  if(POLICY ${p})
-    cmake_policy(SET ${p} NEW)
+# ==== Define cmake build policies that affect compilation and linkage default behaviors
+#
+# Set the ITKEX_NEWEST_VALIDATED_POLICIES_VERSION string to the newest cmake version
+# policies that provide successful builds. By setting ITKEX_NEWEST_VALIDATED_POLICIES_VERSION
+# to a value greater than the oldest policies, all policies between
+# ITKEX_OLDEST_VALIDATED_POLICIES_VERSION and CMAKE_VERSION (used for this build)
+# are set to their NEW behaivor, thereby suppressing policy warnings related to policies
+# between the ITKEX_OLDEST_VALIDATED_POLICIES_VERSION and CMAKE_VERSION.
+#
+# CMake versions greater than the ITKEX_NEWEST_VALIDATED_POLICIES_VERSION policies will
+# continue to generate policy warnings "CMake Warning (dev)...Policy CMP0XXX is not set:"
+#
+set(ITKEX_OLDEST_VALIDATED_POLICIES_VERSION "3.10.2")
+set(ITKEX_NEWEST_VALIDATED_POLICIES_VERSION "3.14.0")
+cmake_minimum_required(VERSION ${ITKEX_OLDEST_VALIDATED_POLICIES_VERSION} FATAL_ERROR)
+if("${CMAKE_VERSION}" VERSION_LESS_EQUAL "${ITKEX_NEWEST_VALIDATED_POLICIES_VERSION}")
+  #Set and use the newest available cmake policies that are validated to work
+  set(ITK_CMAKE_POLICY_VERSION "${CMAKE_VERSION}")
+else()
+  set(ITK_CMAKE_POLICY_VERSION "${ITKEX_NEWEST_VALIDATED_POLICIES_VERSION}")
+endif()
+cmake_policy(VERSION ${ITK_CMAKE_POLICY_VERSION})
+#
+# Now enumerate specific policies newer than ITKEX_NEWEST_VALIDATED_POLICIES_VERSION
+# that may need to be individually set to NEW/OLD
+#
+foreach(pnew "") # Currently Empty
+  if(POLICY ${pnew})
+    cmake_policy(SET ${pnew} NEW)
   endif()
 endforeach()
+foreach(pold "") # Currently Empty
+  if(POLICY ${pold})
+    cmake_policy(SET ${pold} OLD)
+  endif()
+endforeach()
+
+# ==== Define language standard configurations requiring at least c++11 standard
+if(CMAKE_CXX_STANDARD EQUAL "98" )
+  message(FATAL_ERROR "CMAKE_CXX_STANDARD:STRING=98 is not supported in ITK version 5 and greater.")
+endif()
+
+#####
+##  Set the default target properties for ITK
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 11) # Supported values are ``11``, ``14``, and ``17``.
+endif()
+if(NOT CMAKE_CXX_STANDARD_REQUIRED)
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+endif()
+if(NOT CMAKE_CXX_EXTENSIONS)
+  set(CMAKE_CXX_EXTENSIONS OFF)
+endif()
 
 project(ITKExamples)
 
