@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
             pixel.SetRed(255);
             pixel.SetGreen(0);
             pixel.SetBlue(0);
-            pixel.SetAlpha(0.5);
+            pixel.SetAlpha( static_cast<unsigned char>( 0.5 * 255 ) );
         }
         imageIterator.Set(pixel);
 
