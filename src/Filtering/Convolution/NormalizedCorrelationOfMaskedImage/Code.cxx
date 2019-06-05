@@ -40,7 +40,7 @@ void CreateImageOfSquare(ImageType* const image, const itk::Index<2>& cornerOfSq
 template <typename TImage>
 void WriteImage(const TImage* const image, const std::string& filename);
 
-int main(int argc, char *argv[])
+int main(int , char *[])
 {
     // Setup mask
     MaskType::Pointer mask = MaskType::New();
