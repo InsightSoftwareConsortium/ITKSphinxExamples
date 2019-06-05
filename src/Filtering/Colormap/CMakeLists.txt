@@ -3,3 +3,8 @@ compare_to_baseline( EXAMPLE_NAME CreateACustomColorMap BASELINE_PREFIX OutputBa
 
 add_example( ApplyAColorMapToAnImage )
 compare_to_baseline( EXAMPLE_NAME ApplyAColorMapToAnImage BASELINE_PREFIX OutputBaseline)
+
+add_example(MapScalarsIntoJetColormap)
+compare_to_baseline(EXAMPLE_NAME MapScalarsIntoJetColormap
+  BASELINE_PREFIX OutputBaseline
+  )

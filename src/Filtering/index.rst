@@ -25,3 +25,9 @@ Filtering
   ImageGradient/index.rst
   AnisotropicSmoothing/index.rst
   ImageFusion/index.rst
+  Convolution/index.rst
+  DistanceMap/index.rst
+  ImageCompose/index.rst
+  ImageLabel/index.rst
+  CurvatureFlow/index.rst
+  Path/index.rst

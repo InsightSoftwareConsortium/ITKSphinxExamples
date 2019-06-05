@@ -1,1 +1,2 @@
 add_subdirectory_if_module_enabled( Statistics )
+add_subdirectory_if_module_enabled(Optimizers)

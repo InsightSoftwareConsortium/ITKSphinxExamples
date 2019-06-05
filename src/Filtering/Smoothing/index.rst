@@ -9,3 +9,5 @@ Smoothing
   MedianFilteringOfAnRGBImage/Documentation.rst
   SmoothWithRecursiveGaussian/Documentation.rst
   BlurringAnImageUsingABinomialKernel/Documentation.rst
+  FindHigherDerivativesOfImage/Documentation.rst
+  SmoothImageWithDiscreteGaussianFilter/Documentation.rst

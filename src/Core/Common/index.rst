@@ -11,8 +11,10 @@ Common
   CreateACovariantVector/Documentation.rst
   CovariantVectorNorm/Documentation.rst
   CovariantVectorDotProduct/Documentation.rst
+  VectorDotProduct/Documentation.rst
   GetTypeBasicInformation/Documentation.rst
   DistanceBetweenPoints/Documentation.rst
+  DistanceBetweenIndices/Documentation.rst
   CreateAVector/Documentation.rst
   TryCatchException/Documentation.rst
   BoundingBoxOfAPointSet/Documentation.rst
@@ -38,6 +40,7 @@ Common
   DuplicateAnImage/Documentation.rst
   ApplyAFilterOnlyToASpecifiedRegionOfAnImage/Documentation.rst
   IterateOverARegionWithAShapedNeighborhoodIterator/Documentation.rst
+  IterateOverARegionWithAShapedNeighborhoodIteratorManual/Documentation.rst
   CreateABackwardDifferenceOperator/Documentation.rst
   TraceMemoryBetweenPoints/Documentation.rst
   StreamAPipeline/Documentation.rst
@@ -51,3 +54,59 @@ Common
   ImportPixelBufferIntoAnImage/Documentation.rst
   UseParallelizeImageRegion/Documentation.rst
   FilterAndParallelizeImageRegion/Documentation.rst
+  PiConstant/Documentation.rst
+  Matrix/Documentation.rst
+  MatrixInverse/Documentation.rst
+  VariableLengthVector/Documentation.rst
+  BresenhamLine/Documentation.rst
+  Transparency/Documentation.rst
+  ConvertArrayToImage/Documentation.rst
+  CropImageBySpecifyingRegion/Documentation.rst
+  CustomOperationToEachPixelInImage/Documentation.rst
+  FindMaxAndMinInImage/Documentation.rst
+  CreateVectorImage/Documentation.rst
+  NeighborhoodIteratorOnVectorImage/Documentation.rst
+  CastVectorImageToAnotherType/Documentation.rst
+  IterateOverSpecificRegion/Documentation.rst
+  RandomSelectOfPixelsFromRegion/Documentation.rst
+  RandomSelectPixelFromRegionWithoutReplacee/Documentation.rst
+  IterateLineThroughImage/Documentation.rst
+  IterateLineThroughImageWithoutWriteAccess/Documentation.rst
+  IterateRegionWithNeighborhood/Documentation.rst
+  IterateWithNeighborhoodWithoutAccess/Documentation.rst
+  IterateRegionWithWriteAccess/Documentation.rst
+  IterateRegionWithoutWriteAccess/Documentation.rst
+  OutOfBoundsPixelsReturnConstValue/Documentation.rst
+  IterateRegionWithAccessToIndexWithWriteAccess/Documentation.rst
+  IterateRegionWithAccessToIndexWithoutWriteAccess/Documentation.rst
+  CreateGaussianKernel/Documentation.rst
+  CreateGaussianDerivativeKernel/Documentation.rst
+  CreateLaplacianKernel/Documentation.rst
+  CreateDerivativeKernel/Documentation.rst
+  CreateSobelKernel/Documentation.rst
+  CreateForwardDifferenceKernel/Documentation.rst
+  AddNoiseToBinaryImage/Documentation.rst
+  SortITKIndex/Documentation.rst
+  ReturnObjectFromFunction/Documentation.rst
+  CreateAnotherInstanceOfAnImage/Documentation.rst
+  PassImageToFunction/Documentation.rst
+  DeepCopyImage/Documentation.rst
+  PermuteSequenceOfIndices/Documentation.rst
+  ThrowException/Documentation.rst
+  ProduceImageProgrammatically/Documentation.rst
+  FilterImage/Documentation.rst
+  FilterImageWithoutCopying/Documentation.rst
+  FilterImageUsingMultipleThreads/Documentation.rst
+  MultiThreadOilPainting/Documentation.rst
+  MultipleInputsOfSameType/Documentation.rst
+  MultipleInputsOfDifferentType/Documentation.rst
+  MultipleOutputsOfSameType/Documentation.rst
+  MultipleOutputsOfDifferentType/Documentation.rst
+  GetOrSetMemberVariableOfITKClass/Documentation.rst
+  MiniPipeline/Documentation.rst
+  IterateImageStartingAtSeed/Documentation.rst
+  InPlaceFilterOfImage/Documentation.rst
+  DemonstrateAllOperators/Documentation.rst
+  StoreNonPixelDataInImage/Documentation.rst
+  CheckIfModuleIsPresent/Documentation.rst
+  DisplayImage/Documentation.rst

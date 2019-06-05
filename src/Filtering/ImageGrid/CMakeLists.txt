@@ -37,7 +37,11 @@ compare_to_baseline(
   EXAMPLE_NAME ResampleAnImage
   BASELINE_PREFIX OutputBaseline
 )
-
+add_example( UpsampleAnImage )
+compare_to_baseline(
+        EXAMPLE_NAME UpsampleAnImage
+        BASELINE_PREFIX OutputBaseline
+)
 add_example( UpsampleOrDownsampleScalarImage )
 compare_to_baseline(
   EXAMPLE_NAME UpsampleOrDownsampleScalarImage
@@ -71,5 +75,40 @@ compare_to_baseline(EXAMPLE_NAME WarpAnImageUsingADeformationField
 
 add_example(ProcessA2DSliceOfA3DImage)
 compare_to_baseline(EXAMPLE_NAME ProcessA2DSliceOfA3DImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(PadImageByWrapping)
+compare_to_baseline(EXAMPLE_NAME PadImageByWrapping
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ShrinkImage)
+compare_to_baseline(EXAMPLE_NAME ShrinkImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(CropImageBySpecifyingRegion2)
+compare_to_baseline(EXAMPLE_NAME CropImageBySpecifyingRegion2
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(Stack2DImagesInto3DImage)
+compare_to_baseline(EXAMPLE_NAME Stack2DImagesInto3DImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(TileImagesSideBySide)
+compare_to_baseline(EXAMPLE_NAME TileImagesSideBySide
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(RunImageFilterOnRegionOfImage)
+compare_to_baseline(EXAMPLE_NAME RunImageFilterOnRegionOfImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(FitSplineIntoPointSet)
+compare_to_baseline(EXAMPLE_NAME FitSplineIntoPointSet
   BASELINE_PREFIX OutputBaseline
   )

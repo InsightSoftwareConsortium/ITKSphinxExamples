@@ -36,3 +36,8 @@ compare_to_baseline(
   OPTIONS --tolerance-intensity 5
   TEST_IMAGE OutputModulus.mha
 )
+
+add_example(ComputeInverseFFTOfImage)
+compare_to_baseline(EXAMPLE_NAME ComputeInverseFFTOfImage
+  BASELINE_PREFIX OutputBaseline
+  )

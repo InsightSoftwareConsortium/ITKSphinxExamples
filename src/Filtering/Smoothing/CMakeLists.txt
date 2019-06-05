@@ -10,3 +10,12 @@ compare_to_baseline( EXAMPLE_NAME SmoothWithRecursiveGaussian BASELINE_PREFIX Ou
 
 add_example(BlurringAnImageUsingABinomialKernel)
 compare_to_baseline( EXAMPLE_NAME BlurringAnImageUsingABinomialKernel BASELINE_PREFIX OutputBaseline )
+add_example(FindHigherDerivativesOfImage)
+compare_to_baseline(EXAMPLE_NAME FindHigherDerivativesOfImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(SmoothImageWithDiscreteGaussianFilter)
+compare_to_baseline(EXAMPLE_NAME SmoothImageWithDiscreteGaussianFilter
+  BASELINE_PREFIX OutputBaseline
+  )

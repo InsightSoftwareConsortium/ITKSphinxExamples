@@ -11,3 +11,5 @@ ImageBase
   ReadUnknownImageType/Documentation.rst
   RegisterIOFactories/Documentation.rst
   GenerateSlicesFromVolume/Documentation.rst
+  ConvertImageToAnotherType/Documentation.rst
+  Creade3DFromSeriesOf2D/Documentation.rst

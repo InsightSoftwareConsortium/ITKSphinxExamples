@@ -1,0 +1,25 @@
+
+add_example(AddConstantToPixelsWithoutDuplicatingImage)
+compare_to_baseline(EXAMPLE_NAME AddConstantToPixelsWithoutDuplicatingImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ExtractChannelOfImageWithMultipleComponents)
+compare_to_baseline(EXAMPLE_NAME ExtractChannelOfImageWithMultipleComponents
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ProcessNthComponentOfVectorImage)
+compare_to_baseline(EXAMPLE_NAME ProcessNthComponentOfVectorImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(PresentImageAfterOperation)
+compare_to_baseline(EXAMPLE_NAME PresentImageAfterOperation
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ViewComponentVectorImageAsScaleImage)
+compare_to_baseline(EXAMPLE_NAME ViewComponentVectorImageAsScaleImage
+  BASELINE_PREFIX OutputBaseline
+  )
