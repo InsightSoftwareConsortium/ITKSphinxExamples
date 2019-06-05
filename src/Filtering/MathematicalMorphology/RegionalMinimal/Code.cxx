@@ -76,8 +76,8 @@ void CreateImage(ImageType::Pointer image)
             double rr = r - 100.0;
 
             // purposely use 270,257 since it is > 255
-            double v1 = 270.0 - vcl_sqrt( rr*rr + c1*c1 );
-            double v2 = 257.0 - vcl_sqrt( rr*rr + c2*c2 );
+            double v1 = 270.0 - std::sqrt( rr*rr + c1*c1 );
+            double v2 = 257.0 - std::sqrt( rr*rr + c2*c2 );
 
             double maxv = v1;
             if( maxv < v2 )  maxv = v2;
