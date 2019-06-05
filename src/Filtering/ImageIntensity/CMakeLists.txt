@@ -24,3 +24,121 @@ compare_to_baseline( EXAMPLE_NAME ComputeSigmoid BASELINE_PREFIX OutputBaseline 
 
 add_example( MultiplyTwoImages )
 compare_to_baseline( EXAMPLE_NAME MultiplyTwoImages BASELINE_PREFIX OutputBaseline )
+
+add_example(PixelDivisionOfTwoImages)
+compare_to_baseline(EXAMPLE_NAME PixelDivisionOfTwoImages
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ScalePixelSumToConstant)
+compare_to_baseline(EXAMPLE_NAME ScalePixelSumToConstant
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(AddConstantToEveryPixel)
+compare_to_baseline(EXAMPLE_NAME AddConstantToEveryPixel
+  BASELINE_PREFIX OutputBaseline
+  )
+
+list(FIND ITK_MODULES_ENABLED ITKVtkGlue _have)
+if(NOT ${_have} EQUAL "-1")
+  add_example(AddTwoImages)
+  compare_to_baseline(EXAMPLE_NAME AddTwoImages
+    BASELINE_PREFIX OutputBaseline
+  )
+endif()
+
+add_example(SubtractConstantFromEveryPixel)
+compare_to_baseline(EXAMPLE_NAME SubtractConstantFromEveryPixel
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(SubtractTwoImages)
+compare_to_baseline(EXAMPLE_NAME SubtractTwoImages
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(SquareEveryPixel)
+compare_to_baseline(EXAMPLE_NAME SquareEveryPixel
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(TransformVectorValuedImagePixels)
+compare_to_baseline(EXAMPLE_NAME TransformVectorValuedImagePixels
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(IntensityWindowing)
+compare_to_baseline(EXAMPLE_NAME IntensityWindowing
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(SetOutputPixelToMax)
+compare_to_baseline(EXAMPLE_NAME SetOutputPixelToMax
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(SetOutputPixelToMin)
+compare_to_baseline(EXAMPLE_NAME SetOutputPixelToMin
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(BinaryANDTwoImages)
+compare_to_baseline(EXAMPLE_NAME BinaryANDTwoImages
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(BinaryORTwoImages)
+compare_to_baseline(EXAMPLE_NAME BinaryORTwoImages
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(BinaryXORTwoImages)
+compare_to_baseline(EXAMPLE_NAME BinaryXORTwoImages
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(AbsValueOfImage)
+compare_to_baseline(EXAMPLE_NAME AbsValueOfImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(InvertImage)
+compare_to_baseline(EXAMPLE_NAME InvertImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(MaskImage)
+compare_to_baseline(EXAMPLE_NAME MaskImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(InverseOfMaskToImage)
+compare_to_baseline(EXAMPLE_NAME InverseOfMaskToImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(NormalizeImage)
+compare_to_baseline(EXAMPLE_NAME NormalizeImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(CastImageToAnotherTypeButClampToOutput)
+compare_to_baseline(EXAMPLE_NAME CastImageToAnotherTypeButClampToOutput
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ComputerMagInVectorImageToMakeMagImage)
+compare_to_baseline(EXAMPLE_NAME ComputerMagInVectorImageToMakeMagImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ExtractComponentOfVectorImage)
+compare_to_baseline(EXAMPLE_NAME ExtractComponentOfVectorImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ComputeEdgePotential)
+compare_to_baseline(EXAMPLE_NAME ComputeEdgePotential
+  BASELINE_PREFIX OutputBaseline
+  )

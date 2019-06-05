@@ -11,3 +11,13 @@ compare_to_baseline( EXAMPLE_NAME ComputeCurvatureAnisotropicDiffusion
 
 add_example( ComputeGradientAnisotropicDiffusion )
 compare_to_baseline( EXAMPLE_NAME ComputeGradientAnisotropicDiffusion BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-intensity 5)
+
+add_example(SmoothImageWhilePreservingEdges)
+compare_to_baseline(EXAMPLE_NAME SmoothImageWhilePreservingEdges
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(SmoothImageWhilePreservingEdges2)
+compare_to_baseline(EXAMPLE_NAME SmoothImageWhilePreservingEdges2
+  BASELINE_PREFIX OutputBaseline
+  )

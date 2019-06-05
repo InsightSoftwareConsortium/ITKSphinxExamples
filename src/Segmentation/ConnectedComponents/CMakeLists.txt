@@ -1,0 +1,20 @@
+
+add_example(LabelConnectComponentsInBinaryImage)
+compare_to_baseline(EXAMPLE_NAME LabelConnectComponentsInBinaryImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(LabelConnectComponentsInGrayscaleImage)
+compare_to_baseline(EXAMPLE_NAME LabelConnectComponentsInGrayscaleImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(AssignContiguousLabelsToConnectedRegions)
+compare_to_baseline(EXAMPLE_NAME AssignContiguousLabelsToConnectedRegions
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ExtraLargestConnectComponentFromBinaryImage)
+compare_to_baseline(EXAMPLE_NAME ExtraLargestConnectComponentFromBinaryImage
+  BASELINE_PREFIX OutputBaseline
+  )

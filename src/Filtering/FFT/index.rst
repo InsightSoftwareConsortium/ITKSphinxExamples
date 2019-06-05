@@ -7,3 +7,4 @@ FFT
   FilterImageInFourierDomain/Documentation.rst
   ComputeImageSpectralDensity/Documentation.rst
   ComputeForwardFFT/Documentation.rst
+  ComputeInverseFFTOfImage/Documentation.rst

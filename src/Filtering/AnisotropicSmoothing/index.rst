@@ -8,3 +8,5 @@ AnisotropicSmoothing
   ComputeCurvatureFlow/Documentation.rst
   ComputeGradientAnisotropicDiffusion/Documentation.rst
   ComputePeronaMalikAnisotropicDiffusion/Documentation.rst
+  SmoothImageWhilePreservingEdges/Documentation.rst
+  SmoothImageWhilePreservingEdges2/Documentation.rst

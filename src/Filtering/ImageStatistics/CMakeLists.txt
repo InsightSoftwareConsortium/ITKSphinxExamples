@@ -31,3 +31,18 @@ foreach( i RANGE 0 2 )
     DEPENDS ApplyAccumulateImageFilterTest${i}
   )
 endforeach()
+
+add_example(StatisticalPropertiesOfRegions)
+compare_to_baseline(EXAMPLE_NAME StatisticalPropertiesOfRegions
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ComputeMinMaxVarianceMeanOfImage)
+compare_to_baseline(EXAMPLE_NAME ComputeMinMaxVarianceMeanOfImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ComputePCAShapeFromSample)
+compare_to_baseline(EXAMPLE_NAME ComputePCAShapeFromSample
+  BASELINE_PREFIX OutputBaseline
+  )

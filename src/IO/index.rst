@@ -8,3 +8,5 @@ IO
   TIFF/index.rst
   Mesh/index.rst
   GDCM/index.rst
+  TransformBase/index.rst
+  TransformFactory/index.rst

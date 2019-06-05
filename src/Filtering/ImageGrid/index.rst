@@ -18,3 +18,11 @@ ImageGrid
   ExtractRegionOfInterestInOneImage/Documentation.rst
   WarpAnImageUsingADeformationField/Documentation.rst
   ProcessA2DSliceOfA3DImage/Documentation.rst
+  UpsampleAnImage/Documentation.rst
+  PadImageByWrapping/Documentation.rst
+  ShrinkImage/Documentation.rst
+  CropImageBySpecifyingRegion2/Documentation.rst
+  Stack2DImagesInto3DImage/Documentation.rst
+  TileImagesSideBySide/Documentation.rst
+  RunImageFilterOnRegionOfImage/Documentation.rst
+  FitSplineIntoPointSet/Documentation.rst

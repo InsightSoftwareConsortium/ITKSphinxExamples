@@ -10,3 +10,8 @@ foreach( i RANGE 1 5 )
     DEPENDS SegmentWithWatershedImageFilterTest0${i}
   )
 endforeach()
+
+add_example(MorphologicalWatershedSegmentation)
+compare_to_baseline(EXAMPLE_NAME MorphologicalWatershedSegmentation
+  BASELINE_PREFIX OutputBaseline
+  )

@@ -23,3 +23,13 @@ compare_to_baseline( TEST_NAME GenerateSlicesFromVolumeBaselineComparisonSlice30
   EXAMPLE_NAME GenerateSlicesFromVolume
   BASELINE_PREFIX Output-30Baseline
   )
+
+add_example(ConvertImageToAnotherType)
+compare_to_baseline(EXAMPLE_NAME ConvertImageToAnotherType
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(Creade3DFromSeriesOf2D)
+compare_to_baseline(EXAMPLE_NAME Creade3DFromSeriesOf2D
+  BASELINE_PREFIX OutputBaseline
+  )
