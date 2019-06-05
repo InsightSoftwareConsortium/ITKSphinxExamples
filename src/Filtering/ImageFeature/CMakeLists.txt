@@ -12,3 +12,23 @@ compare_to_baseline(EXAMPLE_NAME LaplacianRecursiveGaussianImageFilter BASELINE_
 
 add_example(SegmentBloodVessels)
 compare_to_baseline(EXAMPLE_NAME SegmentBloodVessels BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-number-of-pixels 10)
+
+add_example(RequesterRegion)
+compare_to_baseline(EXAMPLE_NAME RequesterRegion
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(DerivativeImage)
+compare_to_baseline(EXAMPLE_NAME DerivativeImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(SharpenImage)
+compare_to_baseline(EXAMPLE_NAME SharpenImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(FindZeroCrossings)
+compare_to_baseline(EXAMPLE_NAME FindZeroCrossings
+  BASELINE_PREFIX OutputBaseline
+  )

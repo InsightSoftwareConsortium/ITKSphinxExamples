@@ -11,3 +11,4 @@ ImageBase
   ReadUnknownImageType/Documentation.rst
   RegisterIOFactories/Documentation.rst
   GenerateSlicesFromVolume/Documentation.rst
+  ConvertImageToAnotherType/Documentation.rst

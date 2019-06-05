@@ -24,3 +24,23 @@ compare_to_baseline( EXAMPLE_NAME ComputeSigmoid BASELINE_PREFIX OutputBaseline 
 
 add_example( MultiplyTwoImages )
 compare_to_baseline( EXAMPLE_NAME MultiplyTwoImages BASELINE_PREFIX OutputBaseline )
+
+add_example(PixelDivisionOfTwoImages)
+compare_to_baseline(EXAMPLE_NAME PixelDivisionOfTwoImages
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ScalePixelSumToConstant)
+compare_to_baseline(EXAMPLE_NAME ScalePixelSumToConstant
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(AddConstantToEveryPixel)
+compare_to_baseline(EXAMPLE_NAME AddConstantToEveryPixel
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(AddTwoImages)
+compare_to_baseline(EXAMPLE_NAME AddTwoImages
+  BASELINE_PREFIX OutputBaseline
+  )

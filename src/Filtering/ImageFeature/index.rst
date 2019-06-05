@@ -9,3 +9,7 @@ ImageFeature
   ComputeLaplacian/Documentation.rst
   LaplacianRecursiveGaussianImageFilter/Documentation.rst
   SegmentBloodVessels/Documentation.rst
+  RequesterRegion/Documentation.rst
+  DerivativeImage/Documentation.rst
+  SharpenImage/Documentation.rst
+  FindZeroCrossings/Documentation.rst

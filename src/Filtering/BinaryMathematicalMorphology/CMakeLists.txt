@@ -9,3 +9,8 @@ compare_to_baseline(
   EXAMPLE_NAME ErodeABinaryImage
   BASELINE_PREFIX OutputBaseline
 )
+
+add_example(ThinImage)
+compare_to_baseline(EXAMPLE_NAME ThinImage
+  BASELINE_PREFIX OutputBaseline
+  )

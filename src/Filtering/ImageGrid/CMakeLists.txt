@@ -37,7 +37,11 @@ compare_to_baseline(
   EXAMPLE_NAME ResampleAnImage
   BASELINE_PREFIX OutputBaseline
 )
-
+add_example( UpsampleAnImage )
+compare_to_baseline(
+        EXAMPLE_NAME UpsampleAnImage
+        BASELINE_PREFIX OutputBaseline
+)
 add_example( UpsampleOrDownsampleScalarImage )
 compare_to_baseline(
   EXAMPLE_NAME UpsampleOrDownsampleScalarImage

@@ -6,3 +6,4 @@ Binary Mathematical Morphology
 
   DilateABinaryImage/Documentation.rst
   ErodeABinaryImage/Documentation.rst
+  ThinImage/Documentation.rst

@@ -4,3 +4,8 @@ compare_to_baseline( EXAMPLE_NAME PerformMultiModalityRegistrationWithMutualInfo
 
 add_example( Perform2DTranslationRegistrationWithMeanSquares )
 compare_to_baseline( EXAMPLE_NAME Perform2DTranslationRegistrationWithMeanSquares BASELINE_PREFIX OutputBaseline )
+
+add_example(MultiresolutionPyramidFromImage)
+compare_to_baseline(EXAMPLE_NAME MultiresolutionPyramidFromImage
+  BASELINE_PREFIX OutputBaseline
+  )

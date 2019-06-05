@@ -5,3 +5,4 @@ Review
   :maxdepth: 1
 
   SegmentBloodVesselsWithMultiScaleHessianBasedMeasure/Documentation.rst
+  GeometricPropertiesOfRegion/Documentation.rst

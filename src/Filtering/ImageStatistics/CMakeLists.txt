@@ -31,3 +31,8 @@ foreach( i RANGE 0 2 )
     DEPENDS ApplyAccumulateImageFilterTest${i}
   )
 endforeach()
+
+add_example(StatisticalPropertiesOfRegions)
+compare_to_baseline(EXAMPLE_NAME StatisticalPropertiesOfRegions
+  BASELINE_PREFIX OutputBaseline
+  )

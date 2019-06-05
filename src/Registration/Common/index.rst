@@ -6,3 +6,4 @@ Common
 
   PerformMultiModalityRegistrationWithMutualInformation/Documentation.rst
   Perform2DTranslationRegistrationWithMeanSquares/Documentation.rst
+  MultiresolutionPyramidFromImage/Documentation.rst

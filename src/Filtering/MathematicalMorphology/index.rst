@@ -7,3 +7,5 @@ MathematicalMorphology
   CreateABinaryBallStructuringElement/Documentation.rst
   DilateAGrayscaleImage/Documentation.rst
   ErodeAGrayscaleImage/Documentation.rst
+  RegionalMinimal/Documentation.rst
+  RegionalMaximal/Documentation.rst

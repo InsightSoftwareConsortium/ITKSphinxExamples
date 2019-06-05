@@ -18,3 +18,4 @@ ImageGrid
   ExtractRegionOfInterestInOneImage/Documentation.rst
   WarpAnImageUsingADeformationField/Documentation.rst
   ProcessA2DSliceOfA3DImage/Documentation.rst
+  UpsampleAnImage/Documentation.rst

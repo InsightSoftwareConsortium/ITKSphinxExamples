@@ -12,3 +12,8 @@ compare_to_baseline(
   EXAMPLE_NAME ApplyAffineTransformFromHomogeneousMatrixAndResample
   BASELINE_PREFIX OutputBaseline
 )
+
+add_example(ScaleAnImage)
+compare_to_baseline(EXAMPLE_NAME ScaleAnImage
+  BASELINE_PREFIX OutputBaseline
+  )

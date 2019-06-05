@@ -22,3 +22,13 @@ Implementations were taken from the `Insight Journal paper`_ or  here_.
 
 .. _here: https://hdl.handle.net/1926/584
 .. _Insight Journal paper: https://www.insight-journal.org/browse/publication/176
+  RemoveLabelsFromLabelMap/Documentation.rst
+  KeepRegionsThatMeetSpecific/Documentation.rst
+  KeepRegionsAboveLevel/Documentation.rst
+  KeepBinaryRegionsThatMeetSpecific/Documentation.rst
+  LabelBinaryRegionsInImage/Documentation.rst
+  LabelBinaryRegionsAndGetProperties/Documentation.rst
+  ConvertLabelMapToImage/Documentation.rst
+  MergeLabelMaps/Documentation.rst
+  ConvertImageWithLabelsToShapeLabelMap/Documentation.rst
+  ShapeAttributesForBinaryImage/Documentation.rst

@@ -9,3 +9,4 @@ Core
   TestKernel/index.rst
   Transform/index.rst
   Mesh/index.rst
+  ImageFunction/index.rst

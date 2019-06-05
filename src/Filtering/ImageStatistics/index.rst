@@ -6,3 +6,4 @@ ImageStatistics
 
   AdaptiveHistogramEqualizationImageFilter/Documentation.rst
   ApplyAccumulateImageFilter/Documentation.rst
+  StatisticalPropertiesOfRegions/Documentation.rst

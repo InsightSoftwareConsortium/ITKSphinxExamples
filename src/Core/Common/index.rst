@@ -11,8 +11,10 @@ Common
   CreateACovariantVector/Documentation.rst
   CovariantVectorNorm/Documentation.rst
   CovariantVectorDotProduct/Documentation.rst
+  VectorDotProduct/Documentation.rst
   GetTypeBasicInformation/Documentation.rst
   DistanceBetweenPoints/Documentation.rst
+  DistanceBetweenIndices/Documentation.rst
   CreateAVector/Documentation.rst
   TryCatchException/Documentation.rst
   BoundingBoxOfAPointSet/Documentation.rst
@@ -38,6 +40,7 @@ Common
   DuplicateAnImage/Documentation.rst
   ApplyAFilterOnlyToASpecifiedRegionOfAnImage/Documentation.rst
   IterateOverARegionWithAShapedNeighborhoodIterator/Documentation.rst
+  IterateOverARegionWithAShapedNeighborhoodIteratorManual/Documentation.rst
   CreateABackwardDifferenceOperator/Documentation.rst
   TraceMemoryBetweenPoints/Documentation.rst
   StreamAPipeline/Documentation.rst
@@ -51,3 +54,11 @@ Common
   ImportPixelBufferIntoAnImage/Documentation.rst
   UseParallelizeImageRegion/Documentation.rst
   FilterAndParallelizeImageRegion/Documentation.rst
+
+  PiConstant/Documentation.rst
+  Matrix/Documentation.rst
+  MatrixInverse/Documentation.rst
+  VariableLengthVector/Documentation.rst
+  BresenhamLine/Documentation.rst
+  Transparency/Documentation.rst
+  ConvertArrayToImage/Documentation.rst

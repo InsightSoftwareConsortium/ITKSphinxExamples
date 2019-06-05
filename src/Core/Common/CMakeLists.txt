@@ -3,8 +3,10 @@ add_example( CreateAPointSet )
 add_example( DoDataParallelThreading )
 add_example( CovariantVectorNorm )
 add_example( CovariantVectorDotProduct )
+add_example( VectorDotProduct )
 add_example( GetTypeBasicInformation )
 add_example( DistanceBetweenPoints )
+add_example( DistanceBetweenIndices )
 add_example( CreateAVector )
 add_example( TryCatchException )
 add_example( BoundingBoxOfAPointSet )
@@ -42,6 +44,7 @@ compare_to_baseline(
 add_example( DuplicateAnImage )
 add_example( ApplyAFilterOnlyToASpecifiedRegionOfAnImage )
 add_example( IterateOverARegionWithAShapedNeighborhoodIterator )
+add_example( IterateOverARegionWithAShapedNeighborhoodIteratorManual )
 add_example( CreateABackwardDifferenceOperator )
 add_example( BuildAHelloWorldProgram )
 add_example( TraceMemoryBetweenPoints )
@@ -68,3 +71,39 @@ compare_to_baseline(EXAMPLE_NAME ImportPixelBufferIntoAnImage
 
 add_example(FilterAndParallelizeImageRegion)
 add_example(UseParallelizeImageRegion)
+
+
+add_example(PiConstant)
+compare_to_baseline(EXAMPLE_NAME PiConstant
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(Matrix)
+compare_to_baseline(EXAMPLE_NAME Matrix
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(MatrixInverse)
+compare_to_baseline(EXAMPLE_NAME MatrixInverse
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(VariableLengthVector)
+compare_to_baseline(EXAMPLE_NAME VariableLengthVector
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(BresenhamLine)
+compare_to_baseline(EXAMPLE_NAME BresenhamLine
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(Transparency)
+compare_to_baseline(EXAMPLE_NAME Transparency
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(ConvertArrayToImage)
+compare_to_baseline(EXAMPLE_NAME ConvertArrayToImage
+  BASELINE_PREFIX OutputBaseline
+  )

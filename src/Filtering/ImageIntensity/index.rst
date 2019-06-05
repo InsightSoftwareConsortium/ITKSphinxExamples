@@ -13,3 +13,7 @@ ImageIntensity
   MultiplyImageByScalar/Documentation.rst
   ComputeSigmoid/Documentation.rst
   MultiplyTwoImages/Documentation.rst
+  PixelDivisionOfTwoImages/Documentation.rst
+  ScalePixelSumToConstant/Documentation.rst
+  AddConstantToEveryPixel/Documentation.rst
+  AddTwoImages/Documentation.rst
