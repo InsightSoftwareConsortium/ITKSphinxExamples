@@ -1,0 +1,20 @@
+#include "itkImage.h"
+#include "itkImageFileReader.h"
+#include "itkImageFileWriter.h"
+
+#include "ImageSource.h"
+
+int main(int, char*[])
+{
+  // Setup types
+  using ImageType = itk::Image<unsigned char, 2>;
+  ImageType::Pointer image = ImageType::New();
+  
+  // Create and the filter
+  using FilterType = itk::ImageFilter<ImageType>;
+  FilterType::Pointer filter = FilterType::New();
+  filter->SetInput(image);
+  filter->Update();
+
+  return EXIT_SUCCESS;
+}

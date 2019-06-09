@@ -48,6 +48,8 @@ target_link_libraries(ImageCompareCommand ${ITK_LIBRARIES})
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../CMake/ITKExamplesMacros.cmake)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Developer)
+
 add_subdirectory(Bridge)
 add_subdirectory(Core)
 add_subdirectory(Compatibility)
