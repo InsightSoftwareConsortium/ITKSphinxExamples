@@ -11,6 +11,11 @@ include(${ITK_USE_FILE})
 if(ITKVtkGlue_LOADED)
   find_package(VTK REQUIRED)
   include(${VTK_USE_FILE})
+else()
+  # TODO: Instrument so that ITKVtkGlue examples and VTK were not
+  #       strictly required.  That will require a lot of
+  #       ifdefs in the code
+  message(FATAL_ERROR "ITKVtkGlue required for SphinxExamples")
 endif()
 
 if(${ITK_VERSION_MAJOR} LESS 4)
