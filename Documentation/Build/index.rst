@@ -45,20 +45,21 @@ of the example's webpage.  Unpack the example::
 
   tar xvzf example.tar.gz
 
+Set convenience variables::
+
+  ITK_SOURCE=example
+  ITK_BUILD=example/build
+
 Move to the build directory::
 
-  cd example/build
+  cd ${ITK_BUILD}
 
-Run CMake to configure the project.
+Run CMake (minimum version 3.10.2) to configure the project.
 
-- If ITK (Version 4.0.0 or above) is installed::
-
-    cmake ..
-
-- If ITK (Version 4.0.0 or above) is not installed but compiled on your
+- If ITK Version 5.0.0 or above not installed but compiled on your
   system, you will need to specify the path to your ITK build::
 
-    cmake -DITK_DIR=/home/luis/itk_build ..
+    cmake -DITK_DIR=/home/luis/itk_build -S ${ITK_SOURCE} -B ${ITK_BUILD}
 
 Build the project, and run the test::
 
@@ -71,30 +72,35 @@ Build the project, and run the test::
 Build all examples and the documentation
 ----------------------------------------
 
+Set convenience variables::
+
+  ITK_SOURCE=ITKEx
+  ITK_BUILD=ITKEx-build
+
 Clone the repository::
 
-  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKEx
+  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git ${ITK_SOURCE}
 
 Make a build directory::
 
-  mkdir ITKEx-build
-  cd ITKEx-build
+  mkdir -p ${ITK_BUILD}
+  cd ${ITK_BUILD}
 
-Run CMake to configure the project.
+Run CMake (minimum version 3.10.2) to configure the project.
 
 - If ITK is not installed nor compiled, you can then make use of the superbuild functionality::
 
-    cmake ../ITKEx/Superbuild/
+    cmake -DBUILD_DOCUMENATION:BOOL=ON -S ${ITK_SOURCE}/Superbuild/ -B ${ITK_BUILD}
 
-- If ITK (Version 4.0.0 or above) is installed::
+- If ITK (Version 5.0.0 or above) is installed::
 
-    cmake ../ITKEx/
+    cmake -DBUILD_DOCUMENATION:BOOL=ON -S ${ITK_SOURCE} -B ${ITK_BUILD}
 
-- If ITK (Version 4.0.0 or above) is not installed but compiled on your
+- If ITK (Version 5.0.0 or above) is not installed but compiled on your
   system, you will need to specify the path to your ITK build::
 
-    cmake -DITK_DIR=/home/luis/itk_build ../ITKEx/
-
+    ITK_COMPILED_DIR=/usr/opt/itk_build
+    cmake -DITK_DIR=${ITK_COMPILED_DIR} -DBUILD_DOCUMENTATION:BOOL=ON -S ${ITK_SOURCE_DIR} -B ${ITK_BUILD_DIR}
 
 The superbuild will download and build all required dependencies.  If you are
 building the documentation and not using superbuild functionality, then you must
@@ -109,11 +115,12 @@ Build the project (this will generate the documentation and all examples)::
 
 Run the tests with a superbuild::
 
-  cd ITKEx-build
+  cd ${ITK_BUILD_DIR}/ITKEX-build
   ctest -V
 
 Run the tests without a superbuild::
 
+  cd ${ITK_BUILD_DIR}
   ctest -V
 
 Run an example
@@ -255,3 +262,4 @@ VV
 .. _Qt:                    https://www.qt.io/developers/
 .. _VTK:                   https://vtk.org/
 .. _VV:                    https://www.creatis.insa-lyon.fr/rio/vv
+
