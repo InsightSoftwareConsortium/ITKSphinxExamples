@@ -15,19 +15,22 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-/*
 #include "itkImage.h"
 #include "itkImageFileReader.h"
 #include "itkBinaryThresholdImageFilter.h"
 
 #include <itkImageToVTKImageFilter.h>
 
-#include "vtkImageViewer.h"
-#include "vtkRenderWindowInteractor.h"
+#include "vtkVersion.h"
+
 #include "vtkSmartPointer.h"
-#include "vtkImageActor.h"
-#include "vtkInteractorStyleImage.h"
+#include "vtkRenderWindow.h"
 #include "vtkRenderer.h"
+#include "vtkInteractorStyleImage.h"
+#include "vtkRenderWindowInteractor.h"
+#include "vtkImageActor.h"
+#include "vtkImageMapper3D.h"
+#include "vtkImageViewer.h"
 
 using ImageType = itk::Image< unsigned char, 2 >;
 
@@ -60,7 +63,12 @@ int main(int argc, char *argv[])
 
     vtkSmartPointer<vtkImageActor> actor =
             vtkSmartPointer<vtkImageActor>::New();
+#if VTK_MAJOR_VERSION <= 5
     actor->SetInput(connector->GetOutput());
+#else
+    connector->Update();
+    actor->GetMapper()->SetInputData(connector->GetOutput());
+#endif
 
     // There will be one render window
     vtkSmartPointer<vtkRenderWindow> renderWindow =

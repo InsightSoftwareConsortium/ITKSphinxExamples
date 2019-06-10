@@ -5,9 +5,11 @@ project(VTKImageToITKImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
 
 add_executable(VTKImageToITKImage Code.cxx)
-target_link_libraries(VTKImageToITKImage ${ITK_LIBRARIES})
+target_link_libraries(VTKImageToITKImage ${ITK_LIBRARIES} ${VTK_LIBRARIES})
 
 install(TARGETS VTKImageToITKImage
   DESTINATION bin/ITKExamples/Bridge/VtkGlue

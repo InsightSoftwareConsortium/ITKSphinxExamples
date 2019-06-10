@@ -5,9 +5,11 @@ project(ConvertMeshToUnstructeredGrid)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
 
 add_executable(ConvertMeshToUnstructeredGrid Code.cxx)
-target_link_libraries(ConvertMeshToUnstructeredGrid ${ITK_LIBRARIES})
+target_link_libraries(ConvertMeshToUnstructeredGrid ${ITK_LIBRARIES} ${VTK_LIBRARIES})
 
 install(TARGETS ConvertMeshToUnstructeredGrid
   DESTINATION bin/ITKExamples/Core/Mesh
