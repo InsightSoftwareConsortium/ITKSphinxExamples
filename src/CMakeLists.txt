@@ -8,7 +8,9 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 # To avoid linker issues.
-if(ITKVtkGlue_LOADED)
+# Module_ITKVtkGlue is true when building inside ITK
+# ITKVtkGlue_LOADED is true when SuperBuild ITKEx stand-alone
+if(Module_ITKVtkGlue OR ITKVtkGlue_LOADED)
   find_package(VTK REQUIRED)
   include(${VTK_USE_FILE})
 else()
