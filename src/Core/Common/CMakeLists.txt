@@ -353,3 +353,8 @@ add_example(DisplayImage)
 compare_to_baseline(EXAMPLE_NAME DisplayImage
   BASELINE_PREFIX OutputBaseline
   )
+
+add_example(DirectWarningToFile)
+compare_to_baseline(EXAMPLE_NAME DirectWarningToFile
+        BASELINE_PREFIX OutputBaseline
+        )

@@ -3,8 +3,8 @@ Calculate Area And Volume Of Simplex Mesh
 
 .. index::
    single: SimplexMeshVolumeCalculator
-   pair: area; volume
-
+   single: area
+   single: volume
 Synopsis
 --------
 
@@ -13,11 +13,12 @@ Calculate the area and volume of an itk::SimplexMesh.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  Ideal Volume: 523.599
+  Mesh Volume: 520.812
+  Ideal Surface Area: 314.159
+  Mesh Surface Area: 313.1
 
 Code
 ----

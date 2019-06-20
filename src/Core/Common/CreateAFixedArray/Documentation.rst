@@ -15,6 +15,7 @@ Results
 -------
 
 Output::
+
   [0, 1]
 
 Code

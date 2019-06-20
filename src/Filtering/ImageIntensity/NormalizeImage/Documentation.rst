@@ -13,11 +13,11 @@ Normalize an image.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: NormalizeImage.png
+  :scale: 50%
+  :alt: input and output images in vtk window with data
+
+  Input and output images in VTK window.
 
 Code
 ----

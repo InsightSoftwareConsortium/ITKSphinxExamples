@@ -12,11 +12,9 @@ Convert an itk::Image consisting of labeled regions to a LabelMap.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  There are 2 objects.
 
 Code
 ----

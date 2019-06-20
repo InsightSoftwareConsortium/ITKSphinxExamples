@@ -39,12 +39,12 @@ public:
  
 protected:
   OilPaintingImageFilter();
-  ~OilPaintingImageFilter(){}
+  ~OilPaintingImageFilter() override{}
  
-  virtual void BeforeThreadedGenerateData();
+  void BeforeThreadedGenerateData() override;
  
   /** Does the real work. */
-  virtual void ThreadedGenerateData(const typename Superclass::OutputImageRegionType& outputRegionForThread, ThreadIdType threadId);
+  void ThreadedGenerateData(const typename Superclass::OutputImageRegionType& outputRegionForThread, ThreadIdType threadId) override;
  
 private:
   OilPaintingImageFilter(const Self &); //purposely not implemented

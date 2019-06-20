@@ -58,7 +58,7 @@ DataObject::Pointer ImageFilterMultipleOutputsDifferentType<TInputImage, TOutput
       break;
     default:
       std::cerr << "No output " << idx << std::endl;
-      output = NULL;
+      output = nullptr;
       break;
     }
   return output.GetPointer();

@@ -15,11 +15,17 @@ Keep only regions that meet a specified threshold of a specified property.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: input.png
+  :scale: 50%
+  :alt: input.mhd
+
+  Input
+
+.. figure:: output.png
+  :scale: 50%
+  :alt: output.mhd
+
+  Output
 
 Code
 ----

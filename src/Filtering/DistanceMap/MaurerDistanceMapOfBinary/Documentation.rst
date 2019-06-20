@@ -4,7 +4,7 @@ Maurer Distance Map Of Binary Image
 .. index::
    single: SignedMaurerDistanceMapImageFilter
    single: maurer
-   sinlge: distance-map
+   single: distance-map
    pair: danielsson; distance-map
 
 

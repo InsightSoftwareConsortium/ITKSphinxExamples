@@ -12,11 +12,25 @@ Mini Pipeline.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  Input:
+  ImageRegion (0x7fe4c3aaadb0)
+  Dimension: 2
+  Index: [0, 0]
+  Size: [200, 300]
+
+  Input:
+  ImageRegion (0x7fe4c3aab920)
+  Dimension: 2
+  Index: [0, 0]
+  Size: [200, 300]
+
+.. figure:: MiniPipelineOutput.png
+  :scale: 140%
+  :alt: Output.png
+
+  Output image.
 
 Code
 ----

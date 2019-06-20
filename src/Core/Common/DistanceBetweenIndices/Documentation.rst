@@ -19,12 +19,10 @@ Compute the distance between two Indices.
 Results
 -------
 
-
 Output::
 
   Dist: 1.73205
   Dist2: 3
-
 
 Code
 ----

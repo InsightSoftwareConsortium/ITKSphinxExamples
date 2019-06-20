@@ -26,10 +26,10 @@ public:
 
 protected:
   ImageFilter(){}
-  ~ImageFilter(){}
+  ~ImageFilter() override{}
 
   /** Does the real work. */
-  virtual void GenerateData();
+  void GenerateData() override;
 
   double m_Variable;
 

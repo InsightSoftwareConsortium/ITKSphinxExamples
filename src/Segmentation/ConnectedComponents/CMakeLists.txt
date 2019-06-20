@@ -14,7 +14,7 @@ compare_to_baseline(EXAMPLE_NAME AssignContiguousLabelsToConnectedRegions
   BASELINE_PREFIX OutputBaseline
   )
 
-add_example(ExtraLargestConnectComponentFromBinaryImage)
-compare_to_baseline(EXAMPLE_NAME ExtraLargestConnectComponentFromBinaryImage
+add_example(ExtractLargestConnectComponentFromBinaryImage)
+compare_to_baseline(EXAMPLE_NAME ExtractLargestConnectComponentFromBinaryImage
   BASELINE_PREFIX OutputBaseline
   )

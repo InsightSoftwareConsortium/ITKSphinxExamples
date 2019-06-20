@@ -15,7 +15,7 @@ Results
 -------
 
 .. figure:: OutputBaseline.png
-  :scale: 50%
+  :scale: 200%
   :alt: Output image
 
   Output image

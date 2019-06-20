@@ -17,6 +17,7 @@ Results
 -------
 
 Output::
+
   ImageRegion (0x7fff45dad5c0)
   Dimension: 2
   Index: [1, 1]

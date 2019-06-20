@@ -17,7 +17,7 @@
  *=========================================================================*/
 
 #include "itkPoint.h"
-#include "vnl/vnl_math.h"
+#include "itkMath.h"
 
 #include <iostream>
 
@@ -58,7 +58,7 @@ int main(int, char *[])
   PointType::RealType dist2 = p0.SquaredEuclideanDistanceTo(p1);
   std::cout << "Dist2: " << dist2 << std::endl;
 
-  if( std::abs( dist2 - dist * dist ) < vnl_math::eps )
+  if( std::abs( dist2 - dist * dist ) < itk::Math::eps )
     {
     std::cerr << "dist2 != dist * dist" << std::endl;
     return EXIT_FAILURE;

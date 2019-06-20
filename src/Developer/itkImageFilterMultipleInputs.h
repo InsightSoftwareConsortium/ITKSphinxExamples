@@ -28,10 +28,10 @@ public:
   
 protected:
   ImageFilterMultipleInputs();
-  ~ImageFilterMultipleInputs(){}
+  ~ImageFilterMultipleInputs() override{}
 
   /** Does the real work. */
-  virtual void GenerateData();
+  void GenerateData() override;
 
 private:
   ImageFilterMultipleInputs(const Self &); //purposely not implemented

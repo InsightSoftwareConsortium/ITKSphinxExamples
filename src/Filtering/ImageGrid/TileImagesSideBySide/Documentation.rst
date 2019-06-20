@@ -12,11 +12,17 @@ Tile multiple images side by side.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: Gourds.png
+  :scale: 50%
+  :alt: Gourds.png
+
+  Input images.
+
+.. figure:: output.png
+  :scale: 25%
+  :alt: output.png image generated
+
+  Output image.
 
 Code
 ----

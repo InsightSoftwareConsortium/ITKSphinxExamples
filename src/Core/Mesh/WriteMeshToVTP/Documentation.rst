@@ -12,11 +12,17 @@ Write an itk::Mesh to a vtp (vtkPolyData) file.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. warning::
+  **Fix Errors**
+  Example contains errors needed to be fixed for proper output.
+
+Output::
+
+  Points = 4
+  [-1, -1, 0]
+  [1, -1, 0]
+  [1, 1, 0]
+  [1, 1, 1]
 
 Code
 ----

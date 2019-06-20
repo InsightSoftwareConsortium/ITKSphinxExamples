@@ -27,7 +27,7 @@ using UnsignedCharImageType = itk::Image< unsigned char, 2 >;
 
 static void CreateImage(UnsignedCharImageType::Pointer image);
 
-int main(int argc, char * argv[])
+int main(int  /*argc*/, char *  /*argv*/[])
 {
     // Setup types
     using FloatImageType = itk::Image< float,  2 >;

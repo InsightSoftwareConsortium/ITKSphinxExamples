@@ -14,11 +14,35 @@ Normalized correlation using the FFT with optional mask images for both input im
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: fixedImage.png
+  :scale: 600%
+  :alt: fixedImage.png image generated
+
+  Fixed image.
+
+.. figure:: movingImage.png
+  :scale: 600%
+  :alt: movingImage.png
+
+  Moving image.
+
+.. figure:: NormalizedCorrelationUsingFFTWithMaskImages.png
+  :scale: 50%
+  :alt: correlation.mha generated
+
+  correlation.mha
+
+.. figure:: correlation.png
+  :scale: 600%
+  :alt: correlation.png image generated
+
+  Correlation image.
+
+Output::
+
+  Maximum location: [45, 44]
+  Maximum location fixed: [5, 6]
+  Maximum value: 1
 
 Code
 ----

@@ -15,7 +15,7 @@ Results
 .. figure:: cthead1.png
   :alt: Input image
 
-  Input image
+  Input image.
 
 .. figure:: LaplacianRecursiveGaussianImageFilterRescaledOutputBaseline.png
   :alt: Rescaled Output image

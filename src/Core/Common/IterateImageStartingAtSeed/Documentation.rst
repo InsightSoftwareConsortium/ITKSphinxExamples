@@ -5,6 +5,8 @@ Iterate Image Starting At Seed
    Contains problems not fixed from original wiki.
 .. index::
    single: FloodFilledImageFunctionConditionalIterator
+   pair: iterate; image
+   single: seed
 
 Synopsis
 --------

@@ -3,6 +3,7 @@ Demonstrate Available Threshold Algorithms
 
 .. index::
    single: LiThresholdImageFilter
+   pair: threshold; algorithms
 
 Synopsis
 --------
@@ -12,11 +13,9 @@ Demonstrate available threshold algorithms.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. warning::
+  **Fix Errors**
+  Example contains errors needed to be fixed for proper output.
 
 Code
 ----

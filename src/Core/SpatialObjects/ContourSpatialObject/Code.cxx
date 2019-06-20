@@ -22,7 +22,7 @@
 
 #include "QuickView.h"
 
-int main( int argc, char *argv[] )
+int main( int  /*argc*/, char * /*argv*/[] )
 {
   using PixelType = unsigned char;
   constexpr unsigned int Dimension = 2;

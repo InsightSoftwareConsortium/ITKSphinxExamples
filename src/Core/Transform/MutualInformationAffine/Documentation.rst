@@ -13,11 +13,32 @@ Global registration by maximizing the mutual information and using an affine tra
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: fixed.png
+  :scale: 300%
+  :alt: fixed.png image generated
+
+  Fixed image.
+
+.. figure:: moving.png
+  :scale: 300%
+  :alt: moving.png image generated
+
+  Moving image.
+
+.. figure:: output.png
+  :scale: 300%
+  :alt: output.png image generated
+
+  Output image.
+
+Output::
+
+  Optimizer stop condition: GradientDescentOptimizer: Maximum number of iterations (1000) exceeded.
+  Final Parameters: [2.03502150081667, 0.4815329593844025, -0.524998748481682, 0.5494736862921054, 0.016827072908497744, -0.018211282766070345]
+  Result =
+   Iterations    = 1000
+   Metric value  = -0.000162484
+   Numb. Samples = 100
 
 Code
 ----

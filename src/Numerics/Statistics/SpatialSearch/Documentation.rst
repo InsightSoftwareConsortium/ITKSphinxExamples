@@ -3,6 +3,7 @@ Spatial Search
 
 .. index::
    single: KdTreeGenerator
+   pair: spatial; search
 
 Synopsis
 --------
@@ -12,11 +13,18 @@ Spatial search.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  K-Neighbor search:
+  [9, 9]
+  [7, 7]
+  [8, 8]
+  Radius search:
+  There are 4 neighbors.
+  [7, 7]
+  [8, 8]
+  [9, 9]
+  [10, 10]
 
 Code
 ----

@@ -4,6 +4,7 @@ Smooth Image While Preserving Edges
 .. index::
    single: VectorGradientAnisotropicDiffusionImageFilter
    single: smooth
+   pair: preserve; edges
 
 Synopsis
 --------
@@ -13,11 +14,11 @@ Smooth an image while preserving edges.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: SmoothImageWhilePreservingEdges.png
+  :scale: 50%
+  :scale: output in vtk window
+
+  Output in VTK window.
 
 Code
 ----

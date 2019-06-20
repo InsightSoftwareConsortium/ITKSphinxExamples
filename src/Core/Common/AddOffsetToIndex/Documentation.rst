@@ -9,7 +9,7 @@ Synopsis
 --------
 
 
-Add an offset to a pixel index
+Add an offset to a pixel index.
 
 
 Results

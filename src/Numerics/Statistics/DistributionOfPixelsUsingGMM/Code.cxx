@@ -33,7 +33,7 @@ using ImageType = itk::Image<PixelType, 2>;
 static void ControlledImage(ImageType::Pointer image);
 static void RandomImage(ImageType::Pointer image);
 
-int main(int argc, char*argv[])
+int main(int  /*argc*/, char* /*argv*/[])
 {
 
     ImageType::Pointer image = ImageType::New();

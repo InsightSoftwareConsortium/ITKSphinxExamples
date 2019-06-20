@@ -27,7 +27,7 @@ Results
   :scale: 50%
   :alt: Output image
 
-  Output image
+  Output image.
 
 
 Code

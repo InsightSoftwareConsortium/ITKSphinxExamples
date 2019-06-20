@@ -15,11 +15,20 @@ Label binary regions in an image and get their properties.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: image.png
+  :scale: 1500%
+  :alt: image.png image generated
+
+  Image generated.
+
+Output::
+
+  There are 1 objects.
+  Object 0 has bounding box ImageRegion (0x7ff924a4e558)
+  Dimension: 2
+  Index: [6, 6]
+  Size: [4, 4]
+
 Code
 ----
 

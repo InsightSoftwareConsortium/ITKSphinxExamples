@@ -11,10 +11,6 @@ Synopsis
 This example demonstrates how to copy/clone/duplicate an image so it can continue down two separate paths of the pipeline.
 
 
-Results
--------
-
-
 Code
 ----
 

@@ -7,16 +7,16 @@ Zero-crossing Based Edge Decor
 Synopsis
 --------
 
-A zero-crossing based edge detecor
+A zero-crossing based edge decor.
 
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: ZeroCrossingBasedEdgeDecor
+  :scale: 60%
+  :alt: output in vtk window
+
+  Output in VTK window.
 
 Code
 ----

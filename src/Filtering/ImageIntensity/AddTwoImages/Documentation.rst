@@ -3,6 +3,8 @@ Add Two Images Together
 
 .. index::
    single: AddImageFilter
+   pair: add; images
+   pair: concatenate; images
 
 Synopsis
 --------
@@ -12,11 +14,11 @@ Add two images together.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: AddTwoImages.png
+  :scale: 35%
+  :alt: output in vtk window
+
+  Output in VTK image.
 
 Code
 ----

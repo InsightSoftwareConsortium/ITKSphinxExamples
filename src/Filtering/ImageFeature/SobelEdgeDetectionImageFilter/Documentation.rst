@@ -16,13 +16,13 @@ Results
   :scale: 50%
   :alt: Input image
 
-  Input image
+  Input image.
 
 .. figure:: SobelEdgeDetectionImageFilterRescaledOutputBaseline.png
   :scale: 50%
   :alt: Rescaled Output image
 
-  Rescaled Output image (values are in [0, 255])
+  Rescaled Output image (values are in [0, 255]).
 
 Code
 ----

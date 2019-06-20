@@ -22,10 +22,10 @@ public:
 
 protected:
   ImageFilter(){}
-  ~ImageFilter(){}
+  ~ImageFilter() override{}
 
   /** Does the real work. */
-  virtual void GenerateData();
+  void GenerateData() override;
 
 private:
   ImageFilter(const Self &); //purposely not implemented

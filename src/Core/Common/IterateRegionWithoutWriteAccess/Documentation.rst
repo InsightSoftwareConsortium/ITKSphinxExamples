@@ -4,6 +4,7 @@ Iterate Region In Image Without Write Access
 .. index::
    single: ImageRegionConstIterator
    pair: write; access
+   pair: iterate; region
 
 Synopsis
 --------
@@ -13,11 +14,34 @@ Iterate over a region of an image (without write access).
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: Yinyang.png
+  :scale: 60%
+  :alt: input yin-yang image
+
+  Input image.
+
+Output::
+
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
+  255
 
 Code
 ----

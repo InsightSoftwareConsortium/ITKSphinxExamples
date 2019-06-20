@@ -18,7 +18,7 @@
 
 #include "itkPoint.h"
 #include "itkIndex.h"
-#include "vnl/vnl_math.h"
+#include "itkMath.h"
 
 #include <iostream>
 

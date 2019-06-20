@@ -33,6 +33,6 @@ ImageIntensity
   InverseOfMaskToImage/Documentation.rst
   NormalizeImage/Documentation.rst
   CastImageToAnotherTypeButClampToOutput/Documentation.rst
-  ComputerMagInVectorImageToMakeMagImage/Documentation.rst
+  ComputeMagInVectorImageToMakeMagImage/Documentation.rst
   ExtractComponentOfVectorImage/Documentation.rst
   ComputeEdgePotential/Documentation.rst

@@ -20,7 +20,6 @@ Results
    Reconfiguration of CMakeList.txt may be necessary.
    `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
 
-
 Code
 ----
 

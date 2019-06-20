@@ -3,18 +3,20 @@ Iterate On A Vector Container
 
 .. index::
    single: VectorContainer
+   pair: iterate; VectorContainer
 
 Synopsis
 --------
 
 
-basic operation on VectorContainer
+Basic operation on VectorContainer.
 
 
 Results
 -------
 
 Output::
+
   [1, 2]
   [2, 3]
 

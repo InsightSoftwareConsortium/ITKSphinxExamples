@@ -7,16 +7,15 @@ Merge LabelMaps
 Synopsis
 --------
 
-Merges several labelmaps.
+Merges several LabelMaps.
 
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  number of objects: 4
+  number of expected objects: 4
 
 Code
 ----

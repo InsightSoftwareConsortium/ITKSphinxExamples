@@ -13,6 +13,7 @@ Create a list of samples with associated class IDs.
 Results
 -------
 Output::
+
   instance identifier = 0	 measurement vector = [1, 2, 4]	 frequency = 1	 class label = 0
   instance identifier = 1	 measurement vector = [2, 4, 5]	 frequency = 1	 class label = 0
   instance identifier = 2	 measurement vector = [3, 8, 6]	 frequency = 1	 class label = 1

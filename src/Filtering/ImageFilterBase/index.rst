@@ -9,4 +9,4 @@ ImageFilterBase
   ApplyKernelToEveryPixelInNonZeroImage/Documentation.rst
   PredefinedOperationToCorrespondingPixelsInTwoImages/Documentation.rst
   CustomOperationToCorrespondingPixelsInTwoImages/Documentation.rst
-  ComputerLocalNoise/Documentation.rst
+  ComputeLocalNoise/Documentation.rst

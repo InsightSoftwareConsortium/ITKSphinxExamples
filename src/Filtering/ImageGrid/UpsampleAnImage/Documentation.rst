@@ -1,5 +1,5 @@
 Upsample An Image
-=======================================
+=================
 
 .. index::
    single: ResampleImageFilter

@@ -14,6 +14,7 @@ Create a histogram from a list of sample measurements.
 Results
 -------
 Output::
+
   Histogram vector size: 1
   Frequency of 0 : (1 to 1.1001) = 2
   Frequency of 1 : (1.1001 to 1.2002) = 0

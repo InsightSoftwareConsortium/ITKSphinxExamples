@@ -5,6 +5,7 @@ Basic Region Growing
    Contains problems not fixed from original wiki.
 .. index::
    single: RegionGrowImageFilter
+   pair: region; growing
 
 Synopsis
 --------

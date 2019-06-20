@@ -13,11 +13,11 @@ Specify a piecewise-linear object by specifying points along the line.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: line.png
+  :scale: 600%
+  :alt: line.png image generated
+
+  Line image.
 
 Code
 ----

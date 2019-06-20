@@ -96,7 +96,7 @@ DataObject::Pointer ImageFilterMultipleOutputs<TImage>::MakeOutput(unsigned int 
       break;
     default:
       std::cerr << "No output " << idx << std::endl;
-      output = NULL;
+      output = nullptr;
       break;
     }
   return output.GetPointer();

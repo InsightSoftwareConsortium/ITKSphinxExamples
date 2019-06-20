@@ -13,11 +13,11 @@ Erode a binary image using a flat (box) structuring element.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: ErodeBinaryImageUsingFlatStruct.png
+  :scale: 55%
+  :alt: output in vtk window
+
+  Input and output image when radius = 7.
 
 Code
 ----

@@ -13,11 +13,17 @@ Apply a kernel to every pixel in an image.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: input.png
+  :scale: 300%
+  :alt: input.png image generated
+
+  Input image.
+
+.. figure:: output.png
+  :scale: 300%
+  :alt: output.png image generated
+
+  Output image.
 
 Code
 ----

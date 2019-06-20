@@ -15,7 +15,7 @@ Results
 
 .. figure:: Gourds.png
   :scale: 50%
-  :alt: Input image
+  :alt: Input image.
 
   Input image
 
@@ -23,7 +23,7 @@ Results
   :scale: 50%
   :alt: Output image
 
-  Output image
+  Output image.
 
 
 Code

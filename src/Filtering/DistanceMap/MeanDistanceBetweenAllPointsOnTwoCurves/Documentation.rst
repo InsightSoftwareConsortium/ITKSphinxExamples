@@ -13,11 +13,12 @@ Compute the mean distance between all points of two curves.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: MeanDistanceBetweenAllPointsOnTwoCurves.png
+  :scale: 60%
+  :alt: Output image
+
+  Output image.
+  Mean distance: 5
 
 Code
 ----

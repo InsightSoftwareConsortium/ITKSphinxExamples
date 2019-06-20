@@ -3,6 +3,8 @@ Multiple Outputs Of Same Type
 
 .. index::
    single: ImageToImageFilter
+   pair: multiple; outputs
+   pair: same; type
 
 Synopsis
 --------
@@ -12,11 +14,17 @@ Write a filter with multiple outputs of the same type.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: TestOutput1.jpg
+  :scale: 1500%
+  :alt: TestOutput1.jpg
+
+  TestOuput1 image.
+
+.. figure:: TestOutput2.jpg
+  :scale: 1500%
+  :alt: TestOutput2.jpg
+
+  TestOutput2 image.
 
 Code
 ----

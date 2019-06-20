@@ -4,6 +4,7 @@ Create Gaussian Derivative Kernel
 .. index::
    single: GaussianDerivativeOperator
    pair: gaussian; derivative
+   pair: create; kernel
 
 Synopsis
 --------
@@ -13,11 +14,22 @@ Create a Gaussian derivative kernel.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  Size: [3, 3]
+  Neighborhood:
+  Radius:[1, 1]
+  Size:[3, 3]
+  DataBuffer:NeighborhoodAllocator { this = 0x7ffee86419a8, begin = 0x7fb16bc5cc50, size=9 }
+  [-1, -1] 0
+  [0, -1] 0
+  [1, -1] 0
+  [-1, 0] 0.208375
+  [0, 0] 0
+  [1, 0] -0.208375
+  [-1, 1] 0
+  [0, 1] 0
+  [1, 1] 0
 
 Code
 ----

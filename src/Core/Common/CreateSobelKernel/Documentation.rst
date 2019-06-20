@@ -4,6 +4,7 @@ Create Sobel Kernel
 .. index::
    single: SobelOperator
    pair: sobel; kernel
+   pair: create; kernel
 
 Synopsis
 --------
@@ -13,11 +14,21 @@ Create the Sobel kernel.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  Neighborhood:
+  Radius:[1, 1]
+  Size:[3, 3]
+  DataBuffer:NeighborhoodAllocator { this = 0x7ffee3e84a00, begin = 0x7fca93256b10, size=9 }
+  -1
+  0
+  1
+  -2
+  0
+  2
+  -1
+  0
+  1
 
 Code
 ----

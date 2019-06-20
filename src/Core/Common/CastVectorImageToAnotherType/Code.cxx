@@ -18,7 +18,7 @@
 #include "itkVectorImage.h"
 #include "itkCastImageFilter.h"
 
-int main(int argc, char *argv[])
+int main(int  /*argc*/, char * /*argv*/[])
 {
     typedef itk::VectorImage<unsigned char, 2>  UnsignedCharVectorImageType;
     typedef itk::VectorImage<float, 2>  FloatVectorImageType;

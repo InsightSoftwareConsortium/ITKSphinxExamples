@@ -3,6 +3,7 @@ Iterate Over A Region With A Shaped Neighborhood Iterator
 
 .. index::
    single: ShapedNeighborhoodIterator
+   pair: iterate; region
 
 Synopsis
 --------
@@ -52,7 +53,6 @@ Output::
   Neighborhood index 1 is offset [0, -1] and has value 0 The real index is [9, 8]
   Centered at [9, 9]
   Neighborhood index 7 is offset [0, 1] and has value 0 The real index is [9, 10]
-
 
 Code
 ----

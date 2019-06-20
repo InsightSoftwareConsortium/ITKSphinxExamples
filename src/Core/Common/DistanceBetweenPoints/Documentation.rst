@@ -14,13 +14,10 @@ Compute the distance between two 3D points. This can easily be extended to ND by
 
 Results
 -------
-
-
 Output::
 
   Dist: 1.73205
   Dist2: 3
-
 
 Code
 ----

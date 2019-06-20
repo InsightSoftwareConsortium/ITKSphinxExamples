@@ -3,7 +3,7 @@ Random Select Pixel From Region Without Replacing
 
 .. index::
    single: ImageRandomNonRepeatingConstIteratorWithIndex
-   pair: random; select
+   pair: random; pixel
 
 Synopsis
 --------
@@ -13,11 +13,17 @@ Randomly select pixels from a region of an image without replacement.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  [1, 2]
+  [1, 1]
+  [0, 2]
+  [2, 2]
+  [2, 1]
+  [2, 0]
+  [0, 0]
+  [0, 1]
+  [1, 0]
 
 Code
 ----

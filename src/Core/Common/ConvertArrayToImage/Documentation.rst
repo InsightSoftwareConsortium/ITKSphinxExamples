@@ -14,11 +14,11 @@ Convert a C-style array to an itkImage.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: ConvertArrayToImageOutput.png
+  :scale: 160%
+  :alt: test.png image generated
+
+  Output image.
 
 Code
 ----

@@ -3,6 +3,7 @@ Regional Maximal
 
 .. index::
    single: RegionalMaximaImageFilter
+   single: max
    pair: region; maximal
 
 Synopsis
@@ -13,11 +14,17 @@ Regional maximal image filter.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: intensityblobs.png
+  :scale: 100%
+  :alt: intensityblobs.png generated image
+
+  Intensity blobs image.
+
+.. figure:: maximal.png
+  :scale: 100%
+  :alt: maximal.png generated image
+
+  Maximal image.
 
 Code
 ----
