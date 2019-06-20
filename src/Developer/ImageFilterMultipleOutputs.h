@@ -25,10 +25,10 @@ public:
   
 protected:
   ImageFilterMultipleOutputs();
-  ~ImageFilterMultipleOutputs(){}
+  ~ImageFilterMultipleOutputs() override{}
 
   /** Does the real work. */
-  virtual void GenerateData();
+  void GenerateData() override;
 
   /**  Create the Output */
   DataObject::Pointer MakeOutput(unsigned int idx);

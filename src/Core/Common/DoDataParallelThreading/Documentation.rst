@@ -4,6 +4,7 @@ Do Data Parallel Threading
 .. index::
   single: DomainThreader
   single: ThreadedIndexedContainerPartitioner
+  pair: parallel; data
 
 
 Synopsis

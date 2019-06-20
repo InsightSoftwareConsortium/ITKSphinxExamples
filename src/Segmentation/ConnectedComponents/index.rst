@@ -7,4 +7,4 @@ ConnectedComponents
   LabelConnectComponentsInBinaryImage/Documentation.rst
   LabelConnectComponentsInGrayscaleImage/Documentation.rst
   AssignContiguousLabelsToConnectedRegions/Documentation.rst
-  ExtraLargestConnectComponentFromBinaryImage/Documentation.rst
+  ExtractLargestConnectComponentFromBinaryImage/Documentation.rst

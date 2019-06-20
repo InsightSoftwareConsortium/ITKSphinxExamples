@@ -13,11 +13,25 @@ Crop an image by specifying the region to keep.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  Image largest region: ImageRegion (0x7f886fc0de00)
+  Dimension: 2
+  Index: [0, 0]
+  Size: [10, 10]
+
+  desiredRegion: ImageRegion (0x7ffeef707978)
+  Dimension: 2
+  Index: [3, 3]
+  Size: [4, 4]
+
+  new largest region: ImageRegion (0x7f886fc0eb00)
+  Dimension: 2
+  Index: [3, 3]
+  Size: [4, 4]
+
+  new: 2
+  Original: 5
 
 Code
 ----

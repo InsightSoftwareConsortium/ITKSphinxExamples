@@ -128,8 +128,8 @@ compare_to_baseline(EXAMPLE_NAME CastImageToAnotherTypeButClampToOutput
   BASELINE_PREFIX OutputBaseline
   )
 
-add_example(ComputerMagInVectorImageToMakeMagImage)
-compare_to_baseline(EXAMPLE_NAME ComputerMagInVectorImageToMakeMagImage
+add_example(ComputeMagInVectorImageToMakeMagImage)
+compare_to_baseline(EXAMPLE_NAME ComputeMagInVectorImageToMakeMagImage
   BASELINE_PREFIX OutputBaseline
   )
 

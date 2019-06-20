@@ -24,10 +24,10 @@ public:
 
 protected:
   MultiThreadedImageFilter(){}
-  ~MultiThreadedImageFilter(){}
+  ~MultiThreadedImageFilter() override{}
 
-  virtual void ThreadedGenerateData(const OutputImageRegionType &,
-                                    ThreadIdType);
+  void ThreadedGenerateData(const OutputImageRegionType &,
+                                    ThreadIdType) override;
 
 private:
   MultiThreadedImageFilter(const Self &); //purposely not implemented

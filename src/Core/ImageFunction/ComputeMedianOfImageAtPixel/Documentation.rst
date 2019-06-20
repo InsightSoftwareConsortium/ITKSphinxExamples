@@ -14,11 +14,15 @@ Computes the median of an image at a pixil(in a regular neighborhood).
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: ComputeMedianOfImagePixel.png
+  :scale: 300%
+  :alt: input.png image
+
+  Input image.
+
+Output::
+
+  Median at [10, 10] is 0
 
 Code
 ----

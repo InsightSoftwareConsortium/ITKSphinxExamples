@@ -28,13 +28,13 @@ public:
 
 protected:
   ImageFilterMultipleInputsDifferentType();
-  ~ImageFilterMultipleInputsDifferentType(){}
+  ~ImageFilterMultipleInputsDifferentType() override{}
 
   typename TImage::ConstPointer GetInputImage();
   typename TMask::ConstPointer GetInputMask();
   
   /** Does the real work. */
-  virtual void GenerateData();
+  void GenerateData() override;
 
 private:
   ImageFilterMultipleInputsDifferentType(const Self &); //purposely not implemented

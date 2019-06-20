@@ -1,8 +1,9 @@
-Convert Mesh To Unstructered Grid
+Convert Mesh To Unstructured Grid
 =================================
 
 .. index::
    single: Mesh
+   pair: unstructured; grid
 
 Synopsis
 --------
@@ -12,11 +13,11 @@ Convert an itk::Mesh to a vtkUnstructuredGrid.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+An Output.vtu file will be generated alone with the following output.
+
+Output::
+
+  Unstructured grid has 3 cells.
 
 Code
 ----

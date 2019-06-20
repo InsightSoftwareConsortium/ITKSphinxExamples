@@ -13,11 +13,18 @@ Cluster the pixels in a greyscale image.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: ClusterPixelsInGrayscaleImage.png
+  :scale: 60%
+  :alt: VTK Window
+
+  Output in VTK window.
+
+Output::
+
+  cluster[0]     estimated mean : 10
+  cluster[1]     estimated mean : 100
+  cluster[2]     estimated mean : 200
+  Number of pixels per class
 
 Code
 ----

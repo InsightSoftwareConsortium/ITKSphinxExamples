@@ -3,18 +3,20 @@ Mersenne Twister Random Number Generator
 
 .. index::
    single: MersenneTwisterRandomVariateGenerator
+   pair: random; number
 
 Synopsis
 --------
 
 
-Generate a random number
+Generate a random number.
 
 
 Results
 -------
+Output::
 
-
+  4.67183
 
 Code
 ----

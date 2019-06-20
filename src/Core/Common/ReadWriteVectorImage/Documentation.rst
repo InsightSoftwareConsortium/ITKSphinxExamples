@@ -15,17 +15,24 @@ This example illustrates how to read and write an image of pixel type Vector.
 Results
 -------
 
-.. figure:: image.png
-  :scale: 50%
+.. |input| image:: image.png
+  :scale: 150%
   :alt: Input image
 
-  Input image
-
-.. figure:: image.png
-  :scale: 50%
+.. |output| image:: image.png
+  :scale: 150%
   :alt: Output image
 
-  Output image
+.. |input_caption| replace:: Input image.
+
+.. |output_caption| replace:: Output image.
+
++-----------------+------------------+
+|     |input|     |     |output|     |
++                 +                  +
+| |input_caption| | |output_caption| |
++-----------------+------------------+
+
 
 
 Code

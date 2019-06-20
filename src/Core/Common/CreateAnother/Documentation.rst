@@ -8,13 +8,14 @@ Synopsis
 --------
 
 
-Copy/duplicate a filter
+Copy/duplicate a filter.
 
 
 Results
 -------
 
 Output::
+
   2
 
 Code

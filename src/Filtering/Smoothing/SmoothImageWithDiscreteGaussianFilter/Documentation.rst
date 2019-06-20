@@ -13,11 +13,11 @@ Smooth an image with a discrete Gaussian filter.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. filter:: SmoothImageWithDiscreteGaussianFilter.png
+  :scale: 60%
+  :alt: output in vtk window
+
+  Input and output image with variance = 8.
 
 Code
 ----

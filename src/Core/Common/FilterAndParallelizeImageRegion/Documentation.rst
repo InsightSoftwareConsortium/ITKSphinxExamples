@@ -3,6 +3,7 @@ Filter and ParallelizeImageRegion Comparison
 
 .. index::
    single: MultiThreaderBase
+   pair: filter; ParallelizeImageRegion
 
 Synopsis
 --------
@@ -18,8 +19,9 @@ previously required the definition of an entire class.
 Results
 -------
 
-Output:
-  | LogImageFilter and ParallelizeImageRegion generate the same result.
+Output::
+
+  LogImageFilter and ParallelizeImageRegion generate the same result.
 
 
 Code

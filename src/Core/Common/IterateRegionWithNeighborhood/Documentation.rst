@@ -4,6 +4,7 @@ Iterate Region In Image With Neighborhood
 .. index::
    single: NeighborhoodIterator
    pair: iterate; region
+   pair: image; neighborhood
 
 Synopsis
 --------
@@ -13,11 +14,21 @@ Iterate over a region of an image with a neighborhood (with write access).
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: Yinyang.png
+  :scale: 60%
+  :alt: input yin-yang image
+
+  Input image.
+
+.. figure:: IterateRegionWithWriteAccess.png
+  :scale: 70%
+  :alt: output in vtk window
+
+  Output in VTK window.
+
+Output::
+
+  An extensive list of the neighborhood will be printed to the screen.
 
 Code
 ----

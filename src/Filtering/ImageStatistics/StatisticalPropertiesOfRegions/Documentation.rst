@@ -14,11 +14,42 @@ Get statistical properties of labeled regions in an image.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: StatisticalPropertiesOfRegions.png
+  :scale: 1500%
+  :alt: image.png image generated
+
+  Image generated.
+
+Output::
+
+  Number of labels: 2
+
+  min: 255
+  max: 255
+  median: 0
+  mean: 255
+  sigma: 0
+  variance: 0
+  sum: 4080
+  count: 16
+  region: ImageRegion (0x7ffedfd04a28)
+  Dimension: 2
+  Index: [6, 6]
+  Size: [4, 4]
+
+  min: 0
+  max: 0
+  median: 0
+  mean: 0
+  sigma: 0
+  variance: 0
+  sum: 0
+  count: 384
+  region: ImageRegion (0x7ffedfd04a28)
+  Dimension: 2
+  Index: [0, 0]
+  Size: [20, 20]
+
 Code
 ----
 

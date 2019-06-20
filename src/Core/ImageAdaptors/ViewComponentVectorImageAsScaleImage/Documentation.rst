@@ -8,16 +8,14 @@ View Component Vector Image As Scalar Image
 Synopsis
 --------
 
-View a component of a vector image as if it were a scalar image
+View a component of a vector image as if it were a scalar image.
 
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  1
 
 Code
 ----

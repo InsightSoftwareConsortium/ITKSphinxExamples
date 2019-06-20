@@ -8,12 +8,14 @@ Synopsis
 --------
 
 
-Clean quad edge mesh
+Clean quad edge mesh.
 
 
 Results
 -------
-
+.. note::
+   **Help Wanted**
+   Implementation of Results for sphinx examples containing this message.
 
 Code
 ----

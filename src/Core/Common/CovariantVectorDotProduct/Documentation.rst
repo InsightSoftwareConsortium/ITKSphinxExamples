@@ -8,7 +8,7 @@ Covariant Vector Dot Product
 Synopsis
 --------
 
-Dot product of CovariantVectors
+Dot product of CovariantVectors.
 
 
 Results
@@ -20,7 +20,6 @@ Output::
   v :[1, 2, 3]
   DotProduct( u, v ) = -2
   u - DotProduct( u, v ) * v = [1, 5, 5]
-
 
 Code
 ----

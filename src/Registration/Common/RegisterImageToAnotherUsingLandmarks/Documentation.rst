@@ -13,11 +13,23 @@ Rigidly register one image to another using manually specified landmarks.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: fixing.png
+  :scale: 300%
+  :alt: fixed.png image generated
+
+  Fixed image.
+
+.. figure:: moving.png
+  :scale: 300%
+  :alt: moving.png image generated
+
+  Moving image.
+
+.. figure:: output.png
+  :scale: 300%
+  :alt: output.png image generated
+
+  Output image.
 
 Code
 ----

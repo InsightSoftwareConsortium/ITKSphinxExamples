@@ -14,7 +14,8 @@ Remove the labels from a LabelMap.
 Results
 -------
 
-Output:
+Output::
+
   There are 10 objects.
   There are originally 10 objects.
   Removing 5 objects.

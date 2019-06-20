@@ -4,6 +4,8 @@ Create Laplacian Kernel
 .. index::
    single: LaplacianOperator
    pair: laplacian; operator
+   pair: laplacian; kernel
+   pair: create; kernel
 
 Synopsis
 --------
@@ -13,11 +15,22 @@ Create a Laplacian kernel.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  Size: [3, 3]
+  Neighborhood:
+  Radius:[1, 1]
+  Size:[3, 3]
+  DataBuffer:NeighborhoodAllocator { this = 0x7ffee97e29e0, begin = 0x7f87798a8810, size=9 }
+  [-1, -1] 0
+  [0, -1] 1
+  [1, -1] 0
+  [-1, 0] 1
+  [0, 0] -4
+  [1, 0] 1
+  [-1, 1] 0
+  [0, 1] 1
+  [1, 1] 0
 
 Code
 ----

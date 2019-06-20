@@ -14,11 +14,11 @@ Apply a predefined operation to corresponding pixels in two images.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  pixel1 was = 2
+  pixel2 was = 5
+  output is = 9
 
 Code
 ----

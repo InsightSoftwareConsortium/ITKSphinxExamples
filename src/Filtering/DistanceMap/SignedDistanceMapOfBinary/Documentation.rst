@@ -3,7 +3,7 @@ Signed Distance Map Of Binary Image
 
 .. index::
    single: SignedDanielssonDistanceMapImageFilter
-   sinlge: distance-map
+   single: distance-map
    pair: danielsson; distance-map
 
 Synopsis

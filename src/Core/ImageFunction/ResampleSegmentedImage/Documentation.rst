@@ -4,6 +4,7 @@ Resample Segmented Image
 .. index::
    single: LabelImageGaussianInterpolateImageFunction
    pair: segmented; image
+   single: resample
 
 Synopsis
 --------
@@ -13,11 +14,10 @@ Resample (stretch or compress) a segmented image.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. warning::
+  **Fix Errors**
+  Example contains errors needed to be fixed for proper output.
+
 Code
 ----
 

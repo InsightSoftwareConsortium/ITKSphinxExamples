@@ -10,14 +10,14 @@ Is Pixel Inside Region
 Synopsis
 --------
 
-
-Determine if a pixel is inside of a region
+Determine if a pixel is inside a region.
 
 
 Results
 -------
 
 Output::
+
   [1, 1] Inside
   [6, 6] Outside
 

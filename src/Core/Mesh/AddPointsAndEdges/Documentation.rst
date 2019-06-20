@@ -14,6 +14,7 @@ How to add points and edges to a mesh.
 Results
 -------
 Output::
+
   Points = 4
   [-1, -1, 0]
   [1, -1, 0]

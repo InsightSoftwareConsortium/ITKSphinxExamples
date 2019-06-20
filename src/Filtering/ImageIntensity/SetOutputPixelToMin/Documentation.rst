@@ -14,10 +14,7 @@ Pixel wise compare two input images and set the output pixel to their min.
 Results
 -------
 .. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+   No output is printed, this example simply displays functionality.
 
 Code
 ----

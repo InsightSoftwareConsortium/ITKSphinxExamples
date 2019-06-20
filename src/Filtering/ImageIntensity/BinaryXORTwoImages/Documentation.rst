@@ -12,11 +12,23 @@ Binary XOR (exclusive OR) two images.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: input1.png
+  :scale: 300%
+  :alt: input1.png image generated
+
+  Input 1 image.
+
+.. figure:: input2.png
+  :scale: 300%
+  :alt: input2.png image generated
+
+  Input 2 image.
+
+.. figure:: BinaryXORImage.png
+  :scale: 300%
+  :alt: output.png image generated
+
+  Output image.
 
 Code
 ----

@@ -9,19 +9,20 @@ Synopsis
 --------
 
 
-Get the size of a itk::Image
+Get the size of a itk::Image.
 
 
 Results
 -------
 
 .. figure:: Yinyang.png
-   :scale: 50%
+   :scale: 60%
    :alt: Input yin-yang image.
 
-   Input Image
+   Input image
 
 Output::
+
   [512, 342]
 
 Code

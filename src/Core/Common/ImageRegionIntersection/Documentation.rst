@@ -16,10 +16,10 @@ Results
 -------
 
 Output::
+
   Small inside region is 1
   Small outside region is 0
   Small overlap region is 0
-
 
 Code
 ----

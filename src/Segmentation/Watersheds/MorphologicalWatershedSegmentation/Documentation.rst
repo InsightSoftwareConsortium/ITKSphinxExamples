@@ -4,6 +4,7 @@ Morphological Watershed Segmentation
 .. index::
    single: MorphologicalWatershedImageFilter
    single: watershed
+   pair: watershed; segmentation
 
 Synopsis
 --------
@@ -13,11 +14,23 @@ Morphological watershed segmentation.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: input.png
+  :scale: 150%
+  :alt: input.png image generated
+
+  Input image.
+
+.. figure:: output_20_3.png
+  :scale: 150%
+  :alt: output_20_3.png image generated
+
+  Output_20_3 image.
+
+Output::
+
+  Running with:
+  Threshold: 20
+  Level: 3
 
 Code
 ----

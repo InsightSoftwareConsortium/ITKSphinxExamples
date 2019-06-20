@@ -110,3 +110,4 @@ Common
   StoreNonPixelDataInImage/Documentation.rst
   CheckIfModuleIsPresent/Documentation.rst
   DisplayImage/Documentation.rst
+  DirectWarningToFile/Documentation.rst

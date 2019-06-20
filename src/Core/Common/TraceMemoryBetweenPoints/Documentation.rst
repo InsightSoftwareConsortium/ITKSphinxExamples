@@ -3,6 +3,7 @@ Trace Memory Between Points
 
 .. index::
    single: MemoryProbe
+   pair: trace; memory
 
 Synopsis
 --------

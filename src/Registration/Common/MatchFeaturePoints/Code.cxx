@@ -25,7 +25,7 @@ using ImageType = itk::Image<unsigned char, 2>;
 
 static void CreateImage(ImageType::Pointer image, const unsigned int x);
 
-int main(int argc, char *argv[])
+int main(int  /*argc*/, char * /*argv*/[])
 {
     // Create input images
     ImageType::Pointer fixedImage = ImageType::New();

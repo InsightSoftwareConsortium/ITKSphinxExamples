@@ -14,11 +14,21 @@ Iterate over a region of an image with efficient access to the current index (wi
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: Yinyang.png
+  :scale: 60%
+  :alt: input yin-yang image
+
+  Input image.
+
+.. figure:: IterateRegionWithAccessToIndexWithoutWriteAccess.png
+  :scale: 100%
+  :alt: output in vtk window
+
+  Output in VTK window.
+
+Output::
+
+  An extensive list of the neighborhood will be printed to the screen.
 
 Code
 ----

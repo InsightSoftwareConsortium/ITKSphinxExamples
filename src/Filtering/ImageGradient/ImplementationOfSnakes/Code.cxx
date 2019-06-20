@@ -21,7 +21,7 @@
 #include "itkGradientMagnitudeImageFilter.h"
 #include "itkImageFileReader.h"
 
-#include "vnl/vnl_math.h"
+#include "itkMath.h"
 #include <vnl/vnl_matrix.h>
 #include "vnl/algo/vnl_determinant.h"
 #include "vnl/algo/vnl_matrix_inverse.h"
@@ -180,8 +180,8 @@ vnl_vector<double> generateCircle(
 
     for( int i = 0; i < n; ++i )
     {
-        v[2*i] = cx + rx*cos(2*vnl_math::pi*i/n);
-        v[2*i + 1] = cy + ry*sin(2*vnl_math::pi*i/n);
+        v[2*i] = cx + rx*cos(2*itk::Math::pi*i/n);
+        v[2*i + 1] = cy + ry*sin(2*itk::Math::pi*i/n);
     }
     v[2*n] = v[0];
     v[2*n + 1] = v[1];

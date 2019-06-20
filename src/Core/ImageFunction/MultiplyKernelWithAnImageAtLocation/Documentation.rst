@@ -14,11 +14,11 @@ This will multiply a kernel with an image at a particular location.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  Sum on border: 4
+  Sum in center: 9
+  Sum outside: 0
 
 Code
 ----

@@ -9,10 +9,8 @@ Synopsis
 
 Get the points on a Bresenham line between two points.
 
-
 Results
 -------
-
 Output::
 
   [0, 0]

@@ -13,11 +13,12 @@ Return an object from a function.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  ImageRegion (0x7ff7f950ba70)
+  Dimension: 2
+  Index: [0, 0]
+  Size: [10, 10]
 
 Code
 ----

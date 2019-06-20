@@ -3,7 +3,8 @@ Create Gaussian Kernel
 
 .. index::
    single: GaussianOperator
-   single: kernel
+   pair: kernel; gaussian
+   pair: create; kernel
 
 Synopsis
 --------
@@ -13,11 +14,23 @@ Create a Gaussian kernel.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+Output::
+
+  Size: [3, 3]
+  Neighborhood:
+  Radius:[1, 1]
+  Size:[3, 3]
+  DataBuffer:NeighborhoodAllocator { this = 0x7ffee598a9d8, begin = 0x7f7f502572a0, size=9 }
+  [-1, -1] 0
+  [0, -1] 0
+  [1, -1] 0
+  [-1, 0] 0.208375
+  [0, 0] 0.466801
+  [1, 0] 0.208375
+  [-1, 1] 0
+  [0, 1] 0
+  [1, 1] 0
+
 
 Code
 ----

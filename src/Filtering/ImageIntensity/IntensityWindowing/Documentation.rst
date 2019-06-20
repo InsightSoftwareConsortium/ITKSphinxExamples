@@ -12,11 +12,11 @@ Apply a linear intensity transform from a specified input range to a specified o
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: IntensityWindowing.png
+  :scale: 300%
+  :alt: output.png image generated
+
+  Output image.
 
 Code
 ----

@@ -14,11 +14,20 @@ Add noise to a binary image.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: Yinyang.png
+  :scale: 60%
+  :alt: Input.png
+
+  Input image.
+
+.. figure:: AddNoiseToBinaryImage.png
+  :scale: 60%
+  :alt: Output.png
+
+  Output image.
+Output::
+
+  Number of random samples: 105062
 
 Code
 ----

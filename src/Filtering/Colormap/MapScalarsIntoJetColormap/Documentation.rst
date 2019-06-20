@@ -15,6 +15,7 @@ Map scalars into a jet colormap.
 Results
 -------
 Output::
+
   0: 0  0  142
   0.5: 134  255  119
   1: 126  0  0

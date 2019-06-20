@@ -6,9 +6,7 @@ Create A Backward Difference Operator
 
 Synopsis
 --------
-
-
-Create a backward difference operator
+Create a backward difference operator.
 
 
 Results
@@ -31,7 +29,6 @@ Output::
   [-1, 1] 0
   [0, 1] 0
   [1, 1] 0
-
 
 Code
 ----

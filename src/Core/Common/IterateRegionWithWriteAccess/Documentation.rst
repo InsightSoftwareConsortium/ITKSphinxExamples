@@ -14,11 +14,17 @@ Iterate over a region of an image (with write access).
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: Yinyang.png
+  :scale: 60%
+  :alt: input yin-yang image
+
+  Input image.
+
+.. figure:: IterateRegionWithWriteAccess.png
+  :scale: 100%
+  :alt: output in VTK window
+
+  Output in VTK window.
 
 Code
 ----

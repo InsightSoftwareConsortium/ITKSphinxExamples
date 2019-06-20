@@ -98,7 +98,7 @@ int main( int argc, char* argv[] )
   filter->ChangeOriginOn();
 
   itk::Versor< double > rotation;
-  const double angleInRadians = rotationZ * vnl_math::pi / 180.0;
+  const double angleInRadians = rotationZ * itk::Math::pi / 180.0;
   rotation.SetRotationAroundZ( angleInRadians );
   const ImageType::DirectionType direction = inputImage->GetDirection();
   const ImageType::DirectionType newDirection

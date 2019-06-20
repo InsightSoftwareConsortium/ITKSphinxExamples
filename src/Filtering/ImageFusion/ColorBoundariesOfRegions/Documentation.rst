@@ -14,11 +14,18 @@ Color the boundaries of labeled regions in an image.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: image.png
+  :scale: 300%
+  :alt: image.png image generated
+
+  Image generated.
+
+.. figure:: output.png
+  :scale: 300%
+  :alt: output.png image generated
+
+  Output image.
+
 Code
 ----
 

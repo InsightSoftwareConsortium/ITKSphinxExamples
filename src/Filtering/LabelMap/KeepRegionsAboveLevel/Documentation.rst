@@ -14,11 +14,18 @@ Keep only regions that rank above a certain level of a particular property.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: input.png
+  :scale: 150%
+  :alt: input.png
+
+  Input image.
+
+.. figure:: output.png
+  :scale: 150%
+  :alt: output.png
+
+  Output image.
+
 Code
 ----
 

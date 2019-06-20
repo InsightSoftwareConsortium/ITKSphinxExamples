@@ -12,11 +12,18 @@ Add a constant to every pixel in an image.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. figure:: Yinyang.png
+  :scale: 60%
+  :alt: input yin-yang image
+
+  Input image.
+
+.. figure:: output.png
+  :scale: 110%
+  :alt: output.png image generated
+
+  Output image.
+
 Code
 ----
 

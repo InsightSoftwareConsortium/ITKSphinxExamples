@@ -134,18 +134,18 @@ bool ComputeAreaError(SEType k, unsigned int thickness)
     }
     if( SEType::NeighborhoodDimension == 2)
     {
-        expectedOuterForegroundArea *= vnl_math::pi;
-        expectedInnerForegroundArea *= vnl_math::pi;
+        expectedOuterForegroundArea *= itk::Math::pi;
+        expectedInnerForegroundArea *= itk::Math::pi;
     }
     else if( SEType::NeighborhoodDimension == 3 )
     {
-        expectedOuterForegroundArea *= 4.0/3.0 * vnl_math::pi;
-        expectedInnerForegroundArea *= 4.0/3.0 * vnl_math::pi;
+        expectedOuterForegroundArea *= 4.0/3.0 * itk::Math::pi;
+        expectedInnerForegroundArea *= 4.0/3.0 * itk::Math::pi;
     }
     else if ( SEType::NeighborhoodDimension == 4 )
     {
-        expectedOuterForegroundArea *= 0.5 * vnl_math::pi * vnl_math::pi;
-        expectedInnerForegroundArea *= 0.5 * vnl_math::pi * vnl_math::pi;
+        expectedOuterForegroundArea *= 0.5 * itk::Math::pi * itk::Math::pi;
+        expectedInnerForegroundArea *= 0.5 * itk::Math::pi * itk::Math::pi;
     }
     else
     {

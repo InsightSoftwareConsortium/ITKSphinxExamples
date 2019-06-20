@@ -14,6 +14,7 @@ Blob.
 Results
 -------
 Output::
+
   Bounds: [0, 0, 0, 0]
 
 Code

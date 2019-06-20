@@ -1,5 +1,5 @@
-Mult-thread Oil Painting
-========================
+Multi-thread Oil Painting
+=========================
 
 .. index::
    single: ImageToImageFilter
@@ -13,11 +13,9 @@ Multi-threaded oil painting image filter.
 
 Results
 -------
-.. note::
-   **Help Wanted**
-   Implementation of Results for sphinx examples containing this message.
-   Reconfiguration of CMakeList.txt may be necessary.
-   `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
+.. warning::
+  **Fix Errors**
+  Example contains errors needed to be fixed for proper output.
 
 Code
 ----
