@@ -1,6 +1,6 @@
 /*=========================================================================
  *
- *  Copyright Insight Software Consortium
+ *  Copyright NumFOCUS
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  *  limitations under the License.
  *
  *=========================================================================*/
+
 #include "itkImage.h"
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
@@ -22,7 +23,7 @@
 
 int main( int argc, char* argv[] )
 {
-  // Check for proper arguments, if not, explain usage.
+  // Check for proper arguments; if not, explain usage.
   if( argc != 5 )
     {
     std::cerr << "Usage: "<< std::endl;
@@ -31,19 +32,21 @@ int main( int argc, char* argv[] )
     std::cerr << std::endl;
     return EXIT_FAILURE;
     }
-    // Initialize and assign user provided variables
-  const std::string * inputImage = argv[1];
-  const std::string * outputImage = argv[2];
-  // get floating point numbers for the Mean and Standard Deviation to perform the algorithm
+
+  // Initialize and assign user provided variables
+  const char * inputImage = argv[1];
+  const char * outputImage = argv[2];
+
+  // Get floating point numbers for the mean and std dev to perform the algorithm
   const double mean = std::stod(argv[3]);
   const double deviation = std::stod(argv[4]);
 
   constexpr unsigned int Dimension = 2;
-  // Use unsigned char so file will save to .png
+  // Use unsigned char to save to PNG format
   using PixelType = unsigned char;
   using ImageType = itk::Image< PixelType, Dimension >;
 
-  // read the old file to be converted
+  // Read the file to be converted
   using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName( inputImage );
@@ -54,7 +57,7 @@ int main( int argc, char* argv[] )
   using FilterType = itk::AdditiveGaussianNoiseImageFilter< ImageType, ImageType >;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput( reader->GetOutput() );
-  filter->SetMean( mean ); // set the mean
+  filter->SetMean( mean ); // Set the mean
   filter->SetStandardDeviation( deviation ); // Set the standard deviation
 
   // Set the writer to save file
@@ -63,7 +66,7 @@ int main( int argc, char* argv[] )
   writer->SetFileName( outputImage );
   writer->SetInput( filter->GetOutput() );
 
-//Write the output image
+  // Write the output image
   try
     {
     writer->Update();
