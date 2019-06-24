@@ -16,3 +16,4 @@ ImageFeature
   ZeroCrossingBasedEdgeDecor/Documentation.rst
   BilateralFilterAnImage/Documentation.rst
   ExtractContoursFromImage/Documentation.rst
+  AdditiveGaussianNoiseImageFilter/Documentation.rst

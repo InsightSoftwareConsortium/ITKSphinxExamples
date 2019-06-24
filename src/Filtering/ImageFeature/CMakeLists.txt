@@ -35,3 +35,8 @@ add_example(FindZeroCrossings)
 #===================================
 
 endif()
+
+add_example(AdditiveGaussianNoiseImageFilter)
+compare_to_baseline(EXAMPLE_NAME AdditiveGaussianNoiseImageFilter
+  BASELINE_PREFIX OutputBaseline
+  )
