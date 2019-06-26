@@ -1,9 +1,8 @@
-Convert Mesh To Unstructured Grid
+Convert Mesh To Unstructered Grid
 =================================
 
 .. index::
    single: Mesh
-   pair: unstructured; grid
 
 Synopsis
 --------
@@ -17,7 +16,7 @@ An Output.vtu file will be generated alone with the following output.
 
 Output::
 
-  Unstructured grid has 3 cells.
+  Unstructered grid has 3 cells.
 
 Code
 ----

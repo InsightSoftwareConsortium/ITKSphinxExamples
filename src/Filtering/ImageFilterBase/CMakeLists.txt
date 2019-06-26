@@ -21,7 +21,7 @@ compare_to_baseline(EXAMPLE_NAME CustomOperationToCorrespondingPixelsInTwoImages
   BASELINE_PREFIX OutputBaseline
   )
 
-add_example(ComputeLocalNoise)
-compare_to_baseline(EXAMPLE_NAME ComputeLocalNoise
+add_example(ComputerLocalNoise)
+compare_to_baseline(EXAMPLE_NAME ComputerLocalNoise
   BASELINE_PREFIX OutputBaseline
   )

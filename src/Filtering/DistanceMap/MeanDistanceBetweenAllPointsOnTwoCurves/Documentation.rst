@@ -15,9 +15,9 @@ Results
 -------
 .. figure:: MeanDistanceBetweenAllPointsOnTwoCurves.png
   :scale: 60%
-  :alt: Output image
+  :alt: Output
 
-  Output image.
+  Output Image
   Mean distance: 5
 
 Code

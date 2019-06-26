@@ -13,10 +13,10 @@ Subtract two images from one another.
 Results
 -------
 .. figure:: SubtractTwoImages.png
-  :scale: 35%
-  :alt: output.png image generated
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

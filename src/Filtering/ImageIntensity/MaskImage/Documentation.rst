@@ -14,10 +14,10 @@ Apply a mask to an image.
 Results
 -------
 .. figure:: MaskImage.png
-  :scale: 40%
+  :scale: 70%
   :alt: VTK Window
 
-  Output in VTK window.
+  Output In VTK Window
 
 Output::
 

@@ -3,7 +3,6 @@ Filter Image
 
 .. index::
    single: ImageToImageFilter
-   pair: image; filter
 
 Synopsis
 --------

@@ -12,29 +12,29 @@ Normalized correlation using the FFT.
 
 Results
 -------
-.. figure:: fixedImage.png
-  :scale: 600%
-  :alt: fixedimage.png image generated
+.. figure:: fixedimage.png
+  :scale: 70%
+  :alt: fixedimage.png
 
-  Fixed image.
+  fixedimage.png
 
-.. figure:: movingImage.png
-  :scale: 600%
-  :alt: movingimage.png image generated
+.. figure:: movingimage.png
+  :scale: 70%
+  :alt: movingimage.png
 
-  Moving image.
+  movingimage.png
 
 .. figure:: NormalizedCorrelationUsingFFT.png
-  :scale: 50%
+  :scale: 70%
   :alt: correlation.mha
 
   correlation.mha
 
 .. figure:: correlation.png
-  :scale: 600%
-  :alt: correlation.png image generated
+  :scale: 70%
+  :alt: correlation.png
 
-  Correlation image.
+  correlation.png
 
 Output::
 

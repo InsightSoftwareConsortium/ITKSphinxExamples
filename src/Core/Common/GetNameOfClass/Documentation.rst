@@ -3,7 +3,6 @@ Get Name Of Class
 
 .. index::
    single: LightObject
-   pair: class; name
 
 Synopsis
 --------
@@ -14,9 +13,11 @@ Get the name of the class of an object.
 
 Results
 -------
-Output::
 
+
+Output::
   image is type: Image
+
 
 Code
 ----

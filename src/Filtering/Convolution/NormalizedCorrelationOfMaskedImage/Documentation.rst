@@ -4,7 +4,6 @@ Normalized Correlation Of Masked Image
 .. index::
    single: NormalizedCorrelationImageFilter
    pair: correlation; masked
-   pair: normalized; correlation
 
 Synopsis
 --------
@@ -15,34 +14,34 @@ Normalized correlation of a masked image.
 Results
 -------
 .. figure:: mask.png
-  :scale: 600%
-  :alt: mask.png image generated
+  :scale: 70%
+  :alt: mask.png
 
-  Mask image.
+  mask.png
 
 .. figure:: image1.png
-  :scale: 600%
-  :alt: image1.png image generated
+  :scale: 70%
+  :alt: image1.png
 
-  Image 1.
+  image1.png
 
 .. figure:: image2.png
-  :scale: 600%
-  :alt: image2.png image generated
+  :scale: 70%
+  :alt: image2.png
 
-  Image 2.
+  image2.png
 
 .. figure:: NormalizedCorrelationOfMaskedImage.png
-  :scale: 50%
+  :scale: 70%
   :alt: correlation.mha
 
-  Correlation.mha
+  correlation.mha
 
 .. figure:: correlation.png
-  :scale: 600%
-  :alt: correlation.png image generated
+  :scale: 70%
+  :alt: correlation.png
 
-  Correlation image.
+  correlation.png
 
 Output::
 

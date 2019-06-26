@@ -17,13 +17,13 @@ Results
   :scale: 100%
   :alt: Input image
 
-  Input image.
+  Input image
 
 .. figure:: OutputBaseline.png
   :scale: 100%
   :alt: Output image
 
-  Output image.
+  Output image
 
 
 Code

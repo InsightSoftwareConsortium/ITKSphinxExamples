@@ -14,8 +14,7 @@ Pixel wise compare two input images and set the output pixel to their min.
 Results
 -------
 .. note::
-   No output is printed, this example simply displays functionality.
-
+  No output is printed, this example simply displays functionality.
 Code
 ----
 

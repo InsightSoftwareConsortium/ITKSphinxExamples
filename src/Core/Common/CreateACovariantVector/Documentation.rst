@@ -8,7 +8,7 @@ Create a CovariantVector
 Synopsis
 --------
 
-Create a CovariantVector.
+Create a CovariantVector
 
 
 Results

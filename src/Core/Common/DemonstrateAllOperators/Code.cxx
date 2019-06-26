@@ -63,9 +63,9 @@ int main(int, char*[])
         //operators[operatorId]->Print(std::cout);
         //std::cout << operators[operatorId]->GetNameOfClass() << std::endl;
 
-        for(int i = -operators[operatorId]->GetSize()[0]/2; i <= operators[operatorId]->GetSize()[0]/2; i++)
+        for(auto i = -operators[operatorId]->GetSize()[0]/2; i <= operators[operatorId]->GetSize()[0]/2; i++)
         {
-            for(int j = -operators[operatorId]->GetSize()[1]/2; j <= operators[operatorId]->GetSize()[1]/2; j++)
+            for(auto j = -operators[operatorId]->GetSize()[1]/2; j <= operators[operatorId]->GetSize()[1]/2; j++)
             {
                 itk::Offset<2> offset;
                 offset[0] = i;

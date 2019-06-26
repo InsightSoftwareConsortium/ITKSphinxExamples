@@ -3,7 +3,7 @@ Direct Warning To File
 
 .. index::
    single: FileOutputWindow
-   single: warning
+   pair: warning; file
 
 Synopsis
 --------
@@ -13,16 +13,9 @@ Direct itk warnings to a file.
 
 Results
 -------
-
 Output::
 
   Look in itkMessageLog.txt for the output
-
-.. figure:: itkMessageLog.png
-  :scale: 70%
-  :alt: itkMessageLog.txt
-
-  itkMessageLog.txt
 
 Code
 ----

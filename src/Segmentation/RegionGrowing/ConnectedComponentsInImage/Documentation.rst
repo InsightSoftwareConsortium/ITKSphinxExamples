@@ -5,7 +5,6 @@ Connected Components In Image
    Contains problems not fixed from original wiki.
 .. index::
    single: ConnectedThresholdImageFilter
-   pair: connected; components
 
 Synopsis
 --------

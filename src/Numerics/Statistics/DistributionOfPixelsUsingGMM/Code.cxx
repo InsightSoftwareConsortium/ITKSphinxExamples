@@ -30,16 +30,23 @@
 using PixelType = itk::CovariantVector<unsigned char, 3>;
 using ImageType = itk::Image<PixelType, 2>;
 
-static void ControlledImage(ImageType::Pointer image);
-static void RandomImage(ImageType::Pointer image);
+#undef USE_CONTROLLED_IMAGE
+#ifdef USE_CONTROLLED_IMAGE
+  static void ControlledImage(ImageType::Pointer image);
+#else
+  static void RandomImage(ImageType::Pointer image);
+#endif
 
 int main(int  /*argc*/, char* /*argv*/[])
 {
 
     ImageType::Pointer image = ImageType::New();
 
+#ifdef USE_CONTROLLED_IMAGE
+    ControlledImage(image);
+#else
     RandomImage(image);
-    //ControlledImage(image);
+#endif
 
     using ImageToListSampleFilterType = itk::Statistics::ImageToListSampleFilter<ImageType>;
     ImageToListSampleFilterType::Pointer imageToListSampleFilter = ImageToListSampleFilterType::New();
@@ -220,6 +227,7 @@ int main(int  /*argc*/, char* /*argv*/[])
     return EXIT_SUCCESS;
 }
 
+#ifdef USE_CONTROLLED_IMAGE
 void ControlledImage(ImageType::Pointer image)
 {
     // Create an image
@@ -277,6 +285,7 @@ void ControlledImage(ImageType::Pointer image)
     }
 
 }
+#else
 
 void RandomImage(ImageType::Pointer image)
 {
@@ -311,4 +320,4 @@ void RandomImage(ImageType::Pointer image)
     }
 
 }
-
+#endif

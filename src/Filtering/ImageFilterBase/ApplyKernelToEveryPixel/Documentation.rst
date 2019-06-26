@@ -14,16 +14,16 @@ Apply a kernel to every pixel in an image.
 Results
 -------
 .. figure:: input.png
-  :scale: 300%
-  :alt: input.png image generated
+  :scale: 70%
+  :alt: input.png
 
-  Input image.
+  input.png
 
 .. figure:: output.png
-  :scale: 300%
-  :alt: output.png image generated
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

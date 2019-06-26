@@ -18,7 +18,7 @@ Results
    :scale: 600%
    :alt: Output image
 
-   Output image.
+   Output image
 
 
 Code

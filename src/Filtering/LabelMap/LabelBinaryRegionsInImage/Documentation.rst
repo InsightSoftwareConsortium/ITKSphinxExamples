@@ -14,10 +14,10 @@ Label binary regions in an image.
 Results
 -------
 .. figure:: image.png
-  :scale: 1500%
-  :alt: image.png image generated
+  :scale: 70%
+  :alt: image.png
 
-  Image generated.
+  image.png
 
 Output::
 

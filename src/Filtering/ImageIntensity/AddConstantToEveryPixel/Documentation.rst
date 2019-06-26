@@ -13,16 +13,16 @@ Add a constant to every pixel in an image.
 Results
 -------
 .. figure:: Yinyang.png
-  :scale: 60%
-  :alt: input yin-yang image
+  :scale: 70%
+  :alt: Yinyang.png
 
-  Input image.
+  Yinyang.png
 
 .. figure:: output.png
-  :scale: 110%
-  :alt: output.png image generated
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

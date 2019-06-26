@@ -14,10 +14,9 @@ Run an image filter on a region of an image.
 Results
 -------
 .. figure:: RunImageFilterOnRegionOfImage.png
-  :scale: 35%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

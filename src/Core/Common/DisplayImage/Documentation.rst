@@ -3,7 +3,6 @@ Display Image
 
 .. index::
    single: Image
-   pair: display; image
 
 Synopsis
 --------
@@ -14,10 +13,9 @@ Display an image.
 Results
 -------
 .. figure:: DisplayImage.png
-  :scale: 55%
-  :alt: displayed image
+  :scale: 70%
 
-  Displayed image.
+  Displayed Image.
 
 Code
 ----

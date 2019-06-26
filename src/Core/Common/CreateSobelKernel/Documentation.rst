@@ -4,7 +4,6 @@ Create Sobel Kernel
 .. index::
    single: SobelOperator
    pair: sobel; kernel
-   pair: create; kernel
 
 Synopsis
 --------

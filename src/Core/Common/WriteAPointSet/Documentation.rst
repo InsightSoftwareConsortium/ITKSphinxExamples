@@ -10,7 +10,7 @@ Write a PointSet
 Synopsis
 --------
 
-Write a PointSet.
+Write a PointSet
 
 
 Results

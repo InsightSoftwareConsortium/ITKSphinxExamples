@@ -11,6 +11,9 @@ Synopsis
 Cast an image from one type to another but clamp to the output value range.
 
 
+Results
+-------
+
 Code
 ----
 

@@ -4,7 +4,6 @@ Create Forward Difference Kernel
 .. index::
    single: ForwardDifferenceOperator
    pair: difference; kernel
-   pair: create; kernel
 
 Synopsis
 --------

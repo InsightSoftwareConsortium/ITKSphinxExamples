@@ -14,10 +14,9 @@ Smooth an image with a discrete Gaussian filter.
 Results
 -------
 .. filter:: SmoothImageWithDiscreteGaussianFilter.png
-  :scale: 60%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Input and output image with variance = 8.
+  Yinyang.png And Output.png With Variance = 8
 
 Code
 ----

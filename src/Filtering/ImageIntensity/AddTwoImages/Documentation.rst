@@ -3,8 +3,6 @@ Add Two Images Together
 
 .. index::
    single: AddImageFilter
-   pair: add; images
-   pair: concatenate; images
 
 Synopsis
 --------
@@ -15,10 +13,9 @@ Add two images together.
 Results
 -------
 .. figure:: AddTwoImages.png
-  :scale: 35%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK image.
+  Output In VTK Image
 
 Code
 ----

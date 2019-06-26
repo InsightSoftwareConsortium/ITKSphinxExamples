@@ -4,7 +4,6 @@ Iterate Region In Image With Neighborhood
 .. index::
    single: NeighborhoodIterator
    pair: iterate; region
-   pair: image; neighborhood
 
 Synopsis
 --------
@@ -15,17 +14,14 @@ Iterate over a region of an image with a neighborhood (with write access).
 Results
 -------
 .. figure:: Yinyang.png
-  :scale: 60%
-  :alt: input yin-yang image
+  :scale: 70%
 
-  Input image.
+  Yinyang.png
 
 .. figure:: IterateRegionWithWriteAccess.png
   :scale: 70%
-  :alt: output in vtk window
 
-  Output in VTK window.
-
+  Yinyang.png In VTK Window
 Output::
 
   An extensive list of the neighborhood will be printed to the screen.

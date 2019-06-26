@@ -17,7 +17,6 @@ Results
 
 
 Output::
-
   bounds: [0, 0.1, 0, 0.1, 0, 0]
   center: [0.05, 0.05, 0]
   diagonal length squared: 0.02

@@ -13,16 +13,16 @@ Overlay a LabelMap on an image.
 Results
 -------
 .. figure:: image.png
-  :scale: 300%
-  :alt: image.png image generated
+  :scale: 70%
+  :alt: image.png
 
-  Image generated.
+  image.png
 
 .. figure:: output.png
-  :scale: 300%
-  :alt: output.png image generated
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

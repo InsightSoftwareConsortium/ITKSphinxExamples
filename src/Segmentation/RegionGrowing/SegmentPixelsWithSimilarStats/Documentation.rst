@@ -3,8 +3,6 @@ Segment Pixels With Similar Statistics
 
 .. index::
    single: ConfidenceConnectedImageFilter
-   pair: segment; pixels
-   pair: similar; statistics
 
 Synopsis
 --------
@@ -15,10 +13,10 @@ Segment pixels with similar statistics using connectivity.
 Results
 -------
 .. figure:: SegmentPixelsWithSimilarStats.png
-  :scale: 60%
-  :alt: output in vtk window
+  :scale: 70%
+  :alt: VTK Window
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

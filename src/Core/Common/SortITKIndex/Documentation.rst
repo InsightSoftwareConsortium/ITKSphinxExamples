@@ -4,13 +4,15 @@ Sort ITK Index
 .. index::
    single: Image
    single: index
-   pair: sort; index
 
 Synopsis
 --------
 
 Sort itk::Index.
 
+
+Results
+-------
 
 Code
 ----

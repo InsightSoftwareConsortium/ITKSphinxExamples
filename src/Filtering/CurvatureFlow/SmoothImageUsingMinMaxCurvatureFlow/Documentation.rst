@@ -3,8 +3,6 @@ Smooth Image Using Min Max Curvature Flow
 
 .. index::
    single: MinMaxCurvatureFlowImageFilter
-   single: min
-   single: max
    pair: curvature; flow
    pair: min; max
 
@@ -17,10 +15,9 @@ Smooth an image using min/max curvature flow.
 Results
 -------
 .. figure:: SmoothImageUsingMinMaxCurvatureFlow
-  :scale: 35%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

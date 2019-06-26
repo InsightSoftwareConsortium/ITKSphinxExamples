@@ -11,6 +11,9 @@ Synopsis
 Translate a vector image.
 
 
+Results
+-------
+
 Code
 ----
 

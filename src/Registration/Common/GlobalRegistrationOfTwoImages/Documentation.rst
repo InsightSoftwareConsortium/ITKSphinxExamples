@@ -14,22 +14,22 @@ A basic global registration of two images.
 Results
 -------
 .. figure:: fixing.png
-  :scale: 300%
-  :alt: fixing.png generated image
+  :scale: 70%
+  :alt: fixing.png
 
-  Fixed image.
+  fixing.png
 
 .. figure:: moving.png
-  :scale: 300%
-  :alt: moving.png generated image
+  :scale: 70%
+  :alt: moving.png
 
-  Moving image.
+  moving.png
 
 .. figure:: output.png
-  :scale: 300%
-  :alt: output.png generated image
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Output::
 

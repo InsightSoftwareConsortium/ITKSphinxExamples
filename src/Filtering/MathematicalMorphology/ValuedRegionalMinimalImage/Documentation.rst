@@ -14,16 +14,16 @@ Valued regional minimal of an image.
 Results
 -------
 .. figure:: input.png
-  :scale: 120%
-  :alt: input.png generated image
+  :scale: 70%
+  :alt: input.png
 
-  Input image.
+  input.png
 
 .. figure:: output.png
-  :scale: 120%
-  :alt: output.png generated image
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

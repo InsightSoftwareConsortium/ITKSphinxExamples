@@ -3,7 +3,6 @@ Filter and ParallelizeImageRegion Comparison
 
 .. index::
    single: MultiThreaderBase
-   pair: filter; ParallelizeImageRegion
 
 Synopsis
 --------

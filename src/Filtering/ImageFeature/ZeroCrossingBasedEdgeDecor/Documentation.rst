@@ -7,16 +7,15 @@ Zero-crossing Based Edge Decor
 Synopsis
 --------
 
-A zero-crossing based edge decor.
+A zero-crossing based edge detecor
 
 
 Results
 -------
 .. figure:: ZeroCrossingBasedEdgeDecor
-  :scale: 60%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

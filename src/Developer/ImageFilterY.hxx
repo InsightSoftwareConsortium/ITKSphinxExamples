@@ -39,7 +39,6 @@ void ImageFilter< TImage>
   const typename TImage::ConstPointer inputImage( this->GetInput() );
 
   const typename TImage::RegionType region = inputImage->GetRequestedRegion();
-  const typename TImage::SizeType   size   = region.GetSize();
 
   smoothingFilters[0]->SetInput(inputImage);
 

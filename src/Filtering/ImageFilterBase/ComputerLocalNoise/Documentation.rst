@@ -14,13 +14,13 @@ Compute the local noise in an image.
 Results
 -------
 .. figure:: input.png
-  :scale: 50%
+  :scale: 70%
   :alt: input.mhd
 
   input.mhd
 
 .. figure:: output.png
-  :scale: 50%
+  :scale: 70%
   :alt: output.mhd
 
   output.mhd

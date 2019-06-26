@@ -4,7 +4,6 @@ Regional Minimal
 .. index::
    single: RegionalMinimaImageFilter
    pair: region; minimal
-   single: min
 
 Synopsis
 --------
@@ -15,16 +14,16 @@ Regional minimal image filter.
 Results
 -------
 .. figure:: input.png
-  :scale: 150%
-  :alt: input.png image
+  :scale: 70%
+  :alt: input.png
 
-  Input image.
+  input.png
 
 .. figure:: output.png
-  :scale: 150%
-  :alt: output.png generated image
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

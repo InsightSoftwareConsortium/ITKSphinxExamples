@@ -14,22 +14,22 @@ Binary AND two images.
 Results
 -------
 .. figure:: input1.png
-  :scale: 300%
-  :alt: input1.png image generated
+  :scale: 70%
+  :alt: input1.png
 
-  Input 1 image.
+  input1.png
 
 .. figure:: input2.png
-  :scale: 300%
-  :alt: input2.png image generated
+  :scale: 70%
+  :alt: input2.png
 
-  Input 2 image.
+  input2.png
 
 .. figure:: BinaryANDTwoImages.png
-  :scale: 300%
-  :alt: output.png image generated
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

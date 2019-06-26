@@ -13,8 +13,8 @@ compare_to_baseline(EXAMPLE_NAME LaplacianRecursiveGaussianImageFilter BASELINE_
 add_example(SegmentBloodVessels)
 compare_to_baseline(EXAMPLE_NAME SegmentBloodVessels BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-number-of-pixels 10)
 
-add_example(RequestedRegion)
-compare_to_baseline(EXAMPLE_NAME RequestedRegion
+add_example(RequesterRegion)
+compare_to_baseline(EXAMPLE_NAME RequesterRegion
   BASELINE_PREFIX OutputBaseline
   )
 

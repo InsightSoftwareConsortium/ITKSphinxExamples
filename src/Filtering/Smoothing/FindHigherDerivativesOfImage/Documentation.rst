@@ -14,10 +14,10 @@ Find higher derivatives of an image.
 Results
 -------
 .. figure:: FindHigherDerivativesOfImage.png
-  :scale: 50%
+  :scale: 70%
   :alt: VTK Window
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

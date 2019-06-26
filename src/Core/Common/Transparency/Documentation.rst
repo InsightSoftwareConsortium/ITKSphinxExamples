@@ -13,11 +13,11 @@ Demonstrates how to assign transparency to pixels in an image, then writing the 
 
 Results
 -------
-.. figure:: test.tif
-  :scale: 50%
+.. figure:: Transparency.png
+  :scale: 70%
   :alt: test.tif
 
-  Output image.
+  Output Image.
 
 Code
 ----

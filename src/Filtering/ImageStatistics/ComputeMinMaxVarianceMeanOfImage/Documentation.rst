@@ -11,7 +11,7 @@ Compute Min, Max, Variance And Mean Of Image
 Synopsis
 --------
 
-Compute min, max, variance and mean of an image.
+Compute min, max, variance and mean of an Image.
 
 
 Results

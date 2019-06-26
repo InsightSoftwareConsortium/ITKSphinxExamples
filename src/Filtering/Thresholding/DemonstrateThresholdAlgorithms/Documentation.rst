@@ -3,7 +3,6 @@ Demonstrate Available Threshold Algorithms
 
 .. index::
    single: LiThresholdImageFilter
-   pair: threshold; algorithms
 
 Synopsis
 --------

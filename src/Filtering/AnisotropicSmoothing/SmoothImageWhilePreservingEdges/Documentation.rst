@@ -4,7 +4,6 @@ Smooth Image While Preserving Edges
 .. index::
    single: VectorGradientAnisotropicDiffusionImageFilter
    single: smooth
-   pair: preserve; edges
 
 Synopsis
 --------
@@ -15,11 +14,9 @@ Smooth an image while preserving edges.
 Results
 -------
 .. figure:: SmoothImageWhilePreservingEdges.png
-  :scale: 50%
-  :scale: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
-
+  Output In VTK Window
 Code
 ----
 

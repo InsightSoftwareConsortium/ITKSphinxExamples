@@ -15,10 +15,10 @@ Compute the inverse FFT of an image.
 Results
 -------
 .. figure:: ComputeInverseFFTOfImage.png
-  :scale: 110%
-  :alt: ifft.png image generated
+  :scale: 70%
+  :alt: ifft.png
 
-  IFFT image.
+  ifft.png
 
 Code
 ----

@@ -4,8 +4,6 @@ Create Laplacian Kernel
 .. index::
    single: LaplacianOperator
    pair: laplacian; operator
-   pair: laplacian; kernel
-   pair: create; kernel
 
 Synopsis
 --------

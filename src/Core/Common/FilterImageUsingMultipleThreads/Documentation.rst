@@ -4,8 +4,6 @@ Filter Image Using Multiple Threads
 .. index::
    single: ImageToImageFilter
    single: thread
-   pair: multiple; threads
-   pair: filter; image
 
 Synopsis
 --------

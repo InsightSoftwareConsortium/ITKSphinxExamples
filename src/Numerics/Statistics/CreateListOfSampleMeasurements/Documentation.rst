@@ -7,7 +7,7 @@ Create List Of Sample Measurements
 Synopsis
 --------
 
-Create a list of sample measurements.
+Create a lsit of sample measurements.
 
 
 Results

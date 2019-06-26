@@ -13,10 +13,10 @@ Apply a linear intensity transform from a specified input range to a specified o
 Results
 -------
 .. figure:: IntensityWindowing.png
-  :scale: 300%
-  :alt: output.png image generated
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

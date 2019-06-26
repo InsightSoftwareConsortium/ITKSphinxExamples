@@ -16,11 +16,9 @@ Smooth an image while preserving edges.
 Results
 -------
 .. note:: SmoothImageWhilePreservingEdges2.png
-  :scale: 50%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
-
+  Output In VTK Window
 Code
 ----
 

@@ -11,6 +11,9 @@ Synopsis
 Create a vector image from a collection of scalar images.
 
 
+Results
+-------
+
 Code
 ----
 

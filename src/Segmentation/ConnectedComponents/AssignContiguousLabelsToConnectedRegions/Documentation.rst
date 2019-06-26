@@ -14,10 +14,10 @@ Assign contiguous labels to connected regions of an image.
 Results
 -------
 .. figure:: AssignContiguousLabelsToConnectedRegions.png
-  :scale: 60%
-  :alt: output in vtk window
+  :scale: 70%
+  :alt: VTK Window
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

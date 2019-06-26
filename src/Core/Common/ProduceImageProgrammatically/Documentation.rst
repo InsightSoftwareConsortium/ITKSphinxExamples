@@ -3,12 +3,11 @@ Produce Image Programmatically
 
 .. index::
    single: ImageSource
-   pair: produce; image
 
 Synopsis
 --------
 
-Produce an image programmatically.
+Produce an image programmitically.
 
 
 Results

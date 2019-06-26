@@ -3,12 +3,11 @@ Display ITK Image
 
 .. index::
    single: ImageToVTKImageFilter
-   pair: image; display
 
 Synopsis
 --------
 
-Display an ITK image.
+Display an ITK iamge.
 
 
 Results

@@ -3,8 +3,8 @@ Calculate Area And Volume Of Simplex Mesh
 
 .. index::
    single: SimplexMeshVolumeCalculator
-   single: area
-   single: volume
+   pair: area; volume
+
 Synopsis
 --------
 

@@ -5,7 +5,6 @@ Store Non-Pixel Data In Image
    Still needs additional work to finish proper creation of example.
 .. index::
    single: MetaDataDictionary
-   pair: non-pixel; data
 
 Synopsis
 --------

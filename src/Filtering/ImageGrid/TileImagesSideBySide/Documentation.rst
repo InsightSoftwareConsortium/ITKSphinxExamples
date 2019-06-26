@@ -13,16 +13,16 @@ Tile multiple images side by side.
 Results
 -------
 .. figure:: Gourds.png
-  :scale: 50%
+  :scale: 70%
   :alt: Gourds.png
 
-  Input images.
+  Gourds.png
 
 .. figure:: output.png
-  :scale: 25%
-  :alt: output.png image generated
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

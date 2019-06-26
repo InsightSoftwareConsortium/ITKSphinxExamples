@@ -3,13 +3,12 @@ Iterate On A Vector Container
 
 .. index::
    single: VectorContainer
-   pair: iterate; VectorContainer
 
 Synopsis
 --------
 
 
-Basic operation on VectorContainer.
+basic operation on VectorContainer
 
 
 Results

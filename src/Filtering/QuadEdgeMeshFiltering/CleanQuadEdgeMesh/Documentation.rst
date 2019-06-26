@@ -8,7 +8,7 @@ Synopsis
 --------
 
 
-Clean quad edge mesh.
+Clean quad edge mesh
 
 
 Results

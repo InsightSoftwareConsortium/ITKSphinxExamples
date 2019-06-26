@@ -4,7 +4,6 @@ Create Gaussian Derivative Kernel
 .. index::
    single: GaussianDerivativeOperator
    pair: gaussian; derivative
-   pair: create; kernel
 
 Synopsis
 --------

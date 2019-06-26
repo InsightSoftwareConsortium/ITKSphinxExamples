@@ -4,7 +4,6 @@ Resample RGB Image
 .. index::
    single: VectorResampleImageFilter
    single: RGB
-   single: resampling
 
 Synopsis
 --------

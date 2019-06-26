@@ -14,11 +14,9 @@ Opening a binary image.
 Results
 -------
 .. figure:: OpeningBinaryImage.png
-  :scale: 35%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
-
+  Output In VTK Window
 Output::
 
   Radius: 5

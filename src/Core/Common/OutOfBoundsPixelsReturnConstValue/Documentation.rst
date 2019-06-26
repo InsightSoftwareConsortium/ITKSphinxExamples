@@ -14,11 +14,10 @@ Make out of bounds pixels return a constant value.
 Results
 -------
 .. figure:: OutOfBoundsPixelsReturnConstValue.png
-  :scale: 100%
+  :scale: 70%
   :alt: VTK Window
 
-  Output in VTK window.
-
+  Output In VTK Window
 Output::
 
   Index: [-1, -1] Pixel: 0 = 0

@@ -15,9 +15,8 @@ Results
 -------
 .. figure:: NormalizeImage.png
   :scale: 50%
-  :alt: input and output images in vtk window with data
 
-  Input and output images in VTK window.
+  Input And Output Image With Data
 
 Code
 ----

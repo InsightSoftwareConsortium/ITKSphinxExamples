@@ -10,6 +10,9 @@ Synopsis
 Extract a component/channel of a vector image.
 
 
+Results
+-------
+
 Code
 ----
 
