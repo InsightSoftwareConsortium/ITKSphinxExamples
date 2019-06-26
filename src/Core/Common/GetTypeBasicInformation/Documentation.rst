@@ -3,7 +3,6 @@ Get Type Basic Information
 
 .. index::
    single: NumericTraits
-   single: information
 
 Synopsis
 --------

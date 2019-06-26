@@ -16,10 +16,9 @@ Smooth an RGB image using min/max curvature flow.
 Results
 -------
 .. figure:: SmoothRGBImageUsingMinMaxCurvatureFlow.png
-  :scale: 60%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

@@ -4,12 +4,11 @@ Covariant Vector Dot Product
 .. index::
   single: Vector
   pair: Vector; operator *
-  pair: dot; product
 
 Synopsis
 --------
 
-Dot product of vectors.
+Dot product of Vectors
 
 
 Results
@@ -21,6 +20,7 @@ Output::
   v :[1, 2, 3]
   DotProduct( u, v ) = -2
   u - DotProduct( u, v ) * v = [1, 5, 5]
+
 
 Code
 ----

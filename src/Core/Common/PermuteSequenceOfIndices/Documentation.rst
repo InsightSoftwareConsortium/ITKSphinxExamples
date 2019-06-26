@@ -3,12 +3,12 @@ Permute Sequence Of Indices
 
 .. index::
    single: ImageRandomNonRepeatingConstIteratorWithIndex
-   pair: sequence; indices
 
 Synopsis
 --------
 
 Permute a sequence of indices.
+
 
 Results
 -------

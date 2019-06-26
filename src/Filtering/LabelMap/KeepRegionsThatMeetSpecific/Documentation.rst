@@ -15,16 +15,16 @@ Keep only regions that meet a specified threshold of a specified property.
 Results
 -------
 .. figure:: input.png
-  :scale: 150%
-  :alt: input.png image generated
+  :scale: 70%
+  :alt: input.png
 
-  Input image.
+  input.png
 
 .. figure:: output.png
-  :scale: 150%
-  :alt: output.png image generated
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

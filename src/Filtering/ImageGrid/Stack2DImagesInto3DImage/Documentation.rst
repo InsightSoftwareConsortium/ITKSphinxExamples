@@ -8,7 +8,7 @@ Stack 2D Images Into 3D Image
 Synopsis
 --------
 
-Stack 2D images into a 3D image.
+TileImageFilter
 
 
 Results

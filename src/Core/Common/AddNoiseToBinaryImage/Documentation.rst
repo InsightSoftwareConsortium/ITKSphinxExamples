@@ -15,16 +15,16 @@ Add noise to a binary image.
 Results
 -------
 .. figure:: Yinyang.png
-  :scale: 60%
+  :scale: 70%
   :alt: Input.png
 
-  Input image.
+  Yinyang.png
 
 .. figure:: AddNoiseToBinaryImage.png
-  :scale: 60%
+  :scale: 70%
   :alt: Output.png
 
-  Output image.
+  Output.png
 Output::
 
   Number of random samples: 105062

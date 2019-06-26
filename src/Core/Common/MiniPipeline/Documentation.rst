@@ -27,10 +27,11 @@ Output::
   Size: [200, 300]
 
 .. figure:: MiniPipelineOutput.png
-  :scale: 140%
+  :scale: 70%
   :alt: Output.png
 
-  Output image.
+  Output.png
+
 
 Code
 ----

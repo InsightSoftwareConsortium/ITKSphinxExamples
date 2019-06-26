@@ -10,7 +10,8 @@ Is Pixel Inside Region
 Synopsis
 --------
 
-Determine if a pixel is inside a region.
+
+Determine if a pixel is inside of a region
 
 
 Results

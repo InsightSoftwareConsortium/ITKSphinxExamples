@@ -15,16 +15,16 @@ Keep only regions that rank above a certain level of a particular property.
 Results
 -------
 .. figure:: input.png
-  :scale: 150%
+  :scale: 70%
   :alt: input.png
 
-  Input image.
+  input.png
 
 .. figure:: output.png
-  :scale: 150%
+  :scale: 70%
   :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

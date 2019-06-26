@@ -14,10 +14,9 @@ Crop an image by specifying the region to throw away.
 Results
 -------
 .. figure:: CropImageBySpecifyingRegion2.png
-  :scale: 60%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

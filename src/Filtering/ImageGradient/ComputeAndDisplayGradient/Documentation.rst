@@ -5,8 +5,6 @@ Compute And Display Gradient Of Image
    Contains problems not fixed from original wiki.
 .. index::
    single: GradientImageFilter
-   pair: compute; gradient
-   pair: display; gradient
 
 Synopsis
 --------

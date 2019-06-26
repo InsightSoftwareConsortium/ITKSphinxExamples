@@ -11,6 +11,9 @@ Synopsis
 Process the nth component/element/channel of a vector image.
 
 
+Results
+-------
+
 Code
 ----
 

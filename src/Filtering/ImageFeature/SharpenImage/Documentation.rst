@@ -3,7 +3,6 @@ Sharpen Image
 
 .. index::
    single: LaplacianSharpeningImageFilter
-   pair: sharpen; image
 
 Synopsis
 --------

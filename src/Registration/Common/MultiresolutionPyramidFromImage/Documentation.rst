@@ -1,9 +1,8 @@
-Multi-resolution Pyramid From Image
-===================================
+Multiresolution Pyramid From Image
+==================================
 
 .. index::
    single: RecursiveMultiResolutionPyramidImageFilter
-   pair: multi-resolution; pyramid
 
 Synopsis
 --------
@@ -21,28 +20,28 @@ Output::
   Writing output_3.png
 
 .. figure:: output_0.png
-  :scale: 1250%
-  :alt: output_0.png generated image
+  :scale: 70%
+  :alt: output_0.png
 
-  Output 0 image.
+  output_0.png
 
 .. figure:: output_1.png
-  :scale: 1250%
-  :alt: output_1.png generated image
+  :scale: 70%
+  :alt: output_1.png
 
-  Output 1 image.
+  output_1.png
 
 .. figure:: output_2.png
-  :scale: 1250%
-  :alt: output_2.png generated image
+  :scale: 70%
+  :alt: output_2.png
 
-  Output 2 image.
+  output_2.png
 
 .. figure:: output_3.png
-  :scale: 1250%
-  :alt: output_3.png generated image
+  :scale: 70%
+  :alt: output_3.png
 
-  Output 3 image.
+  output_3.png
 
 
 Code

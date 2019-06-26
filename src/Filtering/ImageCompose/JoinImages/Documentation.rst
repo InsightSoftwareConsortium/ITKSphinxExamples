@@ -7,7 +7,7 @@ Join Images
 Synopsis
 --------
 
-Join images, stacking their components.
+Join images, stacking their components
 
 
 Results

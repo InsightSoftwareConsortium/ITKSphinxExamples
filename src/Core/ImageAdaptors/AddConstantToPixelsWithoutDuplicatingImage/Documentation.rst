@@ -3,8 +3,6 @@ Add Constant To Every Pixel Without Duplicating Memory
 
 .. index::
    single: AddPixelAccessor
-   pair: add; constant
-   pair: without; duplication
 
 Synopsis
 --------

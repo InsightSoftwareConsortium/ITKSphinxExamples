@@ -1,5 +1,5 @@
-Compute Magnitude In Vector Image To Make Magnitude Image
-=========================================================
+Computer Magnitude In Vector Image To Make Magnitude Image
+==========================================================
 
 .. index::
    single: VectorMagnitudeImageFilter
@@ -15,16 +15,16 @@ Compute the magnitude of each pixel in a vector image to produce a magnitude ima
 Results
 -------
 .. figure:: Yinyang.png
-  :scale: 60%
+  :scale: 70%
   :alt: Yinyang.png
 
-  Input image.
+  Yinyang.png
 
 .. figure:: ComputerMagInVectorImageToMakeMagImage
   :scale: 70%
   :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

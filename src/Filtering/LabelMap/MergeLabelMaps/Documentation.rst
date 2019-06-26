@@ -7,7 +7,7 @@ Merge LabelMaps
 Synopsis
 --------
 
-Merges several LabelMaps.
+Merges several labelmaps.
 
 
 Results

@@ -13,10 +13,9 @@ Compute the absolute value of an image.
 Results
 -------
 .. figure:: AbsValueOfImage.png
-  :scale: 35%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

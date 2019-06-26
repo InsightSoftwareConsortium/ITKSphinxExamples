@@ -15,16 +15,16 @@ Find the minimum and maximum value (and the position of the value) in an image.
 Results
 -------
 .. figure:: Yinyang.png
-  :scale: 60%
+  :scale: 70%
   :alt: Input Image
 
-  Input image.
+  Yingyang.png
 
 .. figure:: FindMaxAndMinInImageOutput.png
-  :scale: 100%
+  :scale: 70%
   :alt: Output Image
 
-  Output image.
+  Output Image
 
 Code
 ----

@@ -15,22 +15,22 @@ Apply a kernel to every pixel in an image that is non-zero in a mask.
 Results
 -------
 .. figure:: input.png
-  :scale: 300%
-  :alt: input.png image generated
+  :scale: 70%
+  :alt: input.png
 
-  Input image.
+  input.png
 
 .. figure:: mask.png
-  :scale: 300%
-  :alt: mask.png image generated
+  :scale: 70%
+  :alt: mask.png
 
-  Mask image.
+  mask.png
 
 .. figure:: output.png
-  :scale: 300%
-  :alt: output.png image generated
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

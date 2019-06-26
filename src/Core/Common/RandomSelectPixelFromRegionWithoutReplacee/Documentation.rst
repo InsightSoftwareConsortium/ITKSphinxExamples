@@ -3,7 +3,7 @@ Random Select Pixel From Region Without Replacing
 
 .. index::
    single: ImageRandomNonRepeatingConstIteratorWithIndex
-   pair: random; pixel
+   pair: random; select
 
 Synopsis
 --------

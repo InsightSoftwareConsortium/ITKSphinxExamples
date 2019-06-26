@@ -10,6 +10,9 @@ Synopsis
 Compute the squared difference of corresponding pixels in two images.
 
 
+Results
+-------
+
 Code
 ----
 

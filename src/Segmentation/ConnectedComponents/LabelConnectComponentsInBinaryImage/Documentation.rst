@@ -4,7 +4,6 @@ Label Connect Components In Binary Image
 .. index::
    single: ConnectedComponentImageFilter
    pair: binary; image
-   pair: label; components
 
 Synopsis
 --------

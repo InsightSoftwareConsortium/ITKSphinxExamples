@@ -3,8 +3,7 @@ Create Gaussian Kernel
 
 .. index::
    single: GaussianOperator
-   pair: kernel; gaussian
-   pair: create; kernel
+   single: kernel
 
 Synopsis
 --------

@@ -3,7 +3,6 @@ Scale An Image
 
 .. index::
    single: ScaleTransform
-   pair: scale; image
 
 Synopsis
 --------
@@ -14,16 +13,16 @@ Scale an image.
 Results
 -------
 .. figure:: ScaleAnImageInput.png
-  :scale: 300%
+  :scale: 70%
   :alt: Generated Input Image
 
-  Input image.
+  Input Image
 
 .. figure:: ScaleAnImageOutput.png
-  :scale: 300%
+  :scale: 70%
   :alt: Generated Output Image
 
-  Output image.
+  Output Image
 
 
 Code

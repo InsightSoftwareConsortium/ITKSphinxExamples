@@ -15,17 +15,14 @@ Iterate over a region of an image with efficient access to the current index (wi
 Results
 -------
 .. figure:: Yinyang.png
-  :scale: 60%
-  :alt: input yin-yang image
+  :scale: 70%
 
-  Input image.
+  Yinyang.png
 
 .. figure:: IterateRegionWithAccessToIndexWithWriteAccess.png
-  :scale: 100%
-  :alt: yin-yang image in vtk window
+  :scale: 70%
 
-
-  Input in VTK window with index access.
+  Yinyang.png In VTK Window With Index Access
 
 Output::
 

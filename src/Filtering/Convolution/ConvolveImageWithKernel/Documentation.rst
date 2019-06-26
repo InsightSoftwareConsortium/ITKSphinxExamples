@@ -14,10 +14,9 @@ Convolve an image with a kernel.
 Results
 -------
 .. figure:: ConvolveImageWithKernel.png
-  :scale: 60%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

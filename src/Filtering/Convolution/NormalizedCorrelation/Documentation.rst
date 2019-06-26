@@ -13,22 +13,22 @@ Normalized correlation.
 Results
 -------
 .. figure:: Yinyang.png
-  :scale: 60%
-  :alt: input yin-yang image
+  :scale: 70%
+  :alt: Yinyang.png
 
-  Input image.
+  Yinyang.png
 
 .. figure:: correlation.png
-  :scale: 60%
-  :alt: correlation.png image generated
+  :scale: 70%
+  :alt: correlation.png
 
-  Correlation image.
+  correlation.png
 
 .. figure:: patch.png
-  :scale: 600%
-  :alt: patch.png image generated
+  :scale: 70%
+  :alt: patch.png
 
-  Patch image.
+  patch.png
 
 Output::
 

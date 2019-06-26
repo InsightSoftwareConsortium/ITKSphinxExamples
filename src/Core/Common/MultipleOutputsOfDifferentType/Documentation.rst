@@ -3,8 +3,6 @@ Multiple Outputs Of Different Type
 
 .. index::
    single: ImageToImageFilter
-   pair: multiple; outputs
-   pair: different; type
 
 Synopsis
 --------

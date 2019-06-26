@@ -4,7 +4,6 @@ Label Connect Components In Grayscale Image
 .. index::
    single: ScalarConnectedComponentImageFilter
    pair: grayscale; image
-   single: label
 
 Synopsis
 --------
@@ -15,10 +14,10 @@ Label connected components in a grayscale image.
 Results
 -------
 .. figure:: LabelConnectComponentsInGrayscaleImage.png
-  :scale: 50%
-  :alt: output in vtk window
+  :scale: 70%
+  :alt: VTK Window
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

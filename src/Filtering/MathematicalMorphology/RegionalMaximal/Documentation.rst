@@ -3,7 +3,6 @@ Regional Maximal
 
 .. index::
    single: RegionalMaximaImageFilter
-   single: max
    pair: region; maximal
 
 Synopsis
@@ -15,16 +14,16 @@ Regional maximal image filter.
 Results
 -------
 .. figure:: intensityblobs.png
-  :scale: 100%
-  :alt: intensityblobs.png generated image
+  :scale: 70%
+  :alt: intensityblobs.png
 
-  Intensity blobs image.
+  intensityblobs.png
 
 .. figure:: maximal.png
-  :scale: 100%
-  :alt: maximal.png generated image
+  :scale: 70%
+  :alt: maximal.png
 
-  Maximal image.
+  maximal.png
 
 Code
 ----

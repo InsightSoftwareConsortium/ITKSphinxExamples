@@ -10,6 +10,7 @@ Synopsis
 
 Cast a VectorImage to another type of VectorImage.
 
+
 Results
 -------
 .. warning::

@@ -8,7 +8,7 @@ Synopsis
 --------
 
 
-Copy/duplicate a filter.
+Copy/duplicate a filter
 
 
 Results

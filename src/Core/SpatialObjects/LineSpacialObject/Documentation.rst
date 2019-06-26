@@ -14,10 +14,10 @@ Specify a piecewise-linear object by specifying points along the line.
 Results
 -------
 .. figure:: line.png
-  :scale: 600%
-  :alt: line.png image generated
+  :scale: 70%
+  :alt: line.png
 
-  Line image.
+  line.png
 
 Code
 ----

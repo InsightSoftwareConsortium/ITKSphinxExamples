@@ -10,6 +10,10 @@ Synopsis
 Check at compilation time that a given type is floating point.
 
 
+Results
+-------
+
+
 Code
 ----
 

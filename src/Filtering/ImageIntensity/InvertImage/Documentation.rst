@@ -14,10 +14,9 @@ Invert an image.
 Results
 -------
 .. figure:: InvertImage.png
-  :scale: 50%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

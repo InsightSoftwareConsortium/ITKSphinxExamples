@@ -14,7 +14,7 @@ Deep copy an image.
 Results
 -------
 .. note::
-   No output is printed, this example simply displays functionality.
+  No output is printed, this example simply displays functionality.
 
 Code
 ----

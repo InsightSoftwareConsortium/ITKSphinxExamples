@@ -14,10 +14,10 @@ Create ellipse.
 Results
 -------
 .. figure:: EllipseOutput.png
-  :scale: 600%
-  :alt: Output.png image generated
+  :scale: 70%
+  :alt: Output.png
 
-  Output image.
+  Output.png
 
 Code
 ----

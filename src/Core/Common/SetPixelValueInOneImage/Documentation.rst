@@ -19,7 +19,7 @@ Results
   :align: center
   :alt: Output image
 
-  Output image.
+  Output image
 
 
 Code

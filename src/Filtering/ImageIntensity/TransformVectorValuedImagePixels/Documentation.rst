@@ -13,10 +13,10 @@ Apply a transformation to the magnitude of vector valued image pixels.
 Results
 -------
 .. figure:: TransformVectorValuedImagePixels.png
-  :scale: 50%
-  :alt: output.png image generated.
+  :scale: 70%
+  :alt: output.png
 
-  Output image.
+  output.png
 
 Code
 ----

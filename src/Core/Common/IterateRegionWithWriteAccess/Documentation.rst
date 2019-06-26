@@ -15,16 +15,14 @@ Iterate over a region of an image (with write access).
 Results
 -------
 .. figure:: Yinyang.png
-  :scale: 60%
-  :alt: input yin-yang image
+  :scale: 70%
 
-  Input image.
+  Yinyang.png
 
 .. figure:: IterateRegionWithWriteAccess.png
-  :scale: 100%
-  :alt: output in VTK window
+  :scale: 70%
 
-  Output in VTK window.
+  Yinyang.png In VTK Window
 
 Code
 ----

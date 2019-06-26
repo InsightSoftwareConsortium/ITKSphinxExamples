@@ -15,10 +15,9 @@ Extract the inner and outer boundaries of blobs in a binary image.
 Results
 -------
 .. figure:: ExtractBoundariesOfBlobsInBinaryImage.png
-  :scale: 40%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

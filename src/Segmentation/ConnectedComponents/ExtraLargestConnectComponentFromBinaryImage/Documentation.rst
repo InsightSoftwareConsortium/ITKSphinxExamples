@@ -1,10 +1,9 @@
-Extract Largest Connect Component From Binary Image
-===================================================
+Extra Largest Connect Component From Binary Image
+=================================================
 
 .. index::
    single: ConnectedComponentImageFilter
    pair: binary; image
-   pair: extract; component
 
 Synopsis
 --------
@@ -15,10 +14,10 @@ Extract the largest connected component from a Binary Image.
 Results
 -------
 .. figure:: ExtraLargestConnectComponentFromBinaryImage.png
-  :scale: 50%
-  :alt: output in vtk window
+  :scale: 70%
+  :alt: VTK Window
 
-  Output in VTK window.
+  Output In VTK Window
 
 Output::
 

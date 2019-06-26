@@ -8,7 +8,11 @@ Synopsis
 --------
 
 
-Create an elliptical structuring element.
+Create an elliptical structuring element
+
+
+Results
+-------
 
 
 Code

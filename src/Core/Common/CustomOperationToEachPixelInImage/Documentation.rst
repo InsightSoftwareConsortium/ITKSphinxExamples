@@ -3,7 +3,6 @@ Apply Custom Operation To Each Pixel In Image
 
 .. index::
    single: UnaryFunctorImageFilter
-   pair: custom; operation
 
 Synopsis
 --------

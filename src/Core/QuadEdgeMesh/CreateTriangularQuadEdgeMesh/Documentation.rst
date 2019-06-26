@@ -3,12 +3,11 @@ Create Triangular Quad Edge Mesh
 
 .. index::
    single: QuadEdgeMesh
-   pair: triangular; QuadEdgeMesh
 
 Synopsis
 --------
 
-Create a triangular surface mesh using itk::QuadEdgeMesh.
+Create a triangular surface mesh using itk::QuadEdgeMesh
 
 
 Results
@@ -18,7 +17,7 @@ Results
   :scale: 50%
   :alt: Output mesh
 
-  Output mesh.
+  Output mesh
 
 
 Code

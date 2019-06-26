@@ -3,7 +3,7 @@ Create Another Instance Of An Image
 
 .. index::
    single: Image
-   single: instance
+   sinlge: instance
 
 Synopsis
 --------

@@ -1,9 +1,8 @@
-Valued Regional Maximal Image
-=============================
+Valued Regional Maxima Image
+============================
 
 .. index::
    single: ValuedRegionalMaximaImageFilter
-   single: max
 
 Synopsis
 --------
@@ -12,16 +11,16 @@ Valued regional maximal of an image.
 Results
 -------
 .. figure:: intensityblobs.png
-  :scale: 120%
-  :alt: intensityblobs.png generated image
+  :scale: 70%
+  :alt: intensityblobs.png
 
-  Intensity blobs image.
+  intensityblobs.png
 
 .. figure:: maximal.png
-  :scale: 120%
-  :alt: maximal.png generated image
+  :scale: 70%
+  :alt: maximal.png
 
-  Maximal image.
+  maximal.png
 
 Code
 ----

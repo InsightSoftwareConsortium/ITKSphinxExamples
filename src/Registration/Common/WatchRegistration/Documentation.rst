@@ -3,7 +3,6 @@ Watch Registration
 
 .. index::
    single: MattesMutualInformationImageToImageMetric
-   pair: watch; registration
 
 Synopsis
 --------
@@ -14,22 +13,22 @@ Watch the iterations of a registration using VTK.
 Results
 -------
 .. figure:: fixed.png
-  :scale: 300%
-  :alt: fixed.png image generated
+  :scale: 70%
+  :alt: fixed.png
 
-  Fixed image.
+  fixed.png
 
 .. figure:: moving.png
-  :scale: 300%
-  :alt: moving.png image generated
+  :scale: 70%
+  :alt: moving.png
 
-  Moving image.
+  moving.png
 
 .. figure:: WatchRegistration.png
-  :scale: 80%
-  :alt: output in vtk window
+  :scale: 70%
+  :alt: VTK Window
 
-  Output in VTK window.
+  Output In VTK Window
 
 Output::
 
@@ -59,6 +58,7 @@ Output::
   Iterations    = 1000
   Metric value  = -0.00195192
   Numb. Samples = 500
+
 
 Code
 ----

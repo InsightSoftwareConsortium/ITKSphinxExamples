@@ -4,7 +4,6 @@ Morphological Watershed Segmentation
 .. index::
    single: MorphologicalWatershedImageFilter
    single: watershed
-   pair: watershed; segmentation
 
 Synopsis
 --------
@@ -15,16 +14,16 @@ Morphological watershed segmentation.
 Results
 -------
 .. figure:: input.png
-  :scale: 150%
-  :alt: input.png image generated
+  :scale: 70%
+  :alt: input.png
 
-  Input image.
+  input.png
 
 .. figure:: output_20_3.png
-  :scale: 150%
-  :alt: output_20_3.png image generated
+  :scale: 70%
+  :alt: output_20_3.png
 
-  Output_20_3 image.
+  output_20_3.png
 
 Output::
 

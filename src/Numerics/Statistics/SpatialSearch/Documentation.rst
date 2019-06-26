@@ -3,7 +3,6 @@ Spatial Search
 
 .. index::
    single: KdTreeGenerator
-   pair: spatial; search
 
 Synopsis
 --------

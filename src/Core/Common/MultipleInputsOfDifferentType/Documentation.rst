@@ -3,8 +3,6 @@ Multiple Inputs Of Different Type
 
 .. index::
    single: ImageToImageFilter
-   pair: multiple; inputs
-   pair: different; type
 
 Synopsis
 --------

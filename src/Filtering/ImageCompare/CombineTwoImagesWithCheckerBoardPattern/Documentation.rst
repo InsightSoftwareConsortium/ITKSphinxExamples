@@ -18,7 +18,7 @@ Results
 .. figure:: OutputBaseline.png
   :alt: Output image
 
-  Output image.
+  Output image
 
 
 Code

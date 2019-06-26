@@ -13,10 +13,9 @@ Extract the boundaries of connected regions in a binary image.
 Results
 -------
 .. figure:: ExtractBoundariesOfConnectedRegionsInBinaryImage.png
-  :scale: 60%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

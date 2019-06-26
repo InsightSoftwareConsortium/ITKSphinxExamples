@@ -14,10 +14,10 @@ Convert a LabelMap to a normal image with different values representing each reg
 Results
 -------
 .. figure:: image.png
-  :scale: 1500%
+  :scale: 70%
   :alt: image.png
 
-  Image generated.
+  image.png
 
 Code
 ----

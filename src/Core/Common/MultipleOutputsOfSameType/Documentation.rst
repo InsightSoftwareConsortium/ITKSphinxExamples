@@ -3,8 +3,6 @@ Multiple Outputs Of Same Type
 
 .. index::
    single: ImageToImageFilter
-   pair: multiple; outputs
-   pair: same; type
 
 Synopsis
 --------
@@ -15,17 +13,16 @@ Write a filter with multiple outputs of the same type.
 Results
 -------
 .. figure:: TestOutput1.jpg
-  :scale: 1500%
+  :scale: 70%
   :alt: TestOutput1.jpg
 
-  TestOuput1 image.
+  TestOuput1.jpg
 
 .. figure:: TestOutput2.jpg
-  :scale: 1500%
+  :scale: 70%
   :alt: TestOutput2.jpg
 
-  TestOutput2 image.
-
+  TestOutput2.jpg
 Code
 ----
 

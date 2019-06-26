@@ -4,7 +4,6 @@ Iterate Line Through Image
 .. index::
    single: LineIterator
    pair: line; image
-   pair: iterate; image
 
 Synopsis
 --------
@@ -15,10 +14,9 @@ Iterate over a line through an image.
 Results
 -------
 .. figure:: IterateLineThroughImage.png
-  :scale: 100%
-  :alt: VTK window
+  :scale: 70%
 
-  Output in VTK window.
+  Output In VTK Window
 
 Code
 ----

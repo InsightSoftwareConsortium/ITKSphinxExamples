@@ -15,28 +15,28 @@ Normalized correlation using the FFT with optional mask images for both input im
 Results
 -------
 .. figure:: fixedImage.png
-  :scale: 600%
-  :alt: fixedImage.png image generated
+  :scale: 70%
+  :alt: fixedImage.png
 
-  Fixed image.
+  fixedImage.png
 
 .. figure:: movingImage.png
-  :scale: 600%
+  :scale: 70%
   :alt: movingImage.png
 
-  Moving image.
+  movingImage.png
 
 .. figure:: NormalizedCorrelationUsingFFTWithMaskImages.png
-  :scale: 50%
-  :alt: correlation.mha generated
+  :scale: 70%
+  :alt: correlation.mha
 
   correlation.mha
 
 .. figure:: correlation.png
-  :scale: 600%
-  :alt: correlation.png image generated
+  :scale: 70%
+  :alt: correlation.png
 
-  Correlation image.
+  correlation.png
 
 Output::
 

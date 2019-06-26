@@ -4,7 +4,6 @@ Resample Segmented Image
 .. index::
    single: LabelImageGaussianInterpolateImageFunction
    pair: segmented; image
-   single: resample
 
 Synopsis
 --------

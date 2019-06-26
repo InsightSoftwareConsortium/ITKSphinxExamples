@@ -14,10 +14,9 @@ Erode a binary image using a flat (box) structuring element.
 Results
 -------
 .. figure:: ErodeBinaryImageUsingFlatStruct.png
-  :scale: 55%
-  :alt: output in vtk window
+  :scale: 70%
 
-  Input and output image when radius = 7.
+  Yinyang.png And Output.png When Radius = 7
 
 Code
 ----
