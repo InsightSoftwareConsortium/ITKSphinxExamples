@@ -78,9 +78,9 @@ int main(int, char* [] )
 
     MembershipFunctionVectorType &  membershipFunctionsVector = membershipFunctionsVectorObject->Get();
 
-    for(unsigned int i = 0; i < kmeansMembershipFunctions.size(); i++)
+    for(auto & kmeansMembershipFunction : kmeansMembershipFunctions)
     {
-        membershipFunctionsVector.push_back(kmeansMembershipFunctions[i].GetPointer());
+        membershipFunctionsVector.push_back(kmeansMembershipFunction.GetPointer());
     }
 
     // Setup class labels
