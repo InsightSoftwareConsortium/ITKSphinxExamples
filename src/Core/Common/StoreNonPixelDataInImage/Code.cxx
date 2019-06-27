@@ -41,7 +41,7 @@ int main(int, char*[])
     dictionary.Print(std::cout);
 
     // View the data individually
-    itk::MetaDataDictionary::Iterator itr = dictionary.Begin();
+    auto itr = dictionary.Begin();
 
     while( itr != dictionary.End() )
     {
