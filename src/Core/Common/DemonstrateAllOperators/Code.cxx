@@ -55,24 +55,24 @@ int main(int, char*[])
     itk::Size<2> radius;
     radius.Fill(1);
 
-    for(unsigned int operatorId = 0; operatorId < operators.size(); operatorId++)
+    for(auto & operatorId : operators)
     {
-        operators[operatorId]->SetDirection(0); // Create the operator for the X axis derivative
-        operators[operatorId]->CreateToRadius(radius);
+        operatorId->SetDirection(0); // Create the operator for the X axis derivative
+        operatorId->CreateToRadius(radius);
         //std::cout << *(operators[operatorId]) << std::endl;
         //operators[operatorId]->Print(std::cout);
         //std::cout << operators[operatorId]->GetNameOfClass() << std::endl;
 
-        for(auto i = -operators[operatorId]->GetSize()[0]/2; i <= operators[operatorId]->GetSize()[0]/2; i++)
+        for(auto i = -operatorId->GetSize()[0]/2; i <= operatorId->GetSize()[0]/2; i++)
         {
-            for(auto j = -operators[operatorId]->GetSize()[1]/2; j <= operators[operatorId]->GetSize()[1]/2; j++)
+            for(auto j = -operatorId->GetSize()[1]/2; j <= operatorId->GetSize()[1]/2; j++)
             {
                 itk::Offset<2> offset;
                 offset[0] = i;
                 offset[1] = j;
 
-                unsigned int neighborhoodIndex = operators[operatorId]->GetNeighborhoodIndex(offset);
-                std::cout << operators[operatorId]->GetElement(neighborhoodIndex) << " ";
+                unsigned int neighborhoodIndex = operatorId->GetNeighborhoodIndex(offset);
+                std::cout << operatorId->GetElement(neighborhoodIndex) << " ";
             }
             std::cout << std::endl;
         }

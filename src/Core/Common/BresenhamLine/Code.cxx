@@ -44,9 +44,9 @@ void Vector()
   v[1] = 1;
   std::vector< itk::Offset<2> > offsets = line.BuildLine(v, 4);
 
-  for(unsigned int i = 0; i < offsets.size(); i++)
+  for(auto offset : offsets)
     {
-    std::cout << offsets[i] << std::endl;
+    std::cout << offset << std::endl;
     }
 
 }
@@ -65,9 +65,9 @@ void Line()
 
   std::vector< itk::Index<2> > pixels = line.BuildLine(pixel0, pixel1);
 
-  for(unsigned int i = 0; i < pixels.size(); i++)
+  for(auto pixel : pixels)
     {
-    std::cout << pixels[i] << std::endl;
+    std::cout << pixel << std::endl;
     }
 
 }
