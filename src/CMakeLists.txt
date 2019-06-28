@@ -10,9 +10,11 @@ include(${ITK_USE_FILE})
 # To avoid linker issues.
 # Module_ITKVtkGlue is true when building inside ITK
 # ITKVtkGlue_LOADED is true when SuperBuild ITKEx stand-alone
+set(HAS_VtkGlue OFF)
 if(Module_ITKVtkGlue OR ITKVtkGlue_LOADED)
   find_package(VTK REQUIRED)
   include(${VTK_USE_FILE})
+  set(HAS_VtkGlue ON)
 else()
   # TODO: Instrument so that ITKVtkGlue examples and VTK were not
   #       strictly required.  That will require a lot of
