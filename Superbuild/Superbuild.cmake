@@ -31,7 +31,7 @@ endif()
 set(ITKExamples_DEPENDENCIES )
 set(ITK_DEPENDENCIES )
 
-option(ITKExamples_USE_VTK "Add VTK to the superbuild." ON)
+option(ITKExamples_USE_VTK "Add VTK to the superbuild." OFF)
 # Used by ITK, VTK, -- always build it.
 if(NOT WIN32 OR ITKExamples_USE_VTK AND NOT VTK_DIR)
   include(${CMAKE_SOURCE_DIR}/External-zlib.cmake)

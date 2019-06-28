@@ -24,7 +24,9 @@
 #include "itksys/SystemTools.hxx"
 #include <sstream>
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main( int argc, char *argv[])
 {
@@ -64,6 +66,7 @@ int main( int argc, char *argv[])
     rescaleFilter->SetOutputMaximum(itk::NumericTraits<PixelType>::max());
     rescaleFilter->SetInput(labelShapeKeepNObjectsImageFilter->GetOutput());
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             reader->GetOutput(),true,
@@ -77,6 +80,7 @@ int main( int argc, char *argv[])
             desc.str());
 
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

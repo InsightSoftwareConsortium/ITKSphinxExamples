@@ -21,7 +21,9 @@
 #include "itkRescaleIntensityImageFilter.h"
 #include "itkRecursiveGaussianImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main(int argc, char * argv[])
 {
@@ -55,10 +57,12 @@ int main(int argc, char * argv[])
     gaussianFilter->SetDirection(0); // "x" axis
     gaussianFilter->SetSecondOrder();
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage<UnsignedCharImageType>(reader->GetOutput());
     viewer.AddImage<FloatImageType>(gaussianFilter->GetOutput());
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

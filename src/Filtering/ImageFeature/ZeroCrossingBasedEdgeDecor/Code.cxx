@@ -22,7 +22,9 @@
 
 #include "itksys/SystemTools.hxx"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main(int argc, char * argv[])
 {
@@ -61,6 +63,7 @@ int main(int argc, char * argv[])
     variance.Fill(var);
     edgeDetector->SetVariance(variance);
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             reader->GetOutput(),true,
@@ -75,7 +78,7 @@ int main(int argc, char * argv[])
             desc.str());
 
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

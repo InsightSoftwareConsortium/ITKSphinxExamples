@@ -21,7 +21,9 @@
 #include "itkSubtractImageFilter.h"
 #include "itkImageFileReader.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main( int argc, char *argv[])
 {
@@ -61,6 +63,7 @@ int main( int argc, char *argv[])
     diff->SetInput1(reader->GetOutput());
     diff->SetInput2(smoothing->GetOutput());
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage<InternalImageType>(
             reader->GetOutput(),true,
@@ -81,7 +84,7 @@ int main( int argc, char *argv[])
             desc2.str());
 
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

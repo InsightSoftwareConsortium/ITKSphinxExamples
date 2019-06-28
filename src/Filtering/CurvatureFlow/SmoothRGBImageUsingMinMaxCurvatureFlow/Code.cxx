@@ -26,7 +26,9 @@
 
 #include <sstream>
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main(int argc, char * argv[])
 {
@@ -103,6 +105,7 @@ int main(int argc, char * argv[])
     compose->SetInput2 (gCurvatureFilter->GetOutput());
     compose->SetInput3 (bCurvatureFilter->GetOutput());
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddRGBImage(
             reader->GetOutput(),
@@ -117,6 +120,7 @@ int main(int argc, char * argv[])
             desc.str());
 
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

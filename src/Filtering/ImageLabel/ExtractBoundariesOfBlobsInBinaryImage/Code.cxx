@@ -21,8 +21,9 @@
 #include "itkBinaryContourImageFilter.h"
 #include "itkRescaleIntensityImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
-
+#endif
 using ImageType = itk::Image<unsigned char, 2>;
 
 static void CreateImage(ImageType::Pointer image);
@@ -58,12 +59,13 @@ int main(int, char *[])
     binaryContourFilter->SetBackgroundValue(0);
     binaryContourFilter->Update();
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(image.GetPointer());
     viewer.AddImage(outerBoundary.GetPointer());
     viewer.AddImage(binaryContourFilter->GetOutput());
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

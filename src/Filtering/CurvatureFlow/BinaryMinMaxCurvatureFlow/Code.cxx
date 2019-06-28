@@ -22,7 +22,9 @@
 
 #include "itksys/SystemTools.hxx"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main(int argc, char* argv[])
 {
@@ -64,6 +66,7 @@ int main(int argc, char* argv[])
     diff->SetInput1(reader->GetOutput());
     diff->SetInput2(filter->GetOutput());
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             reader->GetOutput(),true,
@@ -85,6 +88,7 @@ int main(int argc, char* argv[])
             desc2.str());
 
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

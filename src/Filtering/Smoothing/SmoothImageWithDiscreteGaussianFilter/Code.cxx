@@ -19,7 +19,9 @@
 #include "itkImageFileReader.h"
 #include "itkDiscreteGaussianImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main(int argc, char * argv[])
 {
@@ -58,10 +60,12 @@ int main(int argc, char * argv[])
     gaussianFilter->SetInput( reader->GetOutput() );
     gaussianFilter->SetVariance(variance);
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage<UnsignedCharImageType>(reader->GetOutput());
     viewer.AddImage<FloatImageType>(gaussianFilter->GetOutput());
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

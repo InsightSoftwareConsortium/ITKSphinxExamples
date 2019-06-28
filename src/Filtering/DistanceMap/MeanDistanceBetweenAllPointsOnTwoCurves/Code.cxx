@@ -19,7 +19,9 @@
 #include "itkImageFileReader.h"
 #include "itkContourMeanDistanceImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 template<typename TImage>
 static void CreateImage1(TImage* const);
@@ -47,11 +49,12 @@ int main(int, char*[])
 
     std::cout << "Mean distance: " << contourMeanDistanceImageFilter->GetMeanDistance() << std::endl;
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(image1.GetPointer());
     viewer.AddImage(image2.GetPointer());
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

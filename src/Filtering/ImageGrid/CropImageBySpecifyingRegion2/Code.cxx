@@ -22,7 +22,9 @@
 
 #include "itksys/SystemTools.hxx"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 using PixelType = itk::RGBPixel<unsigned char>;
 using ImageType = itk::Image<PixelType, 2>;
@@ -74,6 +76,7 @@ int main(int argc, char *argv[])
     //cropFilter->SetUpperBoundaryCropSize(halfCropSize);
     //cropFilter->SetLowerBoundaryCropSize(halfCropSize);
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddRGBImage(
             image.GetPointer(),
@@ -89,7 +92,7 @@ int main(int argc, char *argv[])
             desc2.str());
 
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

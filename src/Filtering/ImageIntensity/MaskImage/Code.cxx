@@ -28,7 +28,9 @@ int main(int argc, char *argv[])
 #include "itkImageFileReader.h"
 #include "itkMaskImageFilter.h"
 #include "itkImageRegionIterator.h"
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 using ImageType = itk::Image<unsigned char, 2>;
 
@@ -55,6 +57,7 @@ int main(int argc, char *argv[])
     maskFilter->SetInput(reader->GetOutput());
     maskFilter->SetMaskImage(mask);
     mask->Print(std::cout);
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             reader->GetOutput(),true,
@@ -75,7 +78,7 @@ int main(int argc, char *argv[])
             desc2.str());
 
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

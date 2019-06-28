@@ -24,7 +24,9 @@
 #include "itksys/SystemTools.hxx"
 #include <sstream>
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 namespace
 {
@@ -73,6 +75,7 @@ int main(int argc, char *argv[])
     rgbFilter->SetInput( labelContourImageFilter->GetOutput() );
     rgbFilter->SetColormap( RGBFilterType::Jet );
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             image.GetPointer(),true,
@@ -86,7 +89,7 @@ int main(int argc, char *argv[])
             desc.str());
 
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

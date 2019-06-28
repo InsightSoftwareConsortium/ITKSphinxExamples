@@ -22,7 +22,9 @@
 #include "itksys/SystemTools.hxx"
 #include <sstream>
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 using ImageType = itk::Image< unsigned char, 2 >;
 
@@ -55,6 +57,7 @@ int main( int argc, char *argv[])
     confidenceConnectedFilter->SetSeed(seed);
     confidenceConnectedFilter->SetInput(reader->GetOutput());
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             reader->GetOutput(),true,
@@ -68,6 +71,7 @@ int main( int argc, char *argv[])
             desc.str());
 
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

@@ -40,21 +40,8 @@ compare_to_baseline(EXAMPLE_NAME AddConstantToEveryPixel
   BASELINE_PREFIX OutputBaseline
   )
 
-list(FIND ITK_MODULES_ENABLED ITKVtkGlue _have)
-if(NOT ${_have} EQUAL "-1")
-  add_example(AddTwoImages)
-  compare_to_baseline(EXAMPLE_NAME AddTwoImages
-    BASELINE_PREFIX OutputBaseline
-  )
-endif()
-
 add_example(SubtractConstantFromEveryPixel)
 compare_to_baseline(EXAMPLE_NAME SubtractConstantFromEveryPixel
-  BASELINE_PREFIX OutputBaseline
-  )
-
-add_example(SubtractTwoImages)
-compare_to_baseline(EXAMPLE_NAME SubtractTwoImages
   BASELINE_PREFIX OutputBaseline
   )
 
@@ -142,3 +129,18 @@ add_example(ComputeEdgePotential)
 compare_to_baseline(EXAMPLE_NAME ComputeEdgePotential
   BASELINE_PREFIX OutputBaseline
   )
+
+if(ENABLE_QUICKVIEW)
+
+add_example(AddTwoImages)
+  compare_to_baseline(EXAMPLE_NAME AddTwoImages
+    BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(SubtractTwoImages)
+compare_to_baseline(EXAMPLE_NAME SubtractTwoImages
+  BASELINE_PREFIX OutputBaseline
+  )
+
+endif()
+

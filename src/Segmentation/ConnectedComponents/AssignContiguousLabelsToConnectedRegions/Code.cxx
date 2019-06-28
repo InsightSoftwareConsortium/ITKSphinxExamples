@@ -24,7 +24,9 @@
 
 #include "itkRelabelComponentImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 using RGBPixelType = itk::RGBPixel<unsigned char>;
 using RGBImageType = itk::Image<RGBPixelType, 2>;
@@ -64,6 +66,7 @@ int main(int, char *[])
     colormapFilter2->SetInput (relabelFilter->GetOutput());
     colormapFilter2->SetColormap(largeColormap);
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddRGBImage(
             colormapFilter1->GetOutput(),
@@ -76,6 +79,7 @@ int main(int, char *[])
             "Relabeled");
 
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

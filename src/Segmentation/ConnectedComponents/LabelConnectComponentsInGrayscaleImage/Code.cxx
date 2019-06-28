@@ -26,7 +26,9 @@
 #include "itksys/SystemTools.hxx"
 #include <sstream>
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 template <typename TImage>
 static void CreateImage(TImage* const image);
@@ -95,6 +97,7 @@ int main( int argc, char *argv[])
             RGBFilterType::New();
     rgbFilter->SetInput( relabel->GetOutput() );
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             image.GetPointer(),true,
@@ -112,6 +115,7 @@ int main( int argc, char *argv[])
             desc.str());
 
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

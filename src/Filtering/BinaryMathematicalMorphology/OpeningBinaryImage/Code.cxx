@@ -21,7 +21,9 @@
 #include "itkBinaryBallStructuringElement.h"
 #include "itkSubtractImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 namespace
 {
@@ -72,6 +74,7 @@ int main(int argc, char *argv[])
     diff->SetInput1(image);
     diff->SetInput2(openingFilter->GetOutput());
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     std::stringstream desc;
     desc << "Original ";
@@ -91,7 +94,7 @@ int main(int argc, char *argv[])
                     true,
                     desc3.str());
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 
