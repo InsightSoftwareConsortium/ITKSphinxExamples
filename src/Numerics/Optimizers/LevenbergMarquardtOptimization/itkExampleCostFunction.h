@@ -87,8 +87,8 @@ protected:
   ~ExampleCostFunction() override= default;;
 
 private:
-  ExampleCostFunction(const Self &); //purposely not implemented
-  void operator = (const Self &); //purposely not implemented
+  ExampleCostFunction(const Self &) = delete; //purposely not implemented
+  void operator = (const Self &) = delete; //purposely not implemented
 
   // The x and y positions of the data, created in the constructor
   std::vector<double> x;

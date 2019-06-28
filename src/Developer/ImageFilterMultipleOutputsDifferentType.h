@@ -34,8 +34,8 @@ protected:
   DataObject::Pointer MakeOutput(unsigned int idx);
 
 private:
-  ImageFilterMultipleOutputsDifferentType(const Self &); //purposely not implemented
-  void operator=(const Self &);  //purposely not implemented
+  ImageFilterMultipleOutputsDifferentType(const Self &) = delete; //purposely not implemented
+  void operator=(const Self &) = delete;  //purposely not implemented
 
 };
 } //namespace ITK

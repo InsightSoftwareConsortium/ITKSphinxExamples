@@ -40,8 +40,8 @@ namespace itk
         ~ExampleCostFunction2() override= default;;
 
     private:
-        ExampleCostFunction2(const Self &); //purposely not implemented
-        void operator = (const Self &); //purposely not implemented
+        ExampleCostFunction2(const Self &) = delete; //purposely not implemented
+        void operator = (const Self &) = delete; //purposely not implemented
     };
 
 } // end namespace itk

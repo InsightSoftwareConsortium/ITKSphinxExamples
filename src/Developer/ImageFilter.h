@@ -28,8 +28,8 @@ protected:
   void GenerateData() override;
 
 private:
-  ImageFilter(const Self &); //purposely not implemented
-  void operator=(const Self &);  //purposely not implemented
+  ImageFilter(const Self &) = delete; //purposely not implemented
+  void operator=(const Self &) = delete;  //purposely not implemented
 
 };
 } //namespace ITK

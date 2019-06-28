@@ -28,8 +28,8 @@ protected:
   void GenerateData() override;
 
 private:
-  MyInPlaceImageFilter(const Self &); //purposely not implemented
-  void operator=(const Self &);  //purposely not implemented
+  MyInPlaceImageFilter(const Self &) = delete; //purposely not implemented
+  void operator=(const Self &) = delete;  //purposely not implemented
 
 };
 } //namespace ITK

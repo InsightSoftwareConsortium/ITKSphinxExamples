@@ -34,8 +34,8 @@ protected:
   void GenerateData() override;
 
 private:
-  ImageFilterMultipleInputs(const Self &); //purposely not implemented
-  void operator=(const Self &);  //purposely not implemented
+  ImageFilterMultipleInputs(const Self &) = delete; //purposely not implemented
+  void operator=(const Self &) = delete;  //purposely not implemented
 
 };
 } //namespace ITK
