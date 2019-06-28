@@ -35,7 +35,7 @@ void ImageFilterMultipleOutputsDifferentType<TInputImage, TOutputImage1, TOutput
   typename TOutputImage1::Pointer output1 = this->GetOutput1();
   output1->SetRegions(region);
   output1->Allocate();
-  
+
   // Setup output 2
   typename TOutputImage2::Pointer output2 = this->GetOutput2();
   output2->SetRegions(region);
@@ -44,7 +44,7 @@ void ImageFilterMultipleOutputsDifferentType<TInputImage, TOutputImage1, TOutput
 }
 
 template< typename TInputImage, typename TOutputImage1, typename TOutputImage2>
-DataObject::Pointer ImageFilterMultipleOutputsDifferentType<TInputImage, TOutputImage1, TOutputImage2>::MakeOutput(unsigned int idx)
+DataObject::Pointer ImageFilterMultipleOutputsDifferentType<TInputImage, TOutputImage1, TOutputImage2>::MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx)
 {
   DataObject::Pointer output;
 
