@@ -42,10 +42,10 @@ int main( int argc, char *argv[] )
   using AdaptiveHistogramEqualizationImageFilterType = itk::AdaptiveHistogramEqualizationImageFilter< ImageType >;
   AdaptiveHistogramEqualizationImageFilterType::Pointer adaptiveHistogramEqualizationImageFilter = AdaptiveHistogramEqualizationImageFilterType::New();
 
-  float alpha = atof( argv[3] );
+  float alpha = std::stod( argv[3] );
   adaptiveHistogramEqualizationImageFilter->SetAlpha( alpha );
 
-  float beta = atof( argv[4] );
+  float beta = std::stod( argv[4] );
   adaptiveHistogramEqualizationImageFilter->SetBeta( beta );
 
   int radiusSize = std::stoi( argv[5] );

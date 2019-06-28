@@ -40,12 +40,12 @@ int main( int argc, char* argv[] )
   double sigmaMinimum = 1.0;
   if( argc > 3 )
     {
-    sigmaMinimum = atof( argv[3] );
+    sigmaMinimum = std::stod( argv[3] );
     }
   double sigmaMaximum = 10.0;
   if( argc > 4 )
     {
-    sigmaMaximum = atof( argv[4] );
+    sigmaMaximum = std::stod( argv[4] );
     }
   unsigned int numberOfSigmaSteps = 10;
   if( argc > 5 )

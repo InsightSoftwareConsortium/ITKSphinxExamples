@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
         input = reader->GetOutput();
         if (argc > 2)
         {
-            factor = atof(argv[2]);
+            factor = std::stod(argv[2]);
         }
     }
 

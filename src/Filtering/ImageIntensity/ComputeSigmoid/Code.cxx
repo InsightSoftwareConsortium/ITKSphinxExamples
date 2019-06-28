@@ -43,8 +43,8 @@ int main( int argc, char* argv[] )
 
   const auto outputMinimum = static_cast<PixelType>(atoi( argv[3] ) );
   const auto outputMaximum = static_cast<PixelType>(atoi( argv[4] ) );
-  const ScalarType alpha = atof( argv[5] );
-  const ScalarType beta  = atof( argv[6] );
+  const ScalarType alpha = std::stod( argv[5] );
+  const ScalarType beta  = std::stod( argv[6] );
 
   using ReaderType = itk::ImageFileReader< ImageType >;
   ReaderType::Pointer reader = ReaderType::New();

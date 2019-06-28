@@ -64,8 +64,8 @@ int main( int argc, char *argv[] )
   using WatershedFilterType = itk::WatershedImageFilter< FloatImageType >;
   WatershedFilterType::Pointer watershed = WatershedFilterType::New();
 
-  float threshold = atof( argv[3] );
-  float level = atof( argv[4] );
+  float threshold = std::stod( argv[3] );
+  float level = std::stod( argv[4] );
 
   watershed->SetThreshold( threshold );
   watershed->SetLevel( level );

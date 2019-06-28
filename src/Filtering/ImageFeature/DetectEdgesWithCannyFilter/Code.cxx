@@ -40,9 +40,9 @@ int main( int argc, char* argv[] )
 
   const char * inputImage = argv[1];
   const char * outputImage = argv[2];
-  const InputPixelType variance = atof( argv[3] );
-  const InputPixelType lowerThreshold = atof( argv[4] );
-  const InputPixelType upperThreshold = atof( argv[5] );
+  const InputPixelType variance = std::stod( argv[3] );
+  const InputPixelType lowerThreshold = std::stod( argv[4] );
+  const InputPixelType upperThreshold = std::stod( argv[5] );
 
   using InputImageType = itk::Image<InputPixelType, Dimension>;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;

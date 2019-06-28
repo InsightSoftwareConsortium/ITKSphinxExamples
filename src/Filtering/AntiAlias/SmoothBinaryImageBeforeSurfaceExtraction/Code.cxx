@@ -37,7 +37,7 @@ int main( int argc, char* argv[] )
   double maximumRMSError = 0.001;
   if( argc > 3 )
     {
-    maximumRMSError = atof( argv[3] );
+    maximumRMSError = std::stod( argv[3] );
     }
   int numberOfIterations = 50;
   if( argc > 4 )

@@ -48,8 +48,8 @@ int main( int argc, char* argv[] )
   using TransformType = itk::TranslationTransform< double, Dimension >;
 
   TransformType::OutputVectorType vector;
-  vector[0] = atof( argv[3] );
-  vector[1] = atof( argv[4] );
+  vector[0] = std::stod( argv[3] );
+  vector[1] = std::stod( argv[4] );
 
   TransformType::Pointer translation = TransformType::New();
   translation->Translate( vector );

@@ -38,7 +38,7 @@ int main( int argc, char* argv[] )
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
-  const auto defaultValue = static_cast< ScalarType >( atof( argv[3] ) );
+  const auto defaultValue = static_cast< ScalarType >( std::stod( argv[3] ) );
 
   using MatrixType = itk::Matrix< ScalarType, Dimension + 1, Dimension + 1 >;
   MatrixType matrix;

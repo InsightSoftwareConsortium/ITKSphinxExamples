@@ -42,7 +42,7 @@ int main( int argc, char* argv[] )
   double sigmaValue = 0.5;
   if( argc > 3 )
     {
-    sigmaValue = atof( argv[3] );
+    sigmaValue = std::stod( argv[3] );
     }
 
   constexpr unsigned int Dimension = 3;

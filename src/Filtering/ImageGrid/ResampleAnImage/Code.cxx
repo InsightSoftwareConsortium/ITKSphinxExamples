@@ -36,7 +36,7 @@ int main( int argc, char* argv[] )
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
-  const float scale = atof( argv[3] );
+  const float scale = std::stod( argv[3] );
 
   constexpr unsigned int Dimension = 2;
 

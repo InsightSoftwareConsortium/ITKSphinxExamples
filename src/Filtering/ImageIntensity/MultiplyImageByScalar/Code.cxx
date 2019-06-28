@@ -32,7 +32,7 @@ int main( int argc, char* argv[] )
     }
 
   const char * inputFileName = argv[1];
-  const double factor = atof( argv[2] );
+  const double factor = std::stod( argv[2] );
   const char * outputFileName = argv[3];
   constexpr unsigned int Dimension = 2;
 

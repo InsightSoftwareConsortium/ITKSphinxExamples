@@ -43,11 +43,11 @@ int main( int argc, char* argv[] )
   const int seedPosX =              std::stoi( argv[3] );
   const int seedPosY =              std::stoi( argv[4] );
 
-  const double initialDistance =    atof( argv[5] );
-  const double sigma =              atof( argv[6] );
-  const double alpha =              atof( argv[7] );
-  const double beta  =              atof( argv[8] );
-  const double propagationScaling = atof( argv[9] );
+  const double initialDistance =    std::stod( argv[5] );
+  const double sigma =              std::stod( argv[6] );
+  const double alpha =              std::stod( argv[7] );
+  const double beta  =              std::stod( argv[8] );
+  const double propagationScaling = std::stod( argv[9] );
   const double numberOfIterations = std::stoi( argv[10] );
   const double seedValue =          - initialDistance;
 

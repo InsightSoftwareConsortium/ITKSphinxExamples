@@ -51,7 +51,7 @@ int main( int argc, char* argv[] )
   filter->SetInput( reader->GetOutput() );
   filter->SetNumberOfIterations( std::stoi( argv[3] ) );
   filter->SetTimeStep( 0.125 );
-  filter->SetConductanceParameter( atof( argv[4] ) );
+  filter->SetConductanceParameter( std::stod( argv[4] ) );
 
   using WriterType = itk::ImageFileWriter< OutputImageType >;
   WriterType::Pointer writer = WriterType::New();

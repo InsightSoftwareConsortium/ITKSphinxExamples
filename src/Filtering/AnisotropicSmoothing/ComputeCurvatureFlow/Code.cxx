@@ -44,7 +44,7 @@ int main( int argc, char* argv[] )
   using OutputImageType = itk::Image< OutputPixelType, Dimension >;
 
   const int numberOfIterations     = std::stoi( argv[3] );
-  const InputPixelType timeStep    = atof( argv[4] );
+  const InputPixelType timeStep    = std::stod( argv[4] );
 
   using ReaderType = itk::ImageFileReader< InputImageType >;
   ReaderType::Pointer reader = ReaderType::New();
