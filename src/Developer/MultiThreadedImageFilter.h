@@ -30,8 +30,8 @@ protected:
                                     ThreadIdType) override;
 
 private:
-  MultiThreadedImageFilter(const Self &); //purposely not implemented
-  void operator=(const Self &);  //purposely not implemented
+  MultiThreadedImageFilter(const Self &) = delete; //purposely not implemented
+  void operator=(const Self &) = delete;  //purposely not implemented
 
 };
 } //namespace ITK

@@ -47,8 +47,8 @@ protected:
   void ThreadedGenerateData(const typename Superclass::OutputImageRegionType& outputRegionForThread, ThreadIdType threadId) override;
 
 private:
-  OilPaintingImageFilter(const Self &); //purposely not implemented
-  void operator=(const Self &);  //purposely not implemented
+  OilPaintingImageFilter(const Self &) = delete; //purposely not implemented
+  void operator=(const Self &) = delete;  //purposely not implemented
 
   typename TImage::ValueType m_Maximum, m_Minimum;
   typename NeighborhoodIterator<TImage>::RadiusType m_Radius;
