@@ -76,8 +76,12 @@ if(CMAKE_HOST_WIN32)
   endif()
 endif()
 
-# To get the ITK version.  Optional if we are building as an ITK module.
-find_package(ITK QUIET)
+#Optional if we are building as an ITK module, these variables will be pre-defined
+if(NOT ITK_VERSION)
+  # To get the ITK version information from external pacakge when building
+  # stand alone, ITK is required.
+  find_package(ITK 5.0.0 REQUIRED)
+endif()
 set(ITKExamples_VERSION_MAJOR ${ITK_VERSION_MAJOR})
 set(ITKExamples_VERSION_MINOR ${ITK_VERSION_MINOR})
 set(ITKExamples_VERSION_PATCH ${ITK_VERSION_PATCH})
