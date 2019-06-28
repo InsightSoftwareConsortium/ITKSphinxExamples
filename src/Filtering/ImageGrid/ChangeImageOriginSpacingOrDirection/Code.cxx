@@ -37,27 +37,27 @@ int main( int argc, char* argv[] )
   double scalingFactor = 1.0;
   if( argc > 3 )
     {
-    scalingFactor = atof( argv[3] );
+    scalingFactor = std::stod( argv[3] );
     }
   double translationX = 0.0;
   if( argc > 3 )
     {
-    translationX = atof( argv[3] );
+    translationX = std::stod( argv[3] );
     }
   double translationY = 0.0;
   if( argc > 4 )
     {
-    translationY = atof( argv[4] );
+    translationY = std::stod( argv[4] );
     }
   double translationZ = 0.0;
   if( argc > 5 )
     {
-    translationZ = atof( argv[5] );
+    translationZ = std::stod( argv[5] );
     }
   double rotationZ = 0.0;
   if( argc > 6 )
     {
-    rotationZ = atof( argv[6] );
+    rotationZ = std::stod( argv[6] );
     }
 
   constexpr unsigned int Dimension = 3;

@@ -33,7 +33,7 @@ int main( int argc, char* argv[] )
     }
   const char * inputImage = argv[1];
   const char * outputImage = argv[2];
-  const double sigma = atof( argv[3] );
+  const double sigma = std::stod( argv[3] );
 
   constexpr unsigned int Dimension = 2;
   using PixelType = float;

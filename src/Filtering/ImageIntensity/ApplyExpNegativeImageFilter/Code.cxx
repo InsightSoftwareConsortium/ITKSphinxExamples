@@ -33,7 +33,7 @@ int main( int argc, char* argv[] )
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
-  const double k = atof( argv[3] );
+  const double k = std::stod( argv[3] );
 
   constexpr unsigned int Dimension = 2;
   using PixelType = float;
