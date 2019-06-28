@@ -19,7 +19,9 @@
 #include "itkFlatStructuringElement.h"
 #include "itkBinaryErodeImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -54,10 +56,12 @@ int main(int argc, char *argv[])
     erodeFilter->SetKernel(structuringElement);
     erodeFilter->SetErodeValue(255);
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(reader->GetOutput());
     viewer.AddImage(erodeFilter->GetOutput());
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

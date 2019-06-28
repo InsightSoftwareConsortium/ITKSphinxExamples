@@ -19,7 +19,9 @@
 #include "itkImageFileReader.h"
 #include "itkImageRegionIteratorWithIndex.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main(int argc, char*argv[])
 {
@@ -62,10 +64,12 @@ int main(int argc, char*argv[])
         ++imageIterator;
     }
 
+#ifdef ENABLE_QUICKVIEW
     // Visualize
     QuickView viewer;
     viewer.AddImage<ImageType>( image );
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

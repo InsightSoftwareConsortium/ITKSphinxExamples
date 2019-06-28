@@ -20,7 +20,9 @@
 #include "itkConvolutionImageFilter.h"
 #include "itkImageRegionIterator.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 using ImageType = itk::Image<float, 2>;
 
@@ -61,6 +63,7 @@ int main(int argc, char * argv[])
 #else
     convolutionFilter->SetImageKernelInput(kernel);
 #endif
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage<ImageType>(
             reader->GetOutput(),true,
@@ -74,7 +77,7 @@ int main(int argc, char * argv[])
             true,
             desc.str());
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

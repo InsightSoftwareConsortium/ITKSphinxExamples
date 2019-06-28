@@ -26,7 +26,9 @@
 #include "itksys/SystemTools.hxx"
 #include <sstream>
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main( int argc, char *argv[])
 {
@@ -85,6 +87,7 @@ int main( int argc, char *argv[])
     castOutput->SetInput(adaptOutput);
 
     // 5) Display the input and smoothed images
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddRGBImage(
             reader->GetOutput(),
@@ -101,7 +104,7 @@ int main( int argc, char *argv[])
             desc.str());
 
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

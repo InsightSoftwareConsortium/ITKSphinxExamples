@@ -23,7 +23,9 @@
 
 #include "itksys/SystemTools.hxx"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 using PixelType = itk::RGBPixel<unsigned char>;
 using ImageType = itk::Image<PixelType, 2>;
@@ -70,6 +72,7 @@ int main(int argc, char*argv[])
         ++it1;
     }
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     if (argc > 1)
     {
@@ -86,7 +89,7 @@ int main(int argc, char*argv[])
                 "Synthetic");
     }
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

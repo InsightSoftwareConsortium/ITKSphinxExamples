@@ -32,7 +32,9 @@
 #include "itkCastImageFilter.h"
 #include "itkSquaredDifferenceImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 constexpr unsigned int ImageDimension = 2;
 using PixelType = float;
@@ -264,6 +266,7 @@ int main( int itkNotUsed( argc ), char * itkNotUsed( argv )[] )
         return EXIT_FAILURE;
     }
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             fixedImage.GetPointer(),true,
@@ -276,6 +279,7 @@ int main( int itkNotUsed( argc ), char * itkNotUsed( argv )[] )
             "Resampled Moving Image");
 
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

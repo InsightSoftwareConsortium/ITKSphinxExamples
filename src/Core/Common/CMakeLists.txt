@@ -117,10 +117,6 @@ compare_to_baseline(EXAMPLE_NAME CustomOperationToEachPixelInImage
   BASELINE_PREFIX OutputBaseline
   )
 
-add_example(FindMaxAndMinInImage)
-compare_to_baseline(EXAMPLE_NAME FindMaxAndMinInImage
-  BASELINE_PREFIX OutputBaseline
-  )
 
 add_example(CreateVectorImage)
 compare_to_baseline(EXAMPLE_NAME CreateVectorImage
@@ -162,30 +158,17 @@ compare_to_baseline(EXAMPLE_NAME IterateLineThroughImageWithoutWriteAccess
   BASELINE_PREFIX OutputBaseline
   )
 
-add_example(IterateRegionWithNeighborhood)
-compare_to_baseline(EXAMPLE_NAME IterateRegionWithNeighborhood
-  BASELINE_PREFIX OutputBaseline
-  )
-
 add_example(IterateWithNeighborhoodWithoutAccess)
 compare_to_baseline(EXAMPLE_NAME IterateWithNeighborhoodWithoutAccess
   BASELINE_PREFIX OutputBaseline
   )
 
-add_example(IterateRegionWithWriteAccess)
-compare_to_baseline(EXAMPLE_NAME IterateRegionWithWriteAccess
-  BASELINE_PREFIX OutputBaseline
-  )
 
 add_example(IterateRegionWithoutWriteAccess)
 compare_to_baseline(EXAMPLE_NAME IterateRegionWithoutWriteAccess
   BASELINE_PREFIX OutputBaseline
   )
 
-add_example(OutOfBoundsPixelsReturnConstValue)
-compare_to_baseline(EXAMPLE_NAME OutOfBoundsPixelsReturnConstValue
-  BASELINE_PREFIX OutputBaseline
-  )
 
 add_example(IterateRegionWithAccessToIndexWithWriteAccess)
 compare_to_baseline(EXAMPLE_NAME IterateRegionWithAccessToIndexWithWriteAccess
@@ -330,11 +313,6 @@ compare_to_baseline(EXAMPLE_NAME IterateImageStartingAtSeed
   BASELINE_PREFIX OutputBaseline
   )
 
-add_example(InPlaceFilterOfImage)
-compare_to_baseline(EXAMPLE_NAME InPlaceFilterOfImage
-  BASELINE_PREFIX OutputBaseline
-  )
-
 add_example(DemonstrateAllOperators)
 compare_to_baseline(EXAMPLE_NAME DemonstrateAllOperators
         BASELINE_PREFIX OutputBaseline
@@ -358,3 +336,30 @@ add_example(DirectWarningToFile)
 compare_to_baseline(EXAMPLE_NAME DirectWarningToFile
         BASELINE_PREFIX OutputBaseline
         )
+if(ENABLE_QUICKVIEW)
+
+add_example(FindMaxAndMinInImage)
+compare_to_baseline(EXAMPLE_NAME FindMaxAndMinInImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(InPlaceFilterOfImage)
+compare_to_baseline(EXAMPLE_NAME InPlaceFilterOfImage
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(IterateRegionWithNeighborhood)
+compare_to_baseline(EXAMPLE_NAME IterateRegionWithNeighborhood
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(IterateRegionWithWriteAccess)
+compare_to_baseline(EXAMPLE_NAME IterateRegionWithWriteAccess
+  BASELINE_PREFIX OutputBaseline
+  )
+
+add_example(OutOfBoundsPixelsReturnConstValue)
+compare_to_baseline(EXAMPLE_NAME OutOfBoundsPixelsReturnConstValue
+  BASELINE_PREFIX OutputBaseline
+  )
+endif()

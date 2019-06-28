@@ -36,7 +36,9 @@
 #include "itksys/SystemTools.hxx"
 #include <sstream>
 #include <map>
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main(int argc, char* argv[] )
 {
@@ -78,6 +80,7 @@ int main(int argc, char* argv[] )
     ReaderType::Pointer reader = ReaderType::New();
     reader->SetFileName( argv[1] );
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             reader->GetOutput(),true,
@@ -132,5 +135,6 @@ int main(int argc, char* argv[] )
     }
 
     viewer.Visualize();
+#endif
     return EXIT_SUCCESS;
 }

@@ -20,7 +20,9 @@
 #include "itkContourSpatialObjectPoint.h"
 #include "itkImageFileWriter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main( int  /*argc*/, char * /*argv*/[] )
 {
@@ -62,14 +64,16 @@ int main( int  /*argc*/, char * /*argv*/[] )
   imageFilter->SetInput(contour);
   imageFilter->Update();
 
-  QuickView viewer;
-  viewer.AddImage(imageFilter->GetOutput());
-  viewer.Visualize();
   using WriterType = itk::ImageFileWriter< ImageType >;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName("contour.png");
   writer->SetInput( imageFilter->GetOutput() );
   writer->Update();
 
+#ifdef ENABLE_QUICKVIEW
+  QuickView viewer;
+  viewer.AddImage(imageFilter->GetOutput());
+  viewer.Visualize();
+#endif
 return EXIT_SUCCESS;
 }

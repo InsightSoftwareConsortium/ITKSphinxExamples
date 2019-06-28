@@ -19,7 +19,9 @@
 #include "itkImageFileReader.h"
 #include "itkRescaleIntensityImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 using ImageType = itk::Image<unsigned char, 2>;
 
@@ -51,10 +53,12 @@ int main(int argc, char *argv[])
     rescaleFilter->SetOutputMaximum(255);
     rescaleFilter->Update();
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(image.GetPointer());
     viewer.AddImage(rescaleFilter->GetOutput());
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

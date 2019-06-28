@@ -23,7 +23,9 @@
 #include "vtkPNGReader.h"
 #include <vtkImageLuminance.h>
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main(int argc, char*argv[])
 {
@@ -58,9 +60,11 @@ int main(int argc, char*argv[])
   ImageType::Pointer image = ImageType::New();
   image->Graft(vtkImageToImageFilter->GetOutput()); // Need to do this because QuickView can't accept const
 
+#ifdef ENABLE_QUICKVIEW
   QuickView viewer;
   viewer.AddImage(image.GetPointer()); // Need to do this because QuickView can't accept smart pointers
   viewer.Visualize();
+#endif
 
   return EXIT_SUCCESS;
 }

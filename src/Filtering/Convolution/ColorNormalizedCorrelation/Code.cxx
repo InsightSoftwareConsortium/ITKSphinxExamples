@@ -25,7 +25,9 @@
 #include "itkMinimumMaximumImageCalculator.h"
 #include "itkCovariantVector.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 #include <iostream>
 #include <string>
@@ -148,12 +150,14 @@ int main(int argc, char *argv[])
     bestPatchExtractFilter->SetInput(reader->GetOutput());
     bestPatchExtractFilter->Update();
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(reader->GetOutput());
     viewer.AddImage(extractFilter->GetOutput());
     viewer.AddImage(correlationFilter->GetOutput());
     viewer.AddImage(bestPatchExtractFilter->GetOutput());
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

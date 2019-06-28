@@ -20,7 +20,9 @@
 
 #include "itkOilPaintingImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 int main(int argc, char*argv[])
 {
@@ -55,6 +57,7 @@ int main(int argc, char*argv[])
     filter->SetRadius(radius);
     filter->Update();
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             reader->GetOutput(),
@@ -70,6 +73,7 @@ int main(int argc, char*argv[])
             desc.str());
 
     viewer.Visualize();
+#endif
 
     return EXIT_SUCCESS;
 }

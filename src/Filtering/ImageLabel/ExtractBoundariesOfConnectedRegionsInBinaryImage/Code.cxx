@@ -19,7 +19,9 @@
 #include "itkImageFileWriter.h"
 #include "itkBinaryContourImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 using ImageType = itk::Image<unsigned char, 2>;
 
@@ -36,11 +38,12 @@ int main(int, char *[])
             = binaryContourImageFilterType::New ();
     binaryContourFilter->SetInput(image);
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage<ImageType>(image);
     viewer.AddImage<ImageType>(binaryContourFilter->GetOutput());
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

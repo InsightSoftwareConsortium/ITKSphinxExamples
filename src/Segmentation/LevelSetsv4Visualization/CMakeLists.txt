@@ -1,8 +1,10 @@
+if(ENABLE_QUICKVIEW)
 add_example( VisualizeStaticDense2DLevelSetAsElevationMap )
 add_example( VisualizeStaticDense2DLevelSetZeroSet )
 add_example( VisualizeStaticWhitaker2DLevelSetLayers )
 add_example( VisualizeStaticShi2DLevelSetLayers )
 add_example( VisualizeStaticMalcolm2DLevelSetLayers )
+endif()
 
 add_example( VisualizeEvolvingDense2DLevelSetAsElevationMap )
 add_example( VisualizeEvolvingDense2DLevelSetZeroSet )

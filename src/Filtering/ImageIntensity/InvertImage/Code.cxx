@@ -19,7 +19,9 @@
 #include "itkInvertIntensityImageFilter.h"
 #include "itkImageFileReader.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 using ImageType = itk::Image<unsigned char, 2>;
 
@@ -60,6 +62,7 @@ int main(int argc, char *argv[])
     invertIntensityFilter->SetInput(image);
     invertIntensityFilter->SetMaximum(maximum);
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(
             image.GetPointer(),
@@ -74,6 +77,7 @@ int main(int argc, char *argv[])
             desc2.str());
 
     viewer.Visualize();
+#endif
     return EXIT_SUCCESS;
 }
 

@@ -65,11 +65,6 @@ int main(int argc, char*argv[])
     ifftFilter->SetInput(fftFilter->GetOutput());
     ifftFilter->Update();
 
-//   QuickView viewer;
-//   viewer.AddImage(image.GetPointer());
-//   viewer.AddImage(ifftFilter->GetOutput());
-//   viewer.Visualize();
-
     using CastFilterType = itk::CastImageFilter< FloatImageType, UnsignedCharImageType >;
     CastFilterType::Pointer castFilter = CastFilterType::New();
     castFilter->SetInput(ifftFilter->GetOutput());

@@ -21,7 +21,9 @@
 #include "itkBinaryBallStructuringElement.h"
 #include "itkImageFileWriter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 template <typename TImage>
 void CreateImage(TImage* const image);
@@ -57,11 +59,12 @@ int main(int argc, char *argv[])
     pruneFilter->SetIteration(iteration);
     pruneFilter->GetOutput();
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage(image.GetPointer());
     viewer.AddImage(pruneFilter->GetOutput());
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

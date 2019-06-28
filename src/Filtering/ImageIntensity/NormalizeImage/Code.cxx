@@ -20,7 +20,9 @@
 #include "itkNormalizeImageFilter.h"
 #include "itkStatisticsImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 #include <iomanip>
 
@@ -49,6 +51,7 @@ int main(int argc, char *argv[])
     StatisticsFilterType::Pointer statistics2 = StatisticsFilterType::New();
     statistics2->SetInput(normalizeFilter->GetOutput());
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
 
     std::stringstream desc1;
@@ -73,7 +76,7 @@ int main(int argc, char *argv[])
             desc2.str());
 
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 

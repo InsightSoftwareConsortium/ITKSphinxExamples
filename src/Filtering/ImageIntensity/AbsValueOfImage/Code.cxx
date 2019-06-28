@@ -20,7 +20,9 @@
 #include "itkRescaleIntensityImageFilter.h"
 #include "itkAbsImageFilter.h"
 
+#ifdef ENABLE_QUICKVIEW
 #include "QuickView.h"
+#endif
 
 using UnsignedCharImageType = itk::Image<unsigned char, 2>;
 using FloatImageType = itk::Image<float, 2>;
@@ -39,11 +41,12 @@ int main(int, char *[])
             = AbsImageFilterType::New ();
     absFilter->SetInput(image);
 
+#ifdef ENABLE_QUICKVIEW
     QuickView viewer;
     viewer.AddImage<FloatImageType>(image);
     viewer.AddImage<FloatImageType>(absFilter->GetOutput());
     viewer.Visualize();
-
+#endif
     return EXIT_SUCCESS;
 }
 
