@@ -10,7 +10,7 @@ set(CTEST_SITE "Azure.$ENV{AGENT_MACHINENAME}")
 set(CTEST_CMAKE_GENERATOR "Ninja")
 set(dashboard_do_cache 1)
 set(dashboard_superbuild 1)
-set(CTEST_BUILD_CONFIGURATION MinSizeRel)
+set(CTEST_BUILD_CONFIGURATION Release)
 # We are building a pull request that has already been checked out.
 #set(dashboard_no_update 1)
 set(CTEST_UPDATE_VERSION_ONLY 1)
