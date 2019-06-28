@@ -28,7 +28,7 @@ public:
 
 protected:
   ImageFilterMultipleInputsDifferentType();
-  ~ImageFilterMultipleInputsDifferentType() override{}
+  ~ImageFilterMultipleInputsDifferentType() override= default;
 
   typename TImage::ConstPointer GetInputImage();
   typename TMask::ConstPointer GetInputMask();

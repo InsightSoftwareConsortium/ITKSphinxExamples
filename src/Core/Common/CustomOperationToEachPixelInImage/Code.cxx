@@ -26,8 +26,8 @@ template< class TInput, class TOutput>
 class RotateVectors
 {
 public:
-  RotateVectors() {};
-  ~RotateVectors() {};
+  RotateVectors() = default;;
+  ~RotateVectors() = default;;
   bool operator!=( const RotateVectors & ) const
     {
     return false;

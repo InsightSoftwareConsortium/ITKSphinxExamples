@@ -21,8 +21,8 @@ public:
   itkTypeMacro(ImageFilter, ImageToImageFilter);
 
 protected:
-  ImageFilter(){}
-  ~ImageFilter() override{}
+  ImageFilter()= default;
+  ~ImageFilter() override= default;
 
   /** Does the real work. */
   void GenerateData() override;

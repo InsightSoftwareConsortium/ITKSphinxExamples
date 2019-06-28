@@ -28,7 +28,7 @@ public:
   
 protected:
   ImageFilterMultipleInputs();
-  ~ImageFilterMultipleInputs() override{}
+  ~ImageFilterMultipleInputs() override= default;
 
   /** Does the real work. */
   void GenerateData() override;

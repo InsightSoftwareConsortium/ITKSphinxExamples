@@ -11,9 +11,7 @@ namespace itk
 template< class TImage>
 ImageFilter< TImage>
 ::ImageFilter()
-{
-
-}
+= default;
 
 template< class TImage>
 void ImageFilter< TImage>

@@ -23,8 +23,8 @@ public:
   itkTypeMacro(ImageFilter, ImageToImageFilter);
 
 protected:
-  MultiThreadedImageFilter(){}
-  ~MultiThreadedImageFilter() override{}
+  MultiThreadedImageFilter()= default;
+  ~MultiThreadedImageFilter() override= default;
 
   void ThreadedGenerateData(const OutputImageRegionType &,
                                     ThreadIdType) override;

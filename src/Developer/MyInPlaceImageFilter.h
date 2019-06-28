@@ -21,8 +21,8 @@ public:
   itkTypeMacro(MyInPlaceImageFilter, InPlaceImageFilter);
 
 protected:
-  MyInPlaceImageFilter(){}
-  ~MyInPlaceImageFilter() override{}
+  MyInPlaceImageFilter()= default;
+  ~MyInPlaceImageFilter() override= default;
 
   /** Does the real work. */
   void GenerateData() override;

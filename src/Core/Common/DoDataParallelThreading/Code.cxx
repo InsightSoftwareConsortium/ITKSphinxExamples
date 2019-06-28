@@ -84,7 +84,7 @@ public:
 
 protected:
   // We need a constructor for the itkNewMacro.
-  ComputeCellCountThreader() {}
+  ComputeCellCountThreader() = default;
 
 private:
   void BeforeThreadedExecution() override

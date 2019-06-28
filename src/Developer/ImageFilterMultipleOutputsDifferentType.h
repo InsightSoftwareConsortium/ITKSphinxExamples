@@ -25,7 +25,7 @@ public:
   
 protected:
   ImageFilterMultipleOutputsDifferentType();
-  ~ImageFilterMultipleOutputsDifferentType() override{}
+  ~ImageFilterMultipleOutputsDifferentType() override= default;
 
   /** Does the real work. */
   void GenerateData() override;
