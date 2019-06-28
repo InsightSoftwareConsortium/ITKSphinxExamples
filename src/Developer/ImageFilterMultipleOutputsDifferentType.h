@@ -22,7 +22,7 @@ public:
 
   TOutputImage1* GetOutput1();
   TOutputImage2* GetOutput2();
-  
+
 protected:
   ImageFilterMultipleOutputsDifferentType();
   ~ImageFilterMultipleOutputsDifferentType() override= default;
@@ -31,7 +31,7 @@ protected:
   void GenerateData() override;
 
   /**  Create the Output */
-  DataObject::Pointer MakeOutput(unsigned int idx);
+  DataObject::Pointer MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx) override;
 
 private:
   ImageFilterMultipleOutputsDifferentType(const Self &) = delete; //purposely not implemented
