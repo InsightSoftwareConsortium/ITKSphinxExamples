@@ -5,4 +5,4 @@ GDCM
   :maxdepth: 1
 
   ReadDICOMSeriesAndWrite3DImage/Documentation.rst
-  ResamleDICOMSeries/Documentation.rst
+  ResampleDICOMSeries/Documentation.rst
