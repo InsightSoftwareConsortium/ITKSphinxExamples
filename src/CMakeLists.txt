@@ -4,7 +4,7 @@ if(itk-module)
     return()
   endif()
 endif()
-find_package(ITK REQUIRED)
+find_package(ITK 5.0.0 REQUIRED)
 include(${ITK_USE_FILE})
 
 # To avoid linker issues.
@@ -20,10 +20,6 @@ else()
   #       strictly required.  That will require a lot of
   #       ifdefs in the code
   message(FATAL_ERROR "ITKVtkGlue required for SphinxExamples")
-endif()
-
-if(${ITK_VERSION_MAJOR} LESS 4)
-  message(SEND_ERROR "ITKExamples require at least ITK 4.0.0")
 endif()
 
 if(BUILD_DOCUMENTATION)
