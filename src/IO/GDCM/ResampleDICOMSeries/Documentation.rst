@@ -1,5 +1,5 @@
-Resamle DICOM Series
-====================
+Resample DICOM Series
+=====================
 
 .. index::
    single: GDCMImageIO
