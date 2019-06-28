@@ -84,7 +84,7 @@ protected:
                         randomEngine->GetUniformVariate(0.0, 0.5));
       }
     };
-  ~ExampleCostFunction() override{};
+  ~ExampleCostFunction() override= default;;
 
 private:
   ExampleCostFunction(const Self &); //purposely not implemented

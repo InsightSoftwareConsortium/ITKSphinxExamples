@@ -30,8 +30,8 @@ namespace Functor
     class MySquaredDifference
     {
     public:
-        MySquaredDifference() {}
-        ~MySquaredDifference() {}
+        MySquaredDifference() = default;
+        ~MySquaredDifference() = default;
         bool operator!=(const MySquaredDifference &) const
         {
             return false;

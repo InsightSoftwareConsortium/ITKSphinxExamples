@@ -36,8 +36,8 @@ namespace itk
         }
 
     protected:
-        ExampleCostFunction2(){};
-        ~ExampleCostFunction2() override{};
+        ExampleCostFunction2()= default;;
+        ~ExampleCostFunction2() override= default;;
 
     private:
         ExampleCostFunction2(const Self &); //purposely not implemented

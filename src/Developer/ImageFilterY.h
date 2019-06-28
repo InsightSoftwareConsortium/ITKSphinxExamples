@@ -35,7 +35,7 @@ public:
 
 protected:
   ImageFilter();
-  ~ImageFilter() override{}
+  ~ImageFilter() override= default;
 
   /** Does the real work. */
   void GenerateData() override;

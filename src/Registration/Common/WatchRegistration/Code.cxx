@@ -57,7 +57,7 @@ public:
     itkNewMacro( Self );
 
 protected:
-    IterationUpdate() {};
+    IterationUpdate() = default;;
 
 public:
     using InternalImageType = itk::Image< float, 2>;

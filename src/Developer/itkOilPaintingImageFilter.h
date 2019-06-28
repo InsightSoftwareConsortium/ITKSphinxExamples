@@ -39,7 +39,7 @@ public:
 
 protected:
   OilPaintingImageFilter();
-  ~OilPaintingImageFilter() override{}
+  ~OilPaintingImageFilter() override= default;
 
   void BeforeThreadedGenerateData() override;
 
