@@ -1,0 +1,244 @@
+#!/usr/bin/env python
+
+# Copyright Insight Software Consortium
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0.txt
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+""" Script that uses cookiecutter to add a new example to the ITKExamples.
+    Usage: python CreateNewExample.py
+"""
+
+import argparse
+import collections
+import fnmatch
+import json
+import os
+import re
+import sys
+
+from cookiecutter.main import cookiecutter
+from os.path import join as pjoin
+
+
+try:
+    # Python 3
+    from io import StringIO
+except ImportError:
+    # Python 2
+    from cStringIO import StringIO
+
+
+get_input = input
+if sys.version_info[:2] <= (2, 7):
+    get_input = raw_input
+
+
+def write_all_itk_headers(itk_source_dir):
+    output = StringIO()
+    for root, dirs, files in os.walk(pjoin(itk_source_dir, 'Modules')):
+        for f in fnmatch.filter(files, 'itk*.h'):
+            output.write(f + u'\n')
+    return output
+
+
+def words(text):
+    temp = re.findall('itk[A-Z][a-zA-Z_0-9]+', text)
+    for i in range(len(temp)):
+        var = temp[i]
+        temp[i] = var[3:]
+    return temp
+
+
+def train(features):
+    model = collections.defaultdict(lambda: 1)
+    for f in features:
+        model[f] += 1
+    return model
+
+
+def edits1(word, alphabet):
+    splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
+    deletes = [a + b[1:] for a, b in splits if b]
+    transposes = [a + b[1] + b[0] + b[2:] for a, b in splits if len(b) > 1]
+    replaces = [a + c + b[1:] for a, b in splits for c in alphabet if b]
+    inserts = [a + c + b for a, b in splits for c in alphabet]
+    lowercases = [a + b[0].lower() + b[1:] for a, b in splits if b]
+    uppercases = [a + b[0].upper() + b[1:] for a, b in splits if b]
+    all_lowercase = [word[:].lower()]
+    one_uppercase = [
+        a[:].lower() + b[0].upper() + b[1:].lower() for a, b in splits if b]
+
+    return set(
+        deletes + transposes + replaces + inserts + lowercases + uppercases +
+        all_lowercase + one_uppercase)
+
+
+def known_edits2(word, NWORDS, alphabet):
+    return set(e2 for e1 in edits1(word, alphabet)
+               for e2 in edits1(e1, alphabet) if e2 in NWORDS)
+
+
+def known(words, NWORDS):
+    return set(w for w in words if w in NWORDS)
+
+
+def itkcorrect(word, NWORDS, alphabet):
+    candidates = (
+        known([word], NWORDS) or
+        known(edits1(word, alphabet), NWORDS) or
+        known_edits2(word, NWORDS, alphabet) or [word])
+    return max(candidates, key=NWORDS.get)
+
+
+def space_out_camel_case(s):
+    return re.sub('((?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z]))', ' ', s)
+
+
+def get_group_and_module_from_class_name(itk_src, class_name):
+    """ Get the ITK group and module a class belongs to.
+
+    Parameters
+    ----------
+    itk_src : str
+        ITK source directory.
+    class_name : str
+        ITK class name.
+    Returns
+    -------
+    result : dict
+        Dictionary containing a boolean telling if the ITK module and group were
+        found, and the ITK group and module names found.
+    """
+
+    cmakefile = pjoin(itk_src, 'CMake', 'UseITK.cmake')
+    result = dict()
+    result['bool'] = False
+
+    if class_name is None:
+        return result
+
+    if not os.path.exists(cmakefile):
+        print('Error: wrong path')
+    else:
+        path = ''
+
+        for root, dirs, files in os.walk(pjoin(itk_src, 'Modules')):
+            for f in files:
+                if f == 'itk' + class_name + '.h':
+                    path = root
+
+        if len(path) != 0:
+
+            temp = path.split(os.path.sep)
+            depth = len(temp)
+
+            result['Module'] = temp[depth - 2]
+            result['Group'] = temp[depth - 3]
+            result['bool'] = True
+
+        else:
+            print('Error: This class is not part of ITK: {}'.format(class_name))
+
+    return result
+
+
+def main():
+
+    parser = argparse.ArgumentParser(
+        description='Script to add a new example to the ITKExamples.')
+    parser.parse_args()
+
+    # Collect directories
+
+    # If no `ITK` directory is present in the ITKExamples build directory,
+    # ITKExamples was not configured using the Superbuild functionality.
+    itk_examples_binary_dir = os.path.abspath('@ITKExamples_BINARY_DIR@')
+    itk_examples_build_dir = os.path.abspath(pjoin(itk_examples_binary_dir, os.pardir))
+    itk_superbuild_dir = pjoin(itk_examples_build_dir, 'ITK')
+    if not itk_superbuild_dir:
+        print('Error: ITKExamples must be configured using the Superbuild'
+              'functionality to use this script.')
+        sys.exit()
+
+    itk_src = itk_superbuild_dir
+
+    itk_examples_root_dir = os.path.abspath('@ITKExamples_SOURCE_DIR@')
+    itk_examples_src = pjoin(itk_examples_root_dir, "src")
+
+    default_class_name = "MyClassName"
+    default_example_name = "MyExample"
+    default_synopsis = "MySynopsis"
+
+    # Prompt user for appropriate cookiecutter template variable values
+    class_name = get_input("class_name [" + default_class_name + "]: ")\
+                 or default_class_name
+    example_name = get_input("example_name [" + default_example_name + "]: ")\
+                   or default_example_name
+    example_title = space_out_camel_case(example_name)
+    example_synopsis = get_input("example_synopsis [" + default_synopsis + "]: ")\
+                       or default_synopsis
+
+    # Find the ITK module and group name
+    itk_headers = write_all_itk_headers(itk_src)
+
+    NWORDS = train(words(itk_headers.getvalue()))
+
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+
+    temp_res = dict()
+    temp_res['bool'] = False
+
+    temp_res = get_group_and_module_from_class_name(itk_src, class_name)
+
+    while not temp_res['bool']:
+        class_name = get_input("Please enter an ITK class name: ")
+        class_name = itkcorrect(class_name, NWORDS, alphabet)
+
+        temp_res = get_group_and_module_from_class_name(
+            itk_src, class_name)
+
+    group_name = temp_res['Group']
+    module_name = temp_res['Module']
+
+    print('Found the following group and module for the provided class: {}'
+          .format(class_name))
+    print('Group name: {}'.format(group_name))
+    print('Module name: {}'.format(module_name))
+
+    cookiecutter_dir = pjoin(os.path.abspath(os.path.dirname(__file__)), 'CookieCutter')
+    cookiecutter_json = pjoin(cookiecutter_dir, 'cookiecutter.json')
+
+    data = dict()
+    data["class_name"] = class_name
+    data["group_name"] = group_name
+    data["module_name"] = module_name
+    data["example_name"] = example_name
+    data["example_title"] = example_title
+    data["example_synopsis"] = example_synopsis
+    data["itk_src"] = itk_src
+    data["itk_examples_src"] = itk_examples_src
+
+    if cookiecutter_json:
+        with open(cookiecutter_json, 'w') as f:
+          json.dump(data, f)
+
+    # Call the cookiecutter
+    cookiecutter(cookiecutter_dir, no_input=True)
+
+    # Delete the cookiecutter JSON
+    os.remove(cookiecutter_json)
+
+
+if __name__ == '__main__':
+    main()

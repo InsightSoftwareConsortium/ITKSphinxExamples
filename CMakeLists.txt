@@ -314,7 +314,21 @@ if(BUILD_DOCUMENTATION)
 
   add_subdirectory(Formatting)
   add_subdirectory(Documentation)
+else()
+  # Copy the cookiecutter directory
+  # Achieved with copy_sources target when BUILD_DOCUMENTATION enabled
+  add_custom_target(copy_cookiecutter ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+      "${ITKExamples_SOURCE_DIR}/Utilities/CookieCutter"
+      "${ITKExamples_BINARY_DIR}/Utilities/CookieCutter"
+    COMMENT "Copy CookieCutter"
+    )
 endif()
+
+# Configure the CreateNewExamples.py Python Script
+configure_file("${ITKExamples_SOURCE_DIR}/Utilities/CreateNewExample.py.in"
+  "${ITKExamples_BINARY_DIR}/Utilities/CreateNewExample.py"
+  @ONLY)
 
 # Build the example executables?
 option(BUILD_EXECUTABLES "Build the example executables." ON)
