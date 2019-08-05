@@ -13,6 +13,11 @@ Smooth an image while preserving edges.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+
+  Input image.
+
 .. figure:: SmoothImageWhilePreservingEdges.png
   :scale: 70%
 

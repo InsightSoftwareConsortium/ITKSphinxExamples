@@ -22,4 +22,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME BilateralFilterAnImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/BilateralFilterAnImage)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/BilateralFilterAnImage
+    Yinyang.png
+    5
+    10)

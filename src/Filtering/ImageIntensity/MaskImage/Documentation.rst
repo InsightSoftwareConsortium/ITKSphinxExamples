@@ -13,6 +13,12 @@ Apply a mask to an image.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+  :alt: input image
+
+  Input Image
+
 .. figure:: MaskImage.png
   :scale: 70%
   :alt: VTK Window

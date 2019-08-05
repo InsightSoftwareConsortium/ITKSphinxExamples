@@ -39,5 +39,5 @@ compare_to_baseline(
 
 add_example(ComputeInverseFFTOfImage)
 compare_to_baseline(EXAMPLE_NAME ComputeInverseFFTOfImage
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX ComputeInverseFFTOfImage
   )

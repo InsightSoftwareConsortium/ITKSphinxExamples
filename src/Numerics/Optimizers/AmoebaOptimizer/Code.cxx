@@ -16,7 +16,7 @@
  *
  *=========================================================================*/
 #include "itkAmoebaOptimizer.h"
-#include "../ExampleCostFunction.h"
+#include "ExampleCostFunction.h"
 
 namespace
 {

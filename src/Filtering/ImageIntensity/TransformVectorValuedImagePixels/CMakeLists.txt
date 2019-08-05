@@ -22,4 +22,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME TransformVectorValuedImagePixelsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TransformVectorValuedImagePixels)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TransformVectorValuedImagePixels
+    Gourds.png
+    output.png
+  )

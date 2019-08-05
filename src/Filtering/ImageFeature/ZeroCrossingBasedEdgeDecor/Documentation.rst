@@ -12,6 +12,11 @@ A zero-crossing based edge detecor
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+
+  Input image.
+
 .. figure:: ZeroCrossingBasedEdgeDecor
   :scale: 70%
 

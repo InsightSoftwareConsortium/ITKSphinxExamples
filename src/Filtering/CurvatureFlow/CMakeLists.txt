@@ -1,25 +1,24 @@
-
 add_example(BinaryMinMaxCurvatureFlow)
 compare_to_baseline(EXAMPLE_NAME BinaryMinMaxCurvatureFlow
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX BinaryMinMaxCurvatureFlow
   )
 
 add_example(SmoothImageUsingCurvatureFlow)
 compare_to_baseline(EXAMPLE_NAME SmoothImageUsingCurvatureFlow
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX SmoothImageUsingCurvatureFlow
   )
 
 add_example(SmoothRGBImageUsingCurvatureFlow)
 compare_to_baseline(EXAMPLE_NAME SmoothRGBImageUsingCurvatureFlow
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX SmoothRGBImageUsingCurvatureFlow
   )
 
 add_example(SmoothImageUsingMinMaxCurvatureFlow)
 compare_to_baseline(EXAMPLE_NAME SmoothImageUsingMinMaxCurvatureFlow
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX SmoothImageUsingMinMaxCurvatureFlow
   )
 
 add_example(SmoothRGBImageUsingMinMaxCurvatureFlow)
 compare_to_baseline(EXAMPLE_NAME SmoothRGBImageUsingMinMaxCurvatureFlow
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX SmoothRGBImageUsingMinMaxCurvatureFlow
   )

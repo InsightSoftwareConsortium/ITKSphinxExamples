@@ -12,20 +12,20 @@ compare_to_baseline(
 
 add_example(ThinImage)
 compare_to_baseline(EXAMPLE_NAME ThinImage
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX output
   )
 
 add_example(PruneBinaryImage)
 compare_to_baseline(EXAMPLE_NAME PruneBinaryImage
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX PruneBinaryImage
   )
 
 add_example(OpeningBinaryImage)
 compare_to_baseline(EXAMPLE_NAME OpeningBinaryImage
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX OpeningBinaryImage
   )
 
 add_example(ClosingBinaryImage)
 compare_to_baseline(EXAMPLE_NAME ClosingBinaryImage
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX ClosingBinaryImage
   )

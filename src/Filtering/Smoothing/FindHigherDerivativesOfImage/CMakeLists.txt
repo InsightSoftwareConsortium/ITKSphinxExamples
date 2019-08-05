@@ -22,4 +22,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME FindHigherDerivativesOfImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/FindHigherDerivativesOfImage)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/FindHigherDerivativesOfImage
+    Yinyang.png)

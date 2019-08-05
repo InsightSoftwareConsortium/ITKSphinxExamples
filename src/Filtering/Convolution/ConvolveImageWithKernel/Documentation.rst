@@ -13,6 +13,12 @@ Convolve an image with a kernel.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+  :alt: input image
+
+  Input image.
+
 .. figure:: ConvolveImageWithKernel.png
   :scale: 70%
 

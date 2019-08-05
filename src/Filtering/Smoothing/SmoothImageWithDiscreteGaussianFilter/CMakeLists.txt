@@ -21,8 +21,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 
 enable_testing()
-
-
 add_test(NAME SmoothImageWithDiscreteGaussianFilterTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SmoothImageWithDiscreteGaussianFilter)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SmoothImageWithDiscreteGaussianFilter
+    Yinyang.png
+    8)

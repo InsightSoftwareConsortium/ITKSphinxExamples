@@ -24,4 +24,4 @@ add_test( NAME UpsampleAnImageTest
     ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
     Output.png
     2
-  )
+    10)

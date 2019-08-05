@@ -14,6 +14,12 @@ Smooth an image using min/max curvature flow.
 
 Results
 -------
+.. figure:: Gourds.png
+  :scale: 70%
+  :alt: input image
+
+  Input image.
+
 .. figure:: SmoothImageUsingMinMaxCurvatureFlow
   :scale: 70%
 

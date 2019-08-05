@@ -13,6 +13,12 @@ Extract the largest connected component from a Binary Image.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+  :alt: input image
+
+  Input image.
+
 .. figure:: ExtraLargestConnectComponentFromBinaryImage.png
   :scale: 70%
   :alt: VTK Window

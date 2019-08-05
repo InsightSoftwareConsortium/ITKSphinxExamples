@@ -22,5 +22,6 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME SmoothImageUsingCurvatureFlowTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SmoothImageUsingCurvatureFlow)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SmoothImageUsingCurvatureFlow
+    Yinyang.png
+    10)

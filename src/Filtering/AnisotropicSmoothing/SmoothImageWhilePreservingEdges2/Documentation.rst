@@ -15,10 +15,16 @@ Smooth an image while preserving edges.
 
 Results
 -------
-.. note:: SmoothImageWhilePreservingEdges2.png
+.. figure:: Yinyang.png
+  :scale: 70%
+
+  Input image.
+
+.. figure:: SmoothImageWhilePreservingEdges2.png
   :scale: 70%
 
   Output In VTK Window
+
 Code
 ----
 

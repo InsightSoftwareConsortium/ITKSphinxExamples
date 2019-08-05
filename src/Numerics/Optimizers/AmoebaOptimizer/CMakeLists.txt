@@ -6,7 +6,7 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(AmoebaOptimizer Code.cxx ../ExampleCostFunction.h)
+add_executable(AmoebaOptimizer Code.cxx ExampleCostFunction.h)
 target_link_libraries(AmoebaOptimizer ${ITK_LIBRARIES})
 
 install(TARGETS AmoebaOptimizer

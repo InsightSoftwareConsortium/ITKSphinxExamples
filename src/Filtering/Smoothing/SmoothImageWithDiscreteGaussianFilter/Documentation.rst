@@ -13,6 +13,11 @@ Smooth an image with a discrete Gaussian filter.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+
+  Input image.
+
 .. filter:: SmoothImageWithDiscreteGaussianFilter.png
   :scale: 70%
 

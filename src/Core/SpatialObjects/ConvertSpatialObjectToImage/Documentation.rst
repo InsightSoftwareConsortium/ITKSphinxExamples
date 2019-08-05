@@ -1,4 +1,4 @@
-Convert Spacial Object To Image
+Convert Spatial Object To Image
 ===============================
 
 .. index::

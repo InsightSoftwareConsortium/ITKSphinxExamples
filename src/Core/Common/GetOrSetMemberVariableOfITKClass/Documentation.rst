@@ -12,17 +12,9 @@ Get or set a member variable of an ITK class.
 
 Results
 -------
-.. figure:: Yinyang.png
-  :scale: 70%
-  :alt: Input Image.
-
-  Yingyang.png
-
-.. figure:: FindMaxAndMinInImageOutput.png
-  :scale: 70%
-  :alt: Output Image
-
-  Output Image
+.. warning::
+  **Fix Errors**
+  Example contains errors needed to be fixed for proper output.
 
 Code
 ----

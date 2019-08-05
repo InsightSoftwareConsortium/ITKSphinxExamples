@@ -23,4 +23,3 @@ install(FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test(NAME NormalizedCorrelationTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/NormalizedCorrelation)
-

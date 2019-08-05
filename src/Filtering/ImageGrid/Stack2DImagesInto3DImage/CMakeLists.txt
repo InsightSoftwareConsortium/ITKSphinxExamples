@@ -19,7 +19,7 @@ install(FILES Code.cxx CMakeLists.txt
   COMPONENT Code
   )
 
-
+# TODO Implement input in test when Code.cxx is updated
 enable_testing()
 add_test(NAME Stack2DImagesInto3DImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Stack2DImagesInto3DImage)

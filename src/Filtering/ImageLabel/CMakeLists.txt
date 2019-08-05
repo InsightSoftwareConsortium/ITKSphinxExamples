@@ -1,15 +1,3 @@
-
 add_example(ExtractBoundariesOfConnectedRegionsInBinaryImage)
-compare_to_baseline(EXAMPLE_NAME ExtractBoundariesOfConnectedRegionsInBinaryImage
-  BASELINE_PREFIX OutputBaseline
-  )
-
 add_example(ExtractBoundariesOfBlobsInBinaryImage)
-compare_to_baseline(EXAMPLE_NAME ExtractBoundariesOfBlobsInBinaryImage
-  BASELINE_PREFIX OutputBaseline
-  )
-
 add_example(LabelContoursOfConnectComponent)
-compare_to_baseline(EXAMPLE_NAME LabelContoursOfConnectComponent
-  BASELINE_PREFIX OutputBaseline
-  )

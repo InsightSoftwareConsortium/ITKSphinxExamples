@@ -3,25 +3,20 @@ compare_to_baseline( EXAMPLE_NAME CastAnImageToAnotherType BASELINE_PREFIX Outpu
 
 add_example(ApplyKernelToEveryPixel)
 compare_to_baseline(EXAMPLE_NAME ApplyKernelToEveryPixel
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX output
   )
 
 add_example(ApplyKernelToEveryPixelInNonZeroImage)
 compare_to_baseline(EXAMPLE_NAME ApplyKernelToEveryPixelInNonZeroImage
-  BASELINE_PREFIX OutputBaseline
-  )
-
-add_example(PredefinedOperationToCorrespondingPixelsInTwoImages)
-compare_to_baseline(EXAMPLE_NAME PredefinedOperationToCorrespondingPixelsInTwoImages
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX output
   )
 
 add_example(CustomOperationToCorrespondingPixelsInTwoImages)
-compare_to_baseline(EXAMPLE_NAME CustomOperationToCorrespondingPixelsInTwoImages
-  BASELINE_PREFIX OutputBaseline
+
+add_example(ComputeLocalNoise)
+compare_to_baseline(EXAMPLE_NAME ComputeLocalNoise
+  BASELINE_PREFIX output
   )
 
-add_example(ComputerLocalNoise)
-compare_to_baseline(EXAMPLE_NAME ComputerLocalNoise
-  BASELINE_PREFIX OutputBaseline
-  )
+# TODO Fix example for clean build
+add_example(PredefinedOperationToCorrespondingPixelsInTwoImages)

@@ -22,5 +22,6 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME MaskImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MaskImage)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MaskImage
+    Yinyang.png
+    )

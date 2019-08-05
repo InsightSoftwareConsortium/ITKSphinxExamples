@@ -22,5 +22,8 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME TileImagesSideBySideTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TileImagesSideBySide)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TileImagesSideBySide
+    Gourds.png
+    Gourds.png
+    output.png
+  )

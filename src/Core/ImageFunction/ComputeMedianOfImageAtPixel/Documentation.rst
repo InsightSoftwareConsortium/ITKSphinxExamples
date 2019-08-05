@@ -14,7 +14,7 @@ Computes the median of an image at a pixil(in a regular neighborhood).
 
 Results
 -------
-.. figure:: ComputeMedianOfImagePixel.png
+.. figure:: ComputeMedianOfImageAtPixel.png
   :scale: 70%
   :alt: input.png
 

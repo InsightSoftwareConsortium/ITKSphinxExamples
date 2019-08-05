@@ -22,4 +22,6 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME ErodeBinaryImageUsingFlatStructTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ErodeBinaryImageUsingFlatStruct)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ErodeBinaryImageUsingFlatStruct
+    Yinyang.png
+    7)
