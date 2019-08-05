@@ -21,6 +21,8 @@ install(FILES Code.cxx CMakeLists.txt
 
 
 enable_testing()
-add_test(NAME IterateWithNeighborhoodWithoutAccessTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/IterateWithNeighborhoodWithoutAccess)
+set(input_image Yinyang.png)
 
+add_test(NAME IterateWithNeighborhoodWithoutAccessTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/IterateWithNeighborhoodWithoutAccess
+    ${input_image})

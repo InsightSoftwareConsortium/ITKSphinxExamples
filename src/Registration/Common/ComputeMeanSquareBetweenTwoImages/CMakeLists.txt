@@ -22,5 +22,6 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME ComputeMeanSquareBetweenTwoImagesTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeMeanSquareBetweenTwoImages)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeMeanSquareBetweenTwoImages
+    Yinyang.png
+    Gourds.png)

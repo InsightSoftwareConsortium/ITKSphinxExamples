@@ -22,5 +22,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME DemonstrateThresholdAlgorithmsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DemonstrateThresholdAlgorithms)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DemonstrateThresholdAlgorithms
+    Yinyang.png)

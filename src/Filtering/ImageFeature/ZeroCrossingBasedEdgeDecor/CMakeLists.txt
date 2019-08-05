@@ -22,5 +22,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME ZeroCrossingBasedEdgeDecorTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ZeroCrossingBasedEdgeDecor)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ZeroCrossingBasedEdgeDecor
+    Yinyang.png)

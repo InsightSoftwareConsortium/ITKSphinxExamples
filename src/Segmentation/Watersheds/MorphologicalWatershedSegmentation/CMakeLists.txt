@@ -22,5 +22,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME MorphologicalWatershedSegmentationTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MorphologicalWatershedSegmentation)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MorphologicalWatershedSegmentation
+    input.png
+    20
+    3)

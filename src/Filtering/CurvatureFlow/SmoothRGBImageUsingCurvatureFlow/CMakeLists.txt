@@ -22,5 +22,6 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME SmoothRGBImageUsingCurvatureFlowTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SmoothRGBImageUsingCurvatureFlow)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SmoothRGBImageUsingCurvatureFlow
+    Gourds.png
+    200)

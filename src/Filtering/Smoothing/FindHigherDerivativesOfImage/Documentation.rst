@@ -13,6 +13,12 @@ Find higher derivatives of an image.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+  :alt: input image
+
+  Input image.
+
 .. figure:: FindHigherDerivativesOfImage.png
   :scale: 70%
   :alt: VTK Window

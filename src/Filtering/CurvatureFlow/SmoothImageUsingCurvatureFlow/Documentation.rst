@@ -14,6 +14,12 @@ Smooth an image using curvature flow.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+  :alt: input image
+
+  Input image.
+
 .. figure:: SmoothImageUsingCurvatureFlow.png
   :scale: 70%
 

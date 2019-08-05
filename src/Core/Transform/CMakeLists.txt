@@ -15,30 +15,29 @@ compare_to_baseline(
 
 add_example(ScaleAnImage)
 compare_to_baseline(EXAMPLE_NAME ScaleAnImage
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX ScaleAnImageOutput
   )
 
 add_example(TranslateAVectorImage)
-compare_to_baseline(EXAMPLE_NAME TranslateAVectorImage
-  BASELINE_PREFIX OutputBaseline
-  )
-
 add_example(CartesianToAzimuthElevation)
-compare_to_baseline(EXAMPLE_NAME CartesianToAzimuthElevation
-  BASELINE_PREFIX OutputBaseline
-  )
 
 add_example(GlobalRegistrationTwoImagesAffine)
 compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesAffine
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX
+    fixed
+    moving
+    output
   )
 
 add_example(GlobalRegistrationTwoImagesBSpline)
 compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesBSpline
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX GlobalRegistrationTwoImagesBSpline
   )
 
 add_example(MutualInformationAffine)
 compare_to_baseline(EXAMPLE_NAME MutualInformationAffine
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX
+    fixed
+    moving
+    output
   )

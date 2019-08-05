@@ -22,4 +22,6 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME RunImageFilterOnRegionOfImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/RunImageFilterOnRegionOfImage)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/RunImageFilterOnRegionOfImage
+        Yinyang.png
+        10)

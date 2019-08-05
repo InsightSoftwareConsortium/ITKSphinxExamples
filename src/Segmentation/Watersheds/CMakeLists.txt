@@ -13,5 +13,5 @@ endforeach()
 
 add_example(MorphologicalWatershedSegmentation)
 compare_to_baseline(EXAMPLE_NAME MorphologicalWatershedSegmentation
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX output_20_3
   )

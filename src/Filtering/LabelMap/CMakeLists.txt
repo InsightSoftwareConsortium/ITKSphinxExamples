@@ -25,61 +25,44 @@ add_example( ApplyMorphologicalClosingOnSpecificLabelObject )
 compare_to_baseline( EXAMPLE_NAME ApplyMorphologicalClosingOnSpecificLabelObject BASELINE_PREFIX OutputBaseline )
 
 add_example(RemoveLabelsFromLabelMap)
-compare_to_baseline(EXAMPLE_NAME RemoveLabelsFromLabelMap
-  BASELINE_PREFIX OutputBaseline
-  )
 
 add_example(KeepRegionsThatMeetSpecific)
 compare_to_baseline(EXAMPLE_NAME KeepRegionsThatMeetSpecific
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX output
   )
 
 add_example(KeepRegionsAboveLevel)
 compare_to_baseline(EXAMPLE_NAME KeepRegionsAboveLevel
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX output
   )
 
 add_example(KeepBinaryRegionsThatMeetSpecific)
 compare_to_baseline(EXAMPLE_NAME KeepBinaryRegionsThatMeetSpecific
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX output
   )
 
 add_example(LabelBinaryRegionsInImage)
 compare_to_baseline(EXAMPLE_NAME LabelBinaryRegionsInImage
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX image
   )
 
 add_example(LabelBinaryRegionsAndGetProperties)
 compare_to_baseline(EXAMPLE_NAME LabelBinaryRegionsAndGetProperties
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX image
   )
 
 add_example(ConvertLabelMapToImage)
 compare_to_baseline(EXAMPLE_NAME ConvertLabelMapToImage
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX image
   )
 
 add_example(MergeLabelMaps)
-compare_to_baseline(EXAMPLE_NAME MergeLabelMaps
-  BASELINE_PREFIX OutputBaseline
-  )
-
 add_example(ConvertImageWithLabelsToShapeLabelMap)
-compare_to_baseline(EXAMPLE_NAME ConvertImageWithLabelsToShapeLabelMap
-  BASELINE_PREFIX OutputBaseline
-  )
-
 add_example(ShapeAttributesForBinaryImage)
-compare_to_baseline(EXAMPLE_NAME ShapeAttributesForBinaryImage
-  BASELINE_PREFIX OutputBaseline
-  )
 
 add_example(InvertImageUsingBinaryNot)
 compare_to_baseline(EXAMPLE_NAME InvertImageUsingBinaryNot
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX output
   )
 
 add_example(ConvertImageToLabelMap)
-compare_to_baseline(EXAMPLE_NAME ConvertImageToLabelMap
-  BASELINE_PREFIX OutputBaseline
-  )

@@ -4,7 +4,7 @@
 #ifndef ExampleCostFunction_h
 #define ExampleCostFunction_h
 
-#include "../../../../ITK/Modules/Numerics/Optimizers/include/itkSingleValuedCostFunction.h"
+#include "itkSingleValuedCostFunction.h"
 
 namespace itk
 {

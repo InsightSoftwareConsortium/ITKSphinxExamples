@@ -13,6 +13,11 @@ Normalize an image.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+
+  Input Image
+
 .. figure:: NormalizeImage.png
   :scale: 50%
 

@@ -22,4 +22,6 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME ConvolveImageWithKernelTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ConvolveImageWithKernel)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ConvolveImageWithKernel
+    Yinyang.png
+    10)

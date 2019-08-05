@@ -22,5 +22,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME NormalizeImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/NormalizeImage)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/NormalizeImage
+    Yinyang.png)

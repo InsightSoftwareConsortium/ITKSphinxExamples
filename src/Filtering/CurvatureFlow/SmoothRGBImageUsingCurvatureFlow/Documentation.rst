@@ -14,6 +14,12 @@ Smooth an RGB image using curvature flow.
 
 Results
 -------
+.. figure:: Gourds.png
+  :scale: 70%
+  :alt: input image
+
+  Input image.
+
 .. figure:: SmoothRGBImageUsingCurvatureFlow.png
   :scale: 70%
 

@@ -22,4 +22,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME AddNoiseToBinaryImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/AddNoiseToBinaryImage)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/AddNoiseToBinaryImage
+    Yinyang.png
+    output.png
+    50)

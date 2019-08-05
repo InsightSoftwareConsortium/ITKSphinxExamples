@@ -13,6 +13,18 @@ Compute the mean squares metric between two images.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+  :alt: input image
+
+  Input image 1.
+
+.. figure:: Gourds.png
+  :scale: 70%
+  :alt: input image
+
+  Input image 2.
+
 Data from 2 images passed through
 Output::
 

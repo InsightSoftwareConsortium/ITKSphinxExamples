@@ -14,6 +14,12 @@ BinaryMinMaxCurvatureFlow a binary image.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+  :alt: input image
+
+  Input image.
+
 .. figure:: BinaryMinMaxCurvatureFlow.png
   :scale: 70%
 

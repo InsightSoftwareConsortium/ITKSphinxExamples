@@ -22,5 +22,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME ExtraLargestConnectComponentFromBinaryImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ExtraLargestConnectComponentFromBinaryImage)
-
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ExtraLargestConnectComponentFromBinaryImage
+    Yinyang.png)

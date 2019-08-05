@@ -21,5 +21,14 @@ install(FILES Code.cxx CMakeLists.txt
 
 
 enable_testing()
+
+set(input_image ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png)
+set(X 100)
+set(Y 50)
+
 add_test(NAME SegmentPixelsWithSimilarStatsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentPixelsWithSimilarStats)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentPixelsWithSimilarStats
+    ${input_image}
+    X
+    Y
+  )

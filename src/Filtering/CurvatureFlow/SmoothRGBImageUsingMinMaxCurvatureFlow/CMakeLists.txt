@@ -21,6 +21,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 
 enable_testing()
-
 add_test(NAME SmoothRGBImageUsingMinMaxCurvatureFlowTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SmoothRGBImageUsingMinMaxCurvatureFlow)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SmoothRGBImageUsingMinMaxCurvatureFlow
+        Gourds.png
+        50)

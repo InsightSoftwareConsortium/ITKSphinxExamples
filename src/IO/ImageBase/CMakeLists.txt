@@ -25,11 +25,9 @@ compare_to_baseline( TEST_NAME GenerateSlicesFromVolumeBaselineComparisonSlice30
   )
 
 add_example(ConvertImageToAnotherType)
-compare_to_baseline(EXAMPLE_NAME ConvertImageToAnotherType
-  BASELINE_PREFIX OutputBaseline
-  )
 
-add_example(Creade3DFromSeriesOf2D)
-compare_to_baseline(EXAMPLE_NAME Creade3DFromSeriesOf2D
-  BASELINE_PREFIX OutputBaseline
-  )
+#TODO: When example has valid input, uncomment below
+#add_example(Creade3DFromSeriesOf2D)
+#compare_to_baseline(EXAMPLE_NAME Creade3DFromSeriesOf2D
+#  BASELINE_PREFIX OutputBaseline
+#  )

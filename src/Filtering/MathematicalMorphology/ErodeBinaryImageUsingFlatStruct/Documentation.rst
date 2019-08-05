@@ -13,6 +13,11 @@ Erode a binary image using a flat (box) structuring element.
 
 Results
 -------
+.. figure:: Yinyang.png
+  :scale: 70%
+
+  Input image.
+
 .. figure:: ErodeBinaryImageUsingFlatStruct.png
   :scale: 70%
 

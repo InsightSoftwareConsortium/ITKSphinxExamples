@@ -22,5 +22,6 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME IterateRegionWithAccessToIndexWithoutWriteAccessTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/IterateRegionWithAccessToIndexWithoutWriteAccess)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/IterateRegionWithAccessToIndexWithoutWriteAccess
+    Yinyang.png)
 

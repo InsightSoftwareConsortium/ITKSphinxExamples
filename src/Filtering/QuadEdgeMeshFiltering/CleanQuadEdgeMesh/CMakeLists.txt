@@ -20,4 +20,4 @@ install( FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test( NAME CleanQuadEdgeMeshTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CleanQuadEdgeMesh )
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CleanQuadEdgeMesh)

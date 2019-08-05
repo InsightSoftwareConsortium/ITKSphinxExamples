@@ -22,4 +22,6 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME BinaryMinMaxCurvatureFlowTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/BinaryMinMaxCurvatureFlow)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/BinaryMinMaxCurvatureFlow
+    Yinyang.png
+    10)
