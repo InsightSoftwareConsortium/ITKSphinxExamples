@@ -12,15 +12,12 @@ namespace itk
 
 template< class TImage>
 void MultiThreadedImageFilter< TImage>
-::ThreadedGenerateData(const OutputImageRegionType & region, ThreadIdType threadId)
+::DynamicThreadedGenerateData(const OutputImageRegionType & region)
 {
-  std::cout << "Thread " << threadId << " given region: " << region << std::endl;
-
   typename TImage::ConstPointer input = this->GetInput();
   typename TImage::Pointer output = this->GetOutput();
 
-  ImageAlgorithm::Copy(input.GetPointer(), output.GetPointer(), region,
-                       region);
+  ImageAlgorithm::Copy(input.GetPointer(), output.GetPointer(), region, region);
 
   itk::Index<2> cornerPixel = region.GetIndex();
   std::cout << "cornerPixel: " << cornerPixel << std::endl;

@@ -26,8 +26,7 @@ protected:
   MultiThreadedImageFilter()= default;
   ~MultiThreadedImageFilter() override= default;
 
-  void ThreadedGenerateData(const OutputImageRegionType &,
-                                    ThreadIdType) override;
+  void DynamicThreadedGenerateData(const OutputImageRegionType &) override;
 
 private:
   MultiThreadedImageFilter(const Self &) = delete; //purposely not implemented
