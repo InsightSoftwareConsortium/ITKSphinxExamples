@@ -44,7 +44,7 @@ protected:
   void BeforeThreadedGenerateData() override;
 
   /** Does the real work. */
-  void ThreadedGenerateData(const typename TImage::RegionType& outputRegionForThread, ThreadIdType threadId) override;
+  void DynamicThreadedGenerateData(const typename TImage::RegionType& outputRegionForThread) override;
 
 private:
   OilPaintingImageFilter(const Self &) = delete; //purposely not implemented

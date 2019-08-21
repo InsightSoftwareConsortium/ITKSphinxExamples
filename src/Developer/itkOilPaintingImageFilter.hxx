@@ -15,7 +15,6 @@ OilPaintingImageFilter<TImage>::OilPaintingImageFilter()
 {
     this->m_NumberOfBins=20;
     this->SetRadius(5);
-    this->SetDynamicMultiThreading(false);
 }
 
 template<class TImage>
@@ -40,7 +39,7 @@ void OilPaintingImageFilter<TImage>::BeforeThreadedGenerateData()
 
 template<class TImage>
 void OilPaintingImageFilter<TImage>
-::ThreadedGenerateData(const typename TImage::RegionType& outputRegionForThread, ThreadIdType /*threadId*/)
+::DynamicThreadedGenerateData(const typename TImage::RegionType& outputRegionForThread)
 {
   typename TImage::ConstPointer input = this->GetInput();
   typename TImage::Pointer output = this->GetOutput();
