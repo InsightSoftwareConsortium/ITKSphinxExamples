@@ -15,6 +15,7 @@ OilPaintingImageFilter<TImage>::OilPaintingImageFilter()
 {
     this->m_NumberOfBins=20;
     this->SetRadius(5);
+    this->SetDynamicMultiThreading(false);
 }
 
 template<class TImage>

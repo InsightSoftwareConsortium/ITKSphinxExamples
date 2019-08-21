@@ -32,13 +32,13 @@ int main(int argc, char*argv[])
         return EXIT_FAILURE;
     }
     unsigned int numberOfBins = 50;
-    if (argc > 3)
+    if (argc >= 3)
     {
         numberOfBins = std::stoi(argv[2]);
     }
 
     unsigned int radius = 2;
-    if (argc > 4)
+    if (argc >= 4)
     {
         radius = std::stoi(argv[3]);
     }
