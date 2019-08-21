@@ -39,7 +39,7 @@ void OilPaintingImageFilter<TImage>::BeforeThreadedGenerateData()
 
 template<class TImage>
 void OilPaintingImageFilter<TImage>
-::ThreadedGenerateData(const typename Superclass::OutputImageRegionType& outputRegionForThread, ThreadIdType /*threadId*/)
+::ThreadedGenerateData(const typename TImage::RegionType& outputRegionForThread, ThreadIdType /*threadId*/)
 {
   typename TImage::ConstPointer input = this->GetInput();
   typename TImage::Pointer output = this->GetOutput();
