@@ -1,10 +1,3 @@
-# TODO: Fix build errors for NormalizedCorrelation
-#add_example(NormalizedCorrelation)
-#compare_to_baseline(EXAMPLE_NAME NormalizedCorrelation
-#  BASELINE_PREFIX correlation patch
-#  )
-#===========================================
-
 add_example(NormalizedCorrelationOfMaskedImage)
 compare_to_baseline(EXAMPLE_NAME NormalizedCorrelationOfMaskedImage
   BASELINE_PREFIX correlation
@@ -20,6 +13,8 @@ compare_to_baseline(EXAMPLE_NAME NormalizedCorrelationUsingFFTWithMaskImages
   BASELINE_PREFIX correlation
   )
 
+if(ENABLE_QUICKVIEW)
+
 add_example(ConvolveImageWithKernel)
 compare_to_baseline(EXAMPLE_NAME ConvolveImageWithKernel
   BASELINE_PREFIX ConvolveImageWithKernel
@@ -30,3 +25,12 @@ compare_to_baseline(EXAMPLE_NAME ConvolveImageWithKernel
 #compare_to_baseline(EXAMPLE_NAME ColorNormalizedCorrelation
 #  BASELINE_PREFIX OutputBaseline
 #  )
+
+# TODO: Fix build errors for NormalizedCorrelation
+#add_example(NormalizedCorrelation)
+#compare_to_baseline(EXAMPLE_NAME NormalizedCorrelation
+#  BASELINE_PREFIX correlation patch
+#  )
+#===========================================
+
+endif()

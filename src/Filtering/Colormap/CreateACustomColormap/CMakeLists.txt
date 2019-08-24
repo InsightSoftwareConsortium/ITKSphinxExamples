@@ -1,30 +1,30 @@
 cmake_minimum_required(VERSION 3.10.2)
 
-set( input_image ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png )
+set( input_image ${CMAKE_CURRENT_BINARY_DIR}/sf4.png )
 set( output_image Output.png )
 set( test_options )
 
-project( ApplyAColorMapToAnImage )
+project( CreateACustomColormap )
 
 find_package( ITK REQUIRED )
 include( ${ITK_USE_FILE} )
 
-add_executable( ApplyAColorMapToAnImage Code.cxx )
-target_link_libraries( ApplyAColorMapToAnImage ${ITK_LIBRARIES} )
+add_executable( CreateACustomColormap Code.cxx )
+target_link_libraries( CreateACustomColormap ${ITK_LIBRARIES} )
 
-install( TARGETS ApplyAColorMapToAnImage
+install( TARGETS CreateACustomColormap
   DESTINATION bin/ITKExamples/Filtering/Colormap
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/Colormap/ApplyAColorMapToAnImage
+  DESTINATION share/ITKExamples/Code/Filtering/Colormap/CreateACustomColormap
   COMPONENT Code
 )
 
 enable_testing()
-add_test( NAME ApplyAColorMapToAnImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplyAColorMapToAnImage
+add_test( NAME CreateACustomColormapTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateACustomColormap
   ${input_image}
   ${output_image}
   ${test_options}
@@ -32,7 +32,7 @@ add_test( NAME ApplyAColorMapToAnImageTest
 
 if( ITK_WRAP_PYTHON )
   string( REPLACE . "Python." output_image "${output_image}" )
-  add_test( NAME ApplyAColorMapToAnImageTestPython
+  add_test( NAME CreateACustomColormapTestPython
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       ${output_image}

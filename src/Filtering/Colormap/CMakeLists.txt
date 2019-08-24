@@ -1,7 +1,7 @@
-add_example( CreateACustomColorMap )
-compare_to_baseline( EXAMPLE_NAME CreateACustomColorMap BASELINE_PREFIX OutputBaseline)
+add_example( CreateACustomColormap )
+compare_to_baseline( EXAMPLE_NAME CreateACustomColormap BASELINE_PREFIX OutputBaseline)
 
-add_example( ApplyAColorMapToAnImage )
-compare_to_baseline( EXAMPLE_NAME ApplyAColorMapToAnImage BASELINE_PREFIX OutputBaseline)
+add_example( ApplyAColormapToAnImage )
+compare_to_baseline( EXAMPLE_NAME ApplyAColormapToAnImage BASELINE_PREFIX OutputBaseline)
 
 add_example(MapScalarsIntoJetColormap)

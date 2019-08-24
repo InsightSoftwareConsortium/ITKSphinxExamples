@@ -1,3 +1,7 @@
+if(ENABLE_QUICKVIEW)
+
 add_example(ExtractBoundariesOfConnectedRegionsInBinaryImage)
 add_example(ExtractBoundariesOfBlobsInBinaryImage)
 add_example(LabelContoursOfConnectComponent)
+
+endif()

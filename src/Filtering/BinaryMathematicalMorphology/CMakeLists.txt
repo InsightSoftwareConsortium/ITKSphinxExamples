@@ -15,6 +15,8 @@ compare_to_baseline(EXAMPLE_NAME ThinImage
   BASELINE_PREFIX output
   )
 
+if(ENABLE_QUICKVIEW)
+
 add_example(PruneBinaryImage)
 compare_to_baseline(EXAMPLE_NAME PruneBinaryImage
   BASELINE_PREFIX PruneBinaryImage
@@ -29,3 +31,5 @@ add_example(ClosingBinaryImage)
 compare_to_baseline(EXAMPLE_NAME ClosingBinaryImage
   BASELINE_PREFIX ClosingBinaryImage
   )
+
+endif()

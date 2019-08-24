@@ -87,17 +87,7 @@ compare_to_baseline(EXAMPLE_NAME PadImageByWrapping
 
 add_example(ShrinkImage)
 
-add_example(CropImageBySpecifyingRegion2)
-compare_to_baseline(EXAMPLE_NAME CropImageBySpecifyingRegion2
-  BASELINE_PREFIX CropImageBySpecifyingRegion2
-  )
-
 add_example(TileImagesSideBySide)
-
-add_example(RunImageFilterOnRegionOfImage)
-compare_to_baseline(EXAMPLE_NAME RunImageFilterOnRegionOfImage
-  BASELINE_PREFIX RunImageFilterOnRegionOfImage
-  )
 
 add_example(FitSplineIntoPointSet)
 
@@ -106,3 +96,16 @@ add_example(FitSplineIntoPointSet)
 #compare_to_baseline(EXAMPLE_NAME ProcessA2DSliceOfA3DImage
 #  BASELINE_PREFIX OutputBaseline
 #  )
+
+if (ENABLE_QUICKVIEW)
+
+add_example(RunImageFilterOnRegionOfImage)
+compare_to_baseline(EXAMPLE_NAME RunImageFilterOnRegionOfImage
+        BASELINE_PREFIX RunImageFilterOnRegionOfImage
+        )
+
+add_example(CropImageBySpecifyingRegion2)
+compare_to_baseline(EXAMPLE_NAME CropImageBySpecifyingRegion2
+        BASELINE_PREFIX CropImageBySpecifyingRegion2
+        )
+endif()

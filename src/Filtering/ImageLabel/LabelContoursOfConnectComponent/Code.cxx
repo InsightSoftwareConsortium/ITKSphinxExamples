@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     using RGBFilterType = itk::ScalarToRGBColormapImageFilter<ImageType, RGBImageType>;
     RGBFilterType::Pointer rgbFilter = RGBFilterType::New();
     rgbFilter->SetInput( labelContourImageFilter->GetOutput() );
-    rgbFilter->SetColormap( RGBFilterType::Jet );
+    rgbFilter->SetColormap( itk::RGBColormapFilterEnumType::Jet );
 
 #ifdef ENABLE_QUICKVIEW
     QuickView viewer;

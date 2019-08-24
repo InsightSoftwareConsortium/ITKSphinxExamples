@@ -4,6 +4,6 @@ Colormap
 .. toctree::
   :maxdepth: 1
 
-  CreateACustomColorMap/Documentation.rst
-  ApplyAColorMapToAnImage/Documentation.rst
+  CreateACustomColormap/Documentation.rst
+  ApplyAColormapToAnImage/Documentation.rst
   MapScalarsIntoJetColormap/Documentation.rst

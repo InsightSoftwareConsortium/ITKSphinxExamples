@@ -75,29 +75,9 @@ compare_to_baseline(EXAMPLE_NAME BinaryXORTwoImages
   BASELINE_PREFIX BinaryXORTwoImages
   )
 
-add_example(AbsValueOfImage)
-compare_to_baseline(EXAMPLE_NAME AbsValueOfImage
-  BASELINE_PREFIX AbsValueOfImage
-  )
-
-add_example(InvertImage)
-compare_to_baseline(EXAMPLE_NAME InvertImage
-  BASELINE_PREFIX InvertImage
-  )
-
-add_example(MaskImage)
-compare_to_baseline(EXAMPLE_NAME MaskImage
-  BASELINE_PREFIX MaskImage
-  )
-
 add_example(InverseOfMaskToImage)
 compare_to_baseline(EXAMPLE_NAME InverseOfMaskToImage
   BASELINE_PREFIX InverseOfMaskToImage
-  )
-
-add_example(NormalizeImage)
-compare_to_baseline(EXAMPLE_NAME NormalizeImage
-  BASELINE_PREFIX NormalizeImage
   )
 
 add_example(CastImageToAnotherTypeButClampToOutput)
@@ -113,14 +93,34 @@ add_example(ComputeEdgePotential)
 if(ENABLE_QUICKVIEW)
 
 add_example(AddTwoImages)
-  compare_to_baseline(EXAMPLE_NAME AddTwoImages
-    BASELINE_PREFIX AddTwoImages
-  )
+compare_to_baseline(EXAMPLE_NAME AddTwoImages
+        BASELINE_PREFIX AddTwoImages
+        )
 
 add_example(SubtractTwoImages)
 compare_to_baseline(EXAMPLE_NAME SubtractTwoImages
-  BASELINE_PREFIX SubtractTwoImages
-  )
+        BASELINE_PREFIX SubtractTwoImages
+        )
+
+add_example(AbsValueOfImage)
+compare_to_baseline(EXAMPLE_NAME AbsValueOfImage
+        BASELINE_PREFIX AbsValueOfImage
+        )
+
+add_example(NormalizeImage)
+compare_to_baseline(EXAMPLE_NAME NormalizeImage
+        BASELINE_PREFIX NormalizeImage
+        )
+
+add_example(InvertImage)
+compare_to_baseline(EXAMPLE_NAME InvertImage
+        BASELINE_PREFIX InvertImage
+        )
+
+add_example(MaskImage)
+compare_to_baseline(EXAMPLE_NAME MaskImage
+        BASELINE_PREFIX MaskImage
+        )
 
 endif()
 
