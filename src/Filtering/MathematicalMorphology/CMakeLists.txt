@@ -26,9 +26,13 @@ compare_to_baseline(EXAMPLE_NAME ValuedRegionalMinimalImage
   BASELINE_PREFIX output
   )
 
+add_example(GenerateStructureElementsWithAccurateArea)
+
+if(ENABLE_QUICKVIEW)
+
 add_example(ErodeBinaryImageUsingFlatStruct)
 compare_to_baseline(EXAMPLE_NAME ErodeBinaryImageUsingFlatStruct
-  BASELINE_PREFIX ErodeBinaryImageUsingFlatStruct
-  )
+        BASELINE_PREFIX ErodeBinaryImageUsingFlatStruct
+        )
 
-add_example(GenerateStructureElementsWithAccurateArea)
+endif()

@@ -2,11 +2,6 @@ add_example( SegmentBloodVesselsWithMultiScaleHessianBasedMeasure )
 compare_to_baseline( EXAMPLE_NAME SegmentBloodVesselsWithMultiScaleHessianBasedMeasure
   BASELINE_PREFIX OutputBaseline )
 
-add_example(GeometricPropertiesOfRegion)
-compare_to_baseline(EXAMPLE_NAME GeometricPropertiesOfRegion
-  BASELINE_PREFIX OutputBaseline
-  )
-
 add_example(MultiphaseChanAndVeseSparseFieldLevelSetSegmentation)
 compare_to_baseline(EXAMPLE_NAME MultiphaseChanAndVeseSparseFieldLevelSetSegmentation
   BASELINE_PREFIX OutputBaseline
@@ -21,3 +16,12 @@ add_example(SinglephaseChanAndVeseSparseFieldLevelSetSegmentation2)
 compare_to_baseline(EXAMPLE_NAME SinglephaseChanAndVeseSparseFieldLevelSetSegmentation2
   BASELINE_PREFIX OutputBaseline
   )
+
+if(ENABLE_QUICKVIEW)
+
+add_example(GeometricPropertiesOfRegion)
+compare_to_baseline(EXAMPLE_NAME GeometricPropertiesOfRegion
+        BASELINE_PREFIX OutputBaseline
+        )
+
+endif()

@@ -14,7 +14,7 @@ install(TARGETS LevenbergMarquardtOptimization
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt Code.py
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Numerics/Optimizers/LevenbergMarquardtOptimization/
   COMPONENT Code
   )
@@ -31,14 +31,3 @@ add_test(NAME LevenbergMarquardtOptimizationTest
     ${output_image}
     ${test_options}
   )
-
-if(ITK_WRAP_PYTHON)
-  find_package(PythonInterp REQUIRED)
-  string(REPLACE . "Python." output_image "${output_image}")
-  add_test(NAME LevenbergMarquardtOptimizationTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
-      ${input_image}
-      ${output_image}
-      ${test_options}
-    )
-endif()

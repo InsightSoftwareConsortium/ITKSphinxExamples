@@ -235,7 +235,7 @@ int main( int argc, char* argv[] )
   itk::ImageIOBase::Pointer imageIO =
     itk::ImageIOFactory::CreateImageIO(
       inputFileName,
-      itk::ImageIOFactory::ReadMode );
+      itk::ImageIOFactory::FileModeType::ReadMode );
 
   imageIO->SetFileName( inputFileName );
   imageIO->ReadImageInformation();

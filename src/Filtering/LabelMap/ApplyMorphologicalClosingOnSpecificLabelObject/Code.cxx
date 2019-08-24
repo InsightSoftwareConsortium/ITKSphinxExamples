@@ -84,7 +84,7 @@ int main( int argc, char* argv[] )
   MergeLabelFilterType::Pointer merger = MergeLabelFilterType::New();
   merger->SetInput( 0, objectByObjectLabelMapFilter->GetOutput( 0 ) );
   merger->SetInput( 1, selector->GetOutput( 1 ) );
-  merger->SetMethod( MergeLabelFilterType::KEEP );
+  merger->SetMethod( itk::ChoiceMethod::KEEP );
 
   using UniqueLabelMapFilterType = itk::LabelUniqueLabelMapFilter< LabelMapType >;
   UniqueLabelMapFilterType::Pointer unique = UniqueLabelMapFilterType::New();

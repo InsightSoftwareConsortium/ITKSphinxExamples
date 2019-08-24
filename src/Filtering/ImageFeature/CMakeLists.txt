@@ -14,12 +14,10 @@ add_example(SegmentBloodVessels)
 compare_to_baseline(EXAMPLE_NAME SegmentBloodVessels BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-number-of-pixels 10)
 
 add_example(RequestedRegion)
-add_example(DerivativeImage)
 
-# TODO: Complete example
-#add_example(SharpenImage)
-add_example(FindZeroCrossings)
-#===================================
+if(ENABLE_QUICKVIEW)
+
+add_example(DerivativeImage)
 
 add_example(ZeroCrossingBasedEdgeDecor)
 compare_to_baseline(EXAMPLE_NAME ZeroCrossingBasedEdgeDecor
@@ -30,3 +28,10 @@ add_example(BilateralFilterAnImage)
 compare_to_baseline(EXAMPLE_NAME BilateralFilterAnImage
   BASELINE_PREFIX BilateralFilterAnImage
   )
+
+# TODO: Complete example
+#add_example(SharpenImage)
+add_example(FindZeroCrossings)
+#===================================
+
+endif()

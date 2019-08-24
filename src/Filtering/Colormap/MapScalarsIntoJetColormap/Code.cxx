@@ -21,8 +21,8 @@
 int main( int, char *[])
 {
     using PixelType = itk::RGBPixel<unsigned char>;
-    using ColorMapType = itk::Function::JetColormapFunction<float, PixelType>;
-    ColorMapType::Pointer colormap = ColorMapType::New();
+    using ColormapType = itk::Function::JetColormapFunction<float, PixelType>;
+    ColormapType::Pointer colormap = ColormapType::New();
 
     colormap->SetMinimumInputValue(0.0);
     colormap->SetMaximumInputValue(1.0);

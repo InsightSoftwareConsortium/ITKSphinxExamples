@@ -29,15 +29,15 @@ compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesAffine
     output
   )
 
-add_example(GlobalRegistrationTwoImagesBSpline)
-compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesBSpline
-  BASELINE_PREFIX GlobalRegistrationTwoImagesBSpline
-  )
-
 add_example(MutualInformationAffine)
 compare_to_baseline(EXAMPLE_NAME MutualInformationAffine
   BASELINE_PREFIX
     fixed
     moving
     output
+  )
+
+add_example(GlobalRegistrationTwoImagesBSpline)
+compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesBSpline
+  BASELINE_PREFIX GlobalRegistrationTwoImagesBSpline
   )
