@@ -162,8 +162,11 @@ int main( int argc, char* argv[] )
   caster4->SetOutputMinimum( itk::NumericTraits< OutputPixelType >::min() );
   caster4->SetOutputMaximum( itk::NumericTraits< OutputPixelType >::max() );
 
-  fastMarching->SetOutputSize(
-           reader->GetOutput()->GetBufferedRegion().GetSize() );
+  InputImageType::Pointer inImage = reader->GetOutput();
+  fastMarching->SetOutputDirection(inImage->GetDirection());
+  fastMarching->SetOutputOrigin(inImage->GetOrigin());
+  fastMarching->SetOutputRegion(inImage->GetBufferedRegion());
+  fastMarching->SetOutputSpacing(inImage->GetSpacing());
 
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName( outputFileName );
