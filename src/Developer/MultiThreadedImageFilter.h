@@ -5,14 +5,14 @@
 
 namespace itk
 {
-template< class TImage>
-class MultiThreadedImageFilter : public ImageToImageFilter< TImage, TImage >
+template <class TImage>
+class MultiThreadedImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:
   /** Standard class type alias. */
   using Self = MultiThreadedImageFilter;
-  using Superclass = ImageToImageFilter< TImage, TImage >;
-  using Pointer = SmartPointer< Self >;
+  using Superclass = ImageToImageFilter<TImage, TImage>;
+  using Pointer = SmartPointer<Self>;
 
   using OutputImageRegionType = typename Superclass::OutputImageRegionType;
 
@@ -23,21 +23,22 @@ public:
   itkTypeMacro(ImageFilter, ImageToImageFilter);
 
 protected:
-  MultiThreadedImageFilter()= default;
-  ~MultiThreadedImageFilter() override= default;
+  MultiThreadedImageFilter() = default;
+  ~MultiThreadedImageFilter() override = default;
 
-  void DynamicThreadedGenerateData(const OutputImageRegionType &) override;
+  void
+  DynamicThreadedGenerateData(const OutputImageRegionType &) override;
 
 private:
-  MultiThreadedImageFilter(const Self &) = delete; //purposely not implemented
-  void operator=(const Self &) = delete;  //purposely not implemented
-
+  MultiThreadedImageFilter(const Self &) = delete; // purposely not implemented
+  void
+  operator=(const Self &) = delete; // purposely not implemented
 };
-} //namespace ITK
+} // namespace itk
 
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "MultiThreadedImageFilter.hxx"
+#  include "MultiThreadedImageFilter.hxx"
 #endif
 
 

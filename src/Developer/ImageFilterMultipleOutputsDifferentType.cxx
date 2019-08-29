@@ -4,7 +4,8 @@
 
 #include "ImageFilterMultipleOutputsDifferentType.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   // Setup types
   using InputImageType = itk::Image<unsigned char, 2>;
@@ -17,20 +18,20 @@ int main(int, char*[])
   filter->Update();
 
   {
-  using WriterType = itk::ImageFileWriter< OutputImageType1  >;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("TestOutput1.jpg");
-  writer->SetInput(filter->GetOutput1());
-  writer->Update();
+    using WriterType = itk::ImageFileWriter<OutputImageType1>;
+    WriterType::Pointer writer = WriterType::New();
+    writer->SetFileName("TestOutput1.jpg");
+    writer->SetInput(filter->GetOutput1());
+    writer->Update();
   }
-  
+
   {
-  using WriterType = itk::ImageFileWriter< OutputImageType2  >;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("TestOutput2.jpg");
-  writer->SetInput(filter->GetOutput2());
-  writer->Update();
+    using WriterType = itk::ImageFileWriter<OutputImageType2>;
+    WriterType::Pointer writer = WriterType::New();
+    writer->SetFileName("TestOutput2.jpg");
+    writer->SetInput(filter->GetOutput2());
+    writer->Update();
   }
-  
+
   return EXIT_SUCCESS;
 }

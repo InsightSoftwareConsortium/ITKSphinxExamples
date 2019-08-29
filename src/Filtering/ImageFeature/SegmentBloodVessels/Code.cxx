@@ -21,64 +21,65 @@
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
 
-int main( int argc, char *argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc < 3 )
-    {
+  if (argc < 3)
+  {
     std::cerr << "Usage: <InputImage> <OutputImage> [Sigma] [Alpha1] [Alpha2]" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
   const char * inputImage = argv[1];
   const char * outputImage = argv[2];
-  double sigma = 1.0;
-  if( argc > 3 )
-    {
-    sigma = std::atof( argv[3] );
-    }
+  double       sigma = 1.0;
+  if (argc > 3)
+  {
+    sigma = std::atof(argv[3]);
+  }
   double alpha1 = 0.5;
-  if( argc > 4 )
-    {
-    alpha1 = std::atof( argv[4] );
-    }
+  if (argc > 4)
+  {
+    alpha1 = std::atof(argv[4]);
+  }
   double alpha2 = 2.0;
-  if( argc > 5 )
-    {
-    alpha2 = std::atof( argv[5] );
-    }
+  if (argc > 5)
+  {
+    alpha2 = std::atof(argv[5]);
+  }
 
   constexpr unsigned int Dimension = 3;
   using PixelType = float;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputImage );
+  reader->SetFileName(inputImage);
 
-  using HessianFilterType = itk::HessianRecursiveGaussianImageFilter< ImageType >;
+  using HessianFilterType = itk::HessianRecursiveGaussianImageFilter<ImageType>;
   HessianFilterType::Pointer hessianFilter = HessianFilterType::New();
-  hessianFilter->SetInput( reader->GetOutput() );
-  hessianFilter->SetSigma( sigma );
+  hessianFilter->SetInput(reader->GetOutput());
+  hessianFilter->SetSigma(sigma);
 
-  using VesselnessMeasureFilterType = itk::Hessian3DToVesselnessMeasureImageFilter< PixelType >;
+  using VesselnessMeasureFilterType = itk::Hessian3DToVesselnessMeasureImageFilter<PixelType>;
   VesselnessMeasureFilterType::Pointer vesselnessFilter = VesselnessMeasureFilterType::New();
-  vesselnessFilter->SetInput( hessianFilter->GetOutput() );
-  vesselnessFilter->SetAlpha1( alpha1 );
-  vesselnessFilter->SetAlpha2( alpha2 );
+  vesselnessFilter->SetInput(hessianFilter->GetOutput());
+  vesselnessFilter->SetAlpha1(alpha1);
+  vesselnessFilter->SetAlpha2(alpha2);
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetInput( vesselnessFilter->GetOutput() );
-  writer->SetFileName( outputImage );
+  writer->SetInput(vesselnessFilter->GetOutput());
+  writer->SetFileName(outputImage);
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

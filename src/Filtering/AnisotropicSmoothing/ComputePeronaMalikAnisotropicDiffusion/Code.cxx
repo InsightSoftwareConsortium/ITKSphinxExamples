@@ -21,52 +21,52 @@
 #include "itkImageFileWriter.h"
 #include "itkGradientAnisotropicDiffusionImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 5 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 5)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName>";
     std::cerr << " <OutputFileName>";
     std::cerr << " <NumberOfIterations> ";
     std::cerr << " <Conductance>" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
 
   using InputPixelType = unsigned char;
-  using InputImageType = itk::Image< InputPixelType, Dimension >;
+  using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
 
   using OutputPixelType = float;
-  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
-  using FilterType = itk::GradientAnisotropicDiffusionImageFilter< InputImageType,
-    OutputImageType >;
+  using OutputImageType = itk::Image<OutputPixelType, Dimension>;
+  using FilterType = itk::GradientAnisotropicDiffusionImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( reader->GetOutput() );
-  filter->SetNumberOfIterations( std::stoi( argv[3] ) );
-  filter->SetTimeStep( 0.125 );
-  filter->SetConductanceParameter( std::stod( argv[4] ) );
+  filter->SetInput(reader->GetOutput());
+  filter->SetNumberOfIterations(std::stoi(argv[3]));
+  filter->SetTimeStep(0.125);
+  filter->SetConductanceParameter(std::stod(argv[4]));
 
-  using WriterType = itk::ImageFileWriter< OutputImageType >;
+  using WriterType = itk::ImageFileWriter<OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( argv[2] );
-  writer->SetInput( filter->GetOutput() );
+  writer->SetFileName(argv[2]);
+  writer->SetInput(filter->GetOutput());
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

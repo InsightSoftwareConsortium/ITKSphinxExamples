@@ -23,51 +23,52 @@
 
 #include "itkCleanQuadEdgeMeshFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc < 3 )
-    {
-    std::cout <<"Requires 3 argument: " <<std::endl;
-    std::cout <<"1-Input file name " <<std::endl;
-    std::cout <<"2-Relative Tolerance " <<std::endl;
-    std::cout <<"3-Output file name " <<std::endl;
+  if (argc < 3)
+  {
+    std::cout << "Requires 3 argument: " << std::endl;
+    std::cout << "1-Input file name " << std::endl;
+    std::cout << "2-Relative Tolerance " << std::endl;
+    std::cout << "3-Output file name " << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   using Coord = double;
   constexpr unsigned int Dimension = 3;
 
-  using MeshType = itk::QuadEdgeMesh< Coord, Dimension >;
-  using ReaderType = itk::MeshFileReader< MeshType >;
-  using WriterType = itk::MeshFileWriter< MeshType >;
+  using MeshType = itk::QuadEdgeMesh<Coord, Dimension>;
+  using ReaderType = itk::MeshFileReader<MeshType>;
+  using WriterType = itk::MeshFileWriter<MeshType>;
 
-  ReaderType::Pointer reader = ReaderType::New( );
-  reader->SetFileName( argv[1] );
+  ReaderType::Pointer reader = ReaderType::New();
+  reader->SetFileName(argv[1]);
 
-  MeshType::Pointer mesh = reader->GetOutput( );
+  MeshType::Pointer mesh = reader->GetOutput();
 
-  Coord tol;
-  std::stringstream ssout( argv[2] );
-  ssout >>tol;
+  Coord             tol;
+  std::stringstream ssout(argv[2]);
+  ssout >> tol;
 
-  using CleanFilterType = itk::CleanQuadEdgeMeshFilter< MeshType, MeshType >;
+  using CleanFilterType = itk::CleanQuadEdgeMeshFilter<MeshType, MeshType>;
   CleanFilterType::Pointer filter = CleanFilterType::New();
-  filter->SetInput( mesh );
-  filter->SetRelativeTolerance( tol );
+  filter->SetInput(mesh);
+  filter->SetRelativeTolerance(tol);
 
-  WriterType::Pointer writer = WriterType::New( );
-  writer->SetInput( filter->GetOutput( ) );
-  writer->SetFileName( argv[3] );
+  WriterType::Pointer writer = WriterType::New();
+  writer->SetInput(filter->GetOutput());
+  writer->SetFileName(argv[3]);
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   std::cout << filter;
   return EXIT_SUCCESS;

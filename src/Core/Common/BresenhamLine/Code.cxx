@@ -23,10 +23,13 @@
 
 #include <iostream>
 
-static void Vector();
-static void Line();
+static void
+Vector();
+static void
+Line();
 
-int main( int itkNotUsed( argc ), char * itkNotUsed( argv )[] )
+int
+main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 {
   Vector();
   Line();
@@ -34,7 +37,8 @@ int main( int itkNotUsed( argc ), char * itkNotUsed( argv )[] )
   return EXIT_SUCCESS;
 }
 
-void Vector()
+void
+Vector()
 {
 
   itk::BresenhamLine<2> line;
@@ -42,20 +46,20 @@ void Vector()
   itk::Vector<float, 2> v;
   v[0] = 1;
   v[1] = 1;
-  std::vector< itk::Offset<2> > offsets = line.BuildLine(v, 4);
+  std::vector<itk::Offset<2>> offsets = line.BuildLine(v, 4);
 
-  for(auto offset : offsets)
-    {
+  for (auto offset : offsets)
+  {
     std::cout << offset << std::endl;
-    }
-
+  }
 }
 
-void Line()
+void
+Line()
 {
 
   itk::BresenhamLine<2> line;
-  itk::Index<2> pixel0;
+  itk::Index<2>         pixel0;
   pixel0[0] = 0;
   pixel0[1] = 0;
 
@@ -63,12 +67,10 @@ void Line()
   pixel1[0] = 5;
   pixel1[1] = 5;
 
-  std::vector< itk::Index<2> > pixels = line.BuildLine(pixel0, pixel1);
+  std::vector<itk::Index<2>> pixels = line.BuildLine(pixel0, pixel1);
 
-  for(auto pixel : pixels)
-    {
+  for (auto pixel : pixels)
+  {
     std::cout << pixel << std::endl;
-    }
-
+  }
 }
-

@@ -20,35 +20,36 @@
 #include "itkImageFileWriter.h"
 #include "itkRegionOfInterestImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 7 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 7)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName> <OutputFileName>";
     std::cerr << " <start x> <end x> <start y> <end y>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
 
-  const auto startx = static_cast< itk::IndexValueType >( std::stoi( argv[3] ) );
-  const auto endx = static_cast< itk::IndexValueType >( std::stoi( argv[4] ) );
+  const auto startx = static_cast<itk::IndexValueType>(std::stoi(argv[3]));
+  const auto endx = static_cast<itk::IndexValueType>(std::stoi(argv[4]));
 
-  const auto starty = static_cast< itk::IndexValueType >( std::stoi( argv[5] ) );
-  const auto endy = static_cast< itk::IndexValueType >( std::stoi( argv[6] ) );
+  const auto starty = static_cast<itk::IndexValueType>(std::stoi(argv[5]));
+  const auto endy = static_cast<itk::IndexValueType>(std::stoi(argv[6]));
 
   constexpr unsigned int Dimension = 2;
 
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFileName );
+  reader->SetFileName(inputFileName);
 
   ImageType::IndexType start;
   start[0] = startx;
@@ -59,27 +60,27 @@ int main( int argc, char* argv[] )
   end[1] = endy;
 
   ImageType::RegionType region;
-  region.SetIndex( start );
-  region.SetUpperIndex( end );
+  region.SetIndex(start);
+  region.SetUpperIndex(end);
 
-  using FilterType = itk::RegionOfInterestImageFilter< ImageType, ImageType >;
+  using FilterType = itk::RegionOfInterestImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( reader->GetOutput() );
-  filter->SetRegionOfInterest( region );
+  filter->SetInput(reader->GetOutput());
+  filter->SetRegionOfInterest(region);
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( filter->GetOutput() );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(filter->GetOutput());
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

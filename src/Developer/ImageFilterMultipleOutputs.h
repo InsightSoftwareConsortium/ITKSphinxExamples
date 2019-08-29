@@ -5,14 +5,14 @@
 
 namespace itk
 {
-template< class TImage>
-class ImageFilterMultipleOutputs : public ImageToImageFilter< TImage, TImage >
+template <class TImage>
+class ImageFilterMultipleOutputs : public ImageToImageFilter<TImage, TImage>
 {
 public:
   /** Standard class type alias. */
   using Self = ImageFilterMultipleOutputs;
-  using Superclass = ImageToImageFilter< TImage, TImage >;
-  using Pointer = SmartPointer< Self >;
+  using Superclass = ImageToImageFilter<TImage, TImage>;
+  using Pointer = SmartPointer<Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -20,29 +20,33 @@ public:
   /** Run-time type information (and related methods). */
   itkTypeMacro(ImageFilterMultipleOutputs, ImageToImageFilter);
 
-  TImage* GetOutput1();
-  TImage* GetOutput2();
-  
+  TImage *
+  GetOutput1();
+  TImage *
+  GetOutput2();
+
 protected:
   ImageFilterMultipleOutputs();
-  ~ImageFilterMultipleOutputs() override= default;
+  ~ImageFilterMultipleOutputs() override = default;
 
   /** Does the real work. */
-  void GenerateData() override;
+  void
+  GenerateData() override;
 
   /**  Create the Output */
-  DataObject::Pointer MakeOutput(unsigned int idx);
+  DataObject::Pointer
+  MakeOutput(unsigned int idx);
 
 private:
-  ImageFilterMultipleOutputs(const Self &) = delete; //purposely not implemented
-  void operator=(const Self &) = delete;  //purposely not implemented
-
+  ImageFilterMultipleOutputs(const Self &) = delete; // purposely not implemented
+  void
+  operator=(const Self &) = delete; // purposely not implemented
 };
-} //namespace ITK
+} // namespace itk
 
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "ImageFilterMultipleOutputs.hxx"
+#  include "ImageFilterMultipleOutputs.hxx"
 #endif
 
 

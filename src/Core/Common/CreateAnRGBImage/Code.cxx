@@ -19,12 +19,13 @@
 #include "itkImage.h"
 #include "itkRGBPixel.h"
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
-  using RGBPixelType = itk::RGBPixel< unsigned char >;
+  using RGBPixelType = itk::RGBPixel<unsigned char>;
 
-  using RGBImageType = itk::Image< RGBPixelType, Dimension >;
+  using RGBImageType = itk::Image<RGBPixelType, Dimension>;
   RGBImageType::Pointer image = RGBImageType::New();
 
   return EXIT_SUCCESS;

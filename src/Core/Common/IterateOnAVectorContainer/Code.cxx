@@ -19,12 +19,13 @@
 #include "itkVectorContainer.h"
 #include "itkPoint.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using CoordType = double;
 
-  using PointType = itk::Point< CoordType, Dimension >;
+  using PointType = itk::Point<CoordType, Dimension>;
   using VectorContainerType = itk::VectorContainer<int, PointType>;
 
   PointType p0;
@@ -45,11 +46,11 @@ int main(int, char*[])
   point->Value() = p1;
 
   point = points->Begin();
-  while(point != points->End())
-    {
+  while (point != points->End())
+  {
     std::cout << point->Value() << std::endl;
     ++point;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

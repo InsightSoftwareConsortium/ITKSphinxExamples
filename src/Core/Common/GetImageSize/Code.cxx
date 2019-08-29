@@ -19,23 +19,24 @@
 #include "itkImage.h"
 #include "itkImageFileReader.h"
 
-int main(int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
   // Verify command line arguments
-  if( argc < 2 )
-    {
+  if (argc < 2)
+  {
     std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0] << " inputImageFile" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   using PixelType = unsigned char;
 
-  using ImageType = itk::Image< PixelType, 2 >;
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ImageType = itk::Image<PixelType, 2>;
+  using ReaderType = itk::ImageFileReader<ImageType>;
 
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
   reader->Update();
 
   ImageType::Pointer image = reader->GetOutput();

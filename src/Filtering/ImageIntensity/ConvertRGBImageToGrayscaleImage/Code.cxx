@@ -21,48 +21,49 @@
 #include "itkImageFileWriter.h"
 #include "itkRGBToLuminanceImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 3)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << "<InputFileName> <OutputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
 
   using ComponentType = unsigned char;
-  using InputPixelType = itk::RGBPixel< ComponentType >;
-  using InputImageType = itk::Image< InputPixelType, Dimension >;
+  using InputPixelType = itk::RGBPixel<ComponentType>;
+  using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
 
   using OutputPixelType = unsigned char;
-  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
+  using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using FilterType = itk::RGBToLuminanceImageFilter< InputImageType, OutputImageType >;
+  using FilterType = itk::RGBToLuminanceImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( reader->GetOutput() );
+  filter->SetInput(reader->GetOutput());
 
-  using WriterType = itk::ImageFileWriter< OutputImageType >;
+  using WriterType = itk::ImageFileWriter<OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( argv[2] );
-  writer->SetInput( filter->GetOutput() );
+  writer->SetFileName(argv[2]);
+  writer->SetInput(filter->GetOutput());
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

@@ -21,20 +21,21 @@
 
 #include "itkImageFilterMultipleInputs.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
-    // Setup types
-    using ImageType = itk::Image<unsigned char, 2>;
-    using FilterType = itk::ImageFilterMultipleInputs<ImageType>;
+  // Setup types
+  using ImageType = itk::Image<unsigned char, 2>;
+  using FilterType = itk::ImageFilterMultipleInputs<ImageType>;
 
-    ImageType::Pointer image = ImageType::New();
-    ImageType::Pointer mask = ImageType::New();
+  ImageType::Pointer image = ImageType::New();
+  ImageType::Pointer mask = ImageType::New();
 
-    // Create and the filter
-    FilterType::Pointer filter = FilterType::New();
-    filter->SetInputImage(image);
-    filter->SetInputMask(mask);
-    filter->Update();
+  // Create and the filter
+  FilterType::Pointer filter = FilterType::New();
+  filter->SetInputImage(image);
+  filter->SetInputMask(mask);
+  filter->Update();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }

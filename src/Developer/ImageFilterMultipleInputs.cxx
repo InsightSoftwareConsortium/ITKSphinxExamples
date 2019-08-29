@@ -4,7 +4,8 @@
 
 #include "ImageFilterMultipleInputs.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   // Setup types
   using ImageType = itk::Image<unsigned char, 2>;

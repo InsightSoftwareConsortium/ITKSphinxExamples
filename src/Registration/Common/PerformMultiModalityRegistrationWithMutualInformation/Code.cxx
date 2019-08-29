@@ -63,38 +63,42 @@ public:
   using Self = CommandIterationUpdate;
   using Superclass = itk::Command;
   using Pointer = itk::SmartPointer<Self>;
-  itkNewMacro( Self );
+  itkNewMacro(Self);
 
 protected:
-  CommandIterationUpdate() = default;;
+  CommandIterationUpdate() = default;
+  ;
 
 public:
   using OptimizerType = itk::GradientDescentOptimizer;
-  using OptimizerPointer = const OptimizerType   *;
+  using OptimizerPointer = const OptimizerType *;
 
-  void Execute(itk::Object *caller, const itk::EventObject & event) override
-    {
-    Execute( (const itk::Object *)caller, event);
-    }
+  void
+  Execute(itk::Object * caller, const itk::EventObject & event) override
+  {
+    Execute((const itk::Object *)caller, event);
+  }
 
-  void Execute(const itk::Object * object, const itk::EventObject & event) override
+  void
+  Execute(const itk::Object * object, const itk::EventObject & event) override
+  {
+    auto optimizer = dynamic_cast<OptimizerPointer>(object);
+    if (!itk::IterationEvent().CheckEvent(&event))
     {
-    auto optimizer = dynamic_cast< OptimizerPointer >( object );
-    if( ! itk::IterationEvent().CheckEvent( &event ) )
-      {
       return;
-      }
+    }
     std::cout << optimizer->GetCurrentIteration() << "   ";
     std::cout << optimizer->GetValue() << "   ";
     std::cout << optimizer->GetCurrentPosition() << std::endl;
-    }
+  }
 };
 
 
-int main( int argc, char *argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc < 4 )
-    {
+  if (argc < 4)
+  {
     std::cerr << "Missing Parameters " << std::endl;
     std::cerr << "Usage: " << argv[0];
     std::cerr << " fixedImageFile";
@@ -103,7 +107,7 @@ int main( int argc, char *argv[] )
     std::cerr << " [checkerBoardBefore]";
     std::cerr << " [checkerBoardAfter]" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
   const char * fixedImageFile = argv[1];
   const char * movingImageFile = argv[2];
   const char * outputImageFile = argv[3];
@@ -113,40 +117,34 @@ int main( int argc, char *argv[] )
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned short;
 
-  using FixedImageType = itk::Image< PixelType, Dimension >;
-  using MovingImageType = itk::Image< PixelType, Dimension >;
+  using FixedImageType = itk::Image<PixelType, Dimension>;
+  using MovingImageType = itk::Image<PixelType, Dimension>;
 
   //  It is convenient to work with an internal image type because mutual
   //  information will perform better on images with a normalized statistical
   //  distribution. The fixed and moving images will be normalized and
   //  converted to this internal type.
   using InternalPixelType = float;
-  using InternalImageType = itk::Image< InternalPixelType, Dimension >;
+  using InternalImageType = itk::Image<InternalPixelType, Dimension>;
 
-  using TransformType = itk::TranslationTransform< double, Dimension >;
+  using TransformType = itk::TranslationTransform<double, Dimension>;
   using OptimizerType = itk::GradientDescentOptimizer;
-  using InterpolatorType = itk::LinearInterpolateImageFunction<
-                                    InternalImageType,
-                                    double             >;
-  using RegistrationType = itk::ImageRegistrationMethod<
-                                    InternalImageType,
-                                    InternalImageType >;
+  using InterpolatorType = itk::LinearInterpolateImageFunction<InternalImageType, double>;
+  using RegistrationType = itk::ImageRegistrationMethod<InternalImageType, InternalImageType>;
 
-  using MetricType = itk::MutualInformationImageToImageMetric<
-                                          InternalImageType,
-                                          InternalImageType >;
+  using MetricType = itk::MutualInformationImageToImageMetric<InternalImageType, InternalImageType>;
 
 
-  TransformType::Pointer      transform     = TransformType::New();
-  OptimizerType::Pointer      optimizer     = OptimizerType::New();
-  InterpolatorType::Pointer   interpolator  = InterpolatorType::New();
-  RegistrationType::Pointer   registration  = RegistrationType::New();
-  MetricType::Pointer         metric        = MetricType::New();
+  TransformType::Pointer    transform = TransformType::New();
+  OptimizerType::Pointer    optimizer = OptimizerType::New();
+  InterpolatorType::Pointer interpolator = InterpolatorType::New();
+  RegistrationType::Pointer registration = RegistrationType::New();
+  MetricType::Pointer       metric = MetricType::New();
 
-  registration->SetOptimizer(     optimizer     );
-  registration->SetTransform(     transform     );
-  registration->SetInterpolator(  interpolator  );
-  registration->SetMetric( metric  );
+  registration->SetOptimizer(optimizer);
+  registration->SetTransform(transform);
+  registration->SetInterpolator(interpolator);
+  registration->SetMetric(metric);
 
   //  The metric requires a number of parameters to be selected, including
   //  the standard deviation of the Gaussian kernel for the fixed image
@@ -156,60 +154,55 @@ int main( int argc, char *argv[] )
   //  shown that a kernel standard deviation of 0.4 works well for images
   //  which have been normalized to a mean of zero and unit variance.  We
   //  will follow this empirical rule in this example.
-  metric->SetFixedImageStandardDeviation(  0.4 );
-  metric->SetMovingImageStandardDeviation( 0.4 );
+  metric->SetFixedImageStandardDeviation(0.4);
+  metric->SetMovingImageStandardDeviation(0.4);
 
-  using FixedImageReaderType = itk::ImageFileReader< FixedImageType  >;
-  using MovingImageReaderType = itk::ImageFileReader< MovingImageType >;
+  using FixedImageReaderType = itk::ImageFileReader<FixedImageType>;
+  using MovingImageReaderType = itk::ImageFileReader<MovingImageType>;
 
-  FixedImageReaderType::Pointer  fixedImageReader  =
-    FixedImageReaderType::New();
-  MovingImageReaderType::Pointer movingImageReader =
-    MovingImageReaderType::New();
+  FixedImageReaderType::Pointer  fixedImageReader = FixedImageReaderType::New();
+  MovingImageReaderType::Pointer movingImageReader = MovingImageReaderType::New();
 
-  fixedImageReader->SetFileName(  fixedImageFile );
-  movingImageReader->SetFileName( movingImageFile );
+  fixedImageReader->SetFileName(fixedImageFile);
+  movingImageReader->SetFileName(movingImageFile);
 
-  using FixedNormalizeFilterType = itk::NormalizeImageFilter< FixedImageType, InternalImageType >;
+  using FixedNormalizeFilterType = itk::NormalizeImageFilter<FixedImageType, InternalImageType>;
 
-  using MovingNormalizeFilterType = itk::NormalizeImageFilter< MovingImageType, InternalImageType >;
+  using MovingNormalizeFilterType = itk::NormalizeImageFilter<MovingImageType, InternalImageType>;
 
-  FixedNormalizeFilterType::Pointer fixedNormalizer =
-                                            FixedNormalizeFilterType::New();
+  FixedNormalizeFilterType::Pointer fixedNormalizer = FixedNormalizeFilterType::New();
 
-  MovingNormalizeFilterType::Pointer movingNormalizer =
-                                            MovingNormalizeFilterType::New();
+  MovingNormalizeFilterType::Pointer movingNormalizer = MovingNormalizeFilterType::New();
 
-  using GaussianFilterType = itk::DiscreteGaussianImageFilter< InternalImageType, InternalImageType >;
+  using GaussianFilterType = itk::DiscreteGaussianImageFilter<InternalImageType, InternalImageType>;
 
-  GaussianFilterType::Pointer fixedSmoother  = GaussianFilterType::New();
+  GaussianFilterType::Pointer fixedSmoother = GaussianFilterType::New();
   GaussianFilterType::Pointer movingSmoother = GaussianFilterType::New();
 
-  fixedSmoother->SetVariance( 2.0 );
-  movingSmoother->SetVariance( 2.0 );
+  fixedSmoother->SetVariance(2.0);
+  movingSmoother->SetVariance(2.0);
 
-  fixedNormalizer->SetInput(  fixedImageReader->GetOutput() );
-  movingNormalizer->SetInput( movingImageReader->GetOutput() );
+  fixedNormalizer->SetInput(fixedImageReader->GetOutput());
+  movingNormalizer->SetInput(movingImageReader->GetOutput());
 
-  fixedSmoother->SetInput( fixedNormalizer->GetOutput() );
-  movingSmoother->SetInput( movingNormalizer->GetOutput() );
+  fixedSmoother->SetInput(fixedNormalizer->GetOutput());
+  movingSmoother->SetInput(movingNormalizer->GetOutput());
 
-  registration->SetFixedImage(    fixedSmoother->GetOutput()    );
-  registration->SetMovingImage(   movingSmoother->GetOutput()   );
+  registration->SetFixedImage(fixedSmoother->GetOutput());
+  registration->SetMovingImage(movingSmoother->GetOutput());
 
 
   fixedNormalizer->Update();
-  FixedImageType::RegionType fixedImageRegion =
-       fixedNormalizer->GetOutput()->GetBufferedRegion();
-  registration->SetFixedImageRegion( fixedImageRegion );
+  FixedImageType::RegionType fixedImageRegion = fixedNormalizer->GetOutput()->GetBufferedRegion();
+  registration->SetFixedImageRegion(fixedImageRegion);
 
   using ParametersType = RegistrationType::ParametersType;
-  ParametersType initialParameters( transform->GetNumberOfParameters() );
+  ParametersType initialParameters(transform->GetNumberOfParameters());
 
-  initialParameters[0] = 0.0;  // Initial offset in mm along X
-  initialParameters[1] = 0.0;  // Initial offset in mm along Y
+  initialParameters[0] = 0.0; // Initial offset in mm along X
+  initialParameters[1] = 0.0; // Initial offset in mm along Y
 
-  registration->SetInitialTransformParameters( initialParameters );
+  registration->SetInitialTransformParameters(initialParameters);
 
   //  We should now define the number of spatial samples to be considered in
   //  the metric computation. Note that we were forced to postpone this setting
@@ -238,12 +231,12 @@ int main( int argc, char *argv[] )
   //  behavior of the metric values as the iterations progress.
   const unsigned int numberOfPixels = fixedImageRegion.GetNumberOfPixels();
 
-  const auto numberOfSamples = static_cast< unsigned int >( numberOfPixels * 0.01 );
+  const auto numberOfSamples = static_cast<unsigned int>(numberOfPixels * 0.01);
 
-  metric->SetNumberOfSpatialSamples( numberOfSamples );
+  metric->SetNumberOfSpatialSamples(numberOfSamples);
 
   // For consistent results when regression testing.
-  metric->ReinitializeSeed( 121212 );
+  metric->ReinitializeSeed(121212);
 
 
   //  Since larger values of mutual information indicate better matches than
@@ -253,7 +246,7 @@ int main( int argc, char *argv[] )
   //  default behavior by invoking the MaximizeOn() method.
   //  Additionally, we need to define the optimizer's step size using the
   //  SetLearningRate() method.
-  optimizer->SetNumberOfIterations( 200 );
+  optimizer->SetNumberOfIterations(200);
   optimizer->MaximizeOn();
 
   // Note that large values of the learning rate will make the optimizer
@@ -271,24 +264,23 @@ int main( int argc, char *argv[] )
   // optimizer step length is proportional to the Metric values themselves.
   // Metrics with large values will require you to use smaller values for the
   // learning rate in order to maintain a similar optimizer behavior.
-  optimizer->SetLearningRate( 15.0 );
+  optimizer->SetLearningRate(15.0);
 
   CommandIterationUpdate::Pointer observer = CommandIterationUpdate::New();
-  optimizer->AddObserver( itk::IterationEvent(), observer );
+  optimizer->AddObserver(itk::IterationEvent(), observer);
 
   try
-    {
+  {
     registration->Update();
-    std::cout << "Optimizer stop condition: "
-              << registration->GetOptimizer()->GetStopConditionDescription()
+    std::cout << "Optimizer stop condition: " << registration->GetOptimizer()->GetStopConditionDescription()
               << std::endl;
-    }
-  catch( itk::ExceptionObject & err )
-    {
+  }
+  catch (itk::ExceptionObject & err)
+  {
     std::cout << "ExceptionObject caught !" << std::endl;
     std::cout << err << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   ParametersType finalParameters = registration->GetLastTransformParameters();
 
@@ -302,92 +294,88 @@ int main( int argc, char *argv[] )
   // Print out results
   std::cout << std::endl;
   std::cout << "Result = " << std::endl;
-  std::cout << " Translation X = " << TranslationAlongX  << std::endl;
-  std::cout << " Translation Y = " << TranslationAlongY  << std::endl;
+  std::cout << " Translation X = " << TranslationAlongX << std::endl;
+  std::cout << " Translation Y = " << TranslationAlongY << std::endl;
   std::cout << " Iterations    = " << numberOfIterations << std::endl;
-  std::cout << " Metric value  = " << bestValue          << std::endl;
-  std::cout << " Numb. Samples = " << numberOfSamples    << std::endl;
+  std::cout << " Metric value  = " << bestValue << std::endl;
+  std::cout << " Numb. Samples = " << numberOfSamples << std::endl;
 
 
-  using ResampleFilterType = itk::ResampleImageFilter<
-                            MovingImageType,
-                            FixedImageType >;
+  using ResampleFilterType = itk::ResampleImageFilter<MovingImageType, FixedImageType>;
 
   TransformType::Pointer finalTransform = TransformType::New();
 
-  finalTransform->SetParameters( finalParameters );
-  finalTransform->SetFixedParameters( transform->GetFixedParameters() );
+  finalTransform->SetParameters(finalParameters);
+  finalTransform->SetFixedParameters(transform->GetFixedParameters());
 
   ResampleFilterType::Pointer resample = ResampleFilterType::New();
 
-  resample->SetTransform( finalTransform );
-  resample->SetInput( movingImageReader->GetOutput() );
+  resample->SetTransform(finalTransform);
+  resample->SetInput(movingImageReader->GetOutput());
 
   FixedImageType::Pointer fixedImage = fixedImageReader->GetOutput();
 
-  resample->SetSize(    fixedImage->GetLargestPossibleRegion().GetSize() );
-  resample->SetOutputOrigin(  fixedImage->GetOrigin() );
-  resample->SetOutputSpacing( fixedImage->GetSpacing() );
-  resample->SetOutputDirection( fixedImage->GetDirection() );
-  resample->SetDefaultPixelValue( 100 );
+  resample->SetSize(fixedImage->GetLargestPossibleRegion().GetSize());
+  resample->SetOutputOrigin(fixedImage->GetOrigin());
+  resample->SetOutputSpacing(fixedImage->GetSpacing());
+  resample->SetOutputDirection(fixedImage->GetDirection());
+  resample->SetDefaultPixelValue(100);
 
 
   using OutputPixelType = unsigned char;
 
-  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
+  using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using CastFilterType = itk::CastImageFilter<
-                        FixedImageType,
-                        OutputImageType >;
+  using CastFilterType = itk::CastImageFilter<FixedImageType, OutputImageType>;
 
-  using WriterType = itk::ImageFileWriter< OutputImageType >;
+  using WriterType = itk::ImageFileWriter<OutputImageType>;
 
-  WriterType::Pointer      writer =  WriterType::New();
-  CastFilterType::Pointer  caster =  CastFilterType::New();
+  WriterType::Pointer     writer = WriterType::New();
+  CastFilterType::Pointer caster = CastFilterType::New();
 
-  writer->SetFileName( outputImageFile );
-  caster->SetInput( resample->GetOutput() );
-  writer->SetInput( caster->GetOutput()   );
+  writer->SetFileName(outputImageFile);
+  caster->SetInput(resample->GetOutput());
+  writer->SetInput(caster->GetOutput());
   writer->Update();
 
 
   // Generate checkerboards before and after registration
-  using CheckerBoardFilterType = itk::CheckerBoardImageFilter< FixedImageType >;
+  using CheckerBoardFilterType = itk::CheckerBoardImageFilter<FixedImageType>;
 
   CheckerBoardFilterType::Pointer checker = CheckerBoardFilterType::New();
 
-  checker->SetInput1( fixedImage );
-  checker->SetInput2( resample->GetOutput() );
+  checker->SetInput1(fixedImage);
+  checker->SetInput2(resample->GetOutput());
 
-  caster->SetInput( checker->GetOutput() );
-  writer->SetInput( caster->GetOutput()   );
+  caster->SetInput(checker->GetOutput());
+  writer->SetInput(caster->GetOutput());
 
   // Before registration
   TransformType::Pointer identityTransform = TransformType::New();
   identityTransform->SetIdentity();
-  resample->SetTransform( identityTransform );
+  resample->SetTransform(identityTransform);
 
-  if( argc > 4 )
-    {
-    writer->SetFileName( checkerBoardBefore );
-    }
+  if (argc > 4)
+  {
+    writer->SetFileName(checkerBoardBefore);
+  }
 
   // After registration
-  resample->SetTransform( finalTransform );
-  if( argc > 5 )
-    {
-    writer->SetFileName( checkerBoardAfter );
-    }
+  resample->SetTransform(finalTransform);
+  if (argc > 5)
+  {
+    writer->SetFileName(checkerBoardAfter);
+  }
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

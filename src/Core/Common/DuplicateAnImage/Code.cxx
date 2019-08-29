@@ -20,21 +20,22 @@
 #include "itkImageDuplicator.h"
 #include "itkRandomImageSource.h"
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
 
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using RandomSourceType = itk::RandomImageSource< ImageType >;
+  using RandomSourceType = itk::RandomImageSource<ImageType>;
 
   RandomSourceType::Pointer randomImageSource = RandomSourceType::New();
   randomImageSource->SetNumberOfWorkUnits(1); // to produce non-random results
 
   ImageType::Pointer image = randomImageSource->GetOutput();
 
-  using DuplicatorType = itk::ImageDuplicator< ImageType >;
+  using DuplicatorType = itk::ImageDuplicator<ImageType>;
   DuplicatorType::Pointer duplicator = DuplicatorType::New();
   duplicator->SetInputImage(image);
   duplicator->Update();

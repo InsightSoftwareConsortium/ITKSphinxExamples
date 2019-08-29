@@ -20,58 +20,59 @@
 #include "itkImageFileWriter.h"
 
 using ImageType = itk::Image<unsigned char, 2>;
-static void CreateImage(ImageType::Pointer image);
+static void
+CreateImage(ImageType::Pointer image);
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
-    ImageType::Pointer image = ImageType::New();
-    CreateImage(image);
+  ImageType::Pointer image = ImageType::New();
+  CreateImage(image);
 
-    using SubtractImageFilterType = itk::SubtractImageFilter <ImageType, ImageType, ImageType>;
-    SubtractImageFilterType::Pointer subtractConstantFromImageFilter = SubtractImageFilterType::New();
-    subtractConstantFromImageFilter->SetInput(image);
-    subtractConstantFromImageFilter->SetConstant2(2);
-    subtractConstantFromImageFilter->Update();
+  using SubtractImageFilterType = itk::SubtractImageFilter<ImageType, ImageType, ImageType>;
+  SubtractImageFilterType::Pointer subtractConstantFromImageFilter = SubtractImageFilterType::New();
+  subtractConstantFromImageFilter->SetInput(image);
+  subtractConstantFromImageFilter->SetConstant2(2);
+  subtractConstantFromImageFilter->Update();
 
-    using WriterType = itk::ImageFileWriter< ImageType  >;
-    WriterType::Pointer writer = WriterType::New();
-    writer->SetFileName("output.png");
-    writer->SetInput(subtractConstantFromImageFilter->GetOutput());
-    writer->Update();
+  using WriterType = itk::ImageFileWriter<ImageType>;
+  WriterType::Pointer writer = WriterType::New();
+  writer->SetFileName("output.png");
+  writer->SetInput(subtractConstantFromImageFilter->GetOutput());
+  writer->Update();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage(ImageType::Pointer image)
+void
+CreateImage(ImageType::Pointer image)
 {
-    ImageType::IndexType start;
-    start.Fill(0);
+  ImageType::IndexType start;
+  start.Fill(0);
 
-    ImageType::SizeType size;
-    size.Fill(100);
+  ImageType::SizeType size;
+  size.Fill(100);
 
-    ImageType::RegionType region;
-    region.SetSize(size);
-    region.SetIndex(start);
+  ImageType::RegionType region;
+  region.SetSize(size);
+  region.SetIndex(start);
 
-    image->SetRegions(region);
-    image->Allocate();
+  image->SetRegions(region);
+  image->Allocate();
 
-    itk::ImageRegionIterator<ImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
 
-    while(!imageIterator.IsAtEnd())
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] < 70)
     {
-        if(imageIterator.GetIndex()[0] < 70)
-        {
-            imageIterator.Set(255);
-        }
-        else
-        {
-            imageIterator.Set(0);
-        }
-
-        ++imageIterator;
+      imageIterator.Set(255);
+    }
+    else
+    {
+      imageIterator.Set(0);
     }
 
+    ++imageIterator;
+  }
 }
-

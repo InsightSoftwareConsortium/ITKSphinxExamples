@@ -24,16 +24,17 @@
 #include "itkIntensityWindowingImageFilter.h"
 #include "itkFFTShiftImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 3)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName> <OutputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
@@ -41,61 +42,59 @@ int main( int argc, char* argv[] )
   constexpr unsigned int Dimension = 3;
 
   using PixelType = float;
-  using RealImageType = itk::Image< PixelType, Dimension >;
+  using RealImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< RealImageType >;
+  using ReaderType = itk::ImageFileReader<RealImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFileName );
+  reader->SetFileName(inputFileName);
 
   // Some FFT filter implementations, like VNL's, need the image size to be a
   // multiple of small prime numbers.
-  using PadFilterType = itk::WrapPadImageFilter< RealImageType, RealImageType >;
+  using PadFilterType = itk::WrapPadImageFilter<RealImageType, RealImageType>;
   PadFilterType::Pointer padFilter = PadFilterType::New();
-  padFilter->SetInput( reader->GetOutput() );
+  padFilter->SetInput(reader->GetOutput());
   PadFilterType::SizeType padding;
   // Input size is [48, 62, 42].  Pad to [48, 64, 48].
   padding[0] = 0;
   padding[1] = 2;
   padding[2] = 6;
-  padFilter->SetPadUpperBound( padding );
+  padFilter->SetPadUpperBound(padding);
 
-  using ForwardFFTFilterType = itk::ForwardFFTImageFilter< RealImageType >;
+  using ForwardFFTFilterType = itk::ForwardFFTImageFilter<RealImageType>;
   using ComplexImageType = ForwardFFTFilterType::OutputImageType;
   ForwardFFTFilterType::Pointer forwardFFTFilter = ForwardFFTFilterType::New();
-  forwardFFTFilter->SetInput( padFilter->GetOutput() );
+  forwardFFTFilter->SetInput(padFilter->GetOutput());
 
-  using ComplexToModulusFilterType = itk::ComplexToModulusImageFilter< ComplexImageType, RealImageType >;
-  ComplexToModulusFilterType::Pointer complexToModulusFilter
-    = ComplexToModulusFilterType::New();
-  complexToModulusFilter->SetInput( forwardFFTFilter->GetOutput() );
+  using ComplexToModulusFilterType = itk::ComplexToModulusImageFilter<ComplexImageType, RealImageType>;
+  ComplexToModulusFilterType::Pointer complexToModulusFilter = ComplexToModulusFilterType::New();
+  complexToModulusFilter->SetInput(forwardFFTFilter->GetOutput());
 
   // Window and shift the output for visualization.
   using OutputPixelType = unsigned short;
-  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
-  using WindowingFilterType = itk::IntensityWindowingImageFilter< RealImageType, OutputImageType >;
-  WindowingFilterType::Pointer windowingFilter
-    = WindowingFilterType::New();
-  windowingFilter->SetInput( complexToModulusFilter->GetOutput() );
-  windowingFilter->SetWindowMinimum( 0 );
-  windowingFilter->SetWindowMaximum( 20000 );
+  using OutputImageType = itk::Image<OutputPixelType, Dimension>;
+  using WindowingFilterType = itk::IntensityWindowingImageFilter<RealImageType, OutputImageType>;
+  WindowingFilterType::Pointer windowingFilter = WindowingFilterType::New();
+  windowingFilter->SetInput(complexToModulusFilter->GetOutput());
+  windowingFilter->SetWindowMinimum(0);
+  windowingFilter->SetWindowMaximum(20000);
 
-  using FFTShiftFilterType = itk::FFTShiftImageFilter< OutputImageType, OutputImageType >;
+  using FFTShiftFilterType = itk::FFTShiftImageFilter<OutputImageType, OutputImageType>;
   FFTShiftFilterType::Pointer fftShiftFilter = FFTShiftFilterType::New();
-  fftShiftFilter->SetInput( windowingFilter->GetOutput() );
+  fftShiftFilter->SetInput(windowingFilter->GetOutput());
 
-  using WriterType = itk::ImageFileWriter< OutputImageType >;
+  using WriterType = itk::ImageFileWriter<OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( fftShiftFilter->GetOutput() );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(fftShiftFilter->GetOutput());
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

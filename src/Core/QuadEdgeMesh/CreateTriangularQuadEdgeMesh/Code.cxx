@@ -19,23 +19,24 @@
 #include "itkQuadEdgeMesh.h"
 #include "itkMeshFileWriter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 2 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 2)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <OutputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   const char * outputFileName = argv[1];
 
   constexpr unsigned int Dimension = 3;
 
   using CoordType = double;
-  using MeshType = itk::QuadEdgeMesh< CoordType, Dimension >;
+  using MeshType = itk::QuadEdgeMesh<CoordType, Dimension>;
 
   MeshType::Pointer mesh = MeshType::New();
 
@@ -43,7 +44,7 @@ int main( int argc, char* argv[] )
   using PointsContainerPointer = MeshType::PointsContainerPointer;
 
   PointsContainerPointer points = PointsContainer::New();
-  points->Reserve( 100 );
+  points->Reserve(100);
 
   using PointType = MeshType::PointType;
   PointType p;
@@ -52,46 +53,46 @@ int main( int argc, char* argv[] )
   using PointIdentifier = MeshType::PointIdentifier;
   PointIdentifier k = 0;
 
-  for( int i = 0; i < 10; i++ )
+  for (int i = 0; i < 10; i++)
+  {
+    p[0] = static_cast<CoordType>(i);
+
+    for (int j = 0; j < 10; j++)
     {
-    p[0] = static_cast< CoordType >( i );
-
-    for( int j = 0; j < 10; j++ )
-      {
-      p[1] = static_cast< CoordType >( j );
-      points->SetElement( k, p );
+      p[1] = static_cast<CoordType>(j);
+      points->SetElement(k, p);
       k++;
-      }
     }
+  }
 
-  mesh->SetPoints( points );
+  mesh->SetPoints(points);
 
   k = 0;
 
-  for( int i = 0; i < 9; i++ )
+  for (int i = 0; i < 9; i++)
+  {
+    for (int j = 0; j < 9; j++)
     {
-    for( int j = 0; j < 9; j++ )
-      {
-      mesh->AddFaceTriangle( k, k+1,  k+11 );
-      mesh->AddFaceTriangle( k, k+11, k+10 );
+      mesh->AddFaceTriangle(k, k + 1, k + 11);
+      mesh->AddFaceTriangle(k, k + 11, k + 10);
       k++;
-      }
+    }
     k++;
-    }
+  }
 
-  using WriterType = itk::MeshFileWriter< MeshType >;
+  using WriterType = itk::MeshFileWriter<MeshType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( mesh );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(mesh);
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

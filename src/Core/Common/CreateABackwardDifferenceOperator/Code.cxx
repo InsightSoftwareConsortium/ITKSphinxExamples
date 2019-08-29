@@ -18,31 +18,31 @@
 
 #include <itkBackwardDifferenceOperator.h>
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   using PixelType = float;
   constexpr unsigned int Dimension = 2;
 
-  using BackwardDifferenceOperatorType = itk::BackwardDifferenceOperator< PixelType, Dimension >;
+  using BackwardDifferenceOperatorType = itk::BackwardDifferenceOperator<PixelType, Dimension>;
   BackwardDifferenceOperatorType backwardDifferenceOperator;
 
   // Create the operator for the X axis derivative
   backwardDifferenceOperator.SetDirection(0);
 
-  itk::Size< Dimension > radius;
+  itk::Size<Dimension> radius;
   radius.Fill(1);
 
   backwardDifferenceOperator.CreateToRadius(radius);
 
-  std::cout << "Size: " << backwardDifferenceOperator.GetSize()
-            << std::endl;
+  std::cout << "Size: " << backwardDifferenceOperator.GetSize() << std::endl;
 
   std::cout << backwardDifferenceOperator << std::endl;
 
-  for(unsigned int i = 0; i < 9; i++)
-    {
-    std::cout << backwardDifferenceOperator.GetOffset(i) << " "
-              << backwardDifferenceOperator.GetElement(i) << std::endl;
-    }
+  for (unsigned int i = 0; i < 9; i++)
+  {
+    std::cout << backwardDifferenceOperator.GetOffset(i) << " " << backwardDifferenceOperator.GetElement(i)
+              << std::endl;
+  }
   return EXIT_SUCCESS;
 }

@@ -29,110 +29,119 @@
 
 namespace
 {
-    using ImageType = itk::Image<unsigned char, 2>;
-    using FloatImageType = itk::Image<float, 2>;
-}
+using ImageType = itk::Image<unsigned char, 2>;
+using FloatImageType = itk::Image<float, 2>;
+} // namespace
 
-//using UnsignedCharImageType = itk::Image<unsigned char, 2>;
+// using UnsignedCharImageType = itk::Image<unsigned char, 2>;
 
-static void CreateImage(ImageType::Pointer image, const itk::Index<2>& cornerOfSquare);
+static void
+CreateImage(ImageType::Pointer image, const itk::Index<2> & cornerOfSquare);
 
 template <typename TImage>
-static void WriteImage(TImage* const image, const std::string& filename);
+static void
+WriteImage(TImage * const image, const std::string & filename);
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
-    itk::Index<2> offset;
-    offset[0] = 5;
-    offset[1] = 6;
+  itk::Index<2> offset;
+  offset[0] = 5;
+  offset[1] = 6;
 
-    ImageType::Pointer fixedImage = ImageType::New();
-    itk::Index<2> cornerOfFixedSquare;
-    cornerOfFixedSquare[0] = 3;
-    cornerOfFixedSquare[1] = 8;
-    CreateImage(fixedImage, cornerOfFixedSquare);
-    WriteImage(fixedImage.GetPointer(), "fixedImage.png");
+  ImageType::Pointer fixedImage = ImageType::New();
+  itk::Index<2>      cornerOfFixedSquare;
+  cornerOfFixedSquare[0] = 3;
+  cornerOfFixedSquare[1] = 8;
+  CreateImage(fixedImage, cornerOfFixedSquare);
+  WriteImage(fixedImage.GetPointer(), "fixedImage.png");
 
-    ImageType::Pointer movingImage = ImageType::New();
-    itk::Index<2> cornerOfMovingSquare;
-    cornerOfMovingSquare[0] = cornerOfFixedSquare[0] + offset[0];
-    cornerOfMovingSquare[1] = cornerOfFixedSquare[1] + offset[1];
-    CreateImage(movingImage, cornerOfMovingSquare);
-    WriteImage(movingImage.GetPointer(), "movingImage.png");
+  ImageType::Pointer movingImage = ImageType::New();
+  itk::Index<2>      cornerOfMovingSquare;
+  cornerOfMovingSquare[0] = cornerOfFixedSquare[0] + offset[0];
+  cornerOfMovingSquare[1] = cornerOfFixedSquare[1] + offset[1];
+  CreateImage(movingImage, cornerOfMovingSquare);
+  WriteImage(movingImage.GetPointer(), "movingImage.png");
 
-    // Perform normalized correlation
-    using CorrelationFilterType = itk::FFTNormalizedCorrelationImageFilter<ImageType, FloatImageType>;
-    CorrelationFilterType::Pointer correlationFilter = CorrelationFilterType::New();
-    correlationFilter->SetFixedImage(fixedImage);
-    correlationFilter->SetMovingImage(movingImage);
-    correlationFilter->Update();
+  // Perform normalized correlation
+  using CorrelationFilterType = itk::FFTNormalizedCorrelationImageFilter<ImageType, FloatImageType>;
+  CorrelationFilterType::Pointer correlationFilter = CorrelationFilterType::New();
+  correlationFilter->SetFixedImage(fixedImage);
+  correlationFilter->SetMovingImage(movingImage);
+  correlationFilter->Update();
 
-    WriteImage(correlationFilter->GetOutput(), "correlation.mha");
+  WriteImage(correlationFilter->GetOutput(), "correlation.mha");
 
-    using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, ImageType>;
-    RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
-    rescaleFilter->SetInput(correlationFilter->GetOutput());
-    rescaleFilter->SetOutputMinimum(0);
-    rescaleFilter->SetOutputMaximum(255);
-    rescaleFilter->Update();
-    WriteImage(rescaleFilter->GetOutput(), "correlation.png");
+  using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, ImageType>;
+  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  rescaleFilter->SetInput(correlationFilter->GetOutput());
+  rescaleFilter->SetOutputMinimum(0);
+  rescaleFilter->SetOutputMaximum(255);
+  rescaleFilter->Update();
+  WriteImage(rescaleFilter->GetOutput(), "correlation.png");
 
-    using MinimumMaximumImageCalculatorType = itk::MinimumMaximumImageCalculator<FloatImageType>;
-    MinimumMaximumImageCalculatorType::Pointer minimumMaximumImageCalculatorFilter = MinimumMaximumImageCalculatorType::New ();
-    minimumMaximumImageCalculatorFilter->SetImage(correlationFilter->GetOutput());
-    minimumMaximumImageCalculatorFilter->Compute();
+  using MinimumMaximumImageCalculatorType = itk::MinimumMaximumImageCalculator<FloatImageType>;
+  MinimumMaximumImageCalculatorType::Pointer minimumMaximumImageCalculatorFilter =
+    MinimumMaximumImageCalculatorType::New();
+  minimumMaximumImageCalculatorFilter->SetImage(correlationFilter->GetOutput());
+  minimumMaximumImageCalculatorFilter->Compute();
 
-    itk::Index<2> maximumCorrelationPatchCenter = minimumMaximumImageCalculatorFilter->GetIndexOfMaximum();
+  itk::Index<2> maximumCorrelationPatchCenter = minimumMaximumImageCalculatorFilter->GetIndexOfMaximum();
 
-    itk::Size<2> outputSize = correlationFilter->GetOutput()->GetLargestPossibleRegion().GetSize();
+  itk::Size<2> outputSize = correlationFilter->GetOutput()->GetLargestPossibleRegion().GetSize();
 
-    itk::Index<2> maximumCorrelationPatchCenterFixed;
-    maximumCorrelationPatchCenterFixed[0] = outputSize[0]/2 - maximumCorrelationPatchCenter[0];
-    maximumCorrelationPatchCenterFixed[1] = outputSize[1]/2 - maximumCorrelationPatchCenter[1];
+  itk::Index<2> maximumCorrelationPatchCenterFixed;
+  maximumCorrelationPatchCenterFixed[0] = outputSize[0] / 2 - maximumCorrelationPatchCenter[0];
+  maximumCorrelationPatchCenterFixed[1] = outputSize[1] / 2 - maximumCorrelationPatchCenter[1];
 
-    std::cout << "Maximum location: " << maximumCorrelationPatchCenter << std::endl;
-    std::cout << "Maximum location fixed: " << maximumCorrelationPatchCenterFixed << std::endl; // This is the value we expect!
-    std::cout << "Maximum value: " << minimumMaximumImageCalculatorFilter->GetMaximum() << std::endl; // If the images can be perfectly aligned, the value is 1
+  std::cout << "Maximum location: " << maximumCorrelationPatchCenter << std::endl;
+  std::cout << "Maximum location fixed: " << maximumCorrelationPatchCenterFixed
+            << std::endl; // This is the value we expect!
+  std::cout << "Maximum value: " << minimumMaximumImageCalculatorFilter->GetMaximum()
+            << std::endl; // If the images can be perfectly aligned, the value is 1
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage(ImageType::Pointer image, const itk::Index<2>& cornerOfSquare)
+void
+CreateImage(ImageType::Pointer image, const itk::Index<2> & cornerOfSquare)
 {
-    ImageType::IndexType start;
-    start.Fill(0);
+  ImageType::IndexType start;
+  start.Fill(0);
 
-    ImageType::SizeType size;
-    size.Fill(51);
+  ImageType::SizeType size;
+  size.Fill(51);
 
-    ImageType::RegionType region(start,size);
+  ImageType::RegionType region(start, size);
 
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(0);
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(0);
 
-    itk::ImageRegionIterator<ImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
 
-    ImageType::IndexValueType squareSize = 8;
+  ImageType::IndexValueType squareSize = 8;
 
-    while(!imageIterator.IsAtEnd())
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] > cornerOfSquare[0] &&
+        imageIterator.GetIndex()[0] < cornerOfSquare[0] + squareSize &&
+        imageIterator.GetIndex()[1] > cornerOfSquare[1] && imageIterator.GetIndex()[1] < cornerOfSquare[1] + squareSize)
     {
-        if(imageIterator.GetIndex()[0] > cornerOfSquare[0] && imageIterator.GetIndex()[0] < cornerOfSquare[0] + squareSize &&
-           imageIterator.GetIndex()[1] > cornerOfSquare[1] && imageIterator.GetIndex()[1] < cornerOfSquare[1] + squareSize)
-        {
-            imageIterator.Set(255);
-        }
-
-        ++imageIterator;
+      imageIterator.Set(255);
     }
+
+    ++imageIterator;
+  }
 }
 
 template <typename TImage>
-void WriteImage(TImage* const image, const std::string& filename)
+void
+WriteImage(TImage * const image, const std::string & filename)
 {
-    using WriterType = itk::ImageFileWriter<TImage>;
-    typename WriterType::Pointer writer = WriterType::New();
-    writer->SetFileName(filename);
-    writer->SetInput(image);
-    writer->Update();
+  using WriterType = itk::ImageFileWriter<TImage>;
+  typename WriterType::Pointer writer = WriterType::New();
+  writer->SetFileName(filename);
+  writer->SetInput(image);
+  writer->Update();
 }

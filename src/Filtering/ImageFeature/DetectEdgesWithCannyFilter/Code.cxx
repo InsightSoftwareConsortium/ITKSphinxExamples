@@ -22,62 +22,63 @@
 #include "itkCannyEdgeDetectionImageFilter.h"
 #include "itkRescaleIntensityImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 6 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 6)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << "<InputImage> <OutputImage> ";
     std::cerr << "<Variance> <LowerThreshold> <UpperThreshold>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
   using InputPixelType = float;
   using OutputPixelType = unsigned char;
 
-  const char * inputImage = argv[1];
-  const char * outputImage = argv[2];
-  const InputPixelType variance = std::stod( argv[3] );
-  const InputPixelType lowerThreshold = std::stod( argv[4] );
-  const InputPixelType upperThreshold = std::stod( argv[5] );
+  const char *         inputImage = argv[1];
+  const char *         outputImage = argv[2];
+  const InputPixelType variance = std::stod(argv[3]);
+  const InputPixelType lowerThreshold = std::stod(argv[4]);
+  const InputPixelType upperThreshold = std::stod(argv[5]);
 
   using InputImageType = itk::Image<InputPixelType, Dimension>;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputImage );
+  reader->SetFileName(inputImage);
 
-  using FilterType = itk::CannyEdgeDetectionImageFilter< InputImageType, InputImageType >;
+  using FilterType = itk::CannyEdgeDetectionImageFilter<InputImageType, InputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( reader->GetOutput() );
-  filter->SetVariance( variance );
-  filter->SetLowerThreshold( lowerThreshold );
-  filter->SetUpperThreshold( upperThreshold );
+  filter->SetInput(reader->GetOutput());
+  filter->SetVariance(variance);
+  filter->SetLowerThreshold(lowerThreshold);
+  filter->SetUpperThreshold(upperThreshold);
 
-  using RescaleType = itk::RescaleIntensityImageFilter< InputImageType, OutputImageType >;
+  using RescaleType = itk::RescaleIntensityImageFilter<InputImageType, OutputImageType>;
   RescaleType::Pointer rescaler = RescaleType::New();
-  rescaler->SetInput( filter->GetOutput() );
-  rescaler->SetOutputMinimum( 0 );
-  rescaler->SetOutputMaximum( 255 );
+  rescaler->SetInput(filter->GetOutput());
+  rescaler->SetOutputMinimum(0);
+  rescaler->SetOutputMaximum(255);
 
-  using WriterType = itk::ImageFileWriter< OutputImageType >;
+  using WriterType = itk::ImageFileWriter<OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputImage );
-  writer->SetInput( rescaler->GetOutput() );
+  writer->SetFileName(outputImage);
+  writer->SetInput(rescaler->GetOutput());
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & e )
-    {
+  }
+  catch (itk::ExceptionObject & e)
+  {
     std::cerr << "Error: " << e << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

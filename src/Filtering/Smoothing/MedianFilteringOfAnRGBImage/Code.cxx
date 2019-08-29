@@ -31,7 +31,7 @@ namespace itk
  * This class overrides the <= and < operators to use Luminance as a sorting
  * value.
  */
-template< typename TComponent = unsigned short >
+template <typename TComponent = unsigned short>
 class myRGBPixel : public RGBPixel<TComponent>
 {
 public:
@@ -40,70 +40,72 @@ public:
 
   using RGBPixel<TComponent>::operator=;
 
-  bool operator<=(const Self & r) const
-    {
+  bool
+  operator<=(const Self & r) const
+  {
     return (this->GetLuminance() <= r.GetLuminance());
-    }
-  bool operator<(const Self & r) const
-    {
+  }
+  bool
+  operator<(const Self & r) const
+  {
     return (this->GetLuminance() < r.GetLuminance());
-    }
+  }
 };
-}
+} // namespace itk
 
-int main(int argc, char * argv[])
+int
+main(int argc, char * argv[])
 {
   // Verify command line arguments
-  if( argc != 4 )
-    {
+  if (argc != 4)
+  {
     std::cerr << "Usage: " << std::endl;
-    std::cerr << argv[0] << " <InputImageFile> <OutputImageFile> <radius>"
-              << std::endl;
+    std::cerr << argv[0] << " <InputImageFile> <OutputImageFile> <radius>" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   // Setup types
   constexpr unsigned int Dimension = 2;
 
-  using MyPixelType = itk::myRGBPixel< unsigned char >;
-  using MyImageType = itk::Image< MyPixelType, Dimension >;
+  using MyPixelType = itk::myRGBPixel<unsigned char>;
+  using MyImageType = itk::Image<MyPixelType, Dimension>;
 
   // Create and setup a reader
-  using ReaderType = itk::ImageFileReader< MyImageType >;
+  using ReaderType = itk::ImageFileReader<MyImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
 
   // Create and setup a median filter
-  using FilterType = itk::MedianImageFilter< MyImageType, MyImageType >;
+  using FilterType = itk::MedianImageFilter<MyImageType, MyImageType>;
   FilterType::Pointer medianFilter = FilterType::New();
 
   FilterType::InputSizeType radius;
-  radius.Fill( std::stoi( argv[3] ) );
+  radius.Fill(std::stoi(argv[3]));
 
-  medianFilter->SetRadius( radius );
-  medianFilter->SetInput( reader->GetOutput() );
+  medianFilter->SetRadius(radius);
+  medianFilter->SetInput(reader->GetOutput());
 
   // Cast the custom myRBGPixel's to RGBPixel's
-  using RGBPixelType = itk::RGBPixel< unsigned char >;
-  using RGBImageType = itk::Image< RGBPixelType, Dimension >;
-  using CastType = itk::CastImageFilter< MyImageType, RGBImageType >;
+  using RGBPixelType = itk::RGBPixel<unsigned char>;
+  using RGBImageType = itk::Image<RGBPixelType, Dimension>;
+  using CastType = itk::CastImageFilter<MyImageType, RGBImageType>;
   CastType::Pointer cast = CastType::New();
-  cast->SetInput( medianFilter->GetOutput() );
+  cast->SetInput(medianFilter->GetOutput());
 
-  using WriterType = itk::ImageFileWriter< RGBImageType >;
+  using WriterType = itk::ImageFileWriter<RGBImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetInput( cast->GetOutput() );
-  writer->SetFileName( argv[2] );
+  writer->SetInput(cast->GetOutput());
+  writer->SetFileName(argv[2]);
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

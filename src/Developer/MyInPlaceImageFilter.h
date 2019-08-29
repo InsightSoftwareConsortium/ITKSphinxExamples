@@ -5,14 +5,14 @@
 
 namespace itk
 {
-template< class TImage>
+template <class TImage>
 class MyInPlaceImageFilter : public InPlaceImageFilter<TImage>
 {
 public:
   /** Standard class type alias. */
   using Self = MyInPlaceImageFilter;
   using Superclass = InPlaceImageFilter<TImage>;
-  using Pointer = SmartPointer< Self >;
+  using Pointer = SmartPointer<Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -21,22 +21,23 @@ public:
   itkTypeMacro(MyInPlaceImageFilter, InPlaceImageFilter);
 
 protected:
-  MyInPlaceImageFilter()= default;
-  ~MyInPlaceImageFilter() override= default;
+  MyInPlaceImageFilter() = default;
+  ~MyInPlaceImageFilter() override = default;
 
   /** Does the real work. */
-  void GenerateData() override;
+  void
+  GenerateData() override;
 
 private:
-  MyInPlaceImageFilter(const Self &) = delete; //purposely not implemented
-  void operator=(const Self &) = delete;  //purposely not implemented
-
+  MyInPlaceImageFilter(const Self &) = delete; // purposely not implemented
+  void
+  operator=(const Self &) = delete; // purposely not implemented
 };
-} //namespace ITK
+} // namespace itk
 
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "MyInPlaceImageFilter.hxx"
+#  include "MyInPlaceImageFilter.hxx"
 #endif
 
 

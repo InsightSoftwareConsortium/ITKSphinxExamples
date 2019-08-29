@@ -20,39 +20,40 @@
 #include "itkMeshFileReader.h"
 #include "itkMeshFileWriter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( ( argc != 2 ) && ( argc != 4 ) )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if ((argc != 2) && (argc != 4))
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName> <id 1 (optional)> <id 2 (optional)>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 3;
 
   using CoordinateType = double;
-  using MeshType = itk::Mesh< CoordinateType, Dimension >;
+  using MeshType = itk::Mesh<CoordinateType, Dimension>;
 
-  using ReaderType = itk::MeshFileReader< MeshType >;
+  using ReaderType = itk::MeshFileReader<MeshType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
   reader->Update();
 
   MeshType::Pointer mesh = reader->GetOutput();
 
-  if( argc == 4 )
-    {
-    MeshType::PointIdentifier id1 = std::stoi( argv[2] );
-    MeshType::PointIdentifier id2 = std::stoi( argv[3] );
+  if (argc == 4)
+  {
+    MeshType::PointIdentifier id1 = std::stoi(argv[2]);
+    MeshType::PointIdentifier id2 = std::stoi(argv[3]);
 
-    MeshType::PointType p = mesh->GetPoint( id1 );
-    MeshType::PointType q = mesh->GetPoint( id2 );
+    MeshType::PointType p = mesh->GetPoint(id1);
+    MeshType::PointType q = mesh->GetPoint(id2);
 
-    std::cout << p.EuclideanDistanceTo( q ) << std::endl;
-    }
+    std::cout << p.EuclideanDistanceTo(q) << std::endl;
+  }
 
   return EXIT_SUCCESS;
 }

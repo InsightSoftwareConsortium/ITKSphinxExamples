@@ -37,99 +37,87 @@
 
 using ImageType = itk::Image<unsigned char, 2>;
 
-int main(int argc, char*argv[])
+int
+main(int argc, char * argv[])
 {
-    if(argc < 2)
-    {
-        std::cerr << "Required: filename" << std::endl;
+  if (argc < 2)
+  {
+    std::cerr << "Required: filename" << std::endl;
 
-        return EXIT_FAILURE;
-    }
-    std::string inputFilename = argv[1];
+    return EXIT_FAILURE;
+  }
+  std::string inputFilename = argv[1];
 
-    using ReaderType = itk::ImageFileReader<ImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
+  using ReaderType = itk::ImageFileReader<ImageType>;
+  ReaderType::Pointer reader = ReaderType::New();
 
-    reader->SetFileName(inputFilename.c_str());
-    reader->Update();
+  reader->SetFileName(inputFilename.c_str());
+  reader->Update();
 
-    using ImageCalculatorFilterType = itk::MinimumMaximumImageCalculator <ImageType>;
+  using ImageCalculatorFilterType = itk::MinimumMaximumImageCalculator<ImageType>;
 
-    ImageCalculatorFilterType::Pointer imageCalculatorFilter
-            = ImageCalculatorFilterType::New ();
-    imageCalculatorFilter->SetImage(reader->GetOutput());
-    imageCalculatorFilter->Compute();
+  ImageCalculatorFilterType::Pointer imageCalculatorFilter = ImageCalculatorFilterType::New();
+  imageCalculatorFilter->SetImage(reader->GetOutput());
+  imageCalculatorFilter->Compute();
 
-    using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-    ConnectorType::Pointer originalConnector = ConnectorType::New();
+  using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
+  ConnectorType::Pointer originalConnector = ConnectorType::New();
 
-    originalConnector->SetInput(reader->GetOutput());
+  originalConnector->SetInput(reader->GetOutput());
 
-    vtkSmartPointer<vtkImageActor> originalActor =
-            vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
-    originalActor->SetInput(originalConnector->GetOutput());
+  originalActor->SetInput(originalConnector->GetOutput());
 #else
-    originalConnector->Update();
+  originalConnector->Update();
   originalActor->GetMapper()->SetInputData(originalConnector->GetOutput());
 #endif
 
-    vtkSmartPointer<vtkSphereSource> minimumSphereSource =
-            vtkSmartPointer<vtkSphereSource>::New();
-    ImageType::IndexType minimumLocation = imageCalculatorFilter->GetIndexOfMinimum();
-    minimumSphereSource->SetCenter(minimumLocation[0], minimumLocation[1], 0);
-    minimumSphereSource->SetRadius(10);
+  vtkSmartPointer<vtkSphereSource> minimumSphereSource = vtkSmartPointer<vtkSphereSource>::New();
+  ImageType::IndexType             minimumLocation = imageCalculatorFilter->GetIndexOfMinimum();
+  minimumSphereSource->SetCenter(minimumLocation[0], minimumLocation[1], 0);
+  minimumSphereSource->SetRadius(10);
 
-    vtkSmartPointer<vtkPolyDataMapper> minimumMapper =
-            vtkSmartPointer<vtkPolyDataMapper>::New();
-    minimumMapper->SetInputConnection(minimumSphereSource->GetOutputPort());
-    vtkSmartPointer<vtkActor> minimumActor =
-            vtkSmartPointer<vtkActor>::New();
-    minimumActor->SetMapper(minimumMapper);
-    minimumActor->GetProperty()->SetColor(0,1,0);
+  vtkSmartPointer<vtkPolyDataMapper> minimumMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+  minimumMapper->SetInputConnection(minimumSphereSource->GetOutputPort());
+  vtkSmartPointer<vtkActor> minimumActor = vtkSmartPointer<vtkActor>::New();
+  minimumActor->SetMapper(minimumMapper);
+  minimumActor->GetProperty()->SetColor(0, 1, 0);
 
-    vtkSmartPointer<vtkSphereSource> maximumSphereSource =
-            vtkSmartPointer<vtkSphereSource>::New();
-    maximumSphereSource->SetRadius(10);
-    ImageType::IndexType maximumLocation = imageCalculatorFilter->GetIndexOfMaximum();
-    maximumSphereSource->SetCenter(maximumLocation[0], maximumLocation[1], 0);
+  vtkSmartPointer<vtkSphereSource> maximumSphereSource = vtkSmartPointer<vtkSphereSource>::New();
+  maximumSphereSource->SetRadius(10);
+  ImageType::IndexType maximumLocation = imageCalculatorFilter->GetIndexOfMaximum();
+  maximumSphereSource->SetCenter(maximumLocation[0], maximumLocation[1], 0);
 
-    vtkSmartPointer<vtkPolyDataMapper> maximumMapper =
-            vtkSmartPointer<vtkPolyDataMapper>::New();
-    maximumMapper->SetInputConnection(maximumSphereSource->GetOutputPort());
-    vtkSmartPointer<vtkActor> maximumActor =
-            vtkSmartPointer<vtkActor>::New();
-    maximumActor->SetMapper(maximumMapper);
-    maximumActor->GetProperty()->SetColor(1,0,0);
+  vtkSmartPointer<vtkPolyDataMapper> maximumMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+  maximumMapper->SetInputConnection(maximumSphereSource->GetOutputPort());
+  vtkSmartPointer<vtkActor> maximumActor = vtkSmartPointer<vtkActor>::New();
+  maximumActor->SetMapper(maximumMapper);
+  maximumActor->GetProperty()->SetColor(1, 0, 0);
 
 
-    // Visualize
-    vtkSmartPointer<vtkRenderWindow> renderWindow =
-            vtkSmartPointer<vtkRenderWindow>::New();
+  // Visualize
+  vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
 
-    vtkSmartPointer<vtkRenderWindowInteractor> interactor =
-            vtkSmartPointer<vtkRenderWindowInteractor>::New();
-    interactor->SetRenderWindow(renderWindow);
+  vtkSmartPointer<vtkRenderWindowInteractor> interactor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+  interactor->SetRenderWindow(renderWindow);
 
-    vtkSmartPointer<vtkRenderer> renderer =
-            vtkSmartPointer<vtkRenderer>::New();
-    renderWindow->AddRenderer(renderer);
+  vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
+  renderWindow->AddRenderer(renderer);
 
-    // Add the sphere to the left and the cube to the right
-    renderer->AddActor(originalActor);
-    renderer->AddActor(minimumActor);
-    renderer->AddActor(maximumActor);
+  // Add the sphere to the left and the cube to the right
+  renderer->AddActor(originalActor);
+  renderer->AddActor(minimumActor);
+  renderer->AddActor(maximumActor);
 
-    renderer->ResetCamera();
+  renderer->ResetCamera();
 
-    renderWindow->Render();
+  renderWindow->Render();
 
-    vtkSmartPointer<vtkInteractorStyleImage> style =
-            vtkSmartPointer<vtkInteractorStyleImage>::New();
-    interactor->SetInteractorStyle(style);
+  vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
+  interactor->SetInteractorStyle(style);
 
-    interactor->Start();
+  interactor->Start();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
-

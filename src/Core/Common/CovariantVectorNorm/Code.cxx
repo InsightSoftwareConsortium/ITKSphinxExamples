@@ -18,7 +18,8 @@
 
 #include "itkCovariantVector.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   using VectorType = itk::CovariantVector<double, 3>;
   VectorType v;
@@ -42,20 +43,20 @@ int main(int, char*[])
   std::cout << "v: " << v << std::endl;
 
   // another way to normalize
-  if( vnorm != 0. )
+  if (vnorm != 0.)
+  {
+    for (unsigned int i = 0; i < u.GetNumberOfComponents(); i++)
     {
-    for( unsigned int i = 0; i < u.GetNumberOfComponents(); i++ )
-      {
       u[i] /= vnorm;
-      }
     }
+  }
 
   std::cout << "u: " << u << std::endl;
 
-  if( ( u - v ).GetNorm() != 0. )
-    {
+  if ((u - v).GetNorm() != 0.)
+  {
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

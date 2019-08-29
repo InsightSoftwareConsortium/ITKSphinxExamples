@@ -18,7 +18,8 @@
 
 #include "itkVector.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 3;
   using CoordType = double;

@@ -27,86 +27,88 @@
 #include "itkFlatStructuringElement.h"
 #include "itkBinaryMorphologicalClosingImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 5 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 5)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName> <OutputFileName> <label> <radius>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
 
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  const char * inputFileName = argv[1];
-  const char * outputFileName = argv[2];
-  const auto label = static_cast< PixelType >( std::stoi( argv[3] ) );
-  const unsigned int radiusValue = std::stoi( argv[4] );
+  const char *       inputFileName = argv[1];
+  const char *       outputFileName = argv[2];
+  const auto         label = static_cast<PixelType>(std::stoi(argv[3]));
+  const unsigned int radiusValue = std::stoi(argv[4]);
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFileName );
+  reader->SetFileName(inputFileName);
 
-  using LabelObjectType = itk::LabelObject< PixelType, Dimension >;
-  using LabelMapType = itk::LabelMap< LabelObjectType >;
+  using LabelObjectType = itk::LabelObject<PixelType, Dimension>;
+  using LabelMapType = itk::LabelMap<LabelObjectType>;
 
-  using LabelImageToLabelMapFilterType = itk::LabelImageToLabelMapFilter< ImageType, LabelMapType >;
+  using LabelImageToLabelMapFilterType = itk::LabelImageToLabelMapFilter<ImageType, LabelMapType>;
   LabelImageToLabelMapFilterType::Pointer labelMapConverter = LabelImageToLabelMapFilterType::New();
-  labelMapConverter->SetInput( reader->GetOutput() );
-  labelMapConverter->SetBackgroundValue( itk::NumericTraits< PixelType >::Zero );
+  labelMapConverter->SetInput(reader->GetOutput());
+  labelMapConverter->SetBackgroundValue(itk::NumericTraits<PixelType>::Zero);
 
-  using SelectorType = itk::LabelSelectionLabelMapFilter< LabelMapType >;
+  using SelectorType = itk::LabelSelectionLabelMapFilter<LabelMapType>;
   SelectorType::Pointer selector = SelectorType::New();
-  selector->SetInput( labelMapConverter->GetOutput() );
-  selector->SetLabel( label );
+  selector->SetInput(labelMapConverter->GetOutput());
+  selector->SetLabel(label);
 
-  using StructuringElementType = itk::FlatStructuringElement< Dimension >;
+  using StructuringElementType = itk::FlatStructuringElement<Dimension>;
   StructuringElementType::RadiusType radius;
-  radius.Fill( radiusValue );
+  radius.Fill(radiusValue);
 
-  StructuringElementType structuringElement = StructuringElementType::Ball( radius );
+  StructuringElementType structuringElement = StructuringElementType::Ball(radius);
 
-  using MorphologicalFilterType = itk::BinaryMorphologicalClosingImageFilter< ImageType, ImageType, StructuringElementType >;
+  using MorphologicalFilterType =
+    itk::BinaryMorphologicalClosingImageFilter<ImageType, ImageType, StructuringElementType>;
   MorphologicalFilterType::Pointer closingFilter = MorphologicalFilterType::New();
 
-  using ObjectByObjectLabelMapFilterType = itk::ObjectByObjectLabelMapFilter< LabelMapType >;
+  using ObjectByObjectLabelMapFilterType = itk::ObjectByObjectLabelMapFilter<LabelMapType>;
   ObjectByObjectLabelMapFilterType::Pointer objectByObjectLabelMapFilter = ObjectByObjectLabelMapFilterType::New();
-  objectByObjectLabelMapFilter->SetInput( selector->GetOutput( 0 ) );
-  objectByObjectLabelMapFilter->SetBinaryInternalOutput( true );
-  objectByObjectLabelMapFilter->SetFilter( closingFilter );
+  objectByObjectLabelMapFilter->SetInput(selector->GetOutput(0));
+  objectByObjectLabelMapFilter->SetBinaryInternalOutput(true);
+  objectByObjectLabelMapFilter->SetFilter(closingFilter);
 
-  using MergeLabelFilterType = itk::MergeLabelMapFilter< LabelMapType >;
+  using MergeLabelFilterType = itk::MergeLabelMapFilter<LabelMapType>;
   MergeLabelFilterType::Pointer merger = MergeLabelFilterType::New();
-  merger->SetInput( 0, objectByObjectLabelMapFilter->GetOutput( 0 ) );
-  merger->SetInput( 1, selector->GetOutput( 1 ) );
-  merger->SetMethod( itk::ChoiceMethod::KEEP );
+  merger->SetInput(0, objectByObjectLabelMapFilter->GetOutput(0));
+  merger->SetInput(1, selector->GetOutput(1));
+  merger->SetMethod(itk::ChoiceMethod::KEEP);
 
-  using UniqueLabelMapFilterType = itk::LabelUniqueLabelMapFilter< LabelMapType >;
+  using UniqueLabelMapFilterType = itk::LabelUniqueLabelMapFilter<LabelMapType>;
   UniqueLabelMapFilterType::Pointer unique = UniqueLabelMapFilterType::New();
-  unique->SetInput( merger->GetOutput() );
+  unique->SetInput(merger->GetOutput());
 
-  using LabelMapToLabelImageFilterType = itk::LabelMapToLabelImageFilter< LabelMapType, ImageType >;
+  using LabelMapToLabelImageFilterType = itk::LabelMapToLabelImageFilter<LabelMapType, ImageType>;
   LabelMapToLabelImageFilterType::Pointer labelImageConverter = LabelMapToLabelImageFilterType::New();
-  labelImageConverter->SetInput( unique->GetOutput() );
+  labelImageConverter->SetInput(unique->GetOutput());
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( labelImageConverter->GetOutput() );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(labelImageConverter->GetOutput());
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

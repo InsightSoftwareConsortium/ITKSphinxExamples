@@ -18,10 +18,11 @@
 
 #include "itkSize.h"
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
-  itk::Size< Dimension > size;
+  itk::Size<Dimension>   size;
 
   // Method 1
   // set both components (size[0] and size[1]) to the same value

@@ -21,16 +21,17 @@
 #include "itkLaplacianImageFilter.h"
 #include "itkRescaleIntensityImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 3)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName> <OutputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
@@ -38,38 +39,38 @@ int main( int argc, char* argv[] )
   constexpr unsigned int Dimension = 2;
 
   using InputPixelType = float;
-  using InputImageType = itk::Image< InputPixelType, Dimension >;
+  using InputImageType = itk::Image<InputPixelType, Dimension>;
   using OutputPixelType = unsigned char;
-  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
+  using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFileName );
+  reader->SetFileName(inputFileName);
 
-  using FilterType = itk::LaplacianImageFilter< InputImageType, InputImageType >;
+  using FilterType = itk::LaplacianImageFilter<InputImageType, InputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( reader->GetOutput() );
+  filter->SetInput(reader->GetOutput());
 
-  using RescaleType = itk::RescaleIntensityImageFilter< InputImageType, OutputImageType >;
+  using RescaleType = itk::RescaleIntensityImageFilter<InputImageType, OutputImageType>;
   RescaleType::Pointer rescaler = RescaleType::New();
-  rescaler->SetInput( filter->GetOutput() );
-  rescaler->SetOutputMinimum( itk::NumericTraits< OutputPixelType >::min() );
-  rescaler->SetOutputMaximum( itk::NumericTraits< OutputPixelType >::max() );
+  rescaler->SetInput(filter->GetOutput());
+  rescaler->SetOutputMinimum(itk::NumericTraits<OutputPixelType>::min());
+  rescaler->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
 
-  using WriterType = itk::ImageFileWriter< OutputImageType >;
+  using WriterType = itk::ImageFileWriter<OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( rescaler->GetOutput() );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(rescaler->GetOutput());
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

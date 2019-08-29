@@ -32,183 +32,178 @@
 
 using ImageType = itk::Image<unsigned char, 2>;
 
-static void CreateImage1(ImageType::Pointer image);
-static void CreateImage2(ImageType::Pointer image);
+static void
+CreateImage1(ImageType::Pointer image);
+static void
+CreateImage2(ImageType::Pointer image);
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
-    ImageType::Pointer image1 = ImageType::New();
-    CreateImage1(image1);
+  ImageType::Pointer image1 = ImageType::New();
+  CreateImage1(image1);
 
-    ImageType::Pointer image2 = ImageType::New();
-    CreateImage2(image2);
+  ImageType::Pointer image2 = ImageType::New();
+  CreateImage2(image2);
 
-    using AddImageFilterType = itk::AddImageFilter <ImageType, ImageType >;
+  using AddImageFilterType = itk::AddImageFilter<ImageType, ImageType>;
 
-    AddImageFilterType::Pointer addFilter
-            = AddImageFilterType::New ();
-    addFilter->SetInput1(image1);
-    addFilter->SetInput2(image2);
-    addFilter->Update();
+  AddImageFilterType::Pointer addFilter = AddImageFilterType::New();
+  addFilter->SetInput1(image1);
+  addFilter->SetInput2(image2);
+  addFilter->Update();
 
-    // Visualize first image
-    using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-    ConnectorType::Pointer connector1 = ConnectorType::New();
-    connector1->SetInput(image1);
+  // Visualize first image
+  using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
+  ConnectorType::Pointer connector1 = ConnectorType::New();
+  connector1->SetInput(image1);
 
-    vtkSmartPointer<vtkImageActor> actor1 =
-            vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> actor1 = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
-    actor1->SetInput(connector1->GetOutput());
+  actor1->SetInput(connector1->GetOutput());
 #else
-    connector1->Update();
+  connector1->Update();
   actor1->GetMapper()->SetInputData(connector1->GetOutput());
 #endif
-    // Visualize first image
-    using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-    ConnectorType::Pointer connector2 = ConnectorType::New();
-    connector2->SetInput(image2);
+  // Visualize first image
+  using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
+  ConnectorType::Pointer connector2 = ConnectorType::New();
+  connector2->SetInput(image2);
 
-    vtkSmartPointer<vtkImageActor> actor2 =
-            vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> actor2 = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
-    actor2->SetInput(connector2->GetOutput());
+  actor2->SetInput(connector2->GetOutput());
 #else
-    connector2->Update();
+  connector2->Update();
   actor2->GetMapper()->SetInputData(connector2->GetOutput());
 #endif
 
-    // Visualize joined image
-    ConnectorType::Pointer addConnector = ConnectorType::New();
-    addConnector->SetInput(addFilter->GetOutput());
+  // Visualize joined image
+  ConnectorType::Pointer addConnector = ConnectorType::New();
+  addConnector->SetInput(addFilter->GetOutput());
 
-    vtkSmartPointer<vtkImageActor> addActor =
-            vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> addActor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
-    addActor->SetInput(addConnector->GetOutput());
+  addActor->SetInput(addConnector->GetOutput());
 #else
-    addConnector->Update();
+  addConnector->Update();
   addActor->GetMapper()->SetInputData(addConnector->GetOutput());
 #endif
-    // There will be one render window
-    vtkSmartPointer<vtkRenderWindow> renderWindow =
-            vtkSmartPointer<vtkRenderWindow>::New();
-    renderWindow->SetSize(900, 300);
+  // There will be one render window
+  vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
+  renderWindow->SetSize(900, 300);
 
-    vtkSmartPointer<vtkRenderWindowInteractor> interactor =
-            vtkSmartPointer<vtkRenderWindowInteractor>::New();
-    interactor->SetRenderWindow(renderWindow);
+  vtkSmartPointer<vtkRenderWindowInteractor> interactor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+  interactor->SetRenderWindow(renderWindow);
 
-    // Define viewport ranges
-    // (xmin, ymin, xmax, ymax)
-    double leftViewport[4] = {0.0, 0.0, 0.33, 1.0};
-    double centerViewport[4] = {0.33, 0.0, 0.66, 1.0};
-    double rightViewport[4] = {0.66, 0.0, 1.0, 1.0};
+  // Define viewport ranges
+  // (xmin, ymin, xmax, ymax)
+  double leftViewport[4] = { 0.0, 0.0, 0.33, 1.0 };
+  double centerViewport[4] = { 0.33, 0.0, 0.66, 1.0 };
+  double rightViewport[4] = { 0.66, 0.0, 1.0, 1.0 };
 
-    // Setup both renderers
-    vtkSmartPointer<vtkRenderer> leftRenderer =
-            vtkSmartPointer<vtkRenderer>::New();
-    renderWindow->AddRenderer(leftRenderer);
-    leftRenderer->SetViewport(leftViewport);
-    leftRenderer->SetBackground(.6, .5, .4);
+  // Setup both renderers
+  vtkSmartPointer<vtkRenderer> leftRenderer = vtkSmartPointer<vtkRenderer>::New();
+  renderWindow->AddRenderer(leftRenderer);
+  leftRenderer->SetViewport(leftViewport);
+  leftRenderer->SetBackground(.6, .5, .4);
 
-    vtkSmartPointer<vtkRenderer> centerRenderer =
-            vtkSmartPointer<vtkRenderer>::New();
-    renderWindow->AddRenderer(centerRenderer);
-    centerRenderer->SetViewport(centerViewport);
-    centerRenderer->SetBackground(.4, .5, .6);
+  vtkSmartPointer<vtkRenderer> centerRenderer = vtkSmartPointer<vtkRenderer>::New();
+  renderWindow->AddRenderer(centerRenderer);
+  centerRenderer->SetViewport(centerViewport);
+  centerRenderer->SetBackground(.4, .5, .6);
 
-    vtkSmartPointer<vtkRenderer> rightRenderer =
-            vtkSmartPointer<vtkRenderer>::New();
-    renderWindow->AddRenderer(rightRenderer);
-    rightRenderer->SetViewport(rightViewport);
-    rightRenderer->SetBackground(.4, .5, .6);
+  vtkSmartPointer<vtkRenderer> rightRenderer = vtkSmartPointer<vtkRenderer>::New();
+  renderWindow->AddRenderer(rightRenderer);
+  rightRenderer->SetViewport(rightViewport);
+  rightRenderer->SetBackground(.4, .5, .6);
 
-    // Add the sphere to the left and the cube to the right
-    leftRenderer->AddActor(actor1);
-    centerRenderer->AddActor(actor2);
-    rightRenderer->AddActor(addActor);
+  // Add the sphere to the left and the cube to the right
+  leftRenderer->AddActor(actor1);
+  centerRenderer->AddActor(actor2);
+  rightRenderer->AddActor(addActor);
 
-    leftRenderer->ResetCamera();
-    centerRenderer->ResetCamera();
-    rightRenderer->ResetCamera();
+  leftRenderer->ResetCamera();
+  centerRenderer->ResetCamera();
+  rightRenderer->ResetCamera();
 
-    renderWindow->Render();
+  renderWindow->Render();
 
-    vtkSmartPointer<vtkInteractorStyleImage> style =
-            vtkSmartPointer<vtkInteractorStyleImage>::New();
-    interactor->SetInteractorStyle(style);
+  vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
+  interactor->SetInteractorStyle(style);
 
-    interactor->Start();
+  interactor->Start();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage1(ImageType::Pointer image)
+void
+CreateImage1(ImageType::Pointer image)
 {
-    // Create an image with 2 connected components
-    ImageType::RegionType region;
-    ImageType::IndexType start;
-    start[0] = 0;
-    start[1] = 0;
+  // Create an image with 2 connected components
+  ImageType::RegionType region;
+  ImageType::IndexType  start;
+  start[0] = 0;
+  start[1] = 0;
 
-    ImageType::SizeType size;
-    unsigned int NumRows = 200;
-    unsigned int NumCols = 300;
-    size[0] = NumRows;
-    size[1] = NumCols;
+  ImageType::SizeType size;
+  unsigned int        NumRows = 200;
+  unsigned int        NumCols = 300;
+  size[0] = NumRows;
+  size[1] = NumCols;
 
-    region.SetSize(size);
-    region.SetIndex(start);
+  region.SetSize(size);
+  region.SetIndex(start);
 
-    image->SetRegions(region);
-    image->Allocate();
+  image->SetRegions(region);
+  image->Allocate();
 
-    // Make a square
-    for(unsigned int r = 20; r < 80; r++)
+  // Make a square
+  for (unsigned int r = 20; r < 80; r++)
+  {
+    for (unsigned int c = 20; c < 80; c++)
     {
-        for(unsigned int c = 20; c < 80; c++)
-        {
-            ImageType::IndexType pixelIndex;
-            pixelIndex[0] = r;
-            pixelIndex[1] = c;
+      ImageType::IndexType pixelIndex;
+      pixelIndex[0] = r;
+      pixelIndex[1] = c;
 
-            image->SetPixel(pixelIndex, 15);
-        }
+      image->SetPixel(pixelIndex, 15);
     }
+  }
 }
 
 
-void CreateImage2(ImageType::Pointer image)
+void
+CreateImage2(ImageType::Pointer image)
 {
-    // Create an image with 2 connected components
-    ImageType::RegionType region;
-    ImageType::IndexType start;
-    start[0] = 0;
-    start[1] = 0;
+  // Create an image with 2 connected components
+  ImageType::RegionType region;
+  ImageType::IndexType  start;
+  start[0] = 0;
+  start[1] = 0;
 
-    ImageType::SizeType size;
-    unsigned int NumRows = 200;
-    unsigned int NumCols = 300;
-    size[0] = NumRows;
-    size[1] = NumCols;
+  ImageType::SizeType size;
+  unsigned int        NumRows = 200;
+  unsigned int        NumCols = 300;
+  size[0] = NumRows;
+  size[1] = NumCols;
 
-    region.SetSize(size);
-    region.SetIndex(start);
+  region.SetSize(size);
+  region.SetIndex(start);
 
-    image->SetRegions(region);
-    image->Allocate();
+  image->SetRegions(region);
+  image->Allocate();
 
-    // Make another square
-    for(unsigned int r = 40; r < 100; r++)
+  // Make another square
+  for (unsigned int r = 40; r < 100; r++)
+  {
+    for (unsigned int c = 40; c < 100; c++)
     {
-        for(unsigned int c = 40; c < 100; c++)
-        {
-            ImageType::IndexType pixelIndex;
-            pixelIndex[0] = r;
-            pixelIndex[1] = c;
+      ImageType::IndexType pixelIndex;
+      pixelIndex[0] = r;
+      pixelIndex[1] = c;
 
-            image->SetPixel(pixelIndex, 15);
-        }
+      image->SetPixel(pixelIndex, 15);
     }
+  }
 }

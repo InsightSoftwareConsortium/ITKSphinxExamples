@@ -18,22 +18,21 @@
 
 #include "itkNumericSeriesFileNames.h"
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
-  itk::NumericSeriesFileNames::Pointer numericSeriesFileNames =
-    itk::NumericSeriesFileNames::New();
+  itk::NumericSeriesFileNames::Pointer numericSeriesFileNames = itk::NumericSeriesFileNames::New();
   numericSeriesFileNames->SetStartIndex(0);
   numericSeriesFileNames->SetEndIndex(150);
   numericSeriesFileNames->SetIncrementIndex(10);
   numericSeriesFileNames->SetSeriesFormat("output_%d.png");
 
-  std::vector< std::string > fileNames =
-    numericSeriesFileNames->GetFileNames();
+  std::vector<std::string> fileNames = numericSeriesFileNames->GetFileNames();
 
-  for(const auto & fileName : fileNames)
-    {
+  for (const auto & fileName : fileNames)
+  {
     std::cout << fileName << std::endl;
-    }
+  }
 
   std::cout << std::endl;
   std::cout << "***************" << std::endl;
@@ -43,10 +42,10 @@ int main(int, char *[])
 
   fileNames = numericSeriesFileNames->GetFileNames();
 
-  for(const auto & fileName : fileNames)
-    {
+  for (const auto & fileName : fileNames)
+  {
     std::cout << fileName << std::endl;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

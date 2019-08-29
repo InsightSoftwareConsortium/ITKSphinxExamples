@@ -20,58 +20,58 @@
 #include "itkRandomImageSource.h"
 #include "itkStreamingImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 2 )
-    {
+  if (argc != 2)
+  {
     std::cerr << "Usage: " << argv[0] << " <NumberOfSplits>" << std::endl;
     return EXIT_FAILURE;
-    }
-  int numberOfSplits = std::stoi( argv[1] );
+  }
+  int numberOfSplits = std::stoi(argv[1]);
 
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using SourceType = itk::RandomImageSource< ImageType >;
+  using SourceType = itk::RandomImageSource<ImageType>;
   SourceType::Pointer source = SourceType::New();
   ImageType::SizeType size;
-  size.Fill( numberOfSplits );
-  source->SetSize( size );
+  size.Fill(numberOfSplits);
+  source->SetSize(size);
 
-  using MonitorFilterType = itk::PipelineMonitorImageFilter< ImageType >;
+  using MonitorFilterType = itk::PipelineMonitorImageFilter<ImageType>;
   MonitorFilterType::Pointer monitorFilter = MonitorFilterType::New();
-  monitorFilter->SetInput( source->GetOutput() );
+  monitorFilter->SetInput(source->GetOutput());
   // If ITK was built with the Debug CMake configuration, the filter
   // automatically outputs status information to the console
   monitorFilter->DebugOn();
 
-  using StreamingFilterType = itk::StreamingImageFilter< ImageType, ImageType >;
+  using StreamingFilterType = itk::StreamingImageFilter<ImageType, ImageType>;
   StreamingFilterType::Pointer streamingFilter = StreamingFilterType::New();
-  streamingFilter->SetInput( monitorFilter->GetOutput() );
-  streamingFilter->SetNumberOfStreamDivisions( numberOfSplits );
+  streamingFilter->SetInput(monitorFilter->GetOutput());
+  streamingFilter->SetNumberOfStreamDivisions(numberOfSplits);
 
   try
-    {
+  {
     streamingFilter->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
-  std::cout << "The output LargestPossibleRegion is: "
-    << streamingFilter->GetOutput()->GetLargestPossibleRegion() << std::endl;
+  std::cout << "The output LargestPossibleRegion is: " << streamingFilter->GetOutput()->GetLargestPossibleRegion()
+            << std::endl;
   std::cout << std::endl;
 
-  const MonitorFilterType::RegionVectorType updatedRequestedRegions =
-    monitorFilter->GetUpdatedRequestedRegions();
+  const MonitorFilterType::RegionVectorType updatedRequestedRegions = monitorFilter->GetUpdatedRequestedRegions();
   std::cout << "Updated RequestedRegions's:" << std::endl;
-  for(const auto & updatedRequestedRegion : updatedRequestedRegions)
-    {
+  for (const auto & updatedRequestedRegion : updatedRequestedRegions)
+  {
     std::cout << "  " << updatedRequestedRegion << std::endl;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

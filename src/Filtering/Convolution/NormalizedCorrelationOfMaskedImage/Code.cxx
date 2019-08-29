@@ -33,184 +33,191 @@ using ImageType = itk::Image<unsigned char, 2>;
 using MaskType = itk::Image<unsigned char, 2>;
 using FloatImageType = itk::Image<float, 2>;
 
-void CreateMask(MaskType* const mask);
-void CreateImage(ImageType* const image);
-void CreateImageOfSquare(ImageType* const image, const itk::Index<2>& cornerOfSquare);
+void
+CreateMask(MaskType * const mask);
+void
+CreateImage(ImageType * const image);
+void
+CreateImageOfSquare(ImageType * const image, const itk::Index<2> & cornerOfSquare);
 
 template <typename TImage>
-void WriteImage(const TImage* const image, const std::string& filename);
+void
+WriteImage(const TImage * const image, const std::string & filename);
 
-int main(int , char *[])
+int
+main(int, char *[])
 {
-    // Setup mask
-    MaskType::Pointer mask = MaskType::New();
-    CreateMask(mask);
+  // Setup mask
+  MaskType::Pointer mask = MaskType::New();
+  CreateMask(mask);
 
-    WriteImage(mask.GetPointer(), "mask.png");
+  WriteImage(mask.GetPointer(), "mask.png");
 
-    // Setup image1
-    ImageType::Pointer image1 = ImageType::New();
-    itk::Index<2> cornerOfSquare1;
-    cornerOfSquare1[0] = 3;
-    cornerOfSquare1[1] = 8;
-    CreateImageOfSquare(image1, cornerOfSquare1);
-    WriteImage(image1.GetPointer(), "image1.png");
+  // Setup image1
+  ImageType::Pointer image1 = ImageType::New();
+  itk::Index<2>      cornerOfSquare1;
+  cornerOfSquare1[0] = 3;
+  cornerOfSquare1[1] = 8;
+  CreateImageOfSquare(image1, cornerOfSquare1);
+  WriteImage(image1.GetPointer(), "image1.png");
 
-    // Setup image2
-    itk::Index<2> offset;
-    offset[0] = 20;
-    offset[1] = 6;
+  // Setup image2
+  itk::Index<2> offset;
+  offset[0] = 20;
+  offset[1] = 6;
 
-    ImageType::Pointer image2 = ImageType::New();
-    itk::Index<2> cornerOfSquare2;
-    cornerOfSquare2[0] = cornerOfSquare1[0] + offset[0];
-    cornerOfSquare2[1] = cornerOfSquare1[1] + offset[1];
-    CreateImageOfSquare(image2, cornerOfSquare2);
+  ImageType::Pointer image2 = ImageType::New();
+  itk::Index<2>      cornerOfSquare2;
+  cornerOfSquare2[0] = cornerOfSquare1[0] + offset[0];
+  cornerOfSquare2[1] = cornerOfSquare1[1] + offset[1];
+  CreateImageOfSquare(image2, cornerOfSquare2);
 
-    WriteImage(image2.GetPointer(), "image2.png");
+  WriteImage(image2.GetPointer(), "image2.png");
 
-    // Create a kernel from an image
-    itk::ImageKernelOperator<unsigned char> kernelOperator;
-    kernelOperator.SetImageKernel(image1);
+  // Create a kernel from an image
+  itk::ImageKernelOperator<unsigned char> kernelOperator;
+  kernelOperator.SetImageKernel(image1);
 
-    // The radius of the kernel must be the radius of the patch, NOT the size of the patch
-    itk::Size<2> radius;
-    radius[0] = image1->GetLargestPossibleRegion().GetSize()[0]/2;
-    radius[1] = image1->GetLargestPossibleRegion().GetSize()[1]/2;
+  // The radius of the kernel must be the radius of the patch, NOT the size of the patch
+  itk::Size<2> radius;
+  radius[0] = image1->GetLargestPossibleRegion().GetSize()[0] / 2;
+  radius[1] = image1->GetLargestPossibleRegion().GetSize()[1] / 2;
 
-    if(radius[0] % 2 == 0 || radius[1] % 2 == 0)
-    {
-        std::cerr << "Input must have odd dimensions!" << std::endl;
-        return EXIT_FAILURE;
-    }
+  if (radius[0] % 2 == 0 || radius[1] % 2 == 0)
+  {
+    std::cerr << "Input must have odd dimensions!" << std::endl;
+    return EXIT_FAILURE;
+  }
 
-    kernelOperator.CreateToRadius(radius);
+  kernelOperator.CreateToRadius(radius);
 
-    // Perform normalized correlation
-    // <input type, mask type, output type>
-    using CorrelationFilterType = itk::NormalizedCorrelationImageFilter<ImageType, MaskType, FloatImageType, unsigned char>;
-    CorrelationFilterType::Pointer correlationFilter = CorrelationFilterType::New();
-    correlationFilter->SetInput(image2);
-    correlationFilter->SetMaskImage(mask);
-    correlationFilter->SetTemplate(kernelOperator);
-    correlationFilter->Update();
+  // Perform normalized correlation
+  // <input type, mask type, output type>
+  using CorrelationFilterType =
+    itk::NormalizedCorrelationImageFilter<ImageType, MaskType, FloatImageType, unsigned char>;
+  CorrelationFilterType::Pointer correlationFilter = CorrelationFilterType::New();
+  correlationFilter->SetInput(image2);
+  correlationFilter->SetMaskImage(mask);
+  correlationFilter->SetTemplate(kernelOperator);
+  correlationFilter->Update();
 
-    WriteImage(correlationFilter->GetOutput(), "correlation.mha");
+  WriteImage(correlationFilter->GetOutput(), "correlation.mha");
 
-    using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, ImageType>;
-    RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
-    rescaleFilter->SetInput(correlationFilter->GetOutput());
-    rescaleFilter->SetOutputMinimum(0);
-    rescaleFilter->SetOutputMaximum(255);
-    rescaleFilter->Update();
-    WriteImage(rescaleFilter->GetOutput(), "correlation.png");
+  using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, ImageType>;
+  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  rescaleFilter->SetInput(correlationFilter->GetOutput());
+  rescaleFilter->SetOutputMinimum(0);
+  rescaleFilter->SetOutputMaximum(255);
+  rescaleFilter->Update();
+  WriteImage(rescaleFilter->GetOutput(), "correlation.png");
 
-    using MinimumMaximumImageCalculatorType = itk::MinimumMaximumImageCalculator<FloatImageType>;
-    MinimumMaximumImageCalculatorType::Pointer minimumMaximumImageCalculatorFilter = MinimumMaximumImageCalculatorType::New ();
-    minimumMaximumImageCalculatorFilter->SetImage(correlationFilter->GetOutput());
-    minimumMaximumImageCalculatorFilter->Compute();
+  using MinimumMaximumImageCalculatorType = itk::MinimumMaximumImageCalculator<FloatImageType>;
+  MinimumMaximumImageCalculatorType::Pointer minimumMaximumImageCalculatorFilter =
+    MinimumMaximumImageCalculatorType::New();
+  minimumMaximumImageCalculatorFilter->SetImage(correlationFilter->GetOutput());
+  minimumMaximumImageCalculatorFilter->Compute();
 
-    itk::Index<2> maximumCorrelationPatchCenter = minimumMaximumImageCalculatorFilter->GetIndexOfMaximum();
+  itk::Index<2> maximumCorrelationPatchCenter = minimumMaximumImageCalculatorFilter->GetIndexOfMaximum();
 
-    // This is the value we expect!
-    std::cout << "Maximum location fixed: " << maximumCorrelationPatchCenter - radius << std::endl;
+  // This is the value we expect!
+  std::cout << "Maximum location fixed: " << maximumCorrelationPatchCenter - radius << std::endl;
 
-    // If the images can be perfectly aligned, the value is 1
-    std::cout << "Maximum value: " << minimumMaximumImageCalculatorFilter->GetMaximum() << std::endl;
+  // If the images can be perfectly aligned, the value is 1
+  std::cout << "Maximum value: " << minimumMaximumImageCalculatorFilter->GetMaximum() << std::endl;
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateMask(MaskType* const mask)
+void
+CreateMask(MaskType * const mask)
 {
-    ImageType::IndexType start;
-    start.Fill(0);
+  ImageType::IndexType start;
+  start.Fill(0);
 
-    ImageType::SizeType size;
-    size.Fill(51);
+  ImageType::SizeType size;
+  size.Fill(51);
 
-    ImageType::RegionType region(start,size);
+  ImageType::RegionType region(start, size);
 
-    mask->SetRegions(region);
-    mask->Allocate();
-    mask->FillBuffer(255); // Make the whole mask "valid"
+  mask->SetRegions(region);
+  mask->Allocate();
+  mask->FillBuffer(255); // Make the whole mask "valid"
 
-    //unsigned int squareSize = 8;
-    unsigned int squareSize = 3;
+  // unsigned int squareSize = 8;
+  unsigned int squareSize = 3;
 
-    itk::Index<2> cornerOfSquare = {{3,8}};
+  itk::Index<2> cornerOfSquare = { { 3, 8 } };
 
-    // Remove pixels from the mask in a small square. The correlationw will not be computed at these pixels.
-    itk::ImageRegionIterator<MaskType> maskIterator(mask, region);
+  // Remove pixels from the mask in a small square. The correlationw will not be computed at these pixels.
+  itk::ImageRegionIterator<MaskType> maskIterator(mask, region);
 
-    while(!maskIterator.IsAtEnd())
+  while (!maskIterator.IsAtEnd())
+  {
+    if (maskIterator.GetIndex()[0] > cornerOfSquare[0] && maskIterator.GetIndex()[0] < cornerOfSquare[0] + squareSize &&
+        maskIterator.GetIndex()[1] > cornerOfSquare[1] && maskIterator.GetIndex()[1] < cornerOfSquare[1] + squareSize)
     {
-        if(maskIterator.GetIndex()[0] > cornerOfSquare[0] &&
-           maskIterator.GetIndex()[0] < cornerOfSquare[0] + squareSize &&
-           maskIterator.GetIndex()[1] > cornerOfSquare[1] &&
-           maskIterator.GetIndex()[1] < cornerOfSquare[1] + squareSize)
-        {
-            maskIterator.Set(0);
-        }
-
-        ++maskIterator;
+      maskIterator.Set(0);
     }
+
+    ++maskIterator;
+  }
 }
 
-void CreateImage(ImageType* const image)
+void
+CreateImage(ImageType * const image)
 {
-    ImageType::IndexType start;
-    start.Fill(0);
+  ImageType::IndexType start;
+  start.Fill(0);
 
-    ImageType::SizeType size;
-    size.Fill(51);
+  ImageType::SizeType size;
+  size.Fill(51);
 
-    ImageType::RegionType region(start,size);
+  ImageType::RegionType region(start, size);
 
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(0);
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(0);
 }
 
-void CreateImageOfSquare(ImageType* const image, const itk::Index<2>& cornerOfSquare)
+void
+CreateImageOfSquare(ImageType * const image, const itk::Index<2> & cornerOfSquare)
 {
-    ImageType::IndexType start;
-    start.Fill(0);
+  ImageType::IndexType start;
+  start.Fill(0);
 
-    ImageType::SizeType size;
-    size.Fill(51);
+  ImageType::SizeType size;
+  size.Fill(51);
 
-    ImageType::RegionType region(start,size);
+  ImageType::RegionType region(start, size);
 
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(0);
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(0);
 
-    itk::ImageRegionIterator<ImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
 
-    unsigned int squareSize = 8;
+  unsigned int squareSize = 8;
 
-    while(!imageIterator.IsAtEnd())
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] > cornerOfSquare[0] &&
+        imageIterator.GetIndex()[0] < cornerOfSquare[0] + squareSize &&
+        imageIterator.GetIndex()[1] > cornerOfSquare[1] && imageIterator.GetIndex()[1] < cornerOfSquare[1] + squareSize)
     {
-        if(imageIterator.GetIndex()[0] > cornerOfSquare[0] &&
-           imageIterator.GetIndex()[0] < cornerOfSquare[0] + squareSize &&
-           imageIterator.GetIndex()[1] > cornerOfSquare[1] &&
-           imageIterator.GetIndex()[1] < cornerOfSquare[1] + squareSize)
-        {
-            imageIterator.Set(255);
-        }
-
-        ++imageIterator;
+      imageIterator.Set(255);
     }
+
+    ++imageIterator;
+  }
 }
 
 template <typename TImage>
-void WriteImage(const TImage* const image, const std::string& filename)
+void
+WriteImage(const TImage * const image, const std::string & filename)
 {
-    using WriterType = itk::ImageFileWriter<TImage>;
-    typename WriterType::Pointer writer = WriterType::New();
-    writer->SetFileName(filename);
-    writer->SetInput(image);
-    writer->Update();
-
+  using WriterType = itk::ImageFileWriter<TImage>;
+  typename WriterType::Pointer writer = WriterType::New();
+  writer->SetFileName(filename);
+  writer->SetInput(image);
+  writer->Update();
 }

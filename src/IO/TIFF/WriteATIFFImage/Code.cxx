@@ -21,25 +21,26 @@
 #include "itkImageRegionIterator.h"
 #include "itkTIFFImageIO.h"
 
-int main(int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
   std::string outputFilename;
-  if(argc > 1)
-    {
+  if (argc > 1)
+  {
     outputFilename = argv[1];
-    }
+  }
   else
-    {
+  {
     outputFilename = "test.tif";
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
 
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
   ImageType::RegionType region;
-  ImageType::IndexType start;
+  ImageType::IndexType  start;
   start[0] = 0;
   start[1] = 0;
 
@@ -54,22 +55,22 @@ int main(int argc, char *argv[])
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
 
-  while(!imageIterator.IsAtEnd())
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] > 100)
     {
-    if(imageIterator.GetIndex()[0] > 100)
-      {
       imageIterator.Set(100);
-      }
-    else
-      {
-      imageIterator.Set(200);
-      }
-    ++imageIterator;
     }
+    else
+    {
+      imageIterator.Set(200);
+    }
+    ++imageIterator;
+  }
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   using TIFFIOType = itk::TIFFImageIO;
 
   TIFFIOType::Pointer tiffIO = TIFFIOType::New();
@@ -81,14 +82,14 @@ int main(int argc, char *argv[])
   writer->SetImageIO(tiffIO);
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

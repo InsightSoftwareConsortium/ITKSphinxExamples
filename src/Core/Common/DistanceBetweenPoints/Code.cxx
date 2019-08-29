@@ -21,12 +21,13 @@
 
 #include <iostream>
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 3;
   using CoordType = double;
 
-  using PointType = itk::Point< CoordType, Dimension >;
+  using PointType = itk::Point<CoordType, Dimension>;
 
   PointType p0;
   p0[0] = 0.0;
@@ -41,28 +42,26 @@ int main(int, char *[])
   PointType::RealType dist = p0.EuclideanDistanceTo(p1);
   std::cout << "Dist: " << dist << std::endl;
 
-  if( dist != p1.EuclideanDistanceTo(p0) )
-    {
-    std::cerr << "p0.EuclideanDistanceTo(p1) != p1.EuclideanDistanceTo(p0)"
-              << std::endl;
+  if (dist != p1.EuclideanDistanceTo(p0))
+  {
+    std::cerr << "p0.EuclideanDistanceTo(p1) != p1.EuclideanDistanceTo(p0)" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
-  if( p1.EuclideanDistanceTo( p1 ) != 0. )
-    {
-    std::cerr << "p1.EuclideanDistanceTo(p1) != 0."
-              << std::endl;
+  if (p1.EuclideanDistanceTo(p1) != 0.)
+  {
+    std::cerr << "p1.EuclideanDistanceTo(p1) != 0." << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   PointType::RealType dist2 = p0.SquaredEuclideanDistanceTo(p1);
   std::cout << "Dist2: " << dist2 << std::endl;
 
-  if( std::abs( dist2 - dist * dist ) < itk::Math::eps )
-    {
+  if (std::abs(dist2 - dist * dist) < itk::Math::eps)
+  {
     std::cerr << "dist2 != dist * dist" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

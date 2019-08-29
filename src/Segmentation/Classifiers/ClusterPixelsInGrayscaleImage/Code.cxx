@@ -33,182 +33,171 @@
 #include "vtkInteractorStyleImage.h"
 #include "vtkRenderer.h"
 
-using ImageType = itk::Image<unsigned char, 2 >;
+using ImageType = itk::Image<unsigned char, 2>;
 
-static void CreateImage(ImageType::Pointer image);
+static void
+CreateImage(ImageType::Pointer image);
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
-    ImageType::Pointer image = ImageType::New();
-    CreateImage(image);
+  ImageType::Pointer image = ImageType::New();
+  CreateImage(image);
 
-    using KMeansFilterType = itk::ScalarImageKmeansImageFilter< ImageType >;
+  using KMeansFilterType = itk::ScalarImageKmeansImageFilter<ImageType>;
 
-    KMeansFilterType::Pointer kmeansFilter = KMeansFilterType::New();
+  KMeansFilterType::Pointer kmeansFilter = KMeansFilterType::New();
 
-    kmeansFilter->SetInput(image);
-    kmeansFilter->SetUseNonContiguousLabels(true);
-    kmeansFilter->AddClassWithInitialMean(8);
-    kmeansFilter->AddClassWithInitialMean(110);
-    kmeansFilter->AddClassWithInitialMean(210);
-    kmeansFilter->Update();
+  kmeansFilter->SetInput(image);
+  kmeansFilter->SetUseNonContiguousLabels(true);
+  kmeansFilter->AddClassWithInitialMean(8);
+  kmeansFilter->AddClassWithInitialMean(110);
+  kmeansFilter->AddClassWithInitialMean(210);
+  kmeansFilter->Update();
 
-    KMeansFilterType::ParametersType estimatedMeans = kmeansFilter->GetFinalMeans();
+  KMeansFilterType::ParametersType estimatedMeans = kmeansFilter->GetFinalMeans();
 
-    const unsigned int numberOfClasses = estimatedMeans.Size();
+  const unsigned int numberOfClasses = estimatedMeans.Size();
 
-    for(unsigned int i = 0; i < numberOfClasses; ++i)
-    {
-        std::cout << "cluster[" << i << "] ";
-        std::cout << "    estimated mean : " << estimatedMeans[i] << std::endl;
-    }
+  for (unsigned int i = 0; i < numberOfClasses; ++i)
+  {
+    std::cout << "cluster[" << i << "] ";
+    std::cout << "    estimated mean : " << estimatedMeans[i] << std::endl;
+  }
 
-    using OutputImageType = KMeansFilterType::OutputImageType;
+  using OutputImageType = KMeansFilterType::OutputImageType;
 
-    using RelabelFilterType = itk::RelabelComponentImageFilter<
-            OutputImageType,
-            OutputImageType >;
+  using RelabelFilterType = itk::RelabelComponentImageFilter<OutputImageType, OutputImageType>;
 
-    RelabelFilterType::Pointer relabeler = RelabelFilterType::New();
+  RelabelFilterType::Pointer relabeler = RelabelFilterType::New();
 
-    relabeler->SetInput( kmeansFilter->GetOutput() );
+  relabeler->SetInput(kmeansFilter->GetOutput());
 
-    using RescaleFilterType = itk::RescaleIntensityImageFilter< ImageType, ImageType >;
-    RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
-    rescaleFilter->SetInput(relabeler->GetOutput());
-    rescaleFilter->SetOutputMinimum(0);
-    rescaleFilter->SetOutputMaximum(255);
+  using RescaleFilterType = itk::RescaleIntensityImageFilter<ImageType, ImageType>;
+  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  rescaleFilter->SetInput(relabeler->GetOutput());
+  rescaleFilter->SetOutputMinimum(0);
+  rescaleFilter->SetOutputMaximum(255);
 
-    using SizesType = RelabelFilterType::ObjectSizeInPixelsContainerType;
+  using SizesType = RelabelFilterType::ObjectSizeInPixelsContainerType;
 
-    const SizesType &  sizes = relabeler->GetSizeOfObjectsInPixels();
+  const SizesType & sizes = relabeler->GetSizeOfObjectsInPixels();
 
-    auto sizeItr = sizes.begin();
-    auto sizeEnd = sizes.end();
+  auto sizeItr = sizes.begin();
+  auto sizeEnd = sizes.end();
 
-    std::cout << "Number of pixels per class " << std::endl;
-    unsigned int kclass = 0;
-    while( sizeItr != sizeEnd )
-    {
-        std::cout << "Class " << kclass << " = " << *sizeItr << std::endl;
-        ++kclass;
-        ++sizeItr;
-    }
+  std::cout << "Number of pixels per class " << std::endl;
+  unsigned int kclass = 0;
+  while (sizeItr != sizeEnd)
+  {
+    std::cout << "Class " << kclass << " = " << *sizeItr << std::endl;
+    ++kclass;
+    ++sizeItr;
+  }
 
-    // Visualize
-    using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-    ConnectorType::Pointer originalConnector = ConnectorType::New();
-    originalConnector->SetInput(image);
-    vtkSmartPointer<vtkImageActor> originalActor =
-            vtkSmartPointer<vtkImageActor>::New();
+  // Visualize
+  using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
+  ConnectorType::Pointer originalConnector = ConnectorType::New();
+  originalConnector->SetInput(image);
+  vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
-    originalActor->SetInput(originalConnector->GetOutput());
+  originalActor->SetInput(originalConnector->GetOutput());
 #else
-    originalConnector->Update();
+  originalConnector->Update();
   originalActor->SetInputData(originalConnector->GetOutput());
 #endif
 
-    ConnectorType::Pointer outputConnector = ConnectorType::New();
-    outputConnector->SetInput(rescaleFilter->GetOutput());
+  ConnectorType::Pointer outputConnector = ConnectorType::New();
+  outputConnector->SetInput(rescaleFilter->GetOutput());
 
-    vtkSmartPointer<vtkImageActor> outputActor =
-            vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> outputActor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
-    outputActor->SetInput(outputConnector->GetOutput());
+  outputActor->SetInput(outputConnector->GetOutput());
 #else
-    outputConnector->Update();
+  outputConnector->Update();
   outputActor->SetInputData(outputConnector->GetOutput());
 #endif
 
-    // There will be one render window
-    vtkSmartPointer<vtkRenderWindow> renderWindow =
-            vtkSmartPointer<vtkRenderWindow>::New();
-    renderWindow->SetSize(600, 300);
+  // There will be one render window
+  vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
+  renderWindow->SetSize(600, 300);
 
-    vtkSmartPointer<vtkRenderWindowInteractor> interactor =
-            vtkSmartPointer<vtkRenderWindowInteractor>::New();
-    interactor->SetRenderWindow(renderWindow);
+  vtkSmartPointer<vtkRenderWindowInteractor> interactor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+  interactor->SetRenderWindow(renderWindow);
 
-    // Define viewport ranges
-    // (xmin, ymin, xmax, ymax)
-    double leftViewport[4] = {0.0, 0.0, 0.5, 1.0};
-    double rightViewport[4] = {0.5, 0.0, 1.0, 1.0};
+  // Define viewport ranges
+  // (xmin, ymin, xmax, ymax)
+  double leftViewport[4] = { 0.0, 0.0, 0.5, 1.0 };
+  double rightViewport[4] = { 0.5, 0.0, 1.0, 1.0 };
 
-    // Setup both renderers
-    vtkSmartPointer<vtkRenderer> leftRenderer =
-            vtkSmartPointer<vtkRenderer>::New();
-    renderWindow->AddRenderer(leftRenderer);
-    leftRenderer->SetViewport(leftViewport);
-    leftRenderer->SetBackground(.6, .5, .4);
+  // Setup both renderers
+  vtkSmartPointer<vtkRenderer> leftRenderer = vtkSmartPointer<vtkRenderer>::New();
+  renderWindow->AddRenderer(leftRenderer);
+  leftRenderer->SetViewport(leftViewport);
+  leftRenderer->SetBackground(.6, .5, .4);
 
-    vtkSmartPointer<vtkRenderer> rightRenderer =
-            vtkSmartPointer<vtkRenderer>::New();
-    renderWindow->AddRenderer(rightRenderer);
-    rightRenderer->SetViewport(rightViewport);
-    rightRenderer->SetBackground(.4, .5, .6);
+  vtkSmartPointer<vtkRenderer> rightRenderer = vtkSmartPointer<vtkRenderer>::New();
+  renderWindow->AddRenderer(rightRenderer);
+  rightRenderer->SetViewport(rightViewport);
+  rightRenderer->SetBackground(.4, .5, .6);
 
 
-    // Add the sphere to the left and the cube to the right
-    leftRenderer->AddActor(originalActor);
-    rightRenderer->AddActor(outputActor);
+  // Add the sphere to the left and the cube to the right
+  leftRenderer->AddActor(originalActor);
+  rightRenderer->AddActor(outputActor);
 
-    leftRenderer->ResetCamera();
-    rightRenderer->ResetCamera();
+  leftRenderer->ResetCamera();
+  rightRenderer->ResetCamera();
 
-    renderWindow->Render();
+  renderWindow->Render();
 
-    vtkSmartPointer<vtkInteractorStyleImage> style =
-            vtkSmartPointer<vtkInteractorStyleImage>::New();
+  vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
 
-    interactor->SetInteractorStyle(style);
+  interactor->SetInteractorStyle(style);
 
-    interactor->Start();
+  interactor->Start();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage(ImageType::Pointer image)
+void
+CreateImage(ImageType::Pointer image)
 {
-    // Create an image with 2 connected components
-    ImageType::RegionType region;
-    ImageType::IndexType start;
-    start[0] = 0;
-    start[1] = 0;
+  // Create an image with 2 connected components
+  ImageType::RegionType region;
+  ImageType::IndexType  start;
+  start[0] = 0;
+  start[1] = 0;
 
-    ImageType::SizeType size;
-    size[0] = 200;
-    size[1] = 300;
+  ImageType::SizeType size;
+  size[0] = 200;
+  size[1] = 300;
 
-    region.SetSize(size);
-    region.SetIndex(start);
+  region.SetSize(size);
+  region.SetIndex(start);
 
-    image->SetRegions(region);
-    image->Allocate();
+  image->SetRegions(region);
+  image->Allocate();
 
-    itk::ImageRegionIterator<ImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
 
-    while(!imageIterator.IsAtEnd())
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] > 100 && imageIterator.GetIndex()[0] < 150 && imageIterator.GetIndex()[1] > 100 &&
+        imageIterator.GetIndex()[1] < 150)
     {
-        if(imageIterator.GetIndex()[0] > 100 &&
-           imageIterator.GetIndex()[0] < 150 &&
-           imageIterator.GetIndex()[1] > 100 &&
-           imageIterator.GetIndex()[1] < 150)
-        {
-            imageIterator.Set(100);
-        }
-        else if(imageIterator.GetIndex()[0] > 50 &&
-                imageIterator.GetIndex()[0] < 70 &&
-                imageIterator.GetIndex()[1] > 50 &&
-                imageIterator.GetIndex()[1] < 70)
-        {
-            imageIterator.Set(200);
-        }
-        else
-        {
-            imageIterator.Set(10);
-        }
-
-        ++imageIterator;
+      imageIterator.Set(100);
     }
-}
+    else if (imageIterator.GetIndex()[0] > 50 && imageIterator.GetIndex()[0] < 70 && imageIterator.GetIndex()[1] > 50 &&
+             imageIterator.GetIndex()[1] < 70)
+    {
+      imageIterator.Set(200);
+    }
+    else
+    {
+      imageIterator.Set(10);
+    }
 
+    ++imageIterator;
+  }
+}

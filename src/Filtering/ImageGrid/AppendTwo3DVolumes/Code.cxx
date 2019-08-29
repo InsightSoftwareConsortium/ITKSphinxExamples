@@ -20,16 +20,17 @@
 #include "itkImageFileWriter.h"
 #include "itkTileImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 4 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 4)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName1> <InputFileName2> <OutputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
   const char * inputFileName1 = argv[1];
   const char * inputFileName2 = argv[2];
   const char * outputFileName = argv[3];
@@ -37,39 +38,39 @@ int main( int argc, char* argv[] )
   constexpr unsigned int Dimension = 3;
 
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader1 = ReaderType::New();
-  reader1->SetFileName( inputFileName1 );
+  reader1->SetFileName(inputFileName1);
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader2 = ReaderType::New();
-  reader2->SetFileName( inputFileName2 );
+  reader2->SetFileName(inputFileName2);
 
-  using TileFilterType = itk::TileImageFilter< ImageType, ImageType >;
+  using TileFilterType = itk::TileImageFilter<ImageType, ImageType>;
   TileFilterType::Pointer tileFilter = TileFilterType::New();
-  tileFilter->SetInput( 0, reader1->GetOutput() );
-  tileFilter->SetInput( 1, reader2->GetOutput() );
+  tileFilter->SetInput(0, reader1->GetOutput());
+  tileFilter->SetInput(1, reader2->GetOutput());
   TileFilterType::LayoutArrayType layout;
   layout[0] = 1;
   layout[1] = 1;
   layout[2] = 2;
-  tileFilter->SetLayout( layout );
+  tileFilter->SetLayout(layout);
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( tileFilter->GetOutput() );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(tileFilter->GetOutput());
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

@@ -23,12 +23,13 @@
 
 constexpr unsigned int Dimension = 2;
 using InputPixelType = unsigned char;
-using InputImageType = itk::Image< InputPixelType, Dimension >;
-using OutputPixelType = itk::RGBAPixel< unsigned char >;
-using OutputImageType = itk::Image< OutputPixelType, Dimension >;
-using LabeledImageType = itk::Image< itk::IdentifierType, Dimension >;
+using InputImageType = itk::Image<InputPixelType, Dimension>;
+using OutputPixelType = itk::RGBAPixel<unsigned char>;
+using OutputImageType = itk::Image<OutputPixelType, Dimension>;
+using LabeledImageType = itk::Image<itk::IdentifierType, Dimension>;
 
-OutputImageType::Pointer segmentationAndCustomColorization(InputImageType::Pointer inImage)
+OutputImageType::Pointer
+segmentationAndCustomColorization(InputImageType::Pointer inImage)
 {
   using WatershedFilterType = itk::WatershedImageFilter<InputImageType>;
   WatershedFilterType::Pointer watershed = WatershedFilterType::New();
@@ -48,61 +49,62 @@ OutputImageType::Pointer segmentationAndCustomColorization(InputImageType::Point
   itk::MultiThreaderBase::Pointer mt = itk::MultiThreaderBase::New();
   // ParallelizeImageRegion invokes the provided lambda function in parallel
   // each invocation will contain a piece of the overall region
-  mt->ParallelizeImageRegion<Dimension>(image->GetBufferedRegion(),
-      // the lambda will have access to outer variables 'image' and 'outImage'
-      // it will have parameter 'region', which needs to be processed
-      [image, outImage](const LabeledImageType::RegionType & region)
+  mt->ParallelizeImageRegion<Dimension>(
+    image->GetBufferedRegion(),
+    // the lambda will have access to outer variables 'image' and 'outImage'
+    // it will have parameter 'region', which needs to be processed
+    [image, outImage](const LabeledImageType::RegionType & region) {
+      itk::ImageRegionConstIterator<LabeledImageType> iIt(image, region);
+      itk::ImageRegionIterator<OutputImageType>       oIt(outImage, region);
+      for (; !iIt.IsAtEnd(); ++iIt, ++oIt)
       {
-        itk::ImageRegionConstIterator< LabeledImageType > iIt(image, region);
-        itk::ImageRegionIterator< OutputImageType > oIt(outImage, region);
-        for (; !iIt.IsAtEnd(); ++iIt, ++oIt)
-          {
-          LabeledImageType::IndexType ind = iIt.GetIndex();
-          OutputPixelType p;
-          p.SetAlpha(iIt.Get());
-          static_assert(Dimension <= 3, "Dimension has to be 2 or 3");
-          for (unsigned d = 0; d < Dimension; d++)
-            {
-            p.SetElement(d, ind[d]);
-            }
-          oIt.Set(p);
-          }
-      },
-      nullptr); // we don't have a filter whose progress needs to be updated
+        LabeledImageType::IndexType ind = iIt.GetIndex();
+        OutputPixelType             p;
+        p.SetAlpha(iIt.Get());
+        static_assert(Dimension <= 3, "Dimension has to be 2 or 3");
+        for (unsigned d = 0; d < Dimension; d++)
+        {
+          p.SetElement(d, ind[d]);
+        }
+        oIt.Set(p);
+      }
+    },
+    nullptr); // we don't have a filter whose progress needs to be updated
 
   return outImage;
 }
 
-int main(int argc, char* argv[])
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 3)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName>";
     std::cerr << " <OutputFileName>" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
-  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
   ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName(argv[1]);
-  using WriterType = itk::ImageFileWriter< OutputImageType >;
+  using WriterType = itk::ImageFileWriter<OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName(argv[2]);
   writer->UseCompressionOn();
 
   try
-    {
+  {
     OutputImageType::Pointer outImage = segmentationAndCustomColorization(reader->GetOutput());
     writer->SetInput(outImage);
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

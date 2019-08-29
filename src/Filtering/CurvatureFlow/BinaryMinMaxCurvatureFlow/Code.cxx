@@ -23,72 +23,64 @@
 #include "itksys/SystemTools.hxx"
 
 #ifdef ENABLE_QUICKVIEW
-#include "QuickView.h"
+#  include "QuickView.h"
 #endif
 
-int main(int argc, char* argv[])
+int
+main(int argc, char * argv[])
 {
-    if( argc < 2 )
-    {
-        std::cerr << argv[0] << " InputFileName [NumberOfIterations]" <<std ::endl;
-        return EXIT_FAILURE;
-    }
+  if (argc < 2)
+  {
+    std::cerr << argv[0] << " InputFileName [NumberOfIterations]" << std ::endl;
+    return EXIT_FAILURE;
+  }
 
-    std::string inputFileName = argv[1];
+  std::string inputFileName = argv[1];
 
-    unsigned int numberOfIterations = 2;
-    if (argc > 2)
-    {
-        numberOfIterations = std::stoi(argv[2]);
-    }
+  unsigned int numberOfIterations = 2;
+  if (argc > 2)
+  {
+    numberOfIterations = std::stoi(argv[2]);
+  }
 
-    constexpr unsigned int Dimension = 2;
+  constexpr unsigned int Dimension = 2;
 
-    using InputPixelType = float;
-    using OutputPixelType = float;
+  using InputPixelType = float;
+  using OutputPixelType = float;
 
-    using InputImageType = itk::Image< InputPixelType, Dimension >;
-    using ReaderType = itk::ImageFileReader< InputImageType >;
+  using InputImageType = itk::Image<InputPixelType, Dimension>;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
 
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(inputFileName);
+  ReaderType::Pointer reader = ReaderType::New();
+  reader->SetFileName(inputFileName);
 
-    using OutputImageType = itk::Image< OutputPixelType, Dimension >;
+  using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-    using FilterType = itk::BinaryMinMaxCurvatureFlowImageFilter< InputImageType, OutputImageType >;
-    FilterType::Pointer filter = FilterType::New();
-    filter->SetInput( reader->GetOutput() );
-    filter->SetThreshold( 255 );
-    filter->SetNumberOfIterations(numberOfIterations);
+  using FilterType = itk::BinaryMinMaxCurvatureFlowImageFilter<InputImageType, OutputImageType>;
+  FilterType::Pointer filter = FilterType::New();
+  filter->SetInput(reader->GetOutput());
+  filter->SetThreshold(255);
+  filter->SetNumberOfIterations(numberOfIterations);
 
-    using SubtractType = itk::SubtractImageFilter<OutputImageType>;
-    SubtractType::Pointer diff = SubtractType::New();
-    diff->SetInput1(reader->GetOutput());
-    diff->SetInput2(filter->GetOutput());
+  using SubtractType = itk::SubtractImageFilter<OutputImageType>;
+  SubtractType::Pointer diff = SubtractType::New();
+  diff->SetInput1(reader->GetOutput());
+  diff->SetInput2(filter->GetOutput());
 
 #ifdef ENABLE_QUICKVIEW
-    QuickView viewer;
-    viewer.AddImage(
-            reader->GetOutput(),true,
-            itksys::SystemTools::GetFilenameName(inputFileName));
+  QuickView viewer;
+  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(inputFileName));
 
-    std::stringstream desc;
-    desc << "BinaryMinMaxCurvature, iterations = "
-         << numberOfIterations;
-    viewer.AddImage(
-            filter->GetOutput(),
-            true,
-            desc.str());
+  std::stringstream desc;
+  desc << "BinaryMinMaxCurvature, iterations = " << numberOfIterations;
+  viewer.AddImage(filter->GetOutput(), true, desc.str());
 
-    std::stringstream desc2;
-    desc2 << "Original - BinaryMinMaxCurvatureFlow";
-    viewer.AddImage(
-            diff->GetOutput(),
-            true,
-            desc2.str());
+  std::stringstream desc2;
+  desc2 << "Original - BinaryMinMaxCurvatureFlow";
+  viewer.AddImage(diff->GetOutput(), true, desc2.str());
 
-    viewer.Visualize();
+  viewer.Visualize();
 #endif
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }

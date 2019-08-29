@@ -21,76 +21,78 @@
 #include "itkBinaryThresholdImageFunction.h"
 #include "itkImageFileWriter.h"
 
-using ImageType = itk::Image< unsigned char, 2 >;
+using ImageType = itk::Image<unsigned char, 2>;
 
-static void CreateImage(ImageType::Pointer image);
+static void
+CreateImage(ImageType::Pointer image);
 
-int main( int  /*argc*/, char * /*argv*/[])
+int
+main(int /*argc*/, char * /*argv*/[])
 {
-    ImageType::Pointer image = ImageType::New();
-    CreateImage(image);
+  ImageType::Pointer image = ImageType::New();
+  CreateImage(image);
 
-    using FunctionType = itk::BinaryThresholdImageFunction< ImageType, double >;
-    FunctionType::Pointer function = FunctionType::New();
-    function->SetInputImage(image);
-    function->ThresholdAbove(100); // we are looking to capture 255
+  using FunctionType = itk::BinaryThresholdImageFunction<ImageType, double>;
+  FunctionType::Pointer function = FunctionType::New();
+  function->SetInputImage(image);
+  function->ThresholdAbove(100); // we are looking to capture 255
 
-    using IteratorType = itk::FloodFilledImageFunctionConditionalIterator< ImageType, FunctionType >;
+  using IteratorType = itk::FloodFilledImageFunctionConditionalIterator<ImageType, FunctionType>;
 
-    itk::Index<2> seed;
-    seed[0] = 25;
-    seed[1] = 25;
+  itk::Index<2> seed;
+  seed[0] = 25;
+  seed[1] = 25;
 
-    std::vector<itk::Index<2> > seeds;
-    seeds.push_back(seed);
+  std::vector<itk::Index<2>> seeds;
+  seeds.push_back(seed);
 
-    IteratorType it (image, function, seeds);
-    it.GoToBegin();
+  IteratorType it(image, function, seeds);
+  it.GoToBegin();
 
-    while ( !it.IsAtEnd() )
-    {
-        std::cout << it.GetIndex() << std::endl;
-        ++it;
-    }
+  while (!it.IsAtEnd())
+  {
+    std::cout << it.GetIndex() << std::endl;
+    ++it;
+  }
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage(ImageType::Pointer image)
+void
+CreateImage(ImageType::Pointer image)
 {
-    itk::Index<2> start;
-    start.Fill(0);
+  itk::Index<2> start;
+  start.Fill(0);
 
-    itk::Size<2> size;
-    size.Fill(100);
+  itk::Size<2> size;
+  size.Fill(100);
 
-    itk::ImageRegion<2> region(start,size);
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(0);
+  itk::ImageRegion<2> region(start, size);
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(0);
 
-    // The line doesn't work at the moment, because it needs 8-connectivity.
+  // The line doesn't work at the moment, because it needs 8-connectivity.
 
-    // Make a line
-    for(unsigned int i = 20; i < 50; ++i)
-    {
-        itk::Index<2> pixelIndex;
-        pixelIndex.Fill(i);
+  // Make a line
+  for (unsigned int i = 20; i < 50; ++i)
+  {
+    itk::Index<2> pixelIndex;
+    pixelIndex.Fill(i);
 
-        image->SetPixel(pixelIndex, 255);
-    }
+    image->SetPixel(pixelIndex, 255);
+  }
 
-    // Make a square
-//   for(unsigned int r = 20; r < 50; r++)
-//     {
-//     for(unsigned int c = 20; c < 50; c++)
-//       {
-//       itk::Index<2> pixelIndex;
-//       pixelIndex[0] = r;
-//       pixelIndex[1] = c;
-//
-//       image->SetPixel(pixelIndex, 255);
-//       }
-//     }
+  // Make a square
+  //   for(unsigned int r = 20; r < 50; r++)
+  //     {
+  //     for(unsigned int c = 20; c < 50; c++)
+  //       {
+  //       itk::Index<2> pixelIndex;
+  //       pixelIndex[0] = r;
+  //       pixelIndex[1] = c;
+  //
+  //       image->SetPixel(pixelIndex, 255);
+  //       }
+  //     }
 }
-

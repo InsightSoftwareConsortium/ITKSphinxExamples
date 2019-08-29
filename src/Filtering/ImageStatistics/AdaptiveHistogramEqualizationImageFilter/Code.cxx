@@ -20,47 +20,48 @@
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
 
-int main( int argc, char *argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc < 6 )
-    {
+  if (argc < 6)
+  {
     std::cerr << "Missing parameters." << std::endl;
-    std::cerr << "Usage: " << argv[0]
-      << " inputImageFile outputImageFile alpha beta radius" << std::endl;
+    std::cerr << "Usage: " << argv[0] << " inputImageFile outputImageFile alpha beta radius" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
 
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using FileReaderType = itk::ImageFileReader< ImageType >;
+  using FileReaderType = itk::ImageFileReader<ImageType>;
   FileReaderType::Pointer reader = FileReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
 
-  using AdaptiveHistogramEqualizationImageFilterType = itk::AdaptiveHistogramEqualizationImageFilter< ImageType >;
-  AdaptiveHistogramEqualizationImageFilterType::Pointer adaptiveHistogramEqualizationImageFilter = AdaptiveHistogramEqualizationImageFilterType::New();
+  using AdaptiveHistogramEqualizationImageFilterType = itk::AdaptiveHistogramEqualizationImageFilter<ImageType>;
+  AdaptiveHistogramEqualizationImageFilterType::Pointer adaptiveHistogramEqualizationImageFilter =
+    AdaptiveHistogramEqualizationImageFilterType::New();
 
-  float alpha = std::stod( argv[3] );
-  adaptiveHistogramEqualizationImageFilter->SetAlpha( alpha );
+  float alpha = std::stod(argv[3]);
+  adaptiveHistogramEqualizationImageFilter->SetAlpha(alpha);
 
-  float beta = std::stod( argv[4] );
-  adaptiveHistogramEqualizationImageFilter->SetBeta( beta );
+  float beta = std::stod(argv[4]);
+  adaptiveHistogramEqualizationImageFilter->SetBeta(beta);
 
-  int radiusSize = std::stoi( argv[5] );
+  int                                                         radiusSize = std::stoi(argv[5]);
   AdaptiveHistogramEqualizationImageFilterType::ImageSizeType radius;
-  radius.Fill( radiusSize );
-  adaptiveHistogramEqualizationImageFilter->SetRadius( radius );
+  radius.Fill(radiusSize);
+  adaptiveHistogramEqualizationImageFilter->SetRadius(radius);
 
-  adaptiveHistogramEqualizationImageFilter->SetInput( reader->GetOutput() );
+  adaptiveHistogramEqualizationImageFilter->SetInput(reader->GetOutput());
 
   adaptiveHistogramEqualizationImageFilter->Update();
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( argv[2] );
-  writer->SetInput( adaptiveHistogramEqualizationImageFilter->GetOutput() );
+  writer->SetFileName(argv[2]);
+  writer->SetInput(adaptiveHistogramEqualizationImageFilter->GetOutput());
 
   writer->Update();
 

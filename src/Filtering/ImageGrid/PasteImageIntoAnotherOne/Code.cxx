@@ -20,61 +20,62 @@
 #include "itkImageFileWriter.h"
 #include "itkPasteImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 6 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 6)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <SourceFileName> <DestinationFileName> <OutputFileName> <start x> <start y>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
-  const char * sourceFileName       = argv[1];
-  const char * destinationFileName  = argv[2];
-  const char * outputFileName       = argv[3];
+  const char * sourceFileName = argv[1];
+  const char * destinationFileName = argv[2];
+  const char * outputFileName = argv[3];
 
-  int startX = std::stoi( argv[4] );
-  int startY = std::stoi( argv[5] );
+  int startX = std::stoi(argv[4]);
+  int startY = std::stoi(argv[5]);
 
   constexpr unsigned int Dimension = 2;
 
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
   ImageType::IndexType index;
   index[0] = startX;
   index[1] = startY;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer sourceReader = ReaderType::New();
-  sourceReader->SetFileName( sourceFileName );
+  sourceReader->SetFileName(sourceFileName);
   sourceReader->Update();
 
   ReaderType::Pointer destinationReader = ReaderType::New();
-  destinationReader->SetFileName( destinationFileName );
+  destinationReader->SetFileName(destinationFileName);
 
-  using FilterType = itk::PasteImageFilter< ImageType, ImageType >;
+  using FilterType = itk::PasteImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetSourceImage( sourceReader->GetOutput() );
-  filter->SetSourceRegion( sourceReader->GetOutput()->GetLargestPossibleRegion() );
-  filter->SetDestinationImage( destinationReader->GetOutput() );
-  filter->SetDestinationIndex( index );
+  filter->SetSourceImage(sourceReader->GetOutput());
+  filter->SetSourceRegion(sourceReader->GetOutput()->GetLargestPossibleRegion());
+  filter->SetDestinationImage(destinationReader->GetOutput());
+  filter->SetDestinationIndex(index);
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( filter->GetOutput() );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(filter->GetOutput());
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

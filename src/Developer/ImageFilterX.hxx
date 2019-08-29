@@ -9,14 +9,12 @@
 namespace itk
 {
 
-template< class TImage>
-void ImageFilter< TImage>
-::GenerateData()
-{
+template <class TImage>
+void
+ImageFilter<TImage>::GenerateData()
+{}
 
-}
-
-}// end namespace
+} // namespace itk
 
 
 #endif

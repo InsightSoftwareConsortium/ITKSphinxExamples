@@ -18,17 +18,18 @@
 #include "itkVectorImage.h"
 #include "itkCastImageFilter.h"
 
-int main(int  /*argc*/, char * /*argv*/[])
+int
+main(int /*argc*/, char * /*argv*/[])
 {
-    typedef itk::VectorImage<unsigned char, 2>  UnsignedCharVectorImageType;
-    typedef itk::VectorImage<float, 2>  FloatVectorImageType;
+  typedef itk::VectorImage<unsigned char, 2> UnsignedCharVectorImageType;
+  typedef itk::VectorImage<float, 2>         FloatVectorImageType;
 
-    FloatVectorImageType::Pointer image = FloatVectorImageType::New();
+  FloatVectorImageType::Pointer image = FloatVectorImageType::New();
 
-    typedef itk::CastImageFilter< FloatVectorImageType, UnsignedCharVectorImageType > CastImageFilterType;
-    CastImageFilterType::Pointer vectorCastImageFilter = CastImageFilterType::New();
-    vectorCastImageFilter->SetInput(image);
-    vectorCastImageFilter->Update();
+  typedef itk::CastImageFilter<FloatVectorImageType, UnsignedCharVectorImageType> CastImageFilterType;
+  CastImageFilterType::Pointer vectorCastImageFilter = CastImageFilterType::New();
+  vectorCastImageFilter->SetInput(image);
+  vectorCastImageFilter->Update();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }

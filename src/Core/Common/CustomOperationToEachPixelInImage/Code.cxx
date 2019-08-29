@@ -22,48 +22,54 @@
 #include "itkUnaryFunctorImageFilter.h"
 #include "itkMath.h"
 
-template< class TInput, class TOutput>
+template <class TInput, class TOutput>
 class RotateVectors
 {
 public:
-  RotateVectors() = default;;
-  ~RotateVectors() = default;;
-  bool operator!=( const RotateVectors & ) const
-    {
+  RotateVectors() = default;
+  ;
+  ~RotateVectors() = default;
+  ;
+  bool
+  operator!=(const RotateVectors &) const
+  {
     return false;
-    }
-  bool operator==( const RotateVectors & other ) const
-    {
+  }
+  bool
+  operator==(const RotateVectors & other) const
+  {
     return !(*this != other);
-    }
-  inline TOutput operator()( const TInput & A ) const
-    {
-      using VectorType = itk::Vector<float, 2>;
-      VectorType v;
-      v[0] = A[0];
-      v[1] = A[1];
-            
-      using TransformType = itk::Rigid2DTransform< float >;
+  }
+  inline TOutput
+  operator()(const TInput & A) const
+  {
+    using VectorType = itk::Vector<float, 2>;
+    VectorType v;
+    v[0] = A[0];
+    v[1] = A[1];
 
-      TransformType::Pointer transform = TransformType::New();
-      transform->SetAngle(itk::Math::pi/2.0);
+    using TransformType = itk::Rigid2DTransform<float>;
 
-      VectorType outputV = transform->TransformVector(v);
-      TOutput transformedVector;
-      transformedVector.SetSize(2);
-      transformedVector[0] = outputV[0];
-      transformedVector[1] = outputV[1];
+    TransformType::Pointer transform = TransformType::New();
+    transform->SetAngle(itk::Math::pi / 2.0);
 
-      return transformedVector;
-    }
+    VectorType outputV = transform->TransformVector(v);
+    TOutput    transformedVector;
+    transformedVector.SetSize(2);
+    transformedVector[0] = outputV[0];
+    transformedVector[1] = outputV[1];
+
+    return transformedVector;
+  }
 };
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   using ImageType = itk::VectorImage<float, 2>;
 
   ImageType::RegionType region;
-  ImageType::IndexType start;
+  ImageType::IndexType  start;
   start[0] = 0;
   start[1] = 0;
 
@@ -88,13 +94,11 @@ int main(int, char *[])
   v.SetSize(2);
   v[0] = 1;
   v[1] = 0;
-  
+
   image->SetPixel(pixelIndex, v);
-  
-  using FilterType = itk::UnaryFunctorImageFilter<ImageType,ImageType,
-                                  RotateVectors<
-    ImageType::PixelType,
-    ImageType::PixelType> >;
+
+  using FilterType =
+    itk::UnaryFunctorImageFilter<ImageType, ImageType, RotateVectors<ImageType::PixelType, ImageType::PixelType>>;
 
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput(image);

@@ -22,69 +22,67 @@
 #include "itkNumericSeriesFileNames.h"
 #include "itkImageSeriesWriter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 3)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName> <OutputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
 
-  std::string format =  std::string( outputFileName ) +
-                        std::string( "-%d.png" );
+  std::string format = std::string(outputFileName) + std::string("-%d.png");
 
   constexpr unsigned int Dimension = 3;
 
   using PixelType = unsigned char;
-  using InputImageType = itk::Image< PixelType, Dimension >;
+  using InputImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFileName );
+  reader->SetFileName(inputFileName);
 
   using OutputPixelType = unsigned char;
-  using RescaleImageType = itk::Image< OutputPixelType, Dimension >;
+  using RescaleImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using RescaleFilterType = itk::RescaleIntensityImageFilter< InputImageType, RescaleImageType >;
+  using RescaleFilterType = itk::RescaleIntensityImageFilter<InputImageType, RescaleImageType>;
   RescaleFilterType::Pointer rescale = RescaleFilterType::New();
-  rescale->SetInput( reader->GetOutput() );
-  rescale->SetOutputMinimum( 0 );
-  rescale->SetOutputMaximum( 255 );
+  rescale->SetInput(reader->GetOutput());
+  rescale->SetOutputMinimum(0);
+  rescale->SetOutputMaximum(255);
   rescale->UpdateLargestPossibleRegion();
 
-  InputImageType::RegionType region =
-    reader->GetOutput()->GetLargestPossibleRegion();
-  InputImageType::SizeType size = region.GetSize();
+  InputImageType::RegionType region = reader->GetOutput()->GetLargestPossibleRegion();
+  InputImageType::SizeType   size = region.GetSize();
 
-  itk::NumericSeriesFileNames::Pointer fnames =
-    itk::NumericSeriesFileNames::New();
-  fnames->SetStartIndex( 0 );
-  fnames->SetEndIndex( size[2] - 1 );
-  fnames->SetIncrementIndex( 1 );
-  fnames->SetSeriesFormat( format.c_str() );
+  itk::NumericSeriesFileNames::Pointer fnames = itk::NumericSeriesFileNames::New();
+  fnames->SetStartIndex(0);
+  fnames->SetEndIndex(size[2] - 1);
+  fnames->SetIncrementIndex(1);
+  fnames->SetSeriesFormat(format.c_str());
 
-  using OutputImageType = itk::Image< OutputPixelType, 2 >;
+  using OutputImageType = itk::Image<OutputPixelType, 2>;
 
-  using WriterType = itk::ImageSeriesWriter< RescaleImageType, OutputImageType >;
+  using WriterType = itk::ImageSeriesWriter<RescaleImageType, OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetInput( rescale->GetOutput() );
-  writer->SetFileNames( fnames->GetFileNames() );
+  writer->SetInput(rescale->GetOutput());
+  writer->SetFileNames(fnames->GetFileNames());
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

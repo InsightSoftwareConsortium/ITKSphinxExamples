@@ -29,54 +29,49 @@
 #include "vtkInteractorStyleImage.h"
 #include "vtkRenderer.h"
 #include "itkRGBPixel.h"
-int main(int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
-    if( argc < 2 )
-    {
-        std::cerr << "Usage: " << std::endl;
-        std::cerr << argv[0] << " inputImageFile" << std::endl;
-        return EXIT_FAILURE;
-    }
+  if (argc < 2)
+  {
+    std::cerr << "Usage: " << std::endl;
+    std::cerr << argv[0] << " inputImageFile" << std::endl;
+    return EXIT_FAILURE;
+  }
 
-    using ImageType = itk::Image<itk::RGBPixel<unsigned char>, 2>;
-    using ReaderType = itk::ImageFileReader<ImageType>;
-    using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
+  using ImageType = itk::Image<itk::RGBPixel<unsigned char>, 2>;
+  using ReaderType = itk::ImageFileReader<ImageType>;
+  using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
 
-    ReaderType::Pointer reader = ReaderType::New();
-    ConnectorType::Pointer connector = ConnectorType::New();
+  ReaderType::Pointer    reader = ReaderType::New();
+  ConnectorType::Pointer connector = ConnectorType::New();
 
-    reader->SetFileName(argv[1]);
-    connector->SetInput(reader->GetOutput());
+  reader->SetFileName(argv[1]);
+  connector->SetInput(reader->GetOutput());
 
-    vtkSmartPointer<vtkImageActor> actor =
-            vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> actor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
-    actor->SetInput(connector->GetOutput());
+  actor->SetInput(connector->GetOutput());
 #else
-    connector->Update();
+  connector->Update();
   actor->GetMapper()->SetInputData(connector->GetOutput());
 #endif
-    vtkSmartPointer<vtkRenderer> renderer =
-            vtkSmartPointer<vtkRenderer>::New();
-    renderer->AddActor(actor);
-    renderer->ResetCamera();
+  vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
+  renderer->AddActor(actor);
+  renderer->ResetCamera();
 
-    vtkSmartPointer<vtkRenderWindow> renderWindow =
-            vtkSmartPointer<vtkRenderWindow>::New();
-    renderWindow->AddRenderer(renderer);
+  vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
+  renderWindow->AddRenderer(renderer);
 
-    vtkSmartPointer<vtkRenderWindowInteractor> renderWindowInteractor =
-            vtkSmartPointer<vtkRenderWindowInteractor>::New();
-    vtkSmartPointer<vtkInteractorStyleImage> style =
-            vtkSmartPointer<vtkInteractorStyleImage>::New();
+  vtkSmartPointer<vtkRenderWindowInteractor> renderWindowInteractor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+  vtkSmartPointer<vtkInteractorStyleImage>   style = vtkSmartPointer<vtkInteractorStyleImage>::New();
 
-    renderWindowInteractor->SetInteractorStyle(style);
+  renderWindowInteractor->SetInteractorStyle(style);
 
-    renderWindowInteractor->SetRenderWindow(renderWindow);
-    renderWindowInteractor->Initialize();
+  renderWindowInteractor->SetRenderWindow(renderWindow);
+  renderWindowInteractor->Initialize();
 
-    renderWindowInteractor->Start();
+  renderWindowInteractor->Start();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
-

@@ -18,12 +18,13 @@
 
 #include "itkVector.h"
 
-int main( int, char* [] )
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 3;
   using CoordType = double;
 
-  using VectorType = itk::Vector< CoordType, Dimension >;
+  using VectorType = itk::Vector<CoordType, Dimension>;
 
   VectorType u;
   u[0] = -1.;
@@ -38,7 +39,7 @@ int main( int, char* [] )
   std::cout << "u :" << u << std::endl;
   std::cout << "v :" << v << std::endl;
   std::cout << "DotProduct( u, v ) = " << u * v << std::endl;
-  std::cout << "u - ( u * v ) * v = " << u - ( u * v ) * v << std::endl;
+  std::cout << "u - ( u * v ) * v = " << u - (u * v) * v << std::endl;
 
   return EXIT_SUCCESS;
 }

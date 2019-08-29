@@ -18,25 +18,26 @@
 
 #include "itkEuler3DTransform.h"
 
-int main( int, char* [] )
+int
+main(int, char *[])
 {
-  using TransformType = itk::Euler3DTransform< float >;
+  using TransformType = itk::Euler3DTransform<float>;
 
-  TransformType::Pointer transform = TransformType::New();
-  TransformType::ParametersType parameters( 6 );
+  TransformType::Pointer        transform = TransformType::New();
+  TransformType::ParametersType parameters(6);
   parameters[0] = 0.1;
   parameters[1] = 0.2;
   parameters[2] = 0.3;
   parameters[3] = 4.0;
   parameters[4] = 5.0;
   parameters[5] = 6.0;
-  transform->SetParameters( parameters );
+  transform->SetParameters(parameters);
 
-  TransformType::FixedParametersType fixedParameters( 3 );
+  TransformType::FixedParametersType fixedParameters(3);
   fixedParameters[0] = -3.5;
   fixedParameters[1] = -4.5;
   fixedParameters[2] = -5.5;
-  transform->SetFixedParameters( fixedParameters );
+  transform->SetFixedParameters(fixedParameters);
   std::cout << "Original transform: " << transform << std::endl;
 
   TransformType::Pointer transformCopy = transform->Clone();

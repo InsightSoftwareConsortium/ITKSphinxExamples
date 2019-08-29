@@ -22,92 +22,92 @@
 #include "itkPasteImageFilter.h"
 #include "itkMedianImageFilter.h"
 
-int main( int argc, char ** argv )
+int
+main(int argc, char ** argv)
 {
   // Verify the number of parameters in the command line
-  if( argc <= 3 )
-    {
+  if (argc <= 3)
+  {
     std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0] << " input3DImageFile  output3DImageFile " << std::endl;
     std::cerr << " sliceNumber " << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   using PixelType = short;
 
-  using ImageType = itk::Image< PixelType, 3 >;
+  using ImageType = itk::Image<PixelType, 3>;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
+  using WriterType = itk::ImageFileWriter<ImageType>;
 
   // Here we recover the file names from the command line arguments
-  const char * inputFilename  = argv[1];
+  const char * inputFilename = argv[1];
   const char * outputFilename = argv[2];
 
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFilename  );
+  reader->SetFileName(inputFilename);
   try
-    {
+  {
     reader->Update();
-    }
-  catch( itk::ExceptionObject & err )
-    {
+  }
+  catch (itk::ExceptionObject & err)
+  {
     std::cerr << "ExceptionObject caught !" << std::endl;
     std::cerr << err << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFilename );
+  writer->SetFileName(outputFilename);
 
-  using ExtractFilterType = itk::ExtractImageFilter< ImageType, ImageType >;
+  using ExtractFilterType = itk::ExtractImageFilter<ImageType, ImageType>;
   ExtractFilterType::Pointer extractFilter = ExtractFilterType::New();
   extractFilter->SetDirectionCollapseToSubmatrix();
 
   // set up the extraction region [one slice]
-  const ImageType * inputImage = reader->GetOutput();
+  const ImageType *     inputImage = reader->GetOutput();
   ImageType::RegionType inputRegion = inputImage->GetBufferedRegion();
-  ImageType::SizeType size = inputRegion.GetSize();
+  ImageType::SizeType   size = inputRegion.GetSize();
   size[2] = 1; // we extract along z direction
   ImageType::IndexType start = inputRegion.GetIndex();
-  const unsigned int sliceNumber = std::stoi( argv[3] );
+  const unsigned int   sliceNumber = std::stoi(argv[3]);
   start[2] = sliceNumber;
   ImageType::RegionType desiredRegion;
-  desiredRegion.SetSize(  size  );
-  desiredRegion.SetIndex( start );
+  desiredRegion.SetSize(size);
+  desiredRegion.SetIndex(start);
 
-  extractFilter->SetExtractionRegion( desiredRegion );
-  using PasteFilterType = itk::PasteImageFilter< ImageType >;
+  extractFilter->SetExtractionRegion(desiredRegion);
+  using PasteFilterType = itk::PasteImageFilter<ImageType>;
   PasteFilterType::Pointer pasteFilter = PasteFilterType::New();
-  using MedianFilterType = itk::MedianImageFilter< ImageType,
-                                  ImageType >;
+  using MedianFilterType = itk::MedianImageFilter<ImageType, ImageType>;
   MedianFilterType::Pointer medianFilter = MedianFilterType::New();
-  extractFilter->SetInput( inputImage );
-  medianFilter->SetInput( extractFilter->GetOutput() );
-  pasteFilter->SetSourceImage( medianFilter->GetOutput() );
-  pasteFilter->SetDestinationImage( inputImage );
-  pasteFilter->SetDestinationIndex( start );
+  extractFilter->SetInput(inputImage);
+  medianFilter->SetInput(extractFilter->GetOutput());
+  pasteFilter->SetSourceImage(medianFilter->GetOutput());
+  pasteFilter->SetDestinationImage(inputImage);
+  pasteFilter->SetDestinationIndex(start);
 
   ImageType::SizeType indexRadius;
   indexRadius[0] = 1; // radius along x
   indexRadius[1] = 1; // radius along y
   indexRadius[2] = 0; // radius along z
-  medianFilter->SetRadius( indexRadius );
+  medianFilter->SetRadius(indexRadius);
   medianFilter->UpdateLargestPossibleRegion();
   const ImageType * medianImage = medianFilter->GetOutput();
-  pasteFilter->SetSourceRegion( medianImage->GetBufferedRegion() );
-  writer->SetInput( pasteFilter->GetOutput() );
+  pasteFilter->SetSourceRegion(medianImage->GetBufferedRegion());
+  writer->SetInput(pasteFilter->GetOutput());
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & err )
-    {
+  }
+  catch (itk::ExceptionObject & err)
+  {
     std::cerr << "ExceptionObject caught !" << std::endl;
     std::cerr << err << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

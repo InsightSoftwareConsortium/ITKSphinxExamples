@@ -20,44 +20,44 @@
 #include "itkRandomImageSource.h"
 #include "itkImageFileWriter.h"
 
-int main(int argc, char* argv[])
+int
+main(int argc, char * argv[])
 {
-  if( argc != 2 )
-    {
+  if (argc != 2)
+  {
     std::cerr << "Usage:" << std::endl;
     std::cerr << argv[0] << " <OutputFileName>" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
   const char * outputFileName = argv[1];
 
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
 
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
   ImageType::SizeType size;
-  size.Fill( 10 );
+  size.Fill(10);
 
-  using RandomImageSourceType = itk::RandomImageSource< ImageType >;
+  using RandomImageSourceType = itk::RandomImageSource<ImageType>;
 
-  RandomImageSourceType::Pointer randomImageSource =
-    RandomImageSourceType::New();
+  RandomImageSourceType::Pointer randomImageSource = RandomImageSourceType::New();
   randomImageSource->SetNumberOfWorkUnits(1); // to produce reproducible results
-  randomImageSource->SetSize( size );
+  randomImageSource->SetSize(size);
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( randomImageSource->GetOutput() );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(randomImageSource->GetOutput());
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

@@ -19,41 +19,42 @@
 #include "itkImageFileReader.h"
 #include "itkImageToVTKImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 2 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 2)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   const char * inputFileName = argv[1];
 
   constexpr unsigned int Dimension = 2;
 
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFileName );
+  reader->SetFileName(inputFileName);
 
-  using FilterType = itk::ImageToVTKImageFilter< ImageType >;
+  using FilterType = itk::ImageToVTKImageFilter<ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( reader->GetOutput() );
+  filter->SetInput(reader->GetOutput());
 
-   try
-     {
-     filter->Update();
-     }
-   catch( itk::ExceptionObject & error )
-     {
-     std::cerr << "Error: " << error << std::endl;
-     return EXIT_FAILURE;
-     }
+  try
+  {
+    filter->Update();
+  }
+  catch (itk::ExceptionObject & error)
+  {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+  }
 
   vtkImageData * myvtkImageData = filter->GetOutput();
   myvtkImageData->Print(std::cout);

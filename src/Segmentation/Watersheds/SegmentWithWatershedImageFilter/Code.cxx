@@ -32,57 +32,56 @@
 // ./SegmentWithWatershedImageFilter BrainProtonDensitySlice.png OutBrainWatershed.png 0.005 .5
 // (A rule of thumb is to set the Threshold to be about 1 / 100 of the Level.)
 
-int main( int argc, char *argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc < 5 )
-    {
+  if (argc < 5)
+  {
     std::cerr << "Missing parameters." << std::endl;
-    std::cerr << "Usage: " << argv[0]
-      << " inputImageFile outputImageFile threshold level" << std::endl;
+    std::cerr << "Usage: " << argv[0] << " inputImageFile outputImageFile threshold level" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
 
-  using InputImageType = itk::Image< unsigned char, Dimension >;
-  using FloatImageType = itk::Image< float, Dimension >;
-  using RGBPixelType = itk::RGBPixel< unsigned char >;
-  using RGBImageType = itk::Image< RGBPixelType, Dimension >;
-  using LabeledImageType = itk::Image< itk::IdentifierType, Dimension >;
+  using InputImageType = itk::Image<unsigned char, Dimension>;
+  using FloatImageType = itk::Image<float, Dimension>;
+  using RGBPixelType = itk::RGBPixel<unsigned char>;
+  using RGBImageType = itk::Image<RGBPixelType, Dimension>;
+  using LabeledImageType = itk::Image<itk::IdentifierType, Dimension>;
 
-  using FileReaderType = itk::ImageFileReader< InputImageType >;
+  using FileReaderType = itk::ImageFileReader<InputImageType>;
   FileReaderType::Pointer reader = FileReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
 
-  using GradientMagnitudeImageFilterType = itk::GradientMagnitudeImageFilter< InputImageType, FloatImageType >;
-  GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter =
-    GradientMagnitudeImageFilterType::New();
+  using GradientMagnitudeImageFilterType = itk::GradientMagnitudeImageFilter<InputImageType, FloatImageType>;
+  GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
 
-  gradientMagnitudeImageFilter->SetInput( reader->GetOutput() );
+  gradientMagnitudeImageFilter->SetInput(reader->GetOutput());
   gradientMagnitudeImageFilter->Update();
 
-  using WatershedFilterType = itk::WatershedImageFilter< FloatImageType >;
+  using WatershedFilterType = itk::WatershedImageFilter<FloatImageType>;
   WatershedFilterType::Pointer watershed = WatershedFilterType::New();
 
-  float threshold = std::stod( argv[3] );
-  float level = std::stod( argv[4] );
+  float threshold = std::stod(argv[3]);
+  float level = std::stod(argv[4]);
 
-  watershed->SetThreshold( threshold );
-  watershed->SetLevel( level );
+  watershed->SetThreshold(threshold);
+  watershed->SetLevel(level);
 
-  watershed->SetInput( gradientMagnitudeImageFilter->GetOutput() );
+  watershed->SetInput(gradientMagnitudeImageFilter->GetOutput());
   watershed->Update();
 
-  using RGBFilterType = itk::ScalarToRGBColormapImageFilter< LabeledImageType, RGBImageType>;
+  using RGBFilterType = itk::ScalarToRGBColormapImageFilter<LabeledImageType, RGBImageType>;
   RGBFilterType::Pointer colormapImageFilter = RGBFilterType::New();
-  colormapImageFilter->SetColormap( itk::RGBColormapFilterEnumType::Jet );
-  colormapImageFilter->SetInput( watershed->GetOutput() );
+  colormapImageFilter->SetColormap(itk::RGBColormapFilterEnumType::Jet);
+  colormapImageFilter->SetInput(watershed->GetOutput());
   colormapImageFilter->Update();
 
-  using FileWriterType = itk::ImageFileWriter< RGBImageType >;
+  using FileWriterType = itk::ImageFileWriter<RGBImageType>;
   FileWriterType::Pointer writer = FileWriterType::New();
-  writer->SetFileName( argv[2] );
-  writer->SetInput( colormapImageFilter->GetOutput() );
+  writer->SetFileName(argv[2]);
+  writer->SetInput(colormapImageFilter->GetOutput());
   writer->Update();
 
   return EXIT_SUCCESS;

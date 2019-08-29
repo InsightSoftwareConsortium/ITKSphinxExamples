@@ -20,16 +20,17 @@
 #include "itkMetaImageIOFactory.h"
 #include "itkPNGImageIOFactory.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-     {
-     std::cerr << "Usage: "<< std::endl;
-     std::cerr << argv[0];
-     std::cerr << " <MetaImageFileName> <PNGFileName>";
-     std::cerr << std::endl;
-     return EXIT_FAILURE;
-     }
+  if (argc != 3)
+  {
+    std::cerr << "Usage: " << std::endl;
+    std::cerr << argv[0];
+    std::cerr << " <MetaImageFileName> <PNGFileName>";
+    std::cerr << std::endl;
+    return EXIT_FAILURE;
+  }
 
   const char * metaImageFileName = argv[1];
   const char * pngFileName = argv[2];
@@ -37,68 +38,66 @@ int main( int argc, char* argv[] )
   constexpr unsigned int Dimension = 2;
 
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
 
-  using RegisteredObjectsContainerType = std::list< itk::LightObject::Pointer >;
+  using RegisteredObjectsContainerType = std::list<itk::LightObject::Pointer>;
 
 
-  RegisteredObjectsContainerType registeredIOs =
-    itk::ObjectFactoryBase::CreateAllInstance( "itkImageIOBase" );
+  RegisteredObjectsContainerType registeredIOs = itk::ObjectFactoryBase::CreateAllInstance("itkImageIOBase");
   std::cout << "When CMake is not used to register the IO classes, there are\n"
-            << registeredIOs.size()
-            << " IO objects available to the ImageFileReader.\n" << std::endl;
+            << registeredIOs.size() << " IO objects available to the ImageFileReader.\n"
+            << std::endl;
 
 
   std::cout << "When we try to read a MetaImage, we will ";
-  reader->SetFileName( metaImageFileName );
+  reader->SetFileName(metaImageFileName);
   try
-    {
+  {
     reader->Update();
     return EXIT_FAILURE;
-    }
-  catch( itk::ImageFileReaderException & )
-    {
+  }
+  catch (itk::ImageFileReaderException &)
+  {
     std::cout << "fail.\n" << std::endl;
-    }
+  }
 
 
   std::cout << "After registering the MetaImageIO object, ";
   itk::MetaImageIOFactory::RegisterOneFactory();
 
   std::cout << "there are\n";
-  registeredIOs = itk::ObjectFactoryBase::CreateAllInstance( "itkImageIOBase" );
-  std::cout << registeredIOs.size()
-            << " IO objects available to the ImageFileReader.\n" << std::endl;
+  registeredIOs = itk::ObjectFactoryBase::CreateAllInstance("itkImageIOBase");
+  std::cout << registeredIOs.size() << " IO objects available to the ImageFileReader.\n" << std::endl;
 
   std::cout << "Now, when we try to read a MetaImage, we will ";
   try
-    {
+  {
     reader->Update();
     std::cout << "succeed.\n" << std::endl;
-    }
-  catch( itk::ImageFileReaderException & error )
-    {
+  }
+  catch (itk::ImageFileReaderException & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
 
   std::cout << "Every format desired to be supported by the reader\n"
             << "must be registered." << std::endl;
   itk::PNGImageIOFactory::RegisterOneFactory();
-  reader->SetFileName( pngFileName );
+  reader->SetFileName(pngFileName);
   try
-    {
+  {
     reader->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
 
   return EXIT_SUCCESS;

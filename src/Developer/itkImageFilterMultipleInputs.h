@@ -5,14 +5,14 @@
 
 namespace itk
 {
-template< class TImage>
-class ImageFilterMultipleInputs : public ImageToImageFilter< TImage, TImage >
+template <class TImage>
+class ImageFilterMultipleInputs : public ImageToImageFilter<TImage, TImage>
 {
 public:
   /** Standard class type alias. */
   using Self = ImageFilterMultipleInputs;
-  using Superclass = ImageToImageFilter< TImage, TImage >;
-  using Pointer = SmartPointer< Self >;
+  using Superclass = ImageToImageFilter<TImage, TImage>;
+  using Pointer = SmartPointer<Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -21,28 +21,31 @@ public:
   itkTypeMacro(ImageFilterMultipleInputs, ImageToImageFilter);
 
   /** The image to be inpainted in regions where the mask is white.*/
-  void SetInputImage(const TImage* image);
+  void
+  SetInputImage(const TImage * image);
 
   /** The mask to be inpainted. White pixels will be inpainted, black pixels will be passed through to the output.*/
-  void SetInputMask(const TImage* mask);
-  
+  void
+  SetInputMask(const TImage * mask);
+
 protected:
   ImageFilterMultipleInputs();
-  ~ImageFilterMultipleInputs() override= default;
+  ~ImageFilterMultipleInputs() override = default;
 
   /** Does the real work. */
-  void GenerateData() override;
+  void
+  GenerateData() override;
 
 private:
-  ImageFilterMultipleInputs(const Self &) = delete; //purposely not implemented
-  void operator=(const Self &) = delete;  //purposely not implemented
-
+  ImageFilterMultipleInputs(const Self &) = delete; // purposely not implemented
+  void
+  operator=(const Self &) = delete; // purposely not implemented
 };
-} //namespace ITK
+} // namespace itk
 
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkImageFilterMultipleInputs.hxx"
+#  include "itkImageFilterMultipleInputs.hxx"
 #endif
 
 

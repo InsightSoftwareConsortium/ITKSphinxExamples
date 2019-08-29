@@ -19,30 +19,30 @@
 #include "itkHistogram.h"
 #include "itkDenseFrequencyContainer2.h"
 
-int main()
+int
+main()
 {
   using MeasurementType = float;
   using FrequencyContainerType = itk::Statistics::DenseFrequencyContainer2;
 
   constexpr unsigned int numberOfComponents = 2;
-  using HistogramType = itk::Statistics::Histogram< MeasurementType,
-    FrequencyContainerType >;
+  using HistogramType = itk::Statistics::Histogram<MeasurementType, FrequencyContainerType>;
 
   HistogramType::Pointer histogram = HistogramType::New();
-  histogram->SetMeasurementVectorSize( numberOfComponents );
+  histogram->SetMeasurementVectorSize(numberOfComponents);
 
   // We initialize it as a 3x3 histogram with equal size intervals.
 
-  HistogramType::SizeType size( numberOfComponents );
+  HistogramType::SizeType size(numberOfComponents);
   size.Fill(3);
-  HistogramType::MeasurementVectorType lowerBound( numberOfComponents );
-  HistogramType::MeasurementVectorType upperBound( numberOfComponents );
+  HistogramType::MeasurementVectorType lowerBound(numberOfComponents);
+  HistogramType::MeasurementVectorType upperBound(numberOfComponents);
   lowerBound[0] = 1.1;
   lowerBound[1] = 2.6;
   upperBound[0] = 7.1;
   upperBound[1] = 8.6;
 
-  histogram->Initialize( size, lowerBound, upperBound );
+  histogram->Initialize(size, lowerBound, upperBound);
 
   // Now the histogram is ready for storing frequency values. There
   // are three ways of accessing data elements in the histogram:
@@ -68,13 +68,11 @@ int main()
   // GetFrequency(index) method. We can use the
   // GetFrequency(instance identifier) method for the same purpose.
 
-  HistogramType::IndexType index( numberOfComponents );
+  HistogramType::IndexType index(numberOfComponents);
   index[0] = 0;
   index[1] = 2;
-  std::cout << "Frequency of the bin at index " << index
-            << " is " << histogram->GetFrequency(index)
-            << " and the bin's instance identifier is "
-            << histogram->GetInstanceIdentifier(index) << std::endl;
+  std::cout << "Frequency of the bin at index " << index << " is " << histogram->GetFrequency(index)
+            << " and the bin's instance identifier is " << histogram->GetInstanceIdentifier(index) << std::endl;
 
   return EXIT_SUCCESS;
 }
