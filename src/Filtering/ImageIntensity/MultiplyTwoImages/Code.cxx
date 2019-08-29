@@ -20,16 +20,17 @@
 #include "itkImageFileWriter.h"
 #include "itkMultiplyImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 4 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 4)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName 1> <InputFileName 2> <OutputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   const char * inputFileName1 = argv[1];
   const char * inputFileName2 = argv[2];
@@ -38,36 +39,36 @@ int main( int argc, char* argv[] )
   constexpr unsigned int Dimension = 2;
 
   using InputPixelType = unsigned char;
-  using InputImageType = itk::Image< InputPixelType, Dimension >;
+  using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
   ReaderType::Pointer reader1 = ReaderType::New();
-  reader1->SetFileName( inputFileName1 );
+  reader1->SetFileName(inputFileName1);
 
   ReaderType::Pointer reader2 = ReaderType::New();
-  reader2->SetFileName( inputFileName2 );
+  reader2->SetFileName(inputFileName2);
 
   using OutputPixelType = unsigned int;
-  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
+  using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using FilterType = itk::MultiplyImageFilter< InputImageType, InputImageType, OutputImageType >;
+  using FilterType = itk::MultiplyImageFilter<InputImageType, InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput1( reader1->GetOutput() );
-  filter->SetInput2( reader2->GetOutput() );
+  filter->SetInput1(reader1->GetOutput());
+  filter->SetInput2(reader2->GetOutput());
 
-  using WriterType = itk::ImageFileWriter< OutputImageType >;
+  using WriterType = itk::ImageFileWriter<OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( filter->GetOutput() );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(filter->GetOutput());
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

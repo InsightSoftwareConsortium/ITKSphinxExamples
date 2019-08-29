@@ -23,28 +23,28 @@
 using OptimizerType = itk::LevenbergMarquardtOptimizer;
 using CostType = itk::ExampleCostFunction;
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
 
-    // Instantiate the cost function and optimizer
-    CostType::Pointer cost = CostType::New();
-    OptimizerType::Pointer optimizer = OptimizerType::New();
+  // Instantiate the cost function and optimizer
+  CostType::Pointer      cost = CostType::New();
+  OptimizerType::Pointer optimizer = OptimizerType::New();
 
-    optimizer->SetNumberOfIterations( 100 );
-    optimizer->UseCostFunctionGradientOff();
-    optimizer->SetCostFunction( cost.GetPointer());
+  optimizer->SetNumberOfIterations(100);
+  optimizer->UseCostFunctionGradientOff();
+  optimizer->SetCostFunction(cost.GetPointer());
 
-    // This is the initial guess for the parameter values, which we set to one
-    CostType::ParametersType p(cost->GetNumberOfParameters());
-    p.Fill( 1 );
-    optimizer->SetInitialPosition(p);
-    optimizer->StartOptimization();
+  // This is the initial guess for the parameter values, which we set to one
+  CostType::ParametersType p(cost->GetNumberOfParameters());
+  p.Fill(1);
+  optimizer->SetInitialPosition(p);
+  optimizer->StartOptimization();
 
-    // Print out some information about the optimization
-    // The parameters come out to be near to, but not exactly [5.5, 0.5]
-    std::cout << "Position: " << optimizer->GetCurrentPosition() << std::endl;
-    std::cout << "Value: " << optimizer->GetValue() << std::endl;
+  // Print out some information about the optimization
+  // The parameters come out to be near to, but not exactly [5.5, 0.5]
+  std::cout << "Position: " << optimizer->GetCurrentPosition() << std::endl;
+  std::cout << "Value: " << optimizer->GetValue() << std::endl;
 
-    return EXIT_SUCCESS;
-
+  return EXIT_SUCCESS;
 }

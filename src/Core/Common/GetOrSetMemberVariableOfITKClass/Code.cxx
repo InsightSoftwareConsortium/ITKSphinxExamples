@@ -21,15 +21,16 @@
 
 #include "ImageFilterX.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
-    // Setup types
-    using ImageType = itk::Image<unsigned char, 2>;
-    using FilterType = itk::ImageFilter<ImageType>;
+  // Setup types
+  using ImageType = itk::Image<unsigned char, 2>;
+  using FilterType = itk::ImageFilter<ImageType>;
 
-    // Create and the filter
-    FilterType::Pointer filter = FilterType::New();
-    filter->Update();
+  // Create and the filter
+  FilterType::Pointer filter = FilterType::New();
+  filter->Update();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }

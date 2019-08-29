@@ -23,83 +23,82 @@
 #include "itkMeshFileReader.h"
 #include "itkMeshFileWriter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if(  argc != 3 )
-    {
+  if (argc != 3)
+  {
     std::cerr << "Usage: " << argv[0] << std::endl;
     std::cerr << " <input filename> <output filename>" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
   using PixelType = float;
   using CoordType = double;
 
   constexpr unsigned int Dimension = 3;
 
-  using Traits = itk::QuadEdgeMeshExtendedTraits <
-    PixelType,  // type of data for vertices
-    Dimension,  // geometrical dimension of space
-    2,          // Mac topological dimension of a cell
-    CoordType,  // type for point coordinate
-    CoordType,  // type for interpolation weight
-    PixelType,  // type of data for cell
-    bool,       // type of data for primal edges
-    bool        // type of data for dual edges
-  >;
+  using Traits = itk::QuadEdgeMeshExtendedTraits<PixelType, // type of data for vertices
+                                                 Dimension, // geometrical dimension of space
+                                                 2,         // Mac topological dimension of a cell
+                                                 CoordType, // type for point coordinate
+                                                 CoordType, // type for interpolation weight
+                                                 PixelType, // type of data for cell
+                                                 bool,      // type of data for primal edges
+                                                 bool       // type of data for dual edges
+                                                 >;
 
-  using MeshType = itk::QuadEdgeMesh< PixelType, Dimension, Traits >;
+  using MeshType = itk::QuadEdgeMesh<PixelType, Dimension, Traits>;
 
-  using ReaderType = itk::MeshFileReader< MeshType >;
+  using ReaderType = itk::MeshFileReader<MeshType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
 
-  using FastMarchingType = itk::FastMarchingQuadEdgeMeshFilterBase< MeshType, MeshType >;
+  using FastMarchingType = itk::FastMarchingQuadEdgeMeshFilterBase<MeshType, MeshType>;
 
   MeshType::Pointer mesh = reader->GetOutput();
 
-  MeshType::PointsContainerConstPointer points =
-      mesh->GetPoints();
+  MeshType::PointsContainerConstPointer points = mesh->GetPoints();
 
   MeshType::PointsContainerConstIterator pIt = points->Begin();
   MeshType::PointsContainerConstIterator pEnd = points->End();
 
-  while( pIt != pEnd )
-    {
-    mesh->SetPointData( pIt->Index(), 1. );
+  while (pIt != pEnd)
+  {
+    mesh->SetPointData(pIt->Index(), 1.);
     ++pIt;
-    }
+  }
 
   using NodePairType = FastMarchingType::NodePairType;
   using NodePairContainerType = FastMarchingType::NodePairContainerType;
 
   NodePairContainerType::Pointer trial = NodePairContainerType::New();
 
-  NodePairType nodePair( 0, 0. );
-  trial->push_back( nodePair );
+  NodePairType nodePair(0, 0.);
+  trial->push_back(nodePair);
 
-  using CriterionType = itk::FastMarchingThresholdStoppingCriterion< MeshType, MeshType >;
+  using CriterionType = itk::FastMarchingThresholdStoppingCriterion<MeshType, MeshType>;
   CriterionType::Pointer criterion = CriterionType::New();
-  criterion->SetThreshold( 100. );
+  criterion->SetThreshold(100.);
 
   FastMarchingType::Pointer fmmFilter = FastMarchingType::New();
-  fmmFilter->SetInput( mesh );
-  fmmFilter->SetTrialPoints( trial );
-  fmmFilter->SetStoppingCriterion( criterion );
+  fmmFilter->SetInput(mesh);
+  fmmFilter->SetTrialPoints(trial);
+  fmmFilter->SetStoppingCriterion(criterion);
 
-  using WriterType = itk::MeshFileWriter< MeshType >;
+  using WriterType = itk::MeshFileWriter<MeshType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetInput( fmmFilter->GetOutput() );
-  writer->SetFileName( argv[2] );
+  writer->SetInput(fmmFilter->GetOutput());
+  writer->SetFileName(argv[2]);
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

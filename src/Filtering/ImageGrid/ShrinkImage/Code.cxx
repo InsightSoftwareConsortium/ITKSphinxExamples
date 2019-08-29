@@ -22,54 +22,56 @@
 
 using ImageType = itk::Image<unsigned char, 2>;
 
-static void CreateImage(ImageType::Pointer image);
+static void
+CreateImage(ImageType::Pointer image);
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
-    ImageType::Pointer image = ImageType::New();
-    CreateImage(image);
+  ImageType::Pointer image = ImageType::New();
+  CreateImage(image);
 
-    std::cout << "Original size: " << image->GetLargestPossibleRegion().GetSize() << std::endl;
+  std::cout << "Original size: " << image->GetLargestPossibleRegion().GetSize() << std::endl;
 
-    using ShrinkImageFilterType = itk::ShrinkImageFilter <ImageType, ImageType>;
+  using ShrinkImageFilterType = itk::ShrinkImageFilter<ImageType, ImageType>;
 
-    ShrinkImageFilterType::Pointer shrinkFilter
-            = ShrinkImageFilterType::New();
-    shrinkFilter->SetInput(image);
-    shrinkFilter->SetShrinkFactor(0, 2); // shrink the first dimension by a factor of 2 (i.e. 100 gets changed to 50)
-    shrinkFilter->SetShrinkFactor(1, 3); // shrink the second dimension by a factor of 3 (i.e. 100 gets changed to 33)
-    shrinkFilter->Update();
+  ShrinkImageFilterType::Pointer shrinkFilter = ShrinkImageFilterType::New();
+  shrinkFilter->SetInput(image);
+  shrinkFilter->SetShrinkFactor(0, 2); // shrink the first dimension by a factor of 2 (i.e. 100 gets changed to 50)
+  shrinkFilter->SetShrinkFactor(1, 3); // shrink the second dimension by a factor of 3 (i.e. 100 gets changed to 33)
+  shrinkFilter->Update();
 
-    std::cout << "New size: " << shrinkFilter->GetOutput()->GetLargestPossibleRegion().GetSize() << std::endl;
+  std::cout << "New size: " << shrinkFilter->GetOutput()->GetLargestPossibleRegion().GetSize() << std::endl;
 
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage(ImageType::Pointer image)
+void
+CreateImage(ImageType::Pointer image)
 {
-    // Create an image with 2 connected components
-    ImageType::IndexType start;
-    start.Fill(0);
+  // Create an image with 2 connected components
+  ImageType::IndexType start;
+  start.Fill(0);
 
-    ImageType::SizeType size;
-    size.Fill(100);
+  ImageType::SizeType size;
+  size.Fill(100);
 
-    ImageType::RegionType region(start, size);
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(0);
+  ImageType::RegionType region(start, size);
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(0);
 
-    // Make a white square
-    for(unsigned int r = 20; r < 80; r++)
+  // Make a white square
+  for (unsigned int r = 20; r < 80; r++)
+  {
+    for (unsigned int c = 20; c < 30; c++)
     {
-        for(unsigned int c = 20; c < 30; c++)
-        {
-            ImageType::IndexType pixelIndex;
-            pixelIndex[0] = r;
-            pixelIndex[1] = c;
+      ImageType::IndexType pixelIndex;
+      pixelIndex[0] = r;
+      pixelIndex[1] = c;
 
-            image->SetPixel(pixelIndex, 255);
-        }
+      image->SetPixel(pixelIndex, 255);
     }
+  }
 }

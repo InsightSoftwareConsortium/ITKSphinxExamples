@@ -5,14 +5,14 @@
 
 namespace itk
 {
-template< typename TImage, typename TMask>
-class ImageFilterMultipleInputsDifferentType : public ImageToImageFilter< TImage, TImage >
+template <typename TImage, typename TMask>
+class ImageFilterMultipleInputsDifferentType : public ImageToImageFilter<TImage, TImage>
 {
 public:
   /** Standard class type alias. */
   using Self = ImageFilterMultipleInputsDifferentType;
-  using Superclass = ImageToImageFilter< TImage, TImage >;
-  using Pointer = SmartPointer< Self >;
+  using Superclass = ImageToImageFilter<TImage, TImage>;
+  using Pointer = SmartPointer<Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -21,31 +21,36 @@ public:
   itkTypeMacro(ImageFilterMultipleInputsDifferentType, ImageToImageFilter);
 
   /** The image to be inpainted in regions where the mask is white.*/
-  void SetInputImage(const TImage* image);
+  void
+  SetInputImage(const TImage * image);
 
   /** The mask to be inpainted. White pixels will be inpainted, black pixels will be passed through to the output.*/
-  void SetInputMask(const TMask* mask);
+  void
+  SetInputMask(const TMask * mask);
 
 protected:
   ImageFilterMultipleInputsDifferentType();
-  ~ImageFilterMultipleInputsDifferentType() override= default;
+  ~ImageFilterMultipleInputsDifferentType() override = default;
 
-  typename TImage::ConstPointer GetInputImage();
-  typename TMask::ConstPointer GetInputMask();
-  
+  typename TImage::ConstPointer
+  GetInputImage();
+  typename TMask::ConstPointer
+  GetInputMask();
+
   /** Does the real work. */
-  void GenerateData() override;
+  void
+  GenerateData() override;
 
 private:
-  ImageFilterMultipleInputsDifferentType(const Self &) = delete; //purposely not implemented
-  void operator=(const Self &) = delete;  //purposely not implemented
-
+  ImageFilterMultipleInputsDifferentType(const Self &) = delete; // purposely not implemented
+  void
+  operator=(const Self &) = delete; // purposely not implemented
 };
-} //namespace ITK
+} // namespace itk
 
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "ImageFilterMultipleInputsDifferentType.hxx"
+#  include "ImageFilterMultipleInputsDifferentType.hxx"
 #endif
 
 

@@ -21,62 +21,54 @@
 #include "itkStatisticsImageFilter.h"
 
 #ifdef ENABLE_QUICKVIEW
-#include "QuickView.h"
+#  include "QuickView.h"
 #endif
 
 #include <iomanip>
 
-int main(int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
-    if(argc < 2)
-    {
-        std::cerr << "Usage: " << argv[0] << " filename" << std::endl;
-        return EXIT_FAILURE;
-    }
+  if (argc < 2)
+  {
+    std::cerr << "Usage: " << argv[0] << " filename" << std::endl;
+    return EXIT_FAILURE;
+  }
 
-    using FloatImageType = itk::Image<double, 2>;
+  using FloatImageType = itk::Image<double, 2>;
 
-    using ReaderType = itk::ImageFileReader<FloatImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[1]);
+  using ReaderType = itk::ImageFileReader<FloatImageType>;
+  ReaderType::Pointer reader = ReaderType::New();
+  reader->SetFileName(argv[1]);
 
-    using NormalizeFilterType = itk::NormalizeImageFilter< FloatImageType, FloatImageType >;
-    NormalizeFilterType::Pointer normalizeFilter = NormalizeFilterType::New();
-    normalizeFilter->SetInput(reader->GetOutput());
+  using NormalizeFilterType = itk::NormalizeImageFilter<FloatImageType, FloatImageType>;
+  NormalizeFilterType::Pointer normalizeFilter = NormalizeFilterType::New();
+  normalizeFilter->SetInput(reader->GetOutput());
 
-    using StatisticsFilterType = itk::StatisticsImageFilter< FloatImageType >;
-    StatisticsFilterType::Pointer statistics1 = StatisticsFilterType::New();
-    statistics1->SetInput(reader->GetOutput());
+  using StatisticsFilterType = itk::StatisticsImageFilter<FloatImageType>;
+  StatisticsFilterType::Pointer statistics1 = StatisticsFilterType::New();
+  statistics1->SetInput(reader->GetOutput());
 
-    StatisticsFilterType::Pointer statistics2 = StatisticsFilterType::New();
-    statistics2->SetInput(normalizeFilter->GetOutput());
+  StatisticsFilterType::Pointer statistics2 = StatisticsFilterType::New();
+  statistics2->SetInput(normalizeFilter->GetOutput());
 
 #ifdef ENABLE_QUICKVIEW
-    QuickView viewer;
+  QuickView viewer;
 
-    std::stringstream desc1;
-    statistics1->Update();
-    desc1 << itksys::SystemTools::GetFilenameName(argv[1])
-          << "\nMean: " << statistics1->GetMean()
-          << " Variance: " << statistics1->GetVariance();
-    viewer.AddImage(
-            reader->GetOutput(),
-            true,
-            desc1.str());
+  std::stringstream desc1;
+  statistics1->Update();
+  desc1 << itksys::SystemTools::GetFilenameName(argv[1]) << "\nMean: " << statistics1->GetMean()
+        << " Variance: " << statistics1->GetVariance();
+  viewer.AddImage(reader->GetOutput(), true, desc1.str());
 
-    std::stringstream desc2;
-    statistics2->Update();
-    desc2 << "Normalize"
-          << "\nMean: "
-          << std::fixed << std::setprecision (2) << statistics2->GetMean()
-          << " Variance: " << statistics2->GetVariance();
-    viewer.AddImage(
-            normalizeFilter->GetOutput(),
-            true,
-            desc2.str());
+  std::stringstream desc2;
+  statistics2->Update();
+  desc2 << "Normalize"
+        << "\nMean: " << std::fixed << std::setprecision(2) << statistics2->GetMean()
+        << " Variance: " << statistics2->GetVariance();
+  viewer.AddImage(normalizeFilter->GetOutput(), true, desc2.str());
 
-    viewer.Visualize();
+  viewer.Visualize();
 #endif
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
-

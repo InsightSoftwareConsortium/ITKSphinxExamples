@@ -40,130 +40,132 @@ using RGBPixelType = itk::RGBPixel<unsigned char>;
 using RGBImageType = itk::Image<RGBPixelType, 2>;
 using LabeledImageType = itk::Image<unsigned long, 2>;
 
-static void CreateImage(UnsignedCharImageType::Pointer image);
-static void PerformSegmentation(FloatImageType::Pointer image, const float threshold, const float level);
+static void
+CreateImage(UnsignedCharImageType::Pointer image);
+static void
+PerformSegmentation(FloatImageType::Pointer image, const float threshold, const float level);
 
-int main( int argc, char *argv[] )
+int
+main(int argc, char * argv[])
 {
-    // Verify arguments
-    if (argc < 3 )
-    {
-        std::cerr << "Parameters " << std::endl;
-        std::cerr << " threshold level" << std::endl;
-        return 1;
-    }
+  // Verify arguments
+  if (argc < 3)
+  {
+    std::cerr << "Parameters " << std::endl;
+    std::cerr << " threshold level" << std::endl;
+    return 1;
+  }
 
-    // Parse arguments
-    std::string strThreshold = argv[1];
-    float threshold = 0.0;
-    std::stringstream ssThreshold;
-    ssThreshold << strThreshold;
-    ssThreshold >> threshold;
+  // Parse arguments
+  std::string       strThreshold = argv[1];
+  float             threshold = 0.0;
+  std::stringstream ssThreshold;
+  ssThreshold << strThreshold;
+  ssThreshold >> threshold;
 
-    std::string strLevel = argv[2];
-    float level = 0.0;
-    std::stringstream ssLevel;
-    ssLevel << strLevel;
-    ssLevel >> level;
+  std::string       strLevel = argv[2];
+  float             level = 0.0;
+  std::stringstream ssLevel;
+  ssLevel << strLevel;
+  ssLevel >> level;
 
-    // Output arguments
-    std::cout << "Running with:" << std::endl
-              << "Threshold: " << threshold << std::endl
-              << "Level: " << level << std::endl;
+  // Output arguments
+  std::cout << "Running with:" << std::endl
+            << "Threshold: " << threshold << std::endl
+            << "Level: " << level << std::endl;
 
-    UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
-    CreateImage(image);
+  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  CreateImage(image);
 
-    using GradientMagnitudeImageFilterType = itk::GradientMagnitudeImageFilter<
-            UnsignedCharImageType, FloatImageType >;
-    GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
-    gradientMagnitudeImageFilter->SetInput(image);
-    gradientMagnitudeImageFilter->Update();
+  using GradientMagnitudeImageFilterType = itk::GradientMagnitudeImageFilter<UnsignedCharImageType, FloatImageType>;
+  GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
+  gradientMagnitudeImageFilter->SetInput(image);
+  gradientMagnitudeImageFilter->Update();
 
-    // Custom parameters
-    PerformSegmentation(gradientMagnitudeImageFilter->GetOutput(), threshold, level);
+  // Custom parameters
+  PerformSegmentation(gradientMagnitudeImageFilter->GetOutput(), threshold, level);
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
 
-void CreateImage(UnsignedCharImageType::Pointer image)
+void
+CreateImage(UnsignedCharImageType::Pointer image)
 {
-    // Create a white image with 3 dark regions of different values
+  // Create a white image with 3 dark regions of different values
 
-    itk::Index<2> start;
-    start.Fill(0);
+  itk::Index<2> start;
+  start.Fill(0);
 
-    itk::Size<2> size;
-    size.Fill(200);
+  itk::Size<2> size;
+  size.Fill(200);
 
-    itk::ImageRegion<2> region(start,size);
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(255);
+  itk::ImageRegion<2> region(start, size);
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(255);
 
-    itk::ImageRegionIterator<UnsignedCharImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<UnsignedCharImageType> imageIterator(image, region);
 
-    while(!imageIterator.IsAtEnd())
-    {
-        if(imageIterator.GetIndex()[0] > 20 && imageIterator.GetIndex()[0] < 50 &&
-           imageIterator.GetIndex()[1] > 20 && imageIterator.GetIndex()[1] < 50)
-            imageIterator.Set(50);
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] > 20 && imageIterator.GetIndex()[0] < 50 && imageIterator.GetIndex()[1] > 20 &&
+        imageIterator.GetIndex()[1] < 50)
+      imageIterator.Set(50);
 
-        ++imageIterator;
-    }
+    ++imageIterator;
+  }
 
-    imageIterator.GoToBegin();
+  imageIterator.GoToBegin();
 
-    while(!imageIterator.IsAtEnd())
-    {
-        if(imageIterator.GetIndex()[0] > 60 && imageIterator.GetIndex()[0] < 80 &&
-           imageIterator.GetIndex()[1] > 60 && imageIterator.GetIndex()[1] < 80)
-            imageIterator.Set(100);
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] > 60 && imageIterator.GetIndex()[0] < 80 && imageIterator.GetIndex()[1] > 60 &&
+        imageIterator.GetIndex()[1] < 80)
+      imageIterator.Set(100);
 
-        ++imageIterator;
-    }
+    ++imageIterator;
+  }
 
-    imageIterator.GoToBegin();
+  imageIterator.GoToBegin();
 
-    while(!imageIterator.IsAtEnd())
-    {
-        if(imageIterator.GetIndex()[0] > 100 && imageIterator.GetIndex()[0] < 130 &&
-           imageIterator.GetIndex()[1] > 100 && imageIterator.GetIndex()[1] < 130)
-            imageIterator.Set(150);
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] > 100 && imageIterator.GetIndex()[0] < 130 && imageIterator.GetIndex()[1] > 100 &&
+        imageIterator.GetIndex()[1] < 130)
+      imageIterator.Set(150);
 
-        ++imageIterator;
-    }
+    ++imageIterator;
+  }
 
-    using FileWriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-    FileWriterType::Pointer writer = FileWriterType::New();
-    writer->SetFileName("input.png");
-    writer->SetInput(image);
-    writer->Update();
+  using FileWriterType = itk::ImageFileWriter<UnsignedCharImageType>;
+  FileWriterType::Pointer writer = FileWriterType::New();
+  writer->SetFileName("input.png");
+  writer->SetInput(image);
+  writer->Update();
 }
 
-void PerformSegmentation(FloatImageType::Pointer image, const float threshold, const float level)
+void
+PerformSegmentation(FloatImageType::Pointer image, const float threshold, const float level)
 {
-    using MorphologicalWatershedFilterType = itk::MorphologicalWatershedImageFilter<FloatImageType, LabeledImageType>;
-    MorphologicalWatershedFilterType::Pointer watershedFilter = MorphologicalWatershedFilterType::New();
-    watershedFilter->SetLevel(level);
-    watershedFilter->SetInput(image);
-    watershedFilter->Update();
+  using MorphologicalWatershedFilterType = itk::MorphologicalWatershedImageFilter<FloatImageType, LabeledImageType>;
+  MorphologicalWatershedFilterType::Pointer watershedFilter = MorphologicalWatershedFilterType::New();
+  watershedFilter->SetLevel(level);
+  watershedFilter->SetInput(image);
+  watershedFilter->Update();
 
-    using RGBFilterType = itk::ScalarToRGBColormapImageFilter<LabeledImageType, RGBImageType>;
-    RGBFilterType::Pointer colormapImageFilter = RGBFilterType::New();
-    colormapImageFilter->SetInput(watershedFilter->GetOutput());
-    colormapImageFilter->SetColormap( itk::RGBColormapFilterEnumType::Jet );
-    colormapImageFilter->Update();
+  using RGBFilterType = itk::ScalarToRGBColormapImageFilter<LabeledImageType, RGBImageType>;
+  RGBFilterType::Pointer colormapImageFilter = RGBFilterType::New();
+  colormapImageFilter->SetInput(watershedFilter->GetOutput());
+  colormapImageFilter->SetColormap(itk::RGBColormapFilterEnumType::Jet);
+  colormapImageFilter->Update();
 
-    std::stringstream ss;
-    ss << "output_" << threshold << "_" << level << ".png";
+  std::stringstream ss;
+  ss << "output_" << threshold << "_" << level << ".png";
 
-    using FileWriterType = itk::ImageFileWriter<RGBImageType>;
-    FileWriterType::Pointer writer = FileWriterType::New();
-    writer->SetFileName(ss.str());
-    writer->SetInput(colormapImageFilter->GetOutput());
-    writer->Update();
-
+  using FileWriterType = itk::ImageFileWriter<RGBImageType>;
+  FileWriterType::Pointer writer = FileWriterType::New();
+  writer->SetFileName(ss.str());
+  writer->SetInput(colormapImageFilter->GetOutput());
+  writer->Update();
 }
-

@@ -10,12 +10,12 @@
 namespace itk
 {
 
-template< class TImage>
-void MyInPlaceImageFilter< TImage>
-::GenerateData()
+template <class TImage>
+void
+MyInPlaceImageFilter<TImage>::GenerateData()
 {
   typename TImage::ConstPointer input = this->GetInput();
-  typename TImage::Pointer output = this->GetOutput();
+  typename TImage::Pointer      output = this->GetOutput();
 
   // This call must come before the GetRunningInPlace() call or the
   // GetRunningInPlace() will return an incorrect result.
@@ -27,12 +27,12 @@ void MyInPlaceImageFilter< TImage>
     return;
   }
 
-  itk::Index<2> cornerPixel = input->GetLargestPossibleRegion().GetIndex();
+  itk::Index<2>              cornerPixel = input->GetLargestPossibleRegion().GetIndex();
   typename TImage::PixelType newValue = 3;
-  output->SetPixel( cornerPixel, newValue);
+  output->SetPixel(cornerPixel, newValue);
 }
 
-}// end namespace
+} // namespace itk
 
 
 #endif

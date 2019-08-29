@@ -22,15 +22,18 @@
 #include "itkImageFileWriter.h"
 
 using ImageType = itk::Image<unsigned char, 2>;
-static void CreateImage1(ImageType::Pointer image);
-static void CreateImage2(ImageType::Pointer image);
+static void
+CreateImage1(ImageType::Pointer image);
+static void
+CreateImage2(ImageType::Pointer image);
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   ImageType::Pointer image1 = ImageType::New();
   CreateImage1(image1);
 
-  using WriterType = itk::ImageFileWriter< ImageType  >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName("input1.png");
   writer->SetInput(image1);
@@ -43,7 +46,7 @@ int main(int, char *[])
   writer->SetInput(image2);
   writer->Update();
 
-  using OrImageFilterType = itk::OrImageFilter <ImageType>;
+  using OrImageFilterType = itk::OrImageFilter<ImageType>;
   OrImageFilterType::Pointer orFilter = OrImageFilterType::New();
   orFilter->SetInput(0, image1);
   orFilter->SetInput(1, image2);
@@ -56,7 +59,8 @@ int main(int, char *[])
   return EXIT_SUCCESS;
 }
 
-void CreateImage1(ImageType::Pointer image)
+void
+CreateImage1(ImageType::Pointer image)
 {
   ImageType::IndexType start;
   start.Fill(0);
@@ -71,25 +75,25 @@ void CreateImage1(ImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
 
-  while(!imageIterator.IsAtEnd())
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] < 70)
     {
-    if(imageIterator.GetIndex()[0] < 70)
-      {
       imageIterator.Set(255);
-      }
+    }
     else
-      {
+    {
       imageIterator.Set(0);
-      }
-
-    ++imageIterator;
     }
 
+    ++imageIterator;
+  }
 }
 
-void CreateImage2(ImageType::Pointer image)
+void
+CreateImage2(ImageType::Pointer image)
 {
   ImageType::IndexType start;
   start.Fill(0);
@@ -104,21 +108,19 @@ void CreateImage2(ImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
 
-  while(!imageIterator.IsAtEnd())
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] > 30)
     {
-    if(imageIterator.GetIndex()[0] > 30)
-      {
       imageIterator.Set(255);
-      }
+    }
     else
-      {
+    {
       imageIterator.Set(0);
-      }
-
-    ++imageIterator;
     }
 
+    ++imageIterator;
+  }
 }
-

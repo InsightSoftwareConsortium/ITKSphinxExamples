@@ -22,78 +22,76 @@
 #include <sstream>
 
 #ifdef ENABLE_QUICKVIEW
-#include "QuickView.h"
+#  include "QuickView.h"
 #endif
 
 using ImageType = itk::Image<float, 2>;
 
-static void CreateImage(ImageType::Pointer image);
+static void
+CreateImage(ImageType::Pointer image);
 
-int main(int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
-    ImageType::Pointer image = ImageType::New();
-    if (argc < 2)
-    {
-        CreateImage(image);
-    }
-    else
-    {
-        using ReaderType = itk::ImageFileReader<ImageType>;
-        ReaderType::Pointer reader = ReaderType::New();
-        reader->SetFileName(argv[1]);
-        reader->Update();
-        image = reader->GetOutput();
-    }
+  ImageType::Pointer image = ImageType::New();
+  if (argc < 2)
+  {
+    CreateImage(image);
+  }
+  else
+  {
+    using ReaderType = itk::ImageFileReader<ImageType>;
+    ReaderType::Pointer reader = ReaderType::New();
+    reader->SetFileName(argv[1]);
+    reader->Update();
+    image = reader->GetOutput();
+  }
 
-    using FilterType = itk::ZeroCrossingImageFilter< ImageType, ImageType >;
-    FilterType::Pointer filter = FilterType::New();
-    filter->SetInput(image);
-    filter->SetBackgroundValue(0);
-    filter->SetForegroundValue(255);
+  using FilterType = itk::ZeroCrossingImageFilter<ImageType, ImageType>;
+  FilterType::Pointer filter = FilterType::New();
+  filter->SetInput(image);
+  filter->SetBackgroundValue(0);
+  filter->SetForegroundValue(255);
 
 #ifdef ENABLE_QUICKVIEW
-    QuickView viewer;
-    viewer.AddImage(
-            image.GetPointer(),true,
-            argc > 1 ? itksys::SystemTools::GetFilenameName(argv[1]) : "Generated image");
+  QuickView viewer;
+  viewer.AddImage(
+    image.GetPointer(), true, argc > 1 ? itksys::SystemTools::GetFilenameName(argv[1]) : "Generated image");
 
-    std::stringstream desc;
-    desc << "Zero Crossing";
-    viewer.AddImage(
-            filter->GetOutput(),
-            true,
-            desc.str());
+  std::stringstream desc;
+  desc << "Zero Crossing";
+  viewer.AddImage(filter->GetOutput(), true, desc.str());
 
-    viewer.Visualize();
+  viewer.Visualize();
 #endif
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage(ImageType::Pointer image)
+void
+CreateImage(ImageType::Pointer image)
 {
-    itk::Index<2> start;
-    start.Fill(0);
+  itk::Index<2> start;
+  start.Fill(0);
 
-    itk::Size<2> size;
-    size.Fill(100);
+  itk::Size<2> size;
+  size.Fill(100);
 
-    itk::ImageRegion<2> region(start,size);
+  itk::ImageRegion<2> region(start, size);
 
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(-1);
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(-1);
 
-    // Make half of the image negative
-    for(unsigned int i = 0; i < 100; ++i)
+  // Make half of the image negative
+  for (unsigned int i = 0; i < 100; ++i)
+  {
+    for (unsigned int j = 0; j < 50; ++j)
     {
-        for(unsigned int j = 0; j < 50; ++j)
-        {
-            itk::Index<2> index;
-            index[0] = i;
-            index[1] = j;
-            image->SetPixel(index, 1);
-        }
+      itk::Index<2> index;
+      index[0] = i;
+      index[1] = j;
+      image->SetPixel(index, 1);
     }
+  }
 }
-

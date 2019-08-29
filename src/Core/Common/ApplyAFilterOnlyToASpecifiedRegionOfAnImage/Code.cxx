@@ -20,12 +20,13 @@
 #include "itkRandomImageSource.h"
 #include "itkDerivativeImageFilter.h"
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = float;
 
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
   ImageType::SizeType smallSize;
   smallSize.Fill(10);
@@ -46,11 +47,10 @@ int main(int, char *[])
 
   std::cout << "Created random image." << std::endl;
 
-  using DerivativeImageFilterType = itk::DerivativeImageFilter<ImageType, ImageType >;
+  using DerivativeImageFilterType = itk::DerivativeImageFilter<ImageType, ImageType>;
 
-  DerivativeImageFilterType::Pointer derivativeFilter =
-    DerivativeImageFilterType::New();
-  derivativeFilter->SetInput( randomImageSource->GetOutput() );
+  DerivativeImageFilterType::Pointer derivativeFilter = DerivativeImageFilterType::New();
+  derivativeFilter->SetInput(randomImageSource->GetOutput());
   derivativeFilter->SetDirection(0); // "x" axis
   derivativeFilter->GetOutput()->SetRequestedRegion(smallSize);
   derivativeFilter->Update();

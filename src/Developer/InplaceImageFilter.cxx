@@ -5,9 +5,11 @@
 #include "MyInPlaceImageFilter.h"
 
 template <typename TImage>
-static void CreateImage(TImage* const image);
+static void
+CreateImage(TImage * const image);
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   // Setup types
   using ImageType = itk::Image<int, 2>;
@@ -30,22 +32,23 @@ int main(int, char*[])
 
   // The follow calls fail. This is because the output has stolen the input's
   // buffer and the input has no image buffer.
-//   std::cout << "Image output:" << std::endl;
-//   std::cout << image->GetPixel(cornerPixel) << std::endl;
+  //   std::cout << "Image output:" << std::endl;
+  //   std::cout << image->GetPixel(cornerPixel) << std::endl;
 
   return EXIT_SUCCESS;
 }
 
 
 template <typename TImage>
-void CreateImage(TImage* const image)
+void
+CreateImage(TImage * const image)
 {
   // Create an image with 2 connected components
-  typename TImage::IndexType corner = {{0,0}};
+  typename TImage::IndexType corner = { { 0, 0 } };
 
-  unsigned int NumRows = 200;
-  unsigned int NumCols = 300;
-  typename TImage::SizeType size = {{NumRows, NumCols}};
+  unsigned int              NumRows = 200;
+  unsigned int              NumCols = 300;
+  typename TImage::SizeType size = { { NumRows, NumCols } };
 
   typename TImage::RegionType region(corner, size);
 

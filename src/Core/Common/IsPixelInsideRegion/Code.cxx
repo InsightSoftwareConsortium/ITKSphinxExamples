@@ -20,11 +20,12 @@
 #include "itkIndex.h"
 #include "itkSize.h"
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
 
-  using RegionType = itk::ImageRegion< Dimension >;
+  using RegionType = itk::ImageRegion<Dimension>;
   using SizeType = RegionType::SizeType;
   using IndexType = RegionType::IndexType;
 
@@ -34,7 +35,7 @@ int main(int, char *[])
   IndexType start;
   start.Fill(0);
 
-  RegionType region(start,size);
+  RegionType region(start, size);
 
   IndexType testPixel1;
   testPixel1[0] = 1;
@@ -46,27 +47,27 @@ int main(int, char *[])
 
   std::cout << testPixel1 << " ";
 
-  if( region.IsInside(testPixel1) )
-    {
+  if (region.IsInside(testPixel1))
+  {
     std::cout << "Inside";
-    }
+  }
   else
-    {
+  {
     std::cout << "Outside";
     return EXIT_FAILURE;
-    }
+  }
   std::cout << std::endl;
 
   std::cout << testPixel2 << " ";
-  if( region.IsInside(testPixel2) )
-    {
+  if (region.IsInside(testPixel2))
+  {
     std::cout << "Inside";
     return EXIT_FAILURE;
-    }
+  }
   else
-    {
+  {
     std::cout << "Outside";
-    }
+  }
   std::cout << std::endl;
 
   return EXIT_SUCCESS;

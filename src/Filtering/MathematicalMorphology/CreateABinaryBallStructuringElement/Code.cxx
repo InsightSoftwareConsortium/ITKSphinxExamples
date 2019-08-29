@@ -18,12 +18,13 @@
 
 #include "itkBinaryBallStructuringElement.h"
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 3;
   using PixelType = float;
 
-  using StructuringElementType = itk::BinaryBallStructuringElement< PixelType, Dimension >;
+  using StructuringElementType = itk::BinaryBallStructuringElement<PixelType, Dimension>;
   StructuringElementType structuringElement;
   structuringElement.SetRadius(5);
   structuringElement.CreateStructuringElement();

@@ -20,43 +20,44 @@
 #include "itkImageFileWriter.h"
 #include "itkImage.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
   // Verify the number of parameters in the command line
-  if( argc < 3 )
-    {
+  if (argc < 3)
+  {
     std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0] << " inputImageFile  outputImageFile " << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int VectorDimension = 4;
 
-  using PixelType = itk::Vector< float, VectorDimension >;
+  using PixelType = itk::Vector<float, VectorDimension>;
 
   constexpr unsigned int ImageDimension = 3;
 
-  using ImageType = itk::Image< PixelType, ImageDimension >;
+  using ImageType = itk::Image<PixelType, ImageDimension>;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( argv[2] );
-  writer->SetInput( reader->GetOutput() );
+  writer->SetFileName(argv[2]);
+  writer->SetInput(reader->GetOutput());
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & err )
-    {
+  }
+  catch (itk::ExceptionObject & err)
+  {
     std::cerr << "ExceptionObject caught !" << std::endl;
     std::cerr << err << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

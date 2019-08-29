@@ -21,47 +21,51 @@
 
 using ImageType = itk::Image<float, 2>;
 
-static void CreateImage(ImageType::Pointer image);
+static void
+CreateImage(ImageType::Pointer image);
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
-    // Create an image
-    ImageType::Pointer image = ImageType::New();
-    CreateImage(image);
+  // Create an image
+  ImageType::Pointer image = ImageType::New();
+  CreateImage(image);
 
-    using NormalizeToConstantImageFilterType = itk::NormalizeToConstantImageFilter <ImageType, ImageType>;
-    NormalizeToConstantImageFilterType::Pointer normalizeToConstantImageFilter = NormalizeToConstantImageFilterType::New();
-    normalizeToConstantImageFilter->SetInput(image);
-    normalizeToConstantImageFilter->SetConstant(1);
-    normalizeToConstantImageFilter->Update();
+  using NormalizeToConstantImageFilterType = itk::NormalizeToConstantImageFilter<ImageType, ImageType>;
+  NormalizeToConstantImageFilterType::Pointer normalizeToConstantImageFilter =
+    NormalizeToConstantImageFilterType::New();
+  normalizeToConstantImageFilter->SetInput(image);
+  normalizeToConstantImageFilter->SetConstant(1);
+  normalizeToConstantImageFilter->Update();
 
-    itk::ImageRegionConstIterator<ImageType> imageIterator(normalizeToConstantImageFilter->GetOutput(),
-                                                           normalizeToConstantImageFilter->GetOutput()->GetLargestPossibleRegion());
+  itk::ImageRegionConstIterator<ImageType> imageIterator(
+    normalizeToConstantImageFilter->GetOutput(),
+    normalizeToConstantImageFilter->GetOutput()->GetLargestPossibleRegion());
 
-    // The output pixels should all be 1/9 (=0.11111)
-    while(!imageIterator.IsAtEnd())
-    {
-        std::cout << imageIterator.Get() << std::endl;
-        ++imageIterator;
-    }
+  // The output pixels should all be 1/9 (=0.11111)
+  while (!imageIterator.IsAtEnd())
+  {
+    std::cout << imageIterator.Get() << std::endl;
+    ++imageIterator;
+  }
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-static void CreateImage(ImageType::Pointer image)
+static void
+CreateImage(ImageType::Pointer image)
 {
-    // Create an image full of 1's
+  // Create an image full of 1's
 
-    ImageType::IndexType start;
-    start.Fill(0);
+  ImageType::IndexType start;
+  start.Fill(0);
 
-    ImageType::SizeType size;
-    size.Fill(3);
+  ImageType::SizeType size;
+  size.Fill(3);
 
-    ImageType::RegionType region(start,size);
+  ImageType::RegionType region(start, size);
 
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(1);
-
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(1);
 }

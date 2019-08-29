@@ -20,49 +20,51 @@
 #include "itkGaussianImageSource.h"
 #include "itkCommand.h"
 
-class MyCommand: public itk::Command
+class MyCommand : public itk::Command
 {
-  public:
-    itkNewMacro( MyCommand );
+public:
+  itkNewMacro(MyCommand);
 
-    void Execute(itk::Object * caller, const itk::EventObject & event) override
-      {
-      Execute( (const itk::Object *)caller, event);
-      }
+  void
+  Execute(itk::Object * caller, const itk::EventObject & event) override
+  {
+    Execute((const itk::Object *)caller, event);
+  }
 
-    void Execute(const itk::Object * caller, const itk::EventObject & event) override
-      {
-      if( ! itk::ProgressEvent().CheckEvent( &event ) )
-        {
-        return;
-        }
-      const auto * processObject =
-        dynamic_cast< const itk::ProcessObject * >( caller );
-      if( ! processObject )
-        {
-        return;
-        }
-      std::cout << "Progress: " << processObject->GetProgress() << std::endl;
-      }
+  void
+  Execute(const itk::Object * caller, const itk::EventObject & event) override
+  {
+    if (!itk::ProgressEvent().CheckEvent(&event))
+    {
+      return;
+    }
+    const auto * processObject = dynamic_cast<const itk::ProcessObject *>(caller);
+    if (!processObject)
+    {
+      return;
+    }
+    std::cout << "Progress: " << processObject->GetProgress() << std::endl;
+  }
 };
 
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using SourceType = itk::GaussianImageSource< ImageType >;
+  using SourceType = itk::GaussianImageSource<ImageType>;
   SourceType::Pointer source = SourceType::New();
 
   ImageType::SizeType size;
-  size.Fill( 128 );
-  source->SetSize( size );
+  size.Fill(128);
+  source->SetSize(size);
 
   SourceType::ArrayType sigma;
-  sigma.Fill( 45.0 );
-  source->SetSigma( sigma );
+  sigma.Fill(45.0);
+  source->SetSigma(sigma);
 
   MyCommand::Pointer myCommand = MyCommand::New();
   source->AddObserver(itk::ProgressEvent(), myCommand);

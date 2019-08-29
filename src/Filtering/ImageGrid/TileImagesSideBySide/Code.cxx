@@ -20,66 +20,69 @@
 #include "itkImageFileWriter.h"
 #include "itkTileImageFilter.h"
 
-int main(int argc, char *argv[] )
+int
+main(int argc, char * argv[])
 {
-    // Verify arguments
-    if (argc < 4)
-    {
-        std::cerr << "Usage: " << std::endl;
-        std::cerr << argv[0] << "input1 input2 output" << std::endl;
-        return EXIT_FAILURE;
-    }
+  // Verify arguments
+  if (argc < 4)
+  {
+    std::cerr << "Usage: " << std::endl;
+    std::cerr << argv[0] << "input1 input2 output" << std::endl;
+    return EXIT_FAILURE;
+  }
 
-    // Parse arguments
-    std::string input1FileName = argv[1];
-    std::string input2FileName = argv[2];
-    std::string outputFileName = argv[3];
+  // Parse arguments
+  std::string input1FileName = argv[1];
+  std::string input2FileName = argv[2];
+  std::string outputFileName = argv[3];
 
-    // Output arguments
-    std::cout << "input1FileName " << input1FileName << std::endl;
-    std::cout << "input2FileName " << input2FileName << std::endl;;
-    std::cout << "outputFileName " << outputFileName << std::endl;;
+  // Output arguments
+  std::cout << "input1FileName " << input1FileName << std::endl;
+  std::cout << "input2FileName " << input2FileName << std::endl;
+  ;
+  std::cout << "outputFileName " << outputFileName << std::endl;
+  ;
 
-    using ImageType = itk::Image< unsigned char, 2>;
+  using ImageType = itk::Image<unsigned char, 2>;
 
-    // Read images
-    using ImageReaderType = itk::ImageFileReader< ImageType >;
-    ImageReaderType::Pointer reader1 = ImageReaderType::New();
-    reader1->SetFileName(input1FileName);
-    reader1->Update();
+  // Read images
+  using ImageReaderType = itk::ImageFileReader<ImageType>;
+  ImageReaderType::Pointer reader1 = ImageReaderType::New();
+  reader1->SetFileName(input1FileName);
+  reader1->Update();
 
-    ImageReaderType::Pointer reader2 = ImageReaderType::New();
-    reader2->SetFileName(input2FileName);
-    reader2->Update();
+  ImageReaderType::Pointer reader2 = ImageReaderType::New();
+  reader2->SetFileName(input2FileName);
+  reader2->Update();
 
-    // Tile the images side-by-side
-    using TileFilterType = itk::TileImageFilter< ImageType, ImageType >;
+  // Tile the images side-by-side
+  using TileFilterType = itk::TileImageFilter<ImageType, ImageType>;
 
-    TileFilterType::Pointer tileFilter = TileFilterType::New();
+  TileFilterType::Pointer tileFilter = TileFilterType::New();
 
-    itk::FixedArray< unsigned int, 2 > layout;
+  itk::FixedArray<unsigned int, 2> layout;
 
-    layout[0] = 2;
-    layout[1] = 0;
+  layout[0] = 2;
+  layout[1] = 0;
 
-    tileFilter->SetLayout( layout );
+  tileFilter->SetLayout(layout);
 
-    tileFilter->SetInput(0, reader1->GetOutput());
-    tileFilter->SetInput(1, reader2->GetOutput());
+  tileFilter->SetInput(0, reader1->GetOutput());
+  tileFilter->SetInput(1, reader2->GetOutput());
 
-    // Set the value of output pixels which are created by mismatched size input images.
-    // If the two images are the same height, this will not be used.
-    unsigned char fillerValue = 128;
-    tileFilter->SetDefaultPixelValue( fillerValue );
+  // Set the value of output pixels which are created by mismatched size input images.
+  // If the two images are the same height, this will not be used.
+  unsigned char fillerValue = 128;
+  tileFilter->SetDefaultPixelValue(fillerValue);
 
-    tileFilter->Update();
+  tileFilter->Update();
 
-    // Write the output image
-    using WriterType = itk::ImageFileWriter< ImageType >;
-    WriterType::Pointer writer = WriterType::New();
-    writer->SetInput( tileFilter->GetOutput() );
-    writer->SetFileName( outputFileName );
-    writer->Update();
+  // Write the output image
+  using WriterType = itk::ImageFileWriter<ImageType>;
+  WriterType::Pointer writer = WriterType::New();
+  writer->SetInput(tileFilter->GetOutput());
+  writer->SetFileName(outputFileName);
+  writer->Update();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }

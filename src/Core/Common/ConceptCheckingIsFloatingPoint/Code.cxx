@@ -19,22 +19,24 @@
 #include "itkImage.h"
 #include "itkConceptChecking.h"
 
-template< typename TImage >
-void IsPixelTypeFloatingPoint(const TImage* const)
+template <typename TImage>
+void
+IsPixelTypeFloatingPoint(const TImage * const)
 {
-  itkConceptMacro( nameOfCheck, ( itk::Concept::IsFloatingPoint< typename TImage::PixelType > ) );
+  itkConceptMacro(nameOfCheck, (itk::Concept::IsFloatingPoint<typename TImage::PixelType>));
 }
 
-int main( int, char* [] )
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
-  using FloatImageType = itk::Image< float, Dimension >;
+  using FloatImageType = itk::Image<float, Dimension>;
   FloatImageType::Pointer f = FloatImageType::New();
-  IsPixelTypeFloatingPoint( f.GetPointer() );
+  IsPixelTypeFloatingPoint(f.GetPointer());
 
-  using DoubleImageType = itk::Image< double, Dimension >;
+  using DoubleImageType = itk::Image<double, Dimension>;
   DoubleImageType::Pointer d = DoubleImageType::New();
-  IsPixelTypeFloatingPoint( d.GetPointer() );
+  IsPixelTypeFloatingPoint(d.GetPointer());
 
   return EXIT_SUCCESS;
 }

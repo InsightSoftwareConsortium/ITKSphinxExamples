@@ -21,18 +21,19 @@
 #include "itkThresholdImageFilter.h"
 #include "itkImageRegionIterator.h"
 
-template< class TImage >
-void CreateImage(typename TImage::Pointer image)
+template <class TImage>
+void
+CreateImage(typename TImage::Pointer image)
 {
   using ImageType = TImage;
 
   // Create an image with 2 connected components
   typename ImageType::RegionType region;
-  typename ImageType::IndexType start;
-  start.Fill( 0 );
+  typename ImageType::IndexType  start;
+  start.Fill(0);
 
   typename ImageType::SizeType size;
-  size.Fill( 100 );
+  size.Fill(100);
 
   region.SetSize(size);
   region.SetIndex(start);
@@ -40,29 +41,28 @@ void CreateImage(typename TImage::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator< ImageType > imageIterator(image,region);
+  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
 
-  while(!imageIterator.IsAtEnd())
-    {
+  while (!imageIterator.IsAtEnd())
+  {
     imageIterator.Set(255);
     ++imageIterator;
-    }
-
+  }
 }
-int main(int, char *[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
 
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
   ImageType::Pointer image = ImageType::New();
-  CreateImage< ImageType >(image);
+  CreateImage<ImageType>(image);
 
-  using ThresholdImageFilterType = itk::ThresholdImageFilter <ImageType>;
+  using ThresholdImageFilterType = itk::ThresholdImageFilter<ImageType>;
 
-  ThresholdImageFilterType::Pointer thresholdFilter
-          = ThresholdImageFilterType::New();
+  ThresholdImageFilterType::Pointer thresholdFilter = ThresholdImageFilterType::New();
   thresholdFilter->SetInput(image);
   thresholdFilter->ThresholdBelow(100);
   thresholdFilter->SetOutsideValue(0);

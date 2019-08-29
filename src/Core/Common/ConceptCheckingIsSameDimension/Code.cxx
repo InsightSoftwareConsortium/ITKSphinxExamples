@@ -19,23 +19,25 @@
 #include "itkImage.h"
 #include "itkConceptChecking.h"
 
-template< typename TImage, unsigned int VDimension >
-void CheckIfDimensionIsTheSame( const TImage* const )
+template <typename TImage, unsigned int VDimension>
+void
+CheckIfDimensionIsTheSame(const TImage * const)
 {
-  itkConceptMacro( nameOfCheck, ( itk::Concept::SameDimension< TImage::ImageDimension, VDimension > ) );
+  itkConceptMacro(nameOfCheck, (itk::Concept::SameDimension<TImage::ImageDimension, VDimension>));
 }
-int main( int, char* [] )
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
   ImageType::Pointer image = ImageType::New();
 
-  CheckIfDimensionIsTheSame< ImageType, 2 >( image.GetPointer() );
+  CheckIfDimensionIsTheSame<ImageType, 2>(image.GetPointer());
 
-  using ImageType2 = itk::Image< PixelType, Dimension >;
+  using ImageType2 = itk::Image<PixelType, Dimension>;
 
-  CheckIfDimensionIsTheSame< ImageType, ImageType2::ImageDimension >( image.GetPointer() );
+  CheckIfDimensionIsTheSame<ImageType, ImageType2::ImageDimension>(image.GetPointer());
 
   return EXIT_SUCCESS;
 }

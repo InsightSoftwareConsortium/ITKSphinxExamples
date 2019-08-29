@@ -19,8 +19,9 @@
 #include "itkAbsImageFilter.h"
 #include "itkImage.h"
 
-template< class TImage >
-void CreateImage(typename TImage::Pointer image)
+template <class TImage>
+void
+CreateImage(typename TImage::Pointer image)
 {
   using ImageType = TImage;
   typename ImageType::IndexType start;
@@ -29,32 +30,32 @@ void CreateImage(typename TImage::Pointer image)
   typename ImageType::SizeType size;
   size.Fill(2);
 
-  typename ImageType::RegionType region(start,size);
+  typename ImageType::RegionType region(start, size);
 
   image->SetRegions(region);
   image->Allocate();
-  image->FillBuffer( -2 );
+  image->FillBuffer(-2);
 }
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = double;
 
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
   using FilterType = itk::AbsImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  FilterType::Pointer filter2 =
-    dynamic_cast<FilterType*>(filter->CreateAnother().GetPointer());
+  FilterType::Pointer filter2 = dynamic_cast<FilterType *>(filter->CreateAnother().GetPointer());
 
   ImageType::Pointer image = ImageType::New();
-  CreateImage< ImageType >(image);
+  CreateImage<ImageType>(image);
 
   filter2->SetInput(image);
   filter2->Update();
 
-  itk::Index< Dimension > index;
+  itk::Index<Dimension> index;
   index.Fill(0);
 
   std::cout << filter2->GetOutput()->GetPixel(index) << std::endl;

@@ -31,326 +31,316 @@
 constexpr unsigned int Dimension = 2;
 using PixelType = unsigned char;
 
-using ImageType = itk::Image< PixelType, Dimension >;
+using ImageType = itk::Image<PixelType, Dimension>;
 
-static void CreateEllipseImage(ImageType::Pointer image);
-static void CreateCircleImage(ImageType::Pointer image);
+static void
+CreateEllipseImage(ImageType::Pointer image);
+static void
+CreateCircleImage(ImageType::Pointer image);
 
-int main( int itkNotUsed( argc ), char * itkNotUsed( argv )[] )
+int
+main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 {
-    // Generate synthetic fixed and moving images
-    ImageType::Pointer  fixedImage = ImageType::New();
-    CreateCircleImage(fixedImage);
-    ImageType::Pointer movingImage = ImageType::New();
-    CreateEllipseImage(movingImage);
+  // Generate synthetic fixed and moving images
+  ImageType::Pointer fixedImage = ImageType::New();
+  CreateCircleImage(fixedImage);
+  ImageType::Pointer movingImage = ImageType::New();
+  CreateEllipseImage(movingImage);
 
-    // Write the two synthetic inputs
-    using WriterType = itk::ImageFileWriter< ImageType >;
+  // Write the two synthetic inputs
+  using WriterType = itk::ImageFileWriter<ImageType>;
 
-    WriterType::Pointer      fixedWriter =  WriterType::New();
-    fixedWriter->SetFileName("fixed.png");
-    fixedWriter->SetInput( fixedImage);
-    fixedWriter->Update();
+  WriterType::Pointer fixedWriter = WriterType::New();
+  fixedWriter->SetFileName("fixed.png");
+  fixedWriter->SetInput(fixedImage);
+  fixedWriter->Update();
 
-    WriterType::Pointer      movingWriter =  WriterType::New();
-    movingWriter->SetFileName("moving.png");
-    movingWriter->SetInput( movingImage);
-    movingWriter->Update();
+  WriterType::Pointer movingWriter = WriterType::New();
+  movingWriter->SetFileName("moving.png");
+  movingWriter->SetInput(movingImage);
+  movingWriter->Update();
 
-    // We use floats internally
-    using InternalImageType = itk::Image< float, Dimension>;
+  // We use floats internally
+  using InternalImageType = itk::Image<float, Dimension>;
 
-    // Normalize the images
-    using NormalizeFilterType = itk::NormalizeImageFilter<ImageType, InternalImageType>;
+  // Normalize the images
+  using NormalizeFilterType = itk::NormalizeImageFilter<ImageType, InternalImageType>;
 
-    NormalizeFilterType::Pointer fixedNormalizer = NormalizeFilterType::New();
-    NormalizeFilterType::Pointer movingNormalizer = NormalizeFilterType::New();
+  NormalizeFilterType::Pointer fixedNormalizer = NormalizeFilterType::New();
+  NormalizeFilterType::Pointer movingNormalizer = NormalizeFilterType::New();
 
-    fixedNormalizer->SetInput(  fixedImage);
-    movingNormalizer->SetInput( movingImage);
+  fixedNormalizer->SetInput(fixedImage);
+  movingNormalizer->SetInput(movingImage);
 
-    // Smooth the normalized images
-    using GaussianFilterType = itk::DiscreteGaussianImageFilter<InternalImageType,InternalImageType>;
+  // Smooth the normalized images
+  using GaussianFilterType = itk::DiscreteGaussianImageFilter<InternalImageType, InternalImageType>;
 
-    GaussianFilterType::Pointer fixedSmoother  = GaussianFilterType::New();
-    GaussianFilterType::Pointer movingSmoother = GaussianFilterType::New();
+  GaussianFilterType::Pointer fixedSmoother = GaussianFilterType::New();
+  GaussianFilterType::Pointer movingSmoother = GaussianFilterType::New();
 
-    fixedSmoother->SetVariance( 2.0 );
-    movingSmoother->SetVariance( 2.0 );
+  fixedSmoother->SetVariance(2.0);
+  movingSmoother->SetVariance(2.0);
 
-    fixedSmoother->SetInput( fixedNormalizer->GetOutput() );
-    movingSmoother->SetInput( movingNormalizer->GetOutput() );
+  fixedSmoother->SetInput(fixedNormalizer->GetOutput());
+  movingSmoother->SetInput(movingNormalizer->GetOutput());
 
-    using TransformType = itk::AffineTransform< double, Dimension >;
-    using OptimizerType = itk::GradientDescentOptimizer;
-    using InterpolatorType = itk::LinearInterpolateImageFunction<
-            InternalImageType,
-            double             >;
-    using RegistrationType = itk::ImageRegistrationMethod<
-            InternalImageType,
-            InternalImageType >;
-    using MetricType = itk::MutualInformationImageToImageMetric<
-            InternalImageType,
-            InternalImageType >;
+  using TransformType = itk::AffineTransform<double, Dimension>;
+  using OptimizerType = itk::GradientDescentOptimizer;
+  using InterpolatorType = itk::LinearInterpolateImageFunction<InternalImageType, double>;
+  using RegistrationType = itk::ImageRegistrationMethod<InternalImageType, InternalImageType>;
+  using MetricType = itk::MutualInformationImageToImageMetric<InternalImageType, InternalImageType>;
 
-    TransformType::Pointer      transform     = TransformType::New();
-    OptimizerType::Pointer      optimizer     = OptimizerType::New();
-    InterpolatorType::Pointer   interpolator  = InterpolatorType::New();
-    RegistrationType::Pointer   registration  = RegistrationType::New();
+  TransformType::Pointer    transform = TransformType::New();
+  OptimizerType::Pointer    optimizer = OptimizerType::New();
+  InterpolatorType::Pointer interpolator = InterpolatorType::New();
+  RegistrationType::Pointer registration = RegistrationType::New();
 
-    registration->SetOptimizer(     optimizer     );
-    registration->SetTransform(     transform     );
-    registration->SetInterpolator(  interpolator  );
+  registration->SetOptimizer(optimizer);
+  registration->SetTransform(transform);
+  registration->SetInterpolator(interpolator);
 
-    MetricType::Pointer         metric        = MetricType::New();
-    registration->SetMetric( metric  );
+  MetricType::Pointer metric = MetricType::New();
+  registration->SetMetric(metric);
 
-    //  The metric requires a number of parameters to be selected, including
-    //  the standard deviation of the Gaussian kernel for the fixed image
-    //  density estimate, the standard deviation of the kernel for the moving
-    //  image density and the number of samples use to compute the densities
-    //  and entropy values. Details on the concepts behind the computation of
-    //  the metric can be found in Section
-    //  \ref{sec:MutualInformationMetric}.  Experience has
-    //  shown that a kernel standard deviation of $0.4$ works well for images
-    //  which have been normalized to a mean of zero and unit variance.  We
-    //  will follow this empirical rule in this example.
+  //  The metric requires a number of parameters to be selected, including
+  //  the standard deviation of the Gaussian kernel for the fixed image
+  //  density estimate, the standard deviation of the kernel for the moving
+  //  image density and the number of samples use to compute the densities
+  //  and entropy values. Details on the concepts behind the computation of
+  //  the metric can be found in Section
+  //  \ref{sec:MutualInformationMetric}.  Experience has
+  //  shown that a kernel standard deviation of $0.4$ works well for images
+  //  which have been normalized to a mean of zero and unit variance.  We
+  //  will follow this empirical rule in this example.
 
-    metric->SetFixedImageStandardDeviation(  0.4 );
-    metric->SetMovingImageStandardDeviation( 0.4 );
+  metric->SetFixedImageStandardDeviation(0.4);
+  metric->SetMovingImageStandardDeviation(0.4);
 
-    registration->SetFixedImage(    fixedSmoother->GetOutput()    );
-    registration->SetMovingImage(   movingSmoother->GetOutput()   );
+  registration->SetFixedImage(fixedSmoother->GetOutput());
+  registration->SetMovingImage(movingSmoother->GetOutput());
 
-    fixedNormalizer->Update();
-    ImageType::RegionType fixedImageRegion =
-            fixedNormalizer->GetOutput()->GetBufferedRegion();
-    registration->SetFixedImageRegion( fixedImageRegion );
+  fixedNormalizer->Update();
+  ImageType::RegionType fixedImageRegion = fixedNormalizer->GetOutput()->GetBufferedRegion();
+  registration->SetFixedImageRegion(fixedImageRegion);
 
-    using ParametersType = RegistrationType::ParametersType;
-    ParametersType initialParameters( transform->GetNumberOfParameters() );
+  using ParametersType = RegistrationType::ParametersType;
+  ParametersType initialParameters(transform->GetNumberOfParameters());
 
-    // rotation matrix (identity)
-    initialParameters[0] = 1.0;  // R(0,0)
-    initialParameters[1] = 0.0;  // R(0,1)
-    initialParameters[2] = 0.0;  // R(1,0)
-    initialParameters[3] = 1.0;  // R(1,1)
+  // rotation matrix (identity)
+  initialParameters[0] = 1.0; // R(0,0)
+  initialParameters[1] = 0.0; // R(0,1)
+  initialParameters[2] = 0.0; // R(1,0)
+  initialParameters[3] = 1.0; // R(1,1)
 
-    // translation vector
-    initialParameters[4] = 0.0;
-    initialParameters[5] = 0.0;
+  // translation vector
+  initialParameters[4] = 0.0;
+  initialParameters[5] = 0.0;
 
-    registration->SetInitialTransformParameters( initialParameters );
+  registration->SetInitialTransformParameters(initialParameters);
 
-    //  Software Guide : BeginLatex
-    //
-    //  We should now define the number of spatial samples to be considered in
-    //  the metric computation. Note that we were forced to postpone this setting
-    //  until we had done the preprocessing of the images because the number of
-    //  samples is usually defined as a fraction of the total number of pixels in
-    //  the fixed image.
-    //
-    //  The number of spatial samples can usually be as low as $1\%$ of the total
-    //  number of pixels in the fixed image. Increasing the number of samples
-    //  improves the smoothness of the metric from one iteration to another and
-    //  therefore helps when this metric is used in conjunction with optimizers
-    //  that rely of the continuity of the metric values. The trade-off, of
-    //  course, is that a larger number of samples result in longer computation
-    //  times per every evaluation of the metric.
-    //
-    //  It has been demonstrated empirically that the number of samples is not a
-    //  critical parameter for the registration process. When you start fine
-    //  tuning your own registration process, you should start using high values
-    //  of number of samples, for example in the range of $20\%$ to $50\%$ of the
-    //  number of pixels in the fixed image. Once you have succeeded to register
-    //  your images you can then reduce the number of samples progressively until
-    //  you find a good compromise on the time it takes to compute one evaluation
-    //  of the Metric. Note that it is not useful to have very fast evaluations
-    //  of the Metric if the noise in their values results in more iterations
-    //  being required by the optimizer to converge. You must then study the
-    //  behavior of the metric values as the iterations progress.
+  //  Software Guide : BeginLatex
+  //
+  //  We should now define the number of spatial samples to be considered in
+  //  the metric computation. Note that we were forced to postpone this setting
+  //  until we had done the preprocessing of the images because the number of
+  //  samples is usually defined as a fraction of the total number of pixels in
+  //  the fixed image.
+  //
+  //  The number of spatial samples can usually be as low as $1\%$ of the total
+  //  number of pixels in the fixed image. Increasing the number of samples
+  //  improves the smoothness of the metric from one iteration to another and
+  //  therefore helps when this metric is used in conjunction with optimizers
+  //  that rely of the continuity of the metric values. The trade-off, of
+  //  course, is that a larger number of samples result in longer computation
+  //  times per every evaluation of the metric.
+  //
+  //  It has been demonstrated empirically that the number of samples is not a
+  //  critical parameter for the registration process. When you start fine
+  //  tuning your own registration process, you should start using high values
+  //  of number of samples, for example in the range of $20\%$ to $50\%$ of the
+  //  number of pixels in the fixed image. Once you have succeeded to register
+  //  your images you can then reduce the number of samples progressively until
+  //  you find a good compromise on the time it takes to compute one evaluation
+  //  of the Metric. Note that it is not useful to have very fast evaluations
+  //  of the Metric if the noise in their values results in more iterations
+  //  being required by the optimizer to converge. You must then study the
+  //  behavior of the metric values as the iterations progress.
 
-    const unsigned int numberOfPixels = fixedImageRegion.GetNumberOfPixels();
+  const unsigned int numberOfPixels = fixedImageRegion.GetNumberOfPixels();
 
-    const auto numberOfSamples = static_cast< unsigned int >( numberOfPixels * 0.01 );
+  const auto numberOfSamples = static_cast<unsigned int>(numberOfPixels * 0.01);
 
-    metric->SetNumberOfSpatialSamples( numberOfSamples );
+  metric->SetNumberOfSpatialSamples(numberOfSamples);
 
-    //optimizer->SetLearningRate( 15.0 ); //"All the sampled point mapped to outside of the moving image"
-    //optimizer->SetLearningRate( 1.0 );
-    optimizer->SetLearningRate( 0.1 );
-    optimizer->SetNumberOfIterations( 1000 );
-    optimizer->MaximizeOn(); // We want to maximize mutual information (the default of the optimizer is to minimize)
+  // optimizer->SetLearningRate( 15.0 ); //"All the sampled point mapped to outside of the moving image"
+  // optimizer->SetLearningRate( 1.0 );
+  optimizer->SetLearningRate(0.1);
+  optimizer->SetNumberOfIterations(1000);
+  optimizer->MaximizeOn(); // We want to maximize mutual information (the default of the optimizer is to minimize)
 
-    // Note that large values of the learning rate will make the optimizer
-    // unstable. Small values, on the other hand, may result in the optimizer
-    // needing too many iterations in order to walk to the extrema of the cost
-    // function. The easy way of fine tuning this parameter is to start with
-    // small values, probably in the range of $\{5.0,10.0\}$. Once the other
-    // registration parameters have been tuned for producing convergence, you
-    // may want to revisit the learning rate and start increasing its value until
-    // you observe that the optimization becomes unstable.  The ideal value for
-    // this parameter is the one that results in a minimum number of iterations
-    // while still keeping a stable path on the parametric space of the
-    // optimization. Keep in mind that this parameter is a multiplicative factor
-    // applied on the gradient of the Metric. Therefore, its effect on the
-    // optimizer step length is proportional to the Metric values themselves.
-    // Metrics with large values will require you to use smaller values for the
-    // learning rate in order to maintain a similar optimizer behavior.
+  // Note that large values of the learning rate will make the optimizer
+  // unstable. Small values, on the other hand, may result in the optimizer
+  // needing too many iterations in order to walk to the extrema of the cost
+  // function. The easy way of fine tuning this parameter is to start with
+  // small values, probably in the range of $\{5.0,10.0\}$. Once the other
+  // registration parameters have been tuned for producing convergence, you
+  // may want to revisit the learning rate and start increasing its value until
+  // you observe that the optimization becomes unstable.  The ideal value for
+  // this parameter is the one that results in a minimum number of iterations
+  // while still keeping a stable path on the parametric space of the
+  // optimization. Keep in mind that this parameter is a multiplicative factor
+  // applied on the gradient of the Metric. Therefore, its effect on the
+  // optimizer step length is proportional to the Metric values themselves.
+  // Metrics with large values will require you to use smaller values for the
+  // learning rate in order to maintain a similar optimizer behavior.
 
-    try
-    {
-        registration->Update();
-        std::cout << "Optimizer stop condition: "
-                  << registration->GetOptimizer()->GetStopConditionDescription()
-                  << std::endl;
-    }
-    catch( itk::ExceptionObject & err )
-    {
-        std::cout << "ExceptionObject caught !" << std::endl;
-        std::cout << err << std::endl;
-        return EXIT_FAILURE;
-    }
+  try
+  {
+    registration->Update();
+    std::cout << "Optimizer stop condition: " << registration->GetOptimizer()->GetStopConditionDescription()
+              << std::endl;
+  }
+  catch (itk::ExceptionObject & err)
+  {
+    std::cout << "ExceptionObject caught !" << std::endl;
+    std::cout << err << std::endl;
+    return EXIT_FAILURE;
+  }
 
-    ParametersType finalParameters = registration->GetLastTransformParameters();
+  ParametersType finalParameters = registration->GetLastTransformParameters();
 
-    std::cout << "Final Parameters: " << finalParameters << std::endl;
+  std::cout << "Final Parameters: " << finalParameters << std::endl;
 
-    unsigned int numberOfIterations = optimizer->GetCurrentIteration();
+  unsigned int numberOfIterations = optimizer->GetCurrentIteration();
 
-    double bestValue = optimizer->GetValue();
+  double bestValue = optimizer->GetValue();
 
-    // Print out results
-    std::cout << std::endl;
-    std::cout << "Result = " << std::endl;
-    std::cout << " Iterations    = " << numberOfIterations << std::endl;
-    std::cout << " Metric value  = " << bestValue          << std::endl;
-    std::cout << " Numb. Samples = " << numberOfSamples    << std::endl;
+  // Print out results
+  std::cout << std::endl;
+  std::cout << "Result = " << std::endl;
+  std::cout << " Iterations    = " << numberOfIterations << std::endl;
+  std::cout << " Metric value  = " << bestValue << std::endl;
+  std::cout << " Numb. Samples = " << numberOfSamples << std::endl;
 
-    using ResampleFilterType = itk::ResampleImageFilter<
-            ImageType,
-            ImageType >;
+  using ResampleFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
 
-    TransformType::Pointer finalTransform = TransformType::New();
+  TransformType::Pointer finalTransform = TransformType::New();
 
-    finalTransform->SetParameters( finalParameters );
-    finalTransform->SetFixedParameters( transform->GetFixedParameters() );
+  finalTransform->SetParameters(finalParameters);
+  finalTransform->SetFixedParameters(transform->GetFixedParameters());
 
-    ResampleFilterType::Pointer resample = ResampleFilterType::New();
+  ResampleFilterType::Pointer resample = ResampleFilterType::New();
 
-    resample->SetTransform( finalTransform );
-    resample->SetInput( movingImage);
+  resample->SetTransform(finalTransform);
+  resample->SetInput(movingImage);
 
-    resample->SetSize(    fixedImage->GetLargestPossibleRegion().GetSize() );
-    resample->SetOutputOrigin(  fixedImage->GetOrigin() );
-    resample->SetOutputSpacing( fixedImage->GetSpacing() );
-    resample->SetOutputDirection( fixedImage->GetDirection() );
-    resample->SetDefaultPixelValue( 100 );
+  resample->SetSize(fixedImage->GetLargestPossibleRegion().GetSize());
+  resample->SetOutputOrigin(fixedImage->GetOrigin());
+  resample->SetOutputSpacing(fixedImage->GetSpacing());
+  resample->SetOutputDirection(fixedImage->GetDirection());
+  resample->SetDefaultPixelValue(100);
 
-    WriterType::Pointer      writer =  WriterType::New();
-    writer->SetFileName("output.png");
-    writer->SetInput( resample->GetOutput()   );
-    writer->Update();
+  WriterType::Pointer writer = WriterType::New();
+  writer->SetFileName("output.png");
+  writer->SetInput(resample->GetOutput());
+  writer->Update();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
 
-void CreateEllipseImage(ImageType::Pointer image)
+void
+CreateEllipseImage(ImageType::Pointer image)
 {
-    using EllipseType = itk::EllipseSpatialObject< Dimension >;
+  using EllipseType = itk::EllipseSpatialObject<Dimension>;
 
-    using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<
-            EllipseType, ImageType >;
+  using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<EllipseType, ImageType>;
 
-    SpatialObjectToImageFilterType::Pointer imageFilter =
-            SpatialObjectToImageFilterType::New();
+  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
 
-    ImageType::SizeType size;
-    size[ 0 ] =  100;
-    size[ 1 ] =  100;
+  ImageType::SizeType size;
+  size[0] = 100;
+  size[1] = 100;
 
-    imageFilter->SetSize( size );
+  imageFilter->SetSize(size);
 
-    ImageType::SpacingType spacing;
-    spacing.Fill(1);
-    imageFilter->SetSpacing(spacing);
+  ImageType::SpacingType spacing;
+  spacing.Fill(1);
+  imageFilter->SetSpacing(spacing);
 
-    EllipseType::Pointer ellipse    = EllipseType::New();
-    EllipseType::ArrayType radiusArray;
-    radiusArray[0] = 10;
-    radiusArray[1] = 20;
-    ellipse->SetRadiusInObjectSpace(radiusArray);
+  EllipseType::Pointer   ellipse = EllipseType::New();
+  EllipseType::ArrayType radiusArray;
+  radiusArray[0] = 10;
+  radiusArray[1] = 20;
+  ellipse->SetRadiusInObjectSpace(radiusArray);
 
-    using TransformType = EllipseType::TransformType;
-    TransformType::Pointer transform = TransformType::New();
-    transform->SetIdentity();
+  using TransformType = EllipseType::TransformType;
+  TransformType::Pointer transform = TransformType::New();
+  transform->SetIdentity();
 
-    TransformType::OutputVectorType  translation;
-    translation[ 0 ] =  65;
-    translation[ 1 ] =  45;
-    transform->Translate( translation, false );
+  TransformType::OutputVectorType translation;
+  translation[0] = 65;
+  translation[1] = 45;
+  transform->Translate(translation, false);
 
-    ellipse->SetObjectToParentTransform( transform );
+  ellipse->SetObjectToParentTransform(transform);
 
-    imageFilter->SetInput(ellipse);
+  imageFilter->SetInput(ellipse);
 
-    ellipse->SetDefaultInsideValue(255);
-    ellipse->SetDefaultOutsideValue(0);
-    imageFilter->SetUseObjectValue( true );
-    imageFilter->SetOutsideValue( 0 );
+  ellipse->SetDefaultInsideValue(255);
+  ellipse->SetDefaultOutsideValue(0);
+  imageFilter->SetUseObjectValue(true);
+  imageFilter->SetOutsideValue(0);
 
-    imageFilter->Update();
+  imageFilter->Update();
 
-    image->Graft(imageFilter->GetOutput());
-
+  image->Graft(imageFilter->GetOutput());
 }
 
-void CreateCircleImage(ImageType::Pointer image)
+void
+CreateCircleImage(ImageType::Pointer image)
 {
-    using EllipseType = itk::EllipseSpatialObject< Dimension >;
+  using EllipseType = itk::EllipseSpatialObject<Dimension>;
 
-    using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<
-            EllipseType, ImageType >;
+  using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<EllipseType, ImageType>;
 
-    SpatialObjectToImageFilterType::Pointer imageFilter =
-            SpatialObjectToImageFilterType::New();
+  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
 
-    ImageType::SizeType size;
-    size[ 0 ] =  100;
-    size[ 1 ] =  100;
+  ImageType::SizeType size;
+  size[0] = 100;
+  size[1] = 100;
 
-    imageFilter->SetSize( size );
+  imageFilter->SetSize(size);
 
-    ImageType::SpacingType spacing;
-    spacing.Fill(1);
-    imageFilter->SetSpacing(spacing);
+  ImageType::SpacingType spacing;
+  spacing.Fill(1);
+  imageFilter->SetSpacing(spacing);
 
-    EllipseType::Pointer ellipse    = EllipseType::New();
-    EllipseType::ArrayType radiusArray;
-    radiusArray[0] = 10;
-    radiusArray[1] = 10;
-    ellipse->SetRadiusInObjectSpace(radiusArray);
+  EllipseType::Pointer   ellipse = EllipseType::New();
+  EllipseType::ArrayType radiusArray;
+  radiusArray[0] = 10;
+  radiusArray[1] = 10;
+  ellipse->SetRadiusInObjectSpace(radiusArray);
 
-    using TransformType = EllipseType::TransformType;
-    TransformType::Pointer transform = TransformType::New();
-    transform->SetIdentity();
+  using TransformType = EllipseType::TransformType;
+  TransformType::Pointer transform = TransformType::New();
+  transform->SetIdentity();
 
-    TransformType::OutputVectorType  translation;
-    translation[ 0 ] =  50;
-    translation[ 1 ] =  50;
-    transform->Translate( translation, false );
+  TransformType::OutputVectorType translation;
+  translation[0] = 50;
+  translation[1] = 50;
+  transform->Translate(translation, false);
 
-    ellipse->SetObjectToParentTransform( transform );
+  ellipse->SetObjectToParentTransform(transform);
 
-    imageFilter->SetInput(ellipse);
+  imageFilter->SetInput(ellipse);
 
-    ellipse->SetDefaultInsideValue(255);
-    ellipse->SetDefaultOutsideValue(0);
-    imageFilter->SetUseObjectValue( true );
-    imageFilter->SetOutsideValue( 0 );
+  ellipse->SetDefaultInsideValue(255);
+  ellipse->SetDefaultOutsideValue(0);
+  imageFilter->SetUseObjectValue(true);
+  imageFilter->SetOutsideValue(0);
 
-    imageFilter->Update();
+  imageFilter->Update();
 
-    image->Graft(imageFilter->GetOutput());
+  image->Graft(imageFilter->GetOutput());
 }

@@ -19,47 +19,48 @@
 #include "itkMeshFileReader.h"
 #include "itkQuadEdgeMesh.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 3)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName> <VertexId>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 3;
 
   using PixelType = double;
-  using MeshType = itk::QuadEdgeMesh< PixelType, Dimension >;
+  using MeshType = itk::QuadEdgeMesh<PixelType, Dimension>;
 
-  using ReaderType = itk::MeshFileReader< MeshType >;
+  using ReaderType = itk::MeshFileReader<MeshType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
   try
-    {
+  {
     reader->Update();
-    }
-  catch( itk::ExceptionObject& e )
-    {
+  }
+  catch (itk::ExceptionObject & e)
+  {
     std::cerr << e.what() << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   MeshType::Pointer mesh = reader->GetOutput();
 
-  MeshType::PointIdentifier id = std::stoi( argv[2] );
+  MeshType::PointIdentifier id = std::stoi(argv[2]);
 
-  MeshType::QEType* qe = mesh->FindEdge( id );
+  MeshType::QEType * qe = mesh->FindEdge(id);
 
-  MeshType::QEType* temp = qe;
+  MeshType::QEType * temp = qe;
   do
-    {
+  {
     std::cout << temp->GetLeft() << std::endl;
     temp = temp->GetOnext();
-    } while( qe != temp );
+  } while (qe != temp);
 
   return EXIT_SUCCESS;
 }

@@ -18,12 +18,13 @@
 
 #include "itkImage.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
 
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
   // Big region
   ImageType::RegionType bigRegion;
@@ -53,8 +54,7 @@ int main(int, char*[])
   smallInsideRegion.SetSize(smallInsideSize);
   smallInsideRegion.SetIndex(smallInsideStart);
 
-  std::cout << "Small inside region is "
-            << bigRegion.IsInside( smallInsideRegion ) << std::endl;
+  std::cout << "Small inside region is " << bigRegion.IsInside(smallInsideRegion) << std::endl;
 
   // Small outside region
   ImageType::RegionType smallOutsideRegion;
@@ -70,8 +70,7 @@ int main(int, char*[])
   smallOutsideRegion.SetSize(smallOutsideSize);
   smallOutsideRegion.SetIndex(smallOutsideStart);
 
-  std::cout << "Small outside region is "
-            << bigRegion.IsInside( smallOutsideRegion ) << std::endl;
+  std::cout << "Small outside region is " << bigRegion.IsInside(smallOutsideRegion) << std::endl;
 
   // Small overlap region
   ImageType::RegionType smallOverlapRegion;
@@ -87,8 +86,7 @@ int main(int, char*[])
   smallOverlapRegion.SetSize(smallOverlapSize);
   smallOverlapRegion.SetIndex(smallOverlapStart);
 
-  std::cout << "Small overlap region is "
-            << bigRegion.IsInside( smallOverlapRegion ) << std::endl;
+  std::cout << "Small overlap region is " << bigRegion.IsInside(smallOverlapRegion) << std::endl;
 
   return EXIT_SUCCESS;
 }

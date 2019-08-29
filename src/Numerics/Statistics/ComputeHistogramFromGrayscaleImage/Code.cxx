@@ -21,71 +21,67 @@
 #include "itkImageToHistogramFilter.h"
 #include "itkImageRandomIteratorWithIndex.h"
 
-int main(int argc, char* argv[])
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
+  if (argc != 3)
+  {
     std::cerr << argv[0] << "InputFileName NumberOfBins" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
   constexpr unsigned int MeasurementVectorSize = 1; // Grayscale
-  const auto binsPerDimension = static_cast< unsigned int >( std::stoi( argv[2] ) );
+  const auto             binsPerDimension = static_cast<unsigned int>(std::stoi(argv[2]));
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
 
   ImageType::Pointer image = reader->GetOutput();
 
-  using ImageToHistogramFilterType = itk::Statistics::ImageToHistogramFilter< ImageType >;
+  using ImageToHistogramFilterType = itk::Statistics::ImageToHistogramFilter<ImageType>;
 
-  ImageToHistogramFilterType::HistogramType::MeasurementVectorType
-    lowerBound(binsPerDimension);
+  ImageToHistogramFilterType::HistogramType::MeasurementVectorType lowerBound(binsPerDimension);
   lowerBound.Fill(0);
 
-  ImageToHistogramFilterType::HistogramType::MeasurementVectorType
-    upperBound(binsPerDimension);
+  ImageToHistogramFilterType::HistogramType::MeasurementVectorType upperBound(binsPerDimension);
   upperBound.Fill(255);
 
-  ImageToHistogramFilterType::HistogramType::SizeType
-    size(MeasurementVectorSize);
+  ImageToHistogramFilterType::HistogramType::SizeType size(MeasurementVectorSize);
   size.Fill(binsPerDimension);
 
-  ImageToHistogramFilterType::Pointer imageToHistogramFilter =
-    ImageToHistogramFilterType::New();
-  imageToHistogramFilter->SetInput( image );
-  imageToHistogramFilter->SetHistogramBinMinimum( lowerBound );
-  imageToHistogramFilter->SetHistogramBinMaximum( upperBound );
-  imageToHistogramFilter->SetHistogramSize( size );
+  ImageToHistogramFilterType::Pointer imageToHistogramFilter = ImageToHistogramFilterType::New();
+  imageToHistogramFilter->SetInput(image);
+  imageToHistogramFilter->SetHistogramBinMinimum(lowerBound);
+  imageToHistogramFilter->SetHistogramBinMaximum(upperBound);
+  imageToHistogramFilter->SetHistogramSize(size);
 
   try
-    {
+  {
     imageToHistogramFilter->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
-  ImageToHistogramFilterType::HistogramType* histogram =
-    imageToHistogramFilter->GetOutput();
+  ImageToHistogramFilterType::HistogramType * histogram = imageToHistogramFilter->GetOutput();
 
   std::cout << "Frequency = [ ";
-  for(unsigned int i = 0; i < histogram->GetSize()[0]; ++i)
-    {
+  for (unsigned int i = 0; i < histogram->GetSize()[0]; ++i)
+  {
     std::cout << histogram->GetFrequency(i);
 
-    if( i != histogram->GetSize()[0] - 1 )
-      {
+    if (i != histogram->GetSize()[0] - 1)
+    {
       std::cout << "," << std::endl;
-      }
     }
+  }
 
   std::cout << " ]" << std::endl;
 

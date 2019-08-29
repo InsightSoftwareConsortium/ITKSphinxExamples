@@ -22,78 +22,78 @@
 #include "itkRescaleIntensityImageFilter.h"
 
 #ifdef ENABLE_QUICKVIEW
-#include "QuickView.h"
+#  include "QuickView.h"
 #endif
 using ImageType = itk::Image<unsigned char, 2>;
 
-static void CreateImage(ImageType::Pointer image);
+static void
+CreateImage(ImageType::Pointer image);
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
-    ImageType::Pointer image = ImageType::New();
-    CreateImage(image);
+  ImageType::Pointer image = ImageType::New();
+  CreateImage(image);
 
-    using binaryContourImageFilterType = itk::BinaryContourImageFilter <ImageType, ImageType >;
+  using binaryContourImageFilterType = itk::BinaryContourImageFilter<ImageType, ImageType>;
 
-    // Outer boundary
-    binaryContourImageFilterType::Pointer binaryContourFilter
-            = binaryContourImageFilterType::New ();
-    binaryContourFilter->SetInput(image);
-    binaryContourFilter->SetForegroundValue(0);
-    binaryContourFilter->SetBackgroundValue(255);
-    binaryContourFilter->Update();
+  // Outer boundary
+  binaryContourImageFilterType::Pointer binaryContourFilter = binaryContourImageFilterType::New();
+  binaryContourFilter->SetInput(image);
+  binaryContourFilter->SetForegroundValue(0);
+  binaryContourFilter->SetBackgroundValue(255);
+  binaryContourFilter->Update();
 
-    // Invert the result
-    using InvertIntensityImageFilterType = itk::InvertIntensityImageFilter <ImageType>;
+  // Invert the result
+  using InvertIntensityImageFilterType = itk::InvertIntensityImageFilter<ImageType>;
 
-    InvertIntensityImageFilterType::Pointer invertIntensityFilter
-            = InvertIntensityImageFilterType::New();
-    invertIntensityFilter->SetInput(binaryContourFilter->GetOutput());
-    invertIntensityFilter->Update();
+  InvertIntensityImageFilterType::Pointer invertIntensityFilter = InvertIntensityImageFilterType::New();
+  invertIntensityFilter->SetInput(binaryContourFilter->GetOutput());
+  invertIntensityFilter->Update();
 
-    ImageType::Pointer outerBoundary = ImageType::New();
-    outerBoundary->Graft(invertIntensityFilter->GetOutput());
+  ImageType::Pointer outerBoundary = ImageType::New();
+  outerBoundary->Graft(invertIntensityFilter->GetOutput());
 
-    // Inner boundary
-    binaryContourFilter->SetForegroundValue(255);
-    binaryContourFilter->SetBackgroundValue(0);
-    binaryContourFilter->Update();
+  // Inner boundary
+  binaryContourFilter->SetForegroundValue(255);
+  binaryContourFilter->SetBackgroundValue(0);
+  binaryContourFilter->Update();
 
 #ifdef ENABLE_QUICKVIEW
-    QuickView viewer;
-    viewer.AddImage(image.GetPointer());
-    viewer.AddImage(outerBoundary.GetPointer());
-    viewer.AddImage(binaryContourFilter->GetOutput());
-    viewer.Visualize();
+  QuickView viewer;
+  viewer.AddImage(image.GetPointer());
+  viewer.AddImage(outerBoundary.GetPointer());
+  viewer.AddImage(binaryContourFilter->GetOutput());
+  viewer.Visualize();
 #endif
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage(ImageType::Pointer image)
+void
+CreateImage(ImageType::Pointer image)
 {
-    ImageType::IndexType start;
-    start.Fill(0);
+  ImageType::IndexType start;
+  start.Fill(0);
 
-    ImageType::SizeType size;
-    size.Fill(20);
+  ImageType::SizeType size;
+  size.Fill(20);
 
-    ImageType::RegionType region(start, size);
+  ImageType::RegionType region(start, size);
 
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(0);
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(0);
 
-    // Make a square
-    for(unsigned int r = 5; r < 10; r++)
+  // Make a square
+  for (unsigned int r = 5; r < 10; r++)
+  {
+    for (unsigned int c = 5; c < 10; c++)
     {
-        for(unsigned int c = 5; c < 10; c++)
-        {
-            ImageType::IndexType pixelIndex;
-            pixelIndex[0] = r;
-            pixelIndex[1] = c;
+      ImageType::IndexType pixelIndex;
+      pixelIndex[0] = r;
+      pixelIndex[1] = c;
 
-            image->SetPixel(pixelIndex, 255);
-        }
+      image->SetPixel(pixelIndex, 255);
     }
-
+  }
 }

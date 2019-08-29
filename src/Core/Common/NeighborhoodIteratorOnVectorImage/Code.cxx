@@ -20,37 +20,38 @@
 
 using VectorImageType = itk::VectorImage<unsigned char, 2>;
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
-    // Create an image
-    VectorImageType::Pointer image = VectorImageType::New();
+  // Create an image
+  VectorImageType::Pointer image = VectorImageType::New();
 
-    itk::Index<2> start;
-    start.Fill(0);
+  itk::Index<2> start;
+  start.Fill(0);
 
-    itk::Size<2> size;
-    size.Fill(10);
+  itk::Size<2> size;
+  size.Fill(10);
 
-    itk::ImageRegion<2> region(start,size);
+  itk::ImageRegion<2> region(start, size);
 
-    image->SetRegions(region);
-    image->SetNumberOfComponentsPerPixel(3);
-    image->Allocate();
+  image->SetRegions(region);
+  image->SetNumberOfComponentsPerPixel(3);
+  image->Allocate();
 
-    // Create the neighborhood iterator
-    VectorImageType::SizeType radius;
-    radius[0] = 1;
-    radius[1] = 1;
+  // Create the neighborhood iterator
+  VectorImageType::SizeType radius;
+  radius[0] = 1;
+  radius[1] = 1;
 
-    itk::NeighborhoodIterator<VectorImageType> iterator(radius, image, image->GetLargestPossibleRegion());
+  itk::NeighborhoodIterator<VectorImageType> iterator(radius, image, image->GetLargestPossibleRegion());
 
-    while(!iterator.IsAtEnd())
-    {
-        iterator.GetCenterPixel();
+  while (!iterator.IsAtEnd())
+  {
+    iterator.GetCenterPixel();
 
-        ++iterator;
-    }
+    ++iterator;
+  }
 
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }

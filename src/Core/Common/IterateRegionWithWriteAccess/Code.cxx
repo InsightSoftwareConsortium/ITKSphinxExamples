@@ -30,86 +30,81 @@
 #include "vtkInteractorStyleImage.h"
 #include "vtkRenderer.h"
 
-int main(int argc, char*argv[])
+int
+main(int argc, char * argv[])
 {
-    if(argc < 2)
-    {
-        std::cerr << "Required: filename" << std::endl;
-        return EXIT_FAILURE;
-    }
+  if (argc < 2)
+  {
+    std::cerr << "Required: filename" << std::endl;
+    return EXIT_FAILURE;
+  }
 
-    using ImageType = itk::Image<unsigned char, 2>;
+  using ImageType = itk::Image<unsigned char, 2>;
 
-    using ReaderType = itk::ImageFileReader<ImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[1]);
-    reader->Update();
+  using ReaderType = itk::ImageFileReader<ImageType>;
+  ReaderType::Pointer reader = ReaderType::New();
+  reader->SetFileName(argv[1]);
+  reader->Update();
 
-    ImageType::Pointer image = reader->GetOutput();
+  ImageType::Pointer image = reader->GetOutput();
 
-    ImageType::SizeType regionSize;
-    regionSize[0] = 5;
-    regionSize[1] = 4;
+  ImageType::SizeType regionSize;
+  regionSize[0] = 5;
+  regionSize[1] = 4;
 
-    ImageType::IndexType regionIndex;
-    regionIndex[0] = 0;
-    regionIndex[1] = 0;
+  ImageType::IndexType regionIndex;
+  regionIndex[0] = 0;
+  regionIndex[1] = 0;
 
-    ImageType::RegionType region;
-    region.SetSize(regionSize);
-    region.SetIndex(regionIndex);
+  ImageType::RegionType region;
+  region.SetSize(regionSize);
+  region.SetIndex(regionIndex);
 
-    itk::ImageRegionIterator<ImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
 
-    while(!imageIterator.IsAtEnd())
-    {
-        // Get the value of the current pixel
-        //unsigned char val = imageIterator.Get();
-        //std::cout << (int)val << std::endl;
+  while (!imageIterator.IsAtEnd())
+  {
+    // Get the value of the current pixel
+    // unsigned char val = imageIterator.Get();
+    // std::cout << (int)val << std::endl;
 
-        // Set the current pixel to white
-        imageIterator.Set(255);
+    // Set the current pixel to white
+    imageIterator.Set(255);
 
-        ++imageIterator;
-    }
+    ++imageIterator;
+  }
 
-    // Visualize
-    using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-    ConnectorType::Pointer connector = ConnectorType::New();
-    connector->SetInput(image);
+  // Visualize
+  using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
+  ConnectorType::Pointer connector = ConnectorType::New();
+  connector->SetInput(image);
 
-    vtkSmartPointer<vtkImageActor> actor =
-            vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> actor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
-    actor->SetInput(connector->GetOutput());
+  actor->SetInput(connector->GetOutput());
 #else
-    connector->Update();
+  connector->Update();
   actor->GetMapper()->SetInputData(connector->GetOutput());
 #endif
 
-    vtkSmartPointer<vtkRenderWindow> renderWindow =
-            vtkSmartPointer<vtkRenderWindow>::New();
+  vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
 
-    vtkSmartPointer<vtkRenderWindowInteractor> interactor =
-            vtkSmartPointer<vtkRenderWindowInteractor>::New();
-    interactor->SetRenderWindow(renderWindow);
+  vtkSmartPointer<vtkRenderWindowInteractor> interactor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+  interactor->SetRenderWindow(renderWindow);
 
-    vtkSmartPointer<vtkRenderer> renderer =
-            vtkSmartPointer<vtkRenderer>::New();
-    renderWindow->AddRenderer(renderer);
+  vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
+  renderWindow->AddRenderer(renderer);
 
-    renderer->AddActor(actor);
-    renderer->ResetCamera();
+  renderer->AddActor(actor);
+  renderer->ResetCamera();
 
-    renderWindow->Render();
+  renderWindow->Render();
 
-    vtkSmartPointer<vtkInteractorStyleImage> style =
-            vtkSmartPointer<vtkInteractorStyleImage>::New();
+  vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
 
-    interactor->SetInteractorStyle(style);
+  interactor->SetInteractorStyle(style);
 
-    interactor->Start();
+  interactor->Start();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
-

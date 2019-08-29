@@ -5,7 +5,8 @@
 
 #include "ImageFilterMultipleInputsDifferentType.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   // Setup types
   using VectorImageType = itk::Image<itk::CovariantVector<unsigned char, 3>, 2>;
@@ -22,7 +23,7 @@ int main(int, char*[])
   filter->SetInput(reader->GetOutput());
   filter->Update();
 
-  using WriterType = itk::ImageFileWriter< VectorImageType  >;
+  using WriterType = itk::ImageFileWriter<VectorImageType>;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName("TestOutput.jpg");
   writer->SetInput(filter->GetOutput());

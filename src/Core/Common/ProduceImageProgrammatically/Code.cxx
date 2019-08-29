@@ -26,16 +26,15 @@
 namespace itk
 {
 
-    template< class TImage>
-    void ImageFilter< TImage>
-    ::GenerateData()
-    {
-        double a = 2.1;
-        itkExceptionMacro ("Here is a variable: " << a << " and then more text.");
-    }
+template <class TImage>
+void
+ImageFilter<TImage>::GenerateData()
+{
+  double a = 2.1;
+  itkExceptionMacro("Here is a variable: " << a << " and then more text.");
+}
 
-}// end namespace
+} // namespace itk
 
 
 #endif
-

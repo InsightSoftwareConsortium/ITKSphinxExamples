@@ -18,12 +18,13 @@
 
 #include "itkImage.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
 
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
   ImageType::Pointer image = ImageType::New();
 
   std::cout << "image is type: " << image->GetNameOfClass() << std::endl;

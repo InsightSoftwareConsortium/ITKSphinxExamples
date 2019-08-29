@@ -18,12 +18,13 @@
 
 #include "itkCovariantVector.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 3;
   using CoordType = double;
 
-  using VectorType = itk::CovariantVector< CoordType, Dimension >;
+  using VectorType = itk::CovariantVector<CoordType, Dimension>;
   VectorType v;
   v[0] = 1.0;
   v[1] = 2.0;

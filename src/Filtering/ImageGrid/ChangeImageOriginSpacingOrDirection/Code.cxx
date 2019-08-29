@@ -21,71 +21,71 @@
 #include "itkVersor.h"
 #include "itkChangeInformationImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc < 2 )
-    {
-    std::cerr << "Usage: "
-              << argv[0] << " <inputFileName>"
+  if (argc < 2)
+  {
+    std::cerr << "Usage: " << argv[0] << " <inputFileName>"
               << " [scalingFactor]"
               << " [translationX translationY translationZ]"
               << " [rotationZinDegrees]" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   const char * inputFileName = argv[1];
-  double scalingFactor = 1.0;
-  if( argc > 3 )
-    {
-    scalingFactor = std::stod( argv[3] );
-    }
+  double       scalingFactor = 1.0;
+  if (argc > 3)
+  {
+    scalingFactor = std::stod(argv[3]);
+  }
   double translationX = 0.0;
-  if( argc > 3 )
-    {
-    translationX = std::stod( argv[3] );
-    }
+  if (argc > 3)
+  {
+    translationX = std::stod(argv[3]);
+  }
   double translationY = 0.0;
-  if( argc > 4 )
-    {
-    translationY = std::stod( argv[4] );
-    }
+  if (argc > 4)
+  {
+    translationY = std::stod(argv[4]);
+  }
   double translationZ = 0.0;
-  if( argc > 5 )
-    {
-    translationZ = std::stod( argv[5] );
-    }
+  if (argc > 5)
+  {
+    translationZ = std::stod(argv[5]);
+  }
   double rotationZ = 0.0;
-  if( argc > 6 )
-    {
-    rotationZ = std::stod( argv[6] );
-    }
+  if (argc > 6)
+  {
+    rotationZ = std::stod(argv[6]);
+  }
 
   constexpr unsigned int Dimension = 3;
 
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFileName );
+  reader->SetFileName(inputFileName);
   try
-    {
+  {
     reader->UpdateOutputInformation();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
   ImageType::ConstPointer inputImage = reader->GetOutput();
   std::cout << "Original image: " << inputImage << std::endl;
 
-  using FilterType = itk::ChangeInformationImageFilter< ImageType >;
+  using FilterType = itk::ChangeInformationImageFilter<ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( reader->GetOutput() );
+  filter->SetInput(reader->GetOutput());
 
-  const ImageType::SpacingType spacing( scalingFactor );
-  filter->SetOutputSpacing( spacing );
+  const ImageType::SpacingType spacing(scalingFactor);
+  filter->SetOutputSpacing(spacing);
   filter->ChangeSpacingOn();
 
   ImageType::PointType::VectorType translation;
@@ -94,27 +94,26 @@ int main( int argc, char* argv[] )
   translation[2] = translationZ;
   ImageType::PointType origin = inputImage->GetOrigin();
   origin += translation;
-  filter->SetOutputOrigin( origin );
+  filter->SetOutputOrigin(origin);
   filter->ChangeOriginOn();
 
-  itk::Versor< double > rotation;
-  const double angleInRadians = rotationZ * itk::Math::pi / 180.0;
-  rotation.SetRotationAroundZ( angleInRadians );
+  itk::Versor<double> rotation;
+  const double        angleInRadians = rotationZ * itk::Math::pi / 180.0;
+  rotation.SetRotationAroundZ(angleInRadians);
   const ImageType::DirectionType direction = inputImage->GetDirection();
-  const ImageType::DirectionType newDirection
-    = direction * rotation.GetMatrix();
-  filter->SetOutputDirection( newDirection );
+  const ImageType::DirectionType newDirection = direction * rotation.GetMatrix();
+  filter->SetOutputDirection(newDirection);
   filter->ChangeDirectionOn();
 
   try
-    {
+  {
     filter->UpdateOutputInformation();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
   std::cout << "**************************************" << std::endl;
   ImageType::ConstPointer output = filter->GetOutput();
   std::cout << "Changed image: " << output << std::endl;

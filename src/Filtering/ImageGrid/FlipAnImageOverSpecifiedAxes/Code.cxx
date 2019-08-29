@@ -21,59 +21,59 @@
 #include "itkImageFileWriter.h"
 #include "itkFlipImageFilter.h"
 
-int main(int argc, char* argv[])
+int
+main(int argc, char * argv[])
 {
-  if( argc != 4 )
-    {
+  if (argc != 4)
+  {
     std::cerr << "Usage: " << argv[0];
     std::cerr << " <InputFileName> <OutputFileName> <AxisToFlip>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
-  constexpr unsigned Dimension  = 2;
+  constexpr unsigned Dimension = 2;
 
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
 
-  using FlipImageFilterType = itk::FlipImageFilter< ImageType >;
+  using FlipImageFilterType = itk::FlipImageFilter<ImageType>;
 
-  FlipImageFilterType::Pointer flipFilter
-          = FlipImageFilterType::New ();
-  flipFilter->SetInput( reader->GetOutput() );
+  FlipImageFilterType::Pointer flipFilter = FlipImageFilterType::New();
+  flipFilter->SetInput(reader->GetOutput());
 
   FlipImageFilterType::FlipAxesArrayType flipAxes;
-  if( std::stoi( argv[3] ) == 0 )
-    {
+  if (std::stoi(argv[3]) == 0)
+  {
     flipAxes[0] = true;
     flipAxes[1] = false;
-    }
+  }
   else
-    {
+  {
     flipAxes[0] = false;
     flipAxes[1] = true;
-    }
+  }
 
-  flipFilter->SetFlipAxes( flipAxes );
+  flipFilter->SetFlipAxes(flipAxes);
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( argv[2] );
-  writer->SetInput( flipFilter->GetOutput() );
+  writer->SetFileName(argv[2]);
+  writer->SetInput(flipFilter->GetOutput());
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

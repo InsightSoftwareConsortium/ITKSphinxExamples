@@ -8,41 +8,50 @@
 
 namespace itk
 {
-    class ExampleCostFunction2 :
-            public SingleValuedCostFunction
-    {
-    public:
-        /** Standard class typedefs. */
-        typedef ExampleCostFunction2      Self;
-        typedef SingleValuedCostFunction  Superclass;
-        typedef SmartPointer<Self>        Pointer;
-        typedef SmartPointer<const Self>  ConstPointer;
+class ExampleCostFunction2 : public SingleValuedCostFunction
+{
+public:
+  /** Standard class typedefs. */
+  typedef ExampleCostFunction2     Self;
+  typedef SingleValuedCostFunction Superclass;
+  typedef SmartPointer<Self>       Pointer;
+  typedef SmartPointer<const Self> ConstPointer;
 
-        /** Method for creation through the object factory. */
-        itkNewMacro(Self);
+  /** Method for creation through the object factory. */
+  itkNewMacro(Self);
 
-        /** Run-time type information (and related methods). */
-        itkTypeMacro(ExampleCostFunction2, SingleValuedCostfunction);
+  /** Run-time type information (and related methods). */
+  itkTypeMacro(ExampleCostFunction2, SingleValuedCostfunction);
 
-        unsigned int GetNumberOfParameters(void) const override { return 2; } // itk::CostFunction
+  unsigned int
+  GetNumberOfParameters(void) const override
+  {
+    return 2;
+  } // itk::CostFunction
 
-        MeasureType GetValue(const ParametersType & parameters) const override {
-            return pow(parameters[0]+5, 2)+pow(parameters[1]-7, 2)+5;
-        }
+  MeasureType
+  GetValue(const ParametersType & parameters) const override
+  {
+    return pow(parameters[0] + 5, 2) + pow(parameters[1] - 7, 2) + 5;
+  }
 
-        void GetDerivative(const ParametersType &,
-                           DerivativeType & /*derivative*/ ) const override {
-            throw itk::ExceptionObject( __FILE__, __LINE__, "No derivative is available for this cost function.");
-        }
+  void
+  GetDerivative(const ParametersType &, DerivativeType & /*derivative*/) const override
+  {
+    throw itk::ExceptionObject(__FILE__, __LINE__, "No derivative is available for this cost function.");
+  }
 
-    protected:
-        ExampleCostFunction2()= default;;
-        ~ExampleCostFunction2() override= default;;
+protected:
+  ExampleCostFunction2() = default;
+  ;
+  ~ExampleCostFunction2() override = default;
+  ;
 
-    private:
-        ExampleCostFunction2(const Self &) = delete; //purposely not implemented
-        void operator = (const Self &) = delete; //purposely not implemented
-    };
+private:
+  ExampleCostFunction2(const Self &) = delete; // purposely not implemented
+  void
+  operator=(const Self &) = delete; // purposely not implemented
+};
 
 } // end namespace itk
 

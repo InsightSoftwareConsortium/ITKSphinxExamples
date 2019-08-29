@@ -19,30 +19,31 @@
 #include "itkImage.h"
 #include "itkImageFileReader.h"
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = double;
 
-  using ImageType = itk::Image< PixelType, Dimension >;
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ImageType = itk::Image<PixelType, Dimension>;
+  using ReaderType = itk::ImageFileReader<ImageType>;
 
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( "nofile.png" );
+  reader->SetFileName("nofile.png");
 
   try
-    {
+  {
     reader->Update();
-    }
-  catch( itk::ExceptionObject & err )
-    {
+  }
+  catch (itk::ExceptionObject & err)
+  {
     std::cerr << "ExceptionObject caught !" << std::endl;
     std::cerr << err << std::endl;
 
     // Since the goal of the example is to catch the exception,
     // we declare this a success.
     return EXIT_SUCCESS;
-    }
+  }
 
   // Since the goal of the example is to catch the exception,
   // the example fails if it is not caught.

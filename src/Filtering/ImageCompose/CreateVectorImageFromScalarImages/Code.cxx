@@ -21,47 +21,49 @@
 
 namespace
 {
-    using VectorImageType = itk::VectorImage<unsigned char, 2>;
-    using ScalarImageType = itk::Image<unsigned char, 2>;
+using VectorImageType = itk::VectorImage<unsigned char, 2>;
+using ScalarImageType = itk::Image<unsigned char, 2>;
+} // namespace
+
+static void
+CreateImage(ScalarImageType::Pointer image);
+
+int
+main(int, char *[])
+{
+  ScalarImageType::Pointer image0 = ScalarImageType::New();
+  CreateImage(image0);
+
+  ScalarImageType::Pointer image1 = ScalarImageType::New();
+  CreateImage(image1);
+
+  ScalarImageType::Pointer image2 = ScalarImageType::New();
+  CreateImage(image2);
+
+  using ImageToVectorImageFilterType = itk::ComposeImageFilter<ScalarImageType>;
+  ImageToVectorImageFilterType::Pointer imageToVectorImageFilter = ImageToVectorImageFilterType::New();
+  imageToVectorImageFilter->SetInput(0, image0);
+  imageToVectorImageFilter->SetInput(1, image1);
+  imageToVectorImageFilter->SetInput(2, image2);
+  imageToVectorImageFilter->Update();
+
+  VectorImageType::Pointer vectorImage = imageToVectorImageFilter->GetOutput();
+
+  return EXIT_SUCCESS;
 }
 
-static void CreateImage(ScalarImageType::Pointer image);
-
-int main(int, char *[])
+void
+CreateImage(ScalarImageType::Pointer image)
 {
-    ScalarImageType::Pointer image0 = ScalarImageType::New();
-    CreateImage(image0);
+  ScalarImageType::IndexType start;
+  start.Fill(0);
 
-    ScalarImageType::Pointer image1 = ScalarImageType::New();
-    CreateImage(image1);
+  ScalarImageType::SizeType size;
+  size.Fill(100);
 
-    ScalarImageType::Pointer image2 = ScalarImageType::New();
-    CreateImage(image2);
+  ScalarImageType::RegionType region(start, size);
 
-    using ImageToVectorImageFilterType = itk::ComposeImageFilter<ScalarImageType>;
-    ImageToVectorImageFilterType::Pointer imageToVectorImageFilter = ImageToVectorImageFilterType::New();
-    imageToVectorImageFilter->SetInput(0, image0);
-    imageToVectorImageFilter->SetInput(1, image1);
-    imageToVectorImageFilter->SetInput(2, image2);
-    imageToVectorImageFilter->Update();
-
-    VectorImageType::Pointer vectorImage = imageToVectorImageFilter->GetOutput();
-
-    return EXIT_SUCCESS;
-}
-
-void CreateImage(ScalarImageType::Pointer image)
-{
-    ScalarImageType::IndexType start;
-    start.Fill(0);
-
-    ScalarImageType::SizeType size;
-    size.Fill(100);
-
-    ScalarImageType::RegionType region(start,size);
-
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(0);
-
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(0);
 }

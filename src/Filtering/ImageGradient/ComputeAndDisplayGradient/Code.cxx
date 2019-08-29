@@ -36,35 +36,36 @@
 #include "vtkGlyph3DMapper.h"
 #include "vtkArrowSource.h"
 
-static void VectorImageToVTKImage(itk::Image<itk::CovariantVector<float, 2>, 2>::Pointer vectorImage, vtkImageData* VTKImage);
+static void
+VectorImageToVTKImage(itk::Image<itk::CovariantVector<float, 2>, 2>::Pointer vectorImage, vtkImageData * VTKImage);
 
-int main(int argc, char * argv[])
+int
+main(int argc, char * argv[])
 {
   // Verify command line arguments
-  if( argc < 2 )
-    {
+  if (argc < 2)
+  {
     std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0] << "inputImageFile" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   // Parse command line arguments
   std::string inputFilename = argv[1];
 
   // Setup types
-  using FloatImageType = itk::Image< float,  2 >;
-  using UnsignedCharImageType = itk::Image< unsigned char, 2 >;
+  using FloatImageType = itk::Image<float, 2>;
+  using UnsignedCharImageType = itk::Image<unsigned char, 2>;
 
   // Create and setup a reader
-  using ReaderType = itk::ImageFileReader< UnsignedCharImageType >;
+  using ReaderType = itk::ImageFileReader<UnsignedCharImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFilename.c_str() );
+  reader->SetFileName(inputFilename.c_str());
 
   // Create and setup a gradient filter
-  using GradientFilterType = itk::GradientImageFilter<
-      UnsignedCharImageType, float>;
+  using GradientFilterType = itk::GradientImageFilter<UnsignedCharImageType, float>;
   GradientFilterType::Pointer gradientFilter = GradientFilterType::New();
-  gradientFilter->SetInput( reader->GetOutput() );
+  gradientFilter->SetInput(reader->GetOutput());
   gradientFilter->Update();
 
   // Visualize original image
@@ -72,60 +73,50 @@ int main(int argc, char * argv[])
   ConnectorType::Pointer originalConnector = ConnectorType::New();
   originalConnector->SetInput(reader->GetOutput());
 
-  vtkSmartPointer<vtkImageActor> originalActor =
-    vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();
   originalActor->SetInput(originalConnector->GetOutput());
 
   // Visualize gradient
-  vtkSmartPointer<vtkImageData> gradientImage =
-    vtkSmartPointer<vtkImageData>::New();
+  vtkSmartPointer<vtkImageData> gradientImage = vtkSmartPointer<vtkImageData>::New();
   VectorImageToVTKImage(gradientFilter->GetOutput(), gradientImage);
 
-  vtkSmartPointer<vtkArrowSource> arrowSource =
-    vtkSmartPointer<vtkArrowSource>::New();
+  vtkSmartPointer<vtkArrowSource> arrowSource = vtkSmartPointer<vtkArrowSource>::New();
 
-  vtkSmartPointer<vtkGlyph3DMapper> gradientMapper =
-    vtkSmartPointer<vtkGlyph3DMapper>::New();
+  vtkSmartPointer<vtkGlyph3DMapper> gradientMapper = vtkSmartPointer<vtkGlyph3DMapper>::New();
   gradientMapper->ScalingOn();
   gradientMapper->SetScaleFactor(.05);
   gradientMapper->SetSourceConnection(arrowSource->GetOutputPort());
   gradientMapper->SetInputConnection(gradientImage->GetProducerPort());
   gradientMapper->Update();
 
-  vtkSmartPointer<vtkActor> gradientActor =
-    vtkSmartPointer<vtkActor>::New();
+  vtkSmartPointer<vtkActor> gradientActor = vtkSmartPointer<vtkActor>::New();
   gradientActor->SetMapper(gradientMapper);
 
   // Visualize
   // Define viewport ranges
   // (xmin, ymin, xmax, ymax)
-  double leftViewport[4] = {0.0, 0.0, 0.5, 1.0};
-  double rightViewport[4] = {0.5, 0.0, 1.0, 1.0};
+  double leftViewport[4] = { 0.0, 0.0, 0.5, 1.0 };
+  double rightViewport[4] = { 0.5, 0.0, 1.0, 1.0 };
 
   // Setup both renderers
-  vtkSmartPointer<vtkRenderWindow> renderWindow =
-    vtkSmartPointer<vtkRenderWindow>::New();
-  renderWindow->SetSize(600,300);
+  vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
+  renderWindow->SetSize(600, 300);
 
-  vtkSmartPointer<vtkRenderer> leftRenderer =
-    vtkSmartPointer<vtkRenderer>::New();
+  vtkSmartPointer<vtkRenderer> leftRenderer = vtkSmartPointer<vtkRenderer>::New();
   renderWindow->AddRenderer(leftRenderer);
   leftRenderer->SetViewport(leftViewport);
 
-  vtkSmartPointer<vtkRenderer> rightRenderer =
-    vtkSmartPointer<vtkRenderer>::New();
+  vtkSmartPointer<vtkRenderer> rightRenderer = vtkSmartPointer<vtkRenderer>::New();
   renderWindow->AddRenderer(rightRenderer);
   rightRenderer->SetViewport(rightViewport);
-  rightRenderer->SetBackground(1,0,0);
+  rightRenderer->SetBackground(1, 0, 0);
 
   leftRenderer->AddActor(originalActor);
   rightRenderer->AddActor(gradientActor);
 
-  vtkSmartPointer<vtkRenderWindowInteractor> renderWindowInteractor =
-    vtkSmartPointer<vtkRenderWindowInteractor>::New();
+  vtkSmartPointer<vtkRenderWindowInteractor> renderWindowInteractor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
 
-  vtkSmartPointer<vtkInteractorStyleImage> style =
-    vtkSmartPointer<vtkInteractorStyleImage>::New();
+  vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
   renderWindowInteractor->SetInteractorStyle(style);
 
   renderWindowInteractor->SetRenderWindow(renderWindow);
@@ -136,23 +127,23 @@ int main(int argc, char * argv[])
   return EXIT_SUCCESS;
 }
 
-void VectorImageToVTKImage(itk::Image<itk::CovariantVector<float, 2>, 2>::Pointer vectorImage, vtkImageData* VTKImage)
+void
+VectorImageToVTKImage(itk::Image<itk::CovariantVector<float, 2>, 2>::Pointer vectorImage, vtkImageData * VTKImage)
 {
   itk::Image<itk::CovariantVector<float, 2>, 2>::RegionType region = vectorImage->GetLargestPossibleRegion();
-  itk::Image<itk::CovariantVector<float, 2>, 2>::SizeType imageSize = region.GetSize();
-  VTKImage->SetExtent(0, imageSize[0] -1, 0, imageSize[1] - 1, 0, 0);
+  itk::Image<itk::CovariantVector<float, 2>, 2>::SizeType   imageSize = region.GetSize();
+  VTKImage->SetExtent(0, imageSize[0] - 1, 0, imageSize[1] - 1, 0, 0);
 
-  vtkSmartPointer<vtkFloatArray> vectors =
-    vtkSmartPointer<vtkFloatArray>::New();
+  vtkSmartPointer<vtkFloatArray> vectors = vtkSmartPointer<vtkFloatArray>::New();
   vectors->SetNumberOfComponents(3);
   vectors->SetNumberOfTuples(imageSize[0] * imageSize[1]);
   vectors->SetName("GradientVectors");
 
   int counter = 0;
-  for(unsigned int j = 0; j < imageSize[1]; j++)
+  for (unsigned int j = 0; j < imageSize[1]; j++)
+  {
+    for (unsigned int i = 0; i < imageSize[0]; i++)
     {
-    for(unsigned int i = 0; i < imageSize[0]; i++)
-      {
       itk::Image<itk::CovariantVector<float, 2>, 2>::IndexType index;
       index[0] = i;
       index[1] = j;
@@ -165,9 +156,9 @@ void VectorImageToVTKImage(itk::Image<itk::CovariantVector<float, 2>, 2>::Pointe
       v[2] = 0;
       vectors->InsertTupleValue(counter, v);
       counter++;
-      }
     }
-  //std::cout << region << std::endl;
+  }
+  // std::cout << region << std::endl;
 
   VTKImage->GetPointData()->SetVectors(vectors);
 }

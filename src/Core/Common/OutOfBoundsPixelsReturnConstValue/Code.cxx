@@ -33,112 +33,107 @@
 #include "vtkRenderer.h"
 
 using ImageType = itk::Image<unsigned char, 2>;
-static void CreateImage(ImageType::Pointer image);
+static void
+CreateImage(ImageType::Pointer image);
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
-    ImageType::Pointer image = ImageType::New();
-    CreateImage(image);
+  ImageType::Pointer image = ImageType::New();
+  CreateImage(image);
 
-    ImageType::SizeType regionSize;
-    regionSize[0] = 50;
-    regionSize[1] = 1;
+  ImageType::SizeType regionSize;
+  regionSize[0] = 50;
+  regionSize[1] = 1;
 
-    ImageType::IndexType regionIndex;
-    regionIndex[0] = 0;
-    regionIndex[1] = 0;
+  ImageType::IndexType regionIndex;
+  regionIndex[0] = 0;
+  regionIndex[1] = 0;
 
-    ImageType::RegionType region;
-    region.SetSize(regionSize);
-    region.SetIndex(regionIndex);
+  ImageType::RegionType region;
+  region.SetSize(regionSize);
+  region.SetIndex(regionIndex);
 
-    ImageType::SizeType radius;
-    radius[0] = 1;
-    radius[1] = 1;
+  ImageType::SizeType radius;
+  radius[0] = 1;
+  radius[1] = 1;
 
-    using BoundaryConditionType = itk::ConstantBoundaryCondition<ImageType>;
-    itk::ConstNeighborhoodIterator<ImageType, BoundaryConditionType> iterator(radius, image,region);
+  using BoundaryConditionType = itk::ConstantBoundaryCondition<ImageType>;
+  itk::ConstNeighborhoodIterator<ImageType, BoundaryConditionType> iterator(radius, image, region);
 
-    while(!iterator.IsAtEnd())
+  while (!iterator.IsAtEnd())
+  {
+    for (unsigned int i = 0; i < 9; i++)
     {
-        for(unsigned int i = 0; i < 9; i++)
-        {
-            ImageType::IndexType index = iterator.GetIndex(i);
+      ImageType::IndexType index = iterator.GetIndex(i);
 
-            std::cout << "Index: " << index
-                      << " Pixel: " << i << " = "
-                      << (int)iterator.GetPixel(i) << std::endl;
-        }
-        ++iterator;
+      std::cout << "Index: " << index << " Pixel: " << i << " = " << (int)iterator.GetPixel(i) << std::endl;
     }
+    ++iterator;
+  }
 
-    // Visualize
-    using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-    ConnectorType::Pointer connector = ConnectorType::New();
-    connector->SetInput(image);
+  // Visualize
+  using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
+  ConnectorType::Pointer connector = ConnectorType::New();
+  connector->SetInput(image);
 
-    vtkSmartPointer<vtkImageActor> actor =
-            vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> actor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
-    actor->SetInput(connector->GetOutput());
+  actor->SetInput(connector->GetOutput());
 #else
-    connector->Update();
+  connector->Update();
   actor->GetMapper()->SetInputData(connector->GetOutput());
 #endif
 
-    vtkSmartPointer<vtkRenderWindow> renderWindow =
-            vtkSmartPointer<vtkRenderWindow>::New();
+  vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
 
-    vtkSmartPointer<vtkRenderWindowInteractor> interactor =
-            vtkSmartPointer<vtkRenderWindowInteractor>::New();
-    interactor->SetRenderWindow(renderWindow);
+  vtkSmartPointer<vtkRenderWindowInteractor> interactor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+  interactor->SetRenderWindow(renderWindow);
 
-    vtkSmartPointer<vtkRenderer> renderer =
-            vtkSmartPointer<vtkRenderer>::New();
-    renderWindow->AddRenderer(renderer);
+  vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
+  renderWindow->AddRenderer(renderer);
 
-    renderer->AddActor(actor);
-    renderer->ResetCamera();
+  renderer->AddActor(actor);
+  renderer->ResetCamera();
 
-    renderWindow->Render();
+  renderWindow->Render();
 
-    vtkSmartPointer<vtkInteractorStyleImage> style =
-            vtkSmartPointer<vtkInteractorStyleImage>::New();
+  vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
 
-    interactor->SetInteractorStyle(style);
+  interactor->SetInteractorStyle(style);
 
-    interactor->Start();
+  interactor->Start();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage(ImageType::Pointer image)
+void
+CreateImage(ImageType::Pointer image)
 {
-    // Create an image with 2 connected components
-    ImageType::RegionType region;
-    ImageType::IndexType start;
-    start[0] = 0;
-    start[1] = 0;
+  // Create an image with 2 connected components
+  ImageType::RegionType region;
+  ImageType::IndexType  start;
+  start[0] = 0;
+  start[1] = 0;
 
-    ImageType::SizeType size;
-    unsigned int NumRows = 5;
-    unsigned int NumCols = 5;
-    size[0] = NumRows;
-    size[1] = NumCols;
+  ImageType::SizeType size;
+  unsigned int        NumRows = 5;
+  unsigned int        NumCols = 5;
+  size[0] = NumRows;
+  size[1] = NumCols;
 
-    region.SetSize(size);
-    region.SetIndex(start);
+  region.SetSize(size);
+  region.SetIndex(start);
 
-    image->SetRegions(region);
-    image->Allocate();
+  image->SetRegions(region);
+  image->Allocate();
 
-    itk::ImageRegionIterator<ImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
 
-    // Set all pixels to white
-    while(!imageIterator.IsAtEnd())
-    {
-        imageIterator.Set(255);
-        ++imageIterator;
-    }
+  // Set all pixels to white
+  while (!imageIterator.IsAtEnd())
+  {
+    imageIterator.Set(255);
+    ++imageIterator;
+  }
 }
-

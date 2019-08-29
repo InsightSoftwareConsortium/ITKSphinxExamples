@@ -4,12 +4,13 @@
 
 #include "ImageSource.h"
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   // Setup types
   using ImageType = itk::Image<unsigned char, 2>;
   ImageType::Pointer image = ImageType::New();
-  
+
   // Create and the filter
   using FilterType = itk::ImageFilter<ImageType>;
   FilterType::Pointer filter = FilterType::New();

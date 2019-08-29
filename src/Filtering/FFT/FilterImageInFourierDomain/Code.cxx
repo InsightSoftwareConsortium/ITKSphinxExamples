@@ -25,123 +25,116 @@
 #include "itkMultiplyImageFilter.h"
 #include "itkInverseFFTImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc < 3 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc < 3)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName> <OutputFileName>";
     std::cerr << " [Sigma]";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
-  double sigmaValue = 0.5;
-  if( argc > 3 )
-    {
-    sigmaValue = std::stod( argv[3] );
-    }
+  double       sigmaValue = 0.5;
+  if (argc > 3)
+  {
+    sigmaValue = std::stod(argv[3]);
+  }
 
   constexpr unsigned int Dimension = 3;
 
   using PixelType = float;
-  using RealImageType = itk::Image< PixelType, Dimension >;
+  using RealImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< RealImageType >;
+  using ReaderType = itk::ImageFileReader<RealImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFileName );
+  reader->SetFileName(inputFileName);
 
   // Some FFT filter implementations, like VNL's, need the image size to be a
   // multiple of small prime numbers.
-  using PadFilterType = itk::WrapPadImageFilter< RealImageType, RealImageType >;
+  using PadFilterType = itk::WrapPadImageFilter<RealImageType, RealImageType>;
   PadFilterType::Pointer padFilter = PadFilterType::New();
-  padFilter->SetInput( reader->GetOutput() );
+  padFilter->SetInput(reader->GetOutput());
   PadFilterType::SizeType padding;
   // Input size is [48, 62, 42].  Pad to [48, 64, 48].
   padding[0] = 0;
   padding[1] = 2;
   padding[2] = 6;
-  padFilter->SetPadUpperBound( padding );
+  padFilter->SetPadUpperBound(padding);
 
-  using ForwardFFTFilterType = itk::ForwardFFTImageFilter< RealImageType >;
+  using ForwardFFTFilterType = itk::ForwardFFTImageFilter<RealImageType>;
   using ComplexImageType = ForwardFFTFilterType::OutputImageType;
   ForwardFFTFilterType::Pointer forwardFFTFilter = ForwardFFTFilterType::New();
-  forwardFFTFilter->SetInput( padFilter->GetOutput() );
+  forwardFFTFilter->SetInput(padFilter->GetOutput());
 
   try
-    {
+  {
     forwardFFTFilter->UpdateOutputInformation();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   // A Gaussian is used here to create a low-pass filter.
-  using GaussianSourceType = itk::GaussianImageSource< RealImageType >;
+  using GaussianSourceType = itk::GaussianImageSource<RealImageType>;
   GaussianSourceType::Pointer gaussianSource = GaussianSourceType::New();
-  gaussianSource->SetNormalized( true );
-  ComplexImageType::ConstPointer transformedInput
-    = forwardFFTFilter->GetOutput();
-  const ComplexImageType::RegionType inputRegion(
-    transformedInput->GetLargestPossibleRegion() );
-  const ComplexImageType::SizeType inputSize
-    = inputRegion.GetSize();
-  const ComplexImageType::SpacingType inputSpacing =
-    transformedInput->GetSpacing();
-  const ComplexImageType::PointType inputOrigin =
-    transformedInput->GetOrigin();
-  const ComplexImageType::DirectionType inputDirection =
-    transformedInput->GetDirection();
-  gaussianSource->SetSize( inputSize );
-  gaussianSource->SetSpacing( inputSpacing );
-  gaussianSource->SetOrigin( inputOrigin );
-  gaussianSource->SetDirection( inputDirection );
+  gaussianSource->SetNormalized(true);
+  ComplexImageType::ConstPointer        transformedInput = forwardFFTFilter->GetOutput();
+  const ComplexImageType::RegionType    inputRegion(transformedInput->GetLargestPossibleRegion());
+  const ComplexImageType::SizeType      inputSize = inputRegion.GetSize();
+  const ComplexImageType::SpacingType   inputSpacing = transformedInput->GetSpacing();
+  const ComplexImageType::PointType     inputOrigin = transformedInput->GetOrigin();
+  const ComplexImageType::DirectionType inputDirection = transformedInput->GetDirection();
+  gaussianSource->SetSize(inputSize);
+  gaussianSource->SetSpacing(inputSpacing);
+  gaussianSource->SetOrigin(inputOrigin);
+  gaussianSource->SetDirection(inputDirection);
   GaussianSourceType::ArrayType sigma;
   GaussianSourceType::PointType mean;
-  sigma.Fill( sigmaValue );
-  for( unsigned int ii = 0; ii < Dimension; ++ii )
-    {
+  sigma.Fill(sigmaValue);
+  for (unsigned int ii = 0; ii < Dimension; ++ii)
+  {
     const double halfLength = inputSize[ii] * inputSpacing[ii] / 2.0;
     sigma[ii] *= halfLength;
     mean[ii] = inputOrigin[ii] + halfLength;
-    }
+  }
   mean = inputDirection * mean;
-  gaussianSource->SetSigma( sigma );
-  gaussianSource->SetMean( mean );
+  gaussianSource->SetSigma(sigma);
+  gaussianSource->SetMean(mean);
 
-  using FFTShiftFilterType = itk::FFTShiftImageFilter< RealImageType, RealImageType >;
+  using FFTShiftFilterType = itk::FFTShiftImageFilter<RealImageType, RealImageType>;
   FFTShiftFilterType::Pointer fftShiftFilter = FFTShiftFilterType::New();
-  fftShiftFilter->SetInput( gaussianSource->GetOutput() );
+  fftShiftFilter->SetInput(gaussianSource->GetOutput());
 
-  using MultiplyFilterType = itk::MultiplyImageFilter< ComplexImageType,
-                                    RealImageType,
-                                    ComplexImageType >;
+  using MultiplyFilterType = itk::MultiplyImageFilter<ComplexImageType, RealImageType, ComplexImageType>;
   MultiplyFilterType::Pointer multiplyFilter = MultiplyFilterType::New();
-  multiplyFilter->SetInput1( forwardFFTFilter->GetOutput() );
-  multiplyFilter->SetInput2( fftShiftFilter->GetOutput() );
+  multiplyFilter->SetInput1(forwardFFTFilter->GetOutput());
+  multiplyFilter->SetInput2(fftShiftFilter->GetOutput());
 
-  using InverseFilterType = itk::InverseFFTImageFilter< ComplexImageType, RealImageType >;
+  using InverseFilterType = itk::InverseFFTImageFilter<ComplexImageType, RealImageType>;
   InverseFilterType::Pointer inverseFFTFilter = InverseFilterType::New();
-  inverseFFTFilter->SetInput( multiplyFilter->GetOutput() );
+  inverseFFTFilter->SetInput(multiplyFilter->GetOutput());
 
-  using WriterType = itk::ImageFileWriter< RealImageType >;
+  using WriterType = itk::ImageFileWriter<RealImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( inverseFFTFilter->GetOutput() );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(inverseFFTFilter->GetOutput());
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

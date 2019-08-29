@@ -22,24 +22,25 @@
 #include <iostream>
 #include <string>
 
-int main(int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
   std::string outputFilename;
-  if(argc > 1)
-    {
+  if (argc > 1)
+  {
     outputFilename = argv[1];
-    }
+  }
   else
-    {
+  {
     outputFilename = "test.png";
-    }
+  }
 
   using PixelType = unsigned char;
   constexpr unsigned int Dimension = 2;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
   ImageType::RegionType region;
-  ImageType::IndexType start;
+  ImageType::IndexType  start;
   start[0] = 0;
   start[1] = 0;
 
@@ -58,20 +59,20 @@ int main(int argc, char *argv[])
   ind[0] = 10;
   ind[1] = 10;
 
-  using WriterType = itk::ImageFileWriter< ImageType  >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName(outputFilename);
   writer->SetInput(image);
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

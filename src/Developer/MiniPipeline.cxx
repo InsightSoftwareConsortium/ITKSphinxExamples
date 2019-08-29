@@ -5,9 +5,11 @@
 #include "ImageFilterY.h"
 
 template <typename TImage>
-static void CreateImage(TImage* const image);
+static void
+CreateImage(TImage * const image);
 
-int main(int, char*[])
+int
+main(int, char *[])
 {
   // Setup types
   using ImageType = itk::Image<unsigned char, 2>;
@@ -25,8 +27,8 @@ int main(int, char*[])
 
   std::cout << "Input:" << std::endl;
   std::cout << filter->GetOutput()->GetLargestPossibleRegion() << std::endl;
-  
-  using WriterType = itk::ImageFileWriter< ImageType  >;
+
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName("Output.png");
   writer->SetInput(filter->GetOutput());
@@ -36,14 +38,15 @@ int main(int, char*[])
 }
 
 template <typename TImage>
-void CreateImage(TImage* const image)
+void
+CreateImage(TImage * const image)
 {
   // Create an image with 2 connected components
-  typename TImage::IndexType corner = {{0,0}};
+  typename TImage::IndexType corner = { { 0, 0 } };
 
-  unsigned int NumRows = 200;
-  unsigned int NumCols = 300;
-  typename TImage::SizeType size = {{NumRows, NumCols}};
+  unsigned int              NumRows = 200;
+  unsigned int              NumCols = 300;
+  typename TImage::SizeType size = { { NumRows, NumCols } };
 
   typename TImage::RegionType region(corner, size);
 
@@ -51,9 +54,9 @@ void CreateImage(TImage* const image)
   image->Allocate();
 
   // Make another square
-  for(unsigned int r = 40; r < 100; r++)
+  for (unsigned int r = 40; r < 100; r++)
   {
-    for(unsigned int c = 40; c < 100; c++)
+    for (unsigned int c = 40; c < 100; c++)
     {
       typename TImage::IndexType pixelIndex;
       pixelIndex[0] = r;

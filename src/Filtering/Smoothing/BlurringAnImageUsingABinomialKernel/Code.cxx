@@ -22,49 +22,48 @@
 #include "itkRescaleIntensityImageFilter.h"
 #include "itkBinomialBlurImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc < 4 )
-    {
+  if (argc < 4)
+  {
     std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0] << "  inputImageFile  outputImageFile  numberOfRepetitions" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   using InputPixelType = float;
   using OutputPixelType = float;
-  using InputImageType = itk::Image< InputPixelType,  2 >;
-  using OutputImageType = itk::Image< OutputPixelType, 2 >;
+  using InputImageType = itk::Image<InputPixelType, 2>;
+  using OutputImageType = itk::Image<OutputPixelType, 2>;
 
 
-  using FilterType = itk::BinomialBlurImageFilter<
-                 InputImageType, OutputImageType >;
+  using FilterType = itk::BinomialBlurImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
 
-  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
   ReaderType::Pointer reader = ReaderType::New();
 
-  reader->SetFileName( argv[1] );
-  const unsigned int repetitions = std::stoi( argv[3] );
-  filter->SetInput( reader->GetOutput() );
-  filter->SetRepetitions( repetitions );
+  reader->SetFileName(argv[1]);
+  const unsigned int repetitions = std::stoi(argv[3]);
+  filter->SetInput(reader->GetOutput());
+  filter->SetRepetitions(repetitions);
   filter->Update();
 
   using WritePixelType = unsigned char;
-  using WriteImageType = itk::Image< WritePixelType, 2 >;
-  using RescaleFilterType = itk::RescaleIntensityImageFilter<
-               OutputImageType, WriteImageType >;
+  using WriteImageType = itk::Image<WritePixelType, 2>;
+  using RescaleFilterType = itk::RescaleIntensityImageFilter<OutputImageType, WriteImageType>;
 
   RescaleFilterType::Pointer rescaler = RescaleFilterType::New();
-  rescaler->SetOutputMinimum(   0 );
-  rescaler->SetOutputMaximum( 255 );
+  rescaler->SetOutputMinimum(0);
+  rescaler->SetOutputMaximum(255);
 
-  using WriterType = itk::ImageFileWriter< WriteImageType >;
+  using WriterType = itk::ImageFileWriter<WriteImageType>;
   WriterType::Pointer writer = WriterType::New();
 
-  writer->SetFileName( argv[2] );
-  rescaler->SetInput( filter->GetOutput() );
-  writer->SetInput( rescaler->GetOutput() );
+  writer->SetFileName(argv[2]);
+  rescaler->SetInput(filter->GetOutput());
+  writer->SetInput(rescaler->GetOutput());
   writer->Update();
 
   return EXIT_SUCCESS;

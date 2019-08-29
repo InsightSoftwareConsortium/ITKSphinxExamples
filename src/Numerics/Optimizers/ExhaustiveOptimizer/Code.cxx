@@ -29,120 +29,123 @@
 class CommandIterationUpdate : public itk::Command
 {
 public:
-    using Self = CommandIterationUpdate;
-    using Superclass = itk::Command;
-    using Pointer = itk::SmartPointer<Self>;
-    itkNewMacro( Self );
+  using Self = CommandIterationUpdate;
+  using Superclass = itk::Command;
+  using Pointer = itk::SmartPointer<Self>;
+  itkNewMacro(Self);
 
 protected:
-    CommandIterationUpdate() = default;;
+  CommandIterationUpdate() = default;
+  ;
 
 public:
-    using OptimizerType = itk::ExhaustiveOptimizerv4<double>;
-    using OptimizerPointer = const OptimizerType *;
+  using OptimizerType = itk::ExhaustiveOptimizerv4<double>;
+  using OptimizerPointer = const OptimizerType *;
 
-    void Execute(itk::Object *caller, const itk::EventObject & event) override
-    {
-        Execute( (const itk::Object *) caller, event);
-    }
+  void
+  Execute(itk::Object * caller, const itk::EventObject & event) override
+  {
+    Execute((const itk::Object *)caller, event);
+  }
 
-    void Execute(const itk::Object * object, const itk::EventObject & event) override
+  void
+  Execute(const itk::Object * object, const itk::EventObject & event) override
+  {
+    auto optimizer = static_cast<OptimizerPointer>(object);
+    if (!(itk::IterationEvent().CheckEvent(&event)))
     {
-        auto optimizer = static_cast< OptimizerPointer >( object );
-        if( !(itk::IterationEvent().CheckEvent( &event )) )
-        {
-            return;
-        }
-        std::cout << "Iteration: ";
-        std::cout << optimizer->GetCurrentIteration() << "   ";
-        std::cout << optimizer->GetCurrentIndex() << "   ";
-        std::cout << optimizer->GetCurrentValue() << "   ";
-        std::cout << optimizer->GetCurrentPosition() << "   ";
-        std::cout << std::endl;
+      return;
     }
+    std::cout << "Iteration: ";
+    std::cout << optimizer->GetCurrentIteration() << "   ";
+    std::cout << optimizer->GetCurrentIndex() << "   ";
+    std::cout << optimizer->GetCurrentValue() << "   ";
+    std::cout << optimizer->GetCurrentPosition() << "   ";
+    std::cout << std::endl;
+  }
 };
 
-int main (int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
-    if (argc < 3)
-    {
-        std::cout << "Usage: " << argv[0] << " fixedImage movingImage" << std::endl;
-        return EXIT_FAILURE;
-    }
-    using FixedImageType = itk::Image<double, 2>;
-    using MovingImageType = itk::Image<double, 2>;
-    using FixedImageReaderType = itk::ImageFileReader<FixedImageType>;
-    using MovingImageReaderType = itk::ImageFileReader<MovingImageType>;
-    using TransformType = itk::Euler2DTransform< double >;
-    using OptimizerType = itk::ExhaustiveOptimizerv4< double >;
-    using MetricType = itk::MeanSquaresImageToImageMetricv4< FixedImageType, MovingImageType >;
-    using TransformInitializerType = itk::CenteredTransformInitializer< TransformType, FixedImageType,  MovingImageType >;
-    using RegistrationType = itk::ImageRegistrationMethodv4< FixedImageType, MovingImageType, TransformType >;
+  if (argc < 3)
+  {
+    std::cout << "Usage: " << argv[0] << " fixedImage movingImage" << std::endl;
+    return EXIT_FAILURE;
+  }
+  using FixedImageType = itk::Image<double, 2>;
+  using MovingImageType = itk::Image<double, 2>;
+  using FixedImageReaderType = itk::ImageFileReader<FixedImageType>;
+  using MovingImageReaderType = itk::ImageFileReader<MovingImageType>;
+  using TransformType = itk::Euler2DTransform<double>;
+  using OptimizerType = itk::ExhaustiveOptimizerv4<double>;
+  using MetricType = itk::MeanSquaresImageToImageMetricv4<FixedImageType, MovingImageType>;
+  using TransformInitializerType = itk::CenteredTransformInitializer<TransformType, FixedImageType, MovingImageType>;
+  using RegistrationType = itk::ImageRegistrationMethodv4<FixedImageType, MovingImageType, TransformType>;
 
-    FixedImageReaderType::Pointer     fixedImageReader    = FixedImageReaderType::New();
-    MovingImageReaderType::Pointer    movingImageReader    = MovingImageReaderType::New();
-    FixedImageType::Pointer           fixedImage    = FixedImageType::New();
-    MovingImageType::Pointer          movingImage    = MovingImageType::New();
-    TransformType::Pointer            transform    = TransformType::New();
-    MetricType::Pointer               metric       = MetricType::New();
-    OptimizerType::Pointer            optimizer    = OptimizerType::New();
-    RegistrationType::Pointer         registration = RegistrationType::New();
-    TransformInitializerType::Pointer initializer  = TransformInitializerType::New();
+  FixedImageReaderType::Pointer     fixedImageReader = FixedImageReaderType::New();
+  MovingImageReaderType::Pointer    movingImageReader = MovingImageReaderType::New();
+  FixedImageType::Pointer           fixedImage = FixedImageType::New();
+  MovingImageType::Pointer          movingImage = MovingImageType::New();
+  TransformType::Pointer            transform = TransformType::New();
+  MetricType::Pointer               metric = MetricType::New();
+  OptimizerType::Pointer            optimizer = OptimizerType::New();
+  RegistrationType::Pointer         registration = RegistrationType::New();
+  TransformInitializerType::Pointer initializer = TransformInitializerType::New();
 
-    fixedImageReader->SetFileName (argv[1]);
-    fixedImageReader->Update();
-    fixedImage = fixedImageReader->GetOutput();
+  fixedImageReader->SetFileName(argv[1]);
+  fixedImageReader->Update();
+  fixedImage = fixedImageReader->GetOutput();
 
-    movingImageReader->SetFileName (argv[2]);
-    movingImageReader->Update();
-    movingImage = movingImageReader->GetOutput();
+  movingImageReader->SetFileName(argv[2]);
+  movingImageReader->Update();
+  movingImage = movingImageReader->GetOutput();
 
-    // Create the Command observer and register it with the optimizer.
-    //
-    CommandIterationUpdate::Pointer observer = CommandIterationUpdate::New();
-    optimizer->AddObserver( itk::IterationEvent(), observer );
+  // Create the Command observer and register it with the optimizer.
+  //
+  CommandIterationUpdate::Pointer observer = CommandIterationUpdate::New();
+  optimizer->AddObserver(itk::IterationEvent(), observer);
 
-    unsigned int angles = 12;
-    OptimizerType::StepsType steps( transform->GetNumberOfParameters() );
-    steps[0] = int(angles/2);
-    steps[1] = 0;
-    steps[2] = 0;
-    optimizer->SetNumberOfSteps( steps );
+  unsigned int             angles = 12;
+  OptimizerType::StepsType steps(transform->GetNumberOfParameters());
+  steps[0] = int(angles / 2);
+  steps[1] = 0;
+  steps[2] = 0;
+  optimizer->SetNumberOfSteps(steps);
 
-    OptimizerType::ScalesType scales( transform->GetNumberOfParameters() );
-    scales[0] = 2.0 * itk::Math::pi / angles;
-    scales[1] = 1.0;
-    scales[2] = 1.0;
+  OptimizerType::ScalesType scales(transform->GetNumberOfParameters());
+  scales[0] = 2.0 * itk::Math::pi / angles;
+  scales[1] = 1.0;
+  scales[2] = 1.0;
 
-    optimizer->SetScales( scales );
+  optimizer->SetScales(scales);
 
-    initializer->SetTransform(   transform );
-    initializer->SetFixedImage(  fixedImage );
-    initializer->SetMovingImage( movingImage );
-    initializer->InitializeTransform();
+  initializer->SetTransform(transform);
+  initializer->SetFixedImage(fixedImage);
+  initializer->SetMovingImage(movingImage);
+  initializer->InitializeTransform();
 
-// Initialize registration
-    registration->SetMetric(           metric );
-    registration->SetOptimizer(        optimizer );
-    registration->SetFixedImage(       fixedImage );
-    registration->SetMovingImage(      movingImage );
-    registration->SetInitialTransform( transform );
-    registration->SetNumberOfLevels(   1);
-    try
-    {
-        registration->Update();
-        std::cout << "  MinimumMetricValue: " << optimizer->GetMinimumMetricValue() << std::endl;
-        std::cout << "  MaximumMetricValue: " << optimizer->GetMaximumMetricValue() << std::endl;
-        std::cout << "  MinimumMetricValuePosition: " << optimizer->GetMinimumMetricValuePosition() << std::endl;
-        std::cout << "  MaximumMetricValuePosition: " << optimizer->GetMaximumMetricValuePosition() << std::endl;
-        std::cout << "  StopConditionDescription: " << optimizer->GetStopConditionDescription() << std::endl;
-    }
-    catch( itk::ExceptionObject & err )
-    {
-        std::cerr << "ExceptionObject caught !" << std::endl;
-        std::cerr << err << std::endl;
-        return EXIT_FAILURE;
-    }
-    return EXIT_SUCCESS;
+  // Initialize registration
+  registration->SetMetric(metric);
+  registration->SetOptimizer(optimizer);
+  registration->SetFixedImage(fixedImage);
+  registration->SetMovingImage(movingImage);
+  registration->SetInitialTransform(transform);
+  registration->SetNumberOfLevels(1);
+  try
+  {
+    registration->Update();
+    std::cout << "  MinimumMetricValue: " << optimizer->GetMinimumMetricValue() << std::endl;
+    std::cout << "  MaximumMetricValue: " << optimizer->GetMaximumMetricValue() << std::endl;
+    std::cout << "  MinimumMetricValuePosition: " << optimizer->GetMinimumMetricValuePosition() << std::endl;
+    std::cout << "  MaximumMetricValuePosition: " << optimizer->GetMaximumMetricValuePosition() << std::endl;
+    std::cout << "  StopConditionDescription: " << optimizer->GetStopConditionDescription() << std::endl;
+  }
+  catch (itk::ExceptionObject & err)
+  {
+    std::cerr << "ExceptionObject caught !" << std::endl;
+    std::cerr << err << std::endl;
+    return EXIT_FAILURE;
+  }
+  return EXIT_SUCCESS;
 }
-

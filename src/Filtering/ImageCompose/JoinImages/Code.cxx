@@ -23,9 +23,11 @@
 
 using ImageType = itk::Image<unsigned char, 2>;
 
-static void CreateImage(ImageType::Pointer image, unsigned char value);
+static void
+CreateImage(ImageType::Pointer image, unsigned char value);
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   ImageType::Pointer image1 = ImageType::New();
   CreateImage(image1, 0);
@@ -43,14 +45,15 @@ int main(int, char *[])
   itk::Index<2> index;
   index[0] = 0;
   index[1] = 0;
-  
+
   std::cout << static_cast<int>(joinFilter->GetOutput()->GetPixel(index)[0]) << std::endl;
   std::cout << static_cast<int>(joinFilter->GetOutput()->GetPixel(index)[1]) << std::endl;
 
   return EXIT_SUCCESS;
 }
 
-void CreateImage(ImageType::Pointer image, unsigned char value)
+void
+CreateImage(ImageType::Pointer image, unsigned char value)
 {
   // Create an image
   ImageType::IndexType start;
@@ -59,10 +62,9 @@ void CreateImage(ImageType::Pointer image, unsigned char value)
   ImageType::SizeType size;
   size.Fill(100);
 
-  ImageType::RegionType region(start,size);
+  ImageType::RegionType region(start, size);
 
   image->SetRegions(region);
   image->Allocate();
   image->FillBuffer(value);
-
 }

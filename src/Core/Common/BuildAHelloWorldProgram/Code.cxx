@@ -18,9 +18,10 @@
 
 #include "itkImage.h"
 
-int main( int, char* [] )
+int
+main(int, char *[])
 {
-  using ImageType = itk::Image< unsigned short, 3 >;
+  using ImageType = itk::Image<unsigned short, 3>;
   ImageType::Pointer image = ImageType::New();
 
   std::cout << "ITK Hello World!" << std::endl;

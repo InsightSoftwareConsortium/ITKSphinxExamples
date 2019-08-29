@@ -21,49 +21,49 @@
 #include "itkImageFileWriter.h"
 #include "itkLaplacianRecursiveGaussianImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
-    std::cerr << "Usage: "<< std::endl;
-  std::cerr << argv[0];
-  std::cerr << " <InputFileName> <OutputFileName>";
-  std::cerr << std::endl;
-  return EXIT_FAILURE;
+  if (argc != 3)
+  {
+    std::cerr << "Usage: " << std::endl;
+    std::cerr << argv[0];
+    std::cerr << " <InputFileName> <OutputFileName>";
+    std::cerr << std::endl;
+    return EXIT_FAILURE;
   }
 
   constexpr unsigned int Dimension = 2;
 
   using InputPixelType = unsigned char;
-  using InputImageType = itk::Image< InputPixelType, Dimension >;
+  using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
   reader->Update();
 
   using OutputPixelType = float;
-  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
+  using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using FilterType = itk::LaplacianRecursiveGaussianImageFilter< InputImageType,
-    OutputImageType >;
+  using FilterType = itk::LaplacianRecursiveGaussianImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( reader->GetOutput() );
+  filter->SetInput(reader->GetOutput());
   filter->Update();
 
-  using WriterType = itk::ImageFileWriter< OutputImageType >;
+  using WriterType = itk::ImageFileWriter<OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( argv[2] );
-  writer->SetInput( filter->GetOutput() );
+  writer->SetFileName(argv[2]);
+  writer->SetInput(filter->GetOutput());
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & e )
-    {
+  }
+  catch (itk::ExceptionObject & e)
+  {
     std::cerr << "Error: " << e << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

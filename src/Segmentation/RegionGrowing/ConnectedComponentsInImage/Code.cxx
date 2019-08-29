@@ -31,19 +31,21 @@
 
 using PixelType = unsigned char;
 constexpr size_t Dimension = 3;
-using ImageType = itk::Image< PixelType, Dimension >;
+using ImageType = itk::Image<PixelType, Dimension>;
 
-static void CreateImage(ImageType::Pointer image);
+static void
+CreateImage(ImageType::Pointer image);
 
-int main( int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
   ImageType::Pointer image = ImageType::New();
   CreateImage(image);
 
   using ConnectedFilterType = itk::ConnectedThresholdImageFilter<ImageType, ImageType>;
   ConnectedFilterType::Pointer connectedThreshold = ConnectedFilterType::New();
-  float lower = 95.0;
-  float upper = 105.0;
+  float                        lower = 95.0;
+  float                        upper = 105.0;
   connectedThreshold->SetLower(lower);
   connectedThreshold->SetUpper(upper);
 
@@ -70,8 +72,7 @@ int main( int argc, char *argv[])
   ConnectorType::Pointer connector2 = ConnectorType::New();
   connector2->SetInput(image);
 
-  vtkSmartPointer<vtkImageActor> actor2 =
-    vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> actor2 = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
   actor2->SetInput(connector->GetOutput());
 #else
@@ -83,8 +84,7 @@ int main( int argc, char *argv[])
   ConnectorType::Pointer addConnector = ConnectorType::New();
   addConnector->SetInput(connectedThreshold->GetOutput());
 
-  vtkSmartPointer<vtkImageActor> addActor =
-    vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> addActor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
   addActor->SetInput(connector->GetOutput());
 #else
@@ -93,35 +93,30 @@ int main( int argc, char *argv[])
 #endif
 
   // There will be one render window
-  vtkSmartPointer<vtkRenderWindow> renderWindow =
-    vtkSmartPointer<vtkRenderWindow>::New();
+  vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
   renderWindow->SetSize(900, 300);
 
-  vtkSmartPointer<vtkRenderWindowInteractor> interactor =
-    vtkSmartPointer<vtkRenderWindowInteractor>::New();
+  vtkSmartPointer<vtkRenderWindowInteractor> interactor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
   interactor->SetRenderWindow(renderWindow);
 
   // Define viewport ranges
   // (xmin, ymin, xmax, ymax)
-  double leftViewport[4] = {0.0, 0.0, 0.33, 1.0};
-  double centerViewport[4] = {0.33, 0.0, 0.66, 1.0};
-  double rightViewport[4] = {0.66, 0.0, 1.0, 1.0};
+  double leftViewport[4] = { 0.0, 0.0, 0.33, 1.0 };
+  double centerViewport[4] = { 0.33, 0.0, 0.66, 1.0 };
+  double rightViewport[4] = { 0.66, 0.0, 1.0, 1.0 };
 
   // Setup both renderers
-  vtkSmartPointer<vtkRenderer> leftRenderer =
-    vtkSmartPointer<vtkRenderer>::New();
+  vtkSmartPointer<vtkRenderer> leftRenderer = vtkSmartPointer<vtkRenderer>::New();
   renderWindow->AddRenderer(leftRenderer);
   leftRenderer->SetViewport(leftViewport);
   leftRenderer->SetBackground(.6, .5, .4);
 
-  vtkSmartPointer<vtkRenderer> centerRenderer =
-    vtkSmartPointer<vtkRenderer>::New();
+  vtkSmartPointer<vtkRenderer> centerRenderer = vtkSmartPointer<vtkRenderer>::New();
   renderWindow->AddRenderer(centerRenderer);
   centerRenderer->SetViewport(centerViewport);
   centerRenderer->SetBackground(.4, .5, .6);
 
-  vtkSmartPointer<vtkRenderer> rightRenderer =
-    vtkSmartPointer<vtkRenderer>::New();
+  vtkSmartPointer<vtkRenderer> rightRenderer = vtkSmartPointer<vtkRenderer>::New();
   renderWindow->AddRenderer(rightRenderer);
   rightRenderer->SetViewport(rightViewport);
   rightRenderer->SetBackground(.4, .5, .6);
@@ -137,8 +132,7 @@ int main( int argc, char *argv[])
 
   renderWindow->Render();
 
-  vtkSmartPointer<vtkInteractorStyleImage> style =
-    vtkSmartPointer<vtkInteractorStyleImage>::New();
+  vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
   interactor->SetInteractorStyle(style);
 
   interactor->Start();
@@ -147,11 +141,12 @@ int main( int argc, char *argv[])
   return EXIT_SUCCESS;
 }
 
-void CreateImage(ImageType::Pointer image)
+void
+CreateImage(ImageType::Pointer image)
 {
   // Create an image with 2 connected components
   ImageType::RegionType region;
-  ImageType::IndexType start;
+  ImageType::IndexType  start;
   start[0] = 0;
   start[1] = 0;
 
@@ -159,36 +154,35 @@ void CreateImage(ImageType::Pointer image)
   size[0] = 200;
   size[1] = 300;
 
-  region.SetSize( size);
+  region.SetSize(size);
   region.SetIndex(start);
 
   image->SetRegions(region);
   image->Allocate();
 
   // Make a square
-  for(unsigned int r = 20; r < 80; r++)
+  for (unsigned int r = 20; r < 80; r++)
+  {
+    for (unsigned int c = 30; c < 100; c++)
     {
-    for(unsigned int c = 30; c < 100; c++)
-      {
       ImageType::IndexType pixelIndex;
       pixelIndex[0] = r;
       pixelIndex[1] = c;
 
       image->SetPixel(pixelIndex, 100.0);
-      }
     }
+  }
 
   // Make another square
-  for(unsigned int r = 100; r < 130; r++)
+  for (unsigned int r = 100; r < 130; r++)
+  {
+    for (unsigned int c = 115; c < 160; c++)
     {
-    for(unsigned int c = 115; c < 160; c++)
-      {
       ImageType::IndexType pixelIndex;
       pixelIndex[0] = r;
       pixelIndex[1] = c;
 
       image->SetPixel(pixelIndex, 100.0);
-      }
     }
+  }
 }
-

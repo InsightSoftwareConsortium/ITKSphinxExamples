@@ -21,60 +21,60 @@
 #include "itkAbsImageFilter.h"
 
 #ifdef ENABLE_QUICKVIEW
-#include "QuickView.h"
+#  include "QuickView.h"
 #endif
 
 using UnsignedCharImageType = itk::Image<unsigned char, 2>;
 using FloatImageType = itk::Image<float, 2>;
 
-static void CreateImage(FloatImageType::Pointer image);
+static void
+CreateImage(FloatImageType::Pointer image);
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
-    FloatImageType::Pointer image = FloatImageType::New();
-    CreateImage(image);
+  FloatImageType::Pointer image = FloatImageType::New();
+  CreateImage(image);
 
-    // Take the absolute value of the image
-    using AbsImageFilterType = itk::AbsImageFilter <FloatImageType, FloatImageType>;
+  // Take the absolute value of the image
+  using AbsImageFilterType = itk::AbsImageFilter<FloatImageType, FloatImageType>;
 
-    AbsImageFilterType::Pointer absFilter
-            = AbsImageFilterType::New ();
-    absFilter->SetInput(image);
+  AbsImageFilterType::Pointer absFilter = AbsImageFilterType::New();
+  absFilter->SetInput(image);
 
 #ifdef ENABLE_QUICKVIEW
-    QuickView viewer;
-    viewer.AddImage<FloatImageType>(image);
-    viewer.AddImage<FloatImageType>(absFilter->GetOutput());
-    viewer.Visualize();
+  QuickView viewer;
+  viewer.AddImage<FloatImageType>(image);
+  viewer.AddImage<FloatImageType>(absFilter->GetOutput());
+  viewer.Visualize();
 #endif
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage(FloatImageType::Pointer image)
+void
+CreateImage(FloatImageType::Pointer image)
 {
-    // Create an image with negative values
-    FloatImageType::RegionType region;
-    FloatImageType::IndexType start;
-    start[0] = 0;
-    start[1] = 0;
+  // Create an image with negative values
+  FloatImageType::RegionType region;
+  FloatImageType::IndexType  start;
+  start[0] = 0;
+  start[1] = 0;
 
-    FloatImageType::SizeType size;
-    size[0] = 200;
-    size[1] = 300;
+  FloatImageType::SizeType size;
+  size[0] = 200;
+  size[1] = 300;
 
-    region.SetSize(size);
-    region.SetIndex(start);
+  region.SetSize(size);
+  region.SetIndex(start);
 
-    image->SetRegions(region);
-    image->Allocate();
+  image->SetRegions(region);
+  image->Allocate();
 
-    itk::ImageRegionIterator<FloatImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<FloatImageType> imageIterator(image, region);
 
-    while(!imageIterator.IsAtEnd())
-    {
-        imageIterator.Set(imageIterator.GetIndex()[0] - imageIterator.GetIndex()[1]);
-        ++imageIterator;
-    }
-
+  while (!imageIterator.IsAtEnd())
+  {
+    imageIterator.Set(imageIterator.GetIndex()[0] - imageIterator.GetIndex()[1]);
+    ++imageIterator;
+  }
 }
-

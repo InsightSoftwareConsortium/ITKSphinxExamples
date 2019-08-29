@@ -20,19 +20,20 @@
 #include "itkCheckerBoardImageFilter.h"
 #include "itkImageFileWriter.h"
 
-int main(int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
-  if( argc != 2 )
-    {
+  if (argc != 2)
+  {
     std::cerr << "Usage:" << std::endl;
     std::cerr << argv[0] << " <OutputImage>" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
 
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
   ImageType::IndexType start;
   start.Fill(0);
@@ -47,33 +48,32 @@ int main(int argc, char *argv[])
   ImageType::Pointer image1 = ImageType::New();
   image1->SetRegions(region);
   image1->Allocate();
-  image1->FillBuffer( 0 );
+  image1->FillBuffer(0);
 
   ImageType::Pointer image2 = ImageType::New();
   image2->SetRegions(region);
   image2->Allocate();
-  image2->FillBuffer( 255 );
+  image2->FillBuffer(255);
 
-  using CheckerBoardFilterType = itk::CheckerBoardImageFilter< ImageType >;
-  CheckerBoardFilterType::Pointer checkerBoardFilter =
-    CheckerBoardFilterType::New();
+  using CheckerBoardFilterType = itk::CheckerBoardImageFilter<ImageType>;
+  CheckerBoardFilterType::Pointer checkerBoardFilter = CheckerBoardFilterType::New();
   checkerBoardFilter->SetInput1(image1);
   checkerBoardFilter->SetInput2(image2);
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetInput( checkerBoardFilter->GetOutput() );
-  writer->SetFileName( argv[1] );
+  writer->SetInput(checkerBoardFilter->GetOutput());
+  writer->SetFileName(argv[1]);
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

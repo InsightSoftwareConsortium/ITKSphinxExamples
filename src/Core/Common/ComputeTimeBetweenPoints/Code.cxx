@@ -22,16 +22,18 @@
 #include <iostream>
 #include <string>
 
-void LongFunction()
+void
+LongFunction()
 {
-  for(int i = 0; i < itk::NumericTraits< int >::max() / 100; i++)
-    {
+  for (int i = 0; i < itk::NumericTraits<int>::max() / 100; i++)
+  {
     double a = 0;
     (void)a;
-    }
+  }
 }
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   itk::TimeProbe clock;
 

@@ -22,16 +22,17 @@
 #include "itkRescaleIntensityImageFilter.h"
 #include "itkCastImageFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 3)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << "<InputFileName> <OutputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
 
@@ -40,37 +41,37 @@ int main( int argc, char* argv[] )
 
   using InputPixelType = float;
   using OutputPixelType = unsigned char;
-  using InputImageType = itk::Image< InputPixelType, Dimension >;
-  using OutputImageType = itk::Image< OutputPixelType, Dimension >;
+  using InputImageType = itk::Image<InputPixelType, Dimension>;
+  using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< InputImageType >;
+  using ReaderType = itk::ImageFileReader<InputImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputImage );
+  reader->SetFileName(inputImage);
 
-  using RescaleType = itk::RescaleIntensityImageFilter< InputImageType, InputImageType >;
+  using RescaleType = itk::RescaleIntensityImageFilter<InputImageType, InputImageType>;
   RescaleType::Pointer rescale = RescaleType::New();
-  rescale->SetInput( reader->GetOutput() );
-  rescale->SetOutputMinimum( 0 );
-  rescale->SetOutputMaximum( itk::NumericTraits< OutputPixelType >::max() );
+  rescale->SetInput(reader->GetOutput());
+  rescale->SetOutputMinimum(0);
+  rescale->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
 
-  using FilterType = itk::CastImageFilter< InputImageType, OutputImageType >;
+  using FilterType = itk::CastImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( rescale->GetOutput() );
+  filter->SetInput(rescale->GetOutput());
 
-  using WriterType = itk::ImageFileWriter< OutputImageType >;
+  using WriterType = itk::ImageFileWriter<OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputImage );
-  writer->SetInput( filter->GetOutput() );
+  writer->SetFileName(outputImage);
+  writer->SetInput(filter->GetOutput());
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & e )
-    {
+  }
+  catch (itk::ExceptionObject & e)
+  {
     std::cerr << "Error: " << e << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

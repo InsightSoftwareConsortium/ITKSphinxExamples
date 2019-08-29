@@ -22,16 +22,17 @@
 #include "itkTranslationTransform.h"
 #include "itkTransformMeshFilter.h"
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
-    std::cerr << "Usage: "<< std::endl;
+  if (argc != 3)
+  {
+    std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
     std::cerr << " <InputFileName> <OutputFileName>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   const char * inputFileName = argv[1];
   const char * outputFileName = argv[2];
@@ -39,38 +40,38 @@ int main( int argc, char* argv[] )
   constexpr unsigned int Dimension = 3;
 
   using PixelType = double;
-  using MeshType = itk::Mesh< PixelType, Dimension >;
+  using MeshType = itk::Mesh<PixelType, Dimension>;
 
-  using ReaderType = itk::MeshFileReader< MeshType >;
+  using ReaderType = itk::MeshFileReader<MeshType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( inputFileName );
+  reader->SetFileName(inputFileName);
 
-  using TransformType = itk::TranslationTransform< MeshType::PointType::CoordRepType, Dimension >;
+  using TransformType = itk::TranslationTransform<MeshType::PointType::CoordRepType, Dimension>;
   TransformType::Pointer translation = TransformType::New();
 
   TransformType::OutputVectorType displacement;
-  displacement.Fill( 1. );
+  displacement.Fill(1.);
 
-  translation->Translate( displacement );
+  translation->Translate(displacement);
 
-  using FilterType = itk::TransformMeshFilter< MeshType, MeshType, TransformType >;
+  using FilterType = itk::TransformMeshFilter<MeshType, MeshType, TransformType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( reader->GetOutput() );
-  filter->SetTransform( translation );
+  filter->SetInput(reader->GetOutput());
+  filter->SetTransform(translation);
 
-  using WriterType = itk::MeshFileWriter< MeshType >;
+  using WriterType = itk::MeshFileWriter<MeshType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( outputFileName );
-  writer->SetInput( filter->GetOutput() );
+  writer->SetFileName(outputFileName);
+  writer->SetInput(filter->GetOutput());
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

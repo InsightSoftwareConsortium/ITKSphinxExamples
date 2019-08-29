@@ -19,24 +19,31 @@
 #include "itkPoint.h"
 #include "itkPointSet.h"
 
-int main(int, char* [])
+int
+main(int, char *[])
 {
   using PixelType = float;
   constexpr unsigned int Dimension = 3;
 
-  using PointSetType = itk::PointSet< PixelType, Dimension >;
-  PointSetType::Pointer  PointSet = PointSetType::New();
+  using PointSetType = itk::PointSet<PixelType, Dimension>;
+  PointSetType::Pointer PointSet = PointSetType::New();
 
   using PointsContainerPointer = PointSetType::PointsContainerPointer;
-  PointsContainerPointer  points = PointSet->GetPoints();
+  PointsContainerPointer points = PointSet->GetPoints();
 
   // Create points
   using PointType = PointSetType::PointType;
   PointType p0, p1, p2;
 
-  p0[0]=  0.0; p0[1]= 0.0; p0[2]= 0.0;
-  p1[0]=  0.1; p1[1]= 0.0; p1[2]= 0.0;
-  p2[0]=  0.0; p2[1]= 0.1; p2[2]= 0.0;
+  p0[0] = 0.0;
+  p0[1] = 0.0;
+  p0[2] = 0.0;
+  p1[0] = 0.1;
+  p1[1] = 0.0;
+  p1[2] = 0.0;
+  p2[0] = 0.0;
+  p2[1] = 0.1;
+  p2[2] = 0.0;
 
   points->InsertElement(0, p0);
   points->InsertElement(1, p1);

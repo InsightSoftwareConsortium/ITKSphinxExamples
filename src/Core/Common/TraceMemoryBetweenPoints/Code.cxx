@@ -19,22 +19,23 @@
 #include "itkMemoryProbe.h"
 #include <iostream>
 
-int main( int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 2 )
-    {
+  if (argc != 2)
+  {
     std::cerr << "Usage:" << std::endl;
     std::cerr << argv[0] << " <Size of the array>" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
-  const auto N = static_cast< unsigned int >( std::stoi( argv[1] ) );
+  const auto N = static_cast<unsigned int>(std::stoi(argv[1]));
 
-  if( N == 0 )
-    {
+  if (N == 0)
+  {
     std::cerr << "Size of the array should be non null" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   itk::MemoryProbe memoryProbe;
 
@@ -50,12 +51,12 @@ int main( int argc, char* argv[] )
   std::cout << std::endl;
 
   memoryProbe.Start();
-  auto* a = new char[N];
+  auto * a = new char[N];
   // The memory must be used for it to be counted.
-  for(unsigned int i = 0; i < N; ++i)
-    {
-    a[i] = static_cast< char >( i*i );
-    }
+  for (unsigned int i = 0; i < N; ++i)
+  {
+    a[i] = static_cast<char>(i * i);
+  }
   memoryProbe.Stop();
 
   std::cout << "** After allocation **" << std::endl;

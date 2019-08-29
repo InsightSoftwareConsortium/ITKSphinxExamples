@@ -21,17 +21,17 @@
 #include "itkImage.h"
 #include "itkBinaryThresholdImageFilter.h"
 
-int main( int argc, char * argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc < 7 )
-    {
+  if (argc < 7)
+  {
     std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0] << std::endl;
     std::cerr << " <InputImage> <OutputImage> <LowerThreshold>";
-    std::cerr << " <UpperThreshold> <OutsideValue> <InsideValue>"
-              << std::endl;
+    std::cerr << " <UpperThreshold> <OutsideValue> <InsideValue>" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
@@ -39,39 +39,39 @@ int main( int argc, char * argv[] )
   const char * InputImage = argv[1];
   const char * OutputImage = argv[2];
 
-  const auto LowerThreshold = static_cast<PixelType>(atoi( argv[3] ) );
-  const auto UpperThreshold = static_cast<PixelType>(atoi( argv[4] ) );
-  const auto OutsideValue = static_cast<PixelType>(atoi( argv[5] ) );
-  const auto InsideValue = static_cast<PixelType>(atoi( argv[6] ) );
+  const auto LowerThreshold = static_cast<PixelType>(atoi(argv[3]));
+  const auto UpperThreshold = static_cast<PixelType>(atoi(argv[4]));
+  const auto OutsideValue = static_cast<PixelType>(atoi(argv[5]));
+  const auto InsideValue = static_cast<PixelType>(atoi(argv[6]));
 
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( InputImage );
+  reader->SetFileName(InputImage);
 
-  using FilterType = itk::BinaryThresholdImageFilter< ImageType, ImageType >;
+  using FilterType = itk::BinaryThresholdImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput( reader->GetOutput() );
-  filter->SetLowerThreshold( LowerThreshold );
-  filter->SetUpperThreshold( UpperThreshold );
-  filter->SetOutsideValue( OutsideValue );
-  filter->SetInsideValue( InsideValue );
+  filter->SetInput(reader->GetOutput());
+  filter->SetLowerThreshold(LowerThreshold);
+  filter->SetUpperThreshold(UpperThreshold);
+  filter->SetOutsideValue(OutsideValue);
+  filter->SetInsideValue(InsideValue);
 
-  using WriterType = itk::ImageFileWriter< ImageType >;
+  using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName( OutputImage );
-  writer->SetInput( filter->GetOutput() );
+  writer->SetFileName(OutputImage);
+  writer->SetInput(filter->GetOutput());
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & e )
-    {
+  }
+  catch (itk::ExceptionObject & e)
+  {
     std::cerr << "Error: " << e << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

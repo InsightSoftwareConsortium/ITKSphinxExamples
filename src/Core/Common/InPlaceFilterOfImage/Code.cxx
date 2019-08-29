@@ -32,84 +32,80 @@
 #include "vtkImageMapper3D.h"
 #include "vtkImageViewer.h"
 
-using ImageType = itk::Image< unsigned char, 2 >;
+using ImageType = itk::Image<unsigned char, 2>;
 
-static void ApplyThresholding(ImageType::Pointer image);
+static void
+ApplyThresholding(ImageType::Pointer image);
 
-int main(int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
-    if(argc < 2)
-    {
-        std::cerr << "Required: filename" << std::endl;
-        return EXIT_FAILURE;
-    }
+  if (argc < 2)
+  {
+    std::cerr << "Required: filename" << std::endl;
+    return EXIT_FAILURE;
+  }
 
-    std::string inputFilename = argv[1];
+  std::string inputFilename = argv[1];
 
-    using ReaderType = itk::ImageFileReader<ImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
+  using ReaderType = itk::ImageFileReader<ImageType>;
+  ReaderType::Pointer reader = ReaderType::New();
 
-    reader->SetFileName(inputFilename.c_str());
-    reader->Update();
+  reader->SetFileName(inputFilename.c_str());
+  reader->Update();
 
-    ImageType::Pointer image = reader->GetOutput();
+  ImageType::Pointer image = reader->GetOutput();
 
-    ApplyThresholding(image);
+  ApplyThresholding(image);
 
-    // Visualize
-    using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-    ConnectorType::Pointer connector = ConnectorType::New();
-    connector->SetInput(image);
+  // Visualize
+  using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
+  ConnectorType::Pointer connector = ConnectorType::New();
+  connector->SetInput(image);
 
-    vtkSmartPointer<vtkImageActor> actor =
-            vtkSmartPointer<vtkImageActor>::New();
+  vtkSmartPointer<vtkImageActor> actor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
-    actor->SetInput(connector->GetOutput());
+  actor->SetInput(connector->GetOutput());
 #else
-    connector->Update();
-    actor->GetMapper()->SetInputData(connector->GetOutput());
+  connector->Update();
+  actor->GetMapper()->SetInputData(connector->GetOutput());
 #endif
 
-    // There will be one render window
-    vtkSmartPointer<vtkRenderWindow> renderWindow =
-            vtkSmartPointer<vtkRenderWindow>::New();
+  // There will be one render window
+  vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
 
-    vtkSmartPointer<vtkRenderWindowInteractor> interactor =
-            vtkSmartPointer<vtkRenderWindowInteractor>::New();
-    interactor->SetRenderWindow(renderWindow);
+  vtkSmartPointer<vtkRenderWindowInteractor> interactor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+  interactor->SetRenderWindow(renderWindow);
 
-    vtkSmartPointer<vtkRenderer> renderer =
-            vtkSmartPointer<vtkRenderer>::New();
-    renderWindow->AddRenderer(renderer);
+  vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
+  renderWindow->AddRenderer(renderer);
 
-    renderer->AddActor(actor);
-    renderer->ResetCamera();
+  renderer->AddActor(actor);
+  renderer->ResetCamera();
 
-    renderWindow->Render();
+  renderWindow->Render();
 
-    vtkSmartPointer<vtkInteractorStyleImage> style =
-            vtkSmartPointer<vtkInteractorStyleImage>::New();
+  vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
 
-    interactor->SetInteractorStyle(style);
+  interactor->SetInteractorStyle(style);
 
-    interactor->Start();
+  interactor->Start();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-void ApplyThresholding(ImageType::Pointer image)
+void
+ApplyThresholding(ImageType::Pointer image)
 {
 
-    using BinaryThresholdImageFilterType = itk::BinaryThresholdImageFilter <ImageType, ImageType>;
+  using BinaryThresholdImageFilterType = itk::BinaryThresholdImageFilter<ImageType, ImageType>;
 
-    BinaryThresholdImageFilterType::Pointer thresholdFilter
-            = BinaryThresholdImageFilterType::New();
-    thresholdFilter->SetInput(image);
-    thresholdFilter->SetLowerThreshold(10);
-    thresholdFilter->SetUpperThreshold(50);
-    thresholdFilter->SetInsideValue(255);
-    thresholdFilter->SetOutsideValue(0);
-    thresholdFilter->InPlaceOn();
-    thresholdFilter->Update();
+  BinaryThresholdImageFilterType::Pointer thresholdFilter = BinaryThresholdImageFilterType::New();
+  thresholdFilter->SetInput(image);
+  thresholdFilter->SetLowerThreshold(10);
+  thresholdFilter->SetUpperThreshold(50);
+  thresholdFilter->SetInsideValue(255);
+  thresholdFilter->SetOutsideValue(0);
+  thresholdFilter->InPlaceOn();
+  thresholdFilter->Update();
 }
-

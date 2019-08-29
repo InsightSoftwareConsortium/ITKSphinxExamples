@@ -18,15 +18,16 @@
 #include "itkImage.h"
 #include <itkCastImageFilter.h>
 
-//TODO: Incomplete example
-int main(int, char*[])
+// TODO: Incomplete example
+int
+main(int, char *[])
 {
   // Setup types
   using ImageType = itk::Image<unsigned char, 2>;
   ImageType::Pointer image = ImageType::New();
 
   // Create and the filter
-  using FilterType = itk::CastImageFilter<ImageType,ImageType>;
+  using FilterType = itk::CastImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput(image);
   filter->Update();

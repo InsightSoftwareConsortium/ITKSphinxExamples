@@ -19,23 +19,25 @@
 #include "itkImage.h"
 #include "itkConceptChecking.h"
 
-template< typename TImage, class TValue >
-void CheckIfPixelTypeIsTheSameAs( const TImage* const )
+template <typename TImage, class TValue>
+void
+CheckIfPixelTypeIsTheSameAs(const TImage * const)
 {
-  itkConceptMacro( nameOfCheck, ( itk::Concept::SameType< typename TImage::PixelType, TValue > ) );
+  itkConceptMacro(nameOfCheck, (itk::Concept::SameType<typename TImage::PixelType, TValue>));
 }
-int main( int, char* [] )
+int
+main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
-  using ImageType = itk::Image< PixelType, Dimension >;
+  using ImageType = itk::Image<PixelType, Dimension>;
   ImageType::Pointer image = ImageType::New();
 
-  CheckIfPixelTypeIsTheSameAs< ImageType, unsigned char >( image.GetPointer() );
+  CheckIfPixelTypeIsTheSameAs<ImageType, unsigned char>(image.GetPointer());
 
-  using ImageType2 = itk::Image< PixelType, Dimension >;
+  using ImageType2 = itk::Image<PixelType, Dimension>;
 
-  CheckIfPixelTypeIsTheSameAs< ImageType, ImageType2::PixelType >( image.GetPointer() );
+  CheckIfPixelTypeIsTheSameAs<ImageType, ImageType2::PixelType>(image.GetPointer());
 
   return EXIT_SUCCESS;
 }

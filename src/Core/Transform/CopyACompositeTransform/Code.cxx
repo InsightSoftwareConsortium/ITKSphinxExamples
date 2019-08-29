@@ -21,40 +21,41 @@
 #include "itkCompositeTransform.h"
 #include "itkCompositeTransformIOHelper.h"
 
-int main( int , char* [] )
+int
+main(int, char *[])
 {
   using ScalarType = float;
   constexpr unsigned int Dimension = 3;
 
-  using EulerTransformType = itk::Euler3DTransform< ScalarType >;
-  EulerTransformType::Pointer eulerTransform = EulerTransformType::New();
-  EulerTransformType::ParametersType eulerParameters( 6 );
+  using EulerTransformType = itk::Euler3DTransform<ScalarType>;
+  EulerTransformType::Pointer        eulerTransform = EulerTransformType::New();
+  EulerTransformType::ParametersType eulerParameters(6);
   eulerParameters[0] = 0.1;
   eulerParameters[1] = 0.2;
   eulerParameters[2] = 0.3;
   eulerParameters[3] = 4.0;
   eulerParameters[4] = 5.0;
   eulerParameters[5] = 6.0;
-  eulerTransform->SetParameters( eulerParameters );
+  eulerTransform->SetParameters(eulerParameters);
 
-  EulerTransformType::FixedParametersType eulerFixedParameters( Dimension );
+  EulerTransformType::FixedParametersType eulerFixedParameters(Dimension);
   eulerFixedParameters[0] = -3.5;
   eulerFixedParameters[1] = -4.5;
   eulerFixedParameters[2] = -5.5;
-  eulerTransform->SetFixedParameters( eulerFixedParameters );
+  eulerTransform->SetFixedParameters(eulerFixedParameters);
 
-  using ScaleTransformType = itk::ScaleTransform< ScalarType, Dimension >;
-  ScaleTransformType::Pointer scaleTransform = ScaleTransformType::New();
-  ScaleTransformType::ParametersType scaleParameters( Dimension );
+  using ScaleTransformType = itk::ScaleTransform<ScalarType, Dimension>;
+  ScaleTransformType::Pointer        scaleTransform = ScaleTransformType::New();
+  ScaleTransformType::ParametersType scaleParameters(Dimension);
   scaleParameters[0] = 0.6;
   scaleParameters[1] = 0.7;
   scaleParameters[2] = 0.8;
-  scaleTransform->SetParameters( scaleParameters );
+  scaleTransform->SetParameters(scaleParameters);
 
-  using CompositeTransformType = itk::CompositeTransform< ScalarType, Dimension >;
+  using CompositeTransformType = itk::CompositeTransform<ScalarType, Dimension>;
   CompositeTransformType::Pointer compositeTransform = CompositeTransformType::New();
-  compositeTransform->AddTransform( eulerTransform );
-  compositeTransform->AddTransform( scaleTransform );
+  compositeTransform->AddTransform(eulerTransform);
+  compositeTransform->AddTransform(scaleTransform);
   std::cout << "Original transform: " << compositeTransform << std::endl;
 
 

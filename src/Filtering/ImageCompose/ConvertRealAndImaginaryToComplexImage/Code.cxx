@@ -18,33 +18,36 @@
 #include "itkImage.h"
 
 #if ITK_VERSION_MAJOR < 4
-#include "itkRealAndImaginaryToComplexImageFilter.h"
+#  include "itkRealAndImaginaryToComplexImageFilter.h"
 #else
-#include "itkComposeImageFilter.h"
+#  include "itkComposeImageFilter.h"
 #endif
 
 #include <complex>
 
-int main( int itkNotUsed( argc ), char * itkNotUsed( argv )[] )
+int
+main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 {
-    using ImageType = itk::Image<unsigned char, 2>;
-    using ComplexImageType = itk::Image<std::complex<float>, 2>;
+  using ImageType = itk::Image<unsigned char, 2>;
+  using ComplexImageType = itk::Image<std::complex<float>, 2>;
 
-    ImageType::Pointer realImage = ImageType::New();
-    ImageType::Pointer imaginaryImage = ImageType::New();
+  ImageType::Pointer realImage = ImageType::New();
+  ImageType::Pointer imaginaryImage = ImageType::New();
 
 #if ITK_VERSION_MAJOR < 4
-    using RealAndImaginaryToComplexImageFilterType = itk::RealAndImaginaryToComplexImageFilter<ImageType,ComplexImageType>;
+  using RealAndImaginaryToComplexImageFilterType =
+    itk::RealAndImaginaryToComplexImageFilter<ImageType, ComplexImageType>;
 #else
-    using RealAndImaginaryToComplexImageFilterType = itk::ComposeImageFilter<ImageType,ComplexImageType>;
+  using RealAndImaginaryToComplexImageFilterType = itk::ComposeImageFilter<ImageType, ComplexImageType>;
 #endif
-    RealAndImaginaryToComplexImageFilterType::Pointer realAndImaginaryToComplexImageFilter = RealAndImaginaryToComplexImageFilterType::New();
-    realAndImaginaryToComplexImageFilter->SetInput1(realImage);
-    realAndImaginaryToComplexImageFilter->SetInput2(imaginaryImage);
-    realAndImaginaryToComplexImageFilter->Update();
+  RealAndImaginaryToComplexImageFilterType::Pointer realAndImaginaryToComplexImageFilter =
+    RealAndImaginaryToComplexImageFilterType::New();
+  realAndImaginaryToComplexImageFilter->SetInput1(realImage);
+  realAndImaginaryToComplexImageFilter->SetInput2(imaginaryImage);
+  realAndImaginaryToComplexImageFilter->Update();
 
-    ComplexImageType* output = realAndImaginaryToComplexImageFilter->GetOutput();
-    output->Print(std::cout);
+  ComplexImageType * output = realAndImaginaryToComplexImageFilter->GetOutput();
+  output->Print(std::cout);
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }

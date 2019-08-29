@@ -20,55 +20,59 @@
 #include "itkImageRegionIterator.h"
 #include "itkMedianImageFunction.h"
 
-using UnsignedCharImageType = itk::Image< unsigned char, 2 >;
+using UnsignedCharImageType = itk::Image<unsigned char, 2>;
 
-void CreateImage(UnsignedCharImageType::Pointer image);
+void
+CreateImage(UnsignedCharImageType::Pointer image);
 
-int main( int, char *[] )
+int
+main(int, char *[])
 {
-    UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
-    CreateImage(image);
+  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  CreateImage(image);
 
-    using MedianImageFunctionType = itk::MedianImageFunction< UnsignedCharImageType >;
-    MedianImageFunctionType::Pointer medianImageFunction = MedianImageFunctionType::New();
-    medianImageFunction->SetInputImage( image );
+  using MedianImageFunctionType = itk::MedianImageFunction<UnsignedCharImageType>;
+  MedianImageFunctionType::Pointer medianImageFunction = MedianImageFunctionType::New();
+  medianImageFunction->SetInputImage(image);
 
-    itk::Index<2> index;
-    index.Fill(10);
-    std::cout << "Median at " << index << " is " << static_cast<int>(medianImageFunction->EvaluateAtIndex(index)) << std::endl;
-    return EXIT_SUCCESS;
+  itk::Index<2> index;
+  index.Fill(10);
+  std::cout << "Median at " << index << " is " << static_cast<int>(medianImageFunction->EvaluateAtIndex(index))
+            << std::endl;
+  return EXIT_SUCCESS;
 }
 
-void CreateImage(UnsignedCharImageType::Pointer image)
+void
+CreateImage(UnsignedCharImageType::Pointer image)
 {
-    itk::Index<2> start;
-    start.Fill(0);
+  itk::Index<2> start;
+  start.Fill(0);
 
-    itk::Size<2> size;
-    size.Fill(100);
+  itk::Size<2> size;
+  size.Fill(100);
 
-    itk::ImageRegion<2> region(start,size);
+  itk::ImageRegion<2> region(start, size);
 
-    image->SetRegions(region);
-    image->Allocate();
-    image->FillBuffer(0);
+  image->SetRegions(region);
+  image->Allocate();
+  image->FillBuffer(0);
 
-    itk::ImageRegionIterator<UnsignedCharImageType> imageIterator(image,region);
+  itk::ImageRegionIterator<UnsignedCharImageType> imageIterator(image, region);
 
-    while(!imageIterator.IsAtEnd())
+  while (!imageIterator.IsAtEnd())
+  {
+    if (imageIterator.GetIndex()[0] >= 50 && imageIterator.GetIndex()[1] >= 50 && imageIterator.GetIndex()[0] <= 70 &&
+        imageIterator.GetIndex()[1] <= 70)
     {
-        if(imageIterator.GetIndex()[0] >= 50 && imageIterator.GetIndex()[1] >= 50 &&
-           imageIterator.GetIndex()[0] <= 70 && imageIterator.GetIndex()[1] <= 70)
-        {
-            imageIterator.Set(255);
-        }
-
-        ++imageIterator;
+      imageIterator.Set(255);
     }
 
-    using WriterType = itk::ImageFileWriter < UnsignedCharImageType >;
-    WriterType::Pointer writer = WriterType::New();
-    writer->SetFileName("input.png");
-    writer->SetInput(image);
-    writer->Update();
+    ++imageIterator;
+  }
+
+  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
+  WriterType::Pointer writer = WriterType::New();
+  writer->SetFileName("input.png");
+  writer->SetInput(image);
+  writer->Update();
 }

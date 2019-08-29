@@ -28,29 +28,29 @@
 #include "itkMersenneTwisterRandomVariateGenerator.h"
 
 
-int main(int argc, char* argv[] )
+int
+main(int argc, char * argv[])
 {
-  if( argc != 3 )
-    {
+  if (argc != 3)
+  {
     std::cerr << "Usage: " << std::endl;
-    std::cerr << argv[0] << " <InputFileName> <OutputFileName>"
-              << std::endl;
+    std::cerr << argv[0] << " <InputFileName> <OutputFileName>" << std::endl;
 
     return EXIT_FAILURE;
-    }
+  }
 
   using PixelType = unsigned char;
-  using RGBPixelType = itk::RGBPixel< unsigned char >;
+  using RGBPixelType = itk::RGBPixel<unsigned char>;
 
-  using RGBImageType = itk::Image< RGBPixelType, 2 >;
-  using ImageType = itk::Image< PixelType, 2 >;
+  using RGBImageType = itk::Image<RGBPixelType, 2>;
+  using ImageType = itk::Image<PixelType, 2>;
 
 
-  using ReaderType = itk::ImageFileReader< ImageType >;
+  using ReaderType = itk::ImageFileReader<ImageType>;
   ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName( argv[1] );
+  reader->SetFileName(argv[1]);
 
-  using ColormapType = itk::Function::CustomColormapFunction< PixelType, RGBPixelType >;
+  using ColormapType = itk::Function::CustomColormapFunction<PixelType, RGBPixelType>;
   ColormapType::Pointer colormap = ColormapType::New();
 
   ColormapType::ChannelType redChannel;
@@ -60,47 +60,41 @@ int main(int argc, char* argv[] )
   itk::Statistics::MersenneTwisterRandomVariateGenerator::Pointer random =
     itk::Statistics::MersenneTwisterRandomVariateGenerator::New();
 
-  random->SetSeed( 0 );
+  random->SetSeed(0);
 
-  for( unsigned int i = 0; i < 255; ++i )
-    {
-    redChannel.push_back(
-      static_cast< ColormapType::RealType >(
-        random->GetUniformVariate( 0., 1.0 ) ) );
+  for (unsigned int i = 0; i < 255; ++i)
+  {
+    redChannel.push_back(static_cast<ColormapType::RealType>(random->GetUniformVariate(0., 1.0)));
 
-    greenChannel.push_back(
-      static_cast< ColormapType::RealType >(
-        random->GetUniformVariate( 0., 1.0 ) ) );
+    greenChannel.push_back(static_cast<ColormapType::RealType>(random->GetUniformVariate(0., 1.0)));
 
-    blueChannel.push_back(
-      static_cast< ColormapType::RealType >(
-        random->GetUniformVariate( 0., 1.0 ) ) );
-    }
+    blueChannel.push_back(static_cast<ColormapType::RealType>(random->GetUniformVariate(0., 1.0)));
+  }
 
-  colormap->SetRedChannel( redChannel );
-  colormap->SetGreenChannel( greenChannel );
-  colormap->SetBlueChannel( blueChannel );
+  colormap->SetRedChannel(redChannel);
+  colormap->SetGreenChannel(greenChannel);
+  colormap->SetBlueChannel(blueChannel);
 
-  using ColormapFilterType = itk::ScalarToRGBColormapImageFilter< ImageType, RGBImageType >;
+  using ColormapFilterType = itk::ScalarToRGBColormapImageFilter<ImageType, RGBImageType>;
   ColormapFilterType::Pointer colormapFilter1 = ColormapFilterType::New();
 
-  colormapFilter1->SetInput( reader->GetOutput() );
-  colormapFilter1->SetColormap( colormap );
+  colormapFilter1->SetInput(reader->GetOutput());
+  colormapFilter1->SetColormap(colormap);
 
-  using WriterType = itk::ImageFileWriter< RGBImageType >;
+  using WriterType = itk::ImageFileWriter<RGBImageType>;
   WriterType::Pointer writer = WriterType::New();
-  writer->SetInput( colormapFilter1->GetOutput() );
-  writer->SetFileName( argv[2] );
+  writer->SetInput(colormapFilter1->GetOutput());
+  writer->SetFileName(argv[2]);
 
   try
-    {
+  {
     writer->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   return EXIT_SUCCESS;
 }

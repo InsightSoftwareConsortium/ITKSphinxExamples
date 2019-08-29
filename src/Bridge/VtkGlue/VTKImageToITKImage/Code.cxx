@@ -24,27 +24,26 @@
 #include <vtkImageLuminance.h>
 
 #ifdef ENABLE_QUICKVIEW
-#include "QuickView.h"
+#  include "QuickView.h"
 #endif
 
-int main(int argc, char*argv[])
+int
+main(int argc, char * argv[])
 {
-  if(argc < 2)
-    {
+  if (argc < 2)
+  {
     std::cerr << "Required: filename" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
-  vtkSmartPointer<vtkPNGReader> reader =
-    vtkSmartPointer<vtkPNGReader>::New();
+  vtkSmartPointer<vtkPNGReader> reader = vtkSmartPointer<vtkPNGReader>::New();
   reader->SetFileName(argv[1]);
   // reader->SetNumberOfScalarComponents(1); //doesn't seem to work - use ImageLuminance instead
   reader->Update();
 
 
   // Must convert image to grayscale because itkVTKImageToImageFilter only accepts single channel images
-  vtkSmartPointer<vtkImageLuminance> luminanceFilter =
-    vtkSmartPointer<vtkImageLuminance>::New();
+  vtkSmartPointer<vtkImageLuminance> luminanceFilter = vtkSmartPointer<vtkImageLuminance>::New();
   luminanceFilter->SetInputConnection(reader->GetOutputPort());
   luminanceFilter->Update();
 
@@ -54,7 +53,7 @@ int main(int argc, char*argv[])
 
   VTKImageToImageType::Pointer vtkImageToImageFilter = VTKImageToImageType::New();
   vtkImageToImageFilter->SetInput(luminanceFilter->GetOutput());
-  //vtkImageToImageFilter->SetInput(reader->GetOutput());
+  // vtkImageToImageFilter->SetInput(reader->GetOutput());
   vtkImageToImageFilter->Update();
 
   ImageType::Pointer image = ImageType::New();

@@ -24,82 +24,82 @@
 #include <string>
 #include <iostream>
 
-int main( int argc, char *argv[] )
+int
+main(int argc, char * argv[])
 {
   if (argc < 2)
-    {
-    std::cout << "Usage: " << argv[0]
-              << " Input(.vtk)" << std::endl;
+  {
+    std::cout << "Usage: " << argv[0] << " Input(.vtk)" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   std::string InputFilename = argv[1];
   std::cout << "Input file: " << InputFilename << std::endl;
 
-  //using PointSetType = itk::PointSet<double, 3 >;
-  //PointSetType::Pointer pointsSet = PointSetType::New();
-  //using PointType = PointSetType::PointType;
+  // using PointSetType = itk::PointSet<double, 3 >;
+  // PointSetType::Pointer pointsSet = PointSetType::New();
+  // using PointType = PointSetType::PointType;
 
   constexpr unsigned int Dimension = 3;
 
   using CoordType = float;
-  using MeshType = itk::Mesh< CoordType, Dimension >;
+  using MeshType = itk::Mesh<CoordType, Dimension>;
 
-  using ReaderType = itk::VTKPolyDataReader< MeshType >;
-  ReaderType::Pointer  polyDataReader = ReaderType::New();
+  using ReaderType = itk::VTKPolyDataReader<MeshType>;
+  ReaderType::Pointer polyDataReader = ReaderType::New();
 
   using PointType = ReaderType::PointType;
   using VectorType = ReaderType::VectorType;
 
-  polyDataReader->SetFileName( InputFilename.c_str() );
+  polyDataReader->SetFileName(InputFilename.c_str());
 
   try
-    {
+  {
     polyDataReader->Update();
-    }
-  catch( itk::ExceptionObject & error )
-    {
+  }
+  catch (itk::ExceptionObject & error)
+  {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   std::cout << "polyDataReader:" << std::endl;
   std::cout << polyDataReader << std::endl;
 
   MeshType::Pointer mesh = polyDataReader->GetOutput();
 
-  PointType  point;
+  PointType point;
 
   std::cout << "Testing itk::VTKPolyDataReader" << std::endl;
 
   unsigned int numberOfPoints = mesh->GetNumberOfPoints();
-  unsigned int numberOfCells  = mesh->GetNumberOfCells();
+  unsigned int numberOfCells = mesh->GetNumberOfCells();
 
   std::cout << "numberOfPoints= " << numberOfPoints << std::endl;
   std::cout << "numberOfCells= " << numberOfCells << std::endl;
 
-  if( !numberOfPoints )
-    {
+  if (!numberOfPoints)
+  {
     std::cerr << "ERROR: numberOfPoints= " << numberOfPoints << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
-  if( !numberOfCells )
-    {
+  if (!numberOfCells)
+  {
     std::cerr << "ERROR: numberOfCells= " << numberOfCells << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   // Retrieve points
-  for( unsigned int i = 0; i < numberOfPoints; i++ )
-    {
+  for (unsigned int i = 0; i < numberOfPoints; i++)
+  {
     PointType pp;
-    bool pointExists = mesh->GetPoint( i, &pp );
+    bool      pointExists = mesh->GetPoint(i, &pp);
 
-    if( pointExists )
-      {
+    if (pointExists)
+    {
       std::cout << "Point is = " << pp << std::endl;
-      }
     }
+  }
   return EXIT_SUCCESS;
 }

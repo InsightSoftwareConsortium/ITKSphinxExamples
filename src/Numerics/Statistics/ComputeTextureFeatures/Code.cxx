@@ -23,7 +23,8 @@ using ImageType = itk::Image<float, 2>;
 
 static void CreateImage(ImageType::Pointer);
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   ImageType::Pointer image = ImageType::New();
   CreateImage(image);
@@ -33,16 +34,17 @@ int main(int, char *[])
   textureFilter->SetInput(image);
   textureFilter->Update();
 
-  const TextureFilterType::FeatureValueVector* output = textureFilter->GetFeatureMeans();
-  for(unsigned int i = 0; i < output->size(); ++i)
-    {
+  const TextureFilterType::FeatureValueVector * output = textureFilter->GetFeatureMeans();
+  for (unsigned int i = 0; i < output->size(); ++i)
+  {
     std::cout << (*output)[i] << std::endl;
-    }
+  }
 
   return EXIT_SUCCESS;
 }
 
-static void CreateImage(ImageType::Pointer image)
+static void
+CreateImage(ImageType::Pointer image)
 {
   itk::Index<2> index;
   index.Fill(0);
@@ -54,4 +56,3 @@ static void CreateImage(ImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 }
-

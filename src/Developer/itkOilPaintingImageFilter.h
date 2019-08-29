@@ -14,14 +14,14 @@ namespace itk
  *
  * \ingroup ImageFilters
  */
-template< class TImage>
-class OilPaintingImageFilter:public ImageToImageFilter< TImage, TImage >
+template <class TImage>
+class OilPaintingImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:
   /** Standard class type alias. */
   using Self = OilPaintingImageFilter;
-  using Superclass = ImageToImageFilter< TImage, TImage >;
-  using Pointer = SmartPointer< Self >;
+  using Superclass = ImageToImageFilter<TImage, TImage>;
+  using Pointer = SmartPointer<Self>;
   using RadiusType = typename NeighborhoodIterator<TImage>::RadiusType;
 
   /** Method for creation through the object factory. */
@@ -35,30 +35,34 @@ public:
 
   itkSetMacro(Radius, RadiusType);
   itkGetConstMacro(Radius, const RadiusType);
-  void SetRadius(unsigned int radius);
+  void
+  SetRadius(unsigned int radius);
 
 protected:
   OilPaintingImageFilter();
-  ~OilPaintingImageFilter() override= default;
+  ~OilPaintingImageFilter() override = default;
 
-  void BeforeThreadedGenerateData() override;
+  void
+  BeforeThreadedGenerateData() override;
 
   /** Does the real work. */
-  void DynamicThreadedGenerateData(const typename TImage::RegionType& outputRegionForThread) override;
+  void
+  DynamicThreadedGenerateData(const typename TImage::RegionType & outputRegionForThread) override;
 
 private:
-  OilPaintingImageFilter(const Self &) = delete; //purposely not implemented
-  void operator=(const Self &) = delete;  //purposely not implemented
+  OilPaintingImageFilter(const Self &) = delete; // purposely not implemented
+  void
+  operator=(const Self &) = delete; // purposely not implemented
 
-  typename TImage::ValueType m_Maximum, m_Minimum;
+  typename TImage::ValueType                        m_Maximum, m_Minimum;
   typename NeighborhoodIterator<TImage>::RadiusType m_Radius;
-  unsigned int m_NumberOfBins;
+  unsigned int                                      m_NumberOfBins;
 };
-} //namespace ITK
+} // namespace itk
 
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkOilPaintingImageFilter.hxx"
+#  include "itkOilPaintingImageFilter.hxx"
 #endif
 
 #endif // __itkOilPaintingImageFilter_h
