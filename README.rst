@@ -58,14 +58,14 @@ Required
 ^^^^^^^^
 
 - CMake_ ( >= 3.10.2 )
-- ITK_  ( >= 4.0.0 )
+- ITK_  ( >= 5.0.1 )
 
 Optional
 ^^^^^^^^
 
 If building the documentation:
 
-- Python_ ( >= 2.7 )
+- Python_ ( >= 3.5 )
 - Sphinx_
 - gnuplot_
 - dvipng_ ( for rendered equations )
