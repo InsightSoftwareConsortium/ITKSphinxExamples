@@ -9,12 +9,10 @@ set(_vtk_args)
 if(VTK_DIR OR ITKExamples_USE_VTK)
   set( _vtk_args "-DVTK_DIR:PATH=${VTK_DIR}"
     -DModule_ITKVtkGlue:BOOL=ON
-    -DModule_ITKLevelSetsv4Visualization:BOOL=ON
     )
 else()
   set(_vtk_args
     -DModule_ITKVtkGlue:BOOL=OFF
-    -DModule_ITKLevelSetsv4Visualization:BOOL=OFF
     )
 endif()
 
