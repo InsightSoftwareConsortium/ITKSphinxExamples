@@ -67,15 +67,14 @@ main(int argc, char * argv[])
   cropFilter->SetInput(image);
   // The SetBoundaryCropSize( cropSize ) method specifies the size of
   // the boundary to be cropped at both the uppper & lower ends of the
-  // image eg. cropSize/2 pixels will be removed at both upper & lower
+  // image eg. cropSize pixels will be removed at both upper & lower
   // extents
 
   cropFilter->SetBoundaryCropSize(cropSize);
 
-  // The below three lines are equivalent to the above two lines:
-  // ImageType::SizeType halfCropSize = {5,7};
-  // cropFilter->SetUpperBoundaryCropSize(halfCropSize);
-  // cropFilter->SetLowerBoundaryCropSize(halfCropSize);
+  // The below two lines are equivalent to the above line:
+  // cropFilter->SetUpperBoundaryCropSize(cropSize);
+  // cropFilter->SetLowerBoundaryCropSize(cropSize);
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
