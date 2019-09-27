@@ -57,11 +57,11 @@ main(int argc, char * argv[])
   try
   {
     reader->Update();
-    return EXIT_FAILURE;
   }
   catch (itk::ImageFileReaderException &)
   {
     std::cout << "fail.\n" << std::endl;
+    return EXIT_FAILURE;
   }
 
 
