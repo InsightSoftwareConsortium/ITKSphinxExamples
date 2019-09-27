@@ -20,7 +20,7 @@ Results
 
   Input image.
 
-.. figure:: SmoothImageUsingMinMaxCurvatureFlow
+.. figure:: SmoothImageUsingMinMaxCurvatureFlow.png
   :scale: 70%
 
   Output In VTK Window

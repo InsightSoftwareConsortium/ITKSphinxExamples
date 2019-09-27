@@ -12,17 +12,17 @@ Normalized correlation using the FFT.
 
 Results
 -------
-.. figure:: fixedimage.png
+.. figure:: fixedImage.png
   :scale: 70%
-  :alt: fixedimage.png
+  :alt: fixedImage.png
 
-  fixedimage.png
+  fixedImage.png
 
-.. figure:: movingimage.png
+.. figure:: movingImage.png
   :scale: 70%
-  :alt: movingimage.png
+  :alt: movingImage.png
 
-  movingimage.png
+  movingImage.png
 
 .. figure:: NormalizedCorrelationUsingFFT.png
   :scale: 70%

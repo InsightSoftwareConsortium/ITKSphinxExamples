@@ -17,7 +17,7 @@ Results
 
   Input image.
 
-.. figure:: ZeroCrossingBasedEdgeDecor
+.. figure:: ZeroCrossingBasedEdgeDecor.png
   :scale: 70%
 
   Output In VTK Window

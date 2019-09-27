@@ -13,11 +13,11 @@ Pixel-wise division of two images.
 
 Results
 -------
-.. figure:: test.png
+.. figure:: PixelDivisionOfTwoImages.png
   :scale: 70%
-  :alt: test.png
+  :alt: PixelDivisionOfTwoImages.png
 
-  test.png
+  PixelDivisionOfTwoImages.png
 
 Code
 ----

@@ -13,7 +13,7 @@ Rigidly register one image to another using manually specified landmarks.
 
 Results
 -------
-.. figure:: fixing.png
+.. figure:: fixed.png
   :scale: 70%
   :alt: fixed.png
 
