@@ -24,7 +24,7 @@ Results
 
   input2.png
 
-.. figure:: BinaryXORImage.png
+.. figure:: BinaryXORTwoImages.png
   :scale: 70%
   :alt: output.png
 

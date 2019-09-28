@@ -13,7 +13,7 @@ A basic global registration of two images.
 
 Results
 -------
-.. figure:: fixing.png
+.. figure:: fixed.png
   :scale: 70%
   :alt: fixing.png
 

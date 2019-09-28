@@ -13,17 +13,9 @@ Filter an image without copying its data.
 Results
 -------
 
-.. figure:: cthead1.png
-  :scale: 50%
-  :alt: Input image
+Output::
 
-  Input image
-
-.. figure:: OutputBaseline.png
-  :scale: 50%
-  :alt: Output image
-
-  Output image
+  3
 
 
 Code
@@ -34,13 +26,6 @@ C++
 
 .. literalinclude:: Code.cxx
    :lines: 18-
-
-Python
-......
-
-.. literalinclude:: Code.py
-   :language: python
-   :lines: 1, 18-
 
 
 Classes demonstrated
