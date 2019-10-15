@@ -157,7 +157,7 @@ def main():
 
     parser = argparse.ArgumentParser(
         description='Script to add a new example to the ITKExamples.')
-    parser.parse_args()
+    args = parser.parse_args()
 
     # Collect directories
 
@@ -166,12 +166,16 @@ def main():
     itk_examples_binary_dir = os.path.abspath('@ITKExamples_BINARY_DIR@')
     itk_examples_build_dir = os.path.abspath(pjoin(itk_examples_binary_dir, os.pardir))
     itk_superbuild_dir = pjoin(itk_examples_build_dir, 'ITK')
-    if not itk_superbuild_dir:
-        print('Error: ITKExamples must be configured using the Superbuild'
-              'functionality to use this script.')
-        sys.exit()
-
-    itk_src = itk_superbuild_dir
+    if not os.path.isdir(itk_superbuild_dir):
+        # try to see if the ITK directory was setup manually and get the ITK directory from there:
+        itk_dir = os.path.abspath('@ITK_CMAKE_DIR@')
+        if not os.path.isdir(itk_dir):
+            print('Error: ITKExamples must be configured using the Superbuild'
+              'functionality to use this script or set ITK_DIR in cmake.')
+            sys.exit()
+        itk_src = os.path.dirname(itk_dir)
+    else:
+        itk_src = itk_superbuild_dir
 
     itk_examples_root_dir = os.path.abspath('@ITKExamples_SOURCE_DIR@')
     itk_examples_src = pjoin(itk_examples_root_dir, "src")

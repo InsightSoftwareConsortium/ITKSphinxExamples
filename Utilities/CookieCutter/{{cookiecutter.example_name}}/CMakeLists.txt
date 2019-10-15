@@ -25,7 +25,7 @@ set(output_image Output.png)
 set(test_options)
 
 
-add_test( NAME ApplyCosImageFilterTest
+add_test( NAME {{ cookiecutter.example_name }}Test
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/{{ cookiecutter.example_name }}
   ${input_image}
   ${output_image}
