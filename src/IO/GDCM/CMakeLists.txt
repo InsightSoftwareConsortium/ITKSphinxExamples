@@ -5,3 +5,5 @@ add_example( ReadDICOMSeriesAndWrite3DImage )
 #compare_to_baseline(EXAMPLE_NAME ResampleDICOMSeries
 #  BASELINE_PREFIX OutputBaseline
 #  )
+
+add_example(ReadAndPrintDICOMTags)
