@@ -14,9 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
-
 import itk
+import sys
 
 if len(sys.argv) != 4:
     print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> <radius>")
@@ -44,6 +43,8 @@ ErodeFilterType = itk.BinaryErodeImageFilter[ImageType,
 erodeFilter = ErodeFilterType.New()
 erodeFilter.SetInput(reader.GetOutput())
 erodeFilter.SetKernel(structuringElement)
+erodeFilter.SetForegroundValue(255) # Intensity value to erode
+erodeFilter.SetBackgroundValue(0)   # Replacement value for eroded voxels
 
 WriterType = itk.ImageFileWriter[ImageType]
 writer = WriterType.New()
