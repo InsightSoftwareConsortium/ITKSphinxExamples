@@ -54,7 +54,8 @@ main(int argc, char * argv[])
   BinaryErodeImageFilterType::Pointer erodeFilter = BinaryErodeImageFilterType::New();
   erodeFilter->SetInput(reader->GetOutput());
   erodeFilter->SetKernel(structuringElement);
-  erodeFilter->SetErodeValue(255);
+  erodeFilter->SetForegroundValue(255); // Intensity value to erode
+  erodeFilter->SetBackgroundValue(0);   // Replacement value for eroded voxels
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;

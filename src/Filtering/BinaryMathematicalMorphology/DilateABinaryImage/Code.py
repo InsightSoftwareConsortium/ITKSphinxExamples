@@ -15,7 +15,6 @@
 # limitations under the License.
 
 import sys
-
 import itk
 
 if len(sys.argv) != 4:
@@ -44,6 +43,7 @@ DilateFilterType = itk.BinaryDilateImageFilter[ImageType,
 dilateFilter = DilateFilterType.New()
 dilateFilter.SetInput(reader.GetOutput())
 dilateFilter.SetKernel(structuringElement)
+dilateFilter.SetForegroundValue(255)
 
 WriterType = itk.ImageFileWriter[ImageType]
 writer = WriterType.New()
