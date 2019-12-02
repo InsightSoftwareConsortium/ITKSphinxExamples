@@ -111,3 +111,4 @@ Common
   CheckIfModuleIsPresent/Documentation.rst
   DisplayImage/Documentation.rst
   DirectWarningToFile/Documentation.rst
+  SetDefaultNumberOfThreads/Documentation.rst

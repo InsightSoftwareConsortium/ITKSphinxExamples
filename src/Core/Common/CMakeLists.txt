@@ -204,3 +204,5 @@ compare_to_baseline(EXAMPLE_NAME OutOfBoundsPixelsReturnConstValue
   BASELINE_PREFIX OutputBaseline
   )
 endif()
+
+add_example(SetDefaultNumberOfThreads)
