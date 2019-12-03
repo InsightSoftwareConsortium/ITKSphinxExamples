@@ -56,13 +56,17 @@ To submit your changes to `GitHub`_::
 Create a new example
 --------------------
 
-To create a new example, you can make use of the Python script located in the
-binary tree (/path/to/ITKExamples-build/Utilities)::
+To create a new example, first install `Cookiecutter`_::
+
+  python -m pip install cookiecutter
+
+and make use of the Python script located in the
+binary tree (*/path/to/ITKExamples-build/Utilities*)::
 
   cd /path/to/ITKExamples-build/Utilities
-  ./CreateNewExample.py /path/to/source/ITK
+  python ./CreateNewExample.py
 
-*This script will generate cxx and rst files to be modified*
+*This script will generate *.cxx, *.py, and *.rst files to be modified.*
 
 Note that the generated files are then located based on the group, module and
 class name to be demonstrated. For instance an example which would demonstrate
@@ -77,3 +81,4 @@ Please do not add images directly to the repository.  Instead, use the
 .. _Git hooks: https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
 .. _GitHub account: https://github.com/login
 .. _GitHub: https://github.com/InsightSoftwareConsortium/ITKExamples
+.. _Cookiecutter: https://cookiecutter.readthedocs.io/en/latest/
