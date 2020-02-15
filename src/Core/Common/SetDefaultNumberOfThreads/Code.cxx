@@ -30,7 +30,7 @@ main(int argc, char * argv[])
     return EXIT_FAILURE;
   }
 
-  const auto numberOfThreads = std::atoi(argv[1]);
+  const auto numberOfThreads = static_cast<unsigned int>(std::atoi(argv[1]));
 
   itk::MultiThreaderBase::SetGlobalDefaultNumberOfThreads(numberOfThreads);
 
