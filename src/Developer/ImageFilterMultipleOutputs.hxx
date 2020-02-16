@@ -83,7 +83,7 @@ ImageFilterMultipleOutputs<TImage>::GenerateData()
 
 template <class TImage>
 DataObject::Pointer
-ImageFilterMultipleOutputs<TImage>::MakeOutput(unsigned int idx)
+ImageFilterMultipleOutputs<TImage>::MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx)
 {
   DataObject::Pointer output;
 
