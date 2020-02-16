@@ -35,7 +35,7 @@ protected:
 
   /**  Create the Output */
   DataObject::Pointer
-  MakeOutput(unsigned int idx);
+  MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx);
 
 private:
   ImageFilterMultipleOutputs(const Self &) = delete; // purposely not implemented
