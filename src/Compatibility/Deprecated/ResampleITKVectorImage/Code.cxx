@@ -15,30 +15,30 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-/*
 #include "itkImage.h"
-#include "itkVectorResampleImageFilter.h"
+#include "itkResampleImageFilter.h"
 #include "itkVectorImage.h"
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
   typedef itk::VectorImage<double, 2> VectorImageType;
 
   VectorImageType::Pointer image = VectorImageType::New();
-  itk::Index<2> start;
+  itk::Index<2>            start;
   start.Fill(0);
 
   itk::Size<2> size;
   size.Fill(10);
 
-  itk::ImageRegion<2> region(start,size);
+  itk::ImageRegion<2> region(start, size);
   image->SetRegions(region);
   image->SetNumberOfComponentsPerPixel(3);
   image->Allocate();
-  image->FillBuffer(itk::NumericTraits<VectorImageType::InternalPixelType>::Zero);
+  // image->FillBuffer(itk::NumericTraits<VectorImageType::InternalPixelType>::Zero);
 
-  typedef itk::VectorResampleImageFilter< VectorImageType, VectorImageType > VectorResampleFilterType;
-  VectorResampleFilterType::Pointer vectorResampleFilter = VectorResampleFilterType::New();
+  typedef itk::ResampleImageFilter<VectorImageType, VectorImageType> ResampleFilterType;
+  ResampleFilterType::Pointer                                        vectorResampleFilter = ResampleFilterType::New();
   vectorResampleFilter->SetInput(image);
   vectorResampleFilter->Update();
 
