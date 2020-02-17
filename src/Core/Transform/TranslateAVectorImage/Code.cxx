@@ -25,8 +25,8 @@
 int
 main(int, char *[])
 {
-  typedef itk::CovariantVector<double, 3> VectorType;
-  typedef itk::Image<VectorType, 2>       VectorImageType;
+  using VectorType = itk::CovariantVector<double, 3>;
+  using VectorImageType = itk::Image<VectorType, 2>;
 
   VectorImageType::Pointer image = VectorImageType::New();
   itk::Index<2>            start;
@@ -46,8 +46,8 @@ main(int, char *[])
   translation[1] = 20;
   transform->Translate(translation);
 
-  typedef itk::ResampleImageFilter<VectorImageType, VectorImageType> ResampleFilterType;
-  ResampleFilterType::Pointer                                        vectorResampleFilter = ResampleFilterType::New();
+  using ResampleFilterType = itk::ResampleImageFilter<VectorImageType, VectorImageType>;
+  ResampleFilterType::Pointer vectorResampleFilter = ResampleFilterType::New();
   vectorResampleFilter->SetInput(image);
   vectorResampleFilter->SetSize(image->GetLargestPossibleRegion().GetSize());
   vectorResampleFilter->SetTransform(transform);
