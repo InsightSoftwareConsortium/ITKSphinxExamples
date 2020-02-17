@@ -25,7 +25,7 @@ using SampleType = itk::Statistics::ListSample<MeasurementVectorType>;
 using HistogramType = itk::Statistics::Histogram<float, itk::Statistics::DenseFrequencyContainer2>;
 
 void
-CreateSample(SampleType::Pointer image);
+CreateSample(SampleType::Pointer sample);
 
 int
 main(int, char *[])
