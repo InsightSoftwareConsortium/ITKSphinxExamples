@@ -26,7 +26,7 @@
 #  include "QuickView.h"
 #endif
 
-typedef itk::Image<itk::RGBPixel<unsigned char>, 2> ImageType;
+using ImageType = itk::Image<itk::RGBPixel<unsigned char>, 2>;
 
 static void
 CreateImage(ImageType::Pointer image);
@@ -45,8 +45,8 @@ main(int argc, char * argv[])
   }
   else
   {
-    typedef itk::ImageFileReader<ImageType> ReaderType;
-    ReaderType::Pointer                     reader = ReaderType::New();
+    using ReaderType = itk::ImageFileReader<ImageType>;
+    ReaderType::Pointer reader = ReaderType::New();
     reader->SetFileName(argv[1]);
     reader->Update();
     input = reader->GetOutput();
@@ -69,16 +69,16 @@ main(int argc, char * argv[])
   outputSpacing[0] = input->GetSpacing()[0] * (static_cast<double>(inputSize[0]) / static_cast<double>(outputSize[0]));
   outputSpacing[1] = input->GetSpacing()[1] * (static_cast<double>(inputSize[1]) / static_cast<double>(outputSize[1]));
 
-  typedef itk::IdentityTransform<double, 2>                    TransformType;
-  typedef itk::VectorResampleImageFilter<ImageType, ImageType> ResampleImageFilterType;
-  ResampleImageFilterType::Pointer                             resample = ResampleImageFilterType::New();
+  using TransformType = itk::IdentityTransform<double, 2>;
+  using ResampleImageFilterType = itk::VectorResampleImageFilter<ImageType, ImageType>;
+  ResampleImageFilterType::Pointer resample = ResampleImageFilterType::New();
   resample->SetInput(input);
   resample->SetSize(outputSize);
   resample->SetOutputSpacing(outputSpacing);
   resample->SetTransform(TransformType::New());
   resample->UpdateLargestPossibleRegion();
 
-  typedef itk::VectorNearestNeighborInterpolateImageFunction<ImageType, double> NearestInterpolatorType;
+  using NearestInterpolatorType = itk::VectorNearestNeighborInterpolateImageFunction<ImageType, double>;
   NearestInterpolatorType::Pointer nnInterpolator = NearestInterpolatorType::New();
 
   ResampleImageFilterType::Pointer resampleNN = ResampleImageFilterType::New();

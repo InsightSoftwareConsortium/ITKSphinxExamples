@@ -22,7 +22,7 @@
 int
 main(int, char *[])
 {
-  typedef itk::VectorImage<double, 2> VectorImageType;
+  using VectorImageType = itk::VectorImage<double, 2>;
 
   VectorImageType::Pointer image = VectorImageType::New();
   itk::Index<2>            start;
@@ -37,8 +37,8 @@ main(int, char *[])
   image->Allocate();
   // image->FillBuffer(itk::NumericTraits<VectorImageType::InternalPixelType>::Zero);
 
-  typedef itk::ResampleImageFilter<VectorImageType, VectorImageType> ResampleFilterType;
-  ResampleFilterType::Pointer                                        vectorResampleFilter = ResampleFilterType::New();
+  using ResampleFilterType = itk::ResampleImageFilter<VectorImageType, VectorImageType>;
+  ResampleFilterType::Pointer vectorResampleFilter = ResampleFilterType::New();
   vectorResampleFilter->SetInput(image);
   vectorResampleFilter->Update();
 
