@@ -24,7 +24,7 @@ public:
   itkTypeMacro(ExampleCostFunction2, SingleValuedCostfunction);
 
   unsigned int
-  GetNumberOfParameters(void) const override
+  GetNumberOfParameters() const override
   {
     return 2;
   } // itk::CostFunction
