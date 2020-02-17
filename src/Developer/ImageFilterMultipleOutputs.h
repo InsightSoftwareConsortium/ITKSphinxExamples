@@ -35,7 +35,7 @@ protected:
 
   /**  Create the Output */
   DataObject::Pointer
-  MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx);
+  MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx) override;
 
 private:
   ImageFilterMultipleOutputs(const Self &) = delete; // purposely not implemented
