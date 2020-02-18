@@ -67,7 +67,6 @@ public:
 
 protected:
   CommandIterationUpdate() = default;
-  ;
 
 public:
   using OptimizerType = itk::GradientDescentOptimizer;

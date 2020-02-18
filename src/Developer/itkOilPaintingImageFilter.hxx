@@ -49,7 +49,7 @@ OilPaintingImageFilter<TImage>::DynamicThreadedGenerateData(const typename TImag
   itk::ImageRegionIterator<TImage>       out(output, outputRegionForThread);
   itk::ConstNeighborhoodIterator<TImage> it(m_Radius, input, outputRegionForThread);
 
-  unsigned long long * bins = new unsigned long long[m_NumberOfBins];
+  auto * bins = new unsigned long long[m_NumberOfBins];
 
   while (!out.IsAtEnd())
   {

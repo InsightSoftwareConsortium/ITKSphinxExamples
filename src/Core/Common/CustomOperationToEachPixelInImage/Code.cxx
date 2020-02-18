@@ -27,9 +27,7 @@ class RotateVectors
 {
 public:
   RotateVectors() = default;
-  ;
   ~RotateVectors() = default;
-  ;
   bool
   operator!=(const RotateVectors &) const
   {
