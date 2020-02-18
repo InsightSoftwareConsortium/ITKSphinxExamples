@@ -58,7 +58,6 @@ public:
 
 protected:
   IterationUpdate() = default;
-  ;
 
 public:
   using InternalImageType = itk::Image<float, 2>;

@@ -36,7 +36,6 @@ public:
 
 protected:
   CommandIterationUpdate() = default;
-  ;
 
 public:
   using OptimizerType = itk::ExhaustiveOptimizerv4<double>;

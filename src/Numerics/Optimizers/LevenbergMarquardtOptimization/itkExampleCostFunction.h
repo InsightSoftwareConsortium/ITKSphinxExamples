@@ -93,7 +93,6 @@ protected:
     }
   };
   ~ExampleCostFunction() override = default;
-  ;
 
 private:
   ExampleCostFunction(const Self &) = delete; // purposely not implemented
