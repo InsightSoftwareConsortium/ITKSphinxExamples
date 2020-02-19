@@ -74,7 +74,7 @@ main(int argc, char * argv[])
   using TIFFIOType = itk::TIFFImageIO;
 
   TIFFIOType::Pointer tiffIO = TIFFIOType::New();
-  tiffIO->SetPixelType(itk::ImageIOBase::SCALAR);
+  tiffIO->SetPixelType(itk::IOPixelEnum::SCALAR);
 
   WriterType::Pointer writer = WriterType::New();
   writer->SetFileName(outputFilename);

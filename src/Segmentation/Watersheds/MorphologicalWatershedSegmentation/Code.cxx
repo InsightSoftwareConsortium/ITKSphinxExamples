@@ -157,7 +157,7 @@ PerformSegmentation(FloatImageType::Pointer image, const float threshold, const 
   using RGBFilterType = itk::ScalarToRGBColormapImageFilter<LabeledImageType, RGBImageType>;
   RGBFilterType::Pointer colormapImageFilter = RGBFilterType::New();
   colormapImageFilter->SetInput(watershedFilter->GetOutput());
-  colormapImageFilter->SetColormap(itk::RGBColormapFilterEnumType::Jet);
+  colormapImageFilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Jet);
   colormapImageFilter->Update();
 
   std::stringstream ss;

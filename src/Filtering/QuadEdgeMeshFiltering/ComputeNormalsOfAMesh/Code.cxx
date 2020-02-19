@@ -54,7 +54,7 @@ main(int argc, char * argv[])
   using OutputMeshType = itk::QuadEdgeMesh<VectorType, Dimension, Traits>;
 
   using NormalFilterType = itk::NormalQuadEdgeMeshFilter<InputMeshType, OutputMeshType>;
-  NormalFilterType::WeightType weight_type;
+  NormalFilterType::WeightEnum weight_type;
 
   int param = std::stoi(argv[2]);
 
@@ -72,13 +72,13 @@ main(int argc, char * argv[])
     {
       default:
       case 0:
-        weight_type = NormalFilterType::GOURAUD;
+        weight_type = itk::NormalQuadEdgeMeshFilterEnums::Weight::GOURAUD;
         break;
       case 1:
-        weight_type = NormalFilterType::THURMER;
+        weight_type = itk::NormalQuadEdgeMeshFilterEnums::Weight::THURMER;
         break;
       case 2:
-        weight_type = NormalFilterType::AREA;
+        weight_type = itk::NormalQuadEdgeMeshFilterEnums::Weight::AREA;
         break;
     }
   }

@@ -47,16 +47,16 @@ ReadImage(const char * fileName, typename TImage::Pointer image)
 
 template <unsigned int VDimension>
 int
-ReadScalarImage(const char * inputFileName, const itk::ImageIOBase::IOComponentType componentType)
+ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum componentType)
 {
   switch (componentType)
   {
     default:
-    case itk::ImageIOBase::UNKNOWNCOMPONENTTYPE:
+    case itk::IOComponentEnum::UNKNOWNCOMPONENTTYPE:
       std::cerr << "Unknown and unsupported component type!" << std::endl;
       return EXIT_FAILURE;
 
-    case itk::ImageIOBase::UCHAR:
+    case itk::IOComponentEnum::UCHAR:
     {
       using PixelType = unsigned char;
       using ImageType = itk::Image<PixelType, VDimension>;
@@ -72,7 +72,7 @@ ReadScalarImage(const char * inputFileName, const itk::ImageIOBase::IOComponentT
       break;
     }
 
-    case itk::ImageIOBase::CHAR:
+    case itk::IOComponentEnum::CHAR:
     {
       using PixelType = char;
       using ImageType = itk::Image<PixelType, VDimension>;
@@ -88,7 +88,7 @@ ReadScalarImage(const char * inputFileName, const itk::ImageIOBase::IOComponentT
       break;
     }
 
-    case itk::ImageIOBase::USHORT:
+    case itk::IOComponentEnum::USHORT:
     {
       using PixelType = unsigned short;
       using ImageType = itk::Image<PixelType, VDimension>;
@@ -104,7 +104,7 @@ ReadScalarImage(const char * inputFileName, const itk::ImageIOBase::IOComponentT
       break;
     }
 
-    case itk::ImageIOBase::SHORT:
+    case itk::IOComponentEnum::SHORT:
     {
       using PixelType = short;
       using ImageType = itk::Image<PixelType, VDimension>;
@@ -120,7 +120,7 @@ ReadScalarImage(const char * inputFileName, const itk::ImageIOBase::IOComponentT
       break;
     }
 
-    case itk::ImageIOBase::UINT:
+    case itk::IOComponentEnum::UINT:
     {
       using PixelType = unsigned int;
       using ImageType = itk::Image<PixelType, VDimension>;
@@ -136,7 +136,7 @@ ReadScalarImage(const char * inputFileName, const itk::ImageIOBase::IOComponentT
       break;
     }
 
-    case itk::ImageIOBase::INT:
+    case itk::IOComponentEnum::INT:
     {
       using PixelType = int;
       using ImageType = itk::Image<PixelType, VDimension>;
@@ -152,7 +152,7 @@ ReadScalarImage(const char * inputFileName, const itk::ImageIOBase::IOComponentT
       break;
     }
 
-    case itk::ImageIOBase::ULONG:
+    case itk::IOComponentEnum::ULONG:
     {
       using PixelType = unsigned long;
       using ImageType = itk::Image<PixelType, VDimension>;
@@ -168,7 +168,7 @@ ReadScalarImage(const char * inputFileName, const itk::ImageIOBase::IOComponentT
       break;
     }
 
-    case itk::ImageIOBase::LONG:
+    case itk::IOComponentEnum::LONG:
     {
       using PixelType = long;
       using ImageType = itk::Image<PixelType, VDimension>;
@@ -184,7 +184,7 @@ ReadScalarImage(const char * inputFileName, const itk::ImageIOBase::IOComponentT
       break;
     }
 
-    case itk::ImageIOBase::FLOAT:
+    case itk::IOComponentEnum::FLOAT:
     {
       using PixelType = float;
       using ImageType = itk::Image<PixelType, VDimension>;
@@ -200,7 +200,7 @@ ReadScalarImage(const char * inputFileName, const itk::ImageIOBase::IOComponentT
       break;
     }
 
-    case itk::ImageIOBase::DOUBLE:
+    case itk::IOComponentEnum::DOUBLE:
     {
       using PixelType = double;
       using ImageType = itk::Image<PixelType, VDimension>;
@@ -234,17 +234,17 @@ main(int argc, char * argv[])
   const char * inputFileName = argv[1];
 
   itk::ImageIOBase::Pointer imageIO =
-    itk::ImageIOFactory::CreateImageIO(inputFileName, itk::ImageIOFactory::FileModeType::ReadMode);
+    itk::ImageIOFactory::CreateImageIO(inputFileName, itk::CommonEnums::IOFileMode::ReadMode);
 
   imageIO->SetFileName(inputFileName);
   imageIO->ReadImageInformation();
 
-  using IOPixelType = itk::ImageIOBase::IOPixelType;
+  using IOPixelType = itk::IOPixelEnum;
   const IOPixelType pixelType = imageIO->GetPixelType();
 
   std::cout << "Pixel Type is " << itk::ImageIOBase::GetPixelTypeAsString(pixelType) << std::endl;
 
-  using IOComponentType = itk::ImageIOBase::IOComponentType;
+  using IOComponentType = itk::IOComponentEnum;
   const IOComponentType componentType = imageIO->GetComponentType();
 
   std::cout << "Component Type is " << imageIO->GetComponentTypeAsString(componentType) << std::endl;
@@ -255,7 +255,7 @@ main(int argc, char * argv[])
 
   switch (pixelType)
   {
-    case itk::ImageIOBase::SCALAR:
+    case itk::IOPixelEnum::SCALAR:
     {
       if (imageDimension == 2)
       {

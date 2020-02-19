@@ -63,7 +63,7 @@ main(int, char *[])
   using RGBFilterType = itk::ScalarToRGBColormapImageFilter<LabelImageType, RGBImageType>;
   RGBFilterType::Pointer colormapImageFilter = RGBFilterType::New();
   colormapImageFilter->SetInput(labelShapeKeepNObjectsImageFilter->GetOutput());
-  colormapImageFilter->SetColormap(itk::RGBColormapFilterEnumType::Jet);
+  colormapImageFilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Jet);
   colormapImageFilter->Update();
 
   using WriterType = itk::ImageFileWriter<RGBImageType>;
