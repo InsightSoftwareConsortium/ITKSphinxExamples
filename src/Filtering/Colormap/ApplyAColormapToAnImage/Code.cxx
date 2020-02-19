@@ -50,7 +50,7 @@ main(int argc, char * argv[])
   using RGBFilterType = itk::ScalarToRGBColormapImageFilter<ImageType, RGBImageType>;
   RGBFilterType::Pointer rgbfilter = RGBFilterType::New();
   rgbfilter->SetInput(reader->GetOutput());
-  rgbfilter->SetColormap(itk::RGBColormapFilterEnumType::Hot);
+  rgbfilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Hot);
 
   using WriterType = itk::ImageFileWriter<RGBImageType>;
   WriterType::Pointer writer = WriterType::New();

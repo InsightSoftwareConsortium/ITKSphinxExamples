@@ -83,7 +83,7 @@ main(int argc, char * argv[])
   using TIFFIOType = itk::TIFFImageIO;
   WriterType::Pointer writer = WriterType::New();
   TIFFIOType::Pointer tiffIO = TIFFIOType::New();
-  tiffIO->SetPixelType(itk::ImageIOBase::RGBA);
+  tiffIO->SetPixelType(itk::IOPixelEnum::RGBA);
   writer->SetFileName(outputFilename);
   writer->SetInput(image);
   writer->SetImageIO(tiffIO);

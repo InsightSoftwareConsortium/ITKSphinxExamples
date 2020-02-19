@@ -21,7 +21,7 @@ ImageFilter<TImage>::GenerateData()
   for (unsigned int i = 0; i < ImageDimension; i++)
   {
     smoothingFilters[i] = InternalGaussianFilterType::New();
-    smoothingFilters[i]->SetOrder(EnumGaussianOrderType::ZeroOrder);
+    smoothingFilters[i]->SetOrder(GaussianOrderEnum::ZeroOrder);
     smoothingFilters[i]->SetDirection(i);
   }
 
