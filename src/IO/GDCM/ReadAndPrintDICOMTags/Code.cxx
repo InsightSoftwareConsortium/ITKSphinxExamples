@@ -116,8 +116,7 @@ main(int argc, char * argv[])
   {
     itk::MetaDataObjectBase::Pointer entry = itr->second;
 
-    MetaDataStringType::Pointer entryvalue =
-      dynamic_cast<MetaDataStringType *>(entry.GetPointer());
+    MetaDataStringType::Pointer entryvalue = dynamic_cast<MetaDataStringType *>(entry.GetPointer());
 
     if (entryvalue)
     {
@@ -147,8 +146,7 @@ main(int argc, char * argv[])
   // Since the entry may or may not be of string type we must again use a
   // dynamic_cast in order to attempt to convert it to a string dictionary
   // entry. If the conversion is successful, we can then print out its content.
-  MetaDataStringType::ConstPointer entryvalue =
-    dynamic_cast<const MetaDataStringType *>(tagItr->second.GetPointer());
+  MetaDataStringType::ConstPointer entryvalue = dynamic_cast<const MetaDataStringType *>(tagItr->second.GetPointer());
 
   if (entryvalue)
   {
