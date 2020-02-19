@@ -54,7 +54,7 @@ main(int argc, char * argv[])
   BinaryDilateImageFilterType::Pointer dilateFilter = BinaryDilateImageFilterType::New();
   dilateFilter->SetInput(reader->GetOutput());
   dilateFilter->SetKernel(structuringElement);
-  dilateFilter->SetForegroundValue(255); //Value to dilate
+  dilateFilter->SetForegroundValue(255); // Value to dilate
 
   using WriterType = itk::ImageFileWriter<ImageType>;
   WriterType::Pointer writer = WriterType::New();

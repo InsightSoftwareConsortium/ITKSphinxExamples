@@ -120,7 +120,7 @@ main(int, char *[])
 
   optimizer->SetMaximumStepLength(.1); // If this is set too high, you will get a
   //"itk::ERROR: MeanSquaresImageToImageMetric(0xa27ce70): Too many samples map outside moving image buffer: 1818 /
-  //10000" error
+  // 10000" error
 
   optimizer->SetMinimumStepLength(0.01);
 
