@@ -496,5 +496,11 @@ if(NOT ${configure_return} EQUAL 0 OR
    NOT ${build_warnings} EQUAL 0 OR
    NOT ${test_return} EQUAL 0)
   message(FATAL_ERROR
-    "Build did not complete without warnings, errors, or failures.")
+    "Build did not complete without warnings, errors, or failures:"
+    "  NOT ${configure_return} EQUAL 0 OR\n"
+    "  NOT ${build_return} EQUAL 0 OR\n"
+    "  NOT ${build_errors} EQUAL 0 OR\n"
+    "  NOT ${build_warnings} EQUAL 0 OR\n"
+    "  NOT ${test_return} EQUAL 0\n"
+    )
 endif()
