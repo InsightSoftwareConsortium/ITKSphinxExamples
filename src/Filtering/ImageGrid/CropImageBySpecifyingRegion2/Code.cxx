@@ -109,7 +109,7 @@ CreateImage(ImageType::Pointer image)
 
   image->SetRegions(region);
   image->Allocate();
-  image->FillBuffer(itk::NumericTraits<ImageType::PixelType>::Zero);
+  image->FillBuffer(itk::NumericTraits<ImageType::PixelType>::ZeroValue());
 
   // Make a rectangle, centered at (100,150) with sides 160 & 240
   // This provides a 20 x 30 border around the square for the crop filter to remove
