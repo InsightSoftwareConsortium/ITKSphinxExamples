@@ -1,3 +1,8 @@
+#NOTE This azure pipeline script is different from many of
+#     the remote repository scripts
+#     ITKExamples is based on a super-build mechansims
+#     that provides many examples, and a need to build
+#     independant (for generating sphinx documentation).
 jobs:
 - job: Linux
   timeoutInMinutes: 0
