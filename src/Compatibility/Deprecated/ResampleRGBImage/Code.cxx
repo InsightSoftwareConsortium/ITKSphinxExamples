@@ -120,7 +120,7 @@ CreateImage(ImageType::Pointer image)
   ImageType::RegionType region(start, size);
   image->SetRegions(region);
   image->Allocate();
-  image->FillBuffer(itk::NumericTraits<ImageType::PixelType>::Zero);
+  image->FillBuffer(itk::NumericTraits<ImageType::PixelType>::ZeroValue());
 
   ImageType::PixelType pixel;
   pixel.SetRed(200);

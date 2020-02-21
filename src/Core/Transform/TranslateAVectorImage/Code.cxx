@@ -38,7 +38,7 @@ main(int, char *[])
   itk::ImageRegion<2> region(start, size);
   image->SetRegions(region);
   image->Allocate();
-  image->FillBuffer(itk::NumericTraits<VectorType>::Zero);
+  image->FillBuffer(itk::NumericTraits<VectorType>::ZeroValue());
 
   itk::TranslationTransform<double, 2>::Pointer          transform = itk::TranslationTransform<double, 2>::New();
   itk::TranslationTransform<double, 2>::OutputVectorType translation;
