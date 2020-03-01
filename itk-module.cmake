@@ -3,7 +3,7 @@ set(DOCUMENTATION "This module builds the examples found at https://github.com/I
 itk_module(SphinxExamples
   DEPENDS
     ITKCommon
-    EXCLUDE_FROM_DEFAULT
   DESCRIPTION
     "${DOCUMENTATION}"
-  )
+  EXCLUDE_FROM_DEFAULT
+)

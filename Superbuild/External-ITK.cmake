@@ -30,11 +30,11 @@ endif()
 set(_wrap_python_args )
 if(ITKExamples_USE_WRAP_PYTHON)
   set(_python_depends)
-  if(NOT EXISTS PYTHON_EXECUTABLE)
+  if(NOT EXISTS Python3_EXECUTABLE)
     set(_python_depends ITKPython)
   endif()
   set(_wrap_python_args
-    "-DPYTHON_EXECUTABLE:FILEPATH=${ITKPYTHON_EXECUTABLE}"
+    "-DPython3_EXECUTABLE:FILEPATH=${ITKPython3_EXECUTABLE}"
     )
 endif()
 
