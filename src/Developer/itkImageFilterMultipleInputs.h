@@ -9,6 +9,7 @@ template <class TImage>
 class ImageFilterMultipleInputs : public ImageToImageFilter<TImage, TImage>
 {
 public:
+  ITK_DISALLOW_COPY_AND_ASSIGN(ImageFilterMultipleInputs);
   /** Standard class type alias. */
   using Self = ImageFilterMultipleInputs;
   using Superclass = ImageToImageFilter<TImage, TImage>;
@@ -35,11 +36,6 @@ protected:
   /** Does the real work. */
   void
   GenerateData() override;
-
-private:
-  ImageFilterMultipleInputs(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
 };
 } // namespace itk
 
