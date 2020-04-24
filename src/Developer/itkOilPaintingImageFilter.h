@@ -18,6 +18,7 @@ template <class TImage>
 class OilPaintingImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:
+  ITK_DISALLOW_COPY_AND_ASSIGN(OilPaintingImageFilter);
   /** Standard class type alias. */
   using Self = OilPaintingImageFilter;
   using Superclass = ImageToImageFilter<TImage, TImage>;
@@ -50,10 +51,6 @@ protected:
   DynamicThreadedGenerateData(const typename TImage::RegionType & outputRegionForThread) override;
 
 private:
-  OilPaintingImageFilter(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
-
   typename TImage::ValueType                        m_Maximum, m_Minimum;
   typename NeighborhoodIterator<TImage>::RadiusType m_Radius;
   unsigned int                                      m_NumberOfBins;

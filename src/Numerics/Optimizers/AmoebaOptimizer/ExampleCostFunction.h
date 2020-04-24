@@ -11,6 +11,7 @@ namespace itk
 class ExampleCostFunction2 : public SingleValuedCostFunction
 {
 public:
+  ITK_DISALLOW_COPY_AND_ASSIGN(ExampleCostFunction2);
   /** Standard class typedefs. */
   typedef ExampleCostFunction2     Self;
   typedef SingleValuedCostFunction Superclass;
@@ -44,11 +45,6 @@ public:
 protected:
   ExampleCostFunction2() = default;
   ~ExampleCostFunction2() override = default;
-
-private:
-  ExampleCostFunction2(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
 };
 
 } // end namespace itk

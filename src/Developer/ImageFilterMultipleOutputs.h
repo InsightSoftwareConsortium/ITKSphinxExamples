@@ -9,6 +9,7 @@ template <class TImage>
 class ImageFilterMultipleOutputs : public ImageToImageFilter<TImage, TImage>
 {
 public:
+  ITK_DISALLOW_COPY_AND_ASSIGN(ImageFilterMultipleOutputs);
   /** Standard class type alias. */
   using Self = ImageFilterMultipleOutputs;
   using Superclass = ImageToImageFilter<TImage, TImage>;
@@ -37,10 +38,6 @@ protected:
   DataObject::Pointer
   MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx) override;
 
-private:
-  ImageFilterMultipleOutputs(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
 };
 } // namespace itk
 
