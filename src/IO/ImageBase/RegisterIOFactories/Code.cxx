@@ -61,7 +61,6 @@ main(int argc, char * argv[])
   catch (itk::ImageFileReaderException &)
   {
     std::cout << "fail.\n" << std::endl;
-    return EXIT_FAILURE;
   }
 
 
