@@ -32,13 +32,8 @@ Results
 .. raw:: html
 
   <div class="figure">
-    <iframe src="wave.html" width="315" height="240" seamless></iframe>
+    <iframe src="mushroom.html" width="315" height="240" seamless></iframe>
     <p class="caption">Interactive input mesh</p>
-  </div>
-
-  <div class="figure">
-    <iframe src="DelaunayConformEdgeFlippingOutput.html" width="315" height="240" seamless></iframe>
-    <p class="caption">Interactive output mesh</p>
   </div>
 
 

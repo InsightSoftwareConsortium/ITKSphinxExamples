@@ -21,6 +21,6 @@ install( FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME DelaunayConformEdgeFlippingTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DelaunayConformEdgeFlipping
-  wave.vtk
+  mushroom.vtk
   Output.vtk
 )
