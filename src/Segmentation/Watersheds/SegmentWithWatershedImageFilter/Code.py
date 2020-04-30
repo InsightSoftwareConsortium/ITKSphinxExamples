@@ -73,7 +73,7 @@ RGBImageType = itk.Image[RGBPixelType, Dimension]
 ScalarToRGBColormapFilterType = \
     itk.ScalarToRGBColormapImageFilter[LabeledImageType, RGBImageType]
 colormapImageFilter = ScalarToRGBColormapFilterType.New()
-colormapImageFilter.SetColormap(ScalarToRGBColormapFilterType.Jet)
+colormapImageFilter.SetColormap(itk.ScalarToRGBColormapImageFilterEnums.RGBColormapFilter_Jet)
 colormapImageFilter.SetInput(watershed.GetOutput())
 colormapImageFilter.Update()
 
