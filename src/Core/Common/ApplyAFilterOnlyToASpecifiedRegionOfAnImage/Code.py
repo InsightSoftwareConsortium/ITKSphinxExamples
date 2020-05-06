@@ -35,7 +35,7 @@ bigSize.Fill(10)
 
 RandomSourceType = itk.RandomImageSource[ImageType]
 randomImageSource = RandomSourceType.New()
-randomImageSource.SetNumberOfThreads(1)  # to produce non-random results
+randomImageSource.SetNumberOfWorkUnits(1)  # to produce non-random results
 randomImageSource.SetSize(bigSize)
 randomImageSource.GetOutput().SetRequestedRegion(region)
 

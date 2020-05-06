@@ -16,7 +16,7 @@ Results
 .. figure:: Gourds8.png
    :alt: Input Image
    Input Image
-.. figure:: GourdsFilter.png
+.. figure:: OutputImage.png
    :alt: Output Image
    Output Image
 

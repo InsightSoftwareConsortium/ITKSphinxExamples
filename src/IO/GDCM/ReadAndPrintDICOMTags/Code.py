@@ -63,12 +63,18 @@ except:
 # GetMetaDataDictionary() method.
 metadata = dicomIO.GetMetaDataDictionary()
 
-# Print the key value pairsa from the metadadictionary
+# Print the key value pairs from the metadadictionary
 tagkeys = metadata.GetKeys()
+
 for tagkey in tagkeys:
     # Note the [] operator for the key
-    tagvalue = metadata[tagkey]
-    print(tagkey + '=' + str(tagvalue))
+    try:
+        tagvalue = metadata[tagkey]
+        print(tagkey + '=' + str(tagvalue))
+    except RuntimeError:
+        #Cannot pass specialized values into metadata dictionary.
+        print("Cannot pass specialized value" + tagkey + "into metadadictionary")
+
 
 # Illustrating use of getting a label given a tag here
 entryID = "0010|0010"

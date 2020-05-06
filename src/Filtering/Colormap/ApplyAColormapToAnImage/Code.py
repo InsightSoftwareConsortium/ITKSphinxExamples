@@ -38,7 +38,7 @@ RGBImageType = itk.Image[RGBPixelType, Dimension]
 RGBFilterType = itk.ScalarToRGBColormapImageFilter[ImageType, RGBImageType]
 rgbfilter = RGBFilterType.New()
 rgbfilter.SetInput(reader.GetOutput())
-rgbfilter.SetColormap(RGBFilterType.Hot)
+rgbfilter.SetColormap(itk.ScalarToRGBColormapImageFilterEnums.RGBColormapFilter_Hot)
 
 WriterType = itk.ImageFileWriter[RGBImageType]
 writer = WriterType.New()
