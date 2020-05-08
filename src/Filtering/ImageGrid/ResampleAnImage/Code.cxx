@@ -29,8 +29,7 @@ main(int argc, char * argv[])
   {
     std::cerr << "Usage: " << std::endl;
     std::cerr << argv[0];
-    std::cerr << " <InputFileName> <OutputFileName>";
-    std::cerr << " <numberOfIterations> <timeStep> <conductance>";
+    std::cerr << " <InputFileName> <OutputFileName> <scale>";
     std::cerr << std::endl;
     return EXIT_FAILURE;
   }
