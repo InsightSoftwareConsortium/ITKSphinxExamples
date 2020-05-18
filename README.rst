@@ -4,8 +4,6 @@ ITK Examples
 .. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=shield
    :target: https://github.com/InsightSoftwareConsortium/ITKExamples/blob/master/LICENSE
 
-.. image:: https://dev.azure.com/InsightSoftwareConsortium/ITKExamples/_apis/build/status/InsightSoftwareConsortium.ITKExamples?branchName=master
-   :target: https://dev.azure.com/InsightSoftwareConsortium/ITKExamples/_build/latest?definitionId=1
 
 A set of cookbook examples for the Insight Toolkit, ITK_.
 
