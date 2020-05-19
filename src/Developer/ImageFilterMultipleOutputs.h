@@ -37,7 +37,6 @@ protected:
   /**  Create the Output */
   DataObject::Pointer
   MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx) override;
-
 };
 } // namespace itk
 
