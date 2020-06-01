@@ -26,6 +26,8 @@ sys.path.insert(0, os.path.abspath(os.path.join('@ITKExamples_BINARY_DIR@',
     'Utilities', 'SphinxExtensions')))
 sys.path.insert(0, os.path.abspath(os.path.join('@ITKExamples_BINARY_DIR@',
     'Utilities', 'SphinxExtensions', 'sphinx-bootstrap-theme')))
+sys.path.insert(0, os.path.abspath(os.path.join('@ITKExamples_BINARY_DIR@',
+    'Utilities', 'SphinxExtensions', 'breathelink')))
 
 import sphinx_bootstrap_theme
 
