@@ -18,9 +18,8 @@ All the objects contained in the LabelMap can be associated to values called att
 Some filters are available to compute the usual attributes values related to the shape of the objects or the pixels values in the objects and to manipulate the objects based on these values.
 
 
-Implementations were taken from the `Insight Journal paper`_ or  here_.
+Implementations were taken from the `Insight Journal paper`_.
 
-.. _here: https://hdl.handle.net/1926/584
 .. _Insight Journal paper: https://www.insight-journal.org/browse/publication/176
   RemoveLabelsFromLabelMap/Documentation.rst
   KeepRegionsThatMeetSpecific/Documentation.rst
