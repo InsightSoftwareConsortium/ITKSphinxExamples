@@ -199,10 +199,10 @@ Note that the breathelink directive is a custom one which makes use of:
 .. _external hyperlink target: http://docutils.sourceforge.net/docs/user/rst/quickref.html#external-hyperlink-targets
 .. _doxygenclass directive:    https://breathe.readthedocs.io/en/latest/class.html
 .. _figure directive:          http://docutils.sourceforge.net/docs/ref/rst/directives.html#figure
-.. _literalinclude directive:  http://sphinx.pocoo.org/markup/code.html?highlight=literalinclude#directive-literalinclude
+.. _literalinclude directive:  https://sphinx-doc.org/markup/code.html?highlight=literalinclude#directive-literalinclude
 .. _literal block:             http://docutils.sourceforge.net/docs/user/rst/quickref.html#literal-blocks
 .. _Pygments:                  http://pygments.org/
-.. _Sphinx index directive:    http://sphinx.pocoo.org/markup/misc.html#directive-index
+.. _Sphinx index directive:    https://sphinx-doc.org/markup/misc.html#directive-index
 .. _reStructuredText:          http://docutils.sourceforge.net/rst.html
 .. _doxylink:                  https://pythonhosted.org/sphinxcontrib-doxylink/
 .. _VTK:                       https://vtk.org

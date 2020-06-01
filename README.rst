@@ -84,7 +84,7 @@ Run the bash script ``SetupForDevelopment.sh``::
 .. _CMake: https://cmake.org/
 .. _Git: https://git-scm.com/
 .. _ITK: https://itk.org/
-.. _Sphinx: http://sphinx.pocoo.org/
+.. _Sphinx: https://sphinx-doc.org/
 .. _Github Issues: https://github.com/InsightSoftwareConsortium/ITKExamples/issues
 .. _Python: https://python.org/
 .. _gnuplot: https://www.gnuplot.info/
