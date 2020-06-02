@@ -87,6 +87,8 @@ add_test(NAME AdaptiveHistogramEqualizationImageFilterTest04
     ${radius04}
     )
 
+# Not supported in itk 5.1.0
+if(0)
 if(ITK_WRAP_PYTHON)
   add_test(NAME AdaptiveHistogramEqualizationImageFilterTest01Python
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
@@ -136,4 +138,5 @@ if(ITK_WRAP_PYTHON)
       ${beta02}
       ${radius04}
     )
+endif()
 endif()

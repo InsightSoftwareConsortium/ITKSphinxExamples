@@ -2,14 +2,14 @@
 add_example(AdaptiveHistogramEqualizationImageFilter)
 
 foreach( i RANGE 1 6 )
-  compare_to_baseline(
-    EXAMPLE_NAME AdaptiveHistogramEqualizationImageFilter
-    TEST_NAME AdaptiveHistogramEqualizationImageFilterTest0${i}BaselineComparison
-    TEST_IMAGE AdaptiveHistogramEqualizationImageFilterTest0${i}.png
-    BASELINE_PREFIX AdaptiveHistogramEqualizationImageFilter0${i}Baseline
-    OPTIONS --tolerance-intensity 1
-    DEPENDS AdaptiveHistogramEqualizationImageFilterTest0${i}
-  )
+  #compare_to_baseline(
+    #EXAMPLE_NAME AdaptiveHistogramEqualizationImageFilter
+    #TEST_NAME AdaptiveHistogramEqualizationImageFilterTest0${i}BaselineComparison
+    #TEST_IMAGE AdaptiveHistogramEqualizationImageFilterTest0${i}.png
+    #BASELINE_PREFIX AdaptiveHistogramEqualizationImageFilter0${i}Baseline
+    #OPTIONS --tolerance-intensity 1
+    #DEPENDS AdaptiveHistogramEqualizationImageFilterTest0${i}
+  #)
 
   # compare_to_baseline(
     # EXAMPLE_NAME AdaptiveHistogramEqualizationImageFilter
