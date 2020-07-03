@@ -90,11 +90,11 @@ Run CMake (minimum version 3.10.2) to configure the project.
 
 - If ITK is not installed nor compiled, you can then make use of the superbuild functionality::
 
-    cmake -DBUILD_DOCUMENATION:BOOL=ON -S ${ITK_SOURCE}/Superbuild/ -B ${ITK_BUILD}
+    cmake -DBUILD_DOCUMENTATION:BOOL=ON -S ${ITK_SOURCE}/Superbuild/ -B ${ITK_BUILD}
 
 - If ITK (Version 5.0.0 or above) is installed::
 
-    cmake -DBUILD_DOCUMENATION:BOOL=ON -S ${ITK_SOURCE} -B ${ITK_BUILD}
+    cmake -DBUILD_DOCUMENTATION:BOOL=ON -S ${ITK_SOURCE} -B ${ITK_BUILD}
 
 - If ITK (Version 5.0.0 or above) is not installed but compiled on your
   system, you will need to specify the path to your ITK build::
