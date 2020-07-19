@@ -23,3 +23,10 @@ add_test( NAME SetPixelValueInOneImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SetPixelValueInOneImage
   ${CMAKE_CURRENT_BINARY_DIR}/Output.png
 )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME SetPixelValueInOneImageTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    ${CMAKE_CURRENT_BINARY_DIR}/OutputPython.png
+    )
+endif()
