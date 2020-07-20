@@ -1,4 +1,4 @@
-Creade 3D Volume From Series Of 2D Images
+Create 3D Volume From Series Of 2D Images
 =========================================
 
 .. index::

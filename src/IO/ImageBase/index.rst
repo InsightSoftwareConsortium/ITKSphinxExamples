@@ -12,4 +12,4 @@ ImageBase
   RegisterIOFactories/Documentation.rst
   GenerateSlicesFromVolume/Documentation.rst
   ConvertImageToAnotherType/Documentation.rst
-  Creade3DFromSeriesOf2D/Documentation.rst
+  Create3DFromSeriesOf2D/Documentation.rst
