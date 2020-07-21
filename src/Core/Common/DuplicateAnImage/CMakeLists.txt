@@ -21,3 +21,9 @@ install( FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test( NAME DuplicateAnImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DuplicateAnImage )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME DuplicateAnImageTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    )
+endif()
