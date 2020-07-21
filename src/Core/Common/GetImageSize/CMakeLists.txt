@@ -23,3 +23,10 @@ add_test( NAME GetImageSizeTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/GetImageSize
     ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png
 )
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME GetImageSizeTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png
+    )
+endif()
