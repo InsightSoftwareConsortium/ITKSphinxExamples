@@ -1,7 +1,8 @@
 ITK Examples
 ============
 
-.. image:: https://github.com/InsightSoftwareConsortium/ITKExamples/workflows/Build,%20test/badge.svg
+.. image:: https://github.com/InsightSoftwareConsortium/ITKExamples/workflows/Build,%20test/badge.svg?branch=master
+   :target: https://github.com/InsightSoftwareConsortium/ITKExamples/actions?query=workflow%3A%22Build%2C+test%22+branch%3Amaster
 
 .. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=shield
    :target: https://github.com/InsightSoftwareConsortium/ITKExamples/blob/master/LICENSE
