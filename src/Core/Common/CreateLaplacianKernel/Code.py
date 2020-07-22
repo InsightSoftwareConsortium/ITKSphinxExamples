@@ -26,4 +26,4 @@ print("Size: " + str(laplacianOperator.GetSize()))
 print(laplacianOperator)
 
 for i in range(laplacianOperator.GetSize()[0] * laplacianOperator.GetSize()[1]):
-    print(laplacianOperator.GetOffset(i) + " " + laplacianOperator.GetElement(i))
+    print(str(laplacianOperator.GetOffset(i)) + " " + str(laplacianOperator.GetElement(i)))

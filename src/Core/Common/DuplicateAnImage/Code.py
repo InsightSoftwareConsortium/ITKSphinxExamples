@@ -21,7 +21,7 @@ PixelType = itk.UC
 
 ImageType = itk.Image[PixelType, Dimension]
 
-randomImageSource = itk.RandomImageSource[ImageType]()
+randomImageSource = itk.RandomImageSource[ImageType].New()
 randomImageSource.SetNumberOfWorkUnits(1)  # to produce non-random results
 
 image = randomImageSource.GetOutput()
