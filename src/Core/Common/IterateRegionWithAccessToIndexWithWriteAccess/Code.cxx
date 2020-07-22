@@ -57,7 +57,7 @@ main(int argc, char * argv[])
 
   while (!imageIterator.IsAtEnd())
   {
-    std::cout << "Index: " << imageIterator.GetIndex() << " value: " << imageIterator.Get() << std::endl;
+    std::cout << "Index: " << imageIterator.GetIndex() << " value: " << (int)imageIterator.Get() << std::endl;
 
     // Set the current pixel to white
     imageIterator.Set(255);
