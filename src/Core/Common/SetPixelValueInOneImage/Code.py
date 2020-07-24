@@ -45,7 +45,7 @@ region.SetSize(size)
 image = ImageType.New()
 image.SetRegions(region)
 image.Allocate()
-image.FillBuffer(itk.NumericTraits[PixelType].Zero())
+image.FillBuffer(itk.NumericTraits[PixelType].ZeroValue())
 
 pixelIndex = itk.Index[Dimension]()
 
@@ -79,7 +79,7 @@ image.SetPixel(pixelIndex, 200)
 pixelIndex[0] = 100
 pixelIndex[1] = 150
 
-image.>SetPixel(pixelIndex, 200)
+image.SetPixel(pixelIndex, 200)
 
 pixelIndex[0] = 105
 pixelIndex[1] = 150

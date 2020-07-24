@@ -27,4 +27,4 @@ print("Size: " + str(gaussianOperator.GetSize()))
 print(gaussianOperator)
 
 for i in range(9):
-    print(gaussianOperator.GetOffset(i) + " " + gaussianOperator.GetElement(i))
+    print(str(gaussianOperator.GetOffset(i)) + " " + str(gaussianOperator.GetElement(i)))

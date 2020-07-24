@@ -27,4 +27,4 @@ print("Size: " + str(gaussianDerivativeOperator.GetSize()))
 print(gaussianDerivativeOperator)
 
 for i in range(9):
-    print(gaussianDerivativeOperator.GetOffset(i) + " " + gaussianDerivativeOperator.GetElement(i))
+    print(str(gaussianDerivativeOperator.GetOffset(i)) + " " + str(gaussianDerivativeOperator.GetElement(i)))

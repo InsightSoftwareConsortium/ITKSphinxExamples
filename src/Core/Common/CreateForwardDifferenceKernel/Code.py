@@ -27,4 +27,4 @@ print("Size: " + str(forwardDifferenceOperator.GetSize()))
 print(forwardDifferenceOperator)
 
 for i in range(9):
-    print(forwardDifferenceOperator.GetOffset(i) + " " + forwardDifferenceOperator.GetElement(i))
+    print(str(forwardDifferenceOperator.GetOffset(i)) + " " + str(forwardDifferenceOperator.GetElement(i)))

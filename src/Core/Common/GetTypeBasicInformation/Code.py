@@ -20,14 +20,13 @@ MyType = itk.F
 
 print("Min: " + str(itk.NumericTraits[MyType].min()))
 print("Max: " + str(itk.NumericTraits[MyType].max()))
-print("Zero: " + str(itk.NumericTraits[MyType].Zero()))
 print("ZeroValue: " + str(itk.NumericTraits[MyType].ZeroValue()))
 
 print("Is -1 negative? " + str(itk.NumericTraits[MyType].IsNegative(-1)))
 
 print("Is 1 negative? " + str(itk.NumericTraits[MyType].IsNegative(1)))
 
-print("One: " + str(itk.NumericTraits[MyType].One))
+print("OneValue: " + str(itk.NumericTraits[MyType].OneValue()))
 
 print("Epsilon: " + str(itk.NumericTraits[MyType].epsilon()))
 
