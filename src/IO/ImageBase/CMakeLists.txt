@@ -24,6 +24,13 @@ compare_to_baseline( TEST_NAME GenerateSlicesFromVolumeBaselineComparisonSlice30
   BASELINE_PREFIX Output-30Baseline
   )
 
+add_example( ProcessImageChunks )
+compare_to_baseline(
+  EXAMPLE_NAME ProcessImageChunks
+  BASELINE_PREFIX OutputBaseline
+  TEST_IMAGE Output.mha
+  )
+
 add_example(ConvertImageToAnotherType)
 
 #TODO: When example has valid input, uncomment below
