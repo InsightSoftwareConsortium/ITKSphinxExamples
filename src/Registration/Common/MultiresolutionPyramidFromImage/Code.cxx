@@ -71,7 +71,7 @@ main(int, char *[])
 void
 CreateImage(UnsignedCharImageType::Pointer image)
 {
-  // Create a black image with 2 white regions
+  // Create a black image with a white region
 
   UnsignedCharImageType::IndexType start;
   start.Fill(0);
