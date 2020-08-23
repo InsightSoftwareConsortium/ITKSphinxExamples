@@ -15,6 +15,7 @@
 # limitations under the License.
 
 import sys
+import numpy as np
 import itk
 
 if len(sys.argv) != 2:
@@ -36,7 +37,7 @@ size = itk.size(image)
 print(size)
 
 # Corresponds to the NumPy ndarray shape. Note that the ordering is reversed.
-print(image.shape)
+print(np.asarray(image).shape)
 
 # An example image had w = 200 and h = 100
 # (it is wider than it is tall). The above output
