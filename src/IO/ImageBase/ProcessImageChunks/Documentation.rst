@@ -1,5 +1,5 @@
-Generate Slices From Volume
-===========================
+Process Image Chunks
+====================
 
 .. index::
    single: ImageFileWriter
