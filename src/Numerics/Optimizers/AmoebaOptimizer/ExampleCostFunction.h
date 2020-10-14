@@ -11,7 +11,7 @@ namespace itk
 class ExampleCostFunction2 : public SingleValuedCostFunction
 {
 public:
-  ITK_DISALLOW_COPY_AND_ASSIGN(ExampleCostFunction2);
+  ITK_DISALLOW_COPY_AND_MOVE(ExampleCostFunction2);
   /** Standard class typedefs. */
   typedef ExampleCostFunction2     Self;
   typedef SingleValuedCostFunction Superclass;
