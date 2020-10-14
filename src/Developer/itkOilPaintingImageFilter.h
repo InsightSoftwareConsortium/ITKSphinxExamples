@@ -18,7 +18,7 @@ template <class TImage>
 class OilPaintingImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:
-  ITK_DISALLOW_COPY_AND_ASSIGN(OilPaintingImageFilter);
+  ITK_DISALLOW_COPY_AND_MOVE(OilPaintingImageFilter);
   /** Standard class type alias. */
   using Self = OilPaintingImageFilter;
   using Superclass = ImageToImageFilter<TImage, TImage>;

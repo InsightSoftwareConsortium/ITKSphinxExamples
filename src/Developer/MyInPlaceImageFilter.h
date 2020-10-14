@@ -9,7 +9,7 @@ template <class TImage>
 class MyInPlaceImageFilter : public InPlaceImageFilter<TImage>
 {
 public:
-  ITK_DISALLOW_COPY_AND_ASSIGN(MyInPlaceImageFilter);
+  ITK_DISALLOW_COPY_AND_MOVE(MyInPlaceImageFilter);
   /** Standard class type alias. */
   using Self = MyInPlaceImageFilter;
   using Superclass = InPlaceImageFilter<TImage>;
