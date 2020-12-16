@@ -112,3 +112,4 @@ Common
   DisplayImage/Documentation.rst
   DirectWarningToFile/Documentation.rst
   SetDefaultNumberOfThreads/Documentation.rst
+  WriteAPointSet/Documentation.rst

@@ -25,6 +25,7 @@ Results
   :alt: Output.png
 
   Output.png
+
 Output::
 
   Number of random samples: 105062

@@ -14,15 +14,13 @@ Invert an image using the Binary Not operation.
 
 Results
 -------
-.. figure:: input.png
+.. figure:: Input.png
   :scale: 70%
-  :alt: input.png
 
   input.png
 
 .. figure:: output.png
-  :scale: output.png
-  :alt: output.png
+  :scale: 70%
 
   output.png
 

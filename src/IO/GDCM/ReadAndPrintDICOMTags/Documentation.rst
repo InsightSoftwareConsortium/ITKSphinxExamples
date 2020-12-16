@@ -1,5 +1,5 @@
- Read And Print DICOM Tags
-================================
+Read And Print DICOM Tags
+=========================
 
 .. index::
    single: GDCMImageIO

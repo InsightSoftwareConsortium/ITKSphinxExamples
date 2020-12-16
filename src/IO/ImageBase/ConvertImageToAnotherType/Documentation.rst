@@ -4,7 +4,7 @@ Convert Image To Another Type
 .. index::
    single: ConvertPixelBuffer
    single: Image
-   pair: convert, type
+   pair: convert; type
 
 Synopsis
 --------

@@ -13,11 +13,14 @@ Adds Gaussian Noise to a particular image
 
 Results
 -------
-.. figure:: Gourds8.png
-   :alt: Input Image
+.. figure:: Gourds.png
+   :scale: 70%
+
    Input Image
+
 .. figure:: OutputImage.png
-   :alt: Output Image
+   :scale: 70%
+
    Output Image
 
 
@@ -29,6 +32,7 @@ C++
 
 .. literalinclude:: Code.cxx
    :lines: 18-
+
 Python
 ......
 

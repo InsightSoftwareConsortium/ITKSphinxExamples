@@ -18,6 +18,7 @@ Results
   :alt: VTK Window
 
   Output In VTK Window
+
 Output::
 
   Index: [-1, -1] Pixel: 0 = 0
