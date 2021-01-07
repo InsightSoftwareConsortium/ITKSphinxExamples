@@ -30,4 +30,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::TransformFileReader
+.. breathelink:: itk::TransformFileReaderTemplate

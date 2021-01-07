@@ -37,4 +37,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::KdTreeGenerator
+.. breathelink:: itk::Statistics::KdTreeGenerator

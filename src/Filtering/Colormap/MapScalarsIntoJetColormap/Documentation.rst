@@ -32,4 +32,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::JetColormapFunction
+.. breathelink:: itk::Function::JetColormapFunction

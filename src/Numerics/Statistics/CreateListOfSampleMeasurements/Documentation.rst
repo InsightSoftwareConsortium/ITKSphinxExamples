@@ -35,4 +35,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::ListSample
+.. breathelink:: itk::Statistics::ListSample

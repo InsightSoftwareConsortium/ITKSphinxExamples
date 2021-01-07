@@ -62,4 +62,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::ImageToListSampleAdaptor
+.. breathelink:: itk::Statistics::ImageToListSampleAdaptor
