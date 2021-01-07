@@ -8,16 +8,16 @@ include( ${ITK_USE_FILE} )
 find_package( VTK REQUIRED )
 include( ${VTK_USE_FILE} )
 
-add_executable( VisualizeStaticDense2DLevelSetAsElevationMap Code.cxx )
+add_executable( VisualizeStaticDense2DLevelSetAsElevationMap Code.cxx)
 target_link_libraries( VisualizeStaticDense2DLevelSetAsElevationMap ${ITK_LIBRARIES} )
 
 install( TARGETS VisualizeStaticDense2DLevelSetAsElevationMap
-  DESTINATION bin/ITKExamples/Segmentation/LevelSetsv4Visualization
+  DESTINATION bin/ITKExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/LevelSetsv4Visualization/VisualizeStaticDense2DLevelSetAsElevationMap
+  DESTINATION share/ITKExamples/Code/Bridge/VtkGlue/VisualizeStaticDense2DLevelSetAsElevationMap
   COMPONENT Code
   )
 

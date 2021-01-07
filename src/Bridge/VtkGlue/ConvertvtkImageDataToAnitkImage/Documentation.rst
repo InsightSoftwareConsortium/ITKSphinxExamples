@@ -88,6 +88,11 @@ Output::
 Code
 ----
 
+C++
+...
+
+.. literalinclude:: Code.cxx
+   :lines: 18-
 
 Python
 ......

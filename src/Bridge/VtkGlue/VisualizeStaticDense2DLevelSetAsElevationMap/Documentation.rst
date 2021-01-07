@@ -43,4 +43,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::VTKVisualize2DLevelSetAsElevationMap
+.. [breathelink:: itk::VTKVisualize2DLevelSetAsElevationMap]

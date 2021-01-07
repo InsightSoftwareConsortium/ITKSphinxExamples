@@ -5,16 +5,16 @@ project( VisualizeEvolvingDense2DLevelSetAsElevationMap )
 find_package( ITK REQUIRED )
 include( ${ITK_USE_FILE} )
 
-add_executable( VisualizeEvolvingDense2DLevelSetAsElevationMap Code.cxx )
+add_executable( VisualizeEvolvingDense2DLevelSetAsElevationMap Code.cxx)
 target_link_libraries( VisualizeEvolvingDense2DLevelSetAsElevationMap ${ITK_LIBRARIES} )
 
 install( TARGETS VisualizeEvolvingDense2DLevelSetAsElevationMap
-  DESTINATION bin/ITKExamples/Segmentation/LevelSetsv4Visualization
+  DESTINATION bin/ITKExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/LevelSetsv4Visualization/VisualizeEvolvingDense2DLevelSetAsElevationMap
+  DESTINATION share/ITKExamples/Code/Bridge/VtkGlue/VisualizeEvolvingDense2DLevelSetAsElevationMap
   COMPONENT Code
   )
 

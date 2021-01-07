@@ -5,16 +5,16 @@ project( VisualizeEvolvingDense2DLevelSetZeroSet )
 find_package( ITK REQUIRED )
 include( ${ITK_USE_FILE} )
 
-add_executable( VisualizeEvolvingDense2DLevelSetZeroSet Code.cxx )
+add_executable( VisualizeEvolvingDense2DLevelSetZeroSet Code.cxx)
 target_link_libraries( VisualizeEvolvingDense2DLevelSetZeroSet ${ITK_LIBRARIES} )
 
 install( TARGETS VisualizeEvolvingDense2DLevelSetZeroSet
-  DESTINATION bin/ITKExamples/Segmentation/LevelSetsv4Visualization
+  DESTINATION bin/ITKExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/LevelSetsv4Visualization/VisualizeEvolvingDense2DLevelSetZeroSet
+  DESTINATION share/ITKExamples/Code/Bridge/VtkGlue/VisualizeEvolvingDense2DLevelSetZeroSet
   COMPONENT Code
   )
 

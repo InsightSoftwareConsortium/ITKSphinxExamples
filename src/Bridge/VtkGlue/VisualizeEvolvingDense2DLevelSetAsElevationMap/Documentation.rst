@@ -1,8 +1,8 @@
-Visualize An Evolving Dense 2D Level-Set Zero-Set
-=================================================
+Visualize An Evolving Dense 2D Level Set As Elevation Map
+=========================================================
 
 .. index::
-   single: VTKVisualizeImageLevelSetIsoValues
+   single: VTKVisualize2DLevelSetAsElevationMap
    single: BinaryImageToLevelSetImageAdaptor
    single: SinRegularizedHeavisideStepFunction
    single: LevelSetDenseImage
@@ -17,7 +17,7 @@ Visualize An Evolving Dense 2D Level-Set Zero-Set
 Synopsis
 --------
 
-Visualize the evolving zero-set of a dense level-set function 2D rendered.
+Visualize an evolving dense level-set function 2D rendered as an elevation map.
 
 
 Results
@@ -31,7 +31,7 @@ Results
 
 .. figure:: levelsets.*
   :scale: 100%
-  :alt: Evolving level-sets
+  :alt: Evolving level-sets rendered as an elevation map
 
   Evolving level-sets
 
@@ -55,4 +55,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::VTKVisualizeImageLevelSetIsoValues
+.. [breathelink:: itk::VTKVisualize2DLevelSetAsElevationMap]

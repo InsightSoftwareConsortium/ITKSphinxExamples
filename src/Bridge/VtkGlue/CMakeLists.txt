@@ -2,6 +2,8 @@ add_example(ConvertAnitkImageTovtkImageData)
 add_example(ConvertAnRGBitkImageTovtkImageData)
 add_example(ConvertvtkImageDataToAnitkImage)
 add_example(ConvertRGBvtkImageDataToAnitkImage)
+add_example(VisualizeEvolvingDense2DLevelSetAsElevationMap)
+add_example(VisualizeEvolvingDense2DLevelSetZeroSet)
 
 if(ENABLE_QUICKVIEW)
 
@@ -9,5 +11,11 @@ add_example(VTKImageToITKImage)
 compare_to_baseline(EXAMPLE_NAME VTKImageToITKImage
   BASELINE_PREFIX OutputBaseline
   )
+
+add_example(VisualizeStaticDense2DLevelSetAsElevationMap)
+add_example(VisualizeStaticDense2DLevelSetZeroSet)
+add_example(VisualizeStaticWhitaker2DLevelSetLayers)
+add_example(VisualizeStaticShi2DLevelSetLayers)
+add_example(VisualizeStaticMalcolm2DLevelSetLayers)
 
 endif()
