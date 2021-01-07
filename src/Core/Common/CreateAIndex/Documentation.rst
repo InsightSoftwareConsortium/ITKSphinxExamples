@@ -39,4 +39,4 @@ Python
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::Index
+.. breathelinkstruct:: itk::Index

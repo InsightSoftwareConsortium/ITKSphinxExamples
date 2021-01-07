@@ -40,4 +40,4 @@ Classes demonstrated
 --------------------
 
 .. breathelink:: itk::Point
-.. breathelink:: itk::Index
+.. breathelinkstruct:: itk::Index

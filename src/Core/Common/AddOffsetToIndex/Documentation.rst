@@ -45,4 +45,4 @@ Python
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::Offset itk::Index
+.. breathelinkstruct:: itk::Offset itk::Index
