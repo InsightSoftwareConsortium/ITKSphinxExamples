@@ -29,6 +29,6 @@ facets are important to the success of the project.
 .. _ITK Examples repository: https://github.com/InsightSoftwareConsortium/ITKExamples
 .. _Git:                     https://git-scm.com/
 .. _reStructuredText:        http://docutils.sourceforge.net/rst.html
-.. _Sphinx:                  https://sphinx-doc.org/
+.. _Sphinx:                  https://www.sphinx-doc.org/en/master/
 .. _Quick reStructuredText:  http://docutils.sourceforge.net/docs/user/rst/quickref.html
 .. _Dashboard:               https://open.cdash.org/index.php?project=Insight&filtercount=1&showfilters=1&field1=groupname/string&compare1=63&value1=Examples
