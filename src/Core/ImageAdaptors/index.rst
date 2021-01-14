@@ -6,6 +6,6 @@ ImageAdaptors
 
   AddConstantToPixelsWithoutDuplicatingImage/Documentation.rst
   ExtractChannelOfImageWithMultipleComponents/Documentation.rst
-  ProcessNthComponentOfVectorImage/Documentation.rst
   PresentImageAfterOperation/Documentation.rst
+  ProcessNthComponentOfVectorImage/Documentation.rst
   ViewComponentVectorImageAsScaleImage/Documentation.rst

@@ -6,6 +6,6 @@ ImageStatistics
 
   AdaptiveHistogramEqualizationImageFilter/Documentation.rst
   ApplyAccumulateImageFilter/Documentation.rst
-  StatisticalPropertiesOfRegions/Documentation.rst
   ComputeMinMaxVarianceMeanOfImage/Documentation.rst
   ComputePCAShapeFromSample/Documentation.rst
+  StatisticalPropertiesOfRegions/Documentation.rst

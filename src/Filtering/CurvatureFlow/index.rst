@@ -6,6 +6,6 @@ CurvatureFlow
 
   BinaryMinMaxCurvatureFlow/Documentation.rst
   SmoothImageUsingCurvatureFlow/Documentation.rst
-  SmoothRGBImageUsingCurvatureFlow/Documentation.rst
   SmoothImageUsingMinMaxCurvatureFlow/Documentation.rst
+  SmoothRGBImageUsingCurvatureFlow/Documentation.rst
   SmoothRGBImageUsingMinMaxCurvatureFlow/Documentation.rst

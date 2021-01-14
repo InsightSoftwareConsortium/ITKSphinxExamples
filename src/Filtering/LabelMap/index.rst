@@ -4,23 +4,23 @@ LabelMap
 .. toctree::
   :maxdepth: 1
 
-  MaskOneImageGivenLabelMap/Documentation.rst
-  RemoveHolesNotConnectedToImageBoundaries/Documentation.rst
-  ExtractGivenLabelObject/Documentation.rst
   ApplyMorphologicalClosingOnAllLabelObjects/Documentation.rst
   ApplyMorphologicalClosingOnSpecificLabelObject/Documentation.rst
-  ShapeAttributesForBinaryImage/Documentation.rst
-  RemoveLabelsFromLabelMap/Documentation.rst
-  MergeLabelMaps/Documentation.rst
-  LabelBinaryRegionsInImage/Documentation.rst
-  LabelBinaryRegionsAndGetProperties/Documentation.rst
-  KeepRegionsThatMeetSpecific/Documentation.rst
-  KeepRegionsAboveLevel/Documentation.rst
-  KeepBinaryRegionsThatMeetSpecific/Documentation.rst
-  InvertImageUsingBinaryNot/Documentation.rst
-  ConvertLabelMapToImage/Documentation.rst
-  ConvertImageWithLabelsToShapeLabelMap/Documentation.rst
   ConvertImageToLabelMap/Documentation.rst
+  ConvertImageWithLabelsToShapeLabelMap/Documentation.rst
+  ConvertLabelMapToImage/Documentation.rst
+  ExtractGivenLabelObject/Documentation.rst
+  InvertImageUsingBinaryNot/Documentation.rst
+  KeepBinaryRegionsThatMeetSpecific/Documentation.rst
+  KeepRegionsAboveLevel/Documentation.rst
+  KeepRegionsThatMeetSpecific/Documentation.rst
+  LabelBinaryRegionsAndGetProperties/Documentation.rst
+  LabelBinaryRegionsInImage/Documentation.rst
+  MaskOneImageGivenLabelMap/Documentation.rst
+  MergeLabelMaps/Documentation.rst
+  RemoveHolesNotConnectedToImageBoundaries/Documentation.rst
+  RemoveLabelsFromLabelMap/Documentation.rst
+  ShapeAttributesForBinaryImage/Documentation.rst
 
 
 Note about this module:
