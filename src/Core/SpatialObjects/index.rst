@@ -8,4 +8,4 @@ SpatialObjects
   ContourSpatialObject/Documentation.rst
   ConvertSpatialObjectToImage/Documentation.rst
   Ellipse/Documentation.rst
-  LineSpatialObject2/Documentation.rst
+  LineSpatialObject/Documentation.rst

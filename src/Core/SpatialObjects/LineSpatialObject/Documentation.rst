@@ -1,4 +1,4 @@
-Line Spacial Object
+Line Spatial Object
 ===================
 
 .. index::
@@ -30,6 +30,6 @@ C++
 
 Classes demonstrated
 --------------------
-
-.. breathelink:: itk::LineSpatialObject
-.. breathelink:: itk::LineSpatialObjectPoint
+.. [TODO: This will need to be uncommented once PR #186 is merged and the official documentation is updated
+.. [breathelink:: itk::LineSpatialObject
+.. [breathelink:: itk::LineSpatialObjectPoint
