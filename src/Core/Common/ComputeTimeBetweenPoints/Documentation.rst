@@ -17,7 +17,7 @@ ITK 4.9.0 or later.
 Results
 -------
 
-Output::
+.. code-block:: none
 
   Mean: 0.00756311416626
   Total: 0.00756311416626

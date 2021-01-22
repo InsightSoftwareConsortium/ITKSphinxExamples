@@ -14,7 +14,7 @@ Example to read, search and print DICOM image metadata tags
 Results
 -------
 
-Output::
+.. code-block:: none
 
   0008|0000 = 406
   0008|0005 = ISO_IR 100
