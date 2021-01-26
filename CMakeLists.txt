@@ -78,7 +78,7 @@ endif()
 
 #Optional if we are building as an ITK module, these variables will be pre-defined
 if(NOT ITK_VERSION)
-  # To get the ITK version information from external pacakge when building
+  # To get the ITK version information from external package when building
   # stand alone, ITK is required.
   find_package(ITK 5.1.0 REQUIRED)
 endif()
