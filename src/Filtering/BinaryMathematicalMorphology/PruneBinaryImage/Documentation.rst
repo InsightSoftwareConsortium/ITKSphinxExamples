@@ -17,6 +17,7 @@ Results
   :scale: 70%
 
   Output In VTK Window
+
 Code
 ----
 

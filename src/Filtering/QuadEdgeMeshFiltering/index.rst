@@ -6,5 +6,5 @@ QuadEdgeMeshFiltering
 
   CleanQuadEdgeMesh/Documentation.rst
   ComputeNormalsOfAMesh/Documentation.rst
-  DelaunayConformEdgeFlipping/Documentation.rst
   ComputePlanarParameterizationOfAMesh/Documentation.rst
+  DelaunayConformEdgeFlipping/Documentation.rst

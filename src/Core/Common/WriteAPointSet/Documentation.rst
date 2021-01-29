@@ -1,5 +1,5 @@
 Write a PointSet
-===============
+================
 
 .. index::  single: PointSet
             single: Mesh

@@ -5,6 +5,6 @@ DistanceMap
   :maxdepth: 1
 
   ApproxDistanceMapOfBinary/Documentation.rst
-  SignedDistanceMapOfBinary/Documentation.rst
   MaurerDistanceMapOfBinary/Documentation.rst
   MeanDistanceBetweenAllPointsOnTwoCurves/Documentation.rst
+  SignedDistanceMapOfBinary/Documentation.rst

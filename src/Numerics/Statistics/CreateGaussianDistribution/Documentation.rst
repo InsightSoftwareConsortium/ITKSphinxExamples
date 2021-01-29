@@ -28,4 +28,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::GaussianDistribution
+.. breathelink:: itk::Statistics::GaussianDistribution

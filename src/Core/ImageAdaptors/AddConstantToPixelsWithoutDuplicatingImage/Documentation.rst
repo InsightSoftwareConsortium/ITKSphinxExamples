@@ -31,4 +31,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::AddPixelAccessor
+.. breathelink:: itk::Accessor::AddPixelAccessor

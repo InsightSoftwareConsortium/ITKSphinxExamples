@@ -1,5 +1,5 @@
-Mult-thread Oil Painting
-========================
+Multi-thread Oil Painting
+=========================
 
 .. index::
    single: ImageToImageFilter

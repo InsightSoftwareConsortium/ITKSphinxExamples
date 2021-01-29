@@ -8,16 +8,16 @@ include( ${ITK_USE_FILE} )
 find_package( VTK REQUIRED )
 include( ${VTK_USE_FILE} )
 
-add_executable( VisualizeStaticDense2DLevelSetZeroSet Code.cxx )
+add_executable( VisualizeStaticDense2DLevelSetZeroSet Code.cxx)
 target_link_libraries( VisualizeStaticDense2DLevelSetZeroSet ${ITK_LIBRARIES} )
 
 install( TARGETS VisualizeStaticDense2DLevelSetZeroSet
-  DESTINATION bin/ITKExamples/Segmentation/LevelSetsv4Visualization
+  DESTINATION bin/ITKExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/LevelSetsv4Visualization/VisualizeStaticDense2DLevelSetZeroSet
+  DESTINATION share/ITKExamples/Code/Bridge/VtkGlue/VisualizeStaticDense2DLevelSetZeroSet
   COMPONENT Code
   )
 

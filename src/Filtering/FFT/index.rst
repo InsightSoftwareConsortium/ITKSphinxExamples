@@ -4,7 +4,7 @@ FFT
 .. toctree::
   :maxdepth: 1
 
-  FilterImageInFourierDomain/Documentation.rst
-  ComputeImageSpectralDensity/Documentation.rst
   ComputeForwardFFT/Documentation.rst
+  ComputeImageSpectralDensity/Documentation.rst
   ComputeInverseFFTOfImage/Documentation.rst
+  FilterImageInFourierDomain/Documentation.rst

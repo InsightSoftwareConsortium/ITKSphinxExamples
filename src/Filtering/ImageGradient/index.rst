@@ -6,8 +6,8 @@ ImageGradient
 
   ApplyGradientRecursiveGaussian/Documentation.rst
   ApplyGradientRecursiveGaussianWithVectorInput/Documentation.rst
+  ComputeAndDisplayGradient/Documentation.rst
   ComputeGradientMagnitude/Documentation.rst
   ComputeGradientMagnitudeRecursiveGaussian/Documentation.rst
-  ImplementationOfSnakes/Documentation.rst
   GradientOfVectorImage/Documentation.rst
-  ComputeAndDisplayGradient/Documentation.rst
+  ImplementationOfSnakes/Documentation.rst

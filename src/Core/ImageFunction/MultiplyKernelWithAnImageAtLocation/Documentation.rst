@@ -3,7 +3,7 @@ Multiply Kernel With An Image At Location
 
 .. index::
    single: NeighborhoodOperatorImageFunction
-   pair: kernel,image
+   pair: kernel; image
    single: location
 
 Synopsis

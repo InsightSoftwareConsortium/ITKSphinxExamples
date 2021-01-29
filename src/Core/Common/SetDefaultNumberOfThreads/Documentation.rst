@@ -16,7 +16,7 @@ The default number of threads can also be set via the environment variable,
 Results
 -------
 
-Output::
+.. code-block:: none
 
   Filter's default number of threads: 3
 

@@ -33,4 +33,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::MaskedImageToHistogramFilter
+.. breathelink:: itk::Statistics::MaskedImageToHistogramFilter

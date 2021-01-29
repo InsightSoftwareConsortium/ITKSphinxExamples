@@ -1,19 +1,20 @@
-Visualize A Static Sparse Whitaker 2D Level-Set Layers
-======================================================
+Visualize A Static Sparse Shi 2D Level-Set Layers
+=================================================
 
 .. index::
    single: vtkVisualize2DSparseLevelSetLayers
    single: BinaryImageToLevelSetImageAdaptor
-   single: WhitakerSparseLevelSetImage
+   single: ShiSparseLevelSetImage
 
 Synopsis
 --------
 
-Visualize a static sparse Whitaker level-set function 2D's layers. From the input
+Visualize a static sparse Shi level-set function 2D's layers. From the input
 image, first an otsu thresholding technique is used to get a binary mask, which
 is then converted to a sparse level-set function.
 
-Note that Whitaker's representation is composed of 5 layers where values are real.
+Note that Shi's representation is composed of 4 layers (values = {-3, -1, +1, +3})
+
 
 Results
 -------
@@ -44,4 +45,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::VTKVisualize2DSparseLevelSetLayers
+.. [breathelink:: itk::VTKVisualize2DSparseLevelSetLayers]

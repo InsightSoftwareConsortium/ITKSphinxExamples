@@ -134,7 +134,7 @@ Python
 
 .. literalinclude:: Code.py
    :language: python
-   :lines: 1, 18-
+   :lines: 1, 16-
 
 
 Classes demonstrated

@@ -32,4 +32,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::ExpectationMaximizationMixtureModelEstimator
+.. breathelink:: itk::Statistics::ExpectationMaximizationMixtureModelEstimator

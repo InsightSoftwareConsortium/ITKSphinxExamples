@@ -43,4 +43,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::VTKVisualizeImageLevelSetIsoValues
+.. [breathelink:: itk::VTKVisualizeImageLevelSetIsoValues]

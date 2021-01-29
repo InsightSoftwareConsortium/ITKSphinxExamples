@@ -22,6 +22,7 @@ Results
   :scale: 70%
 
   Yinyang.png In VTK Window
+
 Output::
 
   An extensive list of the neighborhood will be printed to the screen.

@@ -18,7 +18,7 @@ Results
 
   Input image.
 
-.. filter:: SmoothImageWithDiscreteGaussianFilter.png
+.. figure:: SmoothImageWithDiscreteGaussianFilter.png
   :scale: 70%
 
   Yinyang.png And Output.png With Variance = 8

@@ -40,4 +40,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::SampleToHistogramFilter
+.. breathelink:: itk::Statistics::SampleToHistogramFilter

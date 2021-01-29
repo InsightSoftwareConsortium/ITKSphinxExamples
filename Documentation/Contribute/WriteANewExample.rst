@@ -182,14 +182,15 @@ Classes demonstrated
 --------------------
 
 At the end of the example, provide quick reference and a link to the doxygen
-documentation for the important classes used in the example.  To do this, use
-the ``breathelink`` directive, as follows::
+documentation for the important classes or structs used in the example.  To do this, use
+the ``breathelink`` directive for C++ classes or ``breathelinkstruct`` directive for C++ structs, as follows::
 
   .. breathelink:: itk::BinaryDilateImageFilter
+  .. breathelinkstruct:: itk::Index
 
-Note that the breathelink directive is a custom one which makes use of:
+Note that ``breathelink`` and ``breathelinkstruct`` are custom directives which make the use of:
 
-- the `doxygenclass directive`_ provided by Breathe_ with the *:no-link:*
+- the `doxygenclass directive`_ or `doxygenstruct directive`_ provided by Breathe_ with the *:no-link:*
   option.
 - the `doxylink`_ directive which provides a link to the full doxygen
   documentation with an `external hyperlink target`_. Note that Doxygen URL's
@@ -198,11 +199,12 @@ Note that the breathelink directive is a custom one which makes use of:
 .. _Breathe:                   https://github.com/michaeljones/breathe
 .. _external hyperlink target: http://docutils.sourceforge.net/docs/user/rst/quickref.html#external-hyperlink-targets
 .. _doxygenclass directive:    https://breathe.readthedocs.io/en/latest/class.html
+.. _doxygenstruct directive:   https://breathe.readthedocs.io/en/latest/struct.html
 .. _figure directive:          http://docutils.sourceforge.net/docs/ref/rst/directives.html#figure
-.. _literalinclude directive:  https://sphinx-doc.org/markup/code.html?highlight=literalinclude#directive-literalinclude
+.. _literalinclude directive:  https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-literalinclude
 .. _literal block:             http://docutils.sourceforge.net/docs/user/rst/quickref.html#literal-blocks
 .. _Pygments:                  http://pygments.org/
-.. _Sphinx index directive:    https://sphinx-doc.org/markup/misc.html#directive-index
+.. _Sphinx index directive:    https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#index-generating-markup
 .. _reStructuredText:          http://docutils.sourceforge.net/rst.html
 .. _doxylink:                  https://pythonhosted.org/sphinxcontrib-doxylink/
 .. _VTK:                       https://vtk.org

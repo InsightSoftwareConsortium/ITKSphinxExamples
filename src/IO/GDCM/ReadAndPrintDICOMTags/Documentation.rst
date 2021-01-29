@@ -1,5 +1,5 @@
- Read And Print DICOM Tags
-================================
+Read And Print DICOM Tags
+=========================
 
 .. index::
    single: GDCMImageIO
@@ -14,7 +14,7 @@ Example to read, search and print DICOM image metadata tags
 Results
 -------
 
-Output::
+.. code-block:: none
 
   0008|0000 = 406
   0008|0005 = ISO_IR 100
@@ -126,7 +126,7 @@ Python
 
 .. literalinclude:: Code.py
    :language: python
-   :lines: 1,18-
+   :lines: 1,16-
 
 
 Classes demonstrated

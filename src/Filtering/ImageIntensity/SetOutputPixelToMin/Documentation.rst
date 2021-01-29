@@ -15,6 +15,7 @@ Results
 -------
 .. note::
   No output is printed, this example simply displays functionality.
+
 Code
 ----
 

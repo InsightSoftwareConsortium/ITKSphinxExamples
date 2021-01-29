@@ -17,9 +17,8 @@ ITK 4.9.0 or later.
 Results
 -------
 
-Output::
-
 .. code-block:: none
+
   Mean: 0.00756311416626
   Total: 0.00756311416626
   Mean: 0.00671458244324
@@ -55,7 +54,7 @@ Python
 
 .. literalinclude:: Code.py
    :language: python
-   :lines: 1, 18-
+   :lines: 1, 16-
 
 
 Classes demonstrated
