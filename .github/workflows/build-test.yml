@@ -354,3 +354,11 @@ jobs:
       - name: Build and test
         run: |
           ctest -j 2 -VV -S dashboard.cmake
+
+      - name: Publish Documentation html as GitHub Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Documentation
+          path: |
+            ${GITHUB_WORKSPACE}/../build/ITKExamples-5.2.0-html.tar.gz
+            ${GITHUB_WORKSPACE}/../build/ITKExamples-5.2.0-html.zip
