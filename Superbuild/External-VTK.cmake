@@ -2,7 +2,7 @@
 # Get and build vtk
 
 if(NOT VTK_TAG)
-  set(VTK_TAG "v8.2.0")
+  set(VTK_TAG "v9.0.1")
 endif()
 
 set(PYTHON_EXECUTABLE "${ITKPYTHON_EXECUTABLE}")
