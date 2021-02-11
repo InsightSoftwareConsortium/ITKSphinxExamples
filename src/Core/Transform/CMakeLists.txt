@@ -36,7 +36,7 @@ compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesAffine
 #  BASELINE_PREFIX
 #    fixed
 #    moving
-#    output
+#    output # TODO Previous test runs may override the baseline image which is not useful
 #  )
 
 add_example(GlobalRegistrationTwoImagesBSpline)

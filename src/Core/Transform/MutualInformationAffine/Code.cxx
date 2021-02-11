@@ -27,6 +27,7 @@
 #include "itkEllipseSpatialObject.h"
 #include "itkSpatialObjectToImageFilter.h"
 #include "itkImageFileWriter.h"
+#include "itkImageFileReader.h"
 
 constexpr unsigned int Dimension = 2;
 using PixelType = unsigned char;
@@ -41,15 +42,16 @@ CreateCircleImage(ImageType::Pointer image);
 int
 main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 {
-  // Generate synthetic fixed and moving images
-  ImageType::Pointer fixedImage = ImageType::New();
+  /*ImageType::Pointer fixedImage = ImageType::New();
   CreateCircleImage(fixedImage);
   ImageType::Pointer movingImage = ImageType::New();
   CreateEllipseImage(movingImage);
+  */
 
   // Write the two synthetic inputs
   using WriterType = itk::ImageFileWriter<ImageType>;
 
+  /*
   WriterType::Pointer fixedWriter = WriterType::New();
   fixedWriter->SetFileName("fixed.png");
   fixedWriter->SetInput(fixedImage);
@@ -58,7 +60,16 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   WriterType::Pointer movingWriter = WriterType::New();
   movingWriter->SetFileName("moving.png");
   movingWriter->SetInput(movingImage);
-  movingWriter->Update();
+  movingWriter->Update();*/
+
+  using ReaderType = itk::ImageFileReader<ImageType>;
+  ReaderType::Pointer fixedReader = ReaderType::New();
+  fixedReader->SetFileName("apple.jpg");
+  ImageType::Pointer fixedImage = fixedReader->GetOutput();
+
+  ReaderType::Pointer movingReader = ReaderType::New();
+  movingReader->SetFileName("orange.jpg");
+  ImageType::Pointer movingImage = movingReader->GetOutput();
 
   // We use floats internally
   using InternalImageType = itk::Image<float, Dimension>;
