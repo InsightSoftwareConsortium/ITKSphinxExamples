@@ -34,41 +34,24 @@ using PixelType = unsigned char;
 
 using ImageType = itk::Image<PixelType, Dimension>;
 
-static void
-CreateEllipseImage(ImageType::Pointer image);
-static void
-CreateCircleImage(ImageType::Pointer image);
-
 int
-main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
+main(int argc, char * argv[])
 {
-  /*ImageType::Pointer fixedImage = ImageType::New();
-  CreateCircleImage(fixedImage);
-  ImageType::Pointer movingImage = ImageType::New();
-  CreateEllipseImage(movingImage);
-  */
-
-  // Write the two synthetic inputs
-  using WriterType = itk::ImageFileWriter<ImageType>;
-
-  /*
-  WriterType::Pointer fixedWriter = WriterType::New();
-  fixedWriter->SetFileName("fixed.png");
-  fixedWriter->SetInput(fixedImage);
-  fixedWriter->Update();
-
-  WriterType::Pointer movingWriter = WriterType::New();
-  movingWriter->SetFileName("moving.png");
-  movingWriter->SetInput(movingImage);
-  movingWriter->Update();*/
-
   using ReaderType = itk::ImageFileReader<ImageType>;
+
+  if (argc < 4)
+  {
+    std::cout << "Usage: " << argv[0] << " imageFile1 imageFile2 outputFile" << std::endl;
+    return EXIT_FAILURE;
+  }
   ReaderType::Pointer fixedReader = ReaderType::New();
-  fixedReader->SetFileName("apple.jpg");
+  fixedReader->SetFileName(argv[1]);
+  fixedReader->Update();
   ImageType::Pointer fixedImage = fixedReader->GetOutput();
 
   ReaderType::Pointer movingReader = ReaderType::New();
-  movingReader->SetFileName("orange.jpg");
+  movingReader->SetFileName(argv[2]);
+  movingReader->Update();
   ImageType::Pointer movingImage = movingReader->GetOutput();
 
   // We use floats internally
@@ -124,8 +107,8 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   //  which have been normalized to a mean of zero and unit variance.  We
   //  will follow this empirical rule in this example.
 
-  metric->SetFixedImageStandardDeviation(0.4);
-  metric->SetMovingImageStandardDeviation(0.4);
+  metric->SetFixedImageStandardDeviation(5.0);
+  metric->SetMovingImageStandardDeviation(5.0);
 
   registration->SetFixedImage(fixedSmoother->GetOutput());
   registration->SetMovingImage(movingSmoother->GetOutput());
@@ -183,11 +166,8 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 
   metric->SetNumberOfSpatialSamples(numberOfSamples);
 
-  // optimizer->SetLearningRate( 15.0 ); //"All the sampled point mapped to outside of the moving image"
-  // optimizer->SetLearningRate( 1.0 );
-  optimizer->SetLearningRate(0.1);
-  optimizer->SetNumberOfIterations(1000);
-  optimizer->MaximizeOn(); // We want to maximize mutual information (the default of the optimizer is to minimize)
+  // For consistent results when regression testing.
+  metric->ReinitializeSeed(121212);
 
   // Note that large values of the learning rate will make the optimizer
   // unstable. Small values, on the other hand, may result in the optimizer
@@ -204,6 +184,30 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   // optimizer step length is proportional to the Metric values themselves.
   // Metrics with large values will require you to use smaller values for the
   // learning rate in order to maintain a similar optimizer behavior.
+  optimizer->SetLearningRate(1.0);
+
+  // Note that the only stop condition for the v3 GradientDescentOptimizer class
+  // is that the maximum number of iterations is reached.
+  // For the option to exit early on convergence use GradientDescentOptimizerv4
+  // with an accompanying v4 metric class.
+  optimizer->SetNumberOfIterations(200);
+  optimizer->MaximizeOn(); // We want to maximize mutual information (the default of the optimizer is to minimize)
+
+  auto scales = optimizer->GetScales();
+
+  // Let optimizer take
+  // large steps along translation parameters,
+  // moderate steps along rotational parameters,
+  // and small steps along scale parameters
+  scales.SetSize(6);
+  scales.SetElement(0, 100);
+  scales.SetElement(1, 0.5);
+  scales.SetElement(2, 0.5);
+  scales.SetElement(3, 100);
+  scales.SetElement(4, 0.0001);
+  scales.SetElement(5, 0.0001);
+
+  optimizer->SetScales(scales);
 
   try
   {
@@ -251,107 +255,12 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   resample->SetOutputDirection(fixedImage->GetDirection());
   resample->SetDefaultPixelValue(100);
 
+  using WriterType = itk::ImageFileWriter<ImageType>;
+
   WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("output.png");
+  writer->SetFileName(argv[3]);
   writer->SetInput(resample->GetOutput());
   writer->Update();
 
   return EXIT_SUCCESS;
-}
-
-
-void
-CreateEllipseImage(ImageType::Pointer image)
-{
-  using EllipseType = itk::EllipseSpatialObject<Dimension>;
-
-  using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<EllipseType, ImageType>;
-
-  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
-
-  ImageType::SizeType size;
-  size[0] = 100;
-  size[1] = 100;
-
-  imageFilter->SetSize(size);
-
-  ImageType::SpacingType spacing;
-  spacing.Fill(1);
-  imageFilter->SetSpacing(spacing);
-
-  EllipseType::Pointer   ellipse = EllipseType::New();
-  EllipseType::ArrayType radiusArray;
-  radiusArray[0] = 10;
-  radiusArray[1] = 20;
-  ellipse->SetRadiusInObjectSpace(radiusArray);
-
-  using TransformType = EllipseType::TransformType;
-  TransformType::Pointer transform = TransformType::New();
-  transform->SetIdentity();
-
-  TransformType::OutputVectorType translation;
-  translation[0] = 65;
-  translation[1] = 45;
-  transform->Translate(translation, false);
-
-  ellipse->SetObjectToParentTransform(transform);
-
-  imageFilter->SetInput(ellipse);
-
-  ellipse->SetDefaultInsideValue(255);
-  ellipse->SetDefaultOutsideValue(0);
-  imageFilter->SetUseObjectValue(true);
-  imageFilter->SetOutsideValue(0);
-
-  imageFilter->Update();
-
-  image->Graft(imageFilter->GetOutput());
-}
-
-void
-CreateCircleImage(ImageType::Pointer image)
-{
-  using EllipseType = itk::EllipseSpatialObject<Dimension>;
-
-  using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<EllipseType, ImageType>;
-
-  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
-
-  ImageType::SizeType size;
-  size[0] = 100;
-  size[1] = 100;
-
-  imageFilter->SetSize(size);
-
-  ImageType::SpacingType spacing;
-  spacing.Fill(1);
-  imageFilter->SetSpacing(spacing);
-
-  EllipseType::Pointer   ellipse = EllipseType::New();
-  EllipseType::ArrayType radiusArray;
-  radiusArray[0] = 10;
-  radiusArray[1] = 10;
-  ellipse->SetRadiusInObjectSpace(radiusArray);
-
-  using TransformType = EllipseType::TransformType;
-  TransformType::Pointer transform = TransformType::New();
-  transform->SetIdentity();
-
-  TransformType::OutputVectorType translation;
-  translation[0] = 50;
-  translation[1] = 50;
-  transform->Translate(translation, false);
-
-  ellipse->SetObjectToParentTransform(transform);
-
-  imageFilter->SetInput(ellipse);
-
-  ellipse->SetDefaultInsideValue(255);
-  ellipse->SetDefaultOutsideValue(0);
-  imageFilter->SetUseObjectValue(true);
-  imageFilter->SetOutsideValue(0);
-
-  imageFilter->Update();
-
-  image->Graft(imageFilter->GetOutput());
 }
