@@ -14,13 +14,25 @@ install(TARGETS ExhaustiveOptimizer
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx Code.py CMakeLists.txt
   DESTINATION share/ITKExamples/Code/Numerics/Optimizers/ExhaustiveOptimizer/
   COMPONENT Code
   )
 
 
 enable_testing()
-add_test(NAME ExhaustiveOptimizerTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ExhaustiveOptimizer)
 
+set(fixed_image ${CMAKE_CURRENT_BINARY_DIR}/orange.jpg)
+set(moving_image ${CMAKE_CURRENT_BINARY_DIR}/apple.jpg)
+
+add_test(NAME ExhaustiveOptimizerTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ExhaustiveOptimizer
+	${fixed_image}
+	${moving_image})
+	
+if(ITK_WRAP_PYTHON)
+	add_test(NAME ExhaustiveOptimizerTestPython
+	 COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+	  ${fixed_image}
+	  ${moving_image})
+endif()
