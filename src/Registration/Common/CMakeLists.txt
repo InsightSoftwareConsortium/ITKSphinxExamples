@@ -26,7 +26,10 @@ compare_to_baseline(EXAMPLE_NAME GlobalRegistrationOfTwoImages
 
 add_example(MutualInformation)
 compare_to_baseline(EXAMPLE_NAME MutualInformation
-  BASELINE_PREFIX output
+  BASELINE_PREFIX 
+  fixed
+  moving
+  OutputBaseline
   )
 
 if(ENABLE_QUICKVIEW)

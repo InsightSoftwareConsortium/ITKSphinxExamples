@@ -4,6 +4,7 @@ Mutual Information Affine
 .. index::
    single: AffineTransform
    single: MutualInformationImageToImageMetric
+   single: GradientDescentOptimizer
 
 Synopsis
 --------
@@ -25,20 +26,21 @@ Results
 
   moving.png
 
-.. figure:: output.png
+.. figure:: OutputBaseline.png
   :scale: 70%
-  :alt: output.png
+  :alt: OutputBaseline.png
 
-  output.png
+  OutputBaseline.png
 
 Output::
 
-  Optimizer stop condition: GradientDescentOptimizer: Maximum number of iterations (1000) exceeded.
-  Final Parameters: [2.03502150081667, 0.4815329593844025, -0.524998748481682, 0.5494736862921054, 0.016827072908497744, -0.018211282766070345]
+  Optimizer stop condition: GradientDescentOptimizer: Maximum number of iterations (200) exceeded.
+  Final Parameters: [1.0028069041777101, -0.009647107048100798, -0.010717116855425006, 1.0029040091646872, 13.26279335943067, 12.226979744206531]
+
   Result =
-   Iterations    = 1000
-   Metric value  = -0.000162484
-   Numb. Samples = 100
+   Iterations    = 200
+   Metric value  = 0.000971698
+   Numb. Samples = 567
 
 Code
 ----
@@ -49,8 +51,16 @@ C++
 .. literalinclude:: Code.cxx
    :lines: 18-
 
+
+Binder
+------
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/master?filepath=src%2FCore%2FTransform%2FMutualInformationAffine%2FMutualInformationAffine.ipynb
+
+
 Classes demonstrated
 --------------------
 
 .. breathelink:: itk::AffineTransform
 .. breathelink:: itk::MutualInformationImageToImageMetric
+.. breathelink:: itk::GradientDescentOptimizer

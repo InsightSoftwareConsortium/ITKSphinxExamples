@@ -22,4 +22,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME MutualInformationTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MutualInformation)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MutualInformation
+  fixed.png
+  moving.png
+  output.png)

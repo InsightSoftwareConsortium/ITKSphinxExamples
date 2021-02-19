@@ -25,22 +25,22 @@ Results
 
   moving.png
 
-.. figure:: output.png
+.. figure:: OutputBaseline.png
   :scale: 70%
-  :alt: output.png
+  :alt: OutputBaseline.png
 
-  output.png
+  OutputBaseline.png
 
 Output::
 
   Optimizer stop condition: GradientDescentOptimizer: Maximum number of iterations (200) exceeded.
-
-  Result =
-  Translation X = -5.58344
-  Translation Y = -0.129678
-  Iterations    = 200
-  Metric value  = -0.00067634
-  Numb. Samples = 100
+ 
+    Result =
+     Translation X = 12.9484
+     Translation Y = 17.0856
+     Iterations    = 200
+     Metric value  = 0.594482
+     Numb. Samples = 567
 
 Code
 ----
@@ -50,6 +50,14 @@ C++
 
 .. literalinclude:: Code.cxx
    :lines: 18-
+
+
+Binder
+------
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/master?filepath=src%2FRegistration%2FCommon%2FMutualInformation%2FMutualInformation.ipynb
+
+
 
 Classes demonstrated
 --------------------
