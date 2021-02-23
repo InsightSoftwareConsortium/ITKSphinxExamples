@@ -1,5 +1,4 @@
-
-if(ENABLE_QUICKVIEW)
+if(VTK_DIR)
 add_example(ClusterPixelsInGrayscaleImage)
 compare_to_baseline(EXAMPLE_NAME ClusterPixelsInGrayscaleImage
   BASELINE_PREFIX ClusterPixelsInGrayscaleImage

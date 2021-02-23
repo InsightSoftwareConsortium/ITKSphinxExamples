@@ -5,9 +5,24 @@ project(WatchRegistration)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
+find_package(VTK REQUIRED
+  COMPONENTS
+    vtkRenderingCore
+    vtkRenderingGL2PSOpenGL2
+  )
+if(VTK_VERSION VERSION_LESS "8.90.0")
+  include(${VTK_USE_FILE})
+endif()
 
 add_executable(WatchRegistration Code.cxx)
-target_link_libraries(WatchRegistration ${ITK_LIBRARIES})
+target_link_libraries(WatchRegistration ${ITK_LIBRARIES} ${VTK_LIBRARIES})
+
+if(NOT VTK_VERSION VERSION_LESS "8.90.0")
+  vtk_module_autoinit(
+    TARGETS WatchRegistration
+    MODULES ${VTK_LIBRARIES}
+    )
+endif()
 
 install(TARGETS WatchRegistration
   DESTINATION bin/ITKExamples/Registration/Common
@@ -22,5 +37,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME WatchRegistrationTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/WatchRegistration)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/WatchRegistration fixed.png moving.png)
 
