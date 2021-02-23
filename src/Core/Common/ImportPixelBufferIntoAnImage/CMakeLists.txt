@@ -14,7 +14,7 @@ install(TARGETS ImportPixelBufferIntoAnImage
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt Code.py
+install(FILES Code.cxx CMakeLists.txt 
   DESTINATION share/ITKExamples/Code/Core/Common/ImportPixelBufferIntoAnImage/
   COMPONENT Code
   )
