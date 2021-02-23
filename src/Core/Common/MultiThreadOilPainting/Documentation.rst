@@ -13,9 +13,17 @@ Multi-threaded oil painting image filter.
 
 Results
 -------
-.. warning::
-  **Fix Errors**
-  Example contains errors needed to be fixed for proper output.
+.. figure:: Yinyang.png
+   :scale: 50%
+   :alt: Input image
+
+   Input image
+
+.. figure:: MultiThreadOilPaintingQuickview.png
+   :scale: 70%
+   :alt: Output In QuickView Window
+
+   Output In QuickView Window
 
 Code
 ----

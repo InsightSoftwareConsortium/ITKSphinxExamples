@@ -39,5 +39,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME VTKImageToITKImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/VTKImageToITKImage)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/VTKImageToITKImage Gourds.png)
 

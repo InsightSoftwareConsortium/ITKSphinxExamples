@@ -42,4 +42,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME MultiThreadOilPaintingTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MultiThreadOilPainting)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MultiThreadOilPainting Yinyang.png 100 20)

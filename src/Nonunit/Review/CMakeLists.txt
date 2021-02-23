@@ -18,11 +18,8 @@ compare_to_baseline( EXAMPLE_NAME SegmentBloodVesselsWithMultiScaleHessianBasedM
 #  BASELINE_PREFIX OutputBaseline
 #  )
 
-if(ENABLE_QUICKVIEW)
-
 add_example(GeometricPropertiesOfRegion)
-compare_to_baseline(EXAMPLE_NAME GeometricPropertiesOfRegion
-        BASELINE_PREFIX OutputBaseline
-        )
-
-endif()
+#TODO: Save output ITK image and then use it to compare to baseline
+#compare_to_baseline(EXAMPLE_NAME GeometricPropertiesOfRegion
+#        BASELINE_PREFIX OutputBaseline
+#        )

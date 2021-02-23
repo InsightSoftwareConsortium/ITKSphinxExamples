@@ -184,9 +184,10 @@ compare_to_baseline(EXAMPLE_NAME FindMaxAndMinInImage
   )
 
 add_example(InPlaceFilterOfImage)
-compare_to_baseline(EXAMPLE_NAME InPlaceFilterOfImage
-  BASELINE_PREFIX OutputBaseline
-  )
+#TODO: Make example save output image, and then compare it to a baseline
+#compare_to_baseline(EXAMPLE_NAME InPlaceFilterOfImage
+#  BASELINE_PREFIX OutputBaseline
+#  )
 
 add_example(IterateRegionWithNeighborhood)
 compare_to_baseline(EXAMPLE_NAME IterateRegionWithNeighborhood

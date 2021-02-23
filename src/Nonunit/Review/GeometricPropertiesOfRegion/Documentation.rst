@@ -14,6 +14,12 @@ Get geometric properties of labeled regions in an image.
 
 Results
 -------
+.. figure:: GeometricPropertiesOfRegionQuickview.png
+   :scale: 50%
+   :alt: QuickView output.
+
+   Output In QuickView
+
 Output::
 
   Image (0x7fd274c5f3c0)

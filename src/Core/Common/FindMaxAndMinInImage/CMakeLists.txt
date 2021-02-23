@@ -38,4 +38,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME FindMaxAndMinInImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/FindMaxAndMinInImage)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/FindMaxAndMinInImage Yinyang.png)

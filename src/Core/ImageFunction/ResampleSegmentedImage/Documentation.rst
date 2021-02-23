@@ -13,9 +13,17 @@ Resample (stretch or compress) a segmented image.
 
 Results
 -------
-.. warning::
-  **Fix Errors**
-  Example contains errors needed to be fixed for proper output.
+.. figure:: Yinyang.png
+   :scale: 50%
+   :alt: Input yin-yang image.
+
+   Input Image
+
+.. figure:: ResampleSegmentedImageQuickview.png
+   :scale: 50%
+   :alt: QuickView output.
+
+   Output In QuickView
 
 Code
 ----
