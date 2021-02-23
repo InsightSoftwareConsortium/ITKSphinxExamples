@@ -14,9 +14,4 @@ compare_to_baseline(EXAMPLE_NAME LineSpatialObject
   )
 
 add_example(Blob)
-
-if(ENABLE_QUICKVIEW)
-
 add_example(ContourSpatialObject)
-
-endif()

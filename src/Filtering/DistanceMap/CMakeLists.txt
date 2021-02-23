@@ -1,5 +1,3 @@
-if(ENABLE_QUICKVIEW)
-
 add_example(ApproxDistanceMapOfBinary)
 add_example(SignedDistanceMapOfBinary)
 add_example(MaurerDistanceMapOfBinary)
@@ -8,5 +6,3 @@ add_example(MeanDistanceBetweenAllPointsOnTwoCurves)
 compare_to_baseline(EXAMPLE_NAME MeanDistanceBetweenAllPointsOnTwoCurves
   BASELINE_PREFIX MeanDistanceBetweenAllPointsOnTwoCurves
   )
-
-endif()

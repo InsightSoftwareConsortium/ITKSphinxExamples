@@ -90,18 +90,6 @@ compare_to_baseline(EXAMPLE_NAME ComputerMagInVectorImageToMakeMagImage
 add_example(ExtractComponentOfVectorImage)
 add_example(ComputeEdgePotential)
 
-if(ENABLE_QUICKVIEW)
-
-add_example(AddTwoImages)
-compare_to_baseline(EXAMPLE_NAME AddTwoImages
-        BASELINE_PREFIX AddTwoImages
-        )
-
-add_example(SubtractTwoImages)
-compare_to_baseline(EXAMPLE_NAME SubtractTwoImages
-        BASELINE_PREFIX SubtractTwoImages
-        )
-
 add_example(AbsValueOfImage)
 compare_to_baseline(EXAMPLE_NAME AbsValueOfImage
         BASELINE_PREFIX AbsValueOfImage
@@ -120,6 +108,18 @@ compare_to_baseline(EXAMPLE_NAME InvertImage
 add_example(MaskImage)
 compare_to_baseline(EXAMPLE_NAME MaskImage
         BASELINE_PREFIX MaskImage
+        )
+
+if(VTK_DIR)
+
+add_example(AddTwoImages)
+compare_to_baseline(EXAMPLE_NAME AddTwoImages
+        BASELINE_PREFIX AddTwoImages
+        )
+
+add_example(SubtractTwoImages)
+compare_to_baseline(EXAMPLE_NAME SubtractTwoImages
+        BASELINE_PREFIX SubtractTwoImages
         )
 
 endif()

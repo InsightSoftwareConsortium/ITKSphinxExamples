@@ -13,8 +13,6 @@ compare_to_baseline(EXAMPLE_NAME NormalizedCorrelationUsingFFTWithMaskImages
   BASELINE_PREFIX correlation
   )
 
-if(ENABLE_QUICKVIEW)
-
 add_example(ConvolveImageWithKernel)
 compare_to_baseline(EXAMPLE_NAME ConvolveImageWithKernel
   BASELINE_PREFIX ConvolveImageWithKernel
@@ -32,5 +30,3 @@ compare_to_baseline(EXAMPLE_NAME ConvolveImageWithKernel
 #  BASELINE_PREFIX correlation patch
 #  )
 #===========================================
-
-endif()

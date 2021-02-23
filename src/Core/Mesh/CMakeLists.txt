@@ -15,9 +15,10 @@ add_example(CalculateAreaAndVolumeOfSimplexMesh)
 add_example(WriteMeshToVTP)
 add_example(WorkingWithPointAndCellData)
 
-if(ENABLE_QUICKVIEW)
-add_example(ConvertMeshToUnstructeredGrid)
-compare_to_baseline(EXAMPLE_NAME ConvertMeshToUnstructeredGrid
-  BASELINE_PREFIX OutputBaseline
-  )
+if(VTK_DIR)
+  add_example(ConvertMeshToUnstructeredGrid)
+  #TODO: Fix Baseline Comparison
+  #compare_to_baseline(EXAMPLE_NAME ConvertMeshToUnstructeredGrid
+  #  BASELINE_PREFIX OutputBaseline
+  #  )
 endif()

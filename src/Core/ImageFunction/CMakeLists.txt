@@ -6,10 +6,4 @@ compare_to_baseline(EXAMPLE_NAME ComputeMedianOfImageAtPixel
   )
 
 add_example(LinearlyInterpolatePositionInImage)
-
-if(ENABLE_QUICKVIEW)
-
-# TODO Fix build errors
 add_example(ResampleSegmentedImage)
-
-endif()

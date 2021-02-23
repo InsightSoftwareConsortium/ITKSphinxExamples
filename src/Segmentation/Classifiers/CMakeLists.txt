@@ -2,10 +2,9 @@
 if(ENABLE_QUICKVIEW)
 add_example(ClusterPixelsInGrayscaleImage)
 compare_to_baseline(EXAMPLE_NAME ClusterPixelsInGrayscaleImage
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX ClusterPixelsInGrayscaleImage
   )
 endif()
-
 # TODO: Fix build examples for examples
 #add_example(KMeansClusterOfPixelsInImage)
 #compare_to_baseline(EXAMPLE_NAME KMeansClusterOfPixelsInImage
