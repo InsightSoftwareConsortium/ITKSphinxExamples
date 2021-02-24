@@ -32,11 +32,12 @@ compare_to_baseline(EXAMPLE_NAME MutualInformation
   OutputBaseline
   )
 
-if(ENABLE_QUICKVIEW)
-add_example(WatchRegistration)
-compare_to_baseline(EXAMPLE_NAME WatchRegistration
-  BASELINE_PREFIX OutputBaseline
-  )
+
+if(VTK_DIR)
+  add_example(WatchRegistration)
+  compare_to_baseline(EXAMPLE_NAME WatchRegistration
+    BASELINE_PREFIX WatchRegistration
+    )
 endif()
 
 # TODO: Fix build errors

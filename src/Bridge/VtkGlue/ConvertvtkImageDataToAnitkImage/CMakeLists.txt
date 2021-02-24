@@ -6,15 +6,26 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 # Since we use vtkImageMagnitude
-find_package(VTK REQUIRED COMPONENTS vtkImagingMath)
-include(${VTK_USE_FILE})
-
+find_package(VTK REQUIRED
+  COMPONENTS
+    ImagingMath
+  )
+if(VTK_VERSION VERSION_LESS "8.90.0")
+  include(${VTK_USE_FILE})
+endif()
 
 add_executable(ConvertvtkImageDataToAnitkImage Code.cxx)
 target_link_libraries(ConvertvtkImageDataToAnitkImage
   ${ITK_LIBRARIES}
   ${VTK_LIBRARIES}
   )
+
+if(NOT VTK_VERSION VERSION_LESS "8.90.0")
+  vtk_module_autoinit(
+    TARGETS ConvertvtkImageDataToAnitkImage
+    MODULES ${VTK_LIBRARIES}
+    )
+endif()
 
 install(TARGETS ConvertvtkImageDataToAnitkImage
   DESTINATION bin/ITKExamples/Bridge/VtkGlue

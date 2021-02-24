@@ -14,7 +14,7 @@ set(ENABLE_QUICKVIEW OFF)
 
 if(Module_ITKVtkGlue OR ITKVtkGlue_LOADED)
   find_package(VTK REQUIRED)
-  include(${VTK_USE_FILE})
+  include_directories(${VTK_INCLUDE_DIRS})
   set(ENABLE_QUICKVIEW ON)
   add_definitions(-DENABLE_QUICKVIEW)
 endif()

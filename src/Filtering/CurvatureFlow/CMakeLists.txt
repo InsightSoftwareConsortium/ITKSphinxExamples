@@ -1,5 +1,3 @@
-if (ENABLE_QUICKVIEW)
-
 add_example(BinaryMinMaxCurvatureFlow)
 compare_to_baseline(EXAMPLE_NAME BinaryMinMaxCurvatureFlow
   BASELINE_PREFIX BinaryMinMaxCurvatureFlow
@@ -24,5 +22,3 @@ add_example(SmoothRGBImageUsingMinMaxCurvatureFlow)
 compare_to_baseline(EXAMPLE_NAME SmoothRGBImageUsingMinMaxCurvatureFlow
   BASELINE_PREFIX SmoothRGBImageUsingMinMaxCurvatureFlow
   )
-
-endif()

@@ -173,35 +173,35 @@ compare_to_baseline(EXAMPLE_NAME DisplayImage
 
 add_example(DirectWarningToFile)
 
-if(ENABLE_QUICKVIEW)
-
 # TODO: complete example
 add_example(MultiThreadOilPainting)
 #==================================================
 
+if(VTK_DIR)
 add_example(FindMaxAndMinInImage)
 compare_to_baseline(EXAMPLE_NAME FindMaxAndMinInImage
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX FindMaxAndMinInImageOutput
   )
 
 add_example(InPlaceFilterOfImage)
-compare_to_baseline(EXAMPLE_NAME InPlaceFilterOfImage
-  BASELINE_PREFIX OutputBaseline
-  )
+#TODO: Make example save output image, and then compare it to a baseline
+#compare_to_baseline(EXAMPLE_NAME InPlaceFilterOfImage
+#  BASELINE_PREFIX OutputBaseline
+#  )
 
 add_example(IterateRegionWithNeighborhood)
 compare_to_baseline(EXAMPLE_NAME IterateRegionWithNeighborhood
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX IterateRegionWithWriteAccess
   )
 
 add_example(IterateRegionWithWriteAccess)
 compare_to_baseline(EXAMPLE_NAME IterateRegionWithWriteAccess
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX IterateRegionWithWriteAccess
   )
 
 add_example(OutOfBoundsPixelsReturnConstValue)
 compare_to_baseline(EXAMPLE_NAME OutOfBoundsPixelsReturnConstValue
-  BASELINE_PREFIX OutputBaseline
+  BASELINE_PREFIX OutOfBoundsPixelsReturnConstValue
   )
 endif()
 

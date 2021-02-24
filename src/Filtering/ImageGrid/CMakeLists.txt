@@ -97,8 +97,6 @@ add_example(FitSplineIntoPointSet)
 #  BASELINE_PREFIX OutputBaseline
 #  )
 
-if (ENABLE_QUICKVIEW)
-
 add_example(RunImageFilterOnRegionOfImage)
 compare_to_baseline(EXAMPLE_NAME RunImageFilterOnRegionOfImage
         BASELINE_PREFIX RunImageFilterOnRegionOfImage
@@ -108,4 +106,3 @@ add_example(CropImageBySpecifyingRegion2)
 compare_to_baseline(EXAMPLE_NAME CropImageBySpecifyingRegion2
         BASELINE_PREFIX CropImageBySpecifyingRegion2
         )
-endif()

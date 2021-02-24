@@ -13,9 +13,17 @@ Computes the derivative of an image in a particular direction.
 
 Results
 -------
-.. warning::
-  **Fix Errors**
-  Example contains errors needed to be fixed for proper output.
+.. figure:: BrainProtonDensitySlice.png
+   :scale: 50%
+   :alt: Input image
+
+   Input image
+
+.. figure:: DerivativeImageQuickview.png
+   :scale: 50%
+   :alt: Output in QuickView
+
+   Output in QuickView
 
 Code
 ----

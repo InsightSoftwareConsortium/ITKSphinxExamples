@@ -5,11 +5,24 @@ project( VisualizeStaticWhitaker2DLevelSetLayers )
 find_package( ITK REQUIRED )
 include( ${ITK_USE_FILE} )
 
-find_package( VTK REQUIRED )
-include( ${VTK_USE_FILE} )
+find_package( VTK REQUIRED
+  COMPONENTS
+    vtkRenderingCore
+    vtkRenderingGL2PSOpenGL2
+  )
+if( VTK_VERSION VERSION_LESS "8.90.0" )
+  include( ${VTK_USE_FILE} )
+endif()
 
-add_executable( VisualizeStaticWhitaker2DLevelSetLayers Code.cxx)
-target_link_libraries( VisualizeStaticWhitaker2DLevelSetLayers ${ITK_LIBRARIES} )
+add_executable( VisualizeStaticWhitaker2DLevelSetLayers Code.cxx )
+target_link_libraries( VisualizeStaticWhitaker2DLevelSetLayers ${ITK_LIBRARIES} ${VTK_LIBRARIES} )
+
+if( NOT VTK_VERSION VERSION_LESS "8.90.0" )
+  vtk_module_autoinit(
+    TARGETS VisualizeStaticWhitaker2DLevelSetLayers
+    MODULES ${VTK_LIBRARIES}
+    )
+endif()
 
 install( TARGETS VisualizeStaticWhitaker2DLevelSetLayers
   DESTINATION bin/ITKExamples/Bridge/VtkGlue

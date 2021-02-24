@@ -59,7 +59,8 @@ main(int argc, char * argv[])
   using HuangFilterType = itk::HuangThresholdImageFilter<InputImageType, OutputImageType>;
   using IntermodesFilterType = itk::IntermodesThresholdImageFilter<InputImageType, OutputImageType>;
   using IsoDataFilterType = itk::IsoDataThresholdImageFilter<InputImageType, OutputImageType>;
-  using KittlerIllingworthFilterType = itk::KittlerIllingworthThresholdImageFilter<InputImageType, OutputImageType>;
+  // TODO: Fix KittlerIllingworth Filter
+  // using KittlerIllingworthFilterType = itk::KittlerIllingworthThresholdImageFilter<InputImageType, OutputImageType>;
   using LiFilterType = itk::LiThresholdImageFilter<InputImageType, OutputImageType>;
   using MaximumEntropyFilterType = itk::MaximumEntropyThresholdImageFilter<InputImageType, OutputImageType>;
   using MomentsFilterType = itk::MomentsThresholdImageFilter<InputImageType, OutputImageType>;
@@ -85,7 +86,7 @@ main(int argc, char * argv[])
   filterContainer["Huang"] = HuangFilterType::New();
   filterContainer["Intermodes"] = IntermodesFilterType::New();
   filterContainer["IsoData"] = IsoDataFilterType::New();
-  filterContainer["KittlerIllingworth"] = KittlerIllingworthFilterType::New();
+  // filterContainer["KittlerIllingworth"] = KittlerIllingworthFilterType::New();
   filterContainer["Li"] = LiFilterType::New();
   filterContainer["MaximumEntropy"] = MaximumEntropyFilterType::New();
   filterContainer["Moments"] = MomentsFilterType::New();

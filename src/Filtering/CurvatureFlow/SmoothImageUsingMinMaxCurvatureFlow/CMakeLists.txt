@@ -5,9 +5,29 @@ project(SmoothImageUsingMinMaxCurvatureFlow)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
+if(ENABLE_QUICKVIEW)
+  find_package(VTK REQUIRED
+    COMPONENTS
+      vtkRenderingCore
+      vtkRenderingGL2PSOpenGL2
+    )
+  if(VTK_VERSION VERSION_LESS "8.90.0")
+    include(${VTK_USE_FILE})
+  endif()
 
-add_executable(SmoothImageUsingMinMaxCurvatureFlow Code.cxx)
-target_link_libraries(SmoothImageUsingMinMaxCurvatureFlow ${ITK_LIBRARIES})
+  add_executable(SmoothImageUsingMinMaxCurvatureFlow Code.cxx)
+  target_link_libraries(SmoothImageUsingMinMaxCurvatureFlow ${ITK_LIBRARIES} ${VTK_LIBRARIES})
+
+  if(NOT VTK_VERSION VERSION_LESS "8.90.0")
+    vtk_module_autoinit(
+      TARGETS SmoothImageUsingMinMaxCurvatureFlow
+      MODULES ${VTK_LIBRARIES}
+      )
+  endif()
+else()
+  add_executable(SmoothImageUsingMinMaxCurvatureFlow Code.cxx)
+  target_link_libraries(SmoothImageUsingMinMaxCurvatureFlow ${ITK_LIBRARIES})
+endif()
 
 install(TARGETS SmoothImageUsingMinMaxCurvatureFlow
   DESTINATION bin/ITKExamples/Filtering/CurvatureFlow

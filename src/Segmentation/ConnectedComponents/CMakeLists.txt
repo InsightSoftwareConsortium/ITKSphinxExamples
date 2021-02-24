@@ -1,5 +1,3 @@
-if(ENABLE_QUICKVIEW)
-
 # TODO Fix build errors
 #add_example(LabelConnectComponentsInBinaryImage)
 #compare_to_baseline(EXAMPLE_NAME LabelConnectComponentsInBinaryImage
@@ -21,5 +19,3 @@ add_example(ExtraLargestConnectComponentFromBinaryImage)
 compare_to_baseline(EXAMPLE_NAME ExtraLargestConnectComponentFromBinaryImage
   BASELINE_PREFIX ExtraLargestConnectComponentFromBinaryImage
   )
-
-endif()
