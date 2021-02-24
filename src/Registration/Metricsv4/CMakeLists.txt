@@ -1,1 +1,2 @@
 add_example(PerformRegistrationOnVectorImages)
+add_example(RegisterTwoPointSets)
