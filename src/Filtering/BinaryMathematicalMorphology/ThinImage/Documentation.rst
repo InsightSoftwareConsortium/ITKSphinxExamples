@@ -14,17 +14,17 @@ Skeletonix/thin an image.
 
 Results
 -------
-.. figure:: input.png
+.. figure:: Input.png
   :scale: 70%
-  :alt: input.png
+  :alt: Input.png
 
   input.png
 
-.. figure:: output.png
+.. figure:: OutputBaseline.png
   :scale: 70%
-  :alt: output.png
+  :alt: OutputBaseline.png
 
-  output.png
+  OutputBaseline.png
 
 Code
 ----

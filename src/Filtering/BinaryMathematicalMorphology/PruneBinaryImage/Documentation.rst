@@ -15,7 +15,7 @@ Prune a binary image.
 
 Results
 -------
-.. figure:: PruneBinaryImage.png
+.. figure:: PruneBinaryImageQuickView.png
   :scale: 70%
 
   Output In VTK Window

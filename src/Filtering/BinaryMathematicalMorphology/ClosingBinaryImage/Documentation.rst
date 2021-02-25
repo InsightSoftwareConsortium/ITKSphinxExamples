@@ -16,7 +16,7 @@ Closing a binary image.
 Results
 -------
 
-.. figure:: ClosingBinaryImage.png
+.. figure:: ClosingBinaryImageQuickView.png
   :scale: 70%
 
   Output In VTK Window
