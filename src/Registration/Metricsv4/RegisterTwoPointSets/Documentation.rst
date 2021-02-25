@@ -55,6 +55,11 @@ Python
    :language: python
    :lines: 1, 23-
 
+Binder
+-------
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/master?filepath=src%2FRegistration%2FMetricsv4%2FRegisterTwoPointSets%2FRegisterTwoPointSets.ipynb
+
 Classes demonstrated
 --------------------
 
