@@ -5,3 +5,4 @@ Metricsv4
   :maxdepth: 1
 
   PerformRegistrationOnVectorImages/Documentation.rst
+  RegisterTwoPointSets/Documentation.rst

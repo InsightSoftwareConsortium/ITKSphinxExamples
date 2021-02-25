@@ -13,9 +13,10 @@ Resample (stretch or compress) a segmented image.
 
 Results
 -------
-.. figure:: Yinyang.png
+
+.. figure:: Gourds.png
    :scale: 50%
-   :alt: Input yin-yang image.
+   :alt: Input image.
 
    Input Image
 
