@@ -37,7 +37,7 @@ main(int argc, char * argv[])
   else
   {
     CreateImage(image);
-    itk::WriteImage(image, "input.png");
+    itk::WriteImage(image, "Input.png");
   }
 
   using BinaryThinningImageFilterType = itk::BinaryThinningImageFilter<ImageType, ImageType>;
@@ -53,7 +53,7 @@ main(int argc, char * argv[])
   rescaler->SetOutputMaximum(255);
   rescaler->Update();
 
-  itk::WriteImage(rescaler->GetOutput(), "output.png");
+  itk::WriteImage(rescaler->GetOutput(), "Output.png");
 
   return EXIT_SUCCESS;
 }

@@ -18,11 +18,17 @@
 #include "itkImage.h"
 #include "itkBinaryPruningImageFilter.h"
 #include "itkImageFileReader.h"
+#include "itkImageFileWriter.h"
 #include "itkBinaryBallStructuringElement.h"
 
 #ifdef ENABLE_QUICKVIEW
 #  include "QuickView.h"
 #endif
+
+namespace
+{
+using ImageType = itk::Image<unsigned char, 2>;
+}
 
 template <typename TImage>
 void
@@ -36,19 +42,25 @@ main(int argc, char * argv[])
 
   using ImageType = itk::Image<unsigned char, 2>;
   ImageType::Pointer image;
+  std::string        outputFilename = "Output.png";
+  unsigned int       iteration = 1;
 
-  unsigned int iteration = 1;
-
-  if (argc < 3)
+  if (argc == 1)
   {
     image = ImageType::New();
     CreateImage(image.GetPointer());
   }
-  else
+  else if (argc < 4)
   {
     image = itk::ReadImage<ImageType>(argv[1]);
+
     std::stringstream ssIteration(argv[2]);
+    ssIteration >> iteration;
+
+    outputFilename = argv[3];
   }
+
+  std::cout << "Iterations: " << iteration << std::endl;
 
   using BinaryPruningImageFilterType = itk::BinaryPruningImageFilter<ImageType, ImageType>;
   BinaryPruningImageFilterType::Pointer pruneFilter = BinaryPruningImageFilterType::New();
@@ -62,6 +74,9 @@ main(int argc, char * argv[])
   viewer.AddImage(pruneFilter->GetOutput());
   viewer.Visualize();
 #endif
+
+  itk::WriteImage(pruneFilter->GetOutput(), outputFilename);
+
   return EXIT_SUCCESS;
 }
 

@@ -15,7 +15,7 @@ Opening a binary image.
 
 Results
 -------
-.. figure:: OpeningBinaryImage.png
+.. figure:: OpeningBinaryImageQuickView.png
   :scale: 70%
 
   Output In VTK Window

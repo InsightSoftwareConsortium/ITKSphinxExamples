@@ -48,7 +48,7 @@ else:
     image[50:55, 20:80] = 255
 
     # Write Image
-    itk.imwrite(image, "input.png")
+    itk.imwrite(image, "Input.png")
 
 image = itk.binary_thinning_image_filter(image)
 
@@ -56,4 +56,4 @@ image = itk.binary_thinning_image_filter(image)
 image = itk.rescale_intensity_image_filter(image, output_minimum=0, output_maximum=255)
 
 # Write Image
-itk.imwrite(image, "outputPython.png")
+itk.imwrite(image, "OutputPython.png")
