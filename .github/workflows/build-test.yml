@@ -401,5 +401,5 @@ jobs:
         with:
           name: Documentation
           path: |
-            ${{ github.workspace }}/ITKExamples-build/ITKExamples-5.2.0-html.tar.gz
-            ${{ github.workspace }}/ITKExamples-build/ITKExamples-5.2.0-html.zip
+            ${{ github.workspace }}/ITKExamples-build/ITKExamples-*-html.tar.gz
+            ${{ github.workspace }}/ITKExamples-build/ITKExamples-*-html.zip
