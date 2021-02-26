@@ -12,6 +12,7 @@ An optimizer that fully samples a grid on the parametric space.
 
 Results
 -------
+
 .. note::
    **Help Wanted**
    Implementation of Results for sphinx examples containing this message.
@@ -28,10 +29,11 @@ C++
    :lines: 18-
 
 Python
-...
+......
 
 .. literalinclude:: Code.py
-	:lines: 20-
+   :language: python
+   :lines: 20-
 
 Jupyter Notebook
 -----------------

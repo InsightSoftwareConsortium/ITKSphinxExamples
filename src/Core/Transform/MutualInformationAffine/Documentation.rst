@@ -14,20 +14,18 @@ Global registration by maximizing the mutual information and using an affine tra
 
 Results
 -------
+
 .. figure:: fixed.png
-  :scale: 70%
   :alt: fixed.png
 
   fixed.png
 
 .. figure:: moving.png
-  :scale: 70%
   :alt: moving.png
 
   moving.png
 
 .. figure:: OutputBaseline.png
-  :scale: 70%
   :alt: OutputBaseline.png
 
   OutputBaseline.png

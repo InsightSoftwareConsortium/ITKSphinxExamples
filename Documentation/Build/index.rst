@@ -226,19 +226,6 @@ Paraview
   Paraview_
 
 
-QGoImageCompare
-  QGoImageCompare_ is a simple Qt_/VTK_ application capable of comparing multiple
-  images simultaneous by coupling the cameras views.  It is also possible to
-  interactively probe the location and value of pixels for both 2D and 3D
-  datasets.
-
-.. figure:: QGoImageCompare.png
-  :alt: QGoImageCompare
-  :align: center
-
-  QGoImageCompare_
-
-
 VV
   VV_ is an image viewer designed for fast and simple visualization of
   spatio-temporal images: 2D, 2D+t, 3D and 3D+t (or 4D) images.
@@ -258,7 +245,6 @@ VV
 .. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
 .. _MITK:                  http://www.mitk.org/wiki/MITK
 .. _Paraview:              https://www.paraview.org/
-.. _QGoImageCompare:       https://github.com/gofigure2/QGoImageCompare
 .. _Qt:                    https://www.qt.io/developers/
 .. _VTK:                   https://vtk.org/
 .. _VV:                    https://www.creatis.insa-lyon.fr/rio/vv

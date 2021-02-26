@@ -22,6 +22,7 @@ Results
    :alt: QuickView output.
 
    Output In QuickView
+
 Code
 ----
 
