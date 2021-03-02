@@ -4,6 +4,11 @@ Mutual Information
 .. index::
    single: MutualInformationImageToImageMetric
    single: TranslationTransform
+   
+.. toctree::
+  :maxdepth: 1
+   
+  MutualInformation.ipynb
 
 Synopsis
 --------

@@ -277,6 +277,7 @@ if(BUILD_DOCUMENTATION)
   # Builds the documentation.
   find_package(PythonInterp REQUIRED)
   find_package(Sphinx REQUIRED)
+  find_program(PANDOC_BIN pandoc REQUIRED)
 
   set(SPHINX_CONF_DIR ${ITKExamples_BINARY_DIR}/Formatting)
   set(SPHINX_INPUT_DIR ${ITKExamples_BINARY_DIR})
