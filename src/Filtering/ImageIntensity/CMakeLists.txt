@@ -57,8 +57,8 @@ compare_to_baseline(EXAMPLE_NAME IntensityWindowing
   BASELINE_PREFIX IntensityWindowing
   )
 
-add_example(SetOutputPixelToMax)
-add_example(SetOutputPixelToMin)
+add_example(CompareTwoImagesAndSetOutputPixelToMax)
+add_example(CompareTwoImagesAndSetOutputPixelToMin)
 
 add_example(BinaryANDTwoImages)
 compare_to_baseline(EXAMPLE_NAME BinaryANDTwoImages

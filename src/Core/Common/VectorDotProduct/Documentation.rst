@@ -1,5 +1,5 @@
-Covariant Vector Dot Product
-============================
+Vector Dot Product
+==================
 
 .. index::
   single: Vector

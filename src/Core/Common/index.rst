@@ -7,6 +7,7 @@ Common
   AddNoiseToBinaryImage/Documentation.rst
   AddOffsetToIndex/Documentation.rst
   ApplyAFilterOnlyToASpecifiedRegionOfAnImage/Documentation.rst
+  ApplyCustomOperationToEachPixelInImage/Documentation.rst
   BoundingBoxOfAPointSet/Documentation.rst
   BresenhamLine/Documentation.rst
   BuildAHelloWorldProgram/Documentation.rst
@@ -23,15 +24,15 @@ Common
   CreateACovariantVector/Documentation.rst
   CreateAFixedArray/Documentation.rst
   CreateAIndex/Documentation.rst
-  CreateAnImage/Documentation.rst
-  CreateAnImageOfVectors/Documentation.rst
-  CreateAnImageRegion/Documentation.rst
-  CreateAnother/Documentation.rst
-  CreateAnotherInstanceOfAnImage/Documentation.rst
-  CreateAnRGBImage/Documentation.rst
   CreateAPointSet/Documentation.rst
   CreateASize/Documentation.rst
   CreateAVector/Documentation.rst
+  CreateAnRGBImage/Documentation.rst
+  CreateAnImage/Documentation.rst
+  CreateAnImageRegion/Documentation.rst
+  CreateAnImageOfVectors/Documentation.rst
+  CreateAnother/Documentation.rst
+  CreateAnotherInstanceOfAnImage/Documentation.rst
   CreateDerivativeKernel/Documentation.rst
   CreateForwardDifferenceKernel/Documentation.rst
   CreateGaussianDerivativeKernel/Documentation.rst
@@ -40,7 +41,6 @@ Common
   CreateSobelKernel/Documentation.rst
   CreateVectorImage/Documentation.rst
   CropImageBySpecifyingRegion/Documentation.rst
-  CustomOperationToEachPixelInImage/Documentation.rst
   DeepCopyImage/Documentation.rst
   DemonstrateAllOperators/Documentation.rst
   DirectWarningToFile/Documentation.rst
@@ -73,9 +73,11 @@ Common
   IterateRegionWithAccessToIndexWithoutWriteAccess/Documentation.rst
   IterateRegionWithAccessToIndexWithWriteAccess/Documentation.rst
   IterateRegionWithNeighborhood/Documentation.rst
-  IterateRegionWithoutWriteAccess/Documentation.rst
-  IterateRegionWithWriteAccess/Documentation.rst
   IterateWithNeighborhoodWithoutAccess/Documentation.rst
+  IterateRegionWithWriteAccess/Documentation.rst
+  IterateRegionWithoutWriteAccess/Documentation.rst
+  MakeOutOfBoundsPixelsReturnConstValue/Documentation.rst
+  MakePartOfImageTransparent/Documentation.rst
   Matrix/Documentation.rst
   MatrixInverse/Documentation.rst
   MersenneTwisterRandomIntegerGenerator/Documentation.rst
@@ -88,7 +90,6 @@ Common
   MultiThreadOilPainting/Documentation.rst
   NeighborhoodIteratorOnVectorImage/Documentation.rst
   ObserveAnEvent/Documentation.rst
-  OutOfBoundsPixelsReturnConstValue/Documentation.rst
   PassImageToFunction/Documentation.rst
   PermuteSequenceOfIndices/Documentation.rst
   PiConstant/Documentation.rst
@@ -106,7 +107,6 @@ Common
   StreamAPipeline/Documentation.rst
   ThrowException/Documentation.rst
   TraceMemoryBetweenPoints/Documentation.rst
-  Transparency/Documentation.rst
   TryCatchException/Documentation.rst
   UseParallelizeImageRegion/Documentation.rst
   VariableLengthVector/Documentation.rst

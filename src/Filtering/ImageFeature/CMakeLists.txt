@@ -1,8 +1,8 @@
 add_example(ComputeLaplacian)
 compare_to_baseline(EXAMPLE_NAME ComputeLaplacian BASELINE_PREFIX OutputBaseline)
 
-add_example(DetectEdgesWithCannyFilter)
-compare_to_baseline(EXAMPLE_NAME DetectEdgesWithCannyFilter BASELINE_PREFIX OutputBaseline)
+add_example(DetectEdgesWithCannyEdgeDetectionFilter)
+compare_to_baseline(EXAMPLE_NAME DetectEdgesWithCannyEdgeDetectionFilter BASELINE_PREFIX OutputBaseline)
 
 add_example(SobelEdgeDetectionImageFilter)
 compare_to_baseline(EXAMPLE_NAME SobelEdgeDetectionImageFilter BASELINE_PREFIX OutputBaseline)
@@ -13,9 +13,9 @@ compare_to_baseline(EXAMPLE_NAME LaplacianRecursiveGaussianImageFilter BASELINE_
 add_example(SegmentBloodVessels)
 compare_to_baseline(EXAMPLE_NAME SegmentBloodVessels BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-number-of-pixels 10)
 
-add_example(RequestedRegion)
+add_example(ApplyAFilterOnlyToASpecifiedImageRegion)
 
-add_example(DerivativeImage)
+add_example(ApplyAFilterToASpecifiedRegionOfAnImage)
 
 add_example(ZeroCrossingBasedEdgeDecor)
 compare_to_baseline(EXAMPLE_NAME ZeroCrossingBasedEdgeDecor
@@ -29,7 +29,7 @@ compare_to_baseline(EXAMPLE_NAME BilateralFilterAnImage
 
 # TODO: Complete example
 #add_example(SharpenImage)
-add_example(FindZeroCrossings)
+add_example(FindZeroCrossingsInSignedImage)
 #===================================
 
 add_example(AdditiveGaussianNoiseImageFilter)

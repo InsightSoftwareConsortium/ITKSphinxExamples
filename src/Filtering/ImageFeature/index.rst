@@ -5,14 +5,14 @@ ImageFeature
   :maxdepth: 1
 
   AdditiveGaussianNoiseImageFilter/Documentation.rst
+  ApplyAFilterOnlyToASpecifiedImageRegion/Documentation.rst
+  ApplyAFilterOnlyToASpecifiedRegionOfAnImage/Documentation.rst
   BilateralFilterAnImage/Documentation.rst
   ComputeLaplacian/Documentation.rst
-  DerivativeImage/Documentation.rst
-  DetectEdgesWithCannyFilter/Documentation.rst
+  DetectEdgesWithCannyEdgeDetectionFilter/Documentation.rst
   ExtractContoursFromImage/Documentation.rst
-  FindZeroCrossings/Documentation.rst
+  FindZeroCrossingsInSignedImage/Documentation.rst
   LaplacianRecursiveGaussianImageFilter/Documentation.rst
-  RequestedRegion/Documentation.rst
   SegmentBloodVessels/Documentation.rst
   SharpenImage/Documentation.rst
   SobelEdgeDetectionImageFilter/Documentation.rst

@@ -1,5 +1,5 @@
-Distance Between Points
-=======================
+Distance Between Indices
+========================
 
 .. index::
    single: Point
