@@ -44,9 +44,9 @@ compare_to_baseline(
   BASELINE_PREFIX BrainProtonDensitySlice
 )
 
-add_example( UpsampleOrDownsampleScalarImage )
+add_example( ResampleAScalarImage )
 compare_to_baseline(
-  EXAMPLE_NAME UpsampleOrDownsampleScalarImage
+  EXAMPLE_NAME ResampleAScalarImage
   BASELINE_PREFIX OutputBaseline
 )
 

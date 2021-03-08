@@ -1,5 +1,5 @@
-Resample Scalar Image
-=====================
+Resample a Scalar Image
+=======================
 
 .. index::
    single: ResampleImageFilter
@@ -7,7 +7,7 @@ Resample Scalar Image
 Synopsis
 --------
 
-Resample one scalar image
+Resample a scalar image.
 
 
 Results
