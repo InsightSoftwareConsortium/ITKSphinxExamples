@@ -19,6 +19,12 @@ Results
    Reconfiguration of CMakeList.txt may be necessary.
    `Write An Example <https://itk.org/ITKExamples/Documentation/Contribute/WriteANewExample.html`>
 
+Jupyter Notebook
+-----------------
+
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/master?filepath=src%2FNumerics%2FOptimizers%2FExhaustiveOptimizer%2FPlotExhaustiveOptimizer.ipynb
+
 Code
 ----
 
@@ -34,14 +40,6 @@ Python
 .. literalinclude:: Code.py
    :language: python
    :lines: 20-
-
-Jupyter Notebook
------------------
-
-.. image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/master?filepath=src%2FNumerics%2FOptimizers%2FExhaustiveOptimizer%2FPlotExhaustiveOptimizer.ipynb
-
-
 
 Classes demonstrated
 --------------------
