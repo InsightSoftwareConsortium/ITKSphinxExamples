@@ -17,49 +17,29 @@
 import sys
 import itk
 
-from distutils.version import StrictVersion as VS
-if VS(itk.Version.GetITKVersion()) < VS("4.7.0"):
-    print("ITK 4.7.0 is required (see example documentation).")
-    sys.exit(1)
-
 if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + " [inputImage] [outputImage]")
+    print("Usage: " + sys.argv[0] + " [input_filename] [output_filename]")
     sys.exit(1)
 
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-
-Dimension = 2
+input_filename = sys.argv[1]
+output_filename = sys.argv[2]
 
 PixelType = itk.RGBPixel[itk.UC]
-ImageType = itk.Image[PixelType, Dimension]
 
-ReaderType = itk.ImageFileReader[ImageType]
-reader = ReaderType.New()
-reader.SetFileName(inputImage)
+input_image = itk.imread(input_filename, pixel_type=PixelType)
 
-filterType = itk.ResampleImageFilter[ImageType, ImageType]
-resampleImageFilter = filterType.New()
+ImageType = type(input_image)
+interpolator = itk.LinearInterpolateImageFunction[ImageType, itk.D].New()
 
-interpolatorType = itk.LinearInterpolateImageFunction[ImageType, itk.D]
-interpolator = interpolatorType.New()
+Dimension = input_image.GetImageDimension()
+transform = itk.IdentityTransform[itk.D, Dimension].New()
 
-resampleImageFilter.SetInterpolator(interpolator)
+output_image = itk.resample_image_filter(input_image,
+        interpolator=interpolator,
+        transform=transform,
+        default_pixel_value=[50, 50, 50],
+        output_spacing=[0.5, 0.5],
+        output_origin=[30, 40],
+        size=[300, 300])
 
-transformType = itk.IdentityTransform[itk.D, Dimension]
-transform = transformType.New()
-
-resampleImageFilter.SetTransform(transform)
-
-resampleImageFilter.SetDefaultPixelValue([50, 50, 50])
-resampleImageFilter.SetOutputSpacing([0.5, 0.5])
-resampleImageFilter.SetOutputOrigin([30, 40])
-
-resampleImageFilter.SetSize([300, 300])
-resampleImageFilter.SetInput(reader.GetOutput())
-
-WriterType = itk.ImageFileWriter[ImageType]
-writer = WriterType.New()
-writer.SetFileName(outputImage)
-writer.SetInput(resampleImageFilter.GetOutput())
-writer.Update()
+itk.imwrite(output_image, output_filename)
