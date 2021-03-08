@@ -43,8 +43,15 @@ Results
                      1.0000000000010232, 1.0000000000010232]
   Optimizer learning rate: 164.938
 
+Jupyter Notebook
+----------------
+
+.. image:: https://mybinder.org/badge_logo.svg
+  :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/master?filepath=src%2FRegistration%2FMetricsv4%2FRegisterTwoPointSets%2FRegisterTwoPointSets.ipynb
+
 Code
 --------
+
 C++
 ...
 
@@ -57,11 +64,6 @@ Python
 .. literalinclude:: Code.py
    :language: python
    :lines: 1, 23-
-
-Binder
--------
-.. image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/master?filepath=src%2FRegistration%2FMetricsv4%2FRegisterTwoPointSets%2FRegisterTwoPointSets.ipynb
 
 Classes demonstrated
 --------------------

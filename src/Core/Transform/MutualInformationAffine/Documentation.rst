@@ -40,6 +40,13 @@ Output::
    Metric value  = 0.000971698
    Numb. Samples = 567
 
+Jupyter Notebook
+----------------
+
+.. image:: https://mybinder.org/badge_logo.svg
+  :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/master?filepath=src%2FCore%2FTransform%2FMutualInformationAffine%2FMutualInformationAffine.ipynb
+
+
 Code
 ----
 
@@ -48,12 +55,6 @@ C++
 
 .. literalinclude:: Code.cxx
    :lines: 18-
-
-
-Binder
-------
-.. image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/master?filepath=src%2FCore%2FTransform%2FMutualInformationAffine%2FMutualInformationAffine.ipynb
 
 
 Classes demonstrated
