@@ -6,7 +6,6 @@ Examples
   :maxdepth: 2
 
   Bridge/index.rst
-  Compatibility/index.rst
   Core/index.rst
   External/index.rst
   Filtering/index.rst
