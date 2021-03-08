@@ -13,7 +13,7 @@ install(TARGETS ResampleAScalarImage
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/ResampleAScalarImage
   COMPONENT Code
   )
@@ -26,3 +26,13 @@ add_test(NAME ResampleAScalarImageTest
     160
     120
   )
+
+if(ITK_WRAP_PYTHON)
+  add_test(NAME ResampleAScalarImageTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
+      OutputPython.png
+      160
+      120
+    )
+endif()
