@@ -27,3 +27,6 @@ CMakeLists.txt.user*
 *.orig
 
 *.DS_Store
+
+# Jupyter notebooks
+.ipynb_checkpoints/
