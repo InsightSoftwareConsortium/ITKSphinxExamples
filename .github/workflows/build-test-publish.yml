@@ -66,7 +66,7 @@ jobs:
           mkdir ITK-build
           cd ITK-build
           call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          cmake -DCMAKE_C_COMPILER:FILEPATH="${{ matrix.c-compiler }}" -DBUILD_SHARED_LIBS:BOOL=OFF -DCMAKE_CXX_COMPILER="${{ matrix.cxx-compiler }}" -DCMAKE_BUILD_TYPE:STRING=${{ matrix.cmake-build-type }} -DBUILD_TESTING:BOOL=OFF -GNinja ../ITK
+          cmake -DCMAKE_C_COMPILER:FILEPATH="${{ matrix.c-compiler }}" -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_CXX_COMPILER="${{ matrix.cxx-compiler }}" -DCMAKE_BUILD_TYPE:STRING=${{ matrix.cmake-build-type }} -DBUILD_TESTING:BOOL=OFF -GNinja ../ITK
           ninja
         shell: cmd
 
@@ -325,12 +325,23 @@ jobs:
           git checkout ${{ matrix.itk-git-tag }}
 
       - name: Build ITK
+        if: matrix.os != 'windows-2019'
         run: |
           cd ..
           mkdir ITK-build
           cd ITK-build
           cmake -DCMAKE_C_COMPILER:FILEPATH="${{ matrix.c-compiler }}" -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_CXX_COMPILER="${{ matrix.cxx-compiler }}" -DCMAKE_BUILD_TYPE:STRING=${{ matrix.cmake-build-type }} -DBUILD_TESTING:BOOL=OFF -GNinja ../ITK
           ninja
+      - name: Build ITK
+        if: matrix.os == 'windows-2019'
+        run: |
+          cd ..
+          mkdir ITK-build
+          cd ITK-build
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          cmake -DCMAKE_C_COMPILER:FILEPATH="${{ matrix.c-compiler }}" -DBUILD_SHARED_LIBS:BOOL=OFF -DCMAKE_CXX_COMPILER="${{ matrix.cxx-compiler }}" -DCMAKE_BUILD_TYPE:STRING=${{ matrix.cmake-build-type }} -DBUILD_TESTING:BOOL=OFF -GNinja ../ITK
+          ninja
+        shell: cmd
 
       - name: Fetch CTest driver script
         run: |
@@ -379,10 +390,18 @@ jobs:
           cat dashboard.cmake
 
       - name: Build and test
+        if: matrix.os != 'windows-2019'
         run: |
           ctest -j 2 -VV -S dashboard.cmake
+      - name: Build and test
+        if: matrix.os == 'windows-2019'
+        run: |
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          ctest -j 2 -VV -S dashboard.cmake
+        shell: cmd
 
       - name: Publish Documentation html as GitHub Artifact
+        if: runner.os == 'Linux'
         uses: actions/upload-artifact@v2
         with:
           name: Documentation
@@ -391,12 +410,14 @@ jobs:
             ${{ github.workspace }}/ITKSphinxExamples-build/ITKSphinxExamples-*-html.zip
 
       - name: Unpack site
+        if: runner.os == 'Linux'
         shell: bash
         run: |
           mkdir site
           tar --strip-components=1 -xf ${{ github.workspace }}/ITKSphinxExamples-build/ITKSphinxExamples-*-html.tar.gz -C site
 
       - name: Publish website to Netlify
+        if: runner.os == 'Linux'
         uses: nwtgck/actions-netlify@v1.1.13
         with:
           publish-dir: './site'
