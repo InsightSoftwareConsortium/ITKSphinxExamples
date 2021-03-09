@@ -24,5 +24,5 @@ ImageGrid
   Stack2DImagesInto3DImage/Documentation.rst
   TileImagesSideBySide/Documentation.rst
   UpsampleAnImage/Documentation.rst
-  UpsampleOrDownsampleScalarImage/Documentation.rst
+  ResampleAScalarImage/Documentation.rst
   WarpAnImageUsingADeformationField/Documentation.rst
