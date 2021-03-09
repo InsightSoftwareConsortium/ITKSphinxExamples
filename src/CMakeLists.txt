@@ -49,7 +49,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Developer)
 
 add_subdirectory(Bridge)
 add_subdirectory(Core)
-add_subdirectory(Compatibility)
 add_subdirectory(External)
 add_subdirectory(Filtering)
 add_subdirectory(GPU)

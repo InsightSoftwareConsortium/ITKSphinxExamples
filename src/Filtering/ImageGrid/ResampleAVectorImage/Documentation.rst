@@ -5,6 +5,7 @@ Resample A Vector Image
    single: ResampleImageFilter
    single: IdentityTransform
    single: LinearInterpolateImageFunction
+   single: RGBPixel
 
 Synopsis
 --------
