@@ -17,12 +17,12 @@ ImageGrid
   PasteImageIntoAnotherOne/Documentation.rst
   PermuteAxesOfAnImage/Documentation.rst
   ProcessA2DSliceOfA3DImage/Documentation.rst
-  ResampleAVectorImage/Documentation.rst
   ResampleAnImage/Documentation.rst
+  ResampleAScalarImage/Documentation.rst
+  ResampleAVectorImage/Documentation.rst
   RunImageFilterOnRegionOfImage/Documentation.rst
   ShrinkImage/Documentation.rst
   Stack2DImagesInto3DImage/Documentation.rst
   TileImagesSideBySide/Documentation.rst
   UpsampleAnImage/Documentation.rst
-  ResampleAScalarImage/Documentation.rst
   WarpAnImageUsingADeformationField/Documentation.rst
