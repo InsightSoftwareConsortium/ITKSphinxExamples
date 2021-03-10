@@ -18,60 +18,37 @@ import sys
 import itk
 
 if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> <scale>")
+    print("Usage: " + sys.argv[0] + " <input_image> <output_image> <scale>")
     sys.exit(1)
 
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
+input_image = sys.argv[1]
+output_image = sys.argv[2]
 scale = float(sys.argv[3])
 
-PixelType = itk.UC
-ScalarType = itk.D
-Dimension = 2
+input_image = itk.imread(input_image)
 
-ImageType = itk.Image[PixelType, Dimension]
+size = itk.size(input_image)
+spacing = itk.spacing(input_image)
 
-ReaderType = itk.ImageFileReader[ImageType]
-reader = ReaderType.New()
-reader.SetFileName(inputImage)
-reader.Update()
+central_pixel = [int(s/2) for s in size]
+central_point = [float(p) for p in central_pixel]
 
-inputImage = reader.GetOutput()
+Dimension = input_image.GetImageDimension()
+scale_transform = itk.ScaleTransform[itk.D, Dimension].New()
 
-size = inputImage.GetLargestPossibleRegion().GetSize()
-spacing = inputImage.GetSpacing()
+parameters = scale_transform.GetParameters()
+for i in range(len(parameters)):
+    parameters[i] = scale
 
-centralPixel = itk.Index[Dimension]()
-centralPixel[0] = int(size[0] / 2)
-centralPixel[1] = int(size[1] / 2)
-centralPoint = itk.Point[ScalarType, Dimension]()
-centralPoint[0] = centralPixel[0]
-centralPoint[1] = centralPixel[1]
+scale_transform.SetParameters(parameters)
+scale_transform.SetCenter(central_point)
 
-scaleTransform = itk.ScaleTransform[ScalarType, Dimension].New()
+interpolator = itk.LinearInterpolateImageFunction.New(input_image)
 
-parameters = scaleTransform.GetParameters()
-parameters[0] = scale
-parameters[1] = scale
+resampled = itk.resample_image_filter(input_image,
+        transform=scale_transform,
+        interpolator=interpolator,
+        size=size,
+        output_spacing=spacing)
 
-scaleTransform.SetParameters(parameters)
-scaleTransform.SetCenter(centralPoint)
-
-interpolatorType = itk.LinearInterpolateImageFunction[ImageType, ScalarType]
-interpolator = interpolatorType.New()
-
-resamplerType = itk.ResampleImageFilter[ImageType, ImageType]
-resampleFilter = resamplerType.New()
-
-resampleFilter.SetInput(inputImage)
-resampleFilter.SetTransform(scaleTransform)
-resampleFilter.SetInterpolator(interpolator)
-resampleFilter.SetSize(size)
-resampleFilter.SetOutputSpacing(spacing)
-
-WriterType = itk.ImageFileWriter[ImageType]
-writer = WriterType.New()
-writer.SetFileName(outputImage)
-writer.SetInput(resampleFilter.GetOutput())
-
-writer.Update()
+itk.imwrite(resampled, output_image)
