@@ -13,17 +13,17 @@ jobs:
           - os: ubuntu-18.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
-            itk-git-tag: "v5.2rc02"
+            itk-git-tag: "v5.2rc03"
             cmake-build-type: "MinSizeRel"
           - os: windows-2019
             c-compiler: "cl.exe"
             cxx-compiler: "cl.exe"
-            itk-git-tag: "v5.2rc02"
+            itk-git-tag: "v5.2rc03"
             cmake-build-type: "Release"
           - os: macos-10.15
             c-compiler: "clang"
             cxx-compiler: "clang++"
-            itk-git-tag: "v5.2rc02"
+            itk-git-tag: "v5.2rc03"
             cmake-build-type: "MinSizeRel"
 
     steps:
@@ -132,17 +132,17 @@ jobs:
           - os: ubuntu-18.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
-            itk-git-tag: "v5.2rc02"
+            itk-git-tag: "v5.2rc03"
             cmake-build-type: "MinSizeRel"
           - os: windows-2019
             c-compiler: "cl.exe"
             cxx-compiler: "cl.exe"
-            itk-git-tag: "v5.2rc02"
+            itk-git-tag: "v5.2rc03"
             cmake-build-type: "Release"
           - os: macos-10.15
             c-compiler: "clang"
             cxx-compiler: "clang++"
-            itk-git-tag: "v5.2rc02"
+            itk-git-tag: "v5.2rc03"
             cmake-build-type: "MinSizeRel"
 
     steps:
@@ -157,7 +157,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install ninja
-          python -m pip install itk==5.2rc02
+          python -m pip install itk==5.2rc03
 
       - name: Get specific version of CMake, Ninja
         uses: lukka/get-cmake@v3.18.3
@@ -260,17 +260,17 @@ jobs:
            - os: ubuntu-18.04
              c-compiler: "gcc"
              cxx-compiler: "g++"
-             itk-git-tag: "v5.2rc02"
+             itk-git-tag: "v5.2rc03"
              cmake-build-type: "MinSizeRel"
            - os: windows-2019
              c-compiler: "cl.exe"
              cxx-compiler: "cl.exe"
-             itk-git-tag: "v5.2rc02"
+             itk-git-tag: "v5.2rc03"
              cmake-build-type: "Release"
            - os: macos-10.15
              c-compiler: "clang"
              cxx-compiler: "clang++"
-             itk-git-tag: "v5.2rc02"
+             itk-git-tag: "v5.2rc03"
              cmake-build-type: "MinSizeRel"
 
     steps:
@@ -284,7 +284,7 @@ jobs:
         run: |
             python -m pip install --upgrade pip
             python -m pip install ninja
-            python -m pip install itk==5.2rc02
+            python -m pip install itk==5.2rc03
             python -m pip install matplotlib
             python -m pip install itkwidgets
 
@@ -301,7 +301,7 @@ jobs:
           - os: ubuntu-18.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
-            itk-git-tag: "v5.2rc02"
+            itk-git-tag: "v5.2rc03"
             cmake-build-type: "Release"
 
     steps:
