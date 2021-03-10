@@ -8,26 +8,41 @@ Resample Segmented Image
 Synopsis
 --------
 
-Resample (stretch or compress) a segmented image.
+Resample (stretch or compress) a label image resulting form segmentation.
+
+For more on why label image interpolation is necessary and how it works, see the `associated Insight Journal article <https://www.insight-journal.org/browse/publication/705>`_.
 
 
 Results
 -------
 
-.. figure:: Gourds.png
+.. figure:: 2th_cthead1.png
    :scale: 50%
-   :alt: Input image.
+   :alt: Input label image.
 
-   Input Image
+   Input label image
 
-.. figure:: ResampleSegmentedImageQuickview.png
+.. figure:: OutputBaseline.png
    :scale: 50%
    :alt: QuickView output.
 
-   Output In QuickView
+   Resample with label image gaussian interpolation.
+
+.. figure:: OutputNearestBaseline.png
+   :scale: 50%
+   :alt: QuickView output.
+
+   Resample with nearest neighbor interpolation.
 
 Code
 ----
+
+Python
+......
+
+.. literalinclude:: Code.py
+   :language: python
+   :lines: 1, 16-
 
 C++
 ...
