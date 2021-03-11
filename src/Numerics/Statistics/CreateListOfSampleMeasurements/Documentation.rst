@@ -1,4 +1,4 @@
-Create List Of Sample Measurements
+Create List of Sample Measurements
 ==================================
 
 .. index::

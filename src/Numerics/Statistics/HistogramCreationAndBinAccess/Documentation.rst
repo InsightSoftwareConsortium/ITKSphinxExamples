@@ -1,4 +1,4 @@
-Histogram Creation And Bin Access
+Histogram Creation and Bin Access
 =================================
 
 .. index::

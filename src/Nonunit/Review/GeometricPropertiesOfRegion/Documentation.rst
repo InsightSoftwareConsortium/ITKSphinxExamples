@@ -1,4 +1,4 @@
-Geometric Properties Of Labeled Region
+Geometric Properties of Labeled Region
 ======================================
 
 .. index::

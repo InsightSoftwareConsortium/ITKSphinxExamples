@@ -1,4 +1,4 @@
-Connected Components In Image
+Connected Components in Image
 =============================
 .. warning::
    **Fix Problem**

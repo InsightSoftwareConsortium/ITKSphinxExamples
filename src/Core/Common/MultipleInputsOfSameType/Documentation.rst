@@ -1,4 +1,4 @@
-Multiple Inputs Of Same Type
+Multiple Inputs of Same Type
 ============================
 
 .. index::

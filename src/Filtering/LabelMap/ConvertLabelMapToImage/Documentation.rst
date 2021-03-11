@@ -1,4 +1,4 @@
-Convert Label Map To Normal Image
+Convert Label Map to Normal Image
 =================================
 
 .. index::

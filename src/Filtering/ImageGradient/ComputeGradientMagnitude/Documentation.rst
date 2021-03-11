@@ -1,4 +1,4 @@
-Compute Gradient Magnitude Of Grayscale Image
+Compute Gradient Magnitude of Grayscale Image
 =============================================
 
 .. index::

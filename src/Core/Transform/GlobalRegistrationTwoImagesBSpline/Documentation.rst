@@ -1,4 +1,4 @@
-Global Registration Of Two Images (BSpline)
+Global Registration of Two Images (BSpline)
 ===========================================
 
 .. index::

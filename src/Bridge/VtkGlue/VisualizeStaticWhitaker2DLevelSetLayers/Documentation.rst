@@ -1,4 +1,4 @@
-Visualize A Static Sparse Whitaker 2D Level-Set Layers
+Visualize a Static Sparse Whitaker 2D Level-Set Layers
 ======================================================
 
 .. index::

@@ -1,4 +1,4 @@
-Cast Vector Image To Another Type
+Cast Vector Image to Another Type
 =================================
 
 .. index::

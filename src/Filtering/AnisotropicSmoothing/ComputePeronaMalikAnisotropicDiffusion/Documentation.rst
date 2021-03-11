@@ -1,4 +1,4 @@
-Perona Malik Anisotropic Diffusion On Grayscale Image
+Perona Malik Anisotropic Diffusion on Grayscale Image
 =====================================================
 
 .. index::

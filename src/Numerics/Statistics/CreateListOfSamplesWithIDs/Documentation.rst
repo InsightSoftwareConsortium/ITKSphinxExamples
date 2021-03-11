@@ -1,4 +1,4 @@
-Create List Of Samples With Associated ID's
+Create List of Samples With Associated ID's
 ===========================================
 
 .. index::

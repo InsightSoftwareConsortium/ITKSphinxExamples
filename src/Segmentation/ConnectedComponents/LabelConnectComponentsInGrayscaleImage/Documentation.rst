@@ -1,4 +1,4 @@
-Label Connect Components In Grayscale Image
+Label Connect Components in Grayscale Image
 ===========================================
 
 .. index::

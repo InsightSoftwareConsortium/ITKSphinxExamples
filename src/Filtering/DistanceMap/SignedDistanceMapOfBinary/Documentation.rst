@@ -1,4 +1,4 @@
-Signed Distance Map Of Binary Image
+Signed Distance Map of Binary Image
 ===================================
 
 .. index::

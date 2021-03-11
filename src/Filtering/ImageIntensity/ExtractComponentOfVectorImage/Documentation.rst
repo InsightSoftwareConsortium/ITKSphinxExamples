@@ -1,4 +1,4 @@
-Extract Component Of Vector Image
+Extract Component of Vector Image
 =================================
 
 .. index::

@@ -1,4 +1,4 @@
-Iterate On A Vector Container
+Iterate on a Vector Container
 =============================
 
 .. index::

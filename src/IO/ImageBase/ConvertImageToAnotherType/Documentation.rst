@@ -1,4 +1,4 @@
-Convert Image To Another Type
+Convert Image to Another Type
 =============================
 
 .. index::

@@ -6,7 +6,7 @@ ImageFeature
 
   AdditiveGaussianNoiseImageFilter/Documentation.rst
   ApplyAFilterOnlyToASpecifiedImageRegion/Documentation.rst
-  ApplyAFilterOnlyToASpecifiedRegionOfAnImage/Documentation.rst
+  ApplyAFilterToASpecifiedRegionOfAnImage/Documentation.rst
   BilateralFilterAnImage/Documentation.rst
   ComputeLaplacian/Documentation.rst
   DetectEdgesWithCannyEdgeDetectionFilter/Documentation.rst

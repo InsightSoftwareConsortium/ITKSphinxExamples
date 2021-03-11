@@ -1,4 +1,4 @@
-Cluster Pixels In Grayscale Image
+Cluster Pixels in Grayscale Image
 =================================
 
 .. index::

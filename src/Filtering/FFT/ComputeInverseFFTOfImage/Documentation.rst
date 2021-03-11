@@ -1,4 +1,4 @@
-Compute Inverse FFT Of Image
+Compute Inverse FFT of Image
 ============================
 
 .. index::

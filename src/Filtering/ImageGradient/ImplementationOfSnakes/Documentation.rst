@@ -1,4 +1,4 @@
-Implementation Of Snakes
+Implementation of Snakes
 ========================
 
 .. index::

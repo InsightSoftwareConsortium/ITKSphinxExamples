@@ -1,4 +1,4 @@
-Convert Real And Imaginary Images To Complex Image
+Convert Real and Imaginary Images to Complex Image
 ==================================================
 
 .. index::

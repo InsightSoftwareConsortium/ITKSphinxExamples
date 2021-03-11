@@ -1,4 +1,4 @@
-Compare Two Images And Set Output Pixel To Min
+Compare Two Images and Set Output Pixel to Min
 ==============================================
 
 .. index::

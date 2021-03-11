@@ -1,4 +1,4 @@
-Multiple Outputs Of Different Type
+Multiple Outputs of Different Type
 ==================================
 
 .. index::

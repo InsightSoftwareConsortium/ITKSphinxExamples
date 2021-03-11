@@ -1,4 +1,4 @@
-Watch A Filter
+Watch a Filter
 ==============
 
 .. index::

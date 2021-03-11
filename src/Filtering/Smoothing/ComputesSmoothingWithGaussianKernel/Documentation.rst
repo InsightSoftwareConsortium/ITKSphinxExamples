@@ -1,4 +1,4 @@
-Computes Smoothing with Gaussian kernel
+Computes Smoothing With Gaussian Kernel
 =======================================
 
 .. index::

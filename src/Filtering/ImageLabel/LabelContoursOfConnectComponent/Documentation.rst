@@ -1,4 +1,4 @@
-Label Contours Of Connect Components
+Label Contours of Connect Components
 ====================================
 
 .. index::

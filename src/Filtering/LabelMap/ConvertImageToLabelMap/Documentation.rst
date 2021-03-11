@@ -1,4 +1,4 @@
-Convert itk::Image With Labels To Label Map
+Convert itk::Image With Labels to Label Map
 ===========================================
 
 .. index::

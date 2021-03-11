@@ -1,4 +1,4 @@
-Run Image Filter On Region Of Image
+Run Image Filter on Region of Image
 ===================================
 
 .. index::

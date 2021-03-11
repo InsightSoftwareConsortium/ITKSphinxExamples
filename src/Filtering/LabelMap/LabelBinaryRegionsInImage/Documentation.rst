@@ -1,4 +1,4 @@
-Label Binary Regions In Image
+Label Binary Regions in Image
 =============================
 
 .. index::

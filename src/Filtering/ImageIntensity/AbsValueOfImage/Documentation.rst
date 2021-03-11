@@ -1,4 +1,4 @@
-Absolute Value Of Image
+Absolute Value of Image
 =======================
 
 .. index::

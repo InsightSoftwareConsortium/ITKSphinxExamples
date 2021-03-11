@@ -1,4 +1,4 @@
-Extract Channel Of Image With Multiple Components
+Extract Channel of Image With Multiple Components
 =================================================
 
 .. index::

@@ -1,4 +1,4 @@
-Permute Axes Of An Image
+Permute Axes of an Image
 ========================
 
 .. index::

@@ -1,4 +1,4 @@
-Blurring An Image Using A Binomial Kernel
+Blurring an Image Using a Binomial Kernel
 =========================================
 
 .. index::

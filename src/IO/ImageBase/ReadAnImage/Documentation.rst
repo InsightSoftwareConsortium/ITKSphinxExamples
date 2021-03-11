@@ -1,4 +1,4 @@
-Read An Image
+Read an Image
 =============
 
 .. index::

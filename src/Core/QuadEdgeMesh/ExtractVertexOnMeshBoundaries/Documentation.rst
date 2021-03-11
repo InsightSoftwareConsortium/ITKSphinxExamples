@@ -1,4 +1,4 @@
-Extract Vertex On Mesh Boundaries
+Extract Vertex on Mesh Boundaries
 =================================
 
 .. index::

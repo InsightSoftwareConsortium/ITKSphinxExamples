@@ -1,4 +1,4 @@
-Extract Region Of Interest In One Image
+Extract Region of Interest in One Image
 =======================================
 
 .. index::

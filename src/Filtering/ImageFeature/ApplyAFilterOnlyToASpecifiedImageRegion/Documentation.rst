@@ -1,4 +1,4 @@
-Apply A Filter Only To A Specified Image Region
+Apply a Filter Only to a Specified Image Region
 ===============================================
 
 .. index::

@@ -1,4 +1,4 @@
-Mean Distance Between All Points On Two Curves
+Mean Distance Between All Points on Two Curves
 ==============================================
 
 .. index::

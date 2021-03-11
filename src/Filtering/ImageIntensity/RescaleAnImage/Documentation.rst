@@ -1,4 +1,4 @@
-Rescale An Image
+Rescale an Image
 ================
 
 .. index::

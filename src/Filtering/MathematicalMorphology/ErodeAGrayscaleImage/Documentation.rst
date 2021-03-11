@@ -1,4 +1,4 @@
-Erode a grayscale image
+Erode a Grayscale Image
 =======================
 
 .. index::

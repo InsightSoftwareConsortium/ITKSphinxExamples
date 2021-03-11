@@ -1,4 +1,4 @@
-Normalized Correlation Using FFT With Mask Images For Input Images
+Normalized Correlation Using FFT With Mask Images for Input Images
 ==================================================================
 
 .. index::

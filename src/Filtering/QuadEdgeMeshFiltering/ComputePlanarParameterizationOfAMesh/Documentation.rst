@@ -1,4 +1,4 @@
-Compute Planar Parameterization Of A Mesh
+Compute Planar Parameterization of a Mesh
 =========================================
 
 .. index::

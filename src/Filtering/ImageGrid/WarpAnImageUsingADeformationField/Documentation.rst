@@ -1,4 +1,4 @@
-Warp An Image Using A Deformation Field
+Warp an Image Using a Deformation Field
 =======================================
 
 .. index::

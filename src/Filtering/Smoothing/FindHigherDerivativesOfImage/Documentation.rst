@@ -1,4 +1,4 @@
-Find Higher Derivatives Of Image
+Find Higher Derivatives of Image
 ================================
 
 .. index::

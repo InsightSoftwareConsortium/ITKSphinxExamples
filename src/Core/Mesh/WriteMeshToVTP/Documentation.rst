@@ -1,4 +1,4 @@
-Write Mesh To VTP
+Write Mesh to VTP
 =================
 
 .. index::

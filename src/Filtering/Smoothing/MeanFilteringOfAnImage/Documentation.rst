@@ -1,4 +1,4 @@
-Mean Filtering Of An Image
+Mean Filtering of an Image
 ==========================
 
 .. index::

@@ -1,4 +1,4 @@
-Working With Point And Cell Data
+Working With Point and Cell Data
 ================================
 
 .. index::

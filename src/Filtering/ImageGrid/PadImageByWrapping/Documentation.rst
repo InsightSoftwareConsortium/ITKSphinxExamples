@@ -1,4 +1,4 @@
-Pad Image By Wrapping
+Pad Image by Wrapping
 =====================
 
 .. index::

@@ -1,4 +1,4 @@
-Apply Kernel To Every Pixel
+Apply Kernel to Every Pixel
 ===========================
 
 .. index::

@@ -1,4 +1,4 @@
-Gradient Of Vector Image
+Gradient of Vector Image
 ========================
 .. warning::
    **Fix Problem**

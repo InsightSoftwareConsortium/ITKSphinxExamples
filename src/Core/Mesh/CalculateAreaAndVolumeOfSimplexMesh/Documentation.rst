@@ -1,4 +1,4 @@
-Calculate Area And Volume Of Simplex Mesh
+Calculate Area and Volume of Simplex Mesh
 =========================================
 
 .. index::

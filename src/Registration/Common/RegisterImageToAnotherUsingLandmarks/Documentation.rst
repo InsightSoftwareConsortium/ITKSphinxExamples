@@ -1,4 +1,4 @@
-Register Image To Another Using Landmarks
+Register Image to Another Using Landmarks
 =========================================
 
 .. index::

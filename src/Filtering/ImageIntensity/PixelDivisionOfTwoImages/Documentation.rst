@@ -1,4 +1,4 @@
-Pixel Division Of Two Images
+Pixel Division of Two Images
 ============================
 
 .. index::

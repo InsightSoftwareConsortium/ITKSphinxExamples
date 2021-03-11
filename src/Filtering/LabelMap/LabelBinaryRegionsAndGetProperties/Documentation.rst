@@ -1,4 +1,4 @@
-Label Binary Regions And Get Properties
+Label Binary Regions and Get Properties
 =======================================
 
 .. index::

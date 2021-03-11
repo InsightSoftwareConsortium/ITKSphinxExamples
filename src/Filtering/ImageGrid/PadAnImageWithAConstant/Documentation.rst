@@ -1,4 +1,4 @@
-Pad An Image With A Constant
+Pad an Image With a Constant
 ============================
 
 .. index::

@@ -1,4 +1,4 @@
-Visualize An Evolving Dense 2D Level-Set Zero-Set
+Visualize an Evolving Dense 2D Level-Set Zero-Set
 =================================================
 
 .. index::

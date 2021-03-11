@@ -1,4 +1,4 @@
-Apply Morphological Closing On Specific Label Object
+Apply Morphological Closing on Specific Label Object
 ====================================================
 
 .. index::

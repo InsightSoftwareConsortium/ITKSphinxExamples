@@ -1,4 +1,4 @@
-Convert Triangle Mesh To Binary Image
+Convert Triangle Mesh to Binary Image
 =====================================
 
 .. index::

@@ -1,4 +1,4 @@
-View Component Vector Image As Scalar Image
+View Component Vector Image as Scalar Image
 ===========================================
 
 .. index::

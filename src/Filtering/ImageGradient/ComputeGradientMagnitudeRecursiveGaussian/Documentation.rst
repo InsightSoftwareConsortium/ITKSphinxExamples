@@ -1,4 +1,4 @@
-Compute Gradient Magnitude Recursive Gaussian Of Grayscale Image
+Compute Gradient Magnitude Recursive Gaussian of Grayscale Image
 ================================================================
 
 .. index::

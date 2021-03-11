@@ -1,4 +1,4 @@
-Visualize A Static Dense 2D Level-Set Zero-Set
+Visualize a Static Dense 2D Level-Set Zero-Set
 ==============================================
 
 .. index::

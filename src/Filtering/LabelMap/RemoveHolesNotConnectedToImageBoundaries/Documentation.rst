@@ -1,4 +1,4 @@
-Remove Holes Not Connected To Image Boundaries
+Remove Holes Not Connected to Image Boundaries
 ==============================================
 
 .. index::

@@ -1,4 +1,4 @@
-Median Filtering Of An Image
+Median Filtering of an Image
 ============================
 
 .. index::

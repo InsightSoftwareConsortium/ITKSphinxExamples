@@ -1,4 +1,4 @@
-Compute Histogram Of Masked Region In Image
+Compute Histogram of Masked Region in Image
 ===========================================
 .. note::
    **Wish List**

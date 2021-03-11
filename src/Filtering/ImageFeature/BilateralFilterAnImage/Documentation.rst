@@ -1,4 +1,4 @@
-Bilateral Filter An Image
+Bilateral Filter an Image
 =========================
 
 .. index::

@@ -1,4 +1,4 @@
-Apply Kernel To Every Pixel In Non-Zero Image
+Apply Kernel to Every Pixel in Non-Zero Image
 =============================================
 
 .. index::

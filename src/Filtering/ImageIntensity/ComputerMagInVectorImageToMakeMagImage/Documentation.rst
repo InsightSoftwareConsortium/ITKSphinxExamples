@@ -1,4 +1,4 @@
-Computer Magnitude In Vector Image To Make Magnitude Image
+Computer Magnitude in Vector Image to Make Magnitude Image
 ==========================================================
 
 .. index::

@@ -1,4 +1,4 @@
-Create A Size
+Create a Size
 =============
 
 .. index::

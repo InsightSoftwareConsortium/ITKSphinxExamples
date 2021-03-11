@@ -1,4 +1,4 @@
-Apply A Color Map To An Image
+Apply a Color Map to an Image
 =============================
 
 .. index::

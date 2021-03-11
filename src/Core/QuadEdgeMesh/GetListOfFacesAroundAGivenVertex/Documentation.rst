@@ -1,4 +1,4 @@
-Get List Of Faces Around A Given Vertex
+Get List of Faces Around a Given Vertex
 =======================================
 
 .. index::

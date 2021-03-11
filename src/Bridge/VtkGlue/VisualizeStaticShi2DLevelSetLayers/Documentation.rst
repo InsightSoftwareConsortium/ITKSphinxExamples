@@ -1,4 +1,4 @@
-Visualize A Static Sparse Shi 2D Level-Set Layers
+Visualize a Static Sparse Shi 2D Level-Set Layers
 =================================================
 
 .. index::

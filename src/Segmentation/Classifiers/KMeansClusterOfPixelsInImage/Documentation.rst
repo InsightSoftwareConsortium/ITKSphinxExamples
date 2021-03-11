@@ -1,4 +1,4 @@
-K Means Cluster Of Pixels In Image
+K Means Cluster of Pixels in Image
 ==================================
 .. warning::
    **Fix Problem**

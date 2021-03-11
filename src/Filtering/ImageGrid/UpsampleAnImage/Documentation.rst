@@ -1,4 +1,4 @@
-Upsample An Image
+Upsample an Image
 =======================================
 
 .. index::

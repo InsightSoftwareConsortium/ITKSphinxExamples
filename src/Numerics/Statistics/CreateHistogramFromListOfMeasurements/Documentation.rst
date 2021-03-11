@@ -1,4 +1,4 @@
-Create Histogram From List Of Measurements
+Create Histogram From List of Measurements
 ==========================================
 
 .. index::

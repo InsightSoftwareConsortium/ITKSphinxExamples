@@ -1,4 +1,4 @@
-Get Or Set Member Variable Of ITK Class
+Get or Set Member Variable of ITK Class
 =======================================
 
 .. index::

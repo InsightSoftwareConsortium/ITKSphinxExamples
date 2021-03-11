@@ -1,4 +1,4 @@
-Create An Image
+Create an Image
 ===============
 
 .. index::

@@ -1,4 +1,4 @@
-Singlephase Chan And Vese Sparse Field Level Set Segmentation
+Singlephase Chan and Vese Sparse Field Level Set Segmentation
 =============================================================
 .. warning::
    **Fix Problem**

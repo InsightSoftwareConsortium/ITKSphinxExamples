@@ -1,4 +1,4 @@
-Copy A CompositeTransform
+Copy a CompositeTransform
 =========================
 
 .. index::

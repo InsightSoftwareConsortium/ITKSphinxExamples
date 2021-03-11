@@ -1,4 +1,4 @@
-Normalized Correlation Of Masked Image
+Normalized Correlation of Masked Image
 ======================================
 
 .. index::

@@ -1,4 +1,4 @@
-Compute Geodesic Distance On Mesh
+Compute Geodesic Distance on Mesh
 =================================
 
 .. index::

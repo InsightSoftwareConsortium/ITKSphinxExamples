@@ -1,4 +1,4 @@
-Multiphase Chan And Vese Sparse Field Level Set Segmentation
+Multiphase Chan and Vese Sparse Field Level Set Segmentation
 ============================================================
 .. note::
    **Wish List**

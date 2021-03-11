@@ -1,4 +1,4 @@
-Multiple Inputs Of Different Type
+Multiple Inputs of Different Type
 =================================
 
 .. index::

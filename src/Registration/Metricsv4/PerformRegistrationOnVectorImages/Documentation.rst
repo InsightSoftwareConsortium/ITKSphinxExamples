@@ -1,4 +1,4 @@
-Perform Registration On Vector Images
+Perform Registration on Vector Images
 =====================================
 
 .. index::

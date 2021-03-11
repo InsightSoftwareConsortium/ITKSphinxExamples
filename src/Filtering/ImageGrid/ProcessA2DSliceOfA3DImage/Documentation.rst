@@ -1,4 +1,4 @@
-Process A 2D Slice Of A 3D Image
+Process a 2D Slice of a 3D Image
 ================================
 
 .. index::

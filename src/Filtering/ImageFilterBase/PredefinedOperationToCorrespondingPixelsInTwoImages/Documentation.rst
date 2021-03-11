@@ -1,4 +1,4 @@
-Predefined Operation To Corresponding Pixels In Two Images
+Predefined Operation to Corresponding Pixels in Two Images
 ==========================================================
 
 .. index::

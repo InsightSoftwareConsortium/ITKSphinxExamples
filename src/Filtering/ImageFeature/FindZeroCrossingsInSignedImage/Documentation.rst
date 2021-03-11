@@ -1,4 +1,4 @@
-Find Zero Crossings In Signed Image
+Find Zero Crossings in Signed Image
 ===================================
 
 .. index::

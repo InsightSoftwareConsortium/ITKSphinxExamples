@@ -1,4 +1,4 @@
-Convert RGB Image To Grayscale Image
+Convert RGB Image to Grayscale Image
 ====================================
 
 .. index::

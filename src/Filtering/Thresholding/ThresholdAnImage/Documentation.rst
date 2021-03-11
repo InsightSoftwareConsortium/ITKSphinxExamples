@@ -1,4 +1,4 @@
-Threshold An Image
+Threshold an Image
 ==================
 
 .. index::

@@ -1,4 +1,4 @@
-Extract Inner And Outer Boundaries Of Blobs In Binary Image
+Extract Inner and Outer Boundaries of Blobs in Binary Image
 ===========================================================
 
 .. index::

@@ -1,4 +1,4 @@
-Convert An itk::Image To vtkImageData
+Convert an itk::Image to vtkImageData
 =====================================
 
 .. index::

@@ -1,4 +1,4 @@
-Set the Default Number Of Threads
+Set the Default Number of Threads
 =================================
 
 .. index::

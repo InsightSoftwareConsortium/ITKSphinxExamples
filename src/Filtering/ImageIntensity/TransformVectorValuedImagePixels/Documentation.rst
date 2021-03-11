@@ -1,4 +1,4 @@
-Transform Magnitude Of Vector Valued Image Pixels
+Transform Magnitude of Vector Valued Image Pixels
 =================================================
 
 .. index::

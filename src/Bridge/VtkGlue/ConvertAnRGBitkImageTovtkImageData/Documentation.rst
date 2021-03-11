@@ -1,4 +1,4 @@
-Convert an RGB itk::Image To vtkImageData
+Convert an RGB itk::Image to vtkImageData
 =========================================
 
 .. index::

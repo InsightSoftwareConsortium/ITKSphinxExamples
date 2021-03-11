@@ -1,4 +1,4 @@
-Separate Foreround And Background Using Otsu Method
+Separate Foreround and Background Using Otsu Method
 ===================================================
 .. note::
    **Wish List**

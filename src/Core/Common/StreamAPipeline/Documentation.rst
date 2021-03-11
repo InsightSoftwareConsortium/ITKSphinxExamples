@@ -1,4 +1,4 @@
-Stream A Pipeline
+Stream a Pipeline
 =================
 
 .. index::

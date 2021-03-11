@@ -1,4 +1,4 @@
-Singlephase Chan And Vese Dense Field Level Set Segmentation
+Singlephase Chan and Vese Dense Field Level Set Segmentation
 ============================================================
 .. note::
    **Wish List**

@@ -1,4 +1,4 @@
-Color Labeled Regions In Image
+Color Labeled Regions in Image
 ==============================
 
 .. index::

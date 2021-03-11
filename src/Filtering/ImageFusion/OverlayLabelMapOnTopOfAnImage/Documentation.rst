@@ -1,4 +1,4 @@
-Overlay Label Map On Top Of An Image
+Overlay Label Map on Top of an Image
 ====================================
 
 .. index::
