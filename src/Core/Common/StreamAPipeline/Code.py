@@ -51,6 +51,6 @@ print('The output LargestPossibleRegion is: ' +
 print('')
 
 updatedRequestedRegions = monitorFilter.GetUpdatedRequestedRegions()
-print("Updated RequestedRegion's:")
+print("Updated ApplyAFilterOnlyToASpecifiedImageRegion's:")
 for ii in range(len(updatedRequestedRegions)):
     print('  ' + str(updatedRequestedRegions[ii]))

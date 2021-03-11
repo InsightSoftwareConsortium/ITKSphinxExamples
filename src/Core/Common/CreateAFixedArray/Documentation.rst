@@ -1,4 +1,4 @@
-Create A Fixed Array
+Create a Fixed Array
 ====================
 
 .. index::

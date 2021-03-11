@@ -1,4 +1,4 @@
-Create A List Of File Names
+Create a List of File Names
 ===========================
 
 .. index::

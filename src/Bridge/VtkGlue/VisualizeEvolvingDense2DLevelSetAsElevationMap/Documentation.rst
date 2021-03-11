@@ -1,4 +1,4 @@
-Visualize An Evolving Dense 2D Level Set As Elevation Map
+Visualize an Evolving Dense 2D Level Set as Elevation Map
 =========================================================
 
 .. index::

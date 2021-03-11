@@ -1,4 +1,4 @@
-Extract Boundaries Of Connected Regions In Binary Image
+Extract Boundaries of Connected Regions in Binary Image
 =======================================================
 
 .. index::

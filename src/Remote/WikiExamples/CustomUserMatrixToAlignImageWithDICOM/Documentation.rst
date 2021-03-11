@@ -1,4 +1,4 @@
-Custom User Matrix To Align Image With DICOM
+Custom User Matrix to Align Image With DICOM
 ============================================
 .. note::
    **Wish List**

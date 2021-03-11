@@ -1,5 +1,5 @@
-Copy A Composite Transform
-==========================
+Copy a CompositeTransform
+=========================
 
 .. index::
    single: Transform

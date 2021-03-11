@@ -1,4 +1,4 @@
-Neighborhood Iterator On Vector Image
+Neighborhood Iterator on Vector Image
 =====================================
 
 .. index::

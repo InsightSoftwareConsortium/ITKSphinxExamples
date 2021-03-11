@@ -1,4 +1,4 @@
-Add Points And Edges
+Add Points and Edges
 ====================
 
 .. index::

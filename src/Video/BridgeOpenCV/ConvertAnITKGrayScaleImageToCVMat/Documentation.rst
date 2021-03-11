@@ -1,4 +1,4 @@
-Convert An ITK Gray Scale Image To CV Mat
+Convert an ITK Gray Scale Image to CV Mat
 =========================================
 
 .. index::

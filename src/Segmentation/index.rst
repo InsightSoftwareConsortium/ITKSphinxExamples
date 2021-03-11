@@ -4,11 +4,11 @@ Segmentation
 .. toctree::
   :maxdepth: 2
 
+  Classifiers/index.rst
+  ConnectedComponents/index.rst
+  KLMRegionGrowing/index.rst
   LabelVoting/index.rst
   LevelSets/index.rst
-  Watersheds/index.rst
-  Classifiers/index.rst
-  Voronoi/index.rst
-  ConnectedComponents/index.rst
   RegionGrowing/index.rst
-  KLMRegionGrowing/index.rst
+  Voronoi/index.rst
+  Watersheds/index.rst

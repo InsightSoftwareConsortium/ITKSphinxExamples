@@ -1,4 +1,4 @@
-Process Nth Component Of Vector Image
+Process Nth Component of Vector Image
 =====================================
 
 .. index::

@@ -1,4 +1,4 @@
-Linearly Interpolate Position In Image
+Linearly Interpolate Position in Image
 ======================================
 
 .. index::

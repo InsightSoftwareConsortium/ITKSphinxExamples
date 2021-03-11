@@ -1,4 +1,4 @@
-Compute Local Noise In Image
+Compute Local Noise in Image
 ============================
 
 .. index::

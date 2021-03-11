@@ -1,4 +1,4 @@
-Compute Median Of Image At Pixel
+Compute Median of Image at Pixel
 ================================
 
 .. index::

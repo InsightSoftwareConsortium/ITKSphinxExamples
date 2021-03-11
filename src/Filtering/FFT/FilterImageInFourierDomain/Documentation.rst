@@ -1,4 +1,4 @@
-Filter Image In Fourier Domain
+Filter Image in Fourier Domain
 ==============================
 
 .. index::

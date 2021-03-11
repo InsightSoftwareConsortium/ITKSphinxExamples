@@ -15,6 +15,8 @@ ImageIntensity
   BinaryORTwoImages/Documentation.rst
   BinaryXORTwoImages/Documentation.rst
   CastImageToAnotherTypeButClampToOutput/Documentation.rst
+  CompareTwoImagesAndSetOutputPixelToMax/Documentation.rst
+  CompareTwoImagesAndSetOutputPixelToMin/Documentation.rst
   ComputeEdgePotential/Documentation.rst
   ComputeSigmoid/Documentation.rst
   ComputerMagInVectorImageToMakeMagImage/Documentation.rst
@@ -30,8 +32,6 @@ ImageIntensity
   PixelDivisionOfTwoImages/Documentation.rst
   RescaleAnImage/Documentation.rst
   ScalePixelSumToConstant/Documentation.rst
-  SetOutputPixelToMax/Documentation.rst
-  SetOutputPixelToMin/Documentation.rst
   SquareEveryPixel/Documentation.rst
   SubtractConstantFromEveryPixel/Documentation.rst
   SubtractTwoImages/Documentation.rst

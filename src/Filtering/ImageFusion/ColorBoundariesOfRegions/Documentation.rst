@@ -1,4 +1,4 @@
-Color Boundaries Of Labeled Regions
+Color Boundaries of Labeled Regions
 ===================================
 
 .. index::

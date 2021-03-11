@@ -1,4 +1,4 @@
-Approximate Distance Map Of Binary Image
+Approximate Distance Map of Binary Image
 ========================================
 
 .. index::

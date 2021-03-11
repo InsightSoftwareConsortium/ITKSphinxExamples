@@ -1,4 +1,4 @@
-Permute Sequence Of Indices
+Permute Sequence of Indices
 ===========================
 
 .. index::

@@ -1,4 +1,4 @@
-Flip An Image Over Specified Axes
+Flip an Image Over Specified Axes
 =================================
 
 .. index::

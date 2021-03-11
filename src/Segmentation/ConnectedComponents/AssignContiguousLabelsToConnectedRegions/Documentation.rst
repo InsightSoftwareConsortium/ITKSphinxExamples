@@ -1,4 +1,4 @@
-Assign Contiguous Labels To Connected Regions In An Image
+Assign Contiguous Labels to Connected Regions in an Image
 =========================================================
 
 .. index::

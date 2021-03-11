@@ -1,4 +1,4 @@
-Write A TIFF Image
+Write a TIFF Image
 ==================
 
 .. index::

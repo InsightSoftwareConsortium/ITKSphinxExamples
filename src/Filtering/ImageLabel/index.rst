@@ -4,6 +4,6 @@ ImageLabel
 .. toctree::
   :maxdepth: 1
 
-  ExtractBoundariesOfBlobsInBinaryImage/Documentation.rst
+  ExtractInnerAndOuterBoundariesOfBlobsInBinaryImage/Documentation.rst
   ExtractBoundariesOfConnectedRegionsInBinaryImage/Documentation.rst
   LabelContoursOfConnectComponent/Documentation.rst

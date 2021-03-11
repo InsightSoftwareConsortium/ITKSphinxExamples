@@ -1,4 +1,4 @@
-Set Pixel Value In One Image
+Set Pixel Value in One Image
 ============================
 
 .. index::

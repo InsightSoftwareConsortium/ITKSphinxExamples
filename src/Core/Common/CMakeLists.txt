@@ -76,9 +76,9 @@ add_example(Matrix)
 add_example(MatrixInverse)
 add_example(VariableLengthVector)
 add_example(BresenhamLine)
-add_example(Transparency)
-compare_to_baseline(EXAMPLE_NAME Transparency
-  BASELINE_PREFIX Transparency
+add_example(MakePartOfImageTransparent)
+compare_to_baseline(EXAMPLE_NAME MakePartOfImageTransparent
+  BASELINE_PREFIX MakePartOfImageTransparent
   )
 
 add_example(ConvertArrayToImage)
@@ -87,7 +87,7 @@ compare_to_baseline(EXAMPLE_NAME ConvertArrayToImage
   )
 
 add_example(CropImageBySpecifyingRegion)
-add_example(CustomOperationToEachPixelInImage)
+add_example(ApplyCustomOperationToEachPixelInImage)
 add_example(CreateVectorImage)
 add_example(NeighborhoodIteratorOnVectorImage)
 add_example(IterateOverSpecificRegion)
@@ -199,9 +199,9 @@ compare_to_baseline(EXAMPLE_NAME IterateRegionWithWriteAccess
   BASELINE_PREFIX IterateRegionWithWriteAccess
   )
 
-add_example(OutOfBoundsPixelsReturnConstValue)
-compare_to_baseline(EXAMPLE_NAME OutOfBoundsPixelsReturnConstValue
-  BASELINE_PREFIX OutOfBoundsPixelsReturnConstValue
+add_example(MakeOutOfBoundsPixelsReturnConstValue)
+compare_to_baseline(EXAMPLE_NAME MakeOutOfBoundsPixelsReturnConstValue
+  BASELINE_PREFIX MakeOutOfBoundsPixelsReturnConstValue
   )
 endif()
 

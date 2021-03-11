@@ -1,4 +1,4 @@
-Multiply Image By Scalar
+Multiply Image by Scalar
 ========================
 
 .. index::

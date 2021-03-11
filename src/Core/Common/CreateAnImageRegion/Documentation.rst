@@ -1,5 +1,5 @@
-Create A Image Region
-=====================
+Create An Image Region
+======================
 
 .. index::
    single: ImageRegion

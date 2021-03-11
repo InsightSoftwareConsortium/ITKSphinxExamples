@@ -1,4 +1,4 @@
-Create A Backward Difference Operator
+Create a Backward Difference Operator
 =====================================
 
 .. index::

@@ -1,4 +1,4 @@
-Pad An Image By Mirroring
+Pad an Image by Mirroring
 =========================
 
 .. index::

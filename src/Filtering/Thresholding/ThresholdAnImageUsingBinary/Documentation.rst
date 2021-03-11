@@ -1,4 +1,4 @@
-Threshold An Image Using Binary Thresholding
+Threshold an Image Using Binary Thresholding
 ============================================
 
 .. index::

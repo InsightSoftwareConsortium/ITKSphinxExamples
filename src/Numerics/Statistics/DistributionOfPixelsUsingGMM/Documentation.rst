@@ -1,4 +1,4 @@
-Distribution Of Pixels Using GMM EM
+Distribution of Pixels Using GMM EM
 ===================================
 .. warning::
    **Fix Problem**

@@ -1,4 +1,4 @@
-Change Image Origin Spacing Or Direction
+Change Image Origin Spacing or Direction
 ========================================
 
 .. index::

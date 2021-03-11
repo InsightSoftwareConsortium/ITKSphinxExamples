@@ -1,4 +1,4 @@
-Shape Attributes For Binary Image
+Shape Attributes for Binary Image
 =================================
 
 .. index::

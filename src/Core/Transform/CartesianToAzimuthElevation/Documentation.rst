@@ -1,4 +1,4 @@
-Cartesian To Azimuth Elevation
+Cartesian to Azimuth Elevation
 ==============================
 
 .. index::

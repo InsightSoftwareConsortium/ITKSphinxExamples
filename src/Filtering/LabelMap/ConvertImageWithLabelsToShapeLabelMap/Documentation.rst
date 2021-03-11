@@ -1,4 +1,4 @@
-Convert Image With Labeled Regions To ShapeLabelMap
+Convert Image With Labeled Regions to ShapeLabelMap
 ===================================================
 
 .. index::

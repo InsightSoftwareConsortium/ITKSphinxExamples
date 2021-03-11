@@ -1,4 +1,4 @@
-Compute And Display Gradient Of Image
+Compute and Display Gradient of Image
 =====================================
 .. warning::
    **Fix Problem**

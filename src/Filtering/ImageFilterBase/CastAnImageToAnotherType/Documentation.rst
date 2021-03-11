@@ -1,4 +1,4 @@
-Cast An Image To Another Type
+Cast an Image to Another Type
 =============================
 
 .. index::

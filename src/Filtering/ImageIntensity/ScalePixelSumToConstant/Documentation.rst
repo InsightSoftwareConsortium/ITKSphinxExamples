@@ -1,4 +1,4 @@
-Scale All Pixel's Sum To Constant
+Scale All Pixel's Sum to Constant
 =================================
 
 .. index::

@@ -1,4 +1,4 @@
-Tile Images Side By Side
+Tile Images Side by Side
 ========================
 
 .. index::

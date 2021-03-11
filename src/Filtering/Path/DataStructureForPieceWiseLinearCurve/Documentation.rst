@@ -1,4 +1,4 @@
-Data Structure For Piece-Wise Linear Curve
+Data Structure for Piece-Wise Linear Curve
 ==========================================
 
 .. index::

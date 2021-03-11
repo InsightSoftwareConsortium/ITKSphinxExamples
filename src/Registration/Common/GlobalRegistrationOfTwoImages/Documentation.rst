@@ -1,4 +1,4 @@
-Global Registration Of Two Images
+Global Registration of Two Images
 =================================
 
 .. index::

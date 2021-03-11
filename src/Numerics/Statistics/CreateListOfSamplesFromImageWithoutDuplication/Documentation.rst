@@ -1,4 +1,4 @@
-Create List Of Samples From Image Without Duplication
+Create List of Samples From Image Without Duplication
 =====================================================
 
 .. index::

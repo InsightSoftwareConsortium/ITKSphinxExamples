@@ -1,4 +1,4 @@
-Add Constant To Every Pixel Without Duplicating Memory
+Add Constant to Every Pixel Without Duplicating Memory
 ======================================================
 
 .. index::

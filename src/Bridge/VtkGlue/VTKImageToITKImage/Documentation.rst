@@ -1,4 +1,4 @@
-VTK Image To ITK Image
+VTK Image to ITK Image
 ======================
 .. index::
    single: VTKImageToImageFilter

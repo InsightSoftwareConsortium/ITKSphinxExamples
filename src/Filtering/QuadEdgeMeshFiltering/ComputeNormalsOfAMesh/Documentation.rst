@@ -1,4 +1,4 @@
-Compute Normals Of A Mesh
+Compute Normals of a Mesh
 =========================
 
 .. index::

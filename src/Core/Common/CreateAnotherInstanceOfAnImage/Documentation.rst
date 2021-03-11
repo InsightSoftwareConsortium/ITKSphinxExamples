@@ -1,4 +1,4 @@
-Create Another Instance Of An Image
+Create Another Instance of an Image
 ===================================
 
 .. index::

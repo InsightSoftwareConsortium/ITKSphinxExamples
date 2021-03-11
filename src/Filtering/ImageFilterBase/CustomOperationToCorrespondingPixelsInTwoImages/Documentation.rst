@@ -1,4 +1,4 @@
-Custom Operation To Corresponding Pixels In Two Images
+Custom Operation to Corresponding Pixels in Two Images
 ======================================================
 
 .. index::

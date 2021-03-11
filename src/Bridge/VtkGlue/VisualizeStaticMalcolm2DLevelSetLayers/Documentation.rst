@@ -1,4 +1,4 @@
-Visualize A Static Sparse Malcolm 2D Level-Set Layers
+Visualize a Static Sparse Malcolm 2D Level-Set Layers
 =====================================================
 
 .. index::

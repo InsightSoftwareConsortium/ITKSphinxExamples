@@ -1,4 +1,4 @@
-Create A Binary Ball Structuring Element
+Create a Binary Ball Structuring Element
 ========================================
 
 .. index::

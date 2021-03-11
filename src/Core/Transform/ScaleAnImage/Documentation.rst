@@ -1,4 +1,4 @@
-Scale An Image
+Scale an Image
 ==============
 
 .. index::

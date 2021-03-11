@@ -1,4 +1,4 @@
-Translate A Vector Image
+Translate a Vector Image
 ========================
 
 .. index::

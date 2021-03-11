@@ -1,4 +1,4 @@
-Label Connect Components In Binary Image
+Label Connect Components in Binary Image
 ========================================
 
 .. index::

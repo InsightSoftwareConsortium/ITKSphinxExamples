@@ -7,5 +7,5 @@ Review
   GeometricPropertiesOfRegion/Documentation.rst
   MultiphaseChanAndVeseSparseFieldLevelSetSegmentation/Documentation.rst
   SegmentBloodVesselsWithMultiScaleHessianBasedMeasure/Documentation.rst
+  SinglephaseChanAndVeseDenseFieldLevelSetSegmentation/Documentation.rst
   SinglephaseChanAndVeseSparseFieldLevelSetSegmentation/Documentation.rst
-  SinglephaseChanAndVeseSparseFieldLevelSetSegmentation2/Documentation.rst

@@ -1,4 +1,4 @@
-Convert Mesh To Unstructered Grid
+Convert Mesh to Unstructered Grid
 =================================
 
 .. index::

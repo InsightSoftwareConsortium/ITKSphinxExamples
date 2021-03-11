@@ -1,4 +1,4 @@
-Threshold An Image Using Otsu
+Threshold an Image Using Otsu
 =============================
 
 .. index::

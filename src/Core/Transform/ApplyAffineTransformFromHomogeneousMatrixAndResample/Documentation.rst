@@ -1,4 +1,4 @@
-Apply Affine Transform From Homogeneous Matrix And Resample
+Apply Affine Transform From Homogeneous Matrix and Resample
 ===========================================================
 
 .. index::

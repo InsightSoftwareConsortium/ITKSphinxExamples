@@ -1,4 +1,4 @@
-Import Pixel Buffer into an Image
+Import Pixel Buffer Into an Image
 =================================
 
 .. index::

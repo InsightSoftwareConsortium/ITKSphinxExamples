@@ -1,4 +1,4 @@
-Inverse Of Mask To Image
+Inverse of Mask to Image
 ========================
 
 .. index::

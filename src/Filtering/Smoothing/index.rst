@@ -4,10 +4,10 @@ Smoothing
 .. toctree::
   :maxdepth: 1
 
-  ApplyMeanFilter/Documentation.rst
-  ApplyMedianFilter/Documentation.rst
   BlurringAnImageUsingABinomialKernel/Documentation.rst
+  ComputesSmoothingWithGaussianKernel/Documentation.rst
   FindHigherDerivativesOfImage/Documentation.rst
+  MeanFilteringOfAnImage/Documentation.rst
+  MedianFilteringOfAnImage/Documentation.rst
   MedianFilteringOfAnRGBImage/Documentation.rst
   SmoothImageWithDiscreteGaussianFilter/Documentation.rst
-  SmoothWithRecursiveGaussian/Documentation.rst

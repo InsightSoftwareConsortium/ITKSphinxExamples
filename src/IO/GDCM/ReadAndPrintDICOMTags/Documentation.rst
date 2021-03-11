@@ -1,4 +1,4 @@
-Read And Print DICOM Tags
+Read and Print DICOM Tags
 =========================
 
 .. index::

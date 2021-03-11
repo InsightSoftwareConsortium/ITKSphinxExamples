@@ -1,4 +1,4 @@
-Compute Min, Max, Variance And Mean Of Image
+Compute Min, Max, Variance and Mean of Image
 ============================================
 
 .. index::

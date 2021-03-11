@@ -1,4 +1,4 @@
-Multiply Kernel With An Image At Location
+Multiply Kernel With an Image at Location
 =========================================
 
 .. index::

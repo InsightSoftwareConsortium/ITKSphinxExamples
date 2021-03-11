@@ -1,4 +1,4 @@
-Maurer Distance Map Of Binary Image
+Maurer Distance Map of Binary Image
 ===================================
 
 .. index::

@@ -8,26 +8,24 @@ Filtering
   AntiAlias/index.rst
   BinaryMathematicalMorphology/index.rst
   Colormap/index.rst
+  Convolution/index.rst
+  CurvatureFlow/index.rst
+  DistanceMap/index.rst
   FastMarching/index.rst
   FFT/index.rst
   ImageCompare/index.rst
+  ImageCompose/index.rst
   ImageFeature/index.rst
   ImageFilterBase/index.rst
+  ImageFusion/index.rst
   ImageGradient/index.rst
   ImageGrid/index.rst
   ImageIntensity/index.rst
+  ImageLabel/index.rst
+  ImageStatistics/index.rst
+  LabelMap/index.rst
   MathematicalMorphology/index.rst
+  Path/index.rst
+  QuadEdgeMeshFiltering/index.rst
   Smoothing/index.rst
   Thresholding/index.rst
-  QuadEdgeMeshFiltering/index.rst
-  LabelMap/index.rst
-  ImageStatistics/index.rst
-  ImageGradient/index.rst
-  AnisotropicSmoothing/index.rst
-  ImageFusion/index.rst
-  Convolution/index.rst
-  DistanceMap/index.rst
-  ImageCompose/index.rst
-  ImageLabel/index.rst
-  CurvatureFlow/index.rst
-  Path/index.rst

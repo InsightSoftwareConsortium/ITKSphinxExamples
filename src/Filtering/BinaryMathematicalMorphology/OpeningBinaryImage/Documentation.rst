@@ -1,4 +1,4 @@
-Opening A Binary Image
+Opening a Binary Image
 ======================
 
 .. index::

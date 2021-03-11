@@ -1,3 +1,3 @@
 add_example(ExtractBoundariesOfConnectedRegionsInBinaryImage)
-add_example(ExtractBoundariesOfBlobsInBinaryImage)
+add_example(ExtractInnerAndOuterBoundariesOfBlobsInBinaryImage)
 add_example(LabelContoursOfConnectComponent)

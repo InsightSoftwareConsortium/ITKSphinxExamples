@@ -1,4 +1,4 @@
-Binary Min And Max Curvature Flow Of Binary Image
+Binary Min and Max Curvature Flow of Binary Image
 =================================================
 
 .. index::

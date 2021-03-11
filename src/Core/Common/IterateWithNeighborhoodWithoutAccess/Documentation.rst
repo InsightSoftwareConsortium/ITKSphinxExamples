@@ -1,4 +1,4 @@
-Iterate Region In Image With Neighborhood Without Write Access
+Iterate Region in Image With Neighborhood Without Write Access
 ==============================================================
 
 .. index::

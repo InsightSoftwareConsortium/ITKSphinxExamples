@@ -1,5 +1,5 @@
-Crop Image By Specifying Region
-================================
+Crop Image by Specifying Region
+===============================
 
 .. index::
    single: CropImageFilter

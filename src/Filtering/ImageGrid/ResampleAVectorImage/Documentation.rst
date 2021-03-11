@@ -1,4 +1,4 @@
-Resample A Vector Image
+Resample a Vector Image
 =======================
 
 .. index::

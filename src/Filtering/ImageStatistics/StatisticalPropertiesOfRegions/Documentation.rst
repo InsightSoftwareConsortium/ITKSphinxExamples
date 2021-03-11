@@ -1,4 +1,4 @@
-Statistical Properties Of Labeled Regions
+Statistical Properties of Labeled Regions
 =========================================
 
 .. index::

@@ -1,4 +1,4 @@
-Add Constant To Every Pixel
+Add Constant to Every Pixel
 ===========================
 
 .. index::

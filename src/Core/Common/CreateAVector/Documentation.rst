@@ -1,4 +1,4 @@
-Create A Vector
+Create a Vector
 ===============
 
 .. index::

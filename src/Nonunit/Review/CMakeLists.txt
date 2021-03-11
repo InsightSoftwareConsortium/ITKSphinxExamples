@@ -13,8 +13,8 @@ compare_to_baseline( EXAMPLE_NAME SegmentBloodVesselsWithMultiScaleHessianBasedM
 #  BASELINE_PREFIX OutputBaseline
 #  )
 
-#add_example(SinglephaseChanAndVeseSparseFieldLevelSetSegmentation2)
-#compare_to_baseline(EXAMPLE_NAME SinglephaseChanAndVeseSparseFieldLevelSetSegmentation2
+#add_example(SinglephaseChanAndVeseDenseFieldLevelSetSegmentation)
+#compare_to_baseline(EXAMPLE_NAME SinglephaseChanAndVeseDenseFieldLevelSetSegmentation
 #  BASELINE_PREFIX OutputBaseline
 #  )
 

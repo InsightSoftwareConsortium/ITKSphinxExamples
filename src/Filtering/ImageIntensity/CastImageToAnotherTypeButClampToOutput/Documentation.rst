@@ -1,4 +1,4 @@
-Cast Image To Another Type But Clamp To Output Range
+Cast Image to Another Type but Clamp to Output Range
 ====================================================
 
 .. index::

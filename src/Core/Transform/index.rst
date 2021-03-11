@@ -6,8 +6,8 @@ Transform
 
   ApplyAffineTransformFromHomogeneousMatrixAndResample/Documentation.rst
   CartesianToAzimuthElevation/Documentation.rst
-  CopyANonCompositeTransform/Documentation.rst
   CopyACompositeTransform/Documentation.rst
+  CopyANonCompositeTransform/Documentation.rst
   GlobalRegistrationTwoImagesAffine/Documentation.rst
   GlobalRegistrationTwoImagesBSpline/Documentation.rst
   MutualInformationAffine/Documentation.rst
