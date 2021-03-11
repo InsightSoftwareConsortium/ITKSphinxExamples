@@ -5,40 +5,36 @@ project(ResampleSegmentedImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-if(ENABLE_QUICKVIEW)
-  find_package(VTK REQUIRED
-    COMPONENTS
-      vtkRenderingCore
-      vtkRenderingGL2PSOpenGL2
-    )
-  if(VTK_VERSION VERSION_LESS "8.90.0")
-    include(${VTK_USE_FILE})
-  endif()
-
-  add_executable(ResampleSegmentedImage Code.cxx)
-  target_link_libraries(ResampleSegmentedImage ${ITK_LIBRARIES} ${VTK_LIBRARIES})
-
-  if(NOT VTK_VERSION VERSION_LESS "8.90.0")
-    vtk_module_autoinit(
-      TARGETS ResampleSegmentedImage
-      MODULES ${VTK_LIBRARIES}
-      )
-  endif()
-else()
-  add_executable(ResampleSegmentedImage Code.cxx)
-  target_link_libraries(ResampleSegmentedImage ${ITK_LIBRARIES})
-endif()
+add_executable(ResampleSegmentedImage Code.cxx)
+target_link_libraries(ResampleSegmentedImage ${ITK_LIBRARIES})
 
 install(TARGETS ResampleSegmentedImage
   DESTINATION bin/ITKExamples/Core/ImageFunction
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKExamples/Code/Core/ImageFunction/ResampleSegmentedImage/
   COMPONENT Code
   )
 
 enable_testing()
 add_test(NAME ResampleSegmentedImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ResampleSegmentedImage Gourds.png 2)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ResampleSegmentedImage
+  ${CMAKE_CURRENT_BINARY_DIR}/2th_cthead1.png
+  0.75
+  0.6
+  Output.png
+  OutputNearest.png
+  )
+
+if(ITK_WRAP_PYTHON)
+  add_test(NAME ResampleSegmentedImageTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/2th_cthead1.png
+      0.75
+      0.6
+      OutputPython.png
+      OutputNearestPython.png
+    )
+endif()
