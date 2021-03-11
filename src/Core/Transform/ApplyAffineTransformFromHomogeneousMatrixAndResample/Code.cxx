@@ -58,12 +58,7 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
-  reader->Update();
-
-  ImageType::ConstPointer input = reader->GetOutput();
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   const ImageType::SizeType & size = input->GetLargestPossibleRegion().GetSize();
 
@@ -101,13 +96,9 @@ main(int argc, char * argv[])
 
   resample->SetTransform(transform);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(resample->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(resample->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {
