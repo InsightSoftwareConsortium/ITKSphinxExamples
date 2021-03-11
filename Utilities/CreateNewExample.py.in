@@ -28,6 +28,7 @@ import re
 import sys
 
 from cookiecutter.main import cookiecutter
+from titlecase import titlecase
 from os.path import join as pjoin
 
 
@@ -51,6 +52,12 @@ def write_all_itk_headers(itk_source_dir):
             output.write(f + u'\n')
     return output
 
+def get_all_itk_headers(itk_source_dir):
+    output = []
+    for root, dirs, files in os.walk(pjoin(itk_source_dir, 'Modules')):
+        for f in fnmatch.filter(files, 'itk*.h'):
+            output.append(f)
+    return output
 
 def words(text):
     temp = re.findall('itk[A-Z][a-zA-Z_0-9]+', text)
@@ -102,8 +109,14 @@ def itkcorrect(word, NWORDS, alphabet):
 
 
 def space_out_camel_case(s):
-    return re.sub('((?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z]))', ' ', s)
+    return re.sub('((?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z]))', ' ', s).strip()
 
+def itk_abbreviations(word,**kwargs):
+    if word.upper() in ('ITK','VTK','RGB','VTP','FFT','FEM','TIFF','GMM','EM',
+                        'CV','GPU','BMP','CSV','DCMTK','GDCM','GE','GIPL','HDF5',
+                        'IPL','JPEG','JPEG2000','LSM','BYU','MINC','MRC','NIFTI',
+                        'NRRD','REC','PNG','RAW','XML','RTK','DICOM','2D','3D','IO'):
+        return word.upper()
 
 def get_group_and_module_from_class_name(itk_src, class_name):
     """ Get the ITK group and module a class belongs to.
@@ -189,7 +202,7 @@ def main():
                  or default_class_name
     example_name = get_input("example_name [" + default_example_name + "]: ")\
                    or default_example_name
-    example_title = space_out_camel_case(example_name)
+    example_title = titlecase(space_out_camel_case(example_name), callback=itk_abbreviations)
     example_synopsis = get_input("example_synopsis [" + default_synopsis + "]: ")\
                        or default_synopsis
 
