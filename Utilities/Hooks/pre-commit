@@ -42,3 +42,7 @@ if test $lastSetupForDevelopment -lt $SetupForDevelopment_VERSION; then
   \"$top_level_dir/Utilities/SetupForDevelopment.sh\"
 "
 fi
+
+#-----------------------------------------------------------------------------
+# Style hooks.
+. "${BASH_SOURCE%/*}/pre-commit-style.bash"
