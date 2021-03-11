@@ -23,18 +23,18 @@ Author: Dženan Zukić <dzenan.zukic@kitware.com>
 Code
 ----
 
-C++
-...
-
-.. literalinclude:: Code.cxx
-   :lines: 18-
-
 Python
 ......
 
 .. literalinclude:: Code.py
    :language: python
    :lines: 1, 16-
+
+C++
+...
+
+.. literalinclude:: Code.cxx
+   :lines: 18-
 
 
 Classes demonstrated
