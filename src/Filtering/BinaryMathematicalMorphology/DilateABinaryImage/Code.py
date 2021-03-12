@@ -37,9 +37,9 @@ reader.SetFileName(inputImage)
 StructuringElementType = itk.FlatStructuringElement[Dimension]
 structuringElement = StructuringElementType.Ball(radiusValue)
 
-DilateFilterType = itk.BinaryDilateImageFilter[ImageType,
-                                               ImageType,
-                                               StructuringElementType]
+DilateFilterType = itk.BinaryDilateImageFilter[
+    ImageType, ImageType, StructuringElementType
+]
 dilateFilter = DilateFilterType.New()
 dilateFilter.SetInput(reader.GetOutput())
 dilateFilter.SetKernel(structuringElement)

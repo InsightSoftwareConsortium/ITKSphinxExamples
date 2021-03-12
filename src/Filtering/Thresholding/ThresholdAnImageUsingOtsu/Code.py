@@ -18,8 +18,10 @@ import sys
 import itk
 
 if len(sys.argv) != 6:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-          "<numberOfHistogramBins> <numberOfThresholds> <labelOffset>")
+    print(
+        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
+        "<numberOfHistogramBins> <numberOfThresholds> <labelOffset>"
+    )
     sys.exit(1)
 
 inputImage = sys.argv[1]
@@ -36,9 +38,7 @@ ImageType = itk.Image[PixelType, Dimension]
 reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputImage)
 
-thresholdFilter = itk.OtsuMultipleThresholdsImageFilter[
-        ImageType,
-        ImageType].New()
+thresholdFilter = itk.OtsuMultipleThresholdsImageFilter[ImageType, ImageType].New()
 thresholdFilter.SetInput(reader.GetOutput())
 
 thresholdFilter.SetNumberOfHistogramBins(numberOfHistogramBins)

@@ -16,6 +16,7 @@
 
 import sys
 import itk
+
 itk.auto_progress(2)
 
 if len(sys.argv) < 3:
@@ -25,9 +26,10 @@ if len(sys.argv) < 3:
 inputFileName = sys.argv[1]
 outputFileName = sys.argv[2]
 
-xDiv = 6;
-yDiv = 4;
-zDiv = 1; # 1 for 2D input
+xDiv = 6
+yDiv = 4
+zDiv = 1
+# 1 for 2D input
 
 Dimension = 3
 
@@ -71,41 +73,41 @@ for z in range(zDiv):
         start[1] = int(fullSize[1] * float(y) / yDiv)
         end[1] = int(fullSize[1] * (y + 1.0) / yDiv)
         size[1] = end[1] - start[1]
-        
+
         for x in range(xDiv):
             start[0] = int(fullSize[0] * float(x) / xDiv)
             end[0] = int(fullSize[0] * (x + 1.0) / xDiv)
             size[0] = end[0] - start[0]
-            
+
             region = itk.ImageRegion[Dimension]()
-            region.SetIndex(start);
-            region.SetSize(size);
-    
+            region.SetIndex(start)
+            region.SetSize(size)
+
             # now that we have our chunk, request the filter to only process that
-            median.GetOutput().SetRequestedRegion(region);
-            median.Update();
+            median.GetOutput().SetRequestedRegion(region)
+            median.Update()
             result = median.GetOutput()
-    
+
             # only needed in case of further manual processing
             result.DisconnectPipeline()
-    
+
             # possible additional non-ITK pipeline processing
-    
+
             writer.SetInput(result)
-    
+
             # convert region into IO region
-            ioRegion=itk.ImageIORegion(Dimension)
-            ioRegion.SetIndex(0, start[0]);
-            ioRegion.SetIndex(1, start[1]);
-            ioRegion.SetIndex(2, start[2]);
-            ioRegion.SetSize(0, region.GetSize()[0]);
-            ioRegion.SetSize(1, region.GetSize()[1]);
-            ioRegion.SetSize(2, region.GetSize()[2]);
+            ioRegion = itk.ImageIORegion(Dimension)
+            ioRegion.SetIndex(0, start[0])
+            ioRegion.SetIndex(1, start[1])
+            ioRegion.SetIndex(2, start[2])
+            ioRegion.SetSize(0, region.GetSize()[0])
+            ioRegion.SetSize(1, region.GetSize()[1])
+            ioRegion.SetSize(2, region.GetSize()[2])
             # tell the writer this is only a chunk of a larger image
             writer.SetIORegion(ioRegion)
-            
+
             try:
                 writer.Update()
             except Exception as e:
-                print('Exception for chunk:', x,y,z, '\n', e)
+                print("Exception for chunk:", x, y, z, "\n", e)
                 sys.exit(1)

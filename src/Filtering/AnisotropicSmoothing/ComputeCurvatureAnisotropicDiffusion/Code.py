@@ -18,8 +18,10 @@ import sys
 import itk
 
 if len(sys.argv) != 6:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-          "<numberOfIterations> <timeStep> <conductance>")
+    print(
+        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
+        "<numberOfIterations> <timeStep> <conductance>"
+    )
     sys.exit(1)
 
 inputImage = sys.argv[1]
@@ -40,7 +42,8 @@ reader = ReaderType.New()
 reader.SetFileName(inputImage)
 
 FilterType = itk.CurvatureAnisotropicDiffusionImageFilter[
-    InputImageType, InputImageType]
+    InputImageType, InputImageType
+]
 curvatureAnisotropicDiffusionFilter = FilterType.New()
 
 curvatureAnisotropicDiffusionFilter.SetInput(reader.GetOutput())
@@ -48,8 +51,7 @@ curvatureAnisotropicDiffusionFilter.SetNumberOfIterations(numberOfIterations)
 curvatureAnisotropicDiffusionFilter.SetTimeStep(timeStep)
 curvatureAnisotropicDiffusionFilter.SetConductanceParameter(conductance)
 
-RescaleFilterType = itk.RescaleIntensityImageFilter[
-    InputImageType, OutputImageType]
+RescaleFilterType = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType]
 rescaler = RescaleFilterType.New()
 rescaler.SetInput(curvatureAnisotropicDiffusionFilter.GetOutput())
 

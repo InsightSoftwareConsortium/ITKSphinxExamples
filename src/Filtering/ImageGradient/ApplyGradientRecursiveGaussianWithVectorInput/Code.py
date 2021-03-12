@@ -18,15 +18,18 @@ import sys
 import itk
 
 from distutils.version import StrictVersion as VS
+
 if VS(itk.Version.GetITKVersion()) < VS("4.8.0"):
     print("ITK 4.8.0 is required (see example documentation).")
     sys.exit(1)
 
 if len(sys.argv) != 6:
     print(
-        "Usage: " + sys.argv[0] +
-        " [InputFileName] [OutputFileName1X] [OutputFileName1Y]" +
-        " [OutputFileName2X] [OutputFileName2Y]")
+        "Usage: "
+        + sys.argv[0]
+        + " [InputFileName] [OutputFileName1X] [OutputFileName1Y]"
+        + " [OutputFileName2X] [OutputFileName2Y]"
+    )
     sys.exit(1)
 
 inputFileName = sys.argv[1]
@@ -35,11 +38,7 @@ outputFileName1Y = sys.argv[3]
 outputFileName2X = sys.argv[4]
 outputFileName2Y = sys.argv[5]
 
-filenames = [
-    outputFileName1X,
-    outputFileName1Y,
-    outputFileName2X,
-    outputFileName2Y]
+filenames = [outputFileName1X, outputFileName1Y, outputFileName2X, outputFileName2Y]
 
 ImageDimension = 2
 VectorDimension = 2
@@ -80,14 +79,14 @@ composer.SetInput(1, caster2.GetOutput())
 
 # Apply the gradient filter on the two images, this will return and image
 # with 4 values per pixel: two X and Y gradients
-FilterType = itk.GradientRecursiveGaussianImageFilter[
-    VecImageType, CovImageType]
+FilterType = itk.GradientRecursiveGaussianImageFilter[VecImageType, CovImageType]
 gradientfilter = FilterType.New()
 gradientfilter.SetInput(composer.GetOutput())
 
 # Set up the filter to select each gradient
 IndexSelectionType = itk.VectorIndexSelectionCastImageFilter[
-    CovImageType, FloatImageType]
+    CovImageType, FloatImageType
+]
 indexSelectionFilter = IndexSelectionType.New()
 indexSelectionFilter.SetInput(gradientfilter.GetOutput())
 

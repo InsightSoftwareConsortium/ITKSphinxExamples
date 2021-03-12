@@ -16,6 +16,7 @@
 
 import sys
 import itk
+
 itk.auto_progress(2)
 
 if len(sys.argv) != 4:
@@ -38,7 +39,8 @@ StructuringElementType = itk.FlatStructuringElement[Dimension]
 structuringElement = StructuringElementType.Ball(radiusValue)
 
 grayscaleFilter = itk.GrayscaleDilateImageFilter[
-    ImageType, ImageType, StructuringElementType].New()
+    ImageType, ImageType, StructuringElementType
+].New()
 grayscaleFilter.SetInput(reader.GetOutput())
 grayscaleFilter.SetKernel(structuringElement)
 

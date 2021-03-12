@@ -18,7 +18,11 @@ import sys
 import itk
 
 if len(sys.argv) != 5:
-    print("Usage: " + sys.argv[0] + "< Input Image > < Output Image > [Mean] [Standard Deviation]")
+    print(
+        "Usage: "
+        + sys.argv[0]
+        + "< Input Image > < Output Image > [Mean] [Standard Deviation]"
+    )
     sys.exit(1)
 
 inputImage = sys.argv[1]

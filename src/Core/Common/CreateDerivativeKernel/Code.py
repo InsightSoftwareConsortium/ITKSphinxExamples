@@ -27,4 +27,8 @@ print("Size: " + str(derivativeOperator.GetSize()))
 print(derivativeOperator)
 
 for i in range(9):
-    print(str(derivativeOperator.GetOffset(i)) + " " + str(derivativeOperator.GetElement(i)))
+    print(
+        str(derivativeOperator.GetOffset(i))
+        + " "
+        + str(derivativeOperator.GetElement(i))
+    )

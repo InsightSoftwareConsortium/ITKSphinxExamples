@@ -18,14 +18,18 @@ import sys
 import itk
 
 from distutils.version import StrictVersion as VS
+
 if VS(itk.Version.GetITKVersion()) < VS("4.7.0"):
     print("ITK 4.7.0 is required (see example documentation).")
     sys.exit(1)
 
 if len(sys.argv) != 5:
-    print("Usage: " + sys.argv[0] +
-          " [InputFileName] [OutputFileNameX] [OutputFileNameY]" +
-          " [OutputFileNameMagnitude]")
+    print(
+        "Usage: "
+        + sys.argv[0]
+        + " [InputFileName] [OutputFileNameX] [OutputFileNameY]"
+        + " [OutputFileNameMagnitude]"
+    )
     sys.exit(1)
 
 inputFileName = sys.argv[1]
@@ -61,7 +65,8 @@ gradientFilter.SetInput(reader.GetOutput())
 
 # Allows to select the X or Y output images
 IndexSelectionType = itk.VectorIndexSelectionCastImageFilter[
-    CovImageType, FloatImageType]
+    CovImageType, FloatImageType
+]
 indexSelectionFilter = IndexSelectionType.New()
 indexSelectionFilter.SetInput(gradientFilter.GetOutput())
 
@@ -83,8 +88,7 @@ for i in range(2):
     writer.Update()
 
 # Compute the magnitude of the vector and output the image
-MagnitudeType = itk.VectorMagnitudeImageFilter[
-    CovImageType, FloatImageType]
+MagnitudeType = itk.VectorMagnitudeImageFilter[CovImageType, FloatImageType]
 magnitudeFilter = MagnitudeType.New()
 magnitudeFilter.SetInput(gradientFilter.GetOutput())
 

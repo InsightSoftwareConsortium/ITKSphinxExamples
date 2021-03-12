@@ -36,14 +36,14 @@ tileFilter = itk.TileImageFilter[InputImageType, OutputImageType].New()
 layout = [2, 2, 0]
 tileFilter.SetLayout(layout)
 
-for ii in range(1, len(sys.argv)-1):
+for ii in range(1, len(sys.argv) - 1):
     reader.SetFileName(sys.argv[ii])
     reader.Update()
 
     inputImage = reader.GetOutput()
     inputImage.DisconnectPipeline()
 
-    tileFilter.SetInput(ii-1, inputImage)
+    tileFilter.SetInput(ii - 1, inputImage)
 
 defaultValue = 128
 tileFilter.SetDefaultPixelValue(defaultValue)

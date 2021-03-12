@@ -27,14 +27,14 @@ CoordType = itk.D
 VectorType = itk.Vector[CoordType, Dimension]
 
 u = VectorType()
-u[0] = -1.
-u[1] = 1.
-u[2] = -1.
+u[0] = -1.0
+u[1] = 1.0
+u[2] = -1.0
 
 v = VectorType()
-v[0] = 1.
-v[1] = 2.
-v[2] = 3.
+v[0] = 1.0
+v[1] = 2.0
+v[2] = 3.0
 
 print("u: " + str(u))
 print("v: " + str(v))

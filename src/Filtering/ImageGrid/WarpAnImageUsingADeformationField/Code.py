@@ -18,8 +18,11 @@ import sys
 import itk
 
 if len(sys.argv) != 4:
-    print('Usage: ' + sys.argv[0] +
-          ' <InputFileName> <DisplacementFieldFileName> <OutputFileName>')
+    print(
+        "Usage: "
+        + sys.argv[0]
+        + " <InputFileName> <DisplacementFieldFileName> <OutputFileName>"
+    )
     sys.exit(1)
 
 inputFileName = sys.argv[1]
@@ -45,8 +48,7 @@ fieldReader.Update()
 
 deformationField = fieldReader.GetOutput()
 
-warpFilter = \
-        itk.WarpImageFilter[ImageType, ImageType, DisplacementFieldType].New()
+warpFilter = itk.WarpImageFilter[ImageType, ImageType, DisplacementFieldType].New()
 
 interpolator = itk.LinearInterpolateImageFunction[ImageType, itk.D].New()
 

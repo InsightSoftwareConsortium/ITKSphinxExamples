@@ -17,6 +17,6 @@
 import itk
 
 Dimension = 2
-RGBPixelType = itk.RGBPixel[itk.ctype('unsigned char')]
+RGBPixelType = itk.RGBPixel[itk.ctype("unsigned char")]
 
 image = itk.Image[RGBPixelType, Dimension].New()

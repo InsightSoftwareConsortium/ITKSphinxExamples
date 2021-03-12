@@ -17,7 +17,7 @@
 import itk
 
 Dimension = 3
-ComponentType = itk.ctype('float')
+ComponentType = itk.ctype("float")
 PixelType = itk.Vector[ComponentType, Dimension]
 ImageType = itk.Image[PixelType, Dimension]
 

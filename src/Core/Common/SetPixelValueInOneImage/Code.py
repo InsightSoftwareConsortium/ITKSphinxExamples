@@ -18,7 +18,7 @@ import sys
 import itk
 
 if len(sys.argv) != 2:
-    print('Usage: ' + sys.argv[0] + ' <OutputFileName>')
+    print("Usage: " + sys.argv[0] + " <OutputFileName>")
     sys.exit(1)
 
 Dimension = 2

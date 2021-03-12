@@ -18,8 +18,10 @@ import sys
 import itk
 
 if len(sys.argv) != 5:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-          "<lowerThreshold> <upperThreshold>")
+    print(
+        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
+        "<lowerThreshold> <upperThreshold>"
+    )
     sys.exit(1)
 
 inputImage = sys.argv[1]

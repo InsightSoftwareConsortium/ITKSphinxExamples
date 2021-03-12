@@ -40,17 +40,7 @@ histogram.Initialize(size, lowerBound, upperBound)
 # identifier (0) refers to. The instance identifier of the index (0,
 # 1) is (3), (0, 2) is (6), (2, 2) is (8), and so on.
 
-frequencies = [
-    (0, 0),
-    (1, 2),
-    (2, 3),
-    (3, 2),
-    (4, 1),
-    (5, 1),
-    (6, 5),
-    (7, 4),
-    (8, 0)
-]
+frequencies = [(0, 0), (1, 2), (2, 3), (3, 2), (4, 1), (5, 1), (6, 5), (7, 4), (8, 0)]
 
 for instance_identifier, frequency in frequencies:
     histogram.SetFrequency(instance_identifier, frequency)
@@ -60,7 +50,11 @@ for instance_identifier, frequency in frequencies:
 # GetFrequency(instance identifier) method for the same purpose.
 
 index = [0, 2]
-print("Frequency of the bin at index", index,
-      "is", histogram.GetFrequency(index),
-      "and the bin's instance identifier is",
-      histogram.GetInstanceIdentifier(index))
+print(
+    "Frequency of the bin at index",
+    index,
+    "is",
+    histogram.GetFrequency(index),
+    "and the bin's instance identifier is",
+    histogram.GetInstanceIdentifier(index),
+)

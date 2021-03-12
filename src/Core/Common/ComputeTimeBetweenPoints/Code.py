@@ -23,20 +23,21 @@ def LongFunction():
     for i in range(int(1e5)):
         a = 0.0  # noqa: F841
 
+
 clock = itk.TimeProbe()
 
 clock.Start()
 LongFunction()
 
 clock.Stop()
-print('Mean: ' + str(clock.GetMean()))
-print('Total: ' + str(clock.GetTotal()))
+print("Mean: " + str(clock.GetMean()))
+print("Total: " + str(clock.GetTotal()))
 
 clock.Start()
 LongFunction()
 
 clock.Stop()
-print('Mean: ' + str(clock.GetMean()))
-print('Total: ' + str(clock.GetTotal()))
+print("Mean: " + str(clock.GetMean()))
+print("Total: " + str(clock.GetTotal()))
 
 clock.Report()

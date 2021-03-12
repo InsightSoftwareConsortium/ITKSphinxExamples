@@ -18,7 +18,9 @@ import itk
 import sys
 
 if len(sys.argv) != 6:
-    print(f"Usage: {sys.argv[0]} input_image_file spacing_fraction sigma_fraction output_image_file_label_image_interpolator output_image_file_nearest_neighbor_interpolator")
+    print(
+        f"Usage: {sys.argv[0]} input_image_file spacing_fraction sigma_fraction output_image_file_label_image_interpolator output_image_file_nearest_neighbor_interpolator"
+    )
     sys.exit(1)
 
 input_image_file = sys.argv[1]
@@ -36,8 +38,9 @@ output_spacing = [s * spacing_fraction for s in input_spacing]
 resize_filter.SetOutputSpacing(output_spacing)
 
 input_size = itk.size(input_image)
-output_size = [int(s * input_spacing[dim] / spacing_fraction) for dim, s in
-        enumerate(input_size)]
+output_size = [
+    int(s * input_spacing[dim] / spacing_fraction) for dim, s in enumerate(input_size)
+]
 resize_filter.SetSize(output_size)
 
 gaussian_interpolator = itk.LabelImageGaussianInterpolateImageFunction.New(input_image)
@@ -48,7 +51,9 @@ resize_filter.SetInterpolator(gaussian_interpolator)
 
 itk.imwrite(resize_filter, output_image_file_label_image_interpolator)
 
-nearest_neighbor_interpolator = itk.NearestNeighborInterpolateImageFunction.New(input_image)
+nearest_neighbor_interpolator = itk.NearestNeighborInterpolateImageFunction.New(
+    input_image
+)
 resize_filter.SetInterpolator(nearest_neighbor_interpolator)
 
 itk.imwrite(resize_filter, output_image_file_nearest_neighbor_interpolator)

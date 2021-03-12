@@ -18,7 +18,7 @@ import sys
 import itk
 
 if len(sys.argv) != 3:
-    print('Usage: ' + sys.argv[0] + ' <InputFileName> <OutputFileName>')
+    print("Usage: " + sys.argv[0] + " <InputFileName> <OutputFileName>")
     sys.exit(1)
 
 inputFileName = sys.argv[1]

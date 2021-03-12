@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#=========================================================================
+# =========================================================================
 #
 #  Copyright NumFOCUS
 #
@@ -26,13 +26,14 @@ import itk
 EXIT_SUCCESS = 0
 EXIT_FAILURE = 1
 
+
 def main(argv):
     if len(argv) < 3:
-        raise Exception(f'Usage: {argv[0]} fixed_image moving_image')
-    
+        raise Exception(f"Usage: {argv[0]} fixed_image moving_image")
+
     fixed_image = itk.imread(argv[1], itk.F)
-    moving_image = itk.imread(argv[2],itk.F)
-    
+    moving_image = itk.imread(argv[2], itk.F)
+
     dimension = fixed_image.GetImageDimension()
     FixedImageType = type(fixed_image)
     MovingImageType = type(moving_image)
@@ -40,32 +41,37 @@ def main(argv):
     if dimension == 2:
         transform = itk.Euler2DTransform[itk.D].New()
     else:
-        raise Exception(f'Unsupported dimension: {dimension}')
-    
-    TransformInitializerType = \
-        itk.CenteredTransformInitializer[itk.MatrixOffsetTransformBase[itk.D,
-                                                                       dimension,
-                                                                       dimension],
-                                         FixedImageType, MovingImageType]
-    initializer = TransformInitializerType.New(Transform=transform,
+        raise Exception(f"Unsupported dimension: {dimension}")
+
+    TransformInitializerType = itk.CenteredTransformInitializer[
+        itk.MatrixOffsetTransformBase[itk.D, dimension, dimension],
+        FixedImageType,
+        MovingImageType,
+    ]
+    initializer = TransformInitializerType.New(
+        Transform=transform,
         FixedImage=fixed_image,
-        MovingImage=moving_image,)
+        MovingImage=moving_image,
+    )
     initializer.InitializeTransform()
-    
+
     metric = itk.MeanSquaresImageToImageMetricv4[FixedImageType, MovingImageType].New()
-    
+
     optimizer = itk.ExhaustiveOptimizerv4[itk.D].New()
+
     def print_iteration():
-        print(f'Iteration:'
-              f'{optimizer.GetCurrentIteration()}\t'
-              f'{list(optimizer.GetCurrentIndex())} \t'
-              f'{optimizer.GetCurrentValue():10.4f}\t'
-              f'{list(optimizer.GetCurrentPosition())}\t')
-    
+        print(
+            f"Iteration:"
+            f"{optimizer.GetCurrentIteration()}\t"
+            f"{list(optimizer.GetCurrentIndex())} \t"
+            f"{optimizer.GetCurrentValue():10.4f}\t"
+            f"{list(optimizer.GetCurrentPosition())}\t"
+        )
+
     optimizer.AddObserver(itk.IterationEvent(), print_iteration)
 
     angles = 12
-    optimizer.SetNumberOfSteps([int(angles / 2),0,0])
+    optimizer.SetNumberOfSteps([int(angles / 2), 0, 0])
 
     # Initialize scales and set back to optimizer
     scales = optimizer.GetScales()
@@ -74,29 +80,34 @@ def main(argv):
     scales.SetElement(1, 1.0)
     scales.SetElement(2, 1.0)
     optimizer.SetScales(scales)
-    
-    RegistrationType = itk.ImageRegistrationMethodv4[FixedImageType,MovingImageType]
-    registration = RegistrationType.New(Metric=metric,
+
+    RegistrationType = itk.ImageRegistrationMethodv4[FixedImageType, MovingImageType]
+    registration = RegistrationType.New(
+        Metric=metric,
         Optimizer=optimizer,
         FixedImage=fixed_image,
         MovingImage=moving_image,
         InitialTransform=transform,
-        NumberOfLevels=1)
+        NumberOfLevels=1,
+    )
 
     try:
         registration.Update()
 
-        print(f'MinimumMetricValue: {optimizer.GetMinimumMetricValue():.4f}\t'
-              f'MaximumMetricValue: {optimizer.GetMaximumMetricValue():.4f}\n'
-              f'MinimumMetricValuePosition: {list(optimizer.GetMinimumMetricValuePosition())}\t'
-              f'MaximumMetricValuePosition: {list(optimizer.GetMaximumMetricValuePosition())}\n'
-              f'StopConditionDescription: {optimizer.GetStopConditionDescription()}\t')
+        print(
+            f"MinimumMetricValue: {optimizer.GetMinimumMetricValue():.4f}\t"
+            f"MaximumMetricValue: {optimizer.GetMaximumMetricValue():.4f}\n"
+            f"MinimumMetricValuePosition: {list(optimizer.GetMinimumMetricValuePosition())}\t"
+            f"MaximumMetricValuePosition: {list(optimizer.GetMaximumMetricValuePosition())}\n"
+            f"StopConditionDescription: {optimizer.GetStopConditionDescription()}\t"
+        )
 
     except Exception as e:
-        print(f'Exception caught: {e}')
+        print(f"Exception caught: {e}")
         return EXIT_FAILURE
 
     return EXIT_SUCCESS
+
 
 if __name__ == "__main__":
     main(sys.argv)

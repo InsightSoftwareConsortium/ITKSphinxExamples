@@ -39,8 +39,7 @@ FilterType = itk.LaplacianImageFilter[InputImageType, InputImageType]
 laplacianFilter = FilterType.New()
 laplacianFilter.SetInput(reader.GetOutput())
 
-RescaleFilterType = itk.RescaleIntensityImageFilter[
-    InputImageType, OutputImageType]
+RescaleFilterType = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType]
 rescaler = RescaleFilterType.New()
 rescaler.SetInput(laplacianFilter.GetOutput())
 

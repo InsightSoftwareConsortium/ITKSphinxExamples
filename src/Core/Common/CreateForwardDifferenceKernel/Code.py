@@ -17,7 +17,9 @@
 import itk
 
 forwardDifferenceOperator = itk.ForwardDifferenceOperator[itk.F, 2]()
-forwardDifferenceOperator.SetDirection(0)  # Create the operator for the X axis derivative
+forwardDifferenceOperator.SetDirection(
+    0
+)  # Create the operator for the X axis derivative
 radius = itk.Size[2]()
 radius.Fill(1)
 forwardDifferenceOperator.CreateToRadius(radius)
@@ -27,4 +29,8 @@ print("Size: " + str(forwardDifferenceOperator.GetSize()))
 print(forwardDifferenceOperator)
 
 for i in range(9):
-    print(str(forwardDifferenceOperator.GetOffset(i)) + " " + str(forwardDifferenceOperator.GetElement(i)))
+    print(
+        str(forwardDifferenceOperator.GetOffset(i))
+        + " "
+        + str(forwardDifferenceOperator.GetElement(i))
+    )

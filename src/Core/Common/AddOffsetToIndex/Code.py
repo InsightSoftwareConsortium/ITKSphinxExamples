@@ -18,6 +18,7 @@ import sys
 import itk
 
 from distutils.version import StrictVersion as VS
+
 if VS(itk.Version.GetITKVersion()) < VS("4.9.0"):
     print("ITK 4.9.0 is required.")
     sys.exit(1)

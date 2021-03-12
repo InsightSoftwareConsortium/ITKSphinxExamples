@@ -18,14 +18,13 @@ import sys
 import itk
 
 if len(sys.argv) != 4:
-    print('Usage: ' + sys.argv[0] +
-          ' input3DImageFile  output3DImageFile  sliceNumber')
+    print("Usage: " + sys.argv[0] + " input3DImageFile  output3DImageFile  sliceNumber")
     sys.exit(1)
 inputFilename = sys.argv[1]
 outputFilename = sys.argv[2]
 
 Dimension = 3
-PixelType = itk.ctype('short')
+PixelType = itk.ctype("short")
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
