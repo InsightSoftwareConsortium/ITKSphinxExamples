@@ -8,6 +8,7 @@
 *.txx            our-c-style
 *.txt            whitespace=tab-in-indent,no-lf-at-eof
 *.cmake          whitespace=tab-in-indent,no-lf-at-eof
+*.py             hooks.style=black
 
 # ExternalData content links must have LF newlines
 *.md5            crlf=input

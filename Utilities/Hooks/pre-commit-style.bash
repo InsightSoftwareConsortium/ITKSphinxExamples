@@ -14,7 +14,7 @@
 # limitations under the License.
 #=============================================================================
 
-# Run clangformat and KWStyle pre-commit hooks.
+# Run clangformat, KWStyle, black pre-commit hooks.
 #
 # 'git config' is used to enable the hooks and set their configuration files.
 # The repository .gitattributes must also enable the hooks on the targeted
@@ -31,6 +31,8 @@ die() {
 do_KWStyle=$(git config --bool hooks.KWStyle) || do_KWStyle=false
 
 do_clangformat=$(git config --bool hooks.clangformat) || do_clangformat=true
+
+do_black=$(git config --bool hooks.blackformat) || do_blackformat=true
 
 #-----------------------------------------------------------------------------
 # Check if we want to run the style on a given file.  Uses git attributes.  If
@@ -164,8 +166,8 @@ check_for_clangformat() {
   clangformat_path=$(type -p "$system_clang_format" >/dev/null) ||
   die "clang-format executable was not found.
 
-A clang-format binary will be downloaded and configured when ITK
-is built with the BUILD_TESTING CMake configuration option enabled.
+A clang-format binary will be downloaded and configured when the ITKExamples
+Superbuild is built with the BUILD_TESTING CMake configuration option enabled.
 
 Alternatively, install clang-format version $clangformat_required_version or set the executable location with
 
@@ -292,25 +294,81 @@ For more information, see
   done # end for changed files
 }
 
+#-----------------------------------------------------------------------------
+# black.
+check_for_black() {
+  system_black=""
+  if type -p "black" >/dev/null; then
+    system_black="black"
+  fi
+  black_path=$(git config black.executable) ||
+  black_path=$(type -p "$system_black" >/dev/null) ||
+  die "black executable was not found.
+
+A black Python formatting tool will be downloaded and configured when the ITKExamples
+Superbuild is built with the BUILD_TESTING CMake configuration option enabled.
+
+Alternatively, install black with:
+
+  python -m pip install black
+
+and set the executable location with
+
+  git config black.executable /path/to/black
+
+if it is not in the system's PATH.
+"
+}
+
+run_black_on_file() {
+  "$black_path" "$1"
+
+  if test $? -ne 0; then
+    die "black style application failed."
+  fi
+  return 0
+}
+
+run_black() {
+  $do_black && check_for_black
+  if test $?; then
+    have_black=true
+  else
+    have_black=false
+  fi
+
+  git diff-index --cached --diff-filter=ACMR --name-only HEAD -- |
+  while read f; do
+    if run_style_on_file "$f" "black"; then
+      run_black_on_file "$f"
+    fi || return
+  done
+}
+
 # Do not run during merge commits for now.
 if test -f "$GIT_DIR/MERGE_HEAD"; then
   :
-elif $do_clangformat; then
-  # We use git-mergetool settings to review the clangformat changes.
-  TOOL_MODE=merge
-  . "$(git --exec-path)/git-mergetool--lib"
-  # Redefine check_unchanged because we do not need to check if the merge was
-  # successful.
-  check_unchanged() {
-    status=0
-  }
-  check_for_clangformat
-  run_clangformat || exit 1
-# do_clangformat will run KWStyle on the files incrementally so excessive
-# clangformat merges do not have to occur.
-elif $do_KWStyle; then
-  if check_for_KWStyle; then
-    run_KWStyle || exit 1
+else
+  if $do_clangformat; then
+    # We use git-mergetool settings to review the clangformat changes.
+    TOOL_MODE=merge
+    . "$(git --exec-path)/git-mergetool--lib"
+    # Redefine check_unchanged because we do not need to check if the merge was
+    # successful.
+    check_unchanged() {
+      status=0
+    }
+    check_for_clangformat
+    run_clangformat || exit 1
+    # do_clangformat will run KWStyle on the files incrementally so excessive
+    # clangformat merges do not have to occur.
+  elif $do_KWStyle; then
+    if check_for_KWStyle; then
+      run_KWStyle || exit 1
+    fi
+  fi
+  if $do_black; then
+    run_black || exit 1
   fi
 fi
 
