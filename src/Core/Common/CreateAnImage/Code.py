@@ -17,7 +17,7 @@
 import itk
 
 Dimension = 3
-PixelType = itk.ctype('unsigned char')
+PixelType = itk.ctype("unsigned char")
 ImageType = itk.Image[PixelType, Dimension]
 
 image = ImageType.New()

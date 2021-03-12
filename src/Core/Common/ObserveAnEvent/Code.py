@@ -31,7 +31,8 @@ source.SetSigma(sigma)
 
 
 def myCommand():
-    print('Progress: ' + str(source.GetProgress()))
+    print("Progress: " + str(source.GetProgress()))
+
 
 source.AddObserver(itk.ProgressEvent(), myCommand)
 

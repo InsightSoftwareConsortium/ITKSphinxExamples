@@ -18,8 +18,10 @@ import sys
 import itk
 
 if len(sys.argv) != 7:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage>"
-          "<OutputMin> <OutputMax> <Alpha> <Beta>")
+    print(
+        "Usage: " + sys.argv[0] + " <inputImage> <outputImage>"
+        "<OutputMin> <OutputMax> <Alpha> <Beta>"
+    )
     sys.exit(1)
 
 inputImage = sys.argv[1]

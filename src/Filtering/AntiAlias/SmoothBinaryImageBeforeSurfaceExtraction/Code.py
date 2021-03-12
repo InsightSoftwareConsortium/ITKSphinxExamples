@@ -18,8 +18,10 @@ import sys
 import itk
 
 if len(sys.argv) != 6:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-          "<maximumRMSError> <numberOfIterations> <numberOfLayers>")
+    print(
+        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
+        "<maximumRMSError> <numberOfIterations> <numberOfLayers>"
+    )
     sys.exit(1)
 
 inputImage = sys.argv[1]

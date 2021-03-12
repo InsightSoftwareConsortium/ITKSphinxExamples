@@ -34,9 +34,7 @@ OutputImageType = itk.Image[OutputPixelType, Dimension]
 reader = itk.ImageFileReader[InputImageType].New()
 reader.SetFileName(inputImage)
 
-rescaler = itk.RescaleIntensityImageFilter[
-    InputImageType,
-    InputImageType].New()
+rescaler = itk.RescaleIntensityImageFilter[InputImageType, InputImageType].New()
 rescaler.SetInput(reader.GetOutput())
 rescaler.SetOutputMinimum(0)
 outputPixelTypeMaximum = itk.NumericTraits[OutputPixelType].max()

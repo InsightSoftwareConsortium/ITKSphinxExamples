@@ -18,12 +18,13 @@ import sys
 import itk
 
 from distutils.version import StrictVersion as VS
+
 if VS(itk.Version.GetITKVersion()) < VS("4.10.0"):
     print("ITK 4.10.0 is required.")
     sys.exit(1)
 
 if len(sys.argv) != 2:
-    print('Usage: ' + sys.argv[0] + ' <InputFileName>')
+    print("Usage: " + sys.argv[0] + " <InputFileName>")
     sys.exit(1)
 imageFileName = sys.argv[1]
 

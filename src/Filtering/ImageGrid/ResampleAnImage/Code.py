@@ -30,7 +30,7 @@ input_image = itk.imread(input_image)
 size = itk.size(input_image)
 spacing = itk.spacing(input_image)
 
-central_pixel = [int(s/2) for s in size]
+central_pixel = [int(s / 2) for s in size]
 central_point = [float(p) for p in central_pixel]
 
 Dimension = input_image.GetImageDimension()
@@ -45,10 +45,12 @@ scale_transform.SetCenter(central_point)
 
 interpolator = itk.LinearInterpolateImageFunction.New(input_image)
 
-resampled = itk.resample_image_filter(input_image,
-        transform=scale_transform,
-        interpolator=interpolator,
-        size=size,
-        output_spacing=spacing)
+resampled = itk.resample_image_filter(
+    input_image,
+    transform=scale_transform,
+    interpolator=interpolator,
+    size=size,
+    output_spacing=spacing,
+)
 
 itk.imwrite(resampled, output_image)

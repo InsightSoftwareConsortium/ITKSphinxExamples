@@ -20,7 +20,8 @@ import itk
 if len(sys.argv) != 5:
     print(
         "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-        "<numberOfIterations> <conductance>")
+        "<numberOfIterations> <conductance>"
+    )
     sys.exit(1)
 
 inputImage = sys.argv[1]
@@ -43,7 +44,8 @@ castfilter = CastFilterType.New()
 castfilter.SetInput(reader)
 
 FilterType = itk.GradientAnisotropicDiffusionImageFilter[
-    OutputImageType, OutputImageType]
+    OutputImageType, OutputImageType
+]
 gradientfilter = FilterType.New()
 gradientfilter.SetInput(castfilter.GetOutput())
 gradientfilter.SetNumberOfIterations(numberOfIterations)

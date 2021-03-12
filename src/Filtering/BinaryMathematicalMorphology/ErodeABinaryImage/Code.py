@@ -37,14 +37,14 @@ reader.SetFileName(inputImage)
 StructuringElementType = itk.FlatStructuringElement[Dimension]
 structuringElement = StructuringElementType.Ball(radiusValue)
 
-ErodeFilterType = itk.BinaryErodeImageFilter[ImageType,
-                                             ImageType,
-                                             StructuringElementType]
+ErodeFilterType = itk.BinaryErodeImageFilter[
+    ImageType, ImageType, StructuringElementType
+]
 erodeFilter = ErodeFilterType.New()
 erodeFilter.SetInput(reader.GetOutput())
 erodeFilter.SetKernel(structuringElement)
-erodeFilter.SetForegroundValue(255) # Intensity value to erode
-erodeFilter.SetBackgroundValue(0)   # Replacement value for eroded voxels
+erodeFilter.SetForegroundValue(255)  # Intensity value to erode
+erodeFilter.SetBackgroundValue(0)  # Replacement value for eroded voxels
 
 WriterType = itk.ImageFileWriter[ImageType]
 writer = WriterType.New()

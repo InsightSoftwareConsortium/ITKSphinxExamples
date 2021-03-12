@@ -17,7 +17,9 @@
 import itk
 
 gaussianDerivativeOperator = itk.GaussianDerivativeOperator[itk.F, 2]()
-gaussianDerivativeOperator.SetDirection(0)  # Create the operator for the X axis derivative
+gaussianDerivativeOperator.SetDirection(
+    0
+)  # Create the operator for the X axis derivative
 radius = itk.Size[2]()
 radius.Fill(1)
 gaussianDerivativeOperator.CreateToRadius(radius)
@@ -27,4 +29,8 @@ print("Size: " + str(gaussianDerivativeOperator.GetSize()))
 print(gaussianDerivativeOperator)
 
 for i in range(9):
-    print(str(gaussianDerivativeOperator.GetOffset(i)) + " " + str(gaussianDerivativeOperator.GetElement(i)))
+    print(
+        str(gaussianDerivativeOperator.GetOffset(i))
+        + " "
+        + str(gaussianDerivativeOperator.GetElement(i))
+    )

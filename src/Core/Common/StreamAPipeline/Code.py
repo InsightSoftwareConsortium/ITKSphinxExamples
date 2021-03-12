@@ -18,12 +18,13 @@ import sys
 import itk
 
 from distutils.version import StrictVersion as VS
+
 if VS(itk.Version.GetITKVersion()) < VS("4.10.0"):
     print("ITK 4.10.0 is required.")
     sys.exit(1)
 
 if len(sys.argv) != 2:
-    print('Usage: ' + sys.argv[0] + ' <NumberOfSplits>')
+    print("Usage: " + sys.argv[0] + " <NumberOfSplits>")
     sys.exit(1)
 numberOfSplits = int(sys.argv[1])
 
@@ -45,12 +46,14 @@ streamingFilter.SetNumberOfStreamDivisions(numberOfSplits)
 
 streamingFilter.Update()
 
-print('The output LargestPossibleRegion is: ' +
-      str(streamingFilter.GetOutput().GetLargestPossibleRegion()))
+print(
+    "The output LargestPossibleRegion is: "
+    + str(streamingFilter.GetOutput().GetLargestPossibleRegion())
+)
 
-print('')
+print("")
 
 updatedRequestedRegions = monitorFilter.GetUpdatedRequestedRegions()
 print("Updated ApplyAFilterOnlyToASpecifiedImageRegion's:")
 for ii in range(len(updatedRequestedRegions)):
-    print('  ' + str(updatedRequestedRegions[ii]))
+    print("  " + str(updatedRequestedRegions[ii]))

@@ -18,8 +18,10 @@ import sys
 import itk
 
 if len(sys.argv) != 6:
-    print("Usage: " + sys.argv[0] + " <InputImage> <OutputImage> "
-          "<Variance> <LowerThreshold> <UpperThreshold>")
+    print(
+        "Usage: " + sys.argv[0] + " <InputImage> <OutputImage> "
+        "<Variance> <LowerThreshold> <UpperThreshold>"
+    )
     sys.exit(1)
 
 inputImage = sys.argv[1]
@@ -38,17 +40,13 @@ OutputImageType = itk.Image[OutputPixelType, Dimension]
 reader = itk.ImageFileReader[InputImageType].New()
 reader.SetFileName(inputImage)
 
-cannyFilter = itk.CannyEdgeDetectionImageFilter[
-    InputImageType,
-    InputImageType].New()
+cannyFilter = itk.CannyEdgeDetectionImageFilter[InputImageType, InputImageType].New()
 cannyFilter.SetInput(reader.GetOutput())
 cannyFilter.SetVariance(variance)
 cannyFilter.SetLowerThreshold(lowerThreshold)
 cannyFilter.SetUpperThreshold(upperThreshold)
 
-rescaler = itk.RescaleIntensityImageFilter[
-    InputImageType,
-    OutputImageType].New()
+rescaler = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType].New()
 rescaler.SetInput(cannyFilter.GetOutput())
 rescaler.SetOutputMinimum(0)
 rescaler.SetOutputMaximum(255)

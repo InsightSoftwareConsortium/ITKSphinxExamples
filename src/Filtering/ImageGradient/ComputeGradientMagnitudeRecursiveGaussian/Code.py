@@ -32,8 +32,9 @@ ImageType = itk.Image[PixelType, Dimension]
 reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputImage)
 
-gradientMagnitudeImageFilter = \
-        itk.GradientMagnitudeRecursiveGaussianImageFilter.New(reader)
+gradientMagnitudeImageFilter = itk.GradientMagnitudeRecursiveGaussianImageFilter.New(
+    reader
+)
 gradientMagnitudeImageFilter.SetInput(reader.GetOutput())
 gradientMagnitudeImageFilter.SetSigma(sigma)
 

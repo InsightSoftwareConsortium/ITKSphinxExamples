@@ -16,11 +16,11 @@
 
 import sys
 import itk
+
 itk.auto_progress(2)
 
 if len(sys.argv) < 3:
-    print("Usage: " + sys.argv[0] +
-          " <InputFileName> <OutputFileName> [Extension]")
+    print("Usage: " + sys.argv[0] + " <InputFileName> <OutputFileName> [Extension]")
     sys.exit(1)
 
 inputFileName = sys.argv[1]
@@ -44,8 +44,7 @@ reader.SetFileName(inputFileName)
 OutputPixelType = itk.UC
 RescaleImageType = itk.Image[OutputPixelType, Dimension]
 
-RescaleFilterType = itk.RescaleIntensityImageFilter[InputImageType,
-                                                    RescaleImageType]
+RescaleFilterType = itk.RescaleIntensityImageFilter[InputImageType, RescaleImageType]
 rescale = RescaleFilterType.New()
 rescale.SetInput(reader.GetOutput())
 rescale.SetOutputMinimum(0)

@@ -18,6 +18,7 @@ import sys
 import itk
 
 from distutils.version import StrictVersion as VS
+
 if VS(itk.Version.GetITKVersion()) < VS("4.8.0"):
     print("ITK 4.8.0 is required (see example documentation).")
     sys.exit(1)
@@ -59,8 +60,7 @@ colormap.SetRedChannel(redChannel)
 colormap.SetGreenChannel(greenChannel)
 colormap.SetBlueChannel(blueChannel)
 
-ColormapFilterType = itk.ScalarToRGBColormapImageFilter[
-    ImageType, RGBImageType]
+ColormapFilterType = itk.ScalarToRGBColormapImageFilter[ImageType, RGBImageType]
 colormapFilter1 = ColormapFilterType.New()
 
 colormapFilter1.SetInput(reader.GetOutput())

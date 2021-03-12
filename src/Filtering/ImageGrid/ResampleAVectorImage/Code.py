@@ -34,12 +34,14 @@ interpolator = itk.LinearInterpolateImageFunction[ImageType, itk.D].New()
 Dimension = input_image.GetImageDimension()
 transform = itk.IdentityTransform[itk.D, Dimension].New()
 
-output_image = itk.resample_image_filter(input_image,
-        interpolator=interpolator,
-        transform=transform,
-        default_pixel_value=[50, 50, 50],
-        output_spacing=[0.5, 0.5],
-        output_origin=[30, 40],
-        size=[300, 300])
+output_image = itk.resample_image_filter(
+    input_image,
+    interpolator=interpolator,
+    transform=transform,
+    default_pixel_value=[50, 50, 50],
+    output_spacing=[0.5, 0.5],
+    output_origin=[30, 40],
+    size=[300, 300],
+)
 
 itk.imwrite(output_image, output_filename)

@@ -17,8 +17,8 @@
 import argparse
 import itk
 
-parser = argparse.ArgumentParser(description='Set the Default Number Of Threads.')
-parser.add_argument('number_of_threads', type=int)
+parser = argparse.ArgumentParser(description="Set the Default Number Of Threads.")
+parser.add_argument("number_of_threads", type=int)
 args = parser.parse_args()
 
 # Create a MultiThreaderBase instance to get access to its static methods
@@ -30,4 +30,4 @@ filter_default_threads = filt.GetMultiThreader().GetGlobalDefaultNumberOfThreads
 
 print("Filter's default number of threads: {}".format(filter_default_threads))
 
-assert(filter_default_threads == args.number_of_threads)
+assert filter_default_threads == args.number_of_threads

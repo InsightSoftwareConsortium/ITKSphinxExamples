@@ -18,8 +18,10 @@ import sys
 import itk
 
 if len(sys.argv) != 6:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-          "<numberOfIterations> <timeStep> <conductance>")
+    print(
+        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
+        "<numberOfIterations> <timeStep> <conductance>"
+    )
     sys.exit(1)
 
 inputImage = sys.argv[1]
@@ -39,8 +41,7 @@ ReaderType = itk.ImageFileReader[InputImageType]
 reader = ReaderType.New()
 reader.SetFileName(inputImage)
 
-FilterType = itk.GradientAnisotropicDiffusionImageFilter[
-    InputImageType, InputImageType]
+FilterType = itk.GradientAnisotropicDiffusionImageFilter[InputImageType, InputImageType]
 gradientAnisotropicDiffusionFilter = FilterType.New()
 
 gradientAnisotropicDiffusionFilter.SetInput(reader.GetOutput())
@@ -48,8 +49,7 @@ gradientAnisotropicDiffusionFilter.SetNumberOfIterations(numberOfIterations)
 gradientAnisotropicDiffusionFilter.SetTimeStep(timeStep)
 gradientAnisotropicDiffusionFilter.SetConductanceParameter(conductance)
 
-RescaleFilterType = itk.RescaleIntensityImageFilter[
-    InputImageType, OutputImageType]
+RescaleFilterType = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType]
 rescaler = RescaleFilterType.New()
 rescaler.SetInput(gradientAnisotropicDiffusionFilter.GetOutput())
 

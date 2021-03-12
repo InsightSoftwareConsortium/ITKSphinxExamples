@@ -20,16 +20,15 @@ import os
 import itk
 
 if len(sys.argv) < 2:
-    print("Usage: " + sys.argv[0] +
-          " [DicomDirectory [outputFileName [seriesName]]]")
+    print("Usage: " + sys.argv[0] + " [DicomDirectory [outputFileName [seriesName]]]")
     print("If DicomDirectory is not specified, current directory is used\n")
 
 # current directory by default
-dirName = '.'
+dirName = "."
 if len(sys.argv) > 1:
     dirName = sys.argv[1]
 
-PixelType = itk.ctype('signed short')
+PixelType = itk.ctype("signed short")
 Dimension = 3
 
 ImageType = itk.Image[PixelType, Dimension]
@@ -43,11 +42,11 @@ namesGenerator.SetDirectory(dirName)
 seriesUID = namesGenerator.GetSeriesUIDs()
 
 if len(seriesUID) < 1:
-    print('No DICOMs in: ' + dirName)
+    print("No DICOMs in: " + dirName)
     sys.exit(1)
 
-print('The directory: ' + dirName)
-print('Contains the following DICOM Series: ')
+print("The directory: " + dirName)
+print("Contains the following DICOM Series: ")
 for uid in seriesUID:
     print(uid)
 
@@ -57,7 +56,7 @@ for uid in seriesUID:
     if len(sys.argv) > 3:
         seriesIdentifier = sys.argv[3]
         seriesFound = True
-    print('Reading: ' + seriesIdentifier)
+    print("Reading: " + seriesIdentifier)
     fileNames = namesGenerator.GetFileNames(seriesIdentifier)
 
     reader = itk.ImageSeriesReader[ImageType].New()
@@ -67,13 +66,13 @@ for uid in seriesUID:
     reader.ForceOrthogonalDirectionOff()
 
     writer = itk.ImageFileWriter[ImageType].New()
-    outFileName = os.path.join(dirName, seriesIdentifier + '.nrrd')
+    outFileName = os.path.join(dirName, seriesIdentifier + ".nrrd")
     if len(sys.argv) > 2:
         outFileName = sys.argv[2]
     writer.SetFileName(outFileName)
     writer.UseCompressionOn()
     writer.SetInput(reader.GetOutput())
-    print('Writing: ' + outFileName)
+    print("Writing: " + outFileName)
     writer.Update()
 
     if seriesFound:

@@ -18,17 +18,16 @@ import sys
 import itk
 
 if len(sys.argv) != 2:
-    print("Usage: " + sys.argv[0] +
-          " [DicomDirectory]")
+    print("Usage: " + sys.argv[0] + " [DicomDirectory]")
     print("If DicomDirectory is not specified, current directory is used\n")
 
 # current directory by default
-dirName = '.'
+dirName = "."
 if len(sys.argv) > 1:
     dirName = sys.argv[1]
 
 # Setup the image readers with their type
-PixelType = itk.ctype('signed short')
+PixelType = itk.ctype("signed short")
 Dimension = 3
 
 ImageType = itk.Image[PixelType, Dimension]
@@ -53,7 +52,7 @@ reader.SetFileNames(fileNames)
 try:
     reader.Update()
 except:
-    print('Error occured while reading DICOMs in: ' + dirName)
+    print("Error occured while reading DICOMs in: " + dirName)
     sys.exit(1)
 
 # ITK internally queries GDCM and obtains all the DICOM tags from the file
@@ -70,19 +69,19 @@ for tagkey in tagkeys:
     # Note the [] operator for the key
     try:
         tagvalue = metadata[tagkey]
-        print(tagkey + '=' + str(tagvalue))
+        print(tagkey + "=" + str(tagvalue))
     except RuntimeError:
-        #Cannot pass specialized values into metadata dictionary.
+        # Cannot pass specialized values into metadata dictionary.
         print("Cannot pass specialized value" + tagkey + "into metadadictionary")
 
 
 # Illustrating use of getting a label given a tag here
 entryID = "0010|0010"
 if not metadata.HasKey(entryID):
-    print('tag: ' + entryID + ' not found in series')
+    print("tag: " + entryID + " not found in series")
 else:
     # The second parameter is mandatory in python to get the
     # string label value
     label = itk.GDCMImageIO.GetLabelFromTag(entryID, "")
     tagvalue = metadata[entryID]
-    print(label[1] + ' (' + entryID + ') is: ' + str(tagvalue))
+    print(label[1] + " (" + entryID + ") is: " + str(tagvalue))

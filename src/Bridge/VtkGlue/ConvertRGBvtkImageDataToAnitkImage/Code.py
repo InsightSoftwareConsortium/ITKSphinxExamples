@@ -19,7 +19,7 @@ import itk
 import vtk
 
 if len(sys.argv) < 2:
-    print('Usage: ' + sys.argv[0] + ' <InputFileName>')
+    print("Usage: " + sys.argv[0] + " <InputFileName>")
     sys.exit(1)
 imageFileName = sys.argv[1]
 

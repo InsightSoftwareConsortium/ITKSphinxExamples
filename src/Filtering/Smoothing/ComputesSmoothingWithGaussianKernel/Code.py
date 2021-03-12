@@ -33,9 +33,7 @@ ImageType = itk.Image[PixelType, Dimension]
 reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputImage)
 
-smoothFilter = itk.SmoothingRecursiveGaussianImageFilter[
-        ImageType,
-        ImageType].New()
+smoothFilter = itk.SmoothingRecursiveGaussianImageFilter[ImageType, ImageType].New()
 smoothFilter.SetInput(reader.GetOutput())
 smoothFilter.SetSigma(sigma)
 

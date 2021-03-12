@@ -21,10 +21,13 @@ if len(sys.argv) != 11:
     print(
         "Usage: " + sys.argv[0] + "<InputFileName>  <OutputFileName>"
         " <seedX> <seedY> <InitialDistance> <Sigma> <SigmoidAlpha> "
-        "<SigmoidBeta> <PropagationScaling> <NumberOfIterations>")
+        "<SigmoidBeta> <PropagationScaling> <NumberOfIterations>"
+    )
     sys.exit(1)
 
 inputFileName = sys.argv[1]
+
+
 outputFileName = sys.argv[2]
 seedPosX = int(sys.argv[3])
 seedPosY = int(sys.argv[4])
@@ -52,7 +55,8 @@ reader = ReaderType.New()
 reader.SetFileName(inputFileName)
 
 SmoothingFilterType = itk.CurvatureAnisotropicDiffusionImageFilter[
-    InputImageType, InputImageType]
+    InputImageType, InputImageType
+]
 smoothing = SmoothingFilterType.New()
 smoothing.SetTimeStep(0.125)
 smoothing.SetNumberOfIterations(5)
@@ -60,7 +64,8 @@ smoothing.SetConductanceParameter(9.0)
 smoothing.SetInput(reader.GetOutput())
 
 GradientFilterType = itk.GradientMagnitudeRecursiveGaussianImageFilter[
-    InputImageType, InputImageType]
+    InputImageType, InputImageType
+]
 gradientMagnitude = GradientFilterType.New()
 gradientMagnitude.SetSigma(sigma)
 gradientMagnitude.SetInput(smoothing.GetOutput())
@@ -73,12 +78,12 @@ sigmoid.SetAlpha(alpha)
 sigmoid.SetBeta(beta)
 sigmoid.SetInput(gradientMagnitude.GetOutput())
 
-FastMarchingFilterType = itk.FastMarchingImageFilter[
-    InputImageType, InputImageType]
+FastMarchingFilterType = itk.FastMarchingImageFilter[InputImageType, InputImageType]
 fastMarching = FastMarchingFilterType.New()
 
 GeoActiveContourFilterType = itk.GeodesicActiveContourLevelSetImageFilter[
-    InputImageType, InputImageType, InputPixelType]
+    InputImageType, InputImageType, InputPixelType
+]
 geodesicActiveContour = GeoActiveContourFilterType.New()
 geodesicActiveContour.SetPropagationScaling(propagationScaling)
 geodesicActiveContour.SetCurvatureScaling(1.0)
@@ -88,8 +93,7 @@ geodesicActiveContour.SetNumberOfIterations(numberOfIterations)
 geodesicActiveContour.SetInput(fastMarching.GetOutput())
 geodesicActiveContour.SetFeatureImage(sigmoid.GetOutput())
 
-ThresholdingFilterType = itk.BinaryThresholdImageFilter[
-    InputImageType, OutputImageType]
+ThresholdingFilterType = itk.BinaryThresholdImageFilter[InputImageType, OutputImageType]
 thresholder = ThresholdingFilterType.New()
 thresholder.SetLowerThreshold(-1000.0)
 thresholder.SetUpperThreshold(0.0)
@@ -105,16 +109,14 @@ node = itk.LevelSetNode[InputPixelType, Dimension]()
 node.SetValue(seedValue)
 node.SetIndex(seedPosition)
 
-seeds = itk.VectorContainer[
-    itk.UI, itk.LevelSetNode[InputPixelType, Dimension]].New()
+seeds = itk.VectorContainer[itk.UI, itk.LevelSetNode[InputPixelType, Dimension]].New()
 seeds.Initialize()
 seeds.InsertElement(0, node)
 
 fastMarching.SetTrialPoints(seeds)
 fastMarching.SetSpeedConstant(1.0)
 
-CastFilterType = itk.RescaleIntensityImageFilter[
-    InputImageType, OutputImageType]
+CastFilterType = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType]
 
 caster1 = CastFilterType.New()
 caster2 = CastFilterType.New()
@@ -153,8 +155,7 @@ writer4.SetFileName("GeodesicActiveContourImageFilterOutput4.png")
 caster4.SetOutputMinimum(itk.NumericTraits[OutputPixelType].min())
 caster4.SetOutputMaximum(itk.NumericTraits[OutputPixelType].max())
 
-fastMarching.SetOutputSize(
-    reader.GetOutput().GetBufferedRegion().GetSize())
+fastMarching.SetOutputSize(reader.GetOutput().GetBufferedRegion().GetSize())
 
 writer = WriterType.New()
 writer.SetFileName(outputFileName)
@@ -162,14 +163,14 @@ writer.SetInput(thresholder.GetOutput())
 writer.Update()
 
 print(
-    "Max. no. iterations: " +
-    str(geodesicActiveContour.GetNumberOfIterations()) + "\n")
+    "Max. no. iterations: " + str(geodesicActiveContour.GetNumberOfIterations()) + "\n"
+)
+print("Max. RMS error: " + str(geodesicActiveContour.GetMaximumRMSError()) + "\n")
 print(
-    "Max. RMS error: " +
-    str(geodesicActiveContour.GetMaximumRMSError()) + "\n")
-print(
-    "No. elpased iterations: " +
-    str(geodesicActiveContour.GetElapsedIterations()) + "\n")
+    "No. elpased iterations: "
+    + str(geodesicActiveContour.GetElapsedIterations())
+    + "\n"
+)
 print("RMS change: " + str(geodesicActiveContour.GetRMSChange()) + "\n")
 
 writer4.Update()

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#==========================================================================
+# ==========================================================================
 #
 #   Copyright NumFOCUS
 #
@@ -16,13 +16,17 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #
-#==========================================================================
+# ==========================================================================
 
 import sys
 import itk
 
 if len(sys.argv) != 6:
-    print('Usage: ' + sys.argv[0] + ' <InputFileName> <OutputFileName> <Alpha> <Beta> <Radius>')
+    print(
+        "Usage: "
+        + sys.argv[0]
+        + " <InputFileName> <OutputFileName> <Alpha> <Beta> <Radius>"
+    )
     sys.exit(1)
 
 inputFileName = sys.argv[1]
@@ -33,19 +37,18 @@ radiusValue = int(sys.argv[5])
 
 Dimension = 2
 
-PixelType = itk.ctype('unsigned char')
+PixelType = itk.ctype("unsigned char")
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
 reader.SetFileName(inputFileName)
 
-histogramEqualization = \
-    itk.AdaptiveHistogramEqualizationImageFilter.New(reader)
+histogramEqualization = itk.AdaptiveHistogramEqualizationImageFilter.New(reader)
 histogramEqualization.SetAlpha(alpha)
 histogramEqualization.SetBeta(beta)
 
 radius = itk.Size[Dimension]()
-radius.Fill(radiusValue);
+radius.Fill(radiusValue)
 histogramEqualization.SetRadius(radius)
 
 itk.imwrite(histogramEqualization, outputFileName)

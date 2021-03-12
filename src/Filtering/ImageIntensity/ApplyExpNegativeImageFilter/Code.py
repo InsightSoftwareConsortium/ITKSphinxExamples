@@ -19,8 +19,10 @@ import sys
 import itk
 
 if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + "<InputFileName> "
-          "<InputFileName> <OutputFileName> <K: ExpNegative parameter>")
+    print(
+        "Usage: " + sys.argv[0] + "<InputFileName> "
+        "<InputFileName> <OutputFileName> <K: ExpNegative parameter>"
+    )
     sys.exit(1)
 
 inputFileName = sys.argv[1]

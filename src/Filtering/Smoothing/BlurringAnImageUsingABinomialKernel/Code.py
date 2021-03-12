@@ -18,8 +18,7 @@ import sys
 import itk
 
 if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] +
-          " <inputImage> <outputImage> <numberOfRepetitions>")
+    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> <numberOfRepetitions>")
     sys.exit(1)
 
 inputImage = sys.argv[1]
@@ -39,9 +38,7 @@ reader.SetFileName(inputImage)
 binomialFilter = itk.BinomialBlurImageFilter.New(reader)
 binomialFilter.SetRepetitions(numberOfRepetitions)
 
-rescaler = itk.RescaleIntensityImageFilter[
-    InputImageType,
-    OutputImageType].New()
+rescaler = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType].New()
 rescaler.SetInput(binomialFilter.GetOutput())
 rescaler.SetOutputMinimum(0)
 rescaler.SetOutputMaximum(255)

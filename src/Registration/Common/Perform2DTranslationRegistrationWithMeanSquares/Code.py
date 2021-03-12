@@ -18,13 +18,16 @@ import sys
 import itk
 
 from distutils.version import StrictVersion as VS
+
 if VS(itk.Version.GetITKVersion()) < VS("4.9.0"):
     print("ITK 4.9.0 is required.")
     sys.exit(1)
 
 if len(sys.argv) != 6:
-    print("Usage: " + sys.argv[0] + " <fixedImageFile> <movingImageFile> "
-          "<outputImagefile> <differenceImageAfter> <differenceImageBefore>")
+    print(
+        "Usage: " + sys.argv[0] + " <fixedImageFile> <movingImageFile> "
+        "<outputImagefile> <differenceImageAfter> <differenceImageBefore>"
+    )
     sys.exit(1)
 
 fixedImageFile = sys.argv[1]
@@ -33,7 +36,7 @@ outputImageFile = sys.argv[3]
 differenceImageAfterFile = sys.argv[4]
 differenceImageBeforeFile = sys.argv[5]
 
-PixelType = itk.ctype('float')
+PixelType = itk.ctype("float")
 
 fixedImage = itk.imread(fixedImageFile, PixelType)
 movingImage = itk.imread(movingImageFile, PixelType)
@@ -46,19 +49,21 @@ TransformType = itk.TranslationTransform[itk.D, Dimension]
 initialTransform = TransformType.New()
 
 optimizer = itk.RegularStepGradientDescentOptimizerv4.New(
-        LearningRate=4,
-        MinimumStepLength=0.001,
-        RelaxationFactor=0.5,
-        NumberOfIterations=200)
+    LearningRate=4,
+    MinimumStepLength=0.001,
+    RelaxationFactor=0.5,
+    NumberOfIterations=200,
+)
 
-metric = itk.MeanSquaresImageToImageMetricv4[
-    FixedImageType, MovingImageType].New()
+metric = itk.MeanSquaresImageToImageMetricv4[FixedImageType, MovingImageType].New()
 
-registration = itk.ImageRegistrationMethodv4.New(FixedImage=fixedImage,
-        MovingImage=movingImage,
-        Metric=metric,
-        Optimizer=optimizer,
-        InitialTransform=initialTransform)
+registration = itk.ImageRegistrationMethodv4.New(
+    FixedImage=fixedImage,
+    MovingImage=movingImage,
+    Metric=metric,
+    Optimizer=optimizer,
+    InitialTransform=initialTransform,
+)
 
 movingInitialTransform = TransformType.New()
 initialParameters = movingInitialTransform.GetParameters()
@@ -97,30 +102,32 @@ outputCompositeTransform = CompositeTransformType.New()
 outputCompositeTransform.AddTransform(movingInitialTransform)
 outputCompositeTransform.AddTransform(registration.GetModifiableTransform())
 
-resampler = itk.ResampleImageFilter.New(Input=movingImage,
-        Transform=outputCompositeTransform,
-        UseReferenceImage=True,
-        ReferenceImage=fixedImage)
+resampler = itk.ResampleImageFilter.New(
+    Input=movingImage,
+    Transform=outputCompositeTransform,
+    UseReferenceImage=True,
+    ReferenceImage=fixedImage,
+)
 resampler.SetDefaultPixelValue(100)
 
-OutputPixelType = itk.ctype('unsigned char')
+OutputPixelType = itk.ctype("unsigned char")
 OutputImageType = itk.Image[OutputPixelType, Dimension]
 
-caster = itk.CastImageFilter[FixedImageType,
-        OutputImageType].New(Input=resampler)
+caster = itk.CastImageFilter[FixedImageType, OutputImageType].New(Input=resampler)
 
 writer = itk.ImageFileWriter.New(Input=caster, FileName=outputImageFile)
 writer.SetFileName(outputImageFile)
 writer.Update()
 
-difference = itk.SubtractImageFilter.New(Input1=fixedImage,
-        Input2=resampler)
+difference = itk.SubtractImageFilter.New(Input1=fixedImage, Input2=resampler)
 
-intensityRescaler = itk.RescaleIntensityImageFilter[FixedImageType,
-        OutputImageType].New(
-            Input=difference,
-            OutputMinimum=itk.NumericTraits[OutputPixelType].min(),
-            OutputMaximum=itk.NumericTraits[OutputPixelType].max())
+intensityRescaler = itk.RescaleIntensityImageFilter[
+    FixedImageType, OutputImageType
+].New(
+    Input=difference,
+    OutputMinimum=itk.NumericTraits[OutputPixelType].min(),
+    OutputMaximum=itk.NumericTraits[OutputPixelType].max(),
+)
 
 resampler.SetDefaultPixelValue(1)
 writer.SetInput(intensityRescaler.GetOutput())

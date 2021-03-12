@@ -18,8 +18,10 @@ import itk
 import sys
 
 if len(sys.argv) != 5:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-          "<numberOfIterations> <timeStep>")
+    print(
+        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
+        "<numberOfIterations> <timeStep>"
+    )
     sys.exit(1)
 
 inputImage = sys.argv[1]
@@ -38,16 +40,14 @@ ReaderType = itk.ImageFileReader[InputImageType]
 reader = ReaderType.New()
 reader.SetFileName(inputImage)
 
-FilterType = itk.CurvatureFlowImageFilter[
-    InputImageType, InputImageType]
+FilterType = itk.CurvatureFlowImageFilter[InputImageType, InputImageType]
 curvatureFlowFilter = FilterType.New()
 
 curvatureFlowFilter.SetInput(reader.GetOutput())
 curvatureFlowFilter.SetNumberOfIterations(numberOfIterations)
 curvatureFlowFilter.SetTimeStep(timeStep)
 
-RescaleFilterType = itk.RescaleIntensityImageFilter[
-    InputImageType, OutputImageType]
+RescaleFilterType = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType]
 rescaler = RescaleFilterType.New()
 rescaler.SetInput(curvatureFlowFilter.GetOutput())
 

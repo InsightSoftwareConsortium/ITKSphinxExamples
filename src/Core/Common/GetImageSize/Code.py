@@ -19,7 +19,7 @@ import numpy as np
 import itk
 
 if len(sys.argv) != 2:
-    print('Usage: ' + sys.argv[0] + ' <inputImageFile>')
+    print("Usage: " + sys.argv[0] + " <inputImageFile>")
     sys.exit(1)
 
 inputImageFile = sys.argv[1]
