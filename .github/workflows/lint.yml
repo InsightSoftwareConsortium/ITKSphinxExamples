@@ -1,0 +1,29 @@
+name: Lint
+
+on: [push,pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Lint C++
+      uses: InsightSoftwareConsortium/ITKClangFormatLinterAction@master
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+
+    - name: Install Python dependencies
+      run: pip install black
+
+    - name: Lint Python
+      uses: wearerequired/lint-action@v1
+      with:
+        black: true
+        black_dir: src/
