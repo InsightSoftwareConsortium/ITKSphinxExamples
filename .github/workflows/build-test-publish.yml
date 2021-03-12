@@ -411,7 +411,7 @@ jobs:
           tar --strip-components=1 -xf ${{ github.workspace }}/ITKExamples-build/ITKExamples-*-html.tar.gz -C site
 
       - name: Publish website to Netlify
-        uses: nwtgck/actions-netlify@v1.1
+        uses: nwtgck/actions-netlify@v1.1.13
         with:
           publish-dir: './site'
           production-branch: master
