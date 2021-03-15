@@ -355,7 +355,7 @@ jobs:
           set(CTEST_SITE "GitHubActions")
           file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/.." CTEST_DASHBOARD_ROOT)
           file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/" CTEST_SOURCE_DIRECTORY)
-          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/ITKSphinxExamples-build" CTEST_BINARY_DIRECTORY)
+          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/../build" CTEST_BINARY_DIRECTORY)
           set(dashboard_source_name "${GITHUB_REPOSITORY}")
           if(ENV{GITHUB_REF} MATCHES "master")
             set(branch "-master")
