@@ -392,12 +392,10 @@ jobs:
       - name: Build and test
         if: matrix.os != 'windows-2019'
         run: |
-          pwd
           ctest -j 2 -VV -S dashboard.cmake
       - name: Build and test
         if: matrix.os == 'windows-2019'
         run: |
-          cd
           call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
           ctest -j 2 -VV -S dashboard.cmake
         shell: cmd
