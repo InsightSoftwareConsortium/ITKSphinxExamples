@@ -1,4 +1,4 @@
-Random Selection Of Pixels From Region
+Random Selection of Pixels From Region
 ======================================
 
 .. index::

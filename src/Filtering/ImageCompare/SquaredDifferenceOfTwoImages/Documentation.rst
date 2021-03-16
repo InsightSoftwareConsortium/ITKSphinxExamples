@@ -1,4 +1,4 @@
-Squared Difference Of Two Images
+Squared Difference of Two Images
 ================================
 
 .. index::

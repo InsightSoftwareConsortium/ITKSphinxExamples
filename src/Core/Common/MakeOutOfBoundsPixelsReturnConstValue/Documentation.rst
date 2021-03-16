@@ -1,4 +1,4 @@
-Make Out Of Bounds Pixels Return Constant Value
+Make Out of Bounds Pixels Return Constant Value
 ===============================================
 
 .. index::

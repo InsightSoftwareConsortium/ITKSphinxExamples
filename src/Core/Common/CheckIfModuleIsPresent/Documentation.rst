@@ -1,4 +1,4 @@
-Check If Module Is Present
+Check if Module Is Present
 ==========================
 
 .. index::

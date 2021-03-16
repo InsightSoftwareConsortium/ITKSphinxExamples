@@ -1,4 +1,4 @@
-Iterate Image Starting At Seed
+Iterate Image Starting at Seed
 ==============================
 .. warning::
    **Fix Problem**

@@ -1,4 +1,4 @@
-Convert Array To Image
+Convert Array to Image
 ======================
 
 .. index::

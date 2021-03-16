@@ -1,4 +1,4 @@
-Iterate Over A Region With A Shaped Neighborhood Iterator Manually
+Iterate Over a Region With a Shaped Neighborhood Iterator Manually
 ===================================================================
 
 .. index::

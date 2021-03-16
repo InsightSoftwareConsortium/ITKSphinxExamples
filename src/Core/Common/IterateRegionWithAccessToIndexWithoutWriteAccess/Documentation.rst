@@ -1,4 +1,4 @@
-Iterate Region In Image With Access To Index Without Write Access
+Iterate Region in Image With Access to Index Without Write Access
 =================================================================
 
 .. index::

@@ -1,4 +1,4 @@
-Observe An Event
+Observe an Event
 ================
 
 .. index::
