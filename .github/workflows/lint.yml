@@ -17,11 +17,11 @@ jobs:
       with:
         python-version: 3.9
 
-    - name: Install Python dependencies
-      run: pip install black
-
     - name: Lint Python
-      uses: wearerequired/lint-action@v1
-      with:
-        black: true
-        black_dir: src/
+      uses: github/super-linter@v3
+      env:
+        VALIDATE_ALL_CODEBASE: false
+        VALIDATE_PYTHON_BLACK: true
+        VALIDATE_YAML: true
+        DEFAULT_BRANCH: master
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -13,17 +13,17 @@ jobs:
           - os: ubuntu-18.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
-            itk-git-tag: "v5.2rc03"
+            itk-git-tag: "3f6c15eb531cecbd7de1b5ddd8667d5978493344"
             cmake-build-type: "MinSizeRel"
           - os: windows-2019
             c-compiler: "cl.exe"
             cxx-compiler: "cl.exe"
-            itk-git-tag: "v5.2rc03"
+            itk-git-tag: "3f6c15eb531cecbd7de1b5ddd8667d5978493344"
             cmake-build-type: "Release"
           - os: macos-10.15
             c-compiler: "clang"
             cxx-compiler: "clang++"
-            itk-git-tag: "v5.2rc03"
+            itk-git-tag: "3f6c15eb531cecbd7de1b5ddd8667d5978493344"
             cmake-build-type: "MinSizeRel"
 
     steps:
@@ -71,128 +71,6 @@ jobs:
       - name: Fetch CTest driver script
         run: |
           curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITK/dashboard/itk_common.cmake -O
-      - name: Configure CTest script
-        shell: bash
-        run: |
-          operating_system="${{ matrix.os }}"
-          cat > dashboard.cmake << EOF
-          set(CTEST_SITE "GitHubActions")
-          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/.." CTEST_DASHBOARD_ROOT)
-          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/" CTEST_SOURCE_DIRECTORY)
-          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/../build" CTEST_BINARY_DIRECTORY)
-          set(dashboard_source_name "${GITHUB_REPOSITORY}")
-          if(ENV{GITHUB_REF} MATCHES "master")
-            set(branch "-master")
-            set(dashboard_model "Continuous")
-          else()
-            set(branch "-${GITHUB_REF}")
-            set(dashboard_model "Experimental")
-          endif()
-          set(CTEST_BUILD_NAME "${GITHUB_REPOSITORY}-${operating_system}-\${branch}")
-          set(CTEST_UPDATE_VERSION_ONLY 1)
-          set(CTEST_TEST_ARGS \${CTEST_TEST_ARGS} PARALLEL_LEVEL \${PARALLEL_LEVEL})
-          set(CTEST_BUILD_CONFIGURATION "Release")
-          set(CTEST_CMAKE_GENERATOR "Ninja")
-          set(CTEST_CUSTOM_WARNING_EXCEPTION
-            \${CTEST_CUSTOM_WARNING_EXCEPTION}
-            # macOS Azure VM Warning
-            "ld: warning: text-based stub file"
-            )
-          set(dashboard_no_clean 1)
-          set(ENV{CC} ${{ matrix.c-compiler }})
-          set(ENV{CXX} ${{ matrix.cxx-compiler }})
-          set(dashboard_cache "
-          ITK_DIR:PATH=\${CTEST_DASHBOARD_ROOT}/ITK-build
-          BUILD_TESTING:BOOL=ON
-          ")
-          string(TIMESTAMP build_date "%Y-%m-%d")
-          message("CDash Build Identifier: \${build_date} \${CTEST_BUILD_NAME}")
-          message("CTEST_SITE = \${CTEST_SITE}")
-          include(\${CTEST_SCRIPT_DIRECTORY}/itk_common.cmake)
-          EOF
-          cat dashboard.cmake
-      - name: Build and test
-        if: matrix.os != 'windows-2019'
-        run: |
-          ctest -j 2 -VV -S dashboard.cmake
-      - name: Build and test
-        if: matrix.os == 'windows-2019'
-        run: |
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          ctest -j 2 -VV -S dashboard.cmake
-        shell: cmd
-
-  build-test-python:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      max-parallel: 3
-      matrix:
-        os: [ubuntu-18.04, windows-2019, macos-10.15]
-        include:
-          - os: ubuntu-18.04
-            c-compiler: "gcc"
-            cxx-compiler: "g++"
-            itk-git-tag: "v5.2rc03"
-            cmake-build-type: "MinSizeRel"
-          - os: windows-2019
-            c-compiler: "cl.exe"
-            cxx-compiler: "cl.exe"
-            itk-git-tag: "v5.2rc03"
-            cmake-build-type: "Release"
-          - os: macos-10.15
-            c-compiler: "clang"
-            cxx-compiler: "clang++"
-            itk-git-tag: "v5.2rc03"
-            cmake-build-type: "MinSizeRel"
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
-
-      - name: Install build dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install ninja
-          python -m pip install itk==5.2rc03
-
-      - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v3.18.3
-
-      - name: Download ITK
-        run: |
-          cd ..
-          git clone https://github.com/InsightSoftwareConsortium/ITK.git
-          cd ITK
-          git checkout ${{ matrix.itk-git-tag }}
-
-      - name: Build ITK
-        if: matrix.os != 'windows-2019'
-        run: |
-          cd ..
-          mkdir ITK-build
-          cd ITK-build
-          cmake -DCMAKE_C_COMPILER:FILEPATH="${{ matrix.c-compiler }}" -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_CXX_COMPILER="${{ matrix.cxx-compiler }}" -DCMAKE_BUILD_TYPE:STRING=${{ matrix.cmake-build-type }} -DBUILD_TESTING:BOOL=OFF -GNinja ../ITK
-          ninja
-
-      - name: Build ITK
-        if: matrix.os == 'windows-2019'
-        run: |
-          cd ..
-          mkdir ITK-build
-          cd ITK-build
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          cmake -DCMAKE_C_COMPILER:FILEPATH="${{ matrix.c-compiler }}" -DBUILD_SHARED_LIBS:BOOL=OFF -DCMAKE_CXX_COMPILER="${{ matrix.cxx-compiler }}" -DCMAKE_BUILD_TYPE:STRING=${{ matrix.cmake-build-type }} -DBUILD_TESTING:BOOL=OFF -GNinja ../ITK
-          ninja
-        shell: cmd
-
-      - name: Fetch CTest driver script
-        run: |
-          curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITK/dashboard/itk_common.cmake -O
-
       - name: Configure CTest script
         shell: bash
         run: |
@@ -223,18 +101,110 @@ jobs:
           set(dashboard_no_clean 1)
           set(ENV{CC} ${{ matrix.c-compiler }})
           set(ENV{CXX} ${{ matrix.cxx-compiler }})
-          if(WIN32)
-            set(ENV{PATH} "\${CTEST_DASHBOARD_ROOT}/ITK-build/bin;\$ENV{PATH}")
-          endif()
           set(dashboard_cache "
           ITK_DIR:PATH=\${CTEST_DASHBOARD_ROOT}/ITK-build
           BUILD_TESTING:BOOL=ON
-          ITK_WRAP_PYTHON:BOOL=ON
           ")
           string(TIMESTAMP build_date "%Y-%m-%d")
           message("CDash Build Identifier: \${build_date} \${CTEST_BUILD_NAME}")
           message("CTEST_SITE = \${CTEST_SITE}")
           include(\${CTEST_SCRIPT_DIRECTORY}/itk_common.cmake)
+          EOF
+          cat dashboard.cmake
+      - name: Build and test
+        if: matrix.os != 'windows-2019'
+        run: |
+          ctest -j 2 -VV -S dashboard.cmake
+      - name: Build and test
+        if: matrix.os == 'windows-2019'
+        run: |
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          ctest -j 2 -VV -S dashboard.cmake
+        shell: cmd
+
+  build-test-superbuild:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 3
+      matrix:
+        os: [ubuntu-18.04, windows-2019, macos-10.15]
+        include:
+          - os: ubuntu-18.04
+            c-compiler: "gcc"
+            cxx-compiler: "g++"
+            cmake-build-type: "MinSizeRel"
+          - os: windows-2019
+            c-compiler: "cl.exe"
+            cxx-compiler: "cl.exe"
+            cmake-build-type: "Release"
+          - os: macos-10.15
+            c-compiler: "clang"
+            cxx-compiler: "clang++"
+            cmake-build-type: "MinSizeRel"
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: Ex
+
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install ninja
+
+      - name: Get specific version of CMake, Ninja
+        uses: lukka/get-cmake@v3.18.3
+
+      - name: Fetch CTest driver script
+        run: |
+          curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITKExamples/dashboard/itkexamples_common.cmake -O
+
+      - name: Configure CTest script
+        shell: bash
+        run: |
+          mv Ex ../../
+          operating_system="${{ matrix.os }}"
+          cat > dashboard.cmake << EOF
+          set(CTEST_SITE "GitHubActions")
+          file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/.." CTEST_DASHBOARD_ROOT)
+          file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../Ex" CTEST_SOURCE_DIRECTORY)
+          file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../bld/" CTEST_BINARY_DIRECTORY)
+          set(dashboard_superbuild 1)
+          if(ENV{GITHUB_REF} MATCHES "master")
+            set(branch "-master")
+            set(dashboard_model "Continuous")
+          else()
+            set(branch "-${GITHUB_REF}")
+            set(dashboard_model "Experimental")
+          endif()
+          set(CTEST_BUILD_NAME "${GITHUB_REPOSITORY}-${operating_system}-\${branch}")
+          set(CTEST_UPDATE_VERSION_ONLY 1)
+          set(CTEST_TEST_ARGS \${CTEST_TEST_ARGS} PARALLEL_LEVEL \${PARALLEL_LEVEL})
+          set(CTEST_BUILD_CONFIGURATION "Release")
+          set(CTEST_CMAKE_GENERATOR "Ninja")
+          set(CTEST_CUSTOM_WARNING_EXCEPTION
+            \${CTEST_CUSTOM_WARNING_EXCEPTION}
+            # macOS Azure VM Warning
+            "ld: warning: text-based stub file"
+            )
+          set(dashboard_no_clean 1)
+          set(ENV{CC} ${{ matrix.c-compiler }})
+          set(ENV{CXX} ${{ matrix.cxx-compiler }})
+          if(WIN32)
+            set(ENV{PATH} "\${CTEST_DASHBOARD_ROOT}/ITK-build/bin;\$ENV{PATH}")
+          endif()
+          set(dashboard_cache "
+          BUILD_TESTING:BOOL=ON
+          ")
+          string(TIMESTAMP build_date "%Y-%m-%d")
+          message("CDash Build Identifier: \${build_date} \${CTEST_BUILD_NAME}")
+          message("CTEST_SITE = \${CTEST_SITE}")
+          include(\${CTEST_SCRIPT_DIRECTORY}/itkexamples_common.cmake)
           EOF
           cat dashboard.cmake
 
@@ -256,22 +226,6 @@ jobs:
       max-parallel: 3
       matrix:
         os: [ubuntu-18.04, windows-2019, macos-10.15]
-        include:
-           - os: ubuntu-18.04
-             c-compiler: "gcc"
-             cxx-compiler: "g++"
-             itk-git-tag: "v5.2rc03"
-             cmake-build-type: "MinSizeRel"
-           - os: windows-2019
-             c-compiler: "cl.exe"
-             cxx-compiler: "cl.exe"
-             itk-git-tag: "v5.2rc03"
-             cmake-build-type: "Release"
-           - os: macos-10.15
-             c-compiler: "clang"
-             cxx-compiler: "clang++"
-             itk-git-tag: "v5.2rc03"
-             cmake-build-type: "MinSizeRel"
 
     steps:
       - uses: actions/checkout@v1

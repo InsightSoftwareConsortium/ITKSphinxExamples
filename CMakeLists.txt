@@ -80,7 +80,7 @@ endif()
 if(NOT ITK_VERSION)
   # To get the ITK version information from external package when building
   # stand alone, ITK is required.
-  find_package(ITK 5.1.0 REQUIRED)
+  find_package(ITK 5.2.0 REQUIRED)
 endif()
 set(ITKExamples_VERSION_MAJOR ${ITK_VERSION_MAJOR})
 set(ITKExamples_VERSION_MINOR ${ITK_VERSION_MINOR})
