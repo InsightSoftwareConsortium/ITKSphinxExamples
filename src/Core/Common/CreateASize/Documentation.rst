@@ -7,14 +7,13 @@ Create a Size
 Synopsis
 --------
 
-
 Create a itk::Size, which represents the size of a region in an itk::Image.
-
 
 Results
 -------
 
 Output::
+
   [0, 0]
   [1, 2]
 
