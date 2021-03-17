@@ -14,7 +14,7 @@ install(TARGETS ComputeMeanSquareBetweenTwoImages
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx Code.py CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Registration/Common/ComputeMeanSquareBetweenTwoImages/
   COMPONENT Code
   )
@@ -25,3 +25,11 @@ add_test(NAME ComputeMeanSquareBetweenTwoImagesTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeMeanSquareBetweenTwoImages
     Yinyang.png
     Gourds.png)
+    
+    
+if(ITK_WRAP_PYTHON)
+  add_test(NAME ComputeMeanSquareBetweenTwoImagesTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+	Yinyang.png
+	Gourds.png)
+endif()
