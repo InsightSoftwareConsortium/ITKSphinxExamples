@@ -13,21 +13,24 @@ install(TARGETS ScaleAnImage
   DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
-
-install(FILES Code.cxx CMakeLists.txt
+  
+install(FILES Code.cxx Code.py CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Transform/ScaleAnImage/
   COMPONENT Code
   )
 
 
 enable_testing()
-set(input_image ${CMAKE_CURRENT_BINARY_DIR}/input.png)
-set(output_image Output.png)
-set(test_options)
 
 add_test(NAME ScaleAnImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ScaleAnImage
-    ${input_image}
-    ${output_image}
-    ${test_options}
+    ${CMAKE_CURRENT_BINARY_DIR}/ScaleAnImageInput.png
+    ${CMAKE_CURRENT_BINARY_DIR}/ScaleAnImageOutput.png
   )
+
+if(ITK_WRAP_PYTHON)
+add_test(NAME ScaleAnImageTestPython
+COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    ${CMAKE_CURRENT_BINARY_DIR}/ScaleAnImageInput.png
+    ${CMAKE_CURRENT_BINARY_DIR}/ScaleAnImageOutputPython.png)
+endif()

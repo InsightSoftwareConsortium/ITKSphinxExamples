@@ -17,25 +17,25 @@
  *=========================================================================*/
 #include "itkImage.h"
 #include "itkScaleTransform.h"
+#include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
 #include "itkResampleImageFilter.h"
 
-using ImageType = itk::Image<unsigned char, 2>;
-
-static void
-CreateImage(ImageType::Pointer image);
-
 int
-main()
+main(int argc, char * argv[])
 {
-  auto image = ImageType::New();
-  CreateImage(image);
+  if (argc < 3)
+  {
+    std::cerr << "Usage: " << argv[0] << " inputFile outputFile" << std::endl;
+  }
 
-  itk::WriteImage(image, "input.png");
+  using PixelType = unsigned char;
+  constexpr unsigned int ImageDimension = 2;
+  using ImageType = itk::Image<PixelType, ImageDimension>;
+  auto image = itk::ReadImage<ImageType>(argv[1]);
 
-  // using TransformType = itk::ScaleTransform<float, 2>; // If you want to use float here, you must use:
-  // using ResampleImageFilterType = itk::ResampleImageFilter<ImageType, ImageType, float>; later.
-  using TransformType = itk::ScaleTransform<double, 2>;
+  using MetricValueType = double;
+  using TransformType = itk::ScaleTransform<MetricValueType, 2>;
   auto                      scaleTransform = TransformType::New();
   itk::FixedArray<float, 2> scale;
   scale[0] = 1.5; // newWidth/oldWidth
@@ -48,57 +48,14 @@ main()
 
   scaleTransform->SetCenter(center);
 
-  using ResampleImageFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
+  using ResampleImageFilterType = itk::ResampleImageFilter<ImageType, ImageType, MetricValueType>;
   auto resampleFilter = ResampleImageFilterType::New();
   resampleFilter->SetTransform(scaleTransform);
   resampleFilter->SetInput(image);
   resampleFilter->SetSize(image->GetLargestPossibleRegion().GetSize());
   resampleFilter->Update();
 
-  itk::WriteImage(resampleFilter->GetOutput(), "output.png");
+  itk::WriteImage(resampleFilter->GetOutput(), argv[2]);
 
   return EXIT_SUCCESS;
-}
-
-void
-CreateImage(ImageType::Pointer image)
-{
-  itk::Index<2> start;
-  start.Fill(0);
-
-  itk::Size<2> size;
-  size.Fill(101);
-
-  ImageType::RegionType region(start, size);
-  image->SetRegions(region);
-  image->Allocate();
-  image->FillBuffer(0);
-
-  // Make a white square
-  for (unsigned int r = 40; r < 60; ++r)
-  {
-    for (unsigned int c = 40; c < 60; ++c)
-    {
-      ImageType::IndexType pixelIndex;
-      pixelIndex[0] = r;
-      pixelIndex[1] = c;
-
-      image->SetPixel(pixelIndex, 255);
-    }
-  }
-
-  itk::ImageRegionIterator<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
-
-  // Draw a white border
-  while (!imageIterator.IsAtEnd())
-  {
-    if (imageIterator.GetIndex()[0] == 0 ||
-        imageIterator.GetIndex()[0] == static_cast<int>(image->GetLargestPossibleRegion().GetSize()[0]) - 1 ||
-        imageIterator.GetIndex()[1] == 0 ||
-        imageIterator.GetIndex()[1] == static_cast<int>(image->GetLargestPossibleRegion().GetSize()[1]) - 1)
-    {
-      imageIterator.Set(255);
-    }
-    ++imageIterator;
-  }
 }
