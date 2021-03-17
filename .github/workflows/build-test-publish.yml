@@ -263,6 +263,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        with:
+          path: Ex
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
@@ -313,12 +315,13 @@ jobs:
       - name: Configure CTest script
         shell: bash
         run: |
+          mv Ex ../../
           operating_system="${{ matrix.os }}"
           cat > dashboard.cmake << EOF
           set(CTEST_SITE "GitHubActions")
           file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/.." CTEST_DASHBOARD_ROOT)
-          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/" CTEST_SOURCE_DIRECTORY)
-          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/ITKSphinxExamples-build" CTEST_BINARY_DIRECTORY)
+          file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../Ex" CTEST_SOURCE_DIRECTORY)
+          file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../bld/" CTEST_BINARY_DIRECTORY)
           set(dashboard_source_name "${GITHUB_REPOSITORY}")
           if(ENV{GITHUB_REF} MATCHES "master")
             set(branch "-master")
