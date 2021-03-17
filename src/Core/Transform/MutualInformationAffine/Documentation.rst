@@ -6,6 +6,11 @@ Mutual Information Affine
    single: MutualInformationImageToImageMetric
    single: GradientDescentOptimizer
 
+.. toctree::
+  :maxdepth: 1
+   
+  MutualInformationAffine.ipynb
+
 Synopsis
 --------
 

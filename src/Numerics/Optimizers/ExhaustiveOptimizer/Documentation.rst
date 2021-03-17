@@ -3,6 +3,11 @@ Exhaustive Optimizer
 
 .. index::
    single: ExhaustiveOptimizer
+   
+.. toctree::
+  :maxdepth: 1
+   
+  PlotExhaustiveOptimizer.ipynb
 
 Synopsis
 --------

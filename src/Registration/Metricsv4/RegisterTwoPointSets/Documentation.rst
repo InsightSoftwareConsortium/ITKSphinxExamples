@@ -12,6 +12,11 @@ Index
 
 .. seealso:: registration; transformation; pointset
 
+.. toctree::
+  :maxdepth: 1
+   
+  RegisterTwoPointSets.ipynb
+
 Synopsis
 --------
 

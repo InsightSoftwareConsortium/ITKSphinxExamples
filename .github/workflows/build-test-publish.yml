@@ -255,7 +255,7 @@ jobs:
           - os: ubuntu-18.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
-            itk-git-tag: "v5.2rc03"
+            itk-git-tag: "7548a390d71dc25b80e792703ee3cfea17853a99"
             cmake-build-type: "Release"
 
     steps:
@@ -274,11 +274,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install gnuplot dvipng
           sudo apt-get install texlive-full
+          sudo apt-get install pandoc
 
           python -m pip install --upgrade pip
           python -m pip install ninja
           python -m pip install sphinx==3.0.4
           python -m pip install --ignore-installed six
+          python -m pip install ipython
+          python -m pip install nbsphinx
 
       - name: Remove Duplicate Declaration Warnings
         run: |
