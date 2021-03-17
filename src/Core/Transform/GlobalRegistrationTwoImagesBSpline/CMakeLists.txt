@@ -30,12 +30,12 @@ else()
 endif()
 
 install(TARGETS GlobalRegistrationTwoImagesBSpline
-  DESTINATION bin/ITKExamples/Core/Transform
+  DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Transform/GlobalRegistrationTwoImagesBSpline/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Transform/GlobalRegistrationTwoImagesBSpline/
   COMPONENT Code
   )
 

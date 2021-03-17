@@ -10,12 +10,12 @@ add_executable(IntensityWindowing Code.cxx)
 target_link_libraries(IntensityWindowing ${ITK_LIBRARIES})
 
 install(TARGETS IntensityWindowing
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/IntensityWindowing/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/IntensityWindowing/
   COMPONENT Code
   )
 

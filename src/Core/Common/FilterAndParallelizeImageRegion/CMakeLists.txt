@@ -9,12 +9,12 @@ add_executable( FilterAndParallelizeImageRegion Code.cxx )
 target_link_libraries( FilterAndParallelizeImageRegion ${ITK_LIBRARIES} )
 
 install( TARGETS FilterAndParallelizeImageRegion
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/FilterAndParallelizeImageRegion
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/FilterAndParallelizeImageRegion
   COMPONENT Code
 )
 

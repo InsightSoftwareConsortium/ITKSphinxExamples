@@ -8,12 +8,12 @@ add_executable( ReadDICOMSeriesAndWrite3DImage Code.cxx )
 target_link_libraries( ReadDICOMSeriesAndWrite3DImage ${ITK_LIBRARIES} )
 
 install( TARGETS ReadDICOMSeriesAndWrite3DImage
-  DESTINATION bin/ITKExamples/IO/GDCM
+  DESTINATION bin/ITKSphinxExamples/IO/GDCM
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/IO/GDCM/ReadDICOMSeriesAndWrite3DImage
+  DESTINATION share/ITKSphinxExamples/Code/IO/GDCM/ReadDICOMSeriesAndWrite3DImage
   COMPONENT Code
   )
 

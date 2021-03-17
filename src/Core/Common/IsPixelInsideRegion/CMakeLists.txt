@@ -9,12 +9,12 @@ add_executable( IsPixelInsideRegion Code.cxx )
 target_link_libraries( IsPixelInsideRegion ${ITK_LIBRARIES} )
 
 install( TARGETS IsPixelInsideRegion
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/IsPixelInsideRegion
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/IsPixelInsideRegion
   COMPONENT Code
 )
 

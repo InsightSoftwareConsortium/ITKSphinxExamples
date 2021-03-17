@@ -8,12 +8,12 @@ add_executable( ExtractRegionOfInterestInOneImage Code.cxx )
 target_link_libraries( ExtractRegionOfInterestInOneImage ${ITK_LIBRARIES} )
 
 install( TARGETS ExtractRegionOfInterestInOneImage
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/ExtractRegionOfInterestInOneImage
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/ExtractRegionOfInterestInOneImage
   COMPONENT Code
   )
 

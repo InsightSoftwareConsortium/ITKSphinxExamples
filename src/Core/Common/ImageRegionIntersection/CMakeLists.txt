@@ -9,12 +9,12 @@ add_executable( ImageRegionIntersection Code.cxx )
 target_link_libraries( ImageRegionIntersection ${ITK_LIBRARIES} )
 
 install( TARGETS ImageRegionIntersection
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/ImageRegionIntersection
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/ImageRegionIntersection
   COMPONENT Code
 )
 

@@ -10,12 +10,12 @@ add_executable(CustomOperationToEachPixelInImage Code.cxx)
 target_link_libraries(CustomOperationToEachPixelInImage ${ITK_LIBRARIES})
 
 install(TARGETS CustomOperationToEachPixelInImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/CustomOperationToEachPixelInImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CustomOperationToEachPixelInImage/
   COMPONENT Code
   )
 

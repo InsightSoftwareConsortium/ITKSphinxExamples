@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS CropImageBySpecifyingRegion2
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/CropImageBySpecifyingRegion2/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/CropImageBySpecifyingRegion2/
   COMPONENT Code
   )
 

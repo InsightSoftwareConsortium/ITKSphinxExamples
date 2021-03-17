@@ -9,12 +9,12 @@ add_executable( ComputeGeodesicDistanceOnMesh Code.cxx )
 target_link_libraries( ComputeGeodesicDistanceOnMesh ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeGeodesicDistanceOnMesh
-  DESTINATION bin/ITKExamples/Filtering/FastMarching
+  DESTINATION bin/ITKSphinxExamples/Filtering/FastMarching
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/FastMarching/ComputeGeodesicDistanceOnMesh
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/FastMarching/ComputeGeodesicDistanceOnMesh
   COMPONENT Code
   )
 

@@ -10,12 +10,12 @@ add_executable(ColorBoundariesOfRegions Code.cxx)
 target_link_libraries(ColorBoundariesOfRegions ${ITK_LIBRARIES})
 
 install(TARGETS ColorBoundariesOfRegions
-  DESTINATION bin/ITKExamples/Filtering/ImageFusion
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageFusion
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageFusion/ColorBoundariesOfRegions/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFusion/ColorBoundariesOfRegions/
   COMPONENT Code
   )
 

@@ -9,12 +9,12 @@ add_executable( VectorDotProduct Code.cxx Code.py)
 target_link_libraries( VectorDotProduct ${ITK_LIBRARIES} )
 
 install( TARGETS VectorDotProduct
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/VectorDotProduct
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/VectorDotProduct
   COMPONENT Code
 )
 

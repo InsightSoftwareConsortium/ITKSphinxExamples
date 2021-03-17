@@ -10,12 +10,12 @@ add_executable(SquareEveryPixel Code.cxx)
 target_link_libraries(SquareEveryPixel ${ITK_LIBRARIES})
 
 install(TARGETS SquareEveryPixel
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/SquareEveryPixel/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/SquareEveryPixel/
   COMPONENT Code
   )
 

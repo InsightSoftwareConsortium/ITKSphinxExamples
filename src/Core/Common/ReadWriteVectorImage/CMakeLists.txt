@@ -10,12 +10,12 @@ add_executable(ReadWriteVectorImage Code.cxx)
 target_link_libraries(ReadWriteVectorImage ${ITK_LIBRARIES})
 
 install(TARGETS ReadWriteVectorImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Core/Common/ReadWriteVectorImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/ReadWriteVectorImage/
   COMPONENT Code
   )
 

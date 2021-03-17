@@ -9,12 +9,12 @@ add_executable( ApplyAFilterOnlyToASpecifiedRegionOfAnImage Code.cxx Code.py )
 target_link_libraries( ApplyAFilterOnlyToASpecifiedRegionOfAnImage ${ITK_LIBRARIES} )
 
 install( TARGETS ApplyAFilterOnlyToASpecifiedRegionOfAnImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/ApplyAFilterOnlyToASpecifiedRegionOfAnImage
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/ApplyAFilterOnlyToASpecifiedRegionOfAnImage
   COMPONENT Code
 )
 

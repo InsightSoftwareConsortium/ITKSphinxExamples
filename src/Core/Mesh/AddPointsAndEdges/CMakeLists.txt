@@ -10,12 +10,12 @@ add_executable(AddPointsAndEdges Code.cxx)
 target_link_libraries(AddPointsAndEdges ${ITK_LIBRARIES})
 
 install(TARGETS AddPointsAndEdges
-  DESTINATION bin/ITKExamples/Core/Mesh
+  DESTINATION bin/ITKSphinxExamples/Core/Mesh
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Mesh/AddPointsAndEdges/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Mesh/AddPointsAndEdges/
   COMPONENT Code
   )
 

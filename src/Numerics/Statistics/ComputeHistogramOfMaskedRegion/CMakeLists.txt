@@ -10,12 +10,12 @@ add_executable(ComputeHistogramOfMaskedRegion Code.cxx)
 target_link_libraries(ComputeHistogramOfMaskedRegion ${ITK_LIBRARIES})
 
 install(TARGETS ComputeHistogramOfMaskedRegion
-  DESTINATION bin/ITKExamples/Numerics/Statistics
+  DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Numerics/Statistics/ComputeHistogramOfMaskedRegion/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Statistics/ComputeHistogramOfMaskedRegion/
   COMPONENT Code
   )
 

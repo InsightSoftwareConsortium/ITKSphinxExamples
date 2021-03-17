@@ -10,12 +10,12 @@ add_executable(ApplyKernelToEveryPixel Code.cxx)
 target_link_libraries(ApplyKernelToEveryPixel ${ITK_LIBRARIES})
 
 install(TARGETS ApplyKernelToEveryPixel
-  DESTINATION bin/ITKExamples/Filtering/ImageFilterBase
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageFilterBase
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageFilterBase/ApplyKernelToEveryPixel/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFilterBase/ApplyKernelToEveryPixel/
   COMPONENT Code
   )
 

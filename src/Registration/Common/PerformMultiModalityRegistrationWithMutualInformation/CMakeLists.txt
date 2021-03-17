@@ -9,12 +9,12 @@ add_executable( PerformMultiModalityRegistrationWithMutualInformation Code.cxx )
 target_link_libraries( PerformMultiModalityRegistrationWithMutualInformation ${ITK_LIBRARIES} )
 
 install( TARGETS PerformMultiModalityRegistrationWithMutualInformation
-  DESTINATION bin/ITKExamples/Registration/Common
+  DESTINATION bin/ITKSphinxExamples/Registration/Common
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Registration/Common/PerformMultiModalityRegistrationWithMutualInformation
+  DESTINATION share/ITKSphinxExamples/Code/Registration/Common/PerformMultiModalityRegistrationWithMutualInformation
   COMPONENT Code
   )
 

@@ -9,12 +9,12 @@ add_executable( AdditiveGaussianNoiseImageFilter Code.cxx )
 target_link_libraries( AdditiveGaussianNoiseImageFilter ${ITK_LIBRARIES} )
 
 install( TARGETS AdditiveGaussianNoiseImageFilter
-  DESTINATION bin/ITKExamples/Filtering/ImageFeature
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/ImageFeature/AdditiveGaussianNoiseImageFilter
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFeature/AdditiveGaussianNoiseImageFilter
   COMPONENT Code
 )
 

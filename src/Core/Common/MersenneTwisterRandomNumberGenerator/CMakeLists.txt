@@ -9,12 +9,12 @@ add_executable( MersenneTwisterRandomNumberGenerator Code.cxx )
 target_link_libraries( MersenneTwisterRandomNumberGenerator ${ITK_LIBRARIES} )
 
 install( TARGETS MersenneTwisterRandomNumberGenerator
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/MersenneTwisterRandomNumberGenerator
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/MersenneTwisterRandomNumberGenerator
   COMPONENT Code
 )
 

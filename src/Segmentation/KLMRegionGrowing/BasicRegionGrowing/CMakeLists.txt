@@ -10,12 +10,12 @@ add_executable(BasicRegionGrowing Code.cxx)
 target_link_libraries(BasicRegionGrowing ${ITK_LIBRARIES})
 
 install(TARGETS BasicRegionGrowing
-  DESTINATION bin/ITKExamples/Segmentation/KLMRegionGrowing
+  DESTINATION bin/ITKSphinxExamples/Segmentation/KLMRegionGrowing
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/KLMRegionGrowing/BasicRegionGrowing/
+  DESTINATION share/ITKSphinxExamples/Code/Segmentation/KLMRegionGrowing/BasicRegionGrowing/
   COMPONENT Code
   )
 

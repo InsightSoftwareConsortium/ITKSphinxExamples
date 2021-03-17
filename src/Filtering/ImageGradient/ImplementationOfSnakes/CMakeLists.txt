@@ -10,12 +10,12 @@ add_executable(ImplementationOfSnakes Code.cxx)
 target_link_libraries(ImplementationOfSnakes ${ITK_LIBRARIES})
 
 install(TARGETS ImplementationOfSnakes
-  DESTINATION bin/ITKExamples/Filtering/ImageGradient
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGradient
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGradient/ImplementationOfSnakes/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGradient/ImplementationOfSnakes/
   COMPONENT Code
   )
 

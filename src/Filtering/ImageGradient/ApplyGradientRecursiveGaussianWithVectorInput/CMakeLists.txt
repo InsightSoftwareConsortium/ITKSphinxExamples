@@ -9,12 +9,12 @@ add_executable( ApplyGradientRecursiveGaussianWithVectorInput Code.cxx )
 target_link_libraries( ApplyGradientRecursiveGaussianWithVectorInput ${ITK_LIBRARIES} )
 
 install( TARGETS ApplyGradientRecursiveGaussianWithVectorInput
-  DESTINATION bin/ITKExamples/Filtering/ImageGradient/
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGradient/
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGradient/ApplyGradientRecursiveGaussianWithVectorInput
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGradient/ApplyGradientRecursiveGaussianWithVectorInput
   COMPONENT Code
 )
 

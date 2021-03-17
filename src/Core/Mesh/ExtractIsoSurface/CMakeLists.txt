@@ -9,12 +9,12 @@ add_executable( ExtractIsoSurface Code.cxx )
 target_link_libraries( ExtractIsoSurface ${ITK_LIBRARIES} )
 
 install( TARGETS ExtractIsoSurface
-  DESTINATION bin/ITKExamples/Core/Mesh
+  DESTINATION bin/ITKSphinxExamples/Core/Mesh
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Mesh/ExtractIsoSurface
+  DESTINATION share/ITKSphinxExamples/Code/Core/Mesh/ExtractIsoSurface
   COMPONENT Code
   )
 

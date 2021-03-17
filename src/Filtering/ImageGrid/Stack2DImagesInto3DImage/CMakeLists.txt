@@ -10,12 +10,12 @@ add_executable(Stack2DImagesInto3DImage Code.cxx)
 target_link_libraries(Stack2DImagesInto3DImage ${ITK_LIBRARIES})
 
 install(TARGETS Stack2DImagesInto3DImage
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/Stack2DImagesInto3DImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/Stack2DImagesInto3DImage/
   COMPONENT Code
   )
 

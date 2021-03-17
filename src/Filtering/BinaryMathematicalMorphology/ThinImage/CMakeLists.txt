@@ -10,12 +10,12 @@ add_executable(ThinImage Code.cxx)
 target_link_libraries(ThinImage ${ITK_LIBRARIES})
 
 install(TARGETS ThinImage
-  DESTINATION bin/ITKExamples/Filtering/BinaryMathematicalMorphology
+  DESTINATION bin/ITKSphinxExamples/Filtering/BinaryMathematicalMorphology
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology/ThinImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/BinaryMathematicalMorphology/ThinImage/
   COMPONENT Code
   )
 

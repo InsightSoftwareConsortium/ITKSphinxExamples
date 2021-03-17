@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS ZeroCrossingBasedEdgeDecor
-  DESTINATION bin/ITKExamples/Filtering/ImageFeature
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageFeature/ZeroCrossingBasedEdgeDecor/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFeature/ZeroCrossingBasedEdgeDecor/
   COMPONENT Code
   )
 

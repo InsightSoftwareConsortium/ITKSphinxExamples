@@ -10,12 +10,12 @@ add_executable(ExhaustiveOptimizer Code.cxx)
 target_link_libraries(ExhaustiveOptimizer ${ITK_LIBRARIES})
 
 install(TARGETS ExhaustiveOptimizer
-  DESTINATION bin/ITKExamples/Numerics/Optimizers
+  DESTINATION bin/ITKSphinxExamples/Numerics/Optimizers
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Numerics/Optimizers/ExhaustiveOptimizer/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Optimizers/ExhaustiveOptimizer/
   COMPONENT Code
   )
 

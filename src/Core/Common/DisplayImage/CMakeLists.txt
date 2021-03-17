@@ -30,12 +30,12 @@ else()
 endif()
 
 install(TARGETS DisplayImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/DisplayImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/DisplayImage/
   COMPONENT Code
   )
 

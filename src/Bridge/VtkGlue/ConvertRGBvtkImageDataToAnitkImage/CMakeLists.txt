@@ -10,12 +10,12 @@ add_executable(ConvertRGBvtkImageDataToAnitkImage Code.cxx)
 target_link_libraries(ConvertRGBvtkImageDataToAnitkImage ${ITK_LIBRARIES})
 
 install(TARGETS ConvertRGBvtkImageDataToAnitkImage
-  DESTINATION bin/ITKExamples/Bridge/VtkGlue
+  DESTINATION bin/ITKSphinxExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Bridge/VtkGlue/ConvertRGBvtkImageDataToAnitkImage/
+  DESTINATION share/ITKSphinxExamples/Code/Bridge/VtkGlue/ConvertRGBvtkImageDataToAnitkImage/
   COMPONENT Code
   )
 

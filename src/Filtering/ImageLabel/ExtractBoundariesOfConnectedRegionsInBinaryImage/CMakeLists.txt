@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS ExtractBoundariesOfConnectedRegionsInBinaryImage
-  DESTINATION bin/ITKExamples/Filtering/ImageLabel
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageLabel
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageLabel/ExtractBoundariesOfConnectedRegionsInBinaryImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageLabel/ExtractBoundariesOfConnectedRegionsInBinaryImage/
   COMPONENT Code
   )
 

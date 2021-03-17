@@ -10,12 +10,12 @@ add_executable(MultipleOutputsOfDifferentType Code.cxx)
 target_link_libraries(MultipleOutputsOfDifferentType ${ITK_LIBRARIES})
 
 install(TARGETS MultipleOutputsOfDifferentType
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/MultipleOutputsOfDifferentType/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/MultipleOutputsOfDifferentType/
   COMPONENT Code
   )
 

@@ -13,12 +13,12 @@ add_executable( RegisterIOFactories Code.cxx )
 target_link_libraries( RegisterIOFactories ${ITK_LIBRARIES} )
 
 install( TARGETS RegisterIOFactories
-  DESTINATION bin/ITKExamples/IO/ImageBase
+  DESTINATION bin/ITKSphinxExamples/IO/ImageBase
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/IO/ImageBase/RegisterIOFactories
+  DESTINATION share/ITKSphinxExamples/Code/IO/ImageBase/RegisterIOFactories
   COMPONENT Code
   )
 

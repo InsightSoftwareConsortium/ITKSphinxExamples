@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS LabelContoursOfConnectComponent
-  DESTINATION bin/ITKExamples/Filtering/ImageLabel
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageLabel
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageLabel/LabelContoursOfConnectComponent/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageLabel/LabelContoursOfConnectComponent/
   COMPONENT Code
   )
 

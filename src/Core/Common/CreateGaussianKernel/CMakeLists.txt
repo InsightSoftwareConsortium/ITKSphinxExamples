@@ -10,12 +10,12 @@ add_executable(CreateGaussianKernel Code.cxx)
 target_link_libraries(CreateGaussianKernel ${ITK_LIBRARIES})
 
 install(TARGETS CreateGaussianKernel
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateGaussianKernel/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateGaussianKernel/
   COMPONENT Code
   )
 

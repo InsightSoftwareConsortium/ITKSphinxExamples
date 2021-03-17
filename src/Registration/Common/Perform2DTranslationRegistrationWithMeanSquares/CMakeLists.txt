@@ -15,12 +15,12 @@ add_executable( Perform2DTranslationRegistrationWithMeanSquares Code.cxx )
 target_link_libraries( Perform2DTranslationRegistrationWithMeanSquares ${ITK_LIBRARIES} )
 
 install( TARGETS Perform2DTranslationRegistrationWithMeanSquares
-  DESTINATION bin/ITKExamples/Registration/Common
+  DESTINATION bin/ITKSphinxExamples/Registration/Common
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Registration/Common/Perform2DTranslationRegistrationWithMeanSquares
+  DESTINATION share/ITKSphinxExamples/Code/Registration/Common/Perform2DTranslationRegistrationWithMeanSquares
   COMPONENT Code
   )
 

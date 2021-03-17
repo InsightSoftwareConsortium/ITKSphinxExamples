@@ -13,12 +13,12 @@ add_executable( ComputeGradientAnisotropicDiffusion Code.cxx )
 target_link_libraries( ComputeGradientAnisotropicDiffusion ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeGradientAnisotropicDiffusion
-  DESTINATION bin/ITKExamples/Filtering/AnisotropicSmoothing
+  DESTINATION bin/ITKSphinxExamples/Filtering/AnisotropicSmoothing
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/AnisotropicSmoothing/ComputeGradientAnisotropicDiffusion
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/AnisotropicSmoothing/ComputeGradientAnisotropicDiffusion
   COMPONENT Code
   )
 

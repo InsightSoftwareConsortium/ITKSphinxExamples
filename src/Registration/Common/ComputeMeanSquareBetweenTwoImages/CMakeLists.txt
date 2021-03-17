@@ -10,12 +10,12 @@ add_executable(ComputeMeanSquareBetweenTwoImages Code.cxx)
 target_link_libraries(ComputeMeanSquareBetweenTwoImages ${ITK_LIBRARIES})
 
 install(TARGETS ComputeMeanSquareBetweenTwoImages
-  DESTINATION bin/ITKExamples/Registration/Common
+  DESTINATION bin/ITKSphinxExamples/Registration/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Registration/Common/ComputeMeanSquareBetweenTwoImages/
+  DESTINATION share/ITKSphinxExamples/Code/Registration/Common/ComputeMeanSquareBetweenTwoImages/
   COMPONENT Code
   )
 

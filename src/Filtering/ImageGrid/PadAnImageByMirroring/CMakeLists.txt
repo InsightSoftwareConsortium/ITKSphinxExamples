@@ -9,12 +9,12 @@ add_executable( PadAnImageByMirroring Code.cxx )
 target_link_libraries( PadAnImageByMirroring ${ITK_LIBRARIES} )
 
 install( TARGETS PadAnImageByMirroring
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/PadAnImageByMirroring
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/PadAnImageByMirroring
   COMPONENT Code
 )
 

@@ -10,12 +10,12 @@ add_executable(CreateForwardDifferenceKernel Code.cxx)
 target_link_libraries(CreateForwardDifferenceKernel ${ITK_LIBRARIES})
 
 install(TARGETS CreateForwardDifferenceKernel
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateForwardDifferenceKernel/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateForwardDifferenceKernel/
   COMPONENT Code
   )
 

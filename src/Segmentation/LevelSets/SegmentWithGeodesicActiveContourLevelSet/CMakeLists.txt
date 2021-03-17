@@ -9,12 +9,12 @@ add_executable( SegmentWithGeodesicActiveContourLevelSet Code.cxx )
 target_link_libraries( SegmentWithGeodesicActiveContourLevelSet ${ITK_LIBRARIES} )
 
 install( TARGETS SegmentWithGeodesicActiveContourLevelSet
-  DESTINATION bin/ITKExamples/Segmentation/LevelSets
+  DESTINATION bin/ITKSphinxExamples/Segmentation/LevelSets
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/LevelSets/SegmentWithGeodesicActiveContourLevelSet
+  DESTINATION share/ITKSphinxExamples/Code/Segmentation/LevelSets/SegmentWithGeodesicActiveContourLevelSet
   COMPONENT Code
   )
 

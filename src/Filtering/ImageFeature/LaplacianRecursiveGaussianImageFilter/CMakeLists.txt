@@ -9,12 +9,12 @@ add_executable( LaplacianRecursiveGaussianImageFilter Code.cxx )
 target_link_libraries( LaplacianRecursiveGaussianImageFilter ${ITK_LIBRARIES} )
 
 install( TARGETS LaplacianRecursiveGaussianImageFilter
-  DESTINATION bin/ITKExamples/Filtering/ImageFeature
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageFeature/LaplacianRecursiveGaussianImageFilter
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFeature/LaplacianRecursiveGaussianImageFilter
   COMPONENT Code
 )
 

@@ -9,12 +9,12 @@ add_executable( RescaleAnImage Code.cxx )
 target_link_libraries( RescaleAnImage ${ITK_LIBRARIES} )
 
 install( TARGETS RescaleAnImage
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/RescaleAnImage
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/RescaleAnImage
   COMPONENT Code
 )
 

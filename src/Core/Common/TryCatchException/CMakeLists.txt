@@ -9,12 +9,12 @@ add_executable( TryCatchException Code.cxx )
 target_link_libraries( TryCatchException ${ITK_LIBRARIES} )
 
 install( TARGETS TryCatchException
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/TryCatchException
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/TryCatchException
   COMPONENT Code
 )
 

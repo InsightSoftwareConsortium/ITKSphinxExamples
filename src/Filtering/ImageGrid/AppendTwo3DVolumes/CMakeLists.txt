@@ -9,12 +9,12 @@ add_executable( AppendTwo3DVolumes Code.cxx )
 target_link_libraries( AppendTwo3DVolumes ${ITK_LIBRARIES} )
 
 install( TARGETS AppendTwo3DVolumes
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/AppendTwo3DVolumes
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/AppendTwo3DVolumes
   COMPONENT Code
   )
 

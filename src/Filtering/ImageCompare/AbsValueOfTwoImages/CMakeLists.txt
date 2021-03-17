@@ -10,12 +10,12 @@ add_executable(AbsValueOfTwoImages Code.cxx)
 target_link_libraries(AbsValueOfTwoImages ${ITK_LIBRARIES})
 
 install(TARGETS AbsValueOfTwoImages
-  DESTINATION bin/ITKExamples/Filtering/ImageCompare
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageCompare
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageCompare/AbsValueOfTwoImages/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageCompare/AbsValueOfTwoImages/
   COMPONENT Code
   )
 

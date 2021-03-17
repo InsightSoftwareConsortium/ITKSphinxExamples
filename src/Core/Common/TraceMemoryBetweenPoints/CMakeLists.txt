@@ -9,12 +9,12 @@ add_executable( TraceMemoryBetweenPoints Code.cxx )
 target_link_libraries( TraceMemoryBetweenPoints ${ITK_LIBRARIES} )
 
 install( TARGETS TraceMemoryBetweenPoints
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/TraceMemoryBetweenPoints
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/TraceMemoryBetweenPoints
   COMPONENT Code
   )
 

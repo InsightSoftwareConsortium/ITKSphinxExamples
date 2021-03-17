@@ -10,12 +10,12 @@ add_executable(ComputeMedianOfImageAtPixel Code.cxx)
 target_link_libraries(ComputeMedianOfImageAtPixel ${ITK_LIBRARIES})
 
 install(TARGETS ComputeMedianOfImageAtPixel
-  DESTINATION bin/ITKExamples/Core/ImageFunction
+  DESTINATION bin/ITKSphinxExamples/Core/ImageFunction
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/ImageFunction/ComputeMedianOfImageAtPixel/
+  DESTINATION share/ITKSphinxExamples/Code/Core/ImageFunction/ComputeMedianOfImageAtPixel/
   COMPONENT Code
   )
 

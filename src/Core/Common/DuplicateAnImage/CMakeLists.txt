@@ -9,12 +9,12 @@ add_executable( DuplicateAnImage Code.cxx )
 target_link_libraries( DuplicateAnImage ${ITK_LIBRARIES} )
 
 install( TARGETS DuplicateAnImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/DuplicateAnImage
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/DuplicateAnImage
   COMPONENT Code
 )
 

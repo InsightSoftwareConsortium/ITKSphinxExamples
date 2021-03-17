@@ -10,12 +10,12 @@ add_executable(IterateOverSpecificRegion Code.cxx)
 target_link_libraries(IterateOverSpecificRegion ${ITK_LIBRARIES})
 
 install(TARGETS IterateOverSpecificRegion
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/IterateOverSpecificRegion/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/IterateOverSpecificRegion/
   COMPONENT Code
   )
 

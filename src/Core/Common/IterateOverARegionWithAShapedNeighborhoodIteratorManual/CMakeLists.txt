@@ -9,12 +9,12 @@ add_executable( IterateOverARegionWithAShapedNeighborhoodIteratorManual Code.cxx
 target_link_libraries( IterateOverARegionWithAShapedNeighborhoodIteratorManual ${ITK_LIBRARIES} )
 
 install( TARGETS IterateOverARegionWithAShapedNeighborhoodIteratorManual
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/IterateOverARegionWithAShapedNeighborhoodIteratorManual
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/IterateOverARegionWithAShapedNeighborhoodIteratorManual
   COMPONENT Code
 )
 

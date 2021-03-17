@@ -10,12 +10,12 @@ add_executable(ProcessA2DSliceOfA3DImage Code.cxx)
 target_link_libraries(ProcessA2DSliceOfA3DImage ${ITK_LIBRARIES})
 
 install(TARGETS ProcessA2DSliceOfA3DImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Core/Common/ProcessA2DSliceOfA3DImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/ProcessA2DSliceOfA3DImage/
   COMPONENT Code
   )
 

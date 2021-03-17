@@ -10,12 +10,12 @@ add_executable(MultiplyKernelWithAnImageAtLocation Code.cxx)
 target_link_libraries(MultiplyKernelWithAnImageAtLocation ${ITK_LIBRARIES})
 
 install(TARGETS MultiplyKernelWithAnImageAtLocation
-  DESTINATION bin/ITKExamples/Core/ImageFunction
+  DESTINATION bin/ITKSphinxExamples/Core/ImageFunction
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/ImageFunction/MultiplyKernelWithAnImageAtLocation/
+  DESTINATION share/ITKSphinxExamples/Code/Core/ImageFunction/MultiplyKernelWithAnImageAtLocation/
   COMPONENT Code
   )
 

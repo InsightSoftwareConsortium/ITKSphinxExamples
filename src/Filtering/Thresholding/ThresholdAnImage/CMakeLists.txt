@@ -9,12 +9,12 @@ add_executable( ThresholdAnImage Code.cxx )
 target_link_libraries( ThresholdAnImage ${ITK_LIBRARIES} )
 
 install( TARGETS ThresholdAnImage
-  DESTINATION bin/ITKExamples/Filtering/Thresholding
+  DESTINATION bin/ITKSphinxExamples/Filtering/Thresholding
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Thresholding/ThresholdAnImage
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Thresholding/ThresholdAnImage
   COMPONENT Code
   )
 

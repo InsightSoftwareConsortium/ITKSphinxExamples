@@ -9,12 +9,12 @@ add_executable( CreateTriangularQuadEdgeMesh Code.cxx )
 target_link_libraries( CreateTriangularQuadEdgeMesh ${ITK_LIBRARIES} )
 
 install( TARGETS CreateTriangularQuadEdgeMesh
-  DESTINATION bin/ITKExamples/Core/QuadEdgeMesh
+  DESTINATION bin/ITKSphinxExamples/Core/QuadEdgeMesh
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/QuadEdgeMesh/CreateTriangularQuadEdgeMesh
+  DESTINATION share/ITKSphinxExamples/Code/Core/QuadEdgeMesh/CreateTriangularQuadEdgeMesh
   COMPONENT Code
   )
 

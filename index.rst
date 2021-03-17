@@ -1,8 +1,8 @@
-.. ITK Examples documentation master file, created by
+.. ITK Sphinx Examples documentation master file, created by
    sphinx-quickstart on Thu Dec 22 23:30:02 2011.
 
-Welcome to the ITK Examples documentation!
-==========================================
+Welcome to the ITK Sphinx Examples documentation!
+=================================================
 
 Contents:
 

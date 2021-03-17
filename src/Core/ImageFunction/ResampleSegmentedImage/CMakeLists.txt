@@ -9,12 +9,12 @@ add_executable(ResampleSegmentedImage Code.cxx)
 target_link_libraries(ResampleSegmentedImage ${ITK_LIBRARIES})
 
 install(TARGETS ResampleSegmentedImage
-  DESTINATION bin/ITKExamples/Core/ImageFunction
+  DESTINATION bin/ITKSphinxExamples/Core/ImageFunction
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Core/ImageFunction/ResampleSegmentedImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/ImageFunction/ResampleSegmentedImage/
   COMPONENT Code
   )
 

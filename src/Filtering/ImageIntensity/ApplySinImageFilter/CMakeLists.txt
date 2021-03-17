@@ -9,12 +9,12 @@ add_executable( ApplySinImageFilter Code.cxx )
 target_link_libraries( ApplySinImageFilter ${ITK_LIBRARIES} )
 
 install( TARGETS ApplySinImageFilter
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/ApplySinImageFilter
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/ApplySinImageFilter
   COMPONENT Code
 )
 

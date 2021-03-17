@@ -10,12 +10,12 @@ add_executable(Blob Code.cxx)
 target_link_libraries(Blob ${ITK_LIBRARIES})
 
 install(TARGETS Blob
-  DESTINATION bin/ITKExamples/Core/SpatialObjects
+  DESTINATION bin/ITKSphinxExamples/Core/SpatialObjects
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/SpatialObjects/Blob/
+  DESTINATION share/ITKSphinxExamples/Code/Core/SpatialObjects/Blob/
   COMPONENT Code
   )
 

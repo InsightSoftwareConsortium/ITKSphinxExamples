@@ -10,12 +10,12 @@ add_executable(RegionalMaximal Code.cxx)
 target_link_libraries(RegionalMaximal ${ITK_LIBRARIES})
 
 install(TARGETS RegionalMaximal
-  DESTINATION bin/ITKExamples/Filtering/MathematicalMorphology
+  DESTINATION bin/ITKSphinxExamples/Filtering/MathematicalMorphology
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/MathematicalMorphology/RegionalMaximal/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/MathematicalMorphology/RegionalMaximal/
   COMPONENT Code
   )
 

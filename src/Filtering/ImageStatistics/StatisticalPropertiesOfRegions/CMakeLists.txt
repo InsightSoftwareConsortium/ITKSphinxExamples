@@ -10,12 +10,12 @@ add_executable(StatisticalPropertiesOfRegions Code.cxx)
 target_link_libraries(StatisticalPropertiesOfRegions ${ITK_LIBRARIES})
 
 install(TARGETS StatisticalPropertiesOfRegions
-  DESTINATION bin/ITKExamples/Filtering/ImageStatistics
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageStatistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageStatistics/StatisticalPropertiesOfRegions/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageStatistics/StatisticalPropertiesOfRegions/
   COMPONENT Code
   )
 

@@ -10,12 +10,12 @@ add_executable(AmoebaOptimizer Code.cxx ExampleCostFunction.h)
 target_link_libraries(AmoebaOptimizer ${ITK_LIBRARIES})
 
 install(TARGETS AmoebaOptimizer
-  DESTINATION bin/ITKExamples/Numerics/Optimizers
+  DESTINATION bin/ITKSphinxExamples/Numerics/Optimizers
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Numerics/Optimizers/AmoebaOptimizer/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Optimizers/AmoebaOptimizer/
   COMPONENT Code
   )
 

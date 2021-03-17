@@ -10,12 +10,12 @@ add_executable(CreateLaplacianKernel Code.cxx)
 target_link_libraries(CreateLaplacianKernel ${ITK_LIBRARIES})
 
 install(TARGETS CreateLaplacianKernel
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateLaplacianKernel/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateLaplacianKernel/
   COMPONENT Code
   )
 

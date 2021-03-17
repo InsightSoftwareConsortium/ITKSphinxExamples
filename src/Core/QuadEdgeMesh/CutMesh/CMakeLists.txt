@@ -9,12 +9,12 @@ add_executable( CutMesh Code.cxx )
 target_link_libraries( CutMesh ${ITK_LIBRARIES} )
 
 install( TARGETS CutMesh
-  DESTINATION bin/ITKExamples/Core/QuadEdgeMesh
+  DESTINATION bin/ITKSphinxExamples/Core/QuadEdgeMesh
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/QuadEdgeMesh/CutMesh
+  DESTINATION share/ITKSphinxExamples/Code/Core/QuadEdgeMesh/CutMesh
   COMPONENT Code
   )
 

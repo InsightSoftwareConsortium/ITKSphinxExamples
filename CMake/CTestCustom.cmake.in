@@ -1,11 +1,11 @@
 #
-# Note that the ITKExamples/CMakeLists.txt file configures this file
+# Note that the ITKSphinxExamples/CMakeLists.txt file configures this file
 #
 #               CMake/CTestCustom.cmake.in
 #
 # to this file
 #
-#       ${ITKExamples_BINARY_DIR}/CTestCustom.cmake
+#       ${ITKSphinxExamples_BINARY_DIR}/CTestCustom.cmake
 #
 #----------------------------------------------------------------------
 #

@@ -6,7 +6,7 @@ if(NOT ITK_TAG)
 endif()
 
 set(_vtk_args)
-if(VTK_DIR OR ITKExamples_USE_VTK)
+if(VTK_DIR OR ITKSphinxExamples_USE_VTK)
   set( _vtk_args "-DVTK_DIR:PATH=${VTK_DIR}"
     -DModule_ITKVtkGlue:BOOL=ON
     )
@@ -17,7 +17,7 @@ else()
 endif()
 
 set(_opencv_args )
-if(OpenCV_DIR OR ITKExamples_USE_OpenCV)
+if(OpenCV_DIR OR ITKSphinxExamples_USE_OpenCV)
   set( _opencv_args "-DOpenCV_DIR:PATH=${OpenCV_DIR}"
     -DModule_ITKVideoBridgeOpenCV:BOOL=ON
     )
@@ -28,7 +28,7 @@ else()
 endif()
 
 set(_wrap_python_args )
-if(ITKExamples_USE_WRAP_PYTHON)
+if(ITKSphinxExamples_USE_WRAP_PYTHON)
   set(_python_depends)
   if(NOT EXISTS Python3_EXECUTABLE)
     set(_python_depends ITKPython)

@@ -165,7 +165,7 @@ jobs:
 
       - name: Fetch CTest driver script
         run: |
-          curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITKExamples/dashboard/itkexamples_common.cmake -O
+          curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITKSphinxExamples/dashboard/itkexamples_common.cmake -O
 
       - name: Configure CTest script
         shell: bash
@@ -318,7 +318,7 @@ jobs:
           set(CTEST_SITE "GitHubActions")
           file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/.." CTEST_DASHBOARD_ROOT)
           file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/" CTEST_SOURCE_DIRECTORY)
-          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/ITKExamples-build" CTEST_BINARY_DIRECTORY)
+          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/ITKSphinxExamples-build" CTEST_BINARY_DIRECTORY)
           set(dashboard_source_name "${GITHUB_REPOSITORY}")
           if(ENV{GITHUB_REF} MATCHES "master")
             set(branch "-master")
@@ -361,14 +361,14 @@ jobs:
         with:
           name: Documentation
           path: |
-            ${{ github.workspace }}/ITKExamples-build/ITKExamples-*-html.tar.gz
-            ${{ github.workspace }}/ITKExamples-build/ITKExamples-*-html.zip
+            ${{ github.workspace }}/ITKSphinxExamples-build/ITKSphinxExamples-*-html.tar.gz
+            ${{ github.workspace }}/ITKSphinxExamples-build/ITKSphinxExamples-*-html.zip
 
       - name: Unpack site
         shell: bash
         run: |
           mkdir site
-          tar --strip-components=1 -xf ${{ github.workspace }}/ITKExamples-build/ITKExamples-*-html.tar.gz -C site
+          tar --strip-components=1 -xf ${{ github.workspace }}/ITKSphinxExamples-build/ITKSphinxExamples-*-html.tar.gz -C site
 
       - name: Publish website to Netlify
         uses: nwtgck/actions-netlify@v1.1.13

@@ -9,12 +9,12 @@ add_executable( IterativeHoleFilling Code.cxx )
 target_link_libraries( IterativeHoleFilling ${ITK_LIBRARIES} )
 
 install( TARGETS IterativeHoleFilling
-  DESTINATION bin/ITKExamples/Segmentation/LabelVoting
+  DESTINATION bin/ITKSphinxExamples/Segmentation/LabelVoting
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/LabelVoting/IterativeHoleFilling
+  DESTINATION share/ITKSphinxExamples/Code/Segmentation/LabelVoting/IterativeHoleFilling
   COMPONENT Code
   )
 

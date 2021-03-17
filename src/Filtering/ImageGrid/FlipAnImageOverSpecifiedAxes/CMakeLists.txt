@@ -9,12 +9,12 @@ add_executable( FlipAnImageOverSpecifiedAxes Code.cxx )
 target_link_libraries( FlipAnImageOverSpecifiedAxes ${ITK_LIBRARIES} )
 
 install( TARGETS FlipAnImageOverSpecifiedAxes
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/FlipAnImageOverSpecifiedAxes
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/FlipAnImageOverSpecifiedAxes
   COMPONENT Code
 )
 

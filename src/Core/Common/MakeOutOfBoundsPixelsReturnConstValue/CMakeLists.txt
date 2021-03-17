@@ -28,12 +28,12 @@ if(NOT VTK_VERSION VERSION_LESS "8.90.0")
 endif()
 
 install(TARGETS MakeOutOfBoundsPixelsReturnConstValue
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/MakeOutOfBoundsPixelsReturnConstValue/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/MakeOutOfBoundsPixelsReturnConstValue/
   COMPONENT Code
   )
 

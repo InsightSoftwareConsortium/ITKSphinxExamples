@@ -9,12 +9,12 @@ add_executable( PasteImageIntoAnotherOne Code.cxx )
 target_link_libraries( PasteImageIntoAnotherOne ${ITK_LIBRARIES} )
 
 install( TARGETS PasteImageIntoAnotherOne
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/PasteImageIntoAnotherOne
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/PasteImageIntoAnotherOne
   COMPONENT Code
   )
 

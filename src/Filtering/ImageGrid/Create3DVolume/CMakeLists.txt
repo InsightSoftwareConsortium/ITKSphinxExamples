@@ -10,12 +10,12 @@ add_executable( Create3DVolume
 target_link_libraries( Create3DVolume ${ITK_LIBRARIES} )
 
 install( TARGETS Create3DVolume
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install( FILES Create3DVolume.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/Create3DVolume
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/Create3DVolume
   COMPONENT Code
   )
 

@@ -10,12 +10,12 @@ add_executable(ConnectedComponentsInImage Code.cxx)
 target_link_libraries(ConnectedComponentsInImage ${ITK_LIBRARIES})
 
 install(TARGETS ConnectedComponentsInImage
-  DESTINATION bin/ITKExamples/Segmentation/RegionGrowing
+  DESTINATION bin/ITKSphinxExamples/Segmentation/RegionGrowing
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/RegionGrowing/ConnectedComponentsInImage/
+  DESTINATION share/ITKSphinxExamples/Code/Segmentation/RegionGrowing/ConnectedComponentsInImage/
   COMPONENT Code
   )
 

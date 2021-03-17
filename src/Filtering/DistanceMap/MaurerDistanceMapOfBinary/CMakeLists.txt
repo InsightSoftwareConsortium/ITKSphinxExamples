@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS MaurerDistanceMapOfBinary
-  DESTINATION bin/ITKExamples/Filtering/DistanceMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/DistanceMap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/DistanceMap/MaurerDistanceMapOfBinary/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/DistanceMap/MaurerDistanceMapOfBinary/
   COMPONENT Code
   )
 

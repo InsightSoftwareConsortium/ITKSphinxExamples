@@ -10,12 +10,12 @@ add_executable(Matrix Code.cxx)
 target_link_libraries(Matrix ${ITK_LIBRARIES})
 
 install(TARGETS Matrix
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/Matrix/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/Matrix/
   COMPONENT Code
   )
 

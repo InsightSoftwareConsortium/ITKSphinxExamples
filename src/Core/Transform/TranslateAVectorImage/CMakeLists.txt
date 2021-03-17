@@ -10,12 +10,12 @@ add_executable(TranslateAVectorImage Code.cxx)
 target_link_libraries(TranslateAVectorImage ${ITK_LIBRARIES})
 
 install(TARGETS TranslateAVectorImage
-  DESTINATION bin/ITKExamples/Core/Transform
+  DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Transform/TranslateAVectorImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Transform/TranslateAVectorImage/
   COMPONENT Code
   )
 

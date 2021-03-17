@@ -9,12 +9,12 @@ add_executable( ThresholdAnImageUsingOtsu Code.cxx )
 target_link_libraries( ThresholdAnImageUsingOtsu ${ITK_LIBRARIES} )
 
 install( TARGETS ThresholdAnImageUsingOtsu
-  DESTINATION bin/ITKExamples/Filtering/Thresholding
+  DESTINATION bin/ITKSphinxExamples/Filtering/Thresholding
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Thresholding/ThresholdAnImageUsingOtsu
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Thresholding/ThresholdAnImageUsingOtsu
   COMPONENT Code
 )
 

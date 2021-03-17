@@ -10,12 +10,12 @@ add_executable(Create3DFromSeriesOf2D Code.cxx)
 target_link_libraries(Create3DFromSeriesOf2D ${ITK_LIBRARIES})
 
 install(TARGETS Create3DFromSeriesOf2D
-  DESTINATION bin/ITKExamples/IO/ImageBase
+  DESTINATION bin/ITKSphinxExamples/IO/ImageBase
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/IO/ImageBase/Create3DFromSeriesOf2D/
+  DESTINATION share/ITKSphinxExamples/Code/IO/ImageBase/Create3DFromSeriesOf2D/
   COMPONENT Code
   )
 

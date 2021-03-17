@@ -1,11 +1,11 @@
-ITK Examples
-============
+ITK Sphinx Examples
+===================
 
-.. image:: https://github.com/InsightSoftwareConsortium/ITKExamples/workflows/Build,%20test,%20publish/badge.svg?branch=master
-   :target: https://github.com/InsightSoftwareConsortium/ITKExamples/actions?query=workflow%3A%22Build%2C+test%2C+publish%22+branch%3Amaster
+.. image:: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/workflows/Build,%20test,%20publish/badge.svg?branch=master
+   :target: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/actions?query=workflow%3A%22Build%2C+test%2C+publish%22+branch%3Amaster
 
 .. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=shield
-   :target: https://github.com/InsightSoftwareConsortium/ITKExamples/blob/master/LICENSE
+   :target: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/blob/master/LICENSE
 
 
 A set of cookbook examples for the Insight Toolkit, ITK_.
@@ -15,7 +15,7 @@ Download instructions
 
 Clone the repository using Git::
 
-  $ git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git
+  $ git clone --recursive https://github.com/InsightSoftwareConsortium/ITKSphinxExamples.git
 
 
 Build instructions
@@ -59,14 +59,14 @@ Required
 ^^^^^^^^
 
 - CMake_ ( >= 3.10.2 )
-- ITK_  ( >= 5.0.1 )
+- ITK_  ( >= 5.2.0 )
 
 Optional
 ^^^^^^^^
 
 If building the documentation:
 
-- Python_ ( >= 3.5 )
+- Python_ ( >= 3.7 )
 - Sphinx_
 - gnuplot_
 - dvipng_ ( for rendered equations )
@@ -86,7 +86,7 @@ Run the bash script ``SetupForDevelopment.sh``::
 .. _Git: https://git-scm.com/
 .. _ITK: https://itk.org/
 .. _Sphinx: https://sphinx-doc.org/
-.. _Github Issues: https://github.com/InsightSoftwareConsortium/ITKExamples/issues
+.. _Github Issues: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/issues
 .. _Python: https://python.org/
 .. _gnuplot: https://www.gnuplot.info/
 .. _TeX Live: https://www.tug.org/texlive/

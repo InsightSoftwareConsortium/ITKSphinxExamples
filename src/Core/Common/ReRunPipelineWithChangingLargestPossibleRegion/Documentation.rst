@@ -33,7 +33,7 @@ Output::
   Error:
   itk::InvalidRequestedRegionError (0x28cd880)
   Location: "unknown"
-  File: /home/matt/bin/ITKExamples-Clang-RelWithDebInfo/ITK/Modules/Core/Common/src/itkDataObject.cxx
+  File: /home/matt/bin/ITKSphinxExamples-Clang-RelWithDebInfo/ITK/Modules/Core/Common/src/itkDataObject.cxx
   Line: 411
   Description: Requested region is (at least partially) outside the largest possible region.
 

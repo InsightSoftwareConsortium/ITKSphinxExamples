@@ -26,12 +26,12 @@ if(NOT VTK_VERSION VERSION_LESS "8.90.0")
 endif()
 
 install(TARGETS InPlaceFilterOfImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/InPlaceFilterOfImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/InPlaceFilterOfImage/
   COMPONENT Code
   )
 

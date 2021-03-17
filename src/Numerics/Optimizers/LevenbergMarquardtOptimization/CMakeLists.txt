@@ -10,12 +10,12 @@ add_executable(LevenbergMarquardtOptimization Code.cxx)
 target_link_libraries(LevenbergMarquardtOptimization ${ITK_LIBRARIES})
 
 install(TARGETS LevenbergMarquardtOptimization
-  DESTINATION bin/ITKExamples/Numerics/Optimizers
+  DESTINATION bin/ITKSphinxExamples/Numerics/Optimizers
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Numerics/Optimizers/LevenbergMarquardtOptimization/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Optimizers/LevenbergMarquardtOptimization/
   COMPONENT Code
   )
 

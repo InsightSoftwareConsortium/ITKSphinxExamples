@@ -10,12 +10,12 @@ add_executable(NormalizedCorrelation Code.cxx)
 target_link_libraries(NormalizedCorrelation ${ITK_LIBRARIES})
 
 install(TARGETS NormalizedCorrelation
-  DESTINATION bin/ITKExamples/Filtering/Convolution
+  DESTINATION bin/ITKSphinxExamples/Filtering/Convolution
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Convolution/NormalizedCorrelation/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Convolution/NormalizedCorrelation/
   COMPONENT Code
   )
 

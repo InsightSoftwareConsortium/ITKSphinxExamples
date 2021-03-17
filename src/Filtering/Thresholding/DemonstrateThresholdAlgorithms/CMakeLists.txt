@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS DemonstrateThresholdAlgorithms
-  DESTINATION bin/ITKExamples/Filtering/Thresholding
+  DESTINATION bin/ITKSphinxExamples/Filtering/Thresholding
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Thresholding/DemonstrateThresholdAlgorithms/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Thresholding/DemonstrateThresholdAlgorithms/
   COMPONENT Code
   )
 

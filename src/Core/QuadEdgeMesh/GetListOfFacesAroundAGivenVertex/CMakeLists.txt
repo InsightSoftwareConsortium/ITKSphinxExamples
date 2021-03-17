@@ -9,12 +9,12 @@ add_executable( GetListOfFacesAroundAGivenVertex Code.cxx )
 target_link_libraries( GetListOfFacesAroundAGivenVertex ${ITK_LIBRARIES} )
 
 install( TARGETS GetListOfFacesAroundAGivenVertex
-  DESTINATION bin/ITKExamples/Core/QuadEdgeMesh
+  DESTINATION bin/ITKSphinxExamples/Core/QuadEdgeMesh
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/QuadEdgeMesh/GetListOfFacesAroundAGivenVertex
+  DESTINATION share/ITKSphinxExamples/Code/Core/QuadEdgeMesh/GetListOfFacesAroundAGivenVertex
   COMPONENT Code
   )
 

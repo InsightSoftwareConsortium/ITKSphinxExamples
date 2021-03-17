@@ -10,12 +10,12 @@ add_executable(CreateSobelKernel Code.cxx)
 target_link_libraries(CreateSobelKernel ${ITK_LIBRARIES})
 
 install(TARGETS CreateSobelKernel
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateSobelKernel/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateSobelKernel/
   COMPONENT Code
   )
 

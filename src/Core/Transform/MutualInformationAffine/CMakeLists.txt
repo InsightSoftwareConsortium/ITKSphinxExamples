@@ -10,12 +10,12 @@ add_executable(MutualInformationAffine Code.cxx)
 target_link_libraries(MutualInformationAffine ${ITK_LIBRARIES})
 
 install(TARGETS MutualInformationAffine
-  DESTINATION bin/ITKExamples/Core/Transform
+  DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Transform/MutualInformationAffine/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Transform/MutualInformationAffine/
   COMPONENT Code
   )
 

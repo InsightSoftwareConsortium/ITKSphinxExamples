@@ -10,12 +10,12 @@ add_executable(PerformRegistrationOnVectorImages Code.cxx)
 target_link_libraries(PerformRegistrationOnVectorImages ${ITK_LIBRARIES})
 
 install(TARGETS PerformRegistrationOnVectorImages
-  DESTINATION bin/ITKExamples/Registration/Metricsv4
+  DESTINATION bin/ITKSphinxExamples/Registration/Metricsv4
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Registration/Metricsv4/PerformRegistrationOnVectorImages/
+  DESTINATION share/ITKSphinxExamples/Code/Registration/Metricsv4/PerformRegistrationOnVectorImages/
   COMPONENT Code
   )
 

@@ -10,12 +10,12 @@ add_executable(SquaredDifferenceOfTwoImages Code.cxx)
 target_link_libraries(SquaredDifferenceOfTwoImages ${ITK_LIBRARIES})
 
 install(TARGETS SquaredDifferenceOfTwoImages
-  DESTINATION bin/ITKExamples/Filtering/ImageCompare
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageCompare
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageCompare/SquaredDifferenceOfTwoImages/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageCompare/SquaredDifferenceOfTwoImages/
   COMPONENT Code
   )
 

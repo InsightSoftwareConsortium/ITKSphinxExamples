@@ -10,12 +10,12 @@ add_executable(WriteMeshToVTP Code.cxx)
 target_link_libraries(WriteMeshToVTP ${ITK_LIBRARIES})
 
 install(TARGETS WriteMeshToVTP
-  DESTINATION bin/ITKExamples/Core/Mesh
+  DESTINATION bin/ITKSphinxExamples/Core/Mesh
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Mesh/WriteMeshToVTP/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Mesh/WriteMeshToVTP/
   COMPONENT Code
   )
 

@@ -9,12 +9,12 @@ add_executable( ImageRegionOverlap Code.cxx )
 target_link_libraries( ImageRegionOverlap ${ITK_LIBRARIES} )
 
 install( TARGETS ImageRegionOverlap
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/ImageRegionOverlap
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/ImageRegionOverlap
   COMPONENT Code
 )
 

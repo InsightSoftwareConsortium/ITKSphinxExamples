@@ -18,11 +18,11 @@ target_link_libraries(DilateABinaryImage ${ITK_LIBRARIES})
 
 
 install(TARGETS DilateABinaryImage
-  DESTINATION bin/ITKExamples/Filtering/BinaryMathematicalMorphology/
+  DESTINATION bin/ITKSphinxExamples/Filtering/BinaryMathematicalMorphology/
   COMPONENT Runtime
   )
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology/DilateABinaryImage
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/BinaryMathematicalMorphology/DilateABinaryImage
   COMPONENT Code
   )
 

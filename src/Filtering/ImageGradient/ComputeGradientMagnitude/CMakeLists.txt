@@ -9,12 +9,12 @@ add_executable( ComputeGradientMagnitude Code.cxx )
 target_link_libraries( ComputeGradientMagnitude ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeGradientMagnitude
-  DESTINATION bin/ITKExamples/Filtering/ImageGradient
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGradient
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGradient/ComputeGradientMagnitude
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGradient/ComputeGradientMagnitude
   COMPONENT Code
 )
 

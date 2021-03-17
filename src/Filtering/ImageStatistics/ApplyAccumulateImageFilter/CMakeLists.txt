@@ -9,12 +9,12 @@ add_executable( ApplyAccumulateImageFilter Code.cxx )
 target_link_libraries( ApplyAccumulateImageFilter ${ITK_LIBRARIES} )
 
 install( TARGETS ApplyAccumulateImageFilter
-  DESTINATION bin/ITKExamples/Filtering/ImageStatistics
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageStatistics
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageStatistics/ApplyAccumulateImageFilter
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageStatistics/ApplyAccumulateImageFilter
   COMPONENT Code
   )
 

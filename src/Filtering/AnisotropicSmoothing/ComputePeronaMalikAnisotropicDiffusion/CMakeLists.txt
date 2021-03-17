@@ -20,12 +20,12 @@ add_executable( ComputePeronaMalikAnisotropicDiffusion Code.cxx )
 target_link_libraries( ComputePeronaMalikAnisotropicDiffusion ${ITK_LIBRARIES} )
 
 install( TARGETS ComputePeronaMalikAnisotropicDiffusion
-  DESTINATION bin/ITKExamples/Filtering/AnisotropicSmoothing
+  DESTINATION bin/ITKSphinxExamples/Filtering/AnisotropicSmoothing
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/AnisotropicSmoothing/ComputePeronaMalikAnisotropicDiffusion
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/AnisotropicSmoothing/ComputePeronaMalikAnisotropicDiffusion
   COMPONENT Code
 )
 

@@ -10,12 +10,12 @@ add_executable(GetOrSetMemberVariableOfITKClass Code.cxx)
 target_link_libraries(GetOrSetMemberVariableOfITKClass ${ITK_LIBRARIES})
 
 install(TARGETS GetOrSetMemberVariableOfITKClass
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/GetOrSetMemberVariableOfITKClass/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/GetOrSetMemberVariableOfITKClass/
   COMPONENT Code
   )
 

@@ -10,12 +10,12 @@ add_executable(ConvertAnitkImageTovtkImageData Code.cxx)
 target_link_libraries(ConvertAnitkImageTovtkImageData ${ITK_LIBRARIES})
 
 install(TARGETS ConvertAnitkImageTovtkImageData
-  DESTINATION bin/ITKExamples/Bridge/VtkGlue
+  DESTINATION bin/ITKSphinxExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Bridge/VtkGlue/ConvertAnitkImageTovtkImageData/
+  DESTINATION share/ITKSphinxExamples/Code/Bridge/VtkGlue/ConvertAnitkImageTovtkImageData/
   COMPONENT Code
   )
 

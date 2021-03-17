@@ -10,12 +10,12 @@ add_executable(DistributionOfPixelsUsingGMM Code.cxx)
 target_link_libraries(DistributionOfPixelsUsingGMM ${ITK_LIBRARIES})
 
 install(TARGETS DistributionOfPixelsUsingGMM
-  DESTINATION bin/ITKExamples/Numerics/Statistics
+  DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Numerics/Statistics/DistributionOfPixelsUsingGMM/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Statistics/DistributionOfPixelsUsingGMM/
   COMPONENT Code
   )
 

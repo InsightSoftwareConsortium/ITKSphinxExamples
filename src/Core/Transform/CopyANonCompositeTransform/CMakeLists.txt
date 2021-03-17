@@ -9,12 +9,12 @@ add_executable( CopyANonCompositeTransform Code.cxx )
 target_link_libraries( CopyANonCompositeTransform ${ITK_LIBRARIES} )
 
 install( TARGETS CopyANonCompositeTransform
-  DESTINATION bin/ITKExamples/Core/Transform
+  DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Transform/CopyANonCompositeTransform
+  DESTINATION share/ITKSphinxExamples/Code/Core/Transform/CopyANonCompositeTransform
   COMPONENT Code
   )
 

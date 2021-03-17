@@ -9,12 +9,12 @@ add_executable( BoundingBoxOfAPointSet Code.cxx Code.py )
 target_link_libraries( BoundingBoxOfAPointSet ${ITK_LIBRARIES} )
 
 install( TARGETS BoundingBoxOfAPointSet
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/BoundingBoxOfAPointSet
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/BoundingBoxOfAPointSet
   COMPONENT Code
 )
 

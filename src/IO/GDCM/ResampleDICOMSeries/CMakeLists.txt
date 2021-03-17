@@ -10,12 +10,12 @@ add_executable(ResampleDICOMSeries Code.cxx)
 target_link_libraries(ResampleDICOMSeries ${ITK_LIBRARIES})
 
 install(TARGETS ResampleDICOMSeries
-  DESTINATION bin/ITKExamples/IO/GDCM
+  DESTINATION bin/ITKSphinxExamples/IO/GDCM
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/IO/GDCM/ResampleDICOMSeries/
+  DESTINATION share/ITKSphinxExamples/Code/IO/GDCM/ResampleDICOMSeries/
   COMPONENT Code
   )
 

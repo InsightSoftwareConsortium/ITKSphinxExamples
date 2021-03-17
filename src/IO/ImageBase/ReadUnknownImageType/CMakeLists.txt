@@ -9,12 +9,12 @@ add_executable( ReadUnknownImageType Code.cxx )
 target_link_libraries( ReadUnknownImageType ${ITK_LIBRARIES} )
 
 install( TARGETS ReadUnknownImageType
-  DESTINATION bin/ITKExamples/IO/ImageBase
+  DESTINATION bin/ITKSphinxExamples/IO/ImageBase
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/IO/ImageBase/ReadUnknownImageType
+  DESTINATION share/ITKSphinxExamples/Code/IO/ImageBase/ReadUnknownImageType
   COMPONENT Code
   )
 

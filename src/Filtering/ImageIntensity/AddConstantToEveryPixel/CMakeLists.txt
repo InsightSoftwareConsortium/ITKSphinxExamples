@@ -10,12 +10,12 @@ add_executable(AddConstantToEveryPixel Code.cxx)
 target_link_libraries(AddConstantToEveryPixel ${ITK_LIBRARIES})
 
 install(TARGETS AddConstantToEveryPixel
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/AddConstantToEveryPixel/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/AddConstantToEveryPixel/
   COMPONENT Code
   )
 

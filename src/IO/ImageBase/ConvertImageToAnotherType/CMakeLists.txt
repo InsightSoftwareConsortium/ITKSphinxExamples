@@ -10,12 +10,12 @@ add_executable(ConvertImageToAnotherType Code.cxx)
 target_link_libraries(ConvertImageToAnotherType ${ITK_LIBRARIES})
 
 install(TARGETS ConvertImageToAnotherType
-  DESTINATION bin/ITKExamples/IO/ImageBase
+  DESTINATION bin/ITKSphinxExamples/IO/ImageBase
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/IO/ImageBase/ConvertImageToAnotherType/
+  DESTINATION share/ITKSphinxExamples/Code/IO/ImageBase/ConvertImageToAnotherType/
   COMPONENT Code
   )
 

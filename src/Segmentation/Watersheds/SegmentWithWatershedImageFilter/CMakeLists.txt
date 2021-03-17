@@ -10,12 +10,12 @@ add_executable(SegmentWithWatershedImageFilter Code.cxx)
 target_link_libraries(SegmentWithWatershedImageFilter ${ITK_LIBRARIES})
 
 install(TARGETS SegmentWithWatershedImageFilter
-  DESTINATION bin/ITKExamples/Segmentation/Watersheds
+  DESTINATION bin/ITKSphinxExamples/Segmentation/Watersheds
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Segmentation/Watersheds/SegmentWithWatershedImageFilter/
+  DESTINATION share/ITKSphinxExamples/Code/Segmentation/Watersheds/SegmentWithWatershedImageFilter/
   COMPONENT Code
   )
 

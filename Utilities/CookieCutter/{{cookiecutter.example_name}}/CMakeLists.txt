@@ -9,12 +9,12 @@ add_executable( {{ cookiecutter.example_name }} Code.cxx )
 target_link_libraries( {{ cookiecutter.example_name }} ${ITK_LIBRARIES} )
 
 install( TARGETS {{ cookiecutter.example_name }}
-  DESTINATION bin/ITKExamples/{{ cookiecutter.group_name }}/{{ cookiecutter.module_name }}
+  DESTINATION bin/ITKSphinxExamples/{{ cookiecutter.group_name }}/{{ cookiecutter.module_name }}
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/{{ cookiecutter.group_name }}/{{ cookiecutter.module_name }}/{{ cookiecutter.example_name }}
+  DESTINATION share/ITKSphinxExamples/Code/{{ cookiecutter.group_name }}/{{ cookiecutter.module_name }}/{{ cookiecutter.example_name }}
   COMPONENT Code
 )
 

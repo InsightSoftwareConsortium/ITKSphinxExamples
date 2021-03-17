@@ -9,12 +9,12 @@ add_executable( DelaunayConformEdgeFlipping Code.cxx )
 target_link_libraries( DelaunayConformEdgeFlipping ${ITK_LIBRARIES} )
 
 install( TARGETS DelaunayConformEdgeFlipping
-  DESTINATION bin/ITKExamples/Filtering/QuadEdgeMeshFiltering
+  DESTINATION bin/ITKSphinxExamples/Filtering/QuadEdgeMeshFiltering
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/QuadEdgeMeshFiltering/DelaunayConformEdgeFlipping
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/QuadEdgeMeshFiltering/DelaunayConformEdgeFlipping
   COMPONENT Code
 )
 

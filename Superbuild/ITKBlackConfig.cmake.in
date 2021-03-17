@@ -1,10 +1,10 @@
-set(ITKExamples_SOURCE_DIR "@ITKExamples_SOURCE_DIR@")
+set(ITKSphinxExamples_SOURCE_DIR "@ITKSphinxExamples_SOURCE_DIR@")
 set(CMAKE_SOURCE_DIR "@CMAKE_SOURCE_DIR@")
 set(BLACK_EXECUTABLE "@BLACK_EXECUTABLE@")
 
 set(WORKING_DIR "")
-if(ITKExamples_SOURCE_DIR)
-  set(WORKING_DIR "${ITKExamples_SOURCE_DIR}/..")
+if(ITKSphinxExamples_SOURCE_DIR)
+  set(WORKING_DIR "${ITKSphinxExamples_SOURCE_DIR}/..")
 else()
   set(WORKING_DIR "${CMAKE_SOURCE_DIR}/..")
 endif()

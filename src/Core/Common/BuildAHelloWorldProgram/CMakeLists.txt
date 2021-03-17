@@ -9,12 +9,12 @@ add_executable( BuildAHelloWorldProgram Code.cxx Code.py )
 target_link_libraries( BuildAHelloWorldProgram ${ITK_LIBRARIES} )
 
 install( TARGETS BuildAHelloWorldProgram
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/BuildAHelloWorldProgram
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/BuildAHelloWorldProgram
   COMPONENT Code
 )
 

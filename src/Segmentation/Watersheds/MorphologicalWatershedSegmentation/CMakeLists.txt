@@ -10,12 +10,12 @@ add_executable(MorphologicalWatershedSegmentation Code.cxx)
 target_link_libraries(MorphologicalWatershedSegmentation ${ITK_LIBRARIES})
 
 install(TARGETS MorphologicalWatershedSegmentation
-  DESTINATION bin/ITKExamples/Segmentation/Watersheds
+  DESTINATION bin/ITKSphinxExamples/Segmentation/Watersheds
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/Watersheds/MorphologicalWatershedSegmentation/
+  DESTINATION share/ITKSphinxExamples/Code/Segmentation/Watersheds/MorphologicalWatershedSegmentation/
   COMPONENT Code
   )
 

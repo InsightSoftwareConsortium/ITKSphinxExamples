@@ -10,12 +10,12 @@ add_executable(SinglephaseChanAndVeseSparseFieldLevelSetSegmentation Code.cxx)
 target_link_libraries(SinglephaseChanAndVeseSparseFieldLevelSetSegmentation ${ITK_LIBRARIES})
 
 install(TARGETS SinglephaseChanAndVeseSparseFieldLevelSetSegmentation
-  DESTINATION bin/ITKExamples/Nonunit/Review
+  DESTINATION bin/ITKSphinxExamples/Nonunit/Review
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Nonunit/Review/SinglephaseChanAndVeseSparseFieldLevelSetSegmentation/
+  DESTINATION share/ITKSphinxExamples/Code/Nonunit/Review/SinglephaseChanAndVeseSparseFieldLevelSetSegmentation/
   COMPONENT Code
   )
 

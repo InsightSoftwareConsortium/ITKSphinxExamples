@@ -10,12 +10,12 @@ add_executable(LineSpatialObject Code.cxx)
 target_link_libraries(LineSpatialObject ${ITK_LIBRARIES})
 
 install(TARGETS LineSpatialObject
-  DESTINATION bin/ITKExamples/Core/SpatialObjects
+  DESTINATION bin/ITKSphinxExamples/Core/SpatialObjects
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/SpatialObjects/LineSpatialObject/
+  DESTINATION share/ITKSphinxExamples/Code/Core/SpatialObjects/LineSpatialObject/
   COMPONENT Code
   )
 

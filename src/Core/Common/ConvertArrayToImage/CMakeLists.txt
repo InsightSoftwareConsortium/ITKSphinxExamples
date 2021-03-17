@@ -10,12 +10,12 @@ add_executable(ConvertArrayToImage Code.cxx)
 target_link_libraries(ConvertArrayToImage ${ITK_LIBRARIES})
 
 install(TARGETS ConvertArrayToImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/ConvertArrayToImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/ConvertArrayToImage/
   COMPONENT Code
   )
 

@@ -10,12 +10,12 @@ add_executable(FitSplineIntoPointSet Code.cxx)
 target_link_libraries(FitSplineIntoPointSet ${ITK_LIBRARIES})
 
 install(TARGETS FitSplineIntoPointSet
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/FitSplineIntoPointSet/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/FitSplineIntoPointSet/
   COMPONENT Code
   )
 

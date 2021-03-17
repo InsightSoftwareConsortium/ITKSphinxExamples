@@ -9,12 +9,12 @@ add_executable( ReadAndPrintDICOMTags Code.cxx )
 target_link_libraries( ReadAndPrintDICOMTags ${ITK_LIBRARIES} )
 
 install( TARGETS ReadAndPrintDICOMTags
-  DESTINATION bin/ITKExamples/IO/GDCM
+  DESTINATION bin/ITKSphinxExamples/IO/GDCM
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/IO/GDCM/ReadAndPrintDICOMTags
+  DESTINATION share/ITKSphinxExamples/Code/IO/GDCM/ReadAndPrintDICOMTags
   COMPONENT Code
 )
 

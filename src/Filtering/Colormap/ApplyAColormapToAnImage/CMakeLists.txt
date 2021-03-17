@@ -13,12 +13,12 @@ add_executable( ApplyAColormapToAnImage Code.cxx )
 target_link_libraries( ApplyAColormapToAnImage ${ITK_LIBRARIES} )
 
 install( TARGETS ApplyAColormapToAnImage
-  DESTINATION bin/ITKExamples/Filtering/Colormap
+  DESTINATION bin/ITKSphinxExamples/Filtering/Colormap
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/Colormap/ApplyAColormapToAnImage
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Colormap/ApplyAColormapToAnImage
   COMPONENT Code
 )
 

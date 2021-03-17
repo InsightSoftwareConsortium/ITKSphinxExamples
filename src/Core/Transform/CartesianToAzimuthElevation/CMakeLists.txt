@@ -10,12 +10,12 @@ add_executable(CartesianToAzimuthElevation Code.cxx)
 target_link_libraries(CartesianToAzimuthElevation ${ITK_LIBRARIES})
 
 install(TARGETS CartesianToAzimuthElevation
-  DESTINATION bin/ITKExamples/Core/Transform
+  DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Transform/CartesianToAzimuthElevation/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Transform/CartesianToAzimuthElevation/
   COMPONENT Code
   )
 

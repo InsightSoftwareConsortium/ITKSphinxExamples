@@ -9,12 +9,12 @@ add_executable( CreateAFixedArray Code.cxx Code.py )
 target_link_libraries( CreateAFixedArray ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAFixedArray
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateAFixedArray
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAFixedArray
   COMPONENT Code
 )
 

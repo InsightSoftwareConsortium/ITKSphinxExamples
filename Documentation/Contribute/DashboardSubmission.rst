@@ -36,7 +36,7 @@ Copy the testing support script into your dashboard directory.
 
 ::
 
-  cp ~/src/ITKExamples/Utilities/Dashboard/itkexamples_common.cmake .
+  cp ~/src/ITKSphinxExamples/Utilities/Dashboard/itkexamples_common.cmake .
 
 Step 2: Setup a script describing your system
 .............................................
@@ -48,7 +48,7 @@ to configure the settings unique to our system.
 
 Create a file, `itkexamples_dashboard.cmake`, to hold these settings::
 
-  cp ~/src/ITKExamples/Utilities/Dashboard/itkexamples_dashboard.cmake.example itkexamples_dashboard.cmake
+  cp ~/src/ITKSphinxExamples/Utilities/Dashboard/itkexamples_dashboard.cmake.example itkexamples_dashboard.cmake
 
 You *must* edit this file to describe your local system.
 
@@ -67,7 +67,7 @@ First, test the script to ensure that it runs correctly::
 
   ctest -S ./itkexamples_dashboard.cmake -V -A
 
-Did everything work?  Do you see your build on the `ITKExamples dashboard`_?
+Did everything work?  Do you see your build on the `ITKSphinxExamples dashboard`_?
 If so, continue to `setup a cronjob`_ that will run the script daily.  Edit your
 crontab::
 
@@ -116,8 +116,8 @@ back up.  To do this
 3. Uncheck the box labelled *Users must enter a user name and password to use this computer*
 4. Click OK.
 
-Thank you for contributing to the quality of the ITK Examples!
+Thank you for contributing to the quality of the ITK Sphinx Examples!
 
 .. _CDash:                 https://www.cdash.org/
-.. _ITKExamples dashboard: https://open.cdash.org/index.php?project=Insight&filtercount=1&showfilters=0&field1=buildname/string&compare1=63&value1=Examples
+.. _ITKSphinxExamples dashboard: https://open.cdash.org/index.php?project=Insight&filtercount=1&showfilters=0&field1=buildname/string&compare1=63&value1=Examples
 .. _setup a cronjob:       https://en.wikipedia.org/wiki/Cron

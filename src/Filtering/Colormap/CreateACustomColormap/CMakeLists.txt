@@ -13,12 +13,12 @@ add_executable( CreateACustomColormap Code.cxx )
 target_link_libraries( CreateACustomColormap ${ITK_LIBRARIES} )
 
 install( TARGETS CreateACustomColormap
-  DESTINATION bin/ITKExamples/Filtering/Colormap
+  DESTINATION bin/ITKSphinxExamples/Filtering/Colormap
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/Colormap/CreateACustomColormap
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Colormap/CreateACustomColormap
   COMPONENT Code
 )
 

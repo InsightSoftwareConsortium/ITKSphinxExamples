@@ -10,12 +10,12 @@ add_executable(CreateListOfSampleMeasurements Code.cxx)
 target_link_libraries(CreateListOfSampleMeasurements ${ITK_LIBRARIES})
 
 install(TARGETS CreateListOfSampleMeasurements
-  DESTINATION bin/ITKExamples/Numerics/Statistics
+  DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Numerics/Statistics/CreateListOfSampleMeasurements/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Statistics/CreateListOfSampleMeasurements/
   COMPONENT Code
   )
 

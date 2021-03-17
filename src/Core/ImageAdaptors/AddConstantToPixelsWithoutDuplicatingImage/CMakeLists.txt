@@ -10,12 +10,12 @@ add_executable(AddConstantToPixelsWithoutDuplicatingImage Code.cxx)
 target_link_libraries(AddConstantToPixelsWithoutDuplicatingImage ${ITK_LIBRARIES})
 
 install(TARGETS AddConstantToPixelsWithoutDuplicatingImage
-  DESTINATION bin/ITKExamples/Core/ImageAdaptors
+  DESTINATION bin/ITKSphinxExamples/Core/ImageAdaptors
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/ImageAdaptors/AddConstantToPixelsWithoutDuplicatingImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/ImageAdaptors/AddConstantToPixelsWithoutDuplicatingImage/
   COMPONENT Code
   )
 

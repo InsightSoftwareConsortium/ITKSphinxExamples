@@ -10,12 +10,12 @@ add_executable(MergeLabelMaps Code.cxx)
 target_link_libraries(MergeLabelMaps ${ITK_LIBRARIES})
 
 install(TARGETS MergeLabelMaps
-  DESTINATION bin/ITKExamples/Filtering/LabelMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/MergeLabelMaps/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/MergeLabelMaps/
   COMPONENT Code
   )
 

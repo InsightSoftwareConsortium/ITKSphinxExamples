@@ -9,12 +9,12 @@ add_executable( ConvertAnITKGrayScaleImageToCVMat Code.cxx )
 target_link_libraries( ConvertAnITKGrayScaleImageToCVMat ${ITK_LIBRARIES} )
 
 install( TARGETS ConvertAnITKGrayScaleImageToCVMat
-  DESTINATION bin/ITKExamples/Video/BridgeOpenCV
+  DESTINATION bin/ITKSphinxExamples/Video/BridgeOpenCV
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Video/BridgeOpenCV/ConvertAnITKGrayScaleImageToCVMat
+  DESTINATION share/ITKSphinxExamples/Code/Video/BridgeOpenCV/ConvertAnITKGrayScaleImageToCVMat
   COMPONENT Code
   )
 

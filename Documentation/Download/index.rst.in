@@ -6,10 +6,10 @@ Archives in various formats
 
 The complete set of examples can be downloaded in various formats:
 
-- `HTML (Packed as .tar.gz) <ITKExamples-@ITKExamples_RELEASE_VERSION@-html.tar.gz>`_
-- `HTML (Packed as .zip)    <ITKExamples-@ITKExamples_RELEASE_VERSION@-html.zip>`_
-- `PDF                      <ITKExamples-@ITKExamples_RELEASE_VERSION@.pdf>`_
-- `EPUB                     <ITKExamples-@ITKExamples_RELEASE_VERSION@.epub>`_
+- `HTML (Packed as .tar.gz) <ITKSphinxExamples-@ITKSphinxExamples_RELEASE_VERSION@-html.tar.gz>`_
+- `HTML (Packed as .zip)    <ITKSphinxExamples-@ITKSphinxExamples_RELEASE_VERSION@-html.zip>`_
+- `PDF                      <ITKSphinxExamples-@ITKSphinxExamples_RELEASE_VERSION@.pdf>`_
+- `EPUB                     <ITKSphinxExamples-@ITKSphinxExamples_RELEASE_VERSION@.epub>`_
 
 Individual examples
 -------------------
@@ -34,6 +34,6 @@ The entire source tree can be downloaded with Git_:
 
 .. code-block:: bash
 
-  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git
+  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKSphinxExamples.git
 
 .. _Git: https://git-scm.com/

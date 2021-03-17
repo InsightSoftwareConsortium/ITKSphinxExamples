@@ -12,12 +12,12 @@ add_executable(ResampleAVectorImage Code.cxx)
 target_link_libraries(ResampleAVectorImage ${ITK_LIBRARIES})
 
 install(TARGETS ResampleAVectorImage
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid/
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid/
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/ResampleAVectorImage
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/ResampleAVectorImage
   COMPONENT Code
   )
 

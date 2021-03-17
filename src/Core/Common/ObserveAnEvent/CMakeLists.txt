@@ -9,12 +9,12 @@ add_executable( ObserveAnEvent Code.cxx )
 target_link_libraries( ObserveAnEvent ${ITK_LIBRARIES} )
 
 install( TARGETS ObserveAnEvent
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/ObserveAnEvent
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/ObserveAnEvent
   COMPONENT Code
 )
 

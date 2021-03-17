@@ -10,12 +10,12 @@ add_executable(PadImageByWrapping Code.cxx)
 target_link_libraries(PadImageByWrapping ${ITK_LIBRARIES})
 
 install(TARGETS PadImageByWrapping
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/PadImageByWrapping/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/PadImageByWrapping/
   COMPONENT Code
   )
 

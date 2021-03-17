@@ -11,11 +11,11 @@ target_link_libraries(SegmentBloodVessels ${ITK_LIBRARIES})
 
 
 install(TARGETS SegmentBloodVessels
-  DESTINATION bin/ITKExamples/Filtering/ImageFeature
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature
   COMPONENT Runtime
   )
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/ImageFeature/SegmentBloodVessels
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFeature/SegmentBloodVessels
   COMPONENT Code
   )
 
