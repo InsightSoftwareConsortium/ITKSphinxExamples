@@ -68,6 +68,8 @@ If building the documentation:
 
 - Python_ ( >= 3.5 )
 - Sphinx_
+- Pandoc_
+- nbsphinx_
 - gnuplot_
 - dvipng_ ( for rendered equations )
 
@@ -92,3 +94,5 @@ Run the bash script ``SetupForDevelopment.sh``::
 .. _TeX Live: https://www.tug.org/texlive/
 .. _MiKTeX: https://miktex.org/
 .. _dvipng: https://sourceforge.net/projects/dvipng/
+.. _Pandoc: https://pandoc.org/
+.. _nbsphinx: https://nbsphinx.readthedocs.io/
