@@ -5,12 +5,17 @@ project(VTKImageToITKImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
+find_package(VTK REQUIRED)
+set(_vtk_prefix "")
+if(VTK_VERSION VERSION_LESS "8.90.0")
+  set(_vtk_prefix "vtk")
+endif()
 find_package(VTK REQUIRED
   COMPONENTS
-    vtkImagingColor
-    vtkIOImage
-    vtkRenderingCore
-    vtkRenderingGL2PSOpenGL2
+    ${_vtk_prefix}ImagingColor
+    ${_vtk_prefix}IOImage
+    ${_vtk_prefix}RenderingCore
+    ${_vtk_prefix}RenderingGL2PSOpenGL2
   )
 if(VTK_VERSION VERSION_LESS "8.90.0")
   include(${VTK_USE_FILE})

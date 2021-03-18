@@ -5,11 +5,16 @@ project(ConvertMeshToUnstructeredGrid)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
+find_package(VTK REQUIRED)
+set(_vtk_prefix "")
+if(VTK_VERSION VERSION_LESS "8.90.0")
+  set(_vtk_prefix "vtk")
+endif()
 find_package(VTK REQUIRED
   COMPONENTS
-    vtkIOXML
-    vtkCommonDataModel
-    vtkInteractionImage
+    ${_vtk_prefix}IOXML
+    ${_vtk_prefix}CommonDataModel
+    ${_vtk_prefix}InteractionImage
   )
 if(VTK_VERSION VERSION_LESS "8.90.0")
   include(${VTK_USE_FILE})

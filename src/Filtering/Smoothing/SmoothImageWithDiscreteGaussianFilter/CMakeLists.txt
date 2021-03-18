@@ -9,8 +9,8 @@ include(${ITK_USE_FILE})
 if(ENABLE_QUICKVIEW)
   find_package(VTK REQUIRED
     COMPONENTS
-      vtkRenderingCore
-      vtkRenderingGL2PSOpenGL2
+      ${_vtk_prefix}RenderingCore
+      ${_vtk_prefix}RenderingGL2PSOpenGL2
     )
 
   if(VTK_VERSION VERSION_LESS "8.90.0")
