@@ -24,7 +24,7 @@ if len(sys.argv) != 3:
 cwd = os.getcwd()
 example_name = sys.argv[1]
 example_dir = os.path.join(cwd, example_name)
-example_idx = example_dir.index('/src/') + 1
+example_idx = example_dir.index('SphinxExamples') + 15
 html_output_dir = os.path.join(sys.argv[2], 'html', example_dir[example_idx:])
 
 if not os.path.exists( html_output_dir ):
