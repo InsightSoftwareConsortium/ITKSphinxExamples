@@ -27,7 +27,7 @@ example_dir = os.path.join(cwd, example_name)
 example_idx = example_dir.index("SphinxExamples") + 15
 html_output_dir = os.path.join(sys.argv[2], "html", example_dir[example_idx:])
 
-if not os.path.exists( html_output_dir ):
+if not os.path.exists(html_output_dir):
     os.makedirs(html_output_dir)
 
 # Copy files to support web editting to the html output.
