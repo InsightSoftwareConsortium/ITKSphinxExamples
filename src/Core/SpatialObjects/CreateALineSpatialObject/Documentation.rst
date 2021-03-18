@@ -30,6 +30,5 @@ C++
 
 Classes demonstrated
 --------------------
-.. [TODO: This will need to be uncommented once PR #186 is merged and the official documentation is updated
-.. [breathelink:: itk::LineSpatialObject
-.. [breathelink:: itk::LineSpatialObjectPoint
+.. breathelink:: itk::LineSpatialObject
+.. breathelink:: itk::LineSpatialObjectPoint
