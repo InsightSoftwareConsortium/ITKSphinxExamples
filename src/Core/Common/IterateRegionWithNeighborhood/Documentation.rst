@@ -1,4 +1,4 @@
-Iterate Region In Image With Neighborhood
+Iterate Region in Image With Neighborhood
 =========================================
 
 .. index::

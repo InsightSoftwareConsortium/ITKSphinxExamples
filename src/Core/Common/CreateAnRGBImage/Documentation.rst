@@ -1,4 +1,4 @@
-Create An RGB Image
+Create an RGB Image
 ===================
 
 .. index::

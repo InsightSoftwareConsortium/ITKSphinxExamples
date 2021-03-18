@@ -1,4 +1,4 @@
-Pass Image To Function
+Pass Image to Function
 ======================
 
 .. index::

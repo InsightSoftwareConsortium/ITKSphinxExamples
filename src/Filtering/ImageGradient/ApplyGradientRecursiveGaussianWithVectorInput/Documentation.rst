@@ -1,4 +1,4 @@
-Apply GradientRecursiveGaussianImageFilter on Image with Vector type
+Apply GradientRecursiveGaussianImageFilter on Image With Vector type
 ====================================================================
 
 .. index::

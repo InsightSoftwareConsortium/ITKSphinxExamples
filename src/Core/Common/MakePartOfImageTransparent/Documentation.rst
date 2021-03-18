@@ -1,4 +1,4 @@
-Make Part Of An Image Transparent
+Make Part of an Image Transparent
 =================================
 
 .. index::

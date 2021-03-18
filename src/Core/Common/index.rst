@@ -27,10 +27,10 @@ Common
   CreateAPointSet/Documentation.rst
   CreateASize/Documentation.rst
   CreateAVector/Documentation.rst
-  CreateAnRGBImage/Documentation.rst
   CreateAnImage/Documentation.rst
   CreateAnImageRegion/Documentation.rst
   CreateAnImageOfVectors/Documentation.rst
+  CreateAnRGBImage/Documentation.rst
   CreateAnother/Documentation.rst
   CreateAnotherInstanceOfAnImage/Documentation.rst
   CreateDerivativeKernel/Documentation.rst

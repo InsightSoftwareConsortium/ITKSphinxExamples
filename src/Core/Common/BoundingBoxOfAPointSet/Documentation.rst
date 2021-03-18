@@ -1,4 +1,4 @@
-Bounding Box Of A Point Set
+Bounding Box of a Point Set
 ===========================
 
 .. index::

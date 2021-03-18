@@ -1,4 +1,4 @@
-Create A Index
+Create a Index
 ==============
 
 .. index::

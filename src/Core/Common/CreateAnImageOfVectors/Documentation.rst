@@ -1,4 +1,4 @@
-Create An Image Of Vectors
+Create an Image of Vectors
 ==========================
 
 .. index::

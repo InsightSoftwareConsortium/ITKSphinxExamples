@@ -1,4 +1,4 @@
-In Place Filter Of Image
+In Place Filter of Image
 ========================
 .. index::
    single: InPlaceImageFilter

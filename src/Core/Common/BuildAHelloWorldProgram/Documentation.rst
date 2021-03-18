@@ -1,4 +1,4 @@
-Build A Hello World Program
+Build a Hello World Program
 ===========================
 
 .. index::

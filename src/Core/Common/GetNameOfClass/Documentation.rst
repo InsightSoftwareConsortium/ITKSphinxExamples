@@ -1,4 +1,4 @@
-Get Name Of Class
+Get Name of Class
 =================
 
 .. index::

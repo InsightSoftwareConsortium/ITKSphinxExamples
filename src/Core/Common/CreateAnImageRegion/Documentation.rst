@@ -1,4 +1,4 @@
-Create An Image Region
+Create an Image Region
 ======================
 
 .. index::

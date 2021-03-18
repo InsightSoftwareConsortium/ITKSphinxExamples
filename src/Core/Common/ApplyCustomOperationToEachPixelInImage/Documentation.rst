@@ -1,4 +1,4 @@
-Apply Custom Operation To Each Pixel In Image
+Apply Custom Operation to Each Pixel in Image
 =============================================
 
 .. index::

@@ -1,4 +1,4 @@
-Find Max And Min In Image
+Find Max and Min in Image
 =========================
 
 .. index::

@@ -1,4 +1,4 @@
-Median Filtering Of An RGB Image
+Median Filtering of an RGB Image
 ================================
 
 .. index::

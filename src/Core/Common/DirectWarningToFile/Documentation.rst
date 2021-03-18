@@ -1,4 +1,4 @@
-Direct Warning To File
+Direct Warning to File
 ======================
 
 .. index::

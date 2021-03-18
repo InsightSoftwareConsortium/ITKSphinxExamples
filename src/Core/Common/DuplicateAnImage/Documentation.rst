@@ -1,4 +1,4 @@
-Duplicate An Image
+Duplicate an Image
 ==================
 
 .. index::
