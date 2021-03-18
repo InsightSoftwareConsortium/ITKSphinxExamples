@@ -4,7 +4,7 @@ if(itk-module)
     return()
   endif()
 endif()
-find_package(ITK 5.1.0 REQUIRED)
+find_package(ITK 5.2.0 REQUIRED)
 include(${ITK_USE_FILE})
 
 # To avoid linker issues.
