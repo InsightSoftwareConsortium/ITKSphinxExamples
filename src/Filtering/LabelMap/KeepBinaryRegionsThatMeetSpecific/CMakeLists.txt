@@ -10,12 +10,12 @@ add_executable(KeepBinaryRegionsThatMeetSpecific Code.cxx)
 target_link_libraries(KeepBinaryRegionsThatMeetSpecific ${ITK_LIBRARIES})
 
 install(TARGETS KeepBinaryRegionsThatMeetSpecific
-  DESTINATION bin/ITKExamples/Filtering/LabelMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/KeepBinaryRegionsThatMeetSpecific/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/KeepBinaryRegionsThatMeetSpecific/
   COMPONENT Code
   )
 

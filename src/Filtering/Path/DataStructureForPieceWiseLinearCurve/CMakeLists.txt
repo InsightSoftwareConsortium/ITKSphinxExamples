@@ -10,12 +10,12 @@ add_executable(DataStructureForPieceWiseLinearCurve Code.cxx)
 target_link_libraries(DataStructureForPieceWiseLinearCurve ${ITK_LIBRARIES})
 
 install(TARGETS DataStructureForPieceWiseLinearCurve
-  DESTINATION bin/ITKExamples/Filtering/Path
+  DESTINATION bin/ITKSphinxExamples/Filtering/Path
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Path/DataStructureForPieceWiseLinearCurve/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Path/DataStructureForPieceWiseLinearCurve/
   COMPONENT Code
   )
 

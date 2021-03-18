@@ -1,4 +1,4 @@
-# ITK Examples Common Dashboard Script
+# ITK Sphinx Examples Common Dashboard Script
 #
 # This script contains basic dashboard driver code common to all
 # clients.
@@ -28,8 +28,8 @@
 #   dashboard_model           = Nightly | Experimental | Continuous
 #   dashboard_loop            = Repeat until N seconds have elapsed
 #   dashboard_root_name       = Change name of "My Tests" directory
-#   dashboard_source_name     = Name of source directory (ITKExamples)
-#   dashboard_binary_name     = Name of binary directory (ITKExamples-build)
+#   dashboard_source_name     = Name of source directory (ITKSphinxExamples)
+#   dashboard_binary_name     = Name of binary directory (ITKSphinxExamples-build)
 #   dashboard_data_name       = Name of ExternalData store (ExternalData)
 #   dashboard_cache           = Initial CMakeCache.txt file content
 #   dashboard_do_coverage     = True to enable coverage (ex: gcov)
@@ -136,7 +136,7 @@ endif()
 
 # Select Git source to use.
 if(NOT DEFINED dashboard_git_url)
-  set(dashboard_git_url "https://github.com/InsightSoftwareConsortium/ITKExamples.git")
+  set(dashboard_git_url "https://github.com/InsightSoftwareConsortium/ITKSphinxExamples.git")
 endif()
 if(NOT DEFINED dashboard_git_branch)
   #if("${dashboard_model}" STREQUAL "Nightly")
@@ -167,7 +167,7 @@ if(NOT DEFINED CTEST_SOURCE_DIRECTORY)
   if(DEFINED dashboard_source_name)
     set(CTEST_SOURCE_DIRECTORY ${CTEST_DASHBOARD_ROOT}/${dashboard_source_name})
   else()
-    set(CTEST_SOURCE_DIRECTORY ${CTEST_DASHBOARD_ROOT}/ITKExamples)
+    set(CTEST_SOURCE_DIRECTORY ${CTEST_DASHBOARD_ROOT}/ITKSphinxExamples)
   endif()
 endif()
 
@@ -176,7 +176,7 @@ if(NOT DEFINED CTEST_BINARY_DIRECTORY)
   if(DEFINED dashboard_binary_name)
     set(CTEST_BINARY_DIRECTORY ${CTEST_DASHBOARD_ROOT}/${dashboard_binary_name})
   else()
-    set(CTEST_BINARY_DIRECTORY ${CTEST_DASHBOARD_ROOT}/ITKExamples-build)
+    set(CTEST_BINARY_DIRECTORY ${CTEST_DASHBOARD_ROOT}/ITKSphinxExamples-build)
   endif()
 endif()
 
@@ -194,7 +194,7 @@ if(EXISTS ${CTEST_SOURCE_DIRECTORY})
   if(NOT EXISTS "${CTEST_SOURCE_DIRECTORY}/.git")
     set(vcs_refresh "because it is not managed by git.")
   endif()
-  if(vcs_refresh AND "${CTEST_SOURCE_DIRECTORY}" MATCHES "/(ITKExamples|Insight)[^/]*")
+  if(vcs_refresh AND "${CTEST_SOURCE_DIRECTORY}" MATCHES "/(ITKSphinxExamples|Insight)[^/]*")
     message("Deleting source tree\n  ${CTEST_SOURCE_DIRECTORY}\n${vcs_refresh}")
     file(REMOVE_RECURSE "${CTEST_SOURCE_DIRECTORY}")
   endif()
@@ -425,7 +425,7 @@ while(NOT dashboard_done)
       dashboard_hook_test()
     endif()
     if(dashboard_superbuild)
-      ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}/ITKExamples-build" ${CTEST_TEST_ARGS})
+      ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}/ITKSphinxExamples-build" ${CTEST_TEST_ARGS})
     else()
       ctest_test(${CTEST_TEST_ARGS})
     endif()
@@ -436,7 +436,7 @@ while(NOT dashboard_done)
 
     if(dashboard_upload_documentation)
       if(dashboard_superbuild)
-        file(GLOB zip_doc "${CTEST_BINARY_DIRECTORY}/ITKExamples-build/*.zip")
+        file(GLOB zip_doc "${CTEST_BINARY_DIRECTORY}/ITKSphinxExamples-build/*.zip")
       else()
         file(GLOB zip_doc "${CTEST_BINARY_DIRECTORY}/*.zip")
       endif()

@@ -10,12 +10,12 @@ add_executable(InvertImageUsingBinaryNot Code.cxx)
 target_link_libraries(InvertImageUsingBinaryNot ${ITK_LIBRARIES})
 
 install(TARGETS InvertImageUsingBinaryNot
-  DESTINATION bin/ITKExamples/Filtering/LabelMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/InvertImageUsingBinaryNot/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/InvertImageUsingBinaryNot/
   COMPONENT Code
   )
 

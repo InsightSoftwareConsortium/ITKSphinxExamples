@@ -1,8 +1,8 @@
 Contribute
 ==========
 
-The ITK Examples are stored in the Git_ distributed version control system, and
-the mainline repository can be found at `ITK Examples repository`_.  Files in
+The ITK Sphinx Examples are stored in the Git_ distributed version control system, and
+the mainline repository can be found at `ITK Sphinx Examples repository`_.  Files in
 the repository can be edited via the typical :ref:`text editor / version control workflow
 <text-editor-submission>` used when modifying source code.
 
@@ -13,7 +13,7 @@ capabilies, such as multi-document projects and rendering of LaTeX-style
 equations.  A good reference for the easy-to-learn reStructuredText syntax is
 the `Quick reStructuredText`_ guide.
 
-There are a variety of ways to take part in the ITK Examples project.  All
+There are a variety of ways to take part in the ITK Sphinx Examples project.  All
 facets are important to the success of the project.
 
 .. toctree::
@@ -26,7 +26,7 @@ facets are important to the success of the project.
   DashboardSubmission
 
 
-.. _ITK Examples repository: https://github.com/InsightSoftwareConsortium/ITKExamples
+.. _ITK Sphinx Examples repository: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples
 .. _Git:                     https://git-scm.com/
 .. _reStructuredText:        http://docutils.sourceforge.net/rst.html
 .. _Sphinx:                  https://www.sphinx-doc.org/en/master/

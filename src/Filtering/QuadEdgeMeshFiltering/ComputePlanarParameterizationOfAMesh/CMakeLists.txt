@@ -9,12 +9,12 @@ add_executable( ComputePlanarParameterizationOfAMesh Code.cxx )
 target_link_libraries( ComputePlanarParameterizationOfAMesh ${ITK_LIBRARIES} )
 
 install( TARGETS ComputePlanarParameterizationOfAMesh
-  DESTINATION bin/ITKExamples/Filtering/QuadEdgeMeshFiltering
+  DESTINATION bin/ITKSphinxExamples/Filtering/QuadEdgeMeshFiltering
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/QuadEdgeMeshFiltering/ComputePlanarParameterizationOfAMesh
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/QuadEdgeMeshFiltering/ComputePlanarParameterizationOfAMesh
   COMPONENT Code
   )
 

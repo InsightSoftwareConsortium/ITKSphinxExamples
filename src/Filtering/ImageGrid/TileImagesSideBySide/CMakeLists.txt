@@ -10,12 +10,12 @@ add_executable(TileImagesSideBySide Code.cxx)
 target_link_libraries(TileImagesSideBySide ${ITK_LIBRARIES})
 
 install(TARGETS TileImagesSideBySide
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/TileImagesSideBySide/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/TileImagesSideBySide/
   COMPONENT Code
   )
 

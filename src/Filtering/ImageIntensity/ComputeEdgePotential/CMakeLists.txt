@@ -10,12 +10,12 @@ add_executable(ComputeEdgePotential Code.cxx)
 target_link_libraries(ComputeEdgePotential ${ITK_LIBRARIES})
 
 install(TARGETS ComputeEdgePotential
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/ComputeEdgePotential/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/ComputeEdgePotential/
   COMPONENT Code
   )
 

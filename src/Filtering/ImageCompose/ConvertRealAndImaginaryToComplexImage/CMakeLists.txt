@@ -10,12 +10,12 @@ add_executable(ConvertRealAndImaginaryToComplexImage Code.cxx)
 target_link_libraries(ConvertRealAndImaginaryToComplexImage ${ITK_LIBRARIES})
 
 install(TARGETS ConvertRealAndImaginaryToComplexImage
-  DESTINATION bin/ITKExamples/Filtering/ImageCompose
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageCompose
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageCompose/ConvertRealAndImaginaryToComplexImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageCompose/ConvertRealAndImaginaryToComplexImage/
   COMPONENT Code
   )
 

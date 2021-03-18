@@ -28,19 +28,19 @@ else()
   set(gen "${CMAKE_GENERATOR}" )
 endif()
 
-set(ITKExamples_DEPENDENCIES )
+set(ITKSphinxExamples_DEPENDENCIES )
 set(ITK_DEPENDENCIES )
 
-option(ITKExamples_USE_VTK "Add VTK to the superbuild." OFF)
+option(ITKSphinxExamples_USE_VTK "Add VTK to the superbuild." OFF)
 # Used by ITK, VTK, -- always build it.
-if(NOT WIN32 OR ITKExamples_USE_VTK AND NOT VTK_DIR)
+if(NOT WIN32 OR ITKSphinxExamples_USE_VTK AND NOT VTK_DIR)
   include(${CMAKE_SOURCE_DIR}/External-zlib.cmake)
 endif()
 
-option(ITKExamples_USE_OpenCV "Add OpenCV to the superbuild" OFF)
-if(NOT OpenCV_DIR AND ITKExamples_USE_OpenCV)
+option(ITKSphinxExamples_USE_OpenCV "Add OpenCV to the superbuild" OFF)
+if(NOT OpenCV_DIR AND ITKSphinxExamples_USE_OpenCV)
   include(${CMAKE_SOURCE_DIR}/External-OpenCV.cmake)
-  list(APPEND ITKExamples_DEPENDENCIES OpenCV)
+  list(APPEND ITKSphinxExamples_DEPENDENCIES OpenCV)
   list(APPEND ITK_DEPENDENCIES OpenCV)
 endif()
 
@@ -49,22 +49,22 @@ set(_use_python_default ON)
 if(WIN32)
   set(_use_python_default OFF)
 endif()
-option(ITKExamples_USE_WRAP_PYTHON "Enable downloads of the ITK Python wrapping to the superbuild" ${_use_python_default})
-if(NOT EXISTS PYTHON_EXECUTABLE AND ITKExamples_USE_WRAP_PYTHON OR ITKExamples_USE_VTK)
+option(ITKSphinxExamples_USE_WRAP_PYTHON "Enable downloads of the ITK Python wrapping to the superbuild" ${_use_python_default})
+if(NOT EXISTS PYTHON_EXECUTABLE AND ITKSphinxExamples_USE_WRAP_PYTHON OR ITKSphinxExamples_USE_VTK)
   include(${CMAKE_SOURCE_DIR}/External-Python.cmake)
-  list(APPEND ITKExamples_DEPENDENCIES ITKPython)
+  list(APPEND ITKSphinxExamples_DEPENDENCIES ITKPython)
   set(_python_args "-DPYTHON_EXECUTABLE:FILEPATH=${ITKPYTHON_EXECUTABLE}")
 endif()
 
-if(NOT VTK_DIR AND ITKExamples_USE_VTK)
+if(NOT VTK_DIR AND ITKSphinxExamples_USE_VTK)
   include(${CMAKE_SOURCE_DIR}/External-VTK.cmake)
-  list(APPEND ITKExamples_DEPENDENCIES VTK)
+  list(APPEND ITKSphinxExamples_DEPENDENCIES VTK)
   list(APPEND ITK_DEPENDENCIES VTK)
 endif()
 
 if(NOT ITK_DIR)
   include(${CMAKE_SOURCE_DIR}/External-ITK.cmake)
-  list(APPEND ITKExamples_DEPENDENCIES ITK)
+  list(APPEND ITKSphinxExamples_DEPENDENCIES ITK)
 endif()
 
 option(BUILD_DOCUMENTATION "Build documentation" OFF)
@@ -100,8 +100,8 @@ endif()
 include(CTest)
 option(BUILD_TESTING "Build testing" OFF)
 
-ExternalProject_Add(ITKExamples
-  DEPENDS ${ITKExamples_DEPENDENCIES}
+ExternalProject_Add(ITKSphinxExamples
+  DEPENDS ${ITKSphinxExamples_DEPENDENCIES}
   PREFIX ITKEx-prefix
   DOWNLOAD_COMMAND ""
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..
@@ -129,9 +129,9 @@ ExternalProject_Add(ITKExamples
 # Globally, the ITK/.clang-format file provides the base style configuration.
 # For more information on ITK coding style, see the ITK Coding Style Guide in
 # the ITK Software Guide.
-option(ITKExamples_USE_CLANG_FORMAT "Enable the use of clang-format for coding style formatting." ${BUILD_TESTING})
-mark_as_advanced(ITKExamples_USE_CLANG_FORMAT)
+option(ITKSphinxExamples_USE_CLANG_FORMAT "Enable the use of clang-format for coding style formatting." ${BUILD_TESTING})
+mark_as_advanced(ITKSphinxExamples_USE_CLANG_FORMAT)
 
-if(BUILD_TESTING AND ITKExamples_USE_CLANG_FORMAT AND NOT CMAKE_CROSSCOMPILING)
+if(BUILD_TESTING AND ITKSphinxExamples_USE_CLANG_FORMAT AND NOT CMAKE_CROSSCOMPILING)
   include(${CMAKE_SOURCE_DIR}/External-ClangFormat.cmake)
 endif()

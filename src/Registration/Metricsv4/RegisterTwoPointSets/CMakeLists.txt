@@ -10,12 +10,12 @@ add_executable(RegisterTwoPointSets Code.cxx)
 target_link_libraries(RegisterTwoPointSets ${ITK_LIBRARIES})
 
 install(TARGETS RegisterTwoPointSets
-  DESTINATION bin/ITKExamples/Registration/Common
+  DESTINATION bin/ITKSphinxExamples/Registration/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Registration/Common/RegisterTwoPointSets/
+  DESTINATION share/ITKSphinxExamples/Code/Registration/Common/RegisterTwoPointSets/
   COMPONENT Code
   )
 

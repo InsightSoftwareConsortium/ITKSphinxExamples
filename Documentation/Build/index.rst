@@ -79,7 +79,7 @@ Set convenience variables::
 
 Clone the repository::
 
-  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git ${ITK_SOURCE}
+  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKSphinxExamples.git ${ITK_SOURCE}
 
 Make a build directory::
 

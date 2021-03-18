@@ -10,12 +10,12 @@ add_executable(NormalizedCorrelationOfMaskedImage Code.cxx)
 target_link_libraries(NormalizedCorrelationOfMaskedImage ${ITK_LIBRARIES})
 
 install(TARGETS NormalizedCorrelationOfMaskedImage
-  DESTINATION bin/ITKExamples/Filtering/Convolution
+  DESTINATION bin/ITKSphinxExamples/Filtering/Convolution
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Convolution/NormalizedCorrelationOfMaskedImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Convolution/NormalizedCorrelationOfMaskedImage/
   COMPONENT Code
   )
 

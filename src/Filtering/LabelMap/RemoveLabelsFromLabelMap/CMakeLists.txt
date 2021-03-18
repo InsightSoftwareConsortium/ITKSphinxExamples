@@ -10,12 +10,12 @@ add_executable(RemoveLabelsFromLabelMap Code.cxx)
 target_link_libraries(RemoveLabelsFromLabelMap ${ITK_LIBRARIES})
 
 install(TARGETS RemoveLabelsFromLabelMap
-  DESTINATION bin/ITKExamples/Filtering/LabelMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/RemoveLabelsFromLabelMap/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/RemoveLabelsFromLabelMap/
   COMPONENT Code
   )
 

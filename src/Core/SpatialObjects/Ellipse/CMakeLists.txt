@@ -10,12 +10,12 @@ add_executable(Ellipse Code.cxx)
 target_link_libraries(Ellipse ${ITK_LIBRARIES})
 
 install(TARGETS Ellipse
-  DESTINATION bin/ITKExamples/Core/SpatialObjects
+  DESTINATION bin/ITKSphinxExamples/Core/SpatialObjects
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/SpatialObjects/Ellipse/
+  DESTINATION share/ITKSphinxExamples/Code/Core/SpatialObjects/Ellipse/
   COMPONENT Code
   )
 

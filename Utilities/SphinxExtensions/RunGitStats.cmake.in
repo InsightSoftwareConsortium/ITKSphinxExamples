@@ -7,10 +7,10 @@ if(NOT PYTHONINTERP_FOUND)
 endif()
 
 execute_process(COMMAND ${PYTHON_EXECUTABLE}
-  "@ITKExamples_SOURCE_DIR@/Utilities/SphinxExtensions/gitstats/gitstats"
-  --rst "@ITKExamples_SOURCE_DIR@"
-  "@ITKExamples_BINARY_DIR@/Documentation/gitstats"
-  WORKING_DIRECTORY "@ITKExamples_BINARY_DIR@"
+  "@ITKSphinxExamples_SOURCE_DIR@/Utilities/SphinxExtensions/gitstats/gitstats"
+  --rst "@ITKSphinxExamples_SOURCE_DIR@"
+  "@ITKSphinxExamples_BINARY_DIR@/Documentation/gitstats"
+  WORKING_DIRECTORY "@ITKSphinxExamples_BINARY_DIR@"
   OUTPUT_QUIET
   ERROR_QUIET
   ERROR_VARIABLE error

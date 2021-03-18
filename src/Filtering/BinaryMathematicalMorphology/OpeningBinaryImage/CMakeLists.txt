@@ -31,12 +31,12 @@ else()
 endif()
 
 install(TARGETS OpeningBinaryImage
-  DESTINATION bin/ITKExamples/Filtering/BinaryMathematicalMorphology
+  DESTINATION bin/ITKSphinxExamples/Filtering/BinaryMathematicalMorphology
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology/OpeningBinaryImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/BinaryMathematicalMorphology/OpeningBinaryImage/
   COMPONENT Code
   )
 

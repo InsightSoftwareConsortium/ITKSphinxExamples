@@ -30,12 +30,12 @@ else()
 endif()
 
 install(TARGETS SmoothImageWhilePreservingEdges2
-  DESTINATION bin/ITKExamples/Filtering/AnisotropicSmoothing
+  DESTINATION bin/ITKSphinxExamples/Filtering/AnisotropicSmoothing
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/AnisotropicSmoothing/SmoothImageWhilePreservingEdges2/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/AnisotropicSmoothing/SmoothImageWhilePreservingEdges2/
   COMPONENT Code
   )
 

@@ -10,12 +10,12 @@ add_executable(LabelBinaryRegionsInImage Code.cxx)
 target_link_libraries(LabelBinaryRegionsInImage ${ITK_LIBRARIES})
 
 install(TARGETS LabelBinaryRegionsInImage
-  DESTINATION bin/ITKExamples/Filtering/LabelMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/LabelBinaryRegionsInImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/LabelBinaryRegionsInImage/
   COMPONENT Code
   )
 

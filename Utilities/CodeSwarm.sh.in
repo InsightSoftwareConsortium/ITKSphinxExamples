@@ -1,8 +1,8 @@
 #! /bin/bash
 
-cd @ITKExamples_SOURCE_DIR@
+cd @ITKSphinxExamples_SOURCE_DIR@
 gource --log-command git > project.log
 gource --output-custom-log project.log
 gource --highlight-users -s 0.1 --auto-skip-seconds 1 --file-idle-time 5 --stop-at-end -o - | ffmpeg -y -b 3000K -r 60 -f image2pipe -vcodec ppm -i - -vcodec mpeg2video -pix_fmt yuv422p -qscale 1 -qmin 1 -intra -an gource.mpeg
-mv gource.mpeg @ITKExamples_BINARY_DIR@/Documentation/
+mv gource.mpeg @ITKSphinxExamples_BINARY_DIR@/Documentation/
 rm project.log

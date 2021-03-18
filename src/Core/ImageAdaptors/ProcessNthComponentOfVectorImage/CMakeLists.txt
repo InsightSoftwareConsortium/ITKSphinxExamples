@@ -10,12 +10,12 @@ add_executable(ProcessNthComponentOfVectorImage Code.cxx)
 target_link_libraries(ProcessNthComponentOfVectorImage ${ITK_LIBRARIES})
 
 install(TARGETS ProcessNthComponentOfVectorImage
-  DESTINATION bin/ITKExamples/Core/ImageAdaptors
+  DESTINATION bin/ITKSphinxExamples/Core/ImageAdaptors
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/ImageAdaptors/ProcessNthComponentOfVectorImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/ImageAdaptors/ProcessNthComponentOfVectorImage/
   COMPONENT Code
   )
 

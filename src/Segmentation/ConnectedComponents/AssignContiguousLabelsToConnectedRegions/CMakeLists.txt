@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS AssignContiguousLabelsToConnectedRegions
-  DESTINATION bin/ITKExamples/Segmentation/ConnectedComponents
+  DESTINATION bin/ITKSphinxExamples/Segmentation/ConnectedComponents
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/ConnectedComponents/AssignContiguousLabelsToConnectedRegions/
+  DESTINATION share/ITKSphinxExamples/Code/Segmentation/ConnectedComponents/AssignContiguousLabelsToConnectedRegions/
   COMPONENT Code
   )
 

@@ -9,12 +9,12 @@ add_executable( MaskOneImageGivenLabelMap Code.cxx )
 target_link_libraries( MaskOneImageGivenLabelMap ${ITK_LIBRARIES} )
 
 install( TARGETS MaskOneImageGivenLabelMap
-  DESTINATION bin/ITKExamples/Filtering/LabelMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/MaskOneImageGivenLabelMap
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/MaskOneImageGivenLabelMap
   COMPONENT Code
   )
 

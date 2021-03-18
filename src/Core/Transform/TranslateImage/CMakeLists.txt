@@ -9,12 +9,12 @@ add_executable( TranslateImage Code.cxx )
 target_link_libraries( TranslateImage ${ITK_LIBRARIES} )
 
 install( TARGETS TranslateImage
-  DESTINATION bin/ITKExamples/Core/Transform
+  DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Transform/TranslateImage
+  DESTINATION share/ITKSphinxExamples/Code/Core/Transform/TranslateImage
   COMPONENT Code
   )
 

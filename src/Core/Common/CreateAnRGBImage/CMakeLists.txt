@@ -8,12 +8,12 @@ add_executable(CreateAnRGBImage Code.cxx)
 target_link_libraries(CreateAnRGBImage ${ITK_LIBRARIES})
 
 install(TARGETS CreateAnRGBImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateAnRGBImage
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAnRGBImage
   COMPONENT Code
 )
 

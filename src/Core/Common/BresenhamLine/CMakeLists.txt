@@ -10,12 +10,12 @@ add_executable(BresenhamLine Code.cxx)
 target_link_libraries(BresenhamLine ${ITK_LIBRARIES})
 
 install(TARGETS BresenhamLine
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/BresenhamLine/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/BresenhamLine/
   COMPONENT Code
   )
 

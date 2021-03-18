@@ -9,12 +9,12 @@ add_executable( MultiplyImageByScalar Code.cxx )
 target_link_libraries( MultiplyImageByScalar ${ITK_LIBRARIES} )
 
 install( TARGETS MultiplyImageByScalar
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/MultiplyImageByScalar
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/MultiplyImageByScalar
   COMPONENT Code
   )
 

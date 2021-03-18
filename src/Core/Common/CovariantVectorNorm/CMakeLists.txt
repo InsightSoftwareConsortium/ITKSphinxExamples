@@ -9,12 +9,12 @@ add_executable( CovariantVectorNorm Code.cxx )
 target_link_libraries( CovariantVectorNorm ${ITK_LIBRARIES} )
 
 install( TARGETS CovariantVectorNorm
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/CovariantVectorNorm
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CovariantVectorNorm
   COMPONENT Code
 )
 

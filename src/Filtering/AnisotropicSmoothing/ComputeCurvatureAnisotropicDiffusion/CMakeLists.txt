@@ -13,12 +13,12 @@ add_executable( ComputeCurvatureAnisotropicDiffusion Code.cxx )
 target_link_libraries( ComputeCurvatureAnisotropicDiffusion ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeCurvatureAnisotropicDiffusion
-  DESTINATION bin/ITKExamples/Filtering/AnisotropicSmoothing
+  DESTINATION bin/ITKSphinxExamples/Filtering/AnisotropicSmoothing
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/AnisotropicSmoothing/ComputeCurvatureAnisotropicDiffusion
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/AnisotropicSmoothing/ComputeCurvatureAnisotropicDiffusion
   COMPONENT Code
 )
 

@@ -10,12 +10,12 @@ add_executable(HistogramCreationAndBinAccess Code.cxx)
 target_link_libraries(HistogramCreationAndBinAccess ${ITK_LIBRARIES})
 
 install(TARGETS HistogramCreationAndBinAccess
-  DESTINATION bin/ITKExamples/Numerics/Statistics
+  DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Numerics/Statistics/HistogramCreationAndBinAccess/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Statistics/HistogramCreationAndBinAccess/
   COMPONENT Code
   )
 

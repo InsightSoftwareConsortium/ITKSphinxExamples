@@ -10,12 +10,12 @@ add_executable(BinaryXORTwoImages Code.cxx)
 target_link_libraries(BinaryXORTwoImages ${ITK_LIBRARIES})
 
 install(TARGETS BinaryXORTwoImages
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/BinaryXORTwoImages/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/BinaryXORTwoImages/
   COMPONENT Code
   )
 

@@ -10,12 +10,12 @@ add_executable(ColorNormalizedCorrelation Code.cxx)
 target_link_libraries(ColorNormalizedCorrelation ${ITK_LIBRARIES})
 
 install(TARGETS ColorNormalizedCorrelation
-  DESTINATION bin/ITKExamples/Filtering/Convolution
+  DESTINATION bin/ITKSphinxExamples/Filtering/Convolution
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Convolution/ColorNormalizedCorrelation/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Convolution/ColorNormalizedCorrelation/
   COMPONENT Code
   )
 

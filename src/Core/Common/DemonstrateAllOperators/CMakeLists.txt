@@ -10,12 +10,12 @@ add_executable(DemonstrateAllOperators Code.cxx)
 target_link_libraries(DemonstrateAllOperators ${ITK_LIBRARIES})
 
 install(TARGETS DemonstrateAllOperators
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/DemonstrateAllOperators/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/DemonstrateAllOperators/
   COMPONENT Code
   )
 

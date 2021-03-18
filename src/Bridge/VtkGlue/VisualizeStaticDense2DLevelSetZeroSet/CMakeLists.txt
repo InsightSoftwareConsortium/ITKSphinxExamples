@@ -30,12 +30,12 @@ if( NOT VTK_VERSION VERSION_LESS "8.90.0" )
 endif()
 
 install( TARGETS VisualizeStaticDense2DLevelSetZeroSet
-  DESTINATION bin/ITKExamples/Bridge/VtkGlue
+  DESTINATION bin/ITKSphinxExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Bridge/VtkGlue/VisualizeStaticDense2DLevelSetZeroSet
+  DESTINATION share/ITKSphinxExamples/Code/Bridge/VtkGlue/VisualizeStaticDense2DLevelSetZeroSet
   COMPONENT Code
   )
 

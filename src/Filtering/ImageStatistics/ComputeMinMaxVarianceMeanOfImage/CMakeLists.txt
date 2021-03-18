@@ -10,12 +10,12 @@ add_executable(ComputeMinMaxVarianceMeanOfImage Code.cxx)
 target_link_libraries(ComputeMinMaxVarianceMeanOfImage ${ITK_LIBRARIES})
 
 install(TARGETS ComputeMinMaxVarianceMeanOfImage
-  DESTINATION bin/ITKExamples/Filtering/ImageStatistics
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageStatistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageStatistics/ComputeMinMaxVarianceMeanOfImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageStatistics/ComputeMinMaxVarianceMeanOfImage/
   COMPONENT Code
   )
 

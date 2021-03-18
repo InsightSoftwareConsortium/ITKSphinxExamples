@@ -10,12 +10,12 @@ add_executable(CreateListOfSamplesFromImageWithoutDuplication Code.cxx)
 target_link_libraries(CreateListOfSamplesFromImageWithoutDuplication ${ITK_LIBRARIES})
 
 install(TARGETS CreateListOfSamplesFromImageWithoutDuplication
-  DESTINATION bin/ITKExamples/Numerics/Statistics
+  DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Numerics/Statistics/CreateListOfSamplesFromImageWithoutDuplication/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Statistics/CreateListOfSamplesFromImageWithoutDuplication/
   COMPONENT Code
   )
 

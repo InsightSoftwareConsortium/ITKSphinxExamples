@@ -10,12 +10,12 @@ add_executable(RegionalMinimal Code.cxx)
 target_link_libraries(RegionalMinimal ${ITK_LIBRARIES})
 
 install(TARGETS RegionalMinimal
-  DESTINATION bin/ITKExamples/Filtering/MathematicalMorphology
+  DESTINATION bin/ITKSphinxExamples/Filtering/MathematicalMorphology
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/MathematicalMorphology/RegionalMinimal/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/MathematicalMorphology/RegionalMinimal/
   COMPONENT Code
   )
 

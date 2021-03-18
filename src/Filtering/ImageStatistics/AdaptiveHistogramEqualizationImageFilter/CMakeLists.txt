@@ -10,12 +10,12 @@ add_executable(AdaptiveHistogramEqualizationImageFilter Code.cxx)
 target_link_libraries(AdaptiveHistogramEqualizationImageFilter ${ITK_LIBRARIES})
 
 install(TARGETS AdaptiveHistogramEqualizationImageFilter
-  DESTINATION bin/ITKExamples/Filtering/Statistics
+  DESTINATION bin/ITKSphinxExamples/Filtering/Statistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/Statistics/AdaptiveHistogramEqualizationImageFilter/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Statistics/AdaptiveHistogramEqualizationImageFilter/
   COMPONENT Code
   )
 

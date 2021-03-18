@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS MaskImage
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/MaskImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/MaskImage/
   COMPONENT Code
   )
 

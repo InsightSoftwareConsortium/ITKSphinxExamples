@@ -8,12 +8,12 @@ add_executable( ExtractGivenLabelObject Code.cxx )
 target_link_libraries( ExtractGivenLabelObject ${ITK_LIBRARIES} )
 
 install( TARGETS ExtractGivenLabelObject
-  DESTINATION bin/ITKExamples/Filtering/LabelMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/ExtractGivenLabelObject
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/ExtractGivenLabelObject
   COMPONENT Code
   )
 

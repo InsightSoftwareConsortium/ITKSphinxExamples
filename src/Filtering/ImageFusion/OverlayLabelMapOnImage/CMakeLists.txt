@@ -10,12 +10,12 @@ add_executable(OverlayLabelMapOnImage Code.cxx)
 target_link_libraries(OverlayLabelMapOnImage ${ITK_LIBRARIES})
 
 install(TARGETS OverlayLabelMapOnImage
-  DESTINATION bin/ITKExamples/Filtering/ImageFusion
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageFusion
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageFusion/OverlayLabelMapOnImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFusion/OverlayLabelMapOnImage/
   COMPONENT Code
   )
 

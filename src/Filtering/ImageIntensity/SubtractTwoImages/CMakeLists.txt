@@ -31,12 +31,12 @@ if(NOT VTK_VERSION VERSION_LESS "8.90.0")
 endif()
 
 install(TARGETS SubtractTwoImages
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/SubtractTwoImages/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/SubtractTwoImages/
   COMPONENT Code
   )
 

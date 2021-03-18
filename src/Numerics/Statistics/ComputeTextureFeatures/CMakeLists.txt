@@ -10,12 +10,12 @@ add_executable(ComputeTextureFeatures Code.cxx)
 target_link_libraries(ComputeTextureFeatures ${ITK_LIBRARIES})
 
 install(TARGETS ComputeTextureFeatures
-  DESTINATION bin/ITKExamples/Numerics/Statistics
+  DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Numerics/Statistics/ComputeTextureFeatures/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Statistics/ComputeTextureFeatures/
   COMPONENT Code
   )
 

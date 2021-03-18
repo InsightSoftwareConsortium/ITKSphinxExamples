@@ -9,12 +9,12 @@ add_executable( CleanQuadEdgeMesh Code.cxx )
 target_link_libraries( CleanQuadEdgeMesh ${ITK_LIBRARIES} )
 
 install( TARGETS CleanQuadEdgeMesh
-  DESTINATION bin/ITKExamples/Filtering/QuadEdgeMeshFiltering
+  DESTINATION bin/ITKSphinxExamples/Filtering/QuadEdgeMeshFiltering
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/QuadEdgeMeshFiltering/CleanQuadEdgeMesh
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/QuadEdgeMeshFiltering/CleanQuadEdgeMesh
   COMPONENT Code
 )
 

@@ -10,12 +10,12 @@ add_executable(PixelDivisionOfTwoImages Code.cxx)
 target_link_libraries(PixelDivisionOfTwoImages ${ITK_LIBRARIES})
 
 install(TARGETS PixelDivisionOfTwoImages
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/PixelDivisionOfTwoImages/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/PixelDivisionOfTwoImages/
   COMPONENT Code
   )
 

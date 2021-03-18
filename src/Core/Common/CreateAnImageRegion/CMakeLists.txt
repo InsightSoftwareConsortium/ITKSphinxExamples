@@ -9,12 +9,12 @@ add_executable( CreateAnImageRegion Code.cxx Code.py )
 target_link_libraries( CreateAnImageRegion ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAnImageRegion
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateAnImageRegion
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAnImageRegion
   COMPONENT Code
 )
 

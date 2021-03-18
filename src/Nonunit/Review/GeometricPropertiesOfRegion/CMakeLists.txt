@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS GeometricPropertiesOfRegion
-  DESTINATION bin/ITKExamples/Nonunit/Review
+  DESTINATION bin/ITKSphinxExamples/Nonunit/Review
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Nonunit/Review/GeometricPropertiesOfRegion/
+  DESTINATION share/ITKSphinxExamples/Code/Nonunit/Review/GeometricPropertiesOfRegion/
   COMPONENT Code
   )
 

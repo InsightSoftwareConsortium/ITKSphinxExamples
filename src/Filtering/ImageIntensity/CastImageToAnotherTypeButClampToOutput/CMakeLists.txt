@@ -10,12 +10,12 @@ add_executable(CastImageToAnotherTypeButClampToOutput Code.cxx)
 target_link_libraries(CastImageToAnotherTypeButClampToOutput ${ITK_LIBRARIES})
 
 install(TARGETS CastImageToAnotherTypeButClampToOutput
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/CastImageToAnotherTypeButClampToOutput/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/CastImageToAnotherTypeButClampToOutput/
   COMPONENT Code
   )
 

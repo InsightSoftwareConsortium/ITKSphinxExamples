@@ -10,12 +10,12 @@ add_executable(JoinImages Code.cxx)
 target_link_libraries(JoinImages ${ITK_LIBRARIES})
 
 install(TARGETS JoinImages
-  DESTINATION bin/ITKExamples/Filtering/ImageCompose
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageCompose
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageCompose/JoinImages/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageCompose/JoinImages/
   COMPONENT Code
   )
 

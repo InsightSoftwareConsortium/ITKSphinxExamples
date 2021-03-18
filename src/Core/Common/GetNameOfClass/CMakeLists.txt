@@ -9,12 +9,12 @@ add_executable( GetNameOfClass Code.cxx )
 target_link_libraries( GetNameOfClass ${ITK_LIBRARIES} )
 
 install( TARGETS GetNameOfClass
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/GetNameOfClass
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/GetNameOfClass
   COMPONENT Code
 )
 

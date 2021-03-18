@@ -30,12 +30,12 @@ else()
 endif()
 
 install(TARGETS ApproxDistanceMapOfBinary
-  DESTINATION bin/ITKExamples/Filtering/DistanceMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/DistanceMap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/DistanceMap/ApproxDistanceMapOfBinary/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/DistanceMap/ApproxDistanceMapOfBinary/
   COMPONENT Code
   )
 

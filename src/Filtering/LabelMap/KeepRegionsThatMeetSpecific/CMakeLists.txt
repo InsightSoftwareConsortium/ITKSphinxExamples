@@ -10,12 +10,12 @@ add_executable(KeepRegionsThatMeetSpecific Code.cxx)
 target_link_libraries(KeepRegionsThatMeetSpecific ${ITK_LIBRARIES})
 
 install(TARGETS KeepRegionsThatMeetSpecific
-  DESTINATION bin/ITKExamples/Filtering/LabelMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/KeepRegionsThatMeetSpecific/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/KeepRegionsThatMeetSpecific/
   COMPONENT Code
   )
 

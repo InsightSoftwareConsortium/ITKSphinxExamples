@@ -9,12 +9,12 @@ add_executable( SetPixelValueInOneImage Code.cxx )
 target_link_libraries( SetPixelValueInOneImage ${ITK_LIBRARIES} )
 
 install( TARGETS SetPixelValueInOneImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/SetPixelValueInOneImage
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/SetPixelValueInOneImage
   COMPONENT Code
 )
 

@@ -9,12 +9,12 @@ add_executable( StreamAPipeline Code.cxx )
 target_link_libraries( StreamAPipeline ${ITK_LIBRARIES} )
 
 install( TARGETS StreamAPipeline
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx Code.py CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/StreamAPipeline
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/StreamAPipeline
   COMPONENT Code
   )
 

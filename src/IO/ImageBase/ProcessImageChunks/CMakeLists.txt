@@ -16,12 +16,12 @@ add_executable( ProcessImageChunks Code.cxx )
 target_link_libraries( ProcessImageChunks ${ITK_LIBRARIES} )
 
 install( TARGETS ProcessImageChunks
-  DESTINATION bin/ITKExamples/IO/ImageBase/
+  DESTINATION bin/ITKSphinxExamples/IO/ImageBase/
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/IO/ImageBase/ProcessImageChunks
+  DESTINATION share/ITKSphinxExamples/Code/IO/ImageBase/ProcessImageChunks
   COMPONENT Code
 )
 

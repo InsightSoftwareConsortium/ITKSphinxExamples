@@ -10,12 +10,12 @@ add_executable(MakePartOfImageTransparent Code.cxx)
 target_link_libraries(MakePartOfImageTransparent ${ITK_LIBRARIES})
 
 install(TARGETS MakePartOfImageTransparent
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/MakePartOfImageTransparent/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/MakePartOfImageTransparent/
   COMPONENT Code
   )
 

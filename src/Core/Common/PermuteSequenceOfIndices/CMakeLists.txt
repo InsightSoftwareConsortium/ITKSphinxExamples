@@ -10,12 +10,12 @@ add_executable(PermuteSequenceOfIndices Code.cxx)
 target_link_libraries(PermuteSequenceOfIndices ${ITK_LIBRARIES})
 
 install(TARGETS PermuteSequenceOfIndices
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/PermuteSequenceOfIndices/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/PermuteSequenceOfIndices/
   COMPONENT Code
   )
 

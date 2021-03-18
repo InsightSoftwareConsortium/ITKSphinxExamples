@@ -9,12 +9,12 @@ add_executable( CreateABackwardDifferenceOperator Code.cxx )
 target_link_libraries( CreateABackwardDifferenceOperator ${ITK_LIBRARIES} )
 
 install( TARGETS CreateABackwardDifferenceOperator
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateABackwardDifferenceOperator
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateABackwardDifferenceOperator
   COMPONENT Code
 )
 

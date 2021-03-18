@@ -10,12 +10,12 @@ add_executable(CreateVectorImageFromScalarImages Code.cxx)
 target_link_libraries(CreateVectorImageFromScalarImages ${ITK_LIBRARIES})
 
 install(TARGETS CreateVectorImageFromScalarImages
-  DESTINATION bin/ITKExamples/Filtering/ImageCompose
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageCompose
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageCompose/CreateVectorImageFromScalarImages/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageCompose/CreateVectorImageFromScalarImages/
   COMPONENT Code
   )
 

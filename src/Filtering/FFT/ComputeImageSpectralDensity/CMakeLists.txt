@@ -9,12 +9,12 @@ add_executable( ComputeImageSpectralDensity Code.cxx )
 target_link_libraries( ComputeImageSpectralDensity ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeImageSpectralDensity
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/ComputeImageSpectralDensity
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/ComputeImageSpectralDensity
   COMPONENT Code
   )
 

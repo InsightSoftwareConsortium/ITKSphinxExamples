@@ -10,12 +10,12 @@ add_executable(CompareTwoImagesAndSetOutputPixelToMin Code.cxx)
 target_link_libraries(CompareTwoImagesAndSetOutputPixelToMin ${ITK_LIBRARIES})
 
 install(TARGETS CompareTwoImagesAndSetOutputPixelToMin
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/CompareTwoImagesAndSetOutputPixelToMin/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/CompareTwoImagesAndSetOutputPixelToMin/
   COMPONENT Code
   )
 

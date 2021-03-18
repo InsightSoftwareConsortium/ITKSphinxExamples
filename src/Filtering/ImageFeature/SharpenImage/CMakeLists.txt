@@ -10,12 +10,12 @@ add_executable(SharpenImage Code.cxx)
 target_link_libraries(SharpenImage ${ITK_LIBRARIES})
 
 install(TARGETS SharpenImage
-  DESTINATION bin/ITKExamples/Filtering/ImageFeature
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageFeature/SharpenImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFeature/SharpenImage/
   COMPONENT Code
   )
 

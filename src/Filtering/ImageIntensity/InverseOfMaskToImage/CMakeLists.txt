@@ -10,12 +10,12 @@ add_executable(InverseOfMaskToImage Code.cxx)
 target_link_libraries(InverseOfMaskToImage ${ITK_LIBRARIES})
 
 install(TARGETS InverseOfMaskToImage
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/InverseOfMaskToImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/InverseOfMaskToImage/
   COMPONENT Code
   )
 

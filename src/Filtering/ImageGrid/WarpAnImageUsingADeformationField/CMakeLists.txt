@@ -10,12 +10,12 @@ add_executable(WarpAnImageUsingADeformationField Code.cxx)
 target_link_libraries(WarpAnImageUsingADeformationField ${ITK_LIBRARIES})
 
 install(TARGETS WarpAnImageUsingADeformationField
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/WarpAnImageUsingADeformationField/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/WarpAnImageUsingADeformationField/
   COMPONENT Code
   )
 

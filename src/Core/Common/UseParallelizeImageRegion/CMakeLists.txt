@@ -9,12 +9,12 @@ add_executable( UseParallelizeImageRegion Code.cxx )
 target_link_libraries( UseParallelizeImageRegion ${ITK_LIBRARIES} )
 
 install( TARGETS UseParallelizeImageRegion
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/UseParallelizeImageRegion
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/UseParallelizeImageRegion
   COMPONENT Code
 )
 

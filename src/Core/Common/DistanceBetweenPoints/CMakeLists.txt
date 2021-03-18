@@ -9,12 +9,12 @@ add_executable( DistanceBetweenPoints Code.cxx )
 target_link_libraries( DistanceBetweenPoints ${ITK_LIBRARIES} )
 
 install( TARGETS DistanceBetweenPoints
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/DistanceBetweenPoints
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/DistanceBetweenPoints
   COMPONENT Code
 )
 

@@ -9,12 +9,12 @@ add_executable( ComputeSigmoid Code.cxx )
 target_link_libraries( ComputeSigmoid ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeSigmoid
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/ComputeSigmoid
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/ComputeSigmoid
   COMPONENT Code
   )
 

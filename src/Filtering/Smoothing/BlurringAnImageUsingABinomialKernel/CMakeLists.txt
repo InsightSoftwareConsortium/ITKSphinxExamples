@@ -10,12 +10,12 @@ add_executable(BlurringAnImageUsingABinomialKernel Code.cxx)
 target_link_libraries(BlurringAnImageUsingABinomialKernel ${ITK_LIBRARIES})
 
 install(TARGETS BlurringAnImageUsingABinomialKernel
-  DESTINATION bin/ITKExamples/Filtering/Smoothing
+  DESTINATION bin/ITKSphinxExamples/Filtering/Smoothing
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/Smoothing/BlurringAnImageUsingABinomialKernel/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Smoothing/BlurringAnImageUsingABinomialKernel/
   COMPONENT Code
   )
 

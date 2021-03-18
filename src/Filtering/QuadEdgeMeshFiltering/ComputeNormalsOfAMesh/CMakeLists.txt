@@ -9,12 +9,12 @@ add_executable( ComputeNormalsOfAMesh Code.cxx )
 target_link_libraries( ComputeNormalsOfAMesh ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeNormalsOfAMesh
-  DESTINATION bin/ITKExamples/Filtering/QuadEdgeMeshFiltering
+  DESTINATION bin/ITKSphinxExamples/Filtering/QuadEdgeMeshFiltering
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/QuadEdgeMeshFiltering/ComputeNormalsOfAMesh
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/QuadEdgeMeshFiltering/ComputeNormalsOfAMesh
   COMPONENT Code
 )
 

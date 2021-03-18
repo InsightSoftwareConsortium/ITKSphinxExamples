@@ -10,12 +10,12 @@ add_executable(AddNoiseToBinaryImage Code.cxx)
 target_link_libraries(AddNoiseToBinaryImage ${ITK_LIBRARIES})
 
 install(TARGETS AddNoiseToBinaryImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/AddNoiseToBinaryImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/AddNoiseToBinaryImage/
   COMPONENT Code
   )
 

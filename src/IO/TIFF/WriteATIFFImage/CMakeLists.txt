@@ -9,12 +9,12 @@ add_executable( WriteATIFFImage Code.cxx )
 target_link_libraries( WriteATIFFImage ${ITK_LIBRARIES} )
 
 install( TARGETS WriteATIFFImage
-  DESTINATION bin/ITKExamples/IO/TIFF/
+  DESTINATION bin/ITKSphinxExamples/IO/TIFF/
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/IO/TIFF/WriteATIFFImage
+  DESTINATION share/ITKSphinxExamples/Code/IO/TIFF/WriteATIFFImage
   COMPONENT Code
 )
 

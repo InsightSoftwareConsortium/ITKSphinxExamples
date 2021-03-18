@@ -10,12 +10,12 @@ add_executable(RegisterTransformWithTransformFactory Code.cxx)
 target_link_libraries(RegisterTransformWithTransformFactory ${ITK_LIBRARIES})
 
 install(TARGETS RegisterTransformWithTransformFactory
-  DESTINATION bin/ITKExamples/IO/TransformFactory
+  DESTINATION bin/ITKSphinxExamples/IO/TransformFactory
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/IO/TransformFactory/RegisterTransformWithTransformFactory/
+  DESTINATION share/ITKSphinxExamples/Code/IO/TransformFactory/RegisterTransformWithTransformFactory/
   COMPONENT Code
   )
 

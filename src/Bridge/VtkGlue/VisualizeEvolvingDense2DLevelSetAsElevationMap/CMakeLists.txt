@@ -9,12 +9,12 @@ add_executable( VisualizeEvolvingDense2DLevelSetAsElevationMap Code.cxx)
 target_link_libraries( VisualizeEvolvingDense2DLevelSetAsElevationMap ${ITK_LIBRARIES} )
 
 install( TARGETS VisualizeEvolvingDense2DLevelSetAsElevationMap
-  DESTINATION bin/ITKExamples/Bridge/VtkGlue
+  DESTINATION bin/ITKSphinxExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Bridge/VtkGlue/VisualizeEvolvingDense2DLevelSetAsElevationMap
+  DESTINATION share/ITKSphinxExamples/Code/Bridge/VtkGlue/VisualizeEvolvingDense2DLevelSetAsElevationMap
   COMPONENT Code
   )
 

@@ -9,12 +9,12 @@ add_executable( GetImageSize Code.cxx )
 target_link_libraries( GetImageSize ${ITK_LIBRARIES} )
 
 install( TARGETS GetImageSize
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/GetImageSize
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/GetImageSize
   COMPONENT Code
 )
 

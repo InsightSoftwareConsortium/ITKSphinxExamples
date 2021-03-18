@@ -8,12 +8,12 @@ add_executable( ApplyMorphologicalClosingOnSpecificLabelObject Code.cxx )
 target_link_libraries( ApplyMorphologicalClosingOnSpecificLabelObject ${ITK_LIBRARIES} )
 
 install( TARGETS ApplyMorphologicalClosingOnSpecificLabelObject
-  DESTINATION bin/ITKExamples/Filtering/LabelMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/ApplyMorphologicalClosingOnSpecificLabelObject
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/ApplyMorphologicalClosingOnSpecificLabelObject
   COMPONENT Code
   )
 

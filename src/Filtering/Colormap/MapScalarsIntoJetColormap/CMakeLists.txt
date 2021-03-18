@@ -10,12 +10,12 @@ add_executable(MapScalarsIntoJetColormap Code.cxx)
 target_link_libraries(MapScalarsIntoJetColormap ${ITK_LIBRARIES})
 
 install(TARGETS MapScalarsIntoJetColormap
-  DESTINATION bin/ITKExamples/Filtering/Colormap
+  DESTINATION bin/ITKSphinxExamples/Filtering/Colormap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Colormap/MapScalarsIntoJetColormap/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Colormap/MapScalarsIntoJetColormap/
   COMPONENT Code
   )
 

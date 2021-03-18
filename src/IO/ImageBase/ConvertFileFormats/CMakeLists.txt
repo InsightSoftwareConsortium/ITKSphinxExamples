@@ -9,12 +9,12 @@ add_executable( ConvertFileFormats Code.cxx )
 target_link_libraries( ConvertFileFormats ${ITK_LIBRARIES} )
 
 install( TARGETS ConvertFileFormats
-  DESTINATION bin/ITKExamples/IO/ImageBase
+  DESTINATION bin/ITKSphinxExamples/IO/ImageBase
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/IO/ImageBase/ConvertFileFormats
+  DESTINATION share/ITKSphinxExamples/Code/IO/ImageBase/ConvertFileFormats
   COMPONENT Code
   )
 

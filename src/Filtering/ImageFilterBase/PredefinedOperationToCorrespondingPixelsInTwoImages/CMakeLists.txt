@@ -10,12 +10,12 @@ add_executable(PredefinedOperationToCorrespondingPixelsInTwoImages Code.cxx)
 target_link_libraries(PredefinedOperationToCorrespondingPixelsInTwoImages ${ITK_LIBRARIES})
 
 install(TARGETS PredefinedOperationToCorrespondingPixelsInTwoImages
-  DESTINATION bin/ITKExamples/Filtering/ImageFilterBase
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageFilterBase
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageFilterBase/PredefinedOperationToCorrespondingPixelsInTwoImages/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFilterBase/PredefinedOperationToCorrespondingPixelsInTwoImages/
   COMPONENT Code
   )
 

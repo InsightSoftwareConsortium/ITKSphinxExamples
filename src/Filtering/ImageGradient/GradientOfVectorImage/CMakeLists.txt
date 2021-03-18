@@ -10,12 +10,12 @@ add_executable(GradientOfVectorImage Code.cxx)
 target_link_libraries(GradientOfVectorImage ${ITK_LIBRARIES})
 
 install(TARGETS GradientOfVectorImage
-  DESTINATION bin/ITKExamples/Filtering/ImageGradient
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGradient
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGradient/GradientOfVectorImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGradient/GradientOfVectorImage/
   COMPONENT Code
   )
 

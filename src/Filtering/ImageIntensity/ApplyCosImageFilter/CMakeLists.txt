@@ -9,12 +9,12 @@ add_executable( ApplyCosImageFilter Code.cxx )
 target_link_libraries( ApplyCosImageFilter ${ITK_LIBRARIES} )
 
 install( TARGETS ApplyCosImageFilter
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/ApplyCosImageFilter
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/ApplyCosImageFilter
   COMPONENT Code
 )
 

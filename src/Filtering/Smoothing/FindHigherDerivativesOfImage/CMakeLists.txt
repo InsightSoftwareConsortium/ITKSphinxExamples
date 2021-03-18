@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS FindHigherDerivativesOfImage
-  DESTINATION bin/ITKExamples/Filtering/Smoothing
+  DESTINATION bin/ITKSphinxExamples/Filtering/Smoothing
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Smoothing/FindHigherDerivativesOfImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Smoothing/FindHigherDerivativesOfImage/
   COMPONENT Code
   )
 

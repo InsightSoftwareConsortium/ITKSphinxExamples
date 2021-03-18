@@ -10,12 +10,12 @@ add_executable(ScalePixelSumToConstant Code.cxx)
 target_link_libraries(ScalePixelSumToConstant ${ITK_LIBRARIES})
 
 install(TARGETS ScalePixelSumToConstant
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/ScalePixelSumToConstant/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/ScalePixelSumToConstant/
   COMPONENT Code
   )
 

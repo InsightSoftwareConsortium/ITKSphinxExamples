@@ -32,12 +32,12 @@ else()
 endif()
 
 install(TARGETS SmoothImageWithDiscreteGaussianFilter
-  DESTINATION bin/ITKExamples/Filtering/Smoothing
+  DESTINATION bin/ITKSphinxExamples/Filtering/Smoothing
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Smoothing/SmoothImageWithDiscreteGaussianFilter/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Smoothing/SmoothImageWithDiscreteGaussianFilter/
   COMPONENT Code
   )
 

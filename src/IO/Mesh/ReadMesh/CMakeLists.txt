@@ -9,12 +9,12 @@ add_executable( ReadMesh Code.cxx )
 target_link_libraries( ReadMesh ${ITK_LIBRARIES} )
 
 install( TARGETS ReadMesh
-  DESTINATION bin/ITKExamples/IO/Mesh
+  DESTINATION bin/ITKSphinxExamples/IO/Mesh
   COMPONENT Runtime
   )
 
 install( FILES ReadMesh.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/IO/Mesh/ReadMesh
+  DESTINATION share/ITKSphinxExamples/Code/IO/Mesh/ReadMesh
   COMPONENT Code
   )
 

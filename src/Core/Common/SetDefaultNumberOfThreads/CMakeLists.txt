@@ -9,12 +9,12 @@ add_executable(SetDefaultNumberOfThreads Code.cxx)
 target_link_libraries(SetDefaultNumberOfThreads ${ITK_LIBRARIES})
 
 install(TARGETS SetDefaultNumberOfThreads
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Core/Common/SetDefaultNumberOfThreads
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/SetDefaultNumberOfThreads
   COMPONENT Code
 )
 

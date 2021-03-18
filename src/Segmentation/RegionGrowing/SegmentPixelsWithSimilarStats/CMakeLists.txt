@@ -31,12 +31,12 @@ else()
 endif()
 
 install(TARGETS SegmentPixelsWithSimilarStats
-  DESTINATION bin/ITKExamples/Segmentation/RegionGrowing
+  DESTINATION bin/ITKSphinxExamples/Segmentation/RegionGrowing
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/RegionGrowing/SegmentPixelsWithSimilarStats/
+  DESTINATION share/ITKSphinxExamples/Code/Segmentation/RegionGrowing/SegmentPixelsWithSimilarStats/
   COMPONENT Code
   )
 

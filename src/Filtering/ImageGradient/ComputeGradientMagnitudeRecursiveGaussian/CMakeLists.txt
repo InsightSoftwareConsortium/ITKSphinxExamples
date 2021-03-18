@@ -9,12 +9,12 @@ add_executable( ComputeGradientMagnitudeRecursiveGaussian Code.cxx )
 target_link_libraries( ComputeGradientMagnitudeRecursiveGaussian ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeGradientMagnitudeRecursiveGaussian
-  DESTINATION bin/ITKExamples/Filtering/ImageGradient
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGradient
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGradient/ComputeGradientMagnitudeRecursiveGaussian
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGradient/ComputeGradientMagnitudeRecursiveGaussian
   COMPONENT Code
 )
 

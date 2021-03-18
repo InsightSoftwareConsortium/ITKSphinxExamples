@@ -166,7 +166,7 @@ check_for_clangformat() {
   clangformat_path=$(type -p "$system_clang_format" >/dev/null) ||
   die "clang-format executable was not found.
 
-A clang-format binary will be downloaded and configured when the ITKExamples
+A clang-format binary will be downloaded and configured when the ITKSphinxExamples
 Superbuild is built with the BUILD_TESTING CMake configuration option enabled.
 
 Alternatively, install clang-format version $clangformat_required_version or set the executable location with
@@ -305,7 +305,7 @@ check_for_black() {
   black_path=$(type -p "$system_black" >/dev/null) ||
   die "black executable was not found.
 
-A black Python formatting tool will be downloaded and configured when the ITKExamples
+A black Python formatting tool will be downloaded and configured when the ITKSphinxExamples
 Superbuild is built with the BUILD_TESTING CMake configuration option enabled.
 
 Alternatively, install black with:

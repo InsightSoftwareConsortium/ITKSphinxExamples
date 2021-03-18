@@ -30,12 +30,12 @@ else()
 endif()
 
 install(TARGETS PruneBinaryImage
-  DESTINATION bin/ITKExamples/Filtering/BinaryMathematicalMorphology
+  DESTINATION bin/ITKSphinxExamples/Filtering/BinaryMathematicalMorphology
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology/PruneBinaryImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/BinaryMathematicalMorphology/PruneBinaryImage/
   COMPONENT Code
   )
 

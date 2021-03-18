@@ -9,12 +9,12 @@ add_executable( ComputeLaplacian Code.cxx )
 target_link_libraries( ComputeLaplacian ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeLaplacian
-  DESTINATION bin/ITKExamples/Filtering/ImageFeature
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageFeature/ComputeLaplacian
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFeature/ComputeLaplacian
   COMPONENT Code
   )
 

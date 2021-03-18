@@ -31,12 +31,12 @@ else()
 endif()
 
 install(TARGETS MeanDistanceBetweenAllPointsOnTwoCurves
-  DESTINATION bin/ITKExamples/Filtering/DistanceMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/DistanceMap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/DistanceMap/MeanDistanceBetweenAllPointsOnTwoCurves/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/DistanceMap/MeanDistanceBetweenAllPointsOnTwoCurves/
   COMPONENT Code
   )
 

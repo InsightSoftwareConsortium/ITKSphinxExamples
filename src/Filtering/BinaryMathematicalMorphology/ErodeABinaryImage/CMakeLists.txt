@@ -20,12 +20,12 @@ add_executable( ErodeABinaryImage Code.cxx )
 target_link_libraries( ErodeABinaryImage ${ITK_LIBRARIES} )
 
 install( TARGETS ErodeABinaryImage
-  DESTINATION bin/ITKExamples/Filtering/BinaryMathematicalMorphology/
+  DESTINATION bin/ITKSphinxExamples/Filtering/BinaryMathematicalMorphology/
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/BinaryMathematicalMorphology/ErodeABinaryImage
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/BinaryMathematicalMorphology/ErodeABinaryImage
   COMPONENT Code
 )
 

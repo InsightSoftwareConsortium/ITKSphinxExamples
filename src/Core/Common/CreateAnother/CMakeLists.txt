@@ -9,12 +9,12 @@ add_executable( CreateAnother Code.cxx )
 target_link_libraries( CreateAnother ${ITK_LIBRARIES} )
 
 install( TARGETS CreateAnother
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateAnother
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAnother
   COMPONENT Code
 )
 

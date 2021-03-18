@@ -10,12 +10,12 @@ add_executable(CreateAnImage Code.cxx)
 target_link_libraries(CreateAnImage ${ITK_LIBRARIES})
 
 install(TARGETS CreateAnImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateAnImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAnImage/
   COMPONENT Code
   )
 

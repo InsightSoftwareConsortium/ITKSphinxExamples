@@ -10,12 +10,12 @@ add_executable(CreateAnImageOfVectors Code.cxx)
 target_link_libraries(CreateAnImageOfVectors ${ITK_LIBRARIES})
 
 install(TARGETS CreateAnImageOfVectors
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Core/Common/CreateAnImageOfVectors/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAnImageOfVectors/
   COMPONENT Code
   )
 

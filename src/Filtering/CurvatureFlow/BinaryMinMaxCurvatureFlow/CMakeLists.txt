@@ -30,12 +30,12 @@ else()
 endif()
 
 install(TARGETS BinaryMinMaxCurvatureFlow
-  DESTINATION bin/ITKExamples/Filtering/CurvatureFlow
+  DESTINATION bin/ITKSphinxExamples/Filtering/CurvatureFlow
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/CurvatureFlow/BinaryMinMaxCurvatureFlow/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/CurvatureFlow/BinaryMinMaxCurvatureFlow/
   COMPONENT Code
   )
 

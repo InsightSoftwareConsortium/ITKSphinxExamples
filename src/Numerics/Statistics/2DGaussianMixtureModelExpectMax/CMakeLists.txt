@@ -10,12 +10,12 @@ add_executable(2DGaussianMixtureModelExpectMax Code.cxx)
 target_link_libraries(2DGaussianMixtureModelExpectMax ${ITK_LIBRARIES})
 
 install(TARGETS 2DGaussianMixtureModelExpectMax
-  DESTINATION bin/ITKExamples/Numerics/Statistics
+  DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Numerics/Statistics/2DGaussianMixtureModelExpectMax/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Statistics/2DGaussianMixtureModelExpectMax/
   COMPONENT Code
   )
 

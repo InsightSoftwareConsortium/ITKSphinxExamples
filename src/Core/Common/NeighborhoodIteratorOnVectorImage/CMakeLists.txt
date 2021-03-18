@@ -10,12 +10,12 @@ add_executable(NeighborhoodIteratorOnVectorImage Code.cxx)
 target_link_libraries(NeighborhoodIteratorOnVectorImage ${ITK_LIBRARIES})
 
 install(TARGETS NeighborhoodIteratorOnVectorImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/NeighborhoodIteratorOnVectorImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/NeighborhoodIteratorOnVectorImage/
   COMPONENT Code
   )
 

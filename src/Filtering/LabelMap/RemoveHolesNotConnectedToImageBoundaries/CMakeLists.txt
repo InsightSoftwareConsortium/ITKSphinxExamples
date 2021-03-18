@@ -12,12 +12,12 @@ add_executable( RemoveHolesNotConnectedToImageBoundaries Code.cxx )
 target_link_libraries( RemoveHolesNotConnectedToImageBoundaries ${ITK_LIBRARIES} )
 
 install( TARGETS RemoveHolesNotConnectedToImageBoundaries
-  DESTINATION bin/ITKExamples/Filtering/LabelMap/
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap/
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/RemoveHolesNotConnectedToImageBoundaries
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/RemoveHolesNotConnectedToImageBoundaries
   COMPONENT Code
   )
 

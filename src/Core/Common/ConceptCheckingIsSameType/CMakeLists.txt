@@ -9,12 +9,12 @@ add_executable( ConceptCheckingIsSameType Code.cxx )
 target_link_libraries( ConceptCheckingIsSameType ${ITK_LIBRARIES} )
 
 install( TARGETS ConceptCheckingIsSameType
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/ConceptCheckingIsSameType
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/ConceptCheckingIsSameType
   COMPONENT Code
   )
 

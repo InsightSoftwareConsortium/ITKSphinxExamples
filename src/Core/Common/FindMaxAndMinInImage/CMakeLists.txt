@@ -31,12 +31,12 @@ if(NOT VTK_VERSION VERSION_LESS "8.90.0")
 endif()
 
 install(TARGETS FindMaxAndMinInImage
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/FindMaxAndMinInImage/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/FindMaxAndMinInImage/
   COMPONENT Code
   )
 

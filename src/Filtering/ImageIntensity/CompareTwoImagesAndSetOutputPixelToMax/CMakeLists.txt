@@ -10,12 +10,12 @@ add_executable(CompareTwoImagesAndSetOutputPixelToMax Code.cxx)
 target_link_libraries(CompareTwoImagesAndSetOutputPixelToMax ${ITK_LIBRARIES})
 
 install(TARGETS CompareTwoImagesAndSetOutputPixelToMax
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/CompareTwoImagesAndSetOutputPixelToMax/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/CompareTwoImagesAndSetOutputPixelToMax/
   COMPONENT Code
   )
 

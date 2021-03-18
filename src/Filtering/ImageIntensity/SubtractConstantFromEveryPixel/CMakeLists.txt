@@ -10,12 +10,12 @@ add_executable(SubtractConstantFromEveryPixel Code.cxx)
 target_link_libraries(SubtractConstantFromEveryPixel ${ITK_LIBRARIES})
 
 install(TARGETS SubtractConstantFromEveryPixel
-  DESTINATION bin/ITKExamples/Filtering/ImageIntensity
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageIntensity/SubtractConstantFromEveryPixel/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/SubtractConstantFromEveryPixel/
   COMPONENT Code
   )
 

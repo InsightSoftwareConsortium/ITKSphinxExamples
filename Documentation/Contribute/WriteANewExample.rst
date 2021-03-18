@@ -53,7 +53,7 @@ use the provided python script *CreateNewExample.py* see :ref:`CreateNewExample`
 Title
 -----
 
-The ITK Examples are intended to be a set of cookbook recipes that concisely
+The ITK Sphinx Examples are intended to be a set of cookbook recipes that concisely
 demonstrate how to achieve a single objective.  In general, they are intended to
 provide an answer to the question, "How do I ...?"  The title for an example can
 be derived by placing the example in the question format; we call this the

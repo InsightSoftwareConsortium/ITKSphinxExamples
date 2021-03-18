@@ -13,12 +13,12 @@ add_executable( SmoothBinaryImageBeforeSurfaceExtraction Code.cxx )
 target_link_libraries( SmoothBinaryImageBeforeSurfaceExtraction ${ITK_LIBRARIES} )
 
 install( TARGETS SmoothBinaryImageBeforeSurfaceExtraction
-  DESTINATION bin/ITKExamples/Filtering/AntiAlias
+  DESTINATION bin/ITKSphinxExamples/Filtering/AntiAlias
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/Filtering/AntiAlias/SmoothBinaryImageBeforeSurfaceExtraction
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/AntiAlias/SmoothBinaryImageBeforeSurfaceExtraction
   COMPONENT Code
 )
 

@@ -10,12 +10,12 @@ add_executable( ComputeForwardFFT
 target_link_libraries( ComputeForwardFFT ${ITK_LIBRARIES} )
 
 install( TARGETS ComputeForwardFFT
-  DESTINATION bin/ITKExamples/Filtering/FFT
+  DESTINATION bin/ITKSphinxExamples/Filtering/FFT
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/FFT/ComputeForwardFFT
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/FFT/ComputeForwardFFT
   COMPONENT Code
   )
 

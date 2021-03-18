@@ -10,12 +10,12 @@ add_executable(VoronoiDiagram Code.cxx)
 target_link_libraries(VoronoiDiagram ${ITK_LIBRARIES})
 
 install(TARGETS VoronoiDiagram
-  DESTINATION bin/ITKExamples/Segmentation/Voronoi
+  DESTINATION bin/ITKSphinxExamples/Segmentation/Voronoi
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Segmentation/Voronoi/VoronoiDiagram/
+  DESTINATION share/ITKSphinxExamples/Code/Segmentation/Voronoi/VoronoiDiagram/
   COMPONENT Code
   )
 

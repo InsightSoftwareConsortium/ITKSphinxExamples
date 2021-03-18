@@ -10,7 +10,7 @@ The entire source tree can be downloaded with Git_:
 
 .. code-block:: bash
 
-  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKExamples.git ITKEx
+  git clone --recursive https://github.com/InsightSoftwareConsortium/ITKSphinxExamples.git ITKEx
 
 .. note::
 
@@ -61,9 +61,9 @@ To create a new example, first install `Cookiecutter`_::
   python -m pip install cookiecutter
 
 and make use of the Python script located in the
-binary tree (*/path/to/ITKExamples-build/Utilities*)::
+binary tree (*/path/to/ITKSphinxExamples-build/Utilities*)::
 
-  cd /path/to/ITKExamples-build/Utilities
+  cd /path/to/ITKSphinxExamples-build/Utilities
   python ./CreateNewExample.py
 
 *This script will generate *.cxx, *.py, and *.rst files to be modified.*
@@ -80,5 +80,5 @@ Please do not add images directly to the repository.  Instead, use the
 .. _Git: https://git-scm.com/
 .. _Git hooks: https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
 .. _GitHub account: https://github.com/login
-.. _GitHub: https://github.com/InsightSoftwareConsortium/ITKExamples
+.. _GitHub: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples
 .. _Cookiecutter: https://cookiecutter.readthedocs.io/en/latest/

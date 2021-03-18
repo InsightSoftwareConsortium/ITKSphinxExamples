@@ -10,12 +10,12 @@ add_executable(GlobalRegistrationTwoImagesAffine Code.cxx)
 target_link_libraries(GlobalRegistrationTwoImagesAffine ${ITK_LIBRARIES})
 
 install(TARGETS GlobalRegistrationTwoImagesAffine
-  DESTINATION bin/ITKExamples/Core/Transform
+  DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Transform/GlobalRegistrationTwoImagesAffine/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Transform/GlobalRegistrationTwoImagesAffine/
   COMPONENT Code
   )
 

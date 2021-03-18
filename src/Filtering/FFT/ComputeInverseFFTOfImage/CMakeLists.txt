@@ -10,12 +10,12 @@ add_executable(ComputeInverseFFTOfImage Code.cxx)
 target_link_libraries(ComputeInverseFFTOfImage ${ITK_LIBRARIES})
 
 install(TARGETS ComputeInverseFFTOfImage
-  DESTINATION bin/ITKExamples/Filtering/FFT
+  DESTINATION bin/ITKSphinxExamples/Filtering/FFT
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/FFT/ComputeInverseFFTOfImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/FFT/ComputeInverseFFTOfImage/
   COMPONENT Code
   )
 

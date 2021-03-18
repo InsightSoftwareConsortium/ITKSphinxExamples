@@ -9,12 +9,12 @@ add_executable( MedianFilteringOfAnRGBImage Code.cxx )
 target_link_libraries( MedianFilteringOfAnRGBImage ${ITK_LIBRARIES} )
 
 install( TARGETS MedianFilteringOfAnRGBImage
-  DESTINATION bin/ITKExamples/Filtering/Smoothing
+  DESTINATION bin/ITKSphinxExamples/Filtering/Smoothing
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/Smoothing/MedianFilteringOfAnRGBImage
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/Smoothing/MedianFilteringOfAnRGBImage
   COMPONENT Code
 )
 

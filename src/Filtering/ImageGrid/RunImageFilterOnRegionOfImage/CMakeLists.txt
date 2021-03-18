@@ -31,12 +31,12 @@ else()
 endif()
 
 install(TARGETS RunImageFilterOnRegionOfImage
-  DESTINATION bin/ITKExamples/Filtering/ImageGrid
+  DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/ImageGrid/RunImageFilterOnRegionOfImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/RunImageFilterOnRegionOfImage/
   COMPONENT Code
   )
 

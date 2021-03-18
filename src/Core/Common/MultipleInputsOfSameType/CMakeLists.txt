@@ -10,12 +10,12 @@ add_executable(MultipleInputsOfSameType Code.cxx)
 target_link_libraries(MultipleInputsOfSameType ${ITK_LIBRARIES})
 
 install(TARGETS MultipleInputsOfSameType
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/MultipleInputsOfSameType/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/MultipleInputsOfSameType/
   COMPONENT Code
   )
 

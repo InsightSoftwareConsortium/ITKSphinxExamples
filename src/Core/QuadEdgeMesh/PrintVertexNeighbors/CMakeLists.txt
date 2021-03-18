@@ -9,12 +9,12 @@ add_executable( PrintVertexNeighbors Code.cxx )
 target_link_libraries( PrintVertexNeighbors ${ITK_LIBRARIES} )
 
 install( TARGETS PrintVertexNeighbors
-  DESTINATION bin/ITKExamples/Core/QuadEdgeMesh
+  DESTINATION bin/ITKSphinxExamples/Core/QuadEdgeMesh
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/QuadEdgeMesh/PrintVertexNeighbors
+  DESTINATION share/ITKSphinxExamples/Code/Core/QuadEdgeMesh/PrintVertexNeighbors
   COMPONENT Code
   )
 

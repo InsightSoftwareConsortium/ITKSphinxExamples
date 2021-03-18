@@ -9,12 +9,12 @@ add_executable( ApplyAffineTransformFromHomogeneousMatrixAndResample Code.cxx )
 target_link_libraries( ApplyAffineTransformFromHomogeneousMatrixAndResample ${ITK_LIBRARIES} )
 
 install( TARGETS ApplyAffineTransformFromHomogeneousMatrixAndResample
-  DESTINATION bin/ITKExamples/Core/Transform
+  DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Transform/ApplyAffineTransformFromHomogeneousMatrixAndResample
+  DESTINATION share/ITKSphinxExamples/Code/Core/Transform/ApplyAffineTransformFromHomogeneousMatrixAndResample
   COMPONENT Code
   )
 

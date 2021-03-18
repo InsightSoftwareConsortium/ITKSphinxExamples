@@ -10,12 +10,12 @@ add_executable(FilterImageWithoutCopying Code.cxx)
 target_link_libraries(FilterImageWithoutCopying ${ITK_LIBRARIES})
 
 install(TARGETS FilterImageWithoutCopying
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/FilterImageWithoutCopying/
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/FilterImageWithoutCopying/
   COMPONENT Code
   )
 

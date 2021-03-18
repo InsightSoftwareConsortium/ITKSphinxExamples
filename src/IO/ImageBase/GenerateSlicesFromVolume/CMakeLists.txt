@@ -19,12 +19,12 @@ add_executable( GenerateSlicesFromVolume Code.cxx )
 target_link_libraries( GenerateSlicesFromVolume ${ITK_LIBRARIES} )
 
 install( TARGETS GenerateSlicesFromVolume
-  DESTINATION bin/ITKExamples/IO/ImageBase/
+  DESTINATION bin/ITKSphinxExamples/IO/ImageBase/
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKExamples/Code/IO/ImageBase/GenerateSlicesFromVolume
+  DESTINATION share/ITKSphinxExamples/Code/IO/ImageBase/GenerateSlicesFromVolume
   COMPONENT Code
 )
 

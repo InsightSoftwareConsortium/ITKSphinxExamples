@@ -9,12 +9,12 @@ add_executable( CopyACompositeTransform Code.cxx )
 target_link_libraries( CopyACompositeTransform ${ITK_LIBRARIES} )
 
 install( TARGETS CopyACompositeTransform
-  DESTINATION bin/ITKExamples/Core/Transform
+  DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Transform/CopyACompositeTransform
+  DESTINATION share/ITKSphinxExamples/Code/Core/Transform/CopyACompositeTransform
   COMPONENT Code
   )
 

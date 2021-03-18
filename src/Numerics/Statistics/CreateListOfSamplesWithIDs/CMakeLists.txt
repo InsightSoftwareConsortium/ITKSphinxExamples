@@ -10,12 +10,12 @@ add_executable(CreateListOfSamplesWithIDs Code.cxx)
 target_link_libraries(CreateListOfSamplesWithIDs ${ITK_LIBRARIES})
 
 install(TARGETS CreateListOfSamplesWithIDs
-  DESTINATION bin/ITKExamples/Numerics/Statistics
+  DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Numerics/Statistics/CreateListOfSamplesWithIDs/
+  DESTINATION share/ITKSphinxExamples/Code/Numerics/Statistics/CreateListOfSamplesWithIDs/
   COMPONENT Code
   )
 

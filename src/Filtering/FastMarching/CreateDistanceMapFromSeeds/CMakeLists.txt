@@ -9,12 +9,12 @@ add_executable( CreateDistanceMapFromSeeds Code.cxx )
 target_link_libraries( CreateDistanceMapFromSeeds ${ITK_LIBRARIES} )
 
 install( TARGETS CreateDistanceMapFromSeeds
-  DESTINATION bin/ITKExamples/Filtering/FastMarching
+  DESTINATION bin/ITKSphinxExamples/Filtering/FastMarching
   COMPONENT Runtime
 )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/FastMarching/CreateDistanceMapFromSeeds
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/FastMarching/CreateDistanceMapFromSeeds
   COMPONENT Code
 )
 

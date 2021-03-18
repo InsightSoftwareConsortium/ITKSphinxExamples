@@ -9,12 +9,12 @@ add_executable( ConceptCheckingIsFloatingPoint Code.cxx )
 target_link_libraries( ConceptCheckingIsFloatingPoint ${ITK_LIBRARIES} )
 
 install( TARGETS ConceptCheckingIsFloatingPoint
-  DESTINATION bin/ITKExamples/Core/Common
+  DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
 
 install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Core/Common/ConceptCheckingIsFloatingPoint
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/ConceptCheckingIsFloatingPoint
   COMPONENT Code
   )
 

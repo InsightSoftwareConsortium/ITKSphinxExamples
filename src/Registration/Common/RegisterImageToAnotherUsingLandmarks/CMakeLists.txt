@@ -10,12 +10,12 @@ add_executable(RegisterImageToAnotherUsingLandmarks Code.cxx)
 target_link_libraries(RegisterImageToAnotherUsingLandmarks ${ITK_LIBRARIES})
 
 install(TARGETS RegisterImageToAnotherUsingLandmarks
-  DESTINATION bin/ITKExamples/Registration/Common
+  DESTINATION bin/ITKSphinxExamples/Registration/Common
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Registration/Common/RegisterImageToAnotherUsingLandmarks/
+  DESTINATION share/ITKSphinxExamples/Code/Registration/Common/RegisterImageToAnotherUsingLandmarks/
   COMPONENT Code
   )
 

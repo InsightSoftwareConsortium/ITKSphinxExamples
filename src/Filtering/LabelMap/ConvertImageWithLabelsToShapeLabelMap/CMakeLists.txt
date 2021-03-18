@@ -10,12 +10,12 @@ add_executable(ConvertImageWithLabelsToShapeLabelMap Code.cxx)
 target_link_libraries(ConvertImageWithLabelsToShapeLabelMap ${ITK_LIBRARIES})
 
 install(TARGETS ConvertImageWithLabelsToShapeLabelMap
-  DESTINATION bin/ITKExamples/Filtering/LabelMap
+  DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKExamples/Code/Filtering/LabelMap/ConvertImageWithLabelsToShapeLabelMap/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/ConvertImageWithLabelsToShapeLabelMap/
   COMPONENT Code
   )
 
