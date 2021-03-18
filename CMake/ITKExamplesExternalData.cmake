@@ -1,5 +1,4 @@
-get_filename_component(_ITKExamplesExternalData_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
-include(${_ITKExamplesExternalData_DIR}/ExternalData.cmake)
+include(ExternalData)
 
 if(NOT ExternalData_OBJECT_STORES)
   # Use ExternalData_OBJECT_STORES from environment as default.
