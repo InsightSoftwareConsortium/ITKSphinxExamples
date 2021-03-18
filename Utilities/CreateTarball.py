@@ -28,7 +28,7 @@ example_idx = example_dir.index("SphinxExamples") + 15
 html_output_dir = os.path.join(sys.argv[2], "html", example_dir[example_idx:])
 
 if not os.path.exists( html_output_dir ):
-    os.makedirs( html_output_dir )
+    os.makedirs(html_output_dir)
 
 # Copy files to support web editting to the html output.
 files_to_copy_to_html_output = []
@@ -74,6 +74,7 @@ with tarfile.open(
     os.path.join(html_output_dir, example_name + ".tar.gz"), "w:gz", dereference=True
 ) as tarfile:
     example_dir_idx = example_dir.index(example_name)
+
     def strip_path(tarinfo):
         tarinfo.name = tarinfo.name[example_dir_idx - 1 :]
         # Put the inputs and outputs into the build directory because the test
@@ -83,6 +84,7 @@ with tarfile.open(
             head, tail = os.path.split(tarinfo.name)
             tarinfo.name = os.path.join(head, "CMakeLists.txt")
         return tarinfo
+
     for path in files_for_tarball:
         tarfile.add(path, filter=strip_path)
 
