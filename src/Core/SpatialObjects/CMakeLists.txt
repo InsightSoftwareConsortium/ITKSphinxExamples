@@ -8,8 +8,8 @@ compare_to_baseline(EXAMPLE_NAME Ellipse
   BASELINE_PREFIX EllipseOutput
   )
 
-add_example(LineSpatialObject)
-compare_to_baseline(EXAMPLE_NAME LineSpatialObject
+add_example(CreateALineSpatialObject)
+compare_to_baseline(EXAMPLE_NAME CreateALineSpatialObject
   BASELINE_PREFIX line
   )
 

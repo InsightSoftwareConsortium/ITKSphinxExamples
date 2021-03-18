@@ -1,5 +1,5 @@
-Line Spatial Object
-===================
+Create a Line Spatial Object
+============================
 
 .. index::
    single: LineSpatialObject
