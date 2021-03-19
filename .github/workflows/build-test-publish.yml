@@ -307,7 +307,6 @@ jobs:
           file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/.." CTEST_DASHBOARD_ROOT)
           file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../Ex" CTEST_SOURCE_DIRECTORY)
           file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../bld/" CTEST_BINARY_DIRECTORY)
-          set(dashboard_source_name "${GITHUB_REPOSITORY}")
           set(dashboard_superbuild 1)
           if(ENV{GITHUB_REF} MATCHES "master")
             set(branch "-master")
