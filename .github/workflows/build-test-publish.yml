@@ -125,7 +125,7 @@ jobs:
           ctest -j 2 -VV -S dashboard.cmake
         shell: cmd
 
-  build-test-superbuild:
+  build-test-python-superbuild:
     runs-on: ${{ matrix.os }}
     strategy:
       max-parallel: 3
