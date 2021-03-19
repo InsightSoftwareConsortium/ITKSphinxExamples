@@ -27,8 +27,8 @@ if len(sys.argv) < 4:
     raise Exception(f"Usage: {sys.argv[0]} fixed_image moving_image output_image")
 
 # Import images
-fixed_image = itk.imread(sys.argv[1], itk.UC)
-moving_image = itk.imread(sys.argv[2], itk.UC)
+fixed_image = itk.imread(sys.argv[1], itk.SS)
+moving_image = itk.imread(sys.argv[2], itk.SS)
 
 # Preprocess images
 fixed_normalized_image = itk.normalize_image_filter(fixed_image)
@@ -49,9 +49,12 @@ metric = itk.MutualInformationImageToImageMetric[
     type(fixed_image), type(moving_image)
 ].New()
 
-metric.SetNumberOfSpatialSamples(100)
-metric.SetFixedImageStandardDeviation(5.0)
-metric.SetMovingImageStandardDeviation(5.0)
+number_of_pixels = fixed_image.GetBufferedRegion().GetNumberOfPixels()
+number_of_samples = int(number_of_pixels * 0.01)
+metric.SetNumberOfSpatialSamples(number_of_samples)
+
+metric.SetFixedImageStandardDeviation(25.0)
+metric.SetMovingImageStandardDeviation(25.0)
 
 metric.ReinitializeSeed(121212)
 
@@ -65,38 +68,34 @@ optimizer.MaximizeOff()
 # large steps along translation parameters,
 # moderate steps along rotational parameters, and
 # small steps along scale parameters
-optimizer.SetScales([100, 0.5, 0.5, 100, 0.001, 0.001])
+optimizer.SetScales([100, 100, 100, 100, 0.01, 0.01])
 
-registrar = itk.ImageRegistrationMethod[type(fixed_image), type(moving_image)].New()
-registrar.SetFixedImage(fixed_smoothed_image)
-registrar.SetMovingImage(moving_smoothed_image)
-registrar.SetTransform(transform)
-registrar.SetInterpolator(interpolator)
-registrar.SetMetric(metric)
-registrar.SetOptimizer(optimizer)
-
-registrar.SetFixedImageRegion(fixed_image.GetBufferedRegion())
-registrar.SetInitialTransformParameters(transform.GetParameters())
-
-registrar.Update()
-
-# Print final results
-print(f"Its: {optimizer.GetCurrentIteration()}")
-print(f"Final Value: {optimizer.GetValue()}")
-print(f"Final Position: {list(registrar.GetLastTransformParameters())}")
-
-# Resample and write out image
-ResampleFilterType = itk.ResampleImageFilter[type(fixed_image), type(fixed_image)]
-resample = ResampleFilterType.New(
-    Transform=transform,
-    Input=moving_image,
-    Size=fixed_image.GetLargestPossibleRegion().GetSize(),
-    OutputOrigin=fixed_image.GetOrigin(),
-    OutputSpacing=fixed_image.GetSpacing(),
-    OutputDirection=fixed_image.GetDirection(),
-    DefaultPixelValue=100,
+result_object = itk.image_registration_method(
+    fixed_image=fixed_image,
+    moving_image=moving_image,
+    transform=transform,
+    interpolator=interpolator,
+    metric=metric,
+    optimizer=optimizer,
+    fixed_image_region=fixed_image.GetBufferedRegion(),
+    initial_transform_parameters=transform.GetParameters(),
 )
 
-resample.Update()
+# Print final results
+print("Number of samples: " + str(number_of_samples))
+print(f"Its: {optimizer.GetCurrentIteration()}")
+print(f"Final Value: {optimizer.GetValue()}")
+print(f"Final Position: {list(transform.GetParameters())}")
 
-itk.imwrite(resample.GetOutput(), sys.argv[3])
+# Resample and write out image
+resampled = itk.resample_image_filter(
+    input=moving_image,
+    transform=result_object,
+    size=fixed_image.GetLargestPossibleRegion().GetSize(),
+    output_origin=fixed_image.GetOrigin(),
+    output_spacing=fixed_image.GetSpacing(),
+    output_direction=fixed_image.GetDirection(),
+    default_pixel_value=100,
+)
+
+itk.imwrite(resampled, sys.argv[3])
