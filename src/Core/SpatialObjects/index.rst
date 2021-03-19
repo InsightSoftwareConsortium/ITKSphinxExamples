@@ -7,5 +7,5 @@ SpatialObjects
   Blob/Documentation.rst
   ContourSpatialObject/Documentation.rst
   ConvertSpatialObjectToImage/Documentation.rst
+  CreateALineSpatialObject/Documentation.rst
   Ellipse/Documentation.rst
-  LineSpatialObject/Documentation.rst
