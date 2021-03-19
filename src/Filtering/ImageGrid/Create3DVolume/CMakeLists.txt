@@ -14,7 +14,7 @@ install( TARGETS Create3DVolume
   COMPONENT Runtime
   )
 
-install( FILES Create3DVolume.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/Create3DVolume
   COMPONENT Code
   )
