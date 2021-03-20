@@ -27,8 +27,8 @@ if len(sys.argv) < 4:
     raise Exception(f"Usage: {sys.argv[0]} fixed_image moving_image output_image")
 
 # Import images
-fixed_image = itk.imread(sys.argv[1], itk.SS)
-moving_image = itk.imread(sys.argv[2], itk.SS)
+fixed_image = itk.imread(sys.argv[1], itk.UC)
+moving_image = itk.imread(sys.argv[2], itk.UC)
 
 # Preprocess images
 fixed_normalized_image = itk.normalize_image_filter(fixed_image)
