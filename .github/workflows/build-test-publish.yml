@@ -295,7 +295,7 @@ jobs:
 
       - name: Fetch CTest driver script
         run: |
-          curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITK/dashboard/itk_common.cmake -O
+          curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITK/dashboard/itkexamples_common.cmake -O
 
       - name: Configure CTest script
         shell: bash
@@ -338,7 +338,7 @@ jobs:
           string(TIMESTAMP build_date "%Y-%m-%d")
           message("CDash Build Identifier: \${build_date} \${CTEST_BUILD_NAME}")
           message("CTEST_SITE = \${CTEST_SITE}")
-          include(\${CTEST_SCRIPT_DIRECTORY}/itk_common.cmake)
+          include(\${CTEST_SCRIPT_DIRECTORY}/itkexamples_common.cmake)
           EOF
           cat dashboard.cmake
 
