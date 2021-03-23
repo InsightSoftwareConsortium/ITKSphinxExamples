@@ -17,21 +17,20 @@
 import sys
 import itk
 
+from distutils.version import StrictVersion as VS
+
+if VS(itk.Version.GetITKVersion()) < VS("5.2.0"):
+    print("ITK 5.2.0 is required.")
+    sys.exit(1)
+
 if len(sys.argv) != 2:
     print("Usage: " + sys.argv[0] + " <InputFileName>")
     sys.exit(1)
+
 imageFileName = sys.argv[1]
 
-Dimension = 2
-PixelType = itk.UC
-ImageType = itk.Image[PixelType, Dimension]
+inputImage = itk.imread(imageFileName)
 
-reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(imageFileName)
+vtkImage = itk.image_to_vtk_image(inputImage)
 
-itkToVtkFilter = itk.ImageToVTKImageFilter[ImageType].New()
-itkToVtkFilter.SetInput(reader.GetOutput())
-
-itkToVtkFilter.Update()
-myvtkImageData = itkToVtkFilter.GetOutput()
-print(myvtkImageData)
+print(vtkImage)
