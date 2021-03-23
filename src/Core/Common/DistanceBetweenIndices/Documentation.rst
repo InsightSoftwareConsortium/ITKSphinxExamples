@@ -22,9 +22,7 @@ Results
 
 Output::
 
-  Dist: 1.73205
-  Dist2: 3
-
+  Distance: 2.82843
 
 Code
 ----
