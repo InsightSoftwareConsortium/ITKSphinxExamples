@@ -27,3 +27,10 @@ add_test(NAME MutualInformationAffineTest
   moving.png
   output.png)
 
+  if(ITK_WRAP_PYTHON)
+  add_test(NAME MutualInformationAffineTestPython
+  COMMAND ${PYTHON_EXECUTABLE} Code.py
+  ${CMAKE_CURRENT_BINARY_DIR}/fixed.png
+  ${CMAKE_CURRENT_BINARY_DIR}/moving.png
+  output.png)
+  endif()
