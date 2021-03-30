@@ -13,7 +13,7 @@ install( TARGETS ReadMesh
   COMPONENT Runtime
   )
 
-install( FILES ReadMesh.cxx CMakeLists.txt
+install( FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/IO/Mesh/ReadMesh
   COMPONENT Code
   )
