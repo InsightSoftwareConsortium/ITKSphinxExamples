@@ -45,3 +45,5 @@ add_example(ComputeMinMaxVarianceMeanOfImage)
 #compare_to_baseline(EXAMPLE_NAME StatisticalPropertiesOfRegions
 #        BASELINE_PREFIX OutputBaseline
 #        )
+
+add_example(CalculateImageMoments)
