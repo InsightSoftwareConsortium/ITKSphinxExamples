@@ -9,3 +9,4 @@ ImageStatistics
   ComputeMinMaxVarianceMeanOfImage/Documentation.rst
   ComputePCAShapeFromSample/Documentation.rst
   StatisticalPropertiesOfRegions/Documentation.rst
+  CalculateImageMoments/Documentation.rst
