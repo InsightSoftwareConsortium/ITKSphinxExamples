@@ -18,11 +18,6 @@ import sys
 import itk
 import argparse
 
-if len(sys.argv) != 2:
-    print("Usage: " + sys.argv[0] + "<InputFileName>")
-    print("Prints image moment information from binary image.")
-    sys.exit(1)
-
 parser = argparse.ArgumentParser(description="Calculate Image Moments.")
 parser.add_argument("input_image")
 
