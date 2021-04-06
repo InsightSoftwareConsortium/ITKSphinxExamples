@@ -53,7 +53,7 @@ main(int argc, char * argv[])
   region.SetSize(regionSize);
   region.SetIndex(regionIndex);
 
-  itk::ImageRegionConstIteratorWithIndex<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
+  itk::ImageRegionConstIteratorWithIndex<ImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {

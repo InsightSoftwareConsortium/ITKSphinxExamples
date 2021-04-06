@@ -17,18 +17,15 @@
 import sys
 import itk
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + "<InputFileName> "
-          "<OutputFileName>")
-    sys.exit(1)
-
-parser = argparse.ArgumentParser(description='{{ cookiecutter.example_title }}.')
-parser.add_argument('input_image')
-parser.add_argument('output_image')
+parser = argparse.ArgumentParser(description="{{ cookiecutter.example_title }}.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
 args = parser.parse_args()
 
 input_image = itk.imread(args.input_image)
 
-output_image = itk.itkHelpers.camel_to_snake_case({{ cookiecutter.class_name }})(input_image)
+output_image = itk.itkHelpers.camel_to_snake_case({{cookiecutter.class_name}})(
+    input_image
+)
 
 itk.imwrite(output_image, args.output_image)
