@@ -66,6 +66,12 @@ binary tree (*/path/to/ITKSphinxExamples-build/Utilities*)::
   cd /path/to/ITKSphinxExamples-build/Utilities
   python ./CreateNewExample.py
 
+The script will ask for an *example_name* and a *class_name*.  The example_name
+would be *ComputeTumorIntensityVariation* for an example that answers the
+question "How do I compute tumor intensity variation?"  The class_name
+indicates the itk class that is the focus of the example, such as
+*itk::Statistics::MaskedImageToHistogramFilter*.
+
 *This script will generate *.cxx, *.py, and *.rst files to be modified.*
 
 Note that the generated files are then located based on the group, module and
