@@ -30,7 +30,7 @@ ImageIntensity
   MultiplyTwoImages/Documentation.rst
   NormalizeImage/Documentation.rst
   PixelDivisionOfTwoImages/Documentation.rst
-  RescaleAnImage/Documentation.rst
+  RescaleIntensity/Documentation.rst
   ScalePixelSumToConstant/Documentation.rst
   SquareEveryPixel/Documentation.rst
   SubtractConstantFromEveryPixel/Documentation.rst
