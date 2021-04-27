@@ -49,7 +49,7 @@ resampled = itk.resample_image_filter(
     input_image,
     transform=scale_transform,
     interpolator=interpolator,
-    size=size,
+    size=[size[d] for d in range(Dimension)],
     output_spacing=spacing,
 )
 
