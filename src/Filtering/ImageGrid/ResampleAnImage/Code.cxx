@@ -43,49 +43,69 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
   using ScalarType = double;
+  using IndexValueType = typename itk::Index<Dimension>::IndexValueType;
 
   using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  typename ReaderType::Pointer reader = ReaderType::New();
   reader->SetFileName(inputFileName);
   reader->Update();
 
-  ImageType::Pointer inputImage = reader->GetOutput();
+  const typename ImageType::Pointer     inputImage = reader->GetOutput();
+  const typename ImageType::RegionType  inputRegion = inputImage->GetLargestPossibleRegion();
+  const typename ImageType::SizeType    inputSize = inputRegion.GetSize();
+  const typename ImageType::SpacingType inputSpacing = inputImage->GetSpacing();
+  const typename ImageType::PointType   inputOrigin = inputImage->GetOrigin();
 
-  ImageType::RegionType  region = inputImage->GetLargestPossibleRegion();
-  ImageType::SizeType    size = region.GetSize();
-  ImageType::SpacingType spacing = inputImage->GetSpacing();
+  /*
+   * We will scale the objects in the image by the factor `scale`; that is they
+   * will be shrunk (scale < 1.0) or enlarged (scale > 1.0).  However, the
+   * number of pixels for each dimension of the output image will equal the
+   * corresponding number of pixels in the input image, with padding (if
+   * shrunk) or cropping (if enlarged) as necessary.  Furthermore, the physical
+   * distance between adjacent pixels will be the same in the input and the
+   * output images.  In contrast, if you want to change the resolution of the
+   * image without changing the represented physical size of the objects in the
+   * image, omit the transform and instead use:
+   *
+   *   outputSize[d] = inputSize[d] * scale;
+   *   outputSpacing[d] = inputSpacing[d] / scale;
+   *   outputOrigin[d] = inputOrigin[d] + 0.5 * (outputSpacing[d] - inputSpacing[d]);
+   *
+   * in the loop over dimensions.
+   */
 
-  itk::Index<Dimension> centralPixel;
-  centralPixel[0] = size[0] / 2;
-  centralPixel[1] = size[1] / 2;
-  itk::Point<ScalarType, Dimension> centralPoint;
-  centralPoint[0] = centralPixel[0];
-  centralPoint[1] = centralPixel[1];
+  typename ImageType::SizeType    outputSize = inputSize;
+  typename ImageType::SpacingType outputSpacing = inputSpacing;
+  typename ImageType::PointType   outputOrigin = inputOrigin;
 
   using ScaleTransformType = itk::ScaleTransform<ScalarType, Dimension>;
-  ScaleTransformType::Pointer scaleTransform = ScaleTransformType::New();
+  typename ScaleTransformType::Pointer scaleTransform = ScaleTransformType::New();
 
-  ScaleTransformType::ParametersType parameters = scaleTransform->GetParameters();
-  parameters[0] = scale;
-  parameters[1] = scale;
-
-  scaleTransform->SetParameters(parameters);
-  scaleTransform->SetCenter(centralPoint);
+  typename ScaleTransformType::ParametersType scaleTransformParameters = scaleTransform->GetParameters();
+  itk::Point<ScalarType, Dimension>           scaleTransformCenter;
+  for (unsigned int d = 0; d < Dimension; ++d)
+  {
+    scaleTransformParameters[d] = scale;
+    scaleTransformCenter[d] = static_cast<ScalarType>(static_cast<IndexValueType>(inputSize[d] / 2));
+  }
+  scaleTransform->SetParameters(scaleTransformParameters);
+  scaleTransform->SetCenter(scaleTransformCenter);
 
   using LinearInterpolatorType = itk::LinearInterpolateImageFunction<ImageType, ScalarType>;
-  LinearInterpolatorType::Pointer interpolator = LinearInterpolatorType::New();
+  typename LinearInterpolatorType::Pointer interpolator = LinearInterpolatorType::New();
 
   using ResampleFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
-  ResampleFilterType::Pointer resampleFilter = ResampleFilterType::New();
+  typename ResampleFilterType::Pointer resampleFilter = ResampleFilterType::New();
 
   resampleFilter->SetInput(inputImage);
   resampleFilter->SetTransform(scaleTransform);
   resampleFilter->SetInterpolator(interpolator);
-  resampleFilter->SetSize(size);
-  resampleFilter->SetOutputSpacing(spacing);
+  resampleFilter->SetSize(outputSize);
+  resampleFilter->SetOutputSpacing(outputSpacing);
+  resampleFilter->SetOutputOrigin(outputOrigin);
 
   using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
+  typename WriterType::Pointer writer = WriterType::New();
   writer->SetFileName(outputFileName);
   writer->SetInput(resampleFilter->GetOutput());
 
