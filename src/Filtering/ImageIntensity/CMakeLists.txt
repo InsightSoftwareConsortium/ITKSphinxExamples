@@ -1,5 +1,5 @@
-add_example( RescaleAnImage )
-compare_to_baseline( EXAMPLE_NAME RescaleAnImage BASELINE_PREFIX OutputBaseline )
+add_example( RescaleIntensity )
+compare_to_baseline( EXAMPLE_NAME RescaleIntensity BASELINE_PREFIX OutputBaseline )
 
 add_example( ApplySinImageFilter )
 compare_to_baseline( EXAMPLE_NAME ApplySinImageFilter BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-intensity 1.0e-6 )
@@ -123,4 +123,3 @@ compare_to_baseline(EXAMPLE_NAME SubtractTwoImages
         )
 
 endif()
-
