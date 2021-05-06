@@ -45,9 +45,9 @@ Dimension = input_image.GetImageDimension()
 # output_origin = [input_origin[d] + 0.5 * (output_spacing[d] - input_spacing[d])
 #                  for d in range(Dimension)]
 
-output_size = [input_size[d] for d in range(Dimension)]
-output_spacing = [input_spacing[d] for d in range(Dimension)]
-output_origin = [input_origin[d] for d in range(Dimension)]
+output_size = input_size
+output_spacing = input_spacing
+output_origin = input_origin
 scale_transform = itk.ScaleTransform[itk.D, Dimension].New()
 scale_transform_parameters = scale_transform.GetParameters()
 for i in range(len(scale_transform_parameters)):
