@@ -13,7 +13,7 @@ install(TARGETS SegmentWithGeodesicActiveContourLevelSet
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKSphinxExamples/Code/Segmentation/LevelSets/SegmentWithGeodesicActiveContourLevelSet
   COMPONENT Code
   )
