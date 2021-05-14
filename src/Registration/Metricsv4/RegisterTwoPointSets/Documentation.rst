@@ -57,18 +57,18 @@ Jupyter Notebook
 Code
 --------
 
-C++
-...
-
-.. literalinclude:: Code.cxx
-   :lines: 20-
-
 Python
 ......
 
 .. literalinclude:: Code.py
    :language: python
    :lines: 1, 23-
+
+C++
+...
+
+.. literalinclude:: Code.cxx
+   :lines: 20-
 
 Classes demonstrated
 --------------------
