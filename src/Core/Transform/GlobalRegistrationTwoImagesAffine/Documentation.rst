@@ -1,3 +1,5 @@
+:name: GlobalRegistrationTwoImagesAffine
+
 Global Registration Two Images (Affine)
 =======================================
 

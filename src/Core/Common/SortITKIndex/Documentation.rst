@@ -1,3 +1,5 @@
+:name: SortITKIndex
+
 Sort ITK Index
 ==============
 

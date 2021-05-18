@@ -1,3 +1,5 @@
+:name: ConvertImageToLabelMap
+
 Convert itk::Image With Labels to Label Map
 ===========================================
 

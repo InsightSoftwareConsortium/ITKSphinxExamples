@@ -1,3 +1,5 @@
+:name: ReadAndPrintDICOMTags
+
 Read and Print DICOM Tags
 =========================
 

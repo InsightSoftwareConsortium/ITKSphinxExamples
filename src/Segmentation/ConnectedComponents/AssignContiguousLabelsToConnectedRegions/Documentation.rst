@@ -1,3 +1,5 @@
+:name: AssignContiguousLabelsToConnectedRegions
+
 Assign Contiguous Labels to Connected Regions in an Image
 =========================================================
 

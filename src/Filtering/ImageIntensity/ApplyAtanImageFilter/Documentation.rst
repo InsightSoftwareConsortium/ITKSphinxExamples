@@ -1,3 +1,5 @@
+:name: ApplyAtanImageFilter
+
 Apply Atan Image Filter
 =======================
 

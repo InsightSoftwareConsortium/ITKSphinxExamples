@@ -1,3 +1,5 @@
+:name: FitSplineIntoPointSet
+
 Fit Spline Into Point Set
 =========================
 .. note::

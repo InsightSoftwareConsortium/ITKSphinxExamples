@@ -1,3 +1,5 @@
+:name: ValuedRegionalMinimalImage
+
 Valued Regional Minimal Image
 =============================
 

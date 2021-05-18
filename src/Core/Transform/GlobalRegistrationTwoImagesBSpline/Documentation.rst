@@ -1,3 +1,5 @@
+:name: GlobalRegistrationTwoImagesBSpline
+
 Global Registration of Two Images (BSpline)
 ===========================================
 

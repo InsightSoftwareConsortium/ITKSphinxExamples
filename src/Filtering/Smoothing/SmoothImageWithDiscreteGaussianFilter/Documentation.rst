@@ -1,3 +1,5 @@
+:name: SmoothImageWithDiscreteGaussianFilter
+
 Smooth Image With Discrete Gaussian Filter
 ==========================================
 

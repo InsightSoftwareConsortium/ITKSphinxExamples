@@ -1,3 +1,5 @@
+:name: MultiplyTwoImages
+
 Multiply Two Images
 ===================
 

@@ -1,3 +1,5 @@
+:name: MultipleInputsOfSameType
+
 Multiple Inputs of Same Type
 ============================
 

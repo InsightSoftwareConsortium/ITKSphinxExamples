@@ -1,3 +1,5 @@
+:name: CastVectorImageToAnotherType
+
 Cast Vector Image to Another Type
 =================================
 

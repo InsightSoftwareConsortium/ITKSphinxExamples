@@ -1,3 +1,5 @@
+:name: ThrowException
+
 Throw Exception
 ===============
 

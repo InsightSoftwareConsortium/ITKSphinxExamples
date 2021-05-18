@@ -1,3 +1,5 @@
+:name: IterateOverSpecificRegion
+
 Iterate Over Image While Skipping Specific Region
 =================================================
 

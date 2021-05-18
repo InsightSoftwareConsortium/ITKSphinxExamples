@@ -1,3 +1,5 @@
+:name: ProcessA2DSliceOfA3DImage
+
 Process a 2D Slice of a 3D Image
 ================================
 

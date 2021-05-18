@@ -1,3 +1,5 @@
+:name: DemonstrateThresholdAlgorithms
+
 Demonstrate Available Threshold Algorithms
 ==========================================
 

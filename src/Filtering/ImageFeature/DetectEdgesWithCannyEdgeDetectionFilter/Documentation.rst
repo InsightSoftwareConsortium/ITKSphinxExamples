@@ -1,3 +1,5 @@
+:name: DetectEdgesWithCannyEdgeDetectionFilter
+
 Detect Edges With Canny Edge Detection Filter
 =============================================
 

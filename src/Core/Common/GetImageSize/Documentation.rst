@@ -1,3 +1,5 @@
+:name: GetImageSize
+
 Get Image Size
 ==============
 

@@ -1,3 +1,5 @@
+:name: CleanQuadEdgeMesh
+
 Clean Quad Edge Mesh
 ====================
 

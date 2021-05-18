@@ -1,3 +1,5 @@
+:name: OverlayLabelMapOnImage
+
 Overlay Label Map on Image
 ==========================
 

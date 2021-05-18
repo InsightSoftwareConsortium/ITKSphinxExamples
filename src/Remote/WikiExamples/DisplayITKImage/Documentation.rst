@@ -1,3 +1,5 @@
+:name: DisplayITKImage
+
 Display ITK Image
 =================
 

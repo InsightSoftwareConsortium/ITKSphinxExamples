@@ -1,3 +1,5 @@
+:name: VisualizeStaticMalcolm2DLevelSetLayers
+
 Visualize a Static Sparse Malcolm 2D Level-Set Layers
 =====================================================
 

@@ -1,3 +1,5 @@
+:name: GenerateSlicesFromVolume
+
 Generate Slices From Volume
 ===========================
 

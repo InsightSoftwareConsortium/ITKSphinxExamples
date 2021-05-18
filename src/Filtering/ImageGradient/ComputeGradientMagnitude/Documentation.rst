@@ -1,3 +1,5 @@
+:name: ComputeGradientMagnitude
+
 Compute Gradient Magnitude of Grayscale Image
 =============================================
 

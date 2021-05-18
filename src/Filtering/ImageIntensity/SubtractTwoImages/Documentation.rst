@@ -1,3 +1,5 @@
+:name: SubtractTwoImages
+
 Subtract Two Images
 ===================
 

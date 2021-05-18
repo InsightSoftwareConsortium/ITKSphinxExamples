@@ -1,3 +1,5 @@
+:name: SquareEveryPixel
+
 Square Every Pixel
 ==================
 

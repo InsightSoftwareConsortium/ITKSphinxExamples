@@ -1,3 +1,5 @@
+:name: BlurringAnImageUsingABinomialKernel
+
 Blurring an Image Using a Binomial Kernel
 =========================================
 

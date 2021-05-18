@@ -1,3 +1,5 @@
+:name: ComputeGradientMagnitudeRecursiveGaussian
+
 Compute Gradient Magnitude Recursive Gaussian of Grayscale Image
 ================================================================
 

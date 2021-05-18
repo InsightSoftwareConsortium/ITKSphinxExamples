@@ -1,3 +1,5 @@
+:name: ExtraLargestConnectComponentFromBinaryImage
+
 Extra Largest Connect Component From Binary Image
 =================================================
 

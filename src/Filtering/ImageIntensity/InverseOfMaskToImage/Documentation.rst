@@ -1,3 +1,5 @@
+:name: InverseOfMaskToImage
+
 Inverse of Mask to Image
 ========================
 

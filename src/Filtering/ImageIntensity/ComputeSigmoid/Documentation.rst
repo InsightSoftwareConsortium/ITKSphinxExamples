@@ -1,3 +1,5 @@
+:name: ComputeSigmoid
+
 Compute Sigmoid
 ===============
 

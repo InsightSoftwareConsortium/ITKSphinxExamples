@@ -1,3 +1,5 @@
+:name: LabelConnectComponentsInGrayscaleImage
+
 Label Connect Components in Grayscale Image
 ===========================================
 

@@ -1,3 +1,5 @@
+:name: SmoothImageUsingCurvatureFlow
+
 Smooth Image Using Curvature Flow
 =================================
 

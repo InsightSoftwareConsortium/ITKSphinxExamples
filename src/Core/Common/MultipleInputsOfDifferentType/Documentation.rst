@@ -1,3 +1,5 @@
+:name: MultipleInputsOfDifferentType
+
 Multiple Inputs of Different Type
 =================================
 

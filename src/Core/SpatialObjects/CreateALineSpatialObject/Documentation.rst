@@ -1,3 +1,5 @@
+:name: CreateALineSpatialObject
+
 Create a Line Spatial Object
 ============================
 

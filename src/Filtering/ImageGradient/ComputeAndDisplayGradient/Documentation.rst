@@ -1,3 +1,5 @@
+:name: ComputeAndDisplayGradient
+
 Compute and Display Gradient of Image
 =====================================
 .. warning::

@@ -1,3 +1,5 @@
+:name: 2DGaussianMixtureModelExpectMax
+
 2D Gaussian Mixture Model Expectation Maximum
 =============================================
 

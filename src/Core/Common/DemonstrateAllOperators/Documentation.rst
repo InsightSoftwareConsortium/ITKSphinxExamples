@@ -1,3 +1,5 @@
+:name: DemonstrateAllOperators
+
 Demonstrate All Operators
 =========================
 .. note::

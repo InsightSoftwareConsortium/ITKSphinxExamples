@@ -1,3 +1,5 @@
+:name: WriteAPointSet
+
 Write a PointSet
 ================
 

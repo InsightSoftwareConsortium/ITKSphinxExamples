@@ -1,3 +1,5 @@
+:name: NormalizedCorrelationOfMaskedImage
+
 Normalized Correlation of Masked Image
 ======================================
 

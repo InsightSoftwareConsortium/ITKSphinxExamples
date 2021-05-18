@@ -1,3 +1,5 @@
+:name: ComputerMagInVectorImageToMakeMagImage
+
 Computer Magnitude in Vector Image to Make Magnitude Image
 ==========================================================
 

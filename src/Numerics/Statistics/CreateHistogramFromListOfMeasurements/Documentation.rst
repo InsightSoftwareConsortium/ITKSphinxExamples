@@ -1,3 +1,5 @@
+:name: CreateHistogramFromListOfMeasurements
+
 Create Histogram From List of Measurements
 ==========================================
 

@@ -1,3 +1,5 @@
+:name: TransformVectorValuedImagePixels
+
 Transform Magnitude of Vector Valued Image Pixels
 =================================================
 

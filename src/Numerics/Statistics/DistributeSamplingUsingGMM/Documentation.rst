@@ -1,3 +1,5 @@
+:name: DistributeSamplingUsingGMM
+
 Distribute Sampling Using GMM EM
 ================================
 .. warning::

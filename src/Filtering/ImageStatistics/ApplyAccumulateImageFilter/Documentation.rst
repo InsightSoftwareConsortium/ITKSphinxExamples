@@ -1,3 +1,5 @@
+:name: ApplyAccumulateImageFilter
+
 Apply Accumulate Image Filter
 =============================
 

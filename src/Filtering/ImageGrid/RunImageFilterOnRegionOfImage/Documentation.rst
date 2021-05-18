@@ -1,3 +1,5 @@
+:name: RunImageFilterOnRegionOfImage
+
 Run Image Filter on Region of Image
 ===================================
 

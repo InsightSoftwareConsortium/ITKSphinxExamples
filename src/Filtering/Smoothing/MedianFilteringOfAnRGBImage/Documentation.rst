@@ -1,3 +1,5 @@
+:name: MedianFilteringOfAnRGBImage
+
 Median Filtering of an RGB Image
 ================================
 

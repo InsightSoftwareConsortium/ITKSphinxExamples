@@ -1,3 +1,5 @@
+:name: ComputeHistogramFromGrayscaleImage
+
 Compute Histogram From Grayscale Image
 ======================================
 

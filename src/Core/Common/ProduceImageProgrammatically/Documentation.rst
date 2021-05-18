@@ -1,3 +1,5 @@
+:name: ProduceImageProgrammatically
+
 Produce Image Programmatically
 ==============================
 

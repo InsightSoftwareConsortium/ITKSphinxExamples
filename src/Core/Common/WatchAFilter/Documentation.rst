@@ -1,3 +1,5 @@
+:name: WatchAFilter
+
 Watch a Filter
 ==============
 

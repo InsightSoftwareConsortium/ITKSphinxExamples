@@ -1,3 +1,5 @@
+:name: MergeLabelMaps
+
 Merge LabelMaps
 ================
 

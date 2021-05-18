@@ -1,3 +1,5 @@
+:name: AbsValueOfImage
+
 Absolute Value of Image
 =======================
 

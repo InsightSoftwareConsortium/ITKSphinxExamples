@@ -1,3 +1,5 @@
+:name: JoinImages
+
 Join Images
 ===========
 

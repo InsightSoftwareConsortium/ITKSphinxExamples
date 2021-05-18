@@ -1,3 +1,5 @@
+:name: CutMesh
+
 Cut Mesh
 ========
 

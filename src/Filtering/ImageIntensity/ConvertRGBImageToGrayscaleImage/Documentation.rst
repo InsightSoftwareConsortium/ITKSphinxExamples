@@ -1,3 +1,5 @@
+:name: ConvertRGBImageToGrayscaleImage
+
 Convert RGB Image to Grayscale Image
 ====================================
 

@@ -1,3 +1,5 @@
+:name: PrintVertexNeighbors
+
 Print Vertex Neighbors
 ======================
 

@@ -1,3 +1,5 @@
+:name: PasteImageIntoAnotherOne
+
 Paste Image Into Another One
 ============================
 

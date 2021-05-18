@@ -1,3 +1,5 @@
+:name: CreateVectorImageFromScalarImages
+
 Create Vector Image From Scalar Images
 ======================================
 

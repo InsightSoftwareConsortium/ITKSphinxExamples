@@ -1,3 +1,5 @@
+:name: UseParallelizeImageRegion
+
 Use ParallelizeImageRegion
 ==========================
 

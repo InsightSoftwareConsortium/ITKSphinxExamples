@@ -1,3 +1,5 @@
+:name: GetTypeBasicInformation
+
 Get Type Basic Information
 ==========================
 

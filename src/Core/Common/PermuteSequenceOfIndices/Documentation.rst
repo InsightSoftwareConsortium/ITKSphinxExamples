@@ -1,3 +1,5 @@
+:name: PermuteSequenceOfIndices
+
 Permute Sequence of Indices
 ===========================
 

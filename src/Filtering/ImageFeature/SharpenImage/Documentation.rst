@@ -1,3 +1,5 @@
+:name: SharpenImage
+
 Sharpen Image
 =============
 

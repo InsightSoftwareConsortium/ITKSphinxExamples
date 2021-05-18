@@ -1,3 +1,5 @@
+:name: ContourSpatialObject
+
 Contour Spatial Object
 ======================
 .. note::

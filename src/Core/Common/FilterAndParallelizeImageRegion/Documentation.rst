@@ -1,3 +1,5 @@
+:name: FilterAndParallelizeImageRegion
+
 Filter and ParallelizeImageRegion Comparison
 ============================================
 

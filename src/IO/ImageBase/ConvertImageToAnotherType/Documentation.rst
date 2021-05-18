@@ -1,3 +1,5 @@
+:name: ConvertImageToAnotherType
+
 Convert Image to Another Type
 =============================
 

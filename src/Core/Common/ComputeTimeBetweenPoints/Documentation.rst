@@ -1,3 +1,5 @@
+:name: ComputeTimeBetweenPoints
+
 Compute Time Between Points
 ===========================
 

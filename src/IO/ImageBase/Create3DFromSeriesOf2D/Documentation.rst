@@ -1,3 +1,5 @@
+:name: Create3DFromSeriesOf2D
+
 Create 3D Volume From Series of 2D Images
 =========================================
 

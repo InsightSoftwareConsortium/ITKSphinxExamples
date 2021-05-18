@@ -1,3 +1,5 @@
+:name: CreateVectorImage
+
 Create Vector Image
 ===================
 

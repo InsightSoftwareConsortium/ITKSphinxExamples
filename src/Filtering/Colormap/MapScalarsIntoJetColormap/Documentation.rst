@@ -1,3 +1,5 @@
+:name: MapScalarsIntoJetColormap
+
 Map Scalars Into Jet Colormap
 =============================
 

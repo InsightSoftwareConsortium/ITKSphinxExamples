@@ -1,3 +1,5 @@
+:name: StoreNonPixelDataInImage
+
 Store Non-Pixel Data In Image
 =============================
 .. note::

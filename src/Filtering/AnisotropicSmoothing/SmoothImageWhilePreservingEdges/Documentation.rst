@@ -1,3 +1,5 @@
+:name: SmoothImageWhilePreservingEdges
+
 Smooth Image While Preserving Edges
 ===================================
 

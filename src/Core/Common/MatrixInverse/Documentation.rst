@@ -1,3 +1,5 @@
+:name: MatrixInverse
+
 Matrix Inverse
 ==============
 

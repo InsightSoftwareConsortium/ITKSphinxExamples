@@ -1,3 +1,5 @@
+:name: TranslateAVectorImage
+
 Translate a Vector Image
 ========================
 

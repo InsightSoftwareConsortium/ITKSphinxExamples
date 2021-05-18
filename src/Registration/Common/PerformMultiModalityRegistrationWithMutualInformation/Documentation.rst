@@ -1,3 +1,5 @@
+:name: PerformMultiModalityRegistrationWithMutualInformation
+
 Perform Multi Modality Registration With Viola Wells Mutual Information
 =======================================================================
 

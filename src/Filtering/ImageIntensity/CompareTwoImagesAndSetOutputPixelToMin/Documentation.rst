@@ -1,3 +1,5 @@
+:name: CompareTwoImagesAndSetOutputPixelToMin
+
 Compare Two Images and Set Output Pixel to Min
 ==============================================
 

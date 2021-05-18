@@ -1,3 +1,5 @@
+:name: PadAnImageWithAConstant
+
 Pad an Image With a Constant
 ============================
 

@@ -1,3 +1,5 @@
+:name: AdaptiveHistogramEqualizationImageFilter
+
 Adaptive Histogram Equalization Image Filter
 ============================================
 

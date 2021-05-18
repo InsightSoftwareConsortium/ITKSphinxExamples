@@ -1,3 +1,5 @@
+:name: ApproxDistanceMapOfBinary
+
 Approximate Distance Map of Binary Image
 ========================================
 

@@ -1,3 +1,5 @@
+:name: DistanceBetweenIndices
+
 Distance Between Indices
 ========================
 

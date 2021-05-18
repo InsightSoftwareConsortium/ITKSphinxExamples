@@ -1,3 +1,5 @@
+:name: GetNameOfClass
+
 Get Name of Class
 =================
 

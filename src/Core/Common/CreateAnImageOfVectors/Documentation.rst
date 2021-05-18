@@ -1,3 +1,5 @@
+:name: CreateAnImageOfVectors
+
 Create an Image of Vectors
 ==========================
 

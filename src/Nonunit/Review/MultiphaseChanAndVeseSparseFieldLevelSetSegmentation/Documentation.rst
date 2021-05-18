@@ -1,3 +1,5 @@
+:name: MultiphaseChanAndVeseSparseFieldLevelSetSegmentation
+
 Multiphase Chan and Vese Sparse Field Level Set Segmentation
 ============================================================
 .. note::

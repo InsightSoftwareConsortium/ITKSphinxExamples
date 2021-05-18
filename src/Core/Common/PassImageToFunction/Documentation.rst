@@ -1,3 +1,5 @@
+:name: PassImageToFunction
+
 Pass Image to Function
 ======================
 

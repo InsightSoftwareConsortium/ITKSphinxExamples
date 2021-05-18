@@ -1,3 +1,5 @@
+:name: ConvertvtkImageDataToAnitkImage
+
 Convert vtkImageData to an itk::Image
 =====================================
 

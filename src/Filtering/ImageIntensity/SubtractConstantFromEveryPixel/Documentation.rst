@@ -1,3 +1,5 @@
+:name: SubtractConstantFromEveryPixel
+
 Subtract Constant From Every Pixel
 ==================================
 

@@ -1,3 +1,5 @@
+:name: NormalizedCorrelationUsingFFTWithMaskImages
+
 Normalized Correlation Using FFT With Mask Images for Input Images
 ==================================================================
 

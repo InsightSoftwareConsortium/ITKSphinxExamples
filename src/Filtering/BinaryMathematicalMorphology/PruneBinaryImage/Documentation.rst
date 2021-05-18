@@ -1,3 +1,5 @@
+:name: PruneBinaryImage
+
 Prune Binary Image
 ==================
 

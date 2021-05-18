@@ -1,3 +1,5 @@
+:name: FilterImageWithoutCopying
+
 Filter Image Without Copying Its Data
 =====================================
 

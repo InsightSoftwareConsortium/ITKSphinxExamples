@@ -1,3 +1,5 @@
+:name: LaplacianRecursiveGaussianImageFilter
+
 Laplacian Recursive Gaussian Image Filter
 ==========================================
 

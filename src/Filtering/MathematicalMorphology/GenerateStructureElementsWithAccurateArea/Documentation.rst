@@ -1,3 +1,5 @@
+:name: GenerateStructureElementsWithAccurateArea
+
 Generate Structuring Elements With Accurate Area
 ================================================
 

@@ -1,3 +1,5 @@
+:name: ComputeCurvatureAnisotropicDiffusion
+
 Compute Curvature Anisotropic Diffusion
 =======================================
 

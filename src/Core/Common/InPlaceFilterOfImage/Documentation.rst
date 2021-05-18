@@ -1,3 +1,5 @@
+:name: InPlaceFilterOfImage
+
 In Place Filter of Image
 ========================
 .. index::

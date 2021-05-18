@@ -1,3 +1,5 @@
+:name: RegisterTwoPointSets
+
 Register Two Point Sets
 =======================
 

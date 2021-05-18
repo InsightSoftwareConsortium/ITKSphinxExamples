@@ -1,3 +1,5 @@
+:name: CreateACustomColormap
+
 Create a Custom Color Map
 =========================
 

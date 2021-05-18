@@ -1,3 +1,5 @@
+:name: ComputeInverseFFTOfImage
+
 Compute Inverse FFT of Image
 ============================
 

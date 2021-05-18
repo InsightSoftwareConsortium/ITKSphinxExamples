@@ -1,3 +1,5 @@
+:name: BoundingBoxOfAPointSet
+
 Bounding Box of a Point Set
 ===========================
 

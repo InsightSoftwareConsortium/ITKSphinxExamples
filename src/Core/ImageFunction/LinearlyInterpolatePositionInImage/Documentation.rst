@@ -1,3 +1,5 @@
+:name: LinearlyInterpolatePositionInImage
+
 Linearly Interpolate Position in Image
 ======================================
 

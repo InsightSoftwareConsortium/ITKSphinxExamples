@@ -1,3 +1,5 @@
+:name: ColorLabeledRegions
+
 Color Labeled Regions in Image
 ==============================
 

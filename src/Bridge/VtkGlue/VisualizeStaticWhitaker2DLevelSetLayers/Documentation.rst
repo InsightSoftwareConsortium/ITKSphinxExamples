@@ -1,3 +1,5 @@
+:name: VisualizeStaticWhitaker2DLevelSetLayers
+
 Visualize a Static Sparse Whitaker 2D Level-Set Layers
 ======================================================
 

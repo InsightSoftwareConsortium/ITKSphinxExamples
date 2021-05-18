@@ -1,3 +1,5 @@
+:name: ExtractBoundariesOfConnectedRegionsInBinaryImage
+
 Extract Boundaries of Connected Regions in Binary Image
 =======================================================
 

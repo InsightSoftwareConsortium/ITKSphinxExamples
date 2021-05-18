@@ -1,3 +1,5 @@
+:name: AbsValueOfTwoImages
+
 Absolute Value Of Difference Between Two Images
 ===============================================
 

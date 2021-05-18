@@ -1,3 +1,5 @@
+:name: ExtractInnerAndOuterBoundariesOfBlobsInBinaryImage
+
 Extract Inner and Outer Boundaries of Blobs in Binary Image
 ===========================================================
 

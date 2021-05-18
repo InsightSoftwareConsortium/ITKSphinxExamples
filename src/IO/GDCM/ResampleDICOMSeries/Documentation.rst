@@ -1,3 +1,5 @@
+:name: ResampleDICOMSeries
+
 Resample DICOM Series
 =====================
 

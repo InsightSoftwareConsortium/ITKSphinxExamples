@@ -1,3 +1,5 @@
+:name: ConvertImageWithLabelsToShapeLabelMap
+
 Convert Image With Labeled Regions to ShapeLabelMap
 ===================================================
 

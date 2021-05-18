@@ -1,3 +1,5 @@
+:name: ThresholdAnImage
+
 Threshold an Image
 ==================
 

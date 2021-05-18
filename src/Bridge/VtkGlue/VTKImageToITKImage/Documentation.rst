@@ -1,3 +1,5 @@
+:name: VTKImageToITKImage
+
 VTK Image to ITK Image
 ======================
 .. index::

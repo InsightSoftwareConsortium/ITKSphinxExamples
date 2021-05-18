@@ -1,3 +1,5 @@
+:name: ComputePCAShapeFromSample
+
 Compute PCA Shape From Training Sample
 ======================================
 .. note::

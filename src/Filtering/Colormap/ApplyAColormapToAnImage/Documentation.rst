@@ -1,3 +1,5 @@
+:name: ApplyAColormapToAnImage
+
 Apply a Color Map to an Image
 =============================
 

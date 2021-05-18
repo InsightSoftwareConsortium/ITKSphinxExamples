@@ -1,3 +1,5 @@
+:name: DataStructureForPieceWiseLinearCurve
+
 Data Structure for Piece-Wise Linear Curve
 ==========================================
 

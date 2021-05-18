@@ -1,3 +1,5 @@
+:name: MakeOutOfBoundsPixelsReturnConstValue
+
 Make Out of Bounds Pixels Return Constant Value
 ===============================================
 

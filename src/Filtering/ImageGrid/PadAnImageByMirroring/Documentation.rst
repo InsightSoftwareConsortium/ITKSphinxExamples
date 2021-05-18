@@ -1,3 +1,5 @@
+:name: PadAnImageByMirroring
+
 Pad an Image by Mirroring
 =========================
 

@@ -1,3 +1,5 @@
+:name: CompareTwoImagesAndSetOutputPixelToMax
+
 Compare Two Images and Set Output Pixel to Max
 ==============================================
 

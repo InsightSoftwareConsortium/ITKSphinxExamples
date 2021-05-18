@@ -1,3 +1,5 @@
+:name: ConnectedComponentsInImage
+
 Connected Components in Image
 =============================
 .. warning::

@@ -1,3 +1,5 @@
+:name: ResampleAnImage
+
 Resample an Image
 =======================================
 

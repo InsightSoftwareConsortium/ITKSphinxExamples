@@ -1,3 +1,5 @@
+:name: PixelDivisionOfTwoImages
+
 Pixel Division of Two Images
 ============================
 

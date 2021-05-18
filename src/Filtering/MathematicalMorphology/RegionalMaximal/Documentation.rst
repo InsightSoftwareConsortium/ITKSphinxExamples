@@ -1,3 +1,5 @@
+:name: RegionalMaximal
+
 Regional Maximal
 ================
 

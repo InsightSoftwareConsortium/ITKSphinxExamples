@@ -1,3 +1,5 @@
+:name: CombineTwoImagesWithCheckerBoardPattern
+
 Combine Two Images With Checker Board Pattern
 =============================================
 

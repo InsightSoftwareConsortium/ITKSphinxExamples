@@ -1,3 +1,5 @@
+:name: VisualizeStaticDense2DLevelSetZeroSet
+
 Visualize a Static Dense 2D Level-Set Zero-Set
 ==============================================
 

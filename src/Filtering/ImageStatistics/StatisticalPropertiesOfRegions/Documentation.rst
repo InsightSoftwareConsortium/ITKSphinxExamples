@@ -1,3 +1,5 @@
+:name: StatisticalPropertiesOfRegions
+
 Statistical Properties of Labeled Regions
 =========================================
 

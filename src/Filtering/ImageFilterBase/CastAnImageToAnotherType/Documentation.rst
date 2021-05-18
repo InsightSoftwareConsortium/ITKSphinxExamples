@@ -1,3 +1,5 @@
+:name: CastAnImageToAnotherType
+
 Cast an Image to Another Type
 =============================
 

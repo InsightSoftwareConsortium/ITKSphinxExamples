@@ -1,3 +1,5 @@
+:name: VisualizeEvolvingDense2DLevelSetZeroSet
+
 Visualize an Evolving Dense 2D Level-Set Zero-Set
 =================================================
 

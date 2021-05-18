@@ -1,3 +1,5 @@
+:name: PermuteAxesOfAnImage
+
 Permute Axes of an Image
 ========================
 

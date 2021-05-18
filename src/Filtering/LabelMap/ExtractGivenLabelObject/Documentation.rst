@@ -1,3 +1,5 @@
+:name: ExtractGivenLabelObject
+
 Extract Given Label Object
 ==========================
 

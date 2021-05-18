@@ -1,3 +1,5 @@
+:name: ColorBoundariesOfRegions
+
 Color Boundaries of Labeled Regions
 ===================================
 

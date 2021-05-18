@@ -1,3 +1,5 @@
+:name: BresenhamLine
+
 Bresenham Line
 ==============
 

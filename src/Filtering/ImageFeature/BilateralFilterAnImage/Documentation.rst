@@ -1,3 +1,5 @@
+:name: BilateralFilterAnImage
+
 Bilateral Filter an Image
 =========================
 

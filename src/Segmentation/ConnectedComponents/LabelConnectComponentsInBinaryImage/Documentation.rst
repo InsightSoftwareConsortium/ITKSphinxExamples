@@ -1,3 +1,5 @@
+:name: LabelConnectComponentsInBinaryImage
+
 Label Connect Components in Binary Image
 ========================================
 

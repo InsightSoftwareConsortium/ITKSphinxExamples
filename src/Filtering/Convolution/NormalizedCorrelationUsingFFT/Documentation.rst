@@ -1,3 +1,5 @@
+:name: NormalizedCorrelationUsingFFT
+
 Normalized Correlation Using FFT
 ================================
 

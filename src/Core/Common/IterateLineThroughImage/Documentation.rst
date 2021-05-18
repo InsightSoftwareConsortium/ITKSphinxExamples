@@ -1,3 +1,5 @@
+:name: IterateLineThroughImage
+
 Iterate Line Through Image
 ==========================
 

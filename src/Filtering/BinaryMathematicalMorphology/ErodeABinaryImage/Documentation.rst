@@ -1,3 +1,5 @@
+:name: ErodeABinaryImage
+
 Erode a Binary Image
 ====================
 

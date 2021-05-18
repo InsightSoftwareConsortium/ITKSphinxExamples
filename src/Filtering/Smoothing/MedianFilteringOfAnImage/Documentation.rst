@@ -1,3 +1,5 @@
+:name: MedianFilteringOfAnImage
+
 Median Filtering of an Image
 ============================
 

@@ -1,3 +1,5 @@
+:name: ComputeNormalsOfAMesh
+
 Compute Normals of a Mesh
 =========================
 

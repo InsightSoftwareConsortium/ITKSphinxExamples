@@ -1,3 +1,5 @@
+:name: MaskImage
+
 Mask Image
 ==========
 
