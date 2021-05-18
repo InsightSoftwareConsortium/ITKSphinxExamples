@@ -1,3 +1,5 @@
+:name: RegionalMinimal
+
 Regional Minimal
 ================
 

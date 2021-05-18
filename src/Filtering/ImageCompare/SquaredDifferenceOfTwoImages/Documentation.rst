@@ -1,3 +1,5 @@
+:name: SquaredDifferenceOfTwoImages
+
 Squared Difference of Two Images
 ================================
 

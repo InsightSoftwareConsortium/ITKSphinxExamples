@@ -19,7 +19,7 @@
     {%- endif %}
   {%- endfor -%}
 {%- endmacro %}
-{%- set tarballname = examplename(pagename)%}
+{%- set archivename = examplename(pagename)%}
 
 {%- if prev %}
   {%- if slashcount == 4 %}
@@ -62,17 +62,9 @@
 
 {%- if slashcount == 4 %}
   <li class="dropdown">
-    <a role="button"
-       id="dDownload"
-       data-toggle="dropdown"
-       data-target="#"
-       href="#"><span class="glyphicon glyphicon-download-alt"></span> <span class="hidden-sm hidden-tablet">&nbsp; {{ _('Download') }} <b class="caret"> </span></b></a>
-    <ul class="dropdown-menu"
-        role="menu"
-        aria-labelledby="dDownload">
-      <li><a href="{{ tarballname ~ ".zip" }}">Packed as .zip</a></li>
-      <li><a href="{{ tarballname ~ ".tar.gz" }}">Packed as .tar.gz</a></li>
-    </ul>
+    <a href="{{ meta.get("name") ~ ".zip" }}">
+    <span class="glyphicon glyphicon-download-alt"></span> <span class="hidden-sm hidden-tablet">&nbsp; {{ _('Download') }}</span>
+    </a>
   </li>
 {%- endif %}
 

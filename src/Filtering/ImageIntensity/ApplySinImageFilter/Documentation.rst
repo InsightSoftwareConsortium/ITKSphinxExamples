@@ -1,3 +1,5 @@
+:name: ApplySinImageFilter
+
 Apply Sin Image Filter
 ======================
 

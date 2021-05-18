@@ -1,3 +1,5 @@
+:name: PredefinedOperationToCorrespondingPixelsInTwoImages
+
 Predefined Operation to Corresponding Pixels in Two Images
 ==========================================================
 

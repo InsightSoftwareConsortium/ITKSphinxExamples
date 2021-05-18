@@ -1,3 +1,5 @@
+:name: VisualizeEvolvingDense2DLevelSetAsElevationMap
+
 Visualize an Evolving Dense 2D Level Set as Elevation Map
 =========================================================
 

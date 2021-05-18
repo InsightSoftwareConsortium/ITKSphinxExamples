@@ -1,3 +1,5 @@
+:name: ViewComponentVectorImageAsScaleImage
+
 View Component Vector Image as Scalar Image
 ===========================================
 

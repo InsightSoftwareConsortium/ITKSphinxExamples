@@ -1,3 +1,5 @@
+:name: GetOrSetMemberVariableOfITKClass
+
 Get or Set Member Variable of ITK Class
 =======================================
 

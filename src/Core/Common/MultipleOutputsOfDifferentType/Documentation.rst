@@ -1,3 +1,5 @@
+:name: MultipleOutputsOfDifferentType
+
 Multiple Outputs of Different Type
 ==================================
 

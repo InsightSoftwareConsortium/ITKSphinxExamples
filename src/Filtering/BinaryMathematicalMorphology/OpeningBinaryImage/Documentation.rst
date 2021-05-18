@@ -1,3 +1,5 @@
+:name: OpeningBinaryImage
+
 Opening a Binary Image
 ======================
 

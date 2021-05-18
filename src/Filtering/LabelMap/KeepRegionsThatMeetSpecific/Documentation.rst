@@ -1,3 +1,5 @@
+:name: KeepRegionsThatMeetSpecific
+
 Keep Regions That Meet Specific Properties
 ==========================================
 

@@ -1,3 +1,5 @@
+:name: CastImageToAnotherTypeButClampToOutput
+
 Cast Image to Another Type but Clamp to Output Range
 ====================================================
 

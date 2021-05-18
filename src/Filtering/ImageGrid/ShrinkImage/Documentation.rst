@@ -1,3 +1,5 @@
+:name: ShrinkImage
+
 Shrink Image
 ============
 

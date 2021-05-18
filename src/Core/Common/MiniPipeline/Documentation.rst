@@ -1,3 +1,5 @@
+:name: MiniPipeline
+
 Mini Pipeline
 =============
 

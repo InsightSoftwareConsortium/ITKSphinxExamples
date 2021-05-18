@@ -1,3 +1,5 @@
+:name: Perform2DTranslationRegistrationWithMeanSquares
+
 Perform 2D Translation Registration With Mean Squares
 =====================================================
 

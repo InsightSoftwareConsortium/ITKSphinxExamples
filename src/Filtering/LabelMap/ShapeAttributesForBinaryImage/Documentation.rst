@@ -1,3 +1,5 @@
+:name: ShapeAttributesForBinaryImage
+
 Shape Attributes for Binary Image
 =================================
 

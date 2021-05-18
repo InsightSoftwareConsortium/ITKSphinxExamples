@@ -1,3 +1,5 @@
+:name: ReturnObjectFromFunction
+
 Return Object From Function
 ===========================
 

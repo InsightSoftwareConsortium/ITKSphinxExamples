@@ -1,3 +1,5 @@
+:name: MutualInformationAffine
+
 Mutual Information Affine
 =========================
 

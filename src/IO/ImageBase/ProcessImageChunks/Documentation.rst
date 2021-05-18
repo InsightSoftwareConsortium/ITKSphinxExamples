@@ -1,3 +1,5 @@
+:name: ProcessImageChunks
+
 Process Image Chunks
 ====================
 

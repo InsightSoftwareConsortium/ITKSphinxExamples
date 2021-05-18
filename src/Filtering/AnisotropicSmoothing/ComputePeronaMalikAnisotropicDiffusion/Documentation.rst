@@ -1,3 +1,5 @@
+:name: ComputePeronaMalikAnisotropicDiffusion
+
 Perona Malik Anisotropic Diffusion on Grayscale Image
 =====================================================
 

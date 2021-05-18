@@ -1,3 +1,5 @@
+:name: RegisterImageToAnotherUsingLandmarks
+
 Register Image to Another Using Landmarks
 =========================================
 

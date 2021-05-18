@@ -1,3 +1,5 @@
+:name: HistogramCreationAndBinAccess
+
 Histogram Creation and Bin Access
 =================================
 

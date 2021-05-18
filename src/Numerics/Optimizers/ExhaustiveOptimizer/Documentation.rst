@@ -1,3 +1,5 @@
+:name: ExhaustiveOptimizer
+
 Exhaustive Optimizer
 ====================
 

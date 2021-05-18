@@ -1,3 +1,5 @@
+:name: CheckIfModuleIsPresent
+
 Check if Module Is Present
 ==========================
 

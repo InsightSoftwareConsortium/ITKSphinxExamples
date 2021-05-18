@@ -1,3 +1,5 @@
+:name: CreateABinaryBallStructuringElement
+
 Create a Binary Ball Structuring Element
 ========================================
 

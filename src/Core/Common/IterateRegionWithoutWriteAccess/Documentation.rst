@@ -1,3 +1,5 @@
+:name: IterateRegionWithoutWriteAccess
+
 Iterate Region in Image Without Write Access
 ============================================
 

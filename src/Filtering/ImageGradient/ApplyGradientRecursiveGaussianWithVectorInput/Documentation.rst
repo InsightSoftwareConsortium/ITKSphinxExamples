@@ -1,3 +1,5 @@
+:name: ApplyGradientRecursiveGaussianWithVectorInput
+
 Apply GradientRecursiveGaussianImageFilter on Image With Vector type
 ====================================================================
 

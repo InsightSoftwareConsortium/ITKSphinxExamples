@@ -1,3 +1,5 @@
+:name: CreateDistanceMapFromSeeds
+
 Create Distance Map From Seeds
 ==============================
 

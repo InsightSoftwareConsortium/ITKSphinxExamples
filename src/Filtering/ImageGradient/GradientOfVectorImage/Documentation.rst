@@ -1,3 +1,5 @@
+:name: GradientOfVectorImage
+
 Gradient of Vector Image
 ========================
 .. warning::

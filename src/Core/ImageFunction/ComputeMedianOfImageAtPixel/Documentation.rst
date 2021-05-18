@@ -1,3 +1,5 @@
+:name: ComputeMedianOfImageAtPixel
+
 Compute Median of Image at Pixel
 ================================
 

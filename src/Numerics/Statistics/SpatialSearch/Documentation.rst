@@ -1,3 +1,5 @@
+:name: SpatialSearch
+
 Spatial Search
 ==============
 

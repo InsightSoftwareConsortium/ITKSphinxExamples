@@ -1,3 +1,5 @@
+:name: PerformRegistrationOnVectorImages
+
 Perform Registration on Vector Images
 =====================================
 

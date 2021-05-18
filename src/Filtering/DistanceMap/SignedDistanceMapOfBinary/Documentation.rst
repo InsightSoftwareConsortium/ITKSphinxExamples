@@ -1,3 +1,5 @@
+:name: SignedDistanceMapOfBinary
+
 Signed Distance Map of Binary Image
 ===================================
 

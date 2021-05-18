@@ -1,3 +1,5 @@
+:name: LabelBinaryRegionsAndGetProperties
+
 Label Binary Regions and Get Properties
 =======================================
 

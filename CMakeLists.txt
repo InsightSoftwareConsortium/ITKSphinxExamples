@@ -262,8 +262,8 @@ if(BUILD_DOCUMENTATION)
   add_dependencies(gitstats copy_sources)
 
   # A high level target that the individual targets depend on.
-  add_custom_target(CreateTarballs ALL
-    ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
+  add_custom_target(CreateDownloadableArchives ALL
+    ${CMAKE_COMMAND} -E echo "Done creating individual example downloadable archives..."
     )
 
   if(NOT ITKDoxygenXML_DIR)
@@ -282,7 +282,7 @@ if(BUILD_DOCUMENTATION)
   set(SPHINX_CONF_DIR ${ITKSphinxExamples_BINARY_DIR}/Formatting)
   set(SPHINX_INPUT_DIR ${ITKSphinxExamples_BINARY_DIR})
   set(SPHINX_DESTINATION ${ITKSphinxExamples_BINARY_DIR})
-  set(SPHINX_DEPENDENCIES gitstats ITKDoxygenXML ITKSphinxExamplesData ITKDoxygenTAG CreateTarballs)
+  set(SPHINX_DEPENDENCIES gitstats ITKDoxygenXML ITKSphinxExamplesData ITKDoxygenTAG CreateDownloadableArchives)
 
   option(DOC_WITH_LOCAL_DOXYGEN "Generate documentation with local doxygen" OFF)
   mark_as_advanced(DOC_WITH_LOCAL_DOXYGEN)

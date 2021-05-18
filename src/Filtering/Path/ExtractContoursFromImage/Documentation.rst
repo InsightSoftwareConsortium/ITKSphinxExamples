@@ -1,3 +1,5 @@
+:name: ExtractContoursFromImage
+
 Extract Contours From Image
 ===========================
 

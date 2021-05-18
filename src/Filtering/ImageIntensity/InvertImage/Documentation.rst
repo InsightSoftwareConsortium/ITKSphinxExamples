@@ -1,3 +1,5 @@
+:name: InvertImage
+
 Invert Image
 ============
 

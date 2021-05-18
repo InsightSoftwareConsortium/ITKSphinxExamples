@@ -1,3 +1,5 @@
+:name: StreamAPipeline
+
 Stream a Pipeline
 =================
 

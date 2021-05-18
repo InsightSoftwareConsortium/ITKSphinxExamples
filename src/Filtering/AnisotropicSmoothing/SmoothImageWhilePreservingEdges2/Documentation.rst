@@ -1,3 +1,5 @@
+:name: SmoothImageWhilePreservingEdges2
+
 Smooth Image While Preserving Edges (Curvature)
 ===============================================
 

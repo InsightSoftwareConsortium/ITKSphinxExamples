@@ -1,3 +1,5 @@
+:name: ConvertRealAndImaginaryToComplexImage
+
 Convert Real and Imaginary Images to Complex Image
 ==================================================
 

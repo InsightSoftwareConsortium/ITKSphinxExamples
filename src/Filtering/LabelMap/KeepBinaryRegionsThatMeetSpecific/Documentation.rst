@@ -1,3 +1,5 @@
+:name: KeepBinaryRegionsThatMeetSpecific
+
 Keep Binary Regions That Meet Specific Properties
 =================================================
 

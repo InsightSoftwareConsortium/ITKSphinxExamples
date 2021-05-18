@@ -1,3 +1,5 @@
+:name: DistributionOfPixelsUsingGMM
+
 Distribution of Pixels Using GMM EM
 ===================================
 .. warning::

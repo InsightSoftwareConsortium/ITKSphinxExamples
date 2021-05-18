@@ -1,3 +1,5 @@
+:name: CovariantVectorNorm
+
 Covariant Vector Norm
 =====================
 

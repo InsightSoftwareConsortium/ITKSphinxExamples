@@ -1,3 +1,5 @@
+:name: MultipleOutputsOfSameType
+
 Multiple Outputs of Same Type
 =============================
 

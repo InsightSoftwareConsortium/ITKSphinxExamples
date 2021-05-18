@@ -1,3 +1,5 @@
+:name: IsPixelInsideRegion
+
 Is Pixel Inside Region
 ======================
 

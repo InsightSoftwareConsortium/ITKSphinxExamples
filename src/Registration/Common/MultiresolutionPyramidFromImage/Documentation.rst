@@ -1,3 +1,5 @@
+:name: MultiresolutionPyramidFromImage
+
 Multiresolution Pyramid From Image
 ==================================
 

@@ -1,3 +1,5 @@
+:name: FilterImage
+
 Filter Image
 ============
 

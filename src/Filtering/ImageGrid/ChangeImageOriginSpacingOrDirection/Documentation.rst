@@ -1,3 +1,5 @@
+:name: ChangeImageOriginSpacingOrDirection
+
 Change Image Origin Spacing or Direction
 ========================================
 

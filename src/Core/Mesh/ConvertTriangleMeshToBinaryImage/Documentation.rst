@@ -1,3 +1,5 @@
+:name: ConvertTriangleMeshToBinaryImage
+
 Convert Triangle Mesh to Binary Image
 =====================================
 

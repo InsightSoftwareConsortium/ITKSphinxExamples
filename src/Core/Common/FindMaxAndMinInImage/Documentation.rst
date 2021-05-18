@@ -1,3 +1,5 @@
+:name: FindMaxAndMinInImage
+
 Find Max and Min in Image
 =========================
 

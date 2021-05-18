@@ -1,3 +1,5 @@
+:name: ComputeGradientAnisotropicDiffusion
+
 Compute Gradient Anisotropic Diffusion
 ======================================
 

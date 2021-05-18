@@ -1,3 +1,5 @@
+:name: ClosingBinaryImage
+
 Closing Binary Image
 ====================
 

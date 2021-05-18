@@ -1,3 +1,5 @@
+:name: ConvertAnRGBitkImageTovtkImageData
+
 Convert an RGB itk::Image to vtkImageData
 =========================================
 

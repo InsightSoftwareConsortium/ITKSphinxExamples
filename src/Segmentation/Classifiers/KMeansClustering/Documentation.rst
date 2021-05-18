@@ -1,3 +1,5 @@
+:name: KMeansClustering
+
 K-Means Clustering
 ==================
 .. warning::

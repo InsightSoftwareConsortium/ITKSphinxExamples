@@ -1,3 +1,5 @@
+:name: AddConstantToPixelsWithoutDuplicatingImage
+
 Add Constant to Every Pixel Without Duplicating Memory
 ======================================================
 

@@ -1,3 +1,5 @@
+:name: VisualizeStaticShi2DLevelSetLayers
+
 Visualize a Static Sparse Shi 2D Level-Set Layers
 =================================================
 

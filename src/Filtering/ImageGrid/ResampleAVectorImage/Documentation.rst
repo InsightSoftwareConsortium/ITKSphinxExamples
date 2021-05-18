@@ -1,3 +1,5 @@
+:name: ResampleAVectorImage
+
 Resample a Vector Image
 =======================
 

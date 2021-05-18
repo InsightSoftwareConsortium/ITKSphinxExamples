@@ -1,3 +1,5 @@
+:name: IterateOverARegionWithAShapedNeighborhoodIteratorManual
+
 Iterate Over a Region With a Shaped Neighborhood Iterator Manually
 ===================================================================
 

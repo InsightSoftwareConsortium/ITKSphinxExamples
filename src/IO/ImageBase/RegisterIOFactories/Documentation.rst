@@ -1,3 +1,5 @@
+:name: RegisterIOFactories
+
 Register IO Factories
 =====================
 

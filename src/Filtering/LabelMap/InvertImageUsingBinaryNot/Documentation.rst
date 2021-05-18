@@ -1,3 +1,5 @@
+:name: InvertImageUsingBinaryNot
+
 Invert Image Using Binary Not Operation
 =======================================
 

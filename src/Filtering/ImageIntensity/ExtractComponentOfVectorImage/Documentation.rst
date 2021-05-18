@@ -1,3 +1,5 @@
+:name: ExtractComponentOfVectorImage
+
 Extract Component of Vector Image
 =================================
 

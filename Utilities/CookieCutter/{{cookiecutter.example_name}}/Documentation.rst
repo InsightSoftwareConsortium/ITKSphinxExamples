@@ -1,3 +1,5 @@
+:name: {{ cookiecutter.example_name }}
+
 {{ cookiecutter.example_title }}
 ================================
 

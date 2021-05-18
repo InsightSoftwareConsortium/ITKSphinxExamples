@@ -1,3 +1,5 @@
+:name: ErodeBinaryImageUsingFlatStruct
+
 Erode Binary Image Using Flat Structure Element
 ===============================================
 

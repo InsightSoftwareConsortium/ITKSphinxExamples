@@ -1,3 +1,5 @@
+:name: ComputeCurvatureFlow
+
 Compute Curvature Flow
 ======================
 

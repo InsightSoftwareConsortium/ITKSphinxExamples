@@ -1,3 +1,5 @@
+:name: MaskOneImageGivenLabelMap
+
 Mask One Image Given Label Map
 ==============================
 

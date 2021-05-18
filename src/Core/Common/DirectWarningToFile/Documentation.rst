@@ -1,3 +1,5 @@
+:name: DirectWarningToFile
+
 Direct Warning to File
 ======================
 

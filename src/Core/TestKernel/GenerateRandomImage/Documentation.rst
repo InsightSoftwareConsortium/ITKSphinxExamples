@@ -1,3 +1,5 @@
+:name: GenerateRandomImage
+
 Generate Random Image
 =====================
 

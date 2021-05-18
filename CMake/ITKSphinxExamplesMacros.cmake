@@ -1,8 +1,8 @@
 include(CMakeParseArguments)
 
 # A high level target that the individual targets depend on.
-#add_custom_target( CreateTarballs ALL
-#  ${CMAKE_COMMAND} -E echo "Done creating individual example tarballs..."
+#add_custom_target( CreateDownloadableArchives ALL
+#  ${CMAKE_COMMAND} -E echo "Done creating individual example downloadable archives..."
 #)
 
 # Macro for adding an example.
@@ -11,20 +11,20 @@ include(CMakeParseArguments)
 # CMakeLists.txt.  That file should be standalone for building the example.
 # This macro is intended to be instantiated in the CMakeLists.txt one directory
 # above where the example exists.  It does things like creating the example
-# tarball's in the example output directory, and custom targets for building
+# archives's in the example output directory, and custom targets for building
 # the Sphinx documentation for an individual example.  The Sphinx target will be
 # called ${example_name}Doc.
 macro(add_example example_name)
   if(BUILD_DOCUMENTATION)
     if(SPHINX_HTML_OUTPUT)
-      add_custom_target(${example_name}Tarball
-        COMMAND ${PYTHON_EXECUTABLE} ${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateTarball.py
+      add_custom_target(${example_name}DownloadableArchive
+        COMMAND ${PYTHON_EXECUTABLE} ${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateDownloadableArchive.py
           ${example_name} ${SPHINX_DESTINATION}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Creating tarballs for ${example_name}"
+        COMMENT "Creating downloadable archive for ${example_name}"
         DEPENDS copy_sources
         )
-      add_dependencies(CreateTarballs ${example_name}Tarball)
+      add_dependencies(CreateDownloadableArchives ${example_name}DownloadableArchive)
     endif()
   endif()
 

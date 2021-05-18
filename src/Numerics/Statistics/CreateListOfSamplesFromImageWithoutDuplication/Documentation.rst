@@ -1,3 +1,5 @@
+:name: CreateListOfSamplesFromImageWithoutDuplication
+
 Create List of Samples From Image Without Duplication
 =====================================================
 

@@ -1,3 +1,5 @@
+:name: BinaryXORTwoImages
+
 Binary XOR Two Images
 =====================
 

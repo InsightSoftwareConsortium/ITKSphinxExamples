@@ -1,3 +1,5 @@
+:name: IterateRegionWithNeighborhood
+
 Iterate Region in Image With Neighborhood
 =========================================
 

@@ -1,3 +1,5 @@
+:name: CustomUserMatrixToAlignImageWithDICOM
+
 Custom User Matrix to Align Image With DICOM
 ============================================
 .. note::

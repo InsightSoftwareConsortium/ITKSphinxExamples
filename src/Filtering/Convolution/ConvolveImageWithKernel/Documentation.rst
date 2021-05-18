@@ -1,3 +1,5 @@
+:name: ConvolveImageWithKernel
+
 Convolve Image With Kernel
 ==========================
 

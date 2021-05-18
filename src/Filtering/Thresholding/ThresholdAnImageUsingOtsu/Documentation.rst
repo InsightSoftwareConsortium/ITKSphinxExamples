@@ -1,3 +1,5 @@
+:name: ThresholdAnImageUsingOtsu
+
 Threshold an Image Using Otsu
 =============================
 

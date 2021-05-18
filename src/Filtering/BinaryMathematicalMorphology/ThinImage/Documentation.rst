@@ -1,3 +1,5 @@
+:name: ThinImage
+
 Thin Image
 ==========
 

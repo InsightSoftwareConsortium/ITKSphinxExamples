@@ -1,3 +1,5 @@
+:name: ExtractIsoSurface
+
 Extract Iso Surface
 ===================
 

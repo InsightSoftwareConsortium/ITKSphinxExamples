@@ -1,3 +1,5 @@
+:name: ApplyMorphologicalClosingOnSpecificLabelObject
+
 Apply Morphological Closing on Specific Label Object
 ====================================================
 

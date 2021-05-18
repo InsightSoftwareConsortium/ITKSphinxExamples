@@ -1,3 +1,5 @@
+:name: NeighborhoodIteratorOnVectorImage
+
 Neighborhood Iterator on Vector Image
 =====================================
 

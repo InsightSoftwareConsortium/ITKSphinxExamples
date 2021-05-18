@@ -1,3 +1,5 @@
+:name: CropImageBySpecifyingRegion2
+
 Crop Image by Specifying Region
 ===============================
 

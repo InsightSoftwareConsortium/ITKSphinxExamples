@@ -1,3 +1,5 @@
+:name: ComputeMeanSquareBetweenTwoImages
+
 Compute Mean Squares Metric Between Two Images
 ==============================================
 

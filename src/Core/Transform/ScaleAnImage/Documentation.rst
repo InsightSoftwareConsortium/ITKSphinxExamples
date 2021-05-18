@@ -1,3 +1,5 @@
+:name: ScaleAnImage
+
 Scale an Image
 ==============
 

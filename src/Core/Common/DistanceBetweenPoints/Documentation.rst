@@ -1,3 +1,5 @@
+:name: DistanceBetweenPoints
+
 Distance Between Points
 =======================
 

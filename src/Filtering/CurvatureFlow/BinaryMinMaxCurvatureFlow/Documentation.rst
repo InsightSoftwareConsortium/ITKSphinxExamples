@@ -1,3 +1,5 @@
+:name: BinaryMinMaxCurvatureFlow
+
 Binary Min and Max Curvature Flow of Binary Image
 =================================================
 

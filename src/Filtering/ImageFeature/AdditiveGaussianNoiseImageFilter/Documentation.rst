@@ -1,3 +1,5 @@
+:name: AdditiveGaussianNoiseImageFilter
+
 Add Gaussian Noise to an Image
 =====================================================
 

@@ -1,3 +1,5 @@
+:name: ReadWriteVectorImage
+
 Read Write Vector Image
 =======================
 

@@ -1,3 +1,5 @@
+:name: RemoveLabelsFromLabelMap
+
 Remove Labels From Label Map
 ============================
 

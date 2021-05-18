@@ -1,3 +1,5 @@
+:name: ApplyCustomOperationToEachPixelInImage
+
 Apply Custom Operation to Each Pixel in Image
 =============================================
 

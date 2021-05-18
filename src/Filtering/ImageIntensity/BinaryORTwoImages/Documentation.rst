@@ -1,3 +1,5 @@
+:name: BinaryORTwoImages
+
 Binary OR Two Images
 ====================
 

@@ -1,3 +1,5 @@
+:name: SetDefaultNumberOfThreads
+
 Set the Default Number of Threads
 =================================
 

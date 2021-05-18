@@ -1,3 +1,5 @@
+:name: SmoothBinaryImageBeforeSurfaceExtraction
+
 Smooth Binary Image Before Surface Extraction
 =============================================
 

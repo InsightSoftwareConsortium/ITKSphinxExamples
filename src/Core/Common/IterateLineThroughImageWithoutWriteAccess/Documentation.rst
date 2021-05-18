@@ -1,3 +1,5 @@
+:name: IterateLineThroughImageWithoutWriteAccess
+
 Iterate Line Through Image Without Write Access
 ===============================================
 

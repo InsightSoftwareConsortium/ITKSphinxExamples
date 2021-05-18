@@ -1,3 +1,5 @@
+:name: ExtractChannelOfImageWithMultipleComponents
+
 Extract Channel of Image With Multiple Components
 =================================================
 

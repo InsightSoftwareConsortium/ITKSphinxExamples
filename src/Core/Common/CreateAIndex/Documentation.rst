@@ -1,3 +1,5 @@
+:name: CreateAIndex
+
 Create a Index
 ==============
 

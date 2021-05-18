@@ -1,3 +1,5 @@
+:name: WatchRegistration
+
 Watch Registration
 ==================
 

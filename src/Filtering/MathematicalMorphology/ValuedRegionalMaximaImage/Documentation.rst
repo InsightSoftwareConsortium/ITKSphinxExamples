@@ -1,3 +1,5 @@
+:name: ValuedRegionalMaximaImage
+
 Valued Regional Maxima Image
 ============================
 

@@ -1,3 +1,5 @@
+:name: GeometricPropertiesOfRegion
+
 Geometric Properties of Labeled Region
 ======================================
 

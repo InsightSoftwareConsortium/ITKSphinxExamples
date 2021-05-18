@@ -1,3 +1,5 @@
+:name: DilateAGrayscaleImage
+
 Dilate a grayscale image
 ========================
 

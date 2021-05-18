@@ -1,3 +1,5 @@
+:name: SinglephaseChanAndVeseDenseFieldLevelSetSegmentation
+
 Singlephase Chan and Vese Dense Field Level Set Segmentation
 ============================================================
 .. note::

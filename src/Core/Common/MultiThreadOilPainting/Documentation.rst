@@ -1,3 +1,5 @@
+:name: MultiThreadOilPainting
+
 Multi-thread Oil Painting
 =========================
 

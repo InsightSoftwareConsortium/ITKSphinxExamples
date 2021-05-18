@@ -1,3 +1,5 @@
+:name: UpsampleAnImage
+
 Upsample an Image
 =======================================
 

@@ -1,3 +1,5 @@
+:name: ReadDICOMSeriesAndWrite3DImage
+
 Read DICOM Series and Write 3D Image
 ====================================
 

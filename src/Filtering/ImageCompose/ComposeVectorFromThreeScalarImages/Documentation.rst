@@ -1,3 +1,5 @@
+:name: ComposeVectorFromThreeScalarImages
+
 Compose Vector From Three Scalar Images
 =======================================
 

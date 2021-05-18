@@ -1,3 +1,5 @@
+:name: ReadAPointSet
+
 Read a PointSet
 ===============
 

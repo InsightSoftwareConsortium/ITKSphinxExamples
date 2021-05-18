@@ -1,3 +1,5 @@
+:name: ResampleAScalarImage
+
 Resample a Scalar Image
 =======================
 

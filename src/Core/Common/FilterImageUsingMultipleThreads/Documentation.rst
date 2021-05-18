@@ -1,3 +1,5 @@
+:name: FilterImageUsingMultipleThreads
+
 Filter Image Using Multiple Threads
 ===================================
 

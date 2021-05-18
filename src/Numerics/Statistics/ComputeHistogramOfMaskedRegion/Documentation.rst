@@ -1,3 +1,5 @@
+:name: ComputeHistogramOfMaskedRegion
+
 Compute Histogram of Masked Region in Image
 ===========================================
 .. note::

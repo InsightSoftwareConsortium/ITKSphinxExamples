@@ -1,3 +1,5 @@
+:name: AmoebaOptimizer
+
 Amoeba Optimizer
 ================
 

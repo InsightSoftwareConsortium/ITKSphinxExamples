@@ -1,3 +1,5 @@
+:name: MorphologicalWatershedSegmentation
+
 Morphological Watershed Segmentation
 ====================================
 

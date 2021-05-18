@@ -1,3 +1,5 @@
+:name: MultiplyKernelWithAnImageAtLocation
+
 Multiply Kernel With an Image at Location
 =========================================
 

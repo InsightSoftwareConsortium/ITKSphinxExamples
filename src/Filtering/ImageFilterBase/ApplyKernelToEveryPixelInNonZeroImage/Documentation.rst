@@ -1,3 +1,5 @@
+:name: ApplyKernelToEveryPixelInNonZeroImage
+
 Apply Kernel to Every Pixel in Non-Zero Image
 =============================================
 

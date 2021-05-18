@@ -1,3 +1,5 @@
+:name: SetPixelValueInOneImage
+
 Set Pixel Value in One Image
 ============================
 

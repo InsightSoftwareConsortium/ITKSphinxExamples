@@ -1,3 +1,5 @@
+:name: IterateImageStartingAtSeed
+
 Iterate Image Starting at Seed
 ==============================
 .. warning::

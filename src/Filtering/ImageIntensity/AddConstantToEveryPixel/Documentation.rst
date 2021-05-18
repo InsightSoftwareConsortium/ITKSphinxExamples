@@ -1,3 +1,5 @@
+:name: AddConstantToEveryPixel
+
 Add Constant to Every Pixel
 ===========================
 

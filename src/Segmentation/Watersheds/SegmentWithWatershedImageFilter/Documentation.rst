@@ -1,3 +1,5 @@
+:name: SegmentWithWatershedImageFilter
+
 Watershed Image Filter
 ======================
 

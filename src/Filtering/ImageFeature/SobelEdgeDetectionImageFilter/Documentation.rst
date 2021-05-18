@@ -1,3 +1,5 @@
+:name: SobelEdgeDetectionImageFilter
+
 Sobel Edge Detection Image Filter
 ==================================
 

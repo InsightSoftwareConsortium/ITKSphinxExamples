@@ -1,3 +1,5 @@
+:name: RemoveHolesNotConnectedToImageBoundaries
+
 Remove Holes Not Connected to Image Boundaries
 ==============================================
 

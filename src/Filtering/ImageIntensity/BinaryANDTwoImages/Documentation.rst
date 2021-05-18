@@ -1,3 +1,5 @@
+:name: BinaryANDTwoImages
+
 Binary AND Two Images
 =====================
 

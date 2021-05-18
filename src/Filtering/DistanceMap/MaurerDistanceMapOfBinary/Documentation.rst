@@ -1,3 +1,5 @@
+:name: MaurerDistanceMapOfBinary
+
 Maurer Distance Map of Binary Image
 ===================================
 

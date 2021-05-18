@@ -1,3 +1,5 @@
+:name: MakePartOfImageTransparent
+
 Make Part of an Image Transparent
 =================================
 

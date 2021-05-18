@@ -1,3 +1,5 @@
+:name: CreateAnRGBImage
+
 Create an RGB Image
 ===================
 

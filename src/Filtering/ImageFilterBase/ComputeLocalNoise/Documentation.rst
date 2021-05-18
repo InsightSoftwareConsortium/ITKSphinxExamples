@@ -1,3 +1,5 @@
+:name: ComputeLocalNoise
+
 Compute Local Noise in Image
 ============================
 

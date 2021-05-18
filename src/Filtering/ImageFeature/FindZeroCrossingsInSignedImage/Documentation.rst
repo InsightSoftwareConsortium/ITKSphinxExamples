@@ -1,3 +1,5 @@
+:name: FindZeroCrossingsInSignedImage
+
 Find Zero Crossings in Signed Image
 ===================================
 

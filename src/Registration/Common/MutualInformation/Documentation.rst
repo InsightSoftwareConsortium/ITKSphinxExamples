@@ -1,3 +1,5 @@
+:name: MutualInformation
+
 Mutual Information
 ==================
 

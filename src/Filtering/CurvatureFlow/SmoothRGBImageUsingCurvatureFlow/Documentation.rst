@@ -1,3 +1,5 @@
+:name: SmoothRGBImageUsingCurvatureFlow
+
 Smooth RGB Image Using Curvature Flow
 =====================================
 

@@ -1,3 +1,5 @@
+:name: SegmentPixelsWithSimilarStats
+
 Segment Pixels With Similar Statistics
 ======================================
 

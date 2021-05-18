@@ -1,3 +1,5 @@
+:name: FilterImageInFourierDomain
+
 Filter Image in Fourier Domain
 ==============================
 

@@ -1,3 +1,5 @@
+:name: ObserveAnEvent
+
 Observe an Event
 ================
 

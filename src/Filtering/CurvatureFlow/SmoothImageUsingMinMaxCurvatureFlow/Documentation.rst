@@ -1,3 +1,5 @@
+:name: SmoothImageUsingMinMaxCurvatureFlow
+
 Smooth Image Using Min Max Curvature Flow
 =========================================
 

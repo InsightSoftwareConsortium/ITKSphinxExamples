@@ -1,3 +1,5 @@
+:name: ReadAnImage
+
 Read an Image
 =============
 

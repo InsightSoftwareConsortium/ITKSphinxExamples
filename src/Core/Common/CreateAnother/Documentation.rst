@@ -1,3 +1,5 @@
+:name: CreateAnother
+
 Create Another
 ==============
 

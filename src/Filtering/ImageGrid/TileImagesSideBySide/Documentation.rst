@@ -1,3 +1,5 @@
+:name: TileImagesSideBySide
+
 Tile Images Side by Side
 ========================
 

@@ -1,3 +1,5 @@
+:name: CreateGaussianDerivativeKernel
+
 Create Gaussian Derivative Kernel
 =================================
 

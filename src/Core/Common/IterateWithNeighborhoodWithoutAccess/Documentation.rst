@@ -1,3 +1,5 @@
+:name: IterateWithNeighborhoodWithoutAccess
+
 Iterate Region in Image With Neighborhood Without Write Access
 ==============================================================
 

@@ -1,3 +1,5 @@
+:name: ApplyCosImageFilter
+
 Apply Cos Image Filter
 ======================
 

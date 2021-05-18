@@ -1,3 +1,5 @@
+:name: DuplicateAnImage
+
 Duplicate an Image
 ==================
 

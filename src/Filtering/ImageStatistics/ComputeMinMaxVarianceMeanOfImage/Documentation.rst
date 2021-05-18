@@ -1,3 +1,5 @@
+:name: ComputeMinMaxVarianceMeanOfImage
+
 Compute Min, Max, Variance and Mean of Image
 ============================================
 

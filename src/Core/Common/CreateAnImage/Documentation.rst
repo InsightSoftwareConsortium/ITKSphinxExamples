@@ -1,3 +1,5 @@
+:name: CreateAnImage
+
 Create an Image
 ===============
 

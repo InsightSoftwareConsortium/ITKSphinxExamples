@@ -1,3 +1,5 @@
+:name: ZeroCrossingBasedEdgeDecor
+
 Zero-crossing Based Edge Decor
 ==============================
 

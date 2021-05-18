@@ -1,3 +1,5 @@
+:name: ColorNormalizedCorrelation
+
 Color Normalized Correlation
 ============================
 .. note::

@@ -1,3 +1,5 @@
+:name: MeanFilteringOfAnImage
+
 Mean Filtering of an Image
 ==========================
 

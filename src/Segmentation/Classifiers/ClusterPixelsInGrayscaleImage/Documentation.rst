@@ -1,3 +1,5 @@
+:name: ClusterPixelsInGrayscaleImage
+
 Cluster Pixels in Grayscale Image
 =================================
 

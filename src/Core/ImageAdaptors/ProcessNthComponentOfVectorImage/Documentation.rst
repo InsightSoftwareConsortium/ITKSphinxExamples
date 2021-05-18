@@ -1,3 +1,5 @@
+:name: ProcessNthComponentOfVectorImage
+
 Process Nth Component of Vector Image
 =====================================
 

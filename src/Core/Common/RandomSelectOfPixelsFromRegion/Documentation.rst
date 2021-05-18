@@ -1,3 +1,5 @@
+:name: RandomSelectOfPixelsFromRegion
+
 Random Selection of Pixels From Region
 ======================================
 

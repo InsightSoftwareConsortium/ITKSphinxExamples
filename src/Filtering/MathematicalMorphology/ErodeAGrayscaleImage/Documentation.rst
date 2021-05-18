@@ -1,3 +1,5 @@
+:name: ErodeAGrayscaleImage
+
 Erode a Grayscale Image
 =======================
 

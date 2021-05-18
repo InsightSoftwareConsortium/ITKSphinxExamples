@@ -1,3 +1,5 @@
+:name: ComputesSmoothingWithGaussianKernel
+
 Computes Smoothing With Gaussian Kernel
 =======================================
 

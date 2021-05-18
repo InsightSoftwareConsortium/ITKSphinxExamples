@@ -1,3 +1,5 @@
+:name: MersenneTwisterRandomIntegerGenerator
+
 Mersenne Twister Random Integer Generator
 =========================================
 

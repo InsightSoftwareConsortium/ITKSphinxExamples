@@ -1,3 +1,5 @@
+:name: VisualizeStaticDense2DLevelSetAsElevationMap
+
 Visualize a Static Dense 2D Level Set as Elevation Map
 ======================================================
 

@@ -1,3 +1,5 @@
+:name: SeparateGroundUsingOtsu
+
 Separate Foreround and Background Using Otsu Method
 ===================================================
 .. note::

@@ -1,3 +1,5 @@
+:name: MultiplyImageByScalar
+
 Multiply Image by Scalar
 ========================
 

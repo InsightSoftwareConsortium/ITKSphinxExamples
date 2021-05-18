@@ -1,3 +1,5 @@
+:name: ConvertLabelMapToImage
+
 Convert Label Map to Normal Image
 =================================
 

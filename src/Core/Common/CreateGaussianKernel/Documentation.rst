@@ -1,3 +1,5 @@
+:name: CreateGaussianKernel
+
 Create Gaussian Kernel
 ======================
 

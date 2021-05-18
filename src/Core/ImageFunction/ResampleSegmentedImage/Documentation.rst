@@ -1,3 +1,5 @@
+:name: ResampleSegmentedImage
+
 Resample Segmented Image
 ========================
 

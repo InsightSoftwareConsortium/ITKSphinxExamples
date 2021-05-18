@@ -1,3 +1,5 @@
+:name: WriteATIFFImage
+
 Write a TIFF Image
 ==================
 

@@ -1,3 +1,5 @@
+:name: BasicRegionGrowing
+
 Basic Region Growing
 ====================
 .. warning::

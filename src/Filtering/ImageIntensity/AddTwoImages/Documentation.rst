@@ -1,3 +1,5 @@
+:name: AddTwoImages
+
 Add Two Images Together
 =======================
 

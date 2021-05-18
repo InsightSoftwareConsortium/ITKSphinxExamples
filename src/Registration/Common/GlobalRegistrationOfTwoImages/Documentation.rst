@@ -1,3 +1,5 @@
+:name: GlobalRegistrationOfTwoImages
+
 Global Registration of Two Images
 =================================
 

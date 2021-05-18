@@ -1,3 +1,5 @@
+:name: ThresholdAnImageUsingBinary
+
 Threshold an Image Using Binary Thresholding
 ============================================
 

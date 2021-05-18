@@ -1,3 +1,5 @@
+:name: MatchFeaturePoints
+
 Match Feature Points
 ====================
 .. note::

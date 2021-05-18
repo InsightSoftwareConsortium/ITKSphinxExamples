@@ -1,3 +1,5 @@
+:name: ComputeImageSpectralDensity
+
 Compute Image Spectral Density
 ==============================
 

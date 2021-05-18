@@ -1,3 +1,5 @@
+:name: AddNoiseToBinaryImage
+
 Add Noise To Binary Image
 =========================
 

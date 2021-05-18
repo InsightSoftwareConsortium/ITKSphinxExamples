@@ -1,3 +1,5 @@
+:name: ComputeEdgePotential
+
 Compute Edge Potential
 ======================
 .. note::

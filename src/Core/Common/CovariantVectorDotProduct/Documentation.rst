@@ -1,3 +1,5 @@
+:name: CovariantVectorDotProduct
+
 Covariant Vector Dot Product
 ============================
 

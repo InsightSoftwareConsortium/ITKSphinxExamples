@@ -1,3 +1,5 @@
+:name: KMeansClusterOfPixelsInImage
+
 K Means Cluster of Pixels in Image
 ==================================
 .. warning::

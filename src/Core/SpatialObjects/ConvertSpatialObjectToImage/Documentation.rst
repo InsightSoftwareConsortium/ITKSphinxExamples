@@ -1,3 +1,5 @@
+:name: ConvertSpatialObjectToImage
+
 Convert Spatial Object to Image
 ===============================
 

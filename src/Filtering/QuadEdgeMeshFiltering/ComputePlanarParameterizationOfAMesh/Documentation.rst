@@ -1,3 +1,5 @@
+:name: ComputePlanarParameterizationOfAMesh
+
 Compute Planar Parameterization of a Mesh
 =========================================
 

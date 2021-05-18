@@ -1,3 +1,5 @@
+:name: ScalePixelSumToConstant
+
 Scale All Pixel's Sum to Constant
 =================================
 

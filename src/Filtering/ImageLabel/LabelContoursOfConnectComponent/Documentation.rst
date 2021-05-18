@@ -1,3 +1,5 @@
+:name: LabelContoursOfConnectComponent
+
 Label Contours of Connect Components
 ====================================
 

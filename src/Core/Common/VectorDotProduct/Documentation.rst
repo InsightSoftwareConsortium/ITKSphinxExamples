@@ -1,3 +1,5 @@
+:name: VectorDotProduct
+
 Vector Dot Product
 ==================
 

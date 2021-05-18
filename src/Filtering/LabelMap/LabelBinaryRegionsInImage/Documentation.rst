@@ -1,3 +1,5 @@
+:name: LabelBinaryRegionsInImage
+
 Label Binary Regions in Image
 =============================
 

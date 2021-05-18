@@ -1,3 +1,5 @@
+:name: ApplyAFilterOnlyToASpecifiedRegionOfAnImage
+
 Apply a Filter Only to a Specified Region of an Image
 =====================================================
 
