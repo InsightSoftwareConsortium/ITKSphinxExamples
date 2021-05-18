@@ -58,7 +58,7 @@ Create a new example
 
 To create a new example, first install `Cookiecutter`_::
 
-  python -m pip install cookiecutter
+  python -m pip install cookiecutter titlecase
 
 and make use of the Python script located in the
 binary tree (*/path/to/ITKSphinxExamples-build/Utilities*)::
