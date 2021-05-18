@@ -14,6 +14,7 @@ import shutil
 import sys
 import tarfile
 import zipfile
+from pathlib import Path
 
 
 if len(sys.argv) != 3:
@@ -21,11 +22,12 @@ if len(sys.argv) != 3:
     sys.exit(1)
 
 # Collect our directories.
-cwd = os.getcwd()
+cwd = Path(os.getcwd())
+
 example_name = sys.argv[1]
-example_dir = os.path.join(cwd, example_name)
-example_idx = example_dir.index("SphinxExamples") + 15
-html_output_dir = os.path.join(sys.argv[2], "html", example_dir[example_idx:])
+base_dir = cwd.parent.parent.parent
+example_relative_path = cwd.relative_to(base_dir) / example_name
+html_output_dir = str(Path(sys.argv[2]) / "html" / example_relative_path)
 
 if not os.path.exists(html_output_dir):
     os.makedirs(html_output_dir)
