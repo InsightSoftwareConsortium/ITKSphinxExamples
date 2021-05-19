@@ -17,6 +17,6 @@ ExternalProject_Add(ITKPython
   DOWNLOAD_COMMAND ""
   CONFIGURE_COMMAND ${PYTHON_EXECUTABLE} -m venv "${_itk_venv}"
   BUILD_COMMAND ${ITKPYTHON_EXECUTABLE} -m pip install --upgrade pip
-  INSTALL_COMMAND ${ITKPYTHON_EXECUTABLE} -m pip install --ignore-installed itk>=5.2.0.post2 sphinx==3.0.4 six black nbsphinx
+  INSTALL_COMMAND ${ITKPYTHON_EXECUTABLE} -m pip install --ignore-installed itk>=5.2.0.post2 sphinx==3.0.4 six black nbsphinx ipython
   COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/ITKBlackConfig.cmake
   )
