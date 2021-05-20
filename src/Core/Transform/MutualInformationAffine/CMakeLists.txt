@@ -25,5 +25,4 @@ add_test(NAME MutualInformationAffineTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MutualInformationAffine
   fixed.png
   moving.png
-  output.png)
-
+  Output.png)

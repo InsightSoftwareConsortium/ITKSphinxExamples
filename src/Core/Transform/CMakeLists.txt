@@ -32,8 +32,6 @@ compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesAffine
 add_example(MutualInformationAffine)
 compare_to_baseline(EXAMPLE_NAME MutualInformationAffine
   BASELINE_PREFIX
-    fixed
-    moving
     OutputBaseline
   )
 

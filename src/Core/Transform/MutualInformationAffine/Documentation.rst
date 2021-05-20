@@ -25,17 +25,17 @@ Results
 .. figure:: fixed.png
   :alt: fixed.png
 
-  fixed.png
+  Fixed
 
 .. figure:: moving.png
   :alt: moving.png
 
-  moving.png
+  Moving
 
 .. figure:: OutputBaseline.png
   :alt: OutputBaseline.png
 
-  OutputBaseline.png
+  Output
 
 Output::
 
