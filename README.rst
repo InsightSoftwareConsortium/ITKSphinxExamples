@@ -72,6 +72,7 @@ If building the documentation:
 - nbsphinx_
 - gnuplot_
 - dvipng_ ( for rendered equations )
+- imagemagick_
 
 PDF generation requires a TeX distribution like `TeX Live`_ or MiKTeX_.
 
@@ -96,3 +97,4 @@ Run the bash script ``SetupForDevelopment.sh``::
 .. _dvipng: https://sourceforge.net/projects/dvipng/
 .. _Pandoc: https://pandoc.org/
 .. _nbsphinx: https://nbsphinx.readthedocs.io/
+.. _imagemagick: https://www.imagemagick.org/
