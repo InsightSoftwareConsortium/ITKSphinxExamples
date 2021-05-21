@@ -23,16 +23,16 @@ Next, install the *itk* package::
   <https://itk.org/ITKExamples/src/Filtering/BinaryMathematicalMorphology/DilateABinaryImage/Documentation.html>`_
   by clicking the *Download* button.
 
-Download the *example.tar.gz* or *example.zip* file from the link on the top
+Download the *<ExampleName>.zip* file from the link on the top
 of an example's webpage.  Unpack the example. For example,
 
 ::
 
-  tar xvzf example.tar.gz
+  unzip ExampleName.zip
 
 Finally, run the example::
 
-  python examples/Code.py
+  python ExampleName/Code.py
 
 
 .. _build-individual-examples:
@@ -40,15 +40,15 @@ Finally, run the example::
 Build individual examples
 -------------------------
 
-Download the *example.tar.gz* or *example.zip* file from the link on the top
+Download the *<ExampleName>.zip* file from the link on the top
 of the example's webpage.  Unpack the example::
 
-  tar xvzf example.tar.gz
+  unzip ExampleName.zip
 
 Set convenience variables::
 
-  ITK_SOURCE=example
-  ITK_BUILD=example/build
+  ITK_SOURCE=ExampleName
+  ITK_BUILD=ExampleName/build
 
 Move to the build directory::
 
