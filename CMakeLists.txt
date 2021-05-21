@@ -349,7 +349,7 @@ if(BUILD_DOCUMENTATION)
     add_custom_command(TARGET ${sphinx_target_base_name}_epub
       POST_BUILD
       COMMAND ${CMAKE_COMMAND} -E copy
-        ${SPHINX_DESTINATION}/epub/*.epub
+        ${SPHINX_DESTINATION}/epub/sphinx.epub
         ${SPHINX_DESTINATION}/html/Documentation/Download/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}.epub
         COMMENT "Copying EPUB"
         )
