@@ -258,7 +258,7 @@ jobs:
           - os: ubuntu-18.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
-            itk-git-tag: "7548a390d71dc25b80e792703ee3cfea17853a99"
+            itk-git-tag: "v5.2.0"
             cmake-build-type: "Release"
 
     steps:
