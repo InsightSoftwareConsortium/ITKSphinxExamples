@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+
+# Copyright NumFOCUS
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0.txt
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import itk
+
+numeric_series_file_names = itk.NumericSeriesFileNames.New(
+    start_index=0, end_index=150, increment_index=10, series_format="output_%d.png"
+)
+
+file_names = numeric_series_file_names.GetFileNames()
+
+for file_name in file_names:
+    print(file_name)
+
+print()
+print("***************")
+print()
+
+numeric_series_file_names.SetSeriesFormat("output_%04d.png")
+
+file_names = numeric_series_file_names.GetFileNames()
+
+for file_name in file_names:
+    print(file_name)
