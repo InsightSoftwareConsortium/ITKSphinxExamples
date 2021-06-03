@@ -57,6 +57,13 @@ Output::
 Code
 ----
 
+Python
+......
+
+.. literalinclude:: Code.py
+   :language: python
+   :lines: 1, 16-
+
 C++
 ...
 
