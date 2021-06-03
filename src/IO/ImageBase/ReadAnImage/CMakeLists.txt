@@ -18,8 +18,17 @@ install( FILES Code.cxx CMakeLists.txt
   COMPONENT Code
   )
 
+set( input_image ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png )
+
 enable_testing()
 add_test( NAME ReadAnImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadAnImage
-    ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png
+    ${input_image}
   )
+
+if(ITK_WRAP_PYTHON)
+  add_test(NAME  ReadAnImageTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${input_image}
+    )
+endif()
