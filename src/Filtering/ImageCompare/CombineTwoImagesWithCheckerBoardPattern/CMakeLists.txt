@@ -19,7 +19,18 @@ install( FILES Code.cxx CMakeLists.txt
 )
 
 enable_testing()
+
+set( output_image Output.png )
+
 add_test( NAME CombineTwoImagesWithCheckerBoardPatternTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CombineTwoImagesWithCheckerBoardPattern
-    Output.png
+    ${output_image}
 )
+
+if( ITK_WRAP_PYTHON )
+  string( REPLACE . "Python." output_image "${output_image}" )
+  add_test( NAME CombineTwoImagesWithCheckerBoardPatternTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${output_image}
+  )
+endif()
