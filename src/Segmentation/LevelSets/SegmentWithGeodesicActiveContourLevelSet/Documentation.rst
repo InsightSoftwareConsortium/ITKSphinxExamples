@@ -43,6 +43,11 @@ Used parameters:
 * White matter: 56 92 5.0 1.0 -0.3 2.0 10.0
 * Gray matter: 40 90 5.0 .5 -0.3 2.0 10.0
 
+Jupyter Notebook
+----------------
+
+.. image:: https://mybinder.org/badge_logo.svg
+  :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKSphinxExamples/master?filepath=src%2FSegmentation%2FLevelSets%2FSegmentWithGeodesicActiveContourLevelSet%2FCode.ipynb
 
 Code
 ----
