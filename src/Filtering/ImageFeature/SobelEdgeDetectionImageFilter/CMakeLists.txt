@@ -19,8 +19,21 @@ install( FILES Code.cxx CMakeLists.txt
 )
 
 enable_testing()
+
+set( input_image ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png )
+set( output_image Output.mha )
+
 add_test( NAME SobelEdgeDetectionImageFilterTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SobelEdgeDetectionImageFilter
-    ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
-    Output.mha
+    ${input_image}
+    ${output_image}
 )
+
+if( ITK_WRAP_PYTHON )
+  string( REPLACE . "Python." output_image "${output_image}" )
+  add_test( NAME SobelEdgeDetectionImageFilterTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${input_image}
+      ${output_image}
+  )
+endif()
