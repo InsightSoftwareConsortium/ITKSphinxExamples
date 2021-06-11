@@ -14,12 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + " <InputFileName> <OutputFileName>")
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Read Write Vector Image.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+args = parser.parse_args()
 
 VectorDimension = 4
 
@@ -30,9 +31,9 @@ ImageDimension = 3
 ImageType = itk.Image[PixelType, ImageDimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(sys.argv[1])
+reader.SetFileName(args.input_image)
 
 writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(sys.argv[2])
+writer.SetFileName(args.output_image)
 writer.SetInput(reader.GetOutput())
 writer.Update()

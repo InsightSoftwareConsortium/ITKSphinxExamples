@@ -14,17 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import numpy as np
 import itk
+import argparse
 
-if len(sys.argv) != 2:
-    print("Usage: " + sys.argv[0] + " <inputImageFile>")
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Get Image Size.")
+parser.add_argument("input_image")
+args = parser.parse_args()
 
-inputImageFile = sys.argv[1]
-
-image = itk.imread(inputImageFile, itk.UC)
+image = itk.imread(args.input_image, itk.UC)
 
 region = image.GetLargestPossibleRegion()
 size = region.GetSize()

@@ -14,22 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 7:
-    print(
-        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-        "<lowerThreshold> <upperThreshold> <outsideValue> <insideValue>"
-    )
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-lowerThreshold = int(sys.argv[3])
-upperThreshold = int(sys.argv[4])
-outsideValue = int(sys.argv[5])
-insideValue = int(sys.argv[6])
+parser = argparse.ArgumentParser(description="Threshold An Image Using Binary.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("lower_threshold", type=int)
+parser.add_argument("upper_threshold", type=int)
+parser.add_argument("outside_value", type=int)
+parser.add_argument("inside_value", type=int)
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
@@ -37,18 +32,18 @@ Dimension = 2
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 thresholdFilter = itk.BinaryThresholdImageFilter[ImageType, ImageType].New()
 thresholdFilter.SetInput(reader.GetOutput())
 
-thresholdFilter.SetLowerThreshold(lowerThreshold)
-thresholdFilter.SetUpperThreshold(upperThreshold)
-thresholdFilter.SetOutsideValue(outsideValue)
-thresholdFilter.SetInsideValue(insideValue)
+thresholdFilter.SetLowerThreshold(args.lower_threshold)
+thresholdFilter.SetUpperThreshold(args.upper_threshold)
+thresholdFilter.SetOutsideValue(args.outside_value)
+thresholdFilter.SetInsideValue(args.inside_value)
 
 writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(thresholdFilter.GetOutput())
 
 writer.Update()

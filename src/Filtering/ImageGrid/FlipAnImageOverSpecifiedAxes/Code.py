@@ -14,12 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + " <InputImage> <OutputImage> <AxisToFlip>")
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Flip An Image Over Specified Axis.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("axis_to_flip", type=int)
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
@@ -27,12 +29,12 @@ Dimension = 2
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(sys.argv[1])
+reader.SetFileName(args.input_image)
 
 flipFilter = itk.FlipImageFilter[ImageType].New()
 flipFilter.SetInput(reader.GetOutput())
 
-if int(sys.argv[3]) == 0:
+if args.axis_to_flip == 0:
     flipAxes = (True, False)
 else:
     flipAxes = (False, True)
@@ -40,7 +42,7 @@ else:
 flipFilter.SetFlipAxes(flipAxes)
 
 writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(sys.argv[2])
+writer.SetFileName(args.output_image)
 writer.SetInput(flipFilter.GetOutput())
 
 writer.Update()

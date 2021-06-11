@@ -14,21 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 6:
-    print(
-        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-        "<numberOfIterations> <timeStep> <conductance>"
-    )
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-numberOfIterations = int(sys.argv[3])
-timeStep = float(sys.argv[4])
-conductance = float(sys.argv[5])
+parser = argparse.ArgumentParser(description="Compute Curvature Anisotropic Diffusion.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("number_of_iterations", type=int)
+parser.add_argument("time_step", type=float)
+parser.add_argument("conductance", type=float)
+args = parser.parse_args()
 
 InputPixelType = itk.F
 OutputPixelType = itk.UC
@@ -39,7 +34,7 @@ OutputImageType = itk.Image[OutputPixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[InputImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 FilterType = itk.CurvatureAnisotropicDiffusionImageFilter[
     InputImageType, InputImageType
@@ -47,9 +42,9 @@ FilterType = itk.CurvatureAnisotropicDiffusionImageFilter[
 curvatureAnisotropicDiffusionFilter = FilterType.New()
 
 curvatureAnisotropicDiffusionFilter.SetInput(reader.GetOutput())
-curvatureAnisotropicDiffusionFilter.SetNumberOfIterations(numberOfIterations)
-curvatureAnisotropicDiffusionFilter.SetTimeStep(timeStep)
-curvatureAnisotropicDiffusionFilter.SetConductanceParameter(conductance)
+curvatureAnisotropicDiffusionFilter.SetNumberOfIterations(args.number_of_iterations)
+curvatureAnisotropicDiffusionFilter.SetTimeStep(args.time_step)
+curvatureAnisotropicDiffusionFilter.SetConductanceParameter(args.conductance)
 
 RescaleFilterType = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType]
 rescaler = RescaleFilterType.New()
@@ -63,7 +58,7 @@ rescaler.SetOutputMaximum(outputPixelTypeMaximum)
 
 WriterType = itk.ImageFileWriter[OutputImageType]
 writer = WriterType.New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(rescaler.GetOutput())
 
 writer.Update()

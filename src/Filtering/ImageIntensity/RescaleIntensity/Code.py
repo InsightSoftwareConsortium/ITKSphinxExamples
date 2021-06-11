@@ -14,26 +14,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 5:
-    print(
-        "Usage: "
-        + sys.argv[0]
-        + " <InputFileName> <OutputFileName> <OutputMin> <OutputMax>"
-    )
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Rescale Intensity.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("output_min", type=int)
+parser.add_argument("output_max", type=int)
+args = parser.parse_args()
 
-input_image = sys.argv[1]
-output_image = sys.argv[1]
-output_minimum = int(sys.argv[3])
-output_maximum = int(sys.argv[4])
-
-image = itk.imread(sys.argv[1])
+image = itk.imread(args.input_image)
 
 image = itk.rescale_intensity_image_filter(
-    image, output_minimum=output_minimum, output_maximum=output_maximum
+    image, output_minimum=args.output_min, output_maximum=args.output_max
 )
 
-itk.imwrite(image, sys.argv[2])
+itk.imwrite(image, args.output_image)

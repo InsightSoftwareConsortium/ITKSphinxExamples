@@ -16,6 +16,7 @@
 
 import sys
 import itk
+import argparse
 
 from distutils.version import StrictVersion as VS
 
@@ -23,12 +24,11 @@ if VS(itk.Version.GetITKVersion()) < VS("4.8.0"):
     print("ITK 4.8.0 is required (see example documentation).")
     sys.exit(1)
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage>")
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Create A Custom Colormap.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+args = parser.parse_args()
 
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
 PixelType = itk.UC
 Dimension = 2
 
@@ -39,7 +39,7 @@ RGBImageType = itk.Image[RGBPixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[ImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 ColormapType = itk.CustomColormapFunction[PixelType, RGBPixelType]
 colormap = ColormapType.New()
@@ -68,7 +68,7 @@ colormapFilter1.SetColormap(colormap)
 
 WriterType = itk.ImageFileWriter[RGBImageType]
 writer = WriterType.New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(colormapFilter1.GetOutput())
 
 writer.Update()

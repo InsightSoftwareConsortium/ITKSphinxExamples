@@ -14,15 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + " <InputFileName> <OutputFileName>")
-    sys.exit(1)
-
-inputFileName = sys.argv[1]
-outputFileName = sys.argv[2]
+parser = argparse.ArgumentParser(
+    description="Remove Holes Not Connected To Image Boundaries."
+)
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+args = parser.parse_args()
 
 Dimension = 2
 
@@ -31,7 +31,7 @@ ImageType = itk.Image[PixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[ImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 FilterType = itk.BinaryFillholeImageFilter[ImageType]
 binaryfillholefilter = FilterType.New()
@@ -40,6 +40,6 @@ binaryfillholefilter.SetForegroundValue(itk.NumericTraits[PixelType].min())
 
 WriterType = itk.ImageFileWriter[ImageType]
 writer = WriterType.New()
-writer.SetFileName(outputFileName)
+writer.SetFileName(args.output_image)
 writer.SetInput(binaryfillholefilter.GetOutput())
 writer.Update()

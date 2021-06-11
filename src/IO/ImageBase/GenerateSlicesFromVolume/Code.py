@@ -14,23 +14,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
 itk.auto_progress(2)
 
-if len(sys.argv) < 3:
-    print("Usage: " + sys.argv[0] + " <InputFileName> <OutputFileName> [Extension]")
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Generate Slices From Volume.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("extension", nargs="?")
+args = parser.parse_args()
 
-inputFileName = sys.argv[1]
-outputFileName = sys.argv[2]
-if len(sys.argv) > 3:
-    extension = sys.argv[3]
+if args.extension:
+    extension = args.extension
 else:
     extension = ".png"
 
-fileNameFormat = outputFileName + "-%d" + extension
+fileNameFormat = args.output_image + "-%d" + extension
 
 Dimension = 3
 
@@ -39,7 +39,7 @@ InputImageType = itk.Image[PixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[InputImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 OutputPixelType = itk.UC
 RescaleImageType = itk.Image[OutputPixelType, Dimension]

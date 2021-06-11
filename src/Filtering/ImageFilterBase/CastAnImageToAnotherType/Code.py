@@ -14,15 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> ")
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
+parser = argparse.ArgumentParser(description="Cast An Image To Another Type.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+args = parser.parse_args()
 
 Dimension = 2
 InputPixelType = itk.F
@@ -32,7 +30,7 @@ InputImageType = itk.Image[InputPixelType, Dimension]
 OutputImageType = itk.Image[OutputPixelType, Dimension]
 
 reader = itk.ImageFileReader[InputImageType].New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 rescaler = itk.RescaleIntensityImageFilter[InputImageType, InputImageType].New()
 rescaler.SetInput(reader.GetOutput())
@@ -44,7 +42,7 @@ castImageFilter = itk.CastImageFilter[InputImageType, OutputImageType].New()
 castImageFilter.SetInput(rescaler.GetOutput())
 
 writer = itk.ImageFileWriter[OutputImageType].New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(castImageFilter.GetOutput())
 
 writer.Update()

@@ -16,6 +16,7 @@
 
 import sys
 import itk
+import argparse
 
 from distutils.version import StrictVersion as VS
 
@@ -23,10 +24,9 @@ if VS(itk.Version.GetITKVersion()) < VS("4.10.0"):
     print("ITK 4.10.0 is required.")
     sys.exit(1)
 
-if len(sys.argv) != 2:
-    print("Usage: " + sys.argv[0] + " <NumberOfSplits>")
-    sys.exit(1)
-numberOfSplits = int(sys.argv[1])
+parser = argparse.ArgumentParser(description="Stream A Pipeline.")
+parser.add_argument("number_of_splits", type=int)
+args = parser.parse_args()
 
 Dimension = 2
 PixelType = itk.UC
@@ -34,7 +34,7 @@ ImageType = itk.Image[PixelType, Dimension]
 
 source = itk.RandomImageSource[ImageType].New()
 size = itk.Size[Dimension]()
-size.Fill(numberOfSplits)
+size.Fill(args.number_of_splits)
 source.SetSize(size)
 
 monitorFilter = itk.PipelineMonitorImageFilter[ImageType].New()
@@ -42,7 +42,7 @@ monitorFilter.SetInput(source.GetOutput())
 
 streamingFilter = itk.StreamingImageFilter[ImageType, ImageType].New()
 streamingFilter.SetInput(monitorFilter.GetOutput())
-streamingFilter.SetNumberOfStreamDivisions(numberOfSplits)
+streamingFilter.SetNumberOfStreamDivisions(args.number_of_splits)
 
 streamingFilter.Update()
 

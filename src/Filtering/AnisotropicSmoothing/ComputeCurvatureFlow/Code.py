@@ -15,19 +15,14 @@
 # limitations under the License.
 
 import itk
-import sys
+import argparse
 
-if len(sys.argv) != 5:
-    print(
-        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-        "<numberOfIterations> <timeStep>"
-    )
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-numberOfIterations = int(sys.argv[3])
-timeStep = float(sys.argv[4])
+parser = argparse.ArgumentParser(description="Compute Curvature Flow.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("number_of_iterations", type=int)
+parser.add_argument("time_step", type=float)
+args = parser.parse_args()
 
 InputPixelType = itk.F
 OutputPixelType = itk.UC
@@ -38,14 +33,14 @@ OutputImageType = itk.Image[OutputPixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[InputImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 FilterType = itk.CurvatureFlowImageFilter[InputImageType, InputImageType]
 curvatureFlowFilter = FilterType.New()
 
 curvatureFlowFilter.SetInput(reader.GetOutput())
-curvatureFlowFilter.SetNumberOfIterations(numberOfIterations)
-curvatureFlowFilter.SetTimeStep(timeStep)
+curvatureFlowFilter.SetNumberOfIterations(args.number_of_iterations)
+curvatureFlowFilter.SetTimeStep(args.time_step)
 
 RescaleFilterType = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType]
 rescaler = RescaleFilterType.New()
@@ -59,7 +54,7 @@ rescaler.SetOutputMaximum(outputPixelTypeMaximum)
 
 WriterType = itk.ImageFileWriter[OutputImageType]
 writer = WriterType.New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(rescaler.GetOutput())
 
 writer.Update()

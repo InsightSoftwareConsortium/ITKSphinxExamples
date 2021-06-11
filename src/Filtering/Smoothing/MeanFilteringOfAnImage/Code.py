@@ -14,16 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> <radius>")
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-radius = int(sys.argv[3])
+parser = argparse.ArgumentParser(description="Mean Filtering Of An Image.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("radius", type=int)
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
@@ -31,14 +29,14 @@ Dimension = 2
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 meanFilter = itk.MeanImageFilter[ImageType, ImageType].New()
 meanFilter.SetInput(reader.GetOutput())
-meanFilter.SetRadius(radius)
+meanFilter.SetRadius(args.radius)
 
 writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(meanFilter.GetOutput())
 
 writer.Update()

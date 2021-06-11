@@ -14,20 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 4:
-    print(
-        "Usage: "
-        + sys.argv[0]
-        + " <InputFileName> <DisplacementFieldFileName> <OutputFileName>"
-    )
-    sys.exit(1)
-
-inputFileName = sys.argv[1]
-displacementFieldFileName = sys.argv[2]
-outputFileName = sys.argv[3]
+parser = argparse.ArgumentParser(description="Wrap An Image Using A Deformation Field.")
+parser.add_argument("input_image")
+parser.add_argument("displacement_field")
+parser.add_argument("output_image")
+args = parser.parse_args()
 
 Dimension = 2
 
@@ -40,10 +34,10 @@ PixelType = itk.UC
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 fieldReader = itk.ImageFileReader[DisplacementFieldType].New()
-fieldReader.SetFileName(displacementFieldFileName)
+fieldReader.SetFileName(args.displacement_field)
 fieldReader.Update()
 
 deformationField = fieldReader.GetOutput()
@@ -64,6 +58,6 @@ warpFilter.SetInput(reader.GetOutput())
 
 writer = itk.ImageFileWriter[ImageType].New()
 writer.SetInput(warpFilter.GetOutput())
-writer.SetFileName(outputFileName)
+writer.SetFileName(args.output_image)
 
 writer.Update()

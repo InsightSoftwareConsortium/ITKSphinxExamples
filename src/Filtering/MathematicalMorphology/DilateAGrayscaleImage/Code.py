@@ -14,18 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
 itk.auto_progress(2)
 
-if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> <radius>")
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-radiusValue = int(sys.argv[3])
+parser = argparse.ArgumentParser(description="Dilate A Grayscale Image.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("radius", type=int)
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
@@ -33,10 +31,10 @@ Dimension = 2
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 StructuringElementType = itk.FlatStructuringElement[Dimension]
-structuringElement = StructuringElementType.Ball(radiusValue)
+structuringElement = StructuringElementType.Ball(args.radius)
 
 grayscaleFilter = itk.GrayscaleDilateImageFilter[
     ImageType, ImageType, StructuringElementType
@@ -45,7 +43,7 @@ grayscaleFilter.SetInput(reader.GetOutput())
 grayscaleFilter.SetKernel(structuringElement)
 
 writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(grayscaleFilter.GetOutput())
 
 writer.Update()

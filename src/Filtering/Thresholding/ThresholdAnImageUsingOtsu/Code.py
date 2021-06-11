@@ -14,21 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 6:
-    print(
-        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-        "<numberOfHistogramBins> <numberOfThresholds> <labelOffset>"
-    )
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-numberOfHistogramBins = int(sys.argv[3])
-numberOfThresholds = int(sys.argv[4])
-labelOffset = int(sys.argv[5])
+parser = argparse.ArgumentParser(description="Threshold An Image Using Otsu.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("number_of_histogram_bins", type=int)
+parser.add_argument("number_of_thresholds", type=int)
+parser.add_argument("label_offset", type=int)
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
@@ -36,14 +31,14 @@ Dimension = 2
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 thresholdFilter = itk.OtsuMultipleThresholdsImageFilter[ImageType, ImageType].New()
 thresholdFilter.SetInput(reader.GetOutput())
 
-thresholdFilter.SetNumberOfHistogramBins(numberOfHistogramBins)
-thresholdFilter.SetNumberOfThresholds(numberOfThresholds)
-thresholdFilter.SetLabelOffset(labelOffset)
+thresholdFilter.SetNumberOfHistogramBins(args.number_of_histogram_bins)
+thresholdFilter.SetNumberOfThresholds(args.number_of_thresholds)
+thresholdFilter.SetLabelOffset(args.label_offset)
 
 rescaler = itk.RescaleIntensityImageFilter[ImageType, ImageType].New()
 rescaler.SetInput(thresholdFilter.GetOutput())
@@ -51,7 +46,7 @@ rescaler.SetOutputMinimum(0)
 rescaler.SetOutputMaximum(255)
 
 writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(rescaler.GetOutput())
 
 writer.Update()

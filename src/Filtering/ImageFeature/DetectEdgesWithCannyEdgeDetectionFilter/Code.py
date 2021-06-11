@@ -14,21 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 6:
-    print(
-        "Usage: " + sys.argv[0] + " <InputImage> <OutputImage> "
-        "<Variance> <LowerThreshold> <UpperThreshold>"
-    )
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-variance = float(sys.argv[3])
-lowerThreshold = float(sys.argv[4])
-upperThreshold = float(sys.argv[5])
+parser = argparse.ArgumentParser(
+    description="Detect Edges With Canny Edge Detection Filter."
+)
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("variance", type=float)
+parser.add_argument("lower_threshold", type=float)
+parser.add_argument("upper_threshold", type=float)
+args = parser.parse_args()
 
 InputPixelType = itk.F
 OutputPixelType = itk.UC
@@ -38,13 +35,13 @@ InputImageType = itk.Image[InputPixelType, Dimension]
 OutputImageType = itk.Image[OutputPixelType, Dimension]
 
 reader = itk.ImageFileReader[InputImageType].New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 cannyFilter = itk.CannyEdgeDetectionImageFilter[InputImageType, InputImageType].New()
 cannyFilter.SetInput(reader.GetOutput())
-cannyFilter.SetVariance(variance)
-cannyFilter.SetLowerThreshold(lowerThreshold)
-cannyFilter.SetUpperThreshold(upperThreshold)
+cannyFilter.SetVariance(args.variance)
+cannyFilter.SetLowerThreshold(args.lower_threshold)
+cannyFilter.SetUpperThreshold(args.upper_threshold)
 
 rescaler = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType].New()
 rescaler.SetInput(cannyFilter.GetOutput())
@@ -52,7 +49,7 @@ rescaler.SetOutputMinimum(0)
 rescaler.SetOutputMaximum(255)
 
 writer = itk.ImageFileWriter[OutputImageType].New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(rescaler.GetOutput())
 
 writer.Update()

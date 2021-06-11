@@ -34,19 +34,16 @@
 #        Level values of interest are typically low (i.e. less than about 0.40 or 40%),
 #        since higher values quickly start to undersegment the image.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 5:
-    print(
-        "Usage: "
-        + sys.argv[0]
-        + " <InputFileName> <OutputFileName> <Threshold> <Level>"
-    )
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Segment With Watershed Image Filter.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("threshold", type=float)
+parser.add_argument("level", type=float)
+args = parser.parse_args()
 
-inputFileName = sys.argv[1]
-outputFileName = sys.argv[2]
 
 Dimension = 2
 
@@ -54,14 +51,14 @@ FloatPixelType = itk.ctype("float")
 FloatImageType = itk.Image[FloatPixelType, Dimension]
 
 reader = itk.ImageFileReader[FloatImageType].New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 gradientMagnitude = itk.GradientMagnitudeImageFilter.New(Input=reader.GetOutput())
 
 watershed = itk.WatershedImageFilter.New(Input=gradientMagnitude.GetOutput())
 
-threshold = float(sys.argv[3])
-level = float(sys.argv[4])
+threshold = args.threshold
+level = args.level
 watershed.SetThreshold(threshold)
 watershed.SetLevel(level)
 
@@ -83,6 +80,6 @@ colormapImageFilter.Update()
 
 WriterType = itk.ImageFileWriter[RGBImageType]
 writer = WriterType.New()
-writer.SetFileName(outputFileName)
+writer.SetFileName(args.output_image)
 writer.SetInput(colormapImageFilter.GetOutput())
 writer.Update()

@@ -14,21 +14,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
 import vtk
+import argparse
 
-if len(sys.argv) < 2:
-    print("Usage: " + sys.argv[0] + " <InputFileName>")
-    sys.exit(1)
-imageFileName = sys.argv[1]
+parser = argparse.ArgumentParser(description="Convert vtk Image Data To An itk Image.")
+parser.add_argument("input_image")
+args = parser.parse_args()
 
 Dimension = 2
 PixelType = itk.UC
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = vtk.vtkPNGReader()
-reader.SetFileName(imageFileName)
+reader.SetFileName(args.input_image)
 reader.SetDataScalarTypeToUnsignedChar()
 
 magnitude = vtk.vtkImageMagnitude()

@@ -14,15 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + " <InputFileName> <OutputFileName>")
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Sobel Edge Detection Image Filter.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+args = parser.parse_args()
 
-image = itk.imread(sys.argv[1], pixel_type=itk.F)
+input_image = itk.imread(args.input_image, pixel_type=itk.F)
 
-image = itk.sobel_edge_detection_image_filter(image)
+output_image = itk.sobel_edge_detection_image_filter(input_image)
 
-itk.imwrite(image, sys.argv[2])
+itk.imwrite(output_image, args.output_image)

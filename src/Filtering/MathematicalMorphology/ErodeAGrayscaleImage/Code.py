@@ -16,16 +16,15 @@
 
 import sys
 import itk
+import argparse
 
 itk.auto_progress(2)
 
-if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> <radius>")
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-radiusValue = int(sys.argv[3])
+parser = argparse.ArgumentParser(description="Erode A Grayscale Image.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("radius", type=int)
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
@@ -34,10 +33,10 @@ ImageType = itk.Image[PixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[ImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 StructuringElementType = itk.FlatStructuringElement[Dimension]
-structuringElement = StructuringElementType.Ball(radiusValue)
+structuringElement = StructuringElementType.Ball(args.radius)
 
 GrayscaleFilterType = itk.GrayscaleErodeImageFilter[
     ImageType, ImageType, StructuringElementType
@@ -48,7 +47,7 @@ grayscaleFilter.SetKernel(structuringElement)
 
 WriterType = itk.ImageFileWriter[ImageType]
 writer = WriterType.New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(grayscaleFilter.GetOutput())
 
 writer.Update()

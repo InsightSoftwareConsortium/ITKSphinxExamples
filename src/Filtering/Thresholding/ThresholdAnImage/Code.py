@@ -14,20 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 5:
-    print(
-        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-        "<lowerThreshold> <upperThreshold>"
-    )
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-lowerThreshold = int(sys.argv[3])
-upperThreshold = int(sys.argv[4])
+parser = argparse.ArgumentParser(description="Threshold An Image.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("lower_threshold", type=int)
+parser.add_argument("upper_threshold", type=int)
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
@@ -35,16 +30,16 @@ Dimension = 2
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 thresholdFilter = itk.ThresholdImageFilter[ImageType].New()
 
 thresholdFilter.SetInput(reader.GetOutput())
-thresholdFilter.ThresholdOutside(lowerThreshold, upperThreshold)
+thresholdFilter.ThresholdOutside(args.lower_threshold, args.upper_threshold)
 thresholdFilter.SetOutsideValue(0)
 
 writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(thresholdFilter.GetOutput())
 
 writer.Update()

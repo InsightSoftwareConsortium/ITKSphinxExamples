@@ -18,15 +18,16 @@
 #
 # =========================================================================*/
 
-import sys
-
 import itk
+import argparse
 
-if len(sys.argv) < 3:
-    raise Exception(f"Usage: {sys.argv[0]} imageFile1 imageFile2")
+parser = argparse.ArgumentParser(description="Compute Mean Square Between Two Images.")
+parser.add_argument("input_image_1")
+parser.add_argument("input_image_2")
+args = parser.parse_args()
 
-fixed_image = itk.imread(sys.argv[1], itk.F)
-moving_image = itk.imread(sys.argv[2], itk.F)
+fixed_image = itk.imread(args.input_image_1, itk.F)
+moving_image = itk.imread(args.input_image_2, itk.F)
 
 metric = itk.MeanSquaresImageToImageMetric[type(fixed_image), type(moving_image)].New()
 transform = itk.TranslationTransform[itk.D, fixed_image.GetImageDimension()].New()

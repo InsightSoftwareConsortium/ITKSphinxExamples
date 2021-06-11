@@ -14,21 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 5:
-    print(
-        "Usage: "
-        + sys.argv[0]
-        + "< Input Image > < Output Image > [Mean] [Standard Deviation]"
-    )
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-mean = float(sys.argv[3])
-deviation = float(sys.argv[4])
+parser = argparse.ArgumentParser(description="Additive Gaussian Noise Image Filter.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("mean", type=float)
+parser.add_argument("standard_deviation", type=float)
+args = parser.parse_args()
 
 # Use unsigned char to save to PNG format
 InputPixelType = itk.UC
@@ -40,17 +34,17 @@ OutputImageType = itk.Image[OutputPixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[InputImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 FilterType = itk.AdditiveGaussianNoiseImageFilter[InputImageType, InputImageType]
 AdditiveFilter = FilterType.New()
 AdditiveFilter.SetInput(reader.GetOutput())
-AdditiveFilter.SetMean(mean)
-AdditiveFilter.SetStandardDeviation(deviation)
+AdditiveFilter.SetMean(args.mean)
+AdditiveFilter.SetStandardDeviation(args.standard_deviation)
 
 WriterType = itk.ImageFileWriter[OutputImageType]
 writer = WriterType.New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(AdditiveFilter.GetOutput())
 
 writer.Update()
