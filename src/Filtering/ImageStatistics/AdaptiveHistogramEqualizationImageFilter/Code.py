@@ -18,22 +18,18 @@
 #
 # ==========================================================================
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 6:
-    print(
-        "Usage: "
-        + sys.argv[0]
-        + " <InputFileName> <OutputFileName> <Alpha> <Beta> <Radius>"
-    )
-    sys.exit(1)
-
-inputFileName = sys.argv[1]
-outputFileName = sys.argv[2]
-alpha = float(sys.argv[3])
-beta = float(sys.argv[4])
-radiusValue = int(sys.argv[5])
+parser = argparse.ArgumentParser(
+    description="Adaptive Histogram Equalization Image Filter."
+)
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("alpha", type=float)
+parser.add_argument("beta", type=float)
+parser.add_argument("radius", type=int)
+args = parser.parse_args()
 
 Dimension = 2
 
@@ -41,14 +37,14 @@ PixelType = itk.ctype("unsigned char")
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 histogramEqualization = itk.AdaptiveHistogramEqualizationImageFilter.New(reader)
-histogramEqualization.SetAlpha(alpha)
-histogramEqualization.SetBeta(beta)
+histogramEqualization.SetAlpha(args.alpha)
+histogramEqualization.SetBeta(args.beta)
 
 radius = itk.Size[Dimension]()
-radius.Fill(radiusValue)
+radius.Fill(args.radius)
 histogramEqualization.SetRadius(radius)
 
-itk.imwrite(histogramEqualization, outputFileName)
+itk.imwrite(histogramEqualization, args.output_image)

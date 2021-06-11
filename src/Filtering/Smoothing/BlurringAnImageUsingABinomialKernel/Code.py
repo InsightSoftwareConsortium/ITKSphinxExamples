@@ -14,16 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> <numberOfRepetitions>")
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-numberOfRepetitions = int(sys.argv[3])
+parser = argparse.ArgumentParser(
+    description="Blurring An Image Using A Binomial Kernel."
+)
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("number_of_repetitions", type=int)
+args = parser.parse_args()
 
 InputPixelType = itk.F
 OutputPixelType = itk.UC
@@ -33,10 +33,10 @@ InputImageType = itk.Image[InputPixelType, Dimension]
 OutputImageType = itk.Image[OutputPixelType, Dimension]
 
 reader = itk.ImageFileReader[InputImageType].New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 binomialFilter = itk.BinomialBlurImageFilter.New(reader)
-binomialFilter.SetRepetitions(numberOfRepetitions)
+binomialFilter.SetRepetitions(args.number_of_repetitions)
 
 rescaler = itk.RescaleIntensityImageFilter[InputImageType, OutputImageType].New()
 rescaler.SetInput(binomialFilter.GetOutput())
@@ -44,7 +44,7 @@ rescaler.SetOutputMinimum(0)
 rescaler.SetOutputMaximum(255)
 
 writer = itk.ImageFileWriter[OutputImageType].New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(rescaler.GetOutput())
 
 writer.Update()

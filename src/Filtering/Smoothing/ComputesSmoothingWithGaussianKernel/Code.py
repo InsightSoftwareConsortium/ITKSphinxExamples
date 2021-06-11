@@ -14,16 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> <sigma>")
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-sigma = float(sys.argv[3])
+parser = argparse.ArgumentParser(description="Computes Smoothing With Gaussian Kernel.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("sigma", type=float)
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
@@ -31,14 +29,14 @@ Dimension = 2
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 smoothFilter = itk.SmoothingRecursiveGaussianImageFilter[ImageType, ImageType].New()
 smoothFilter.SetInput(reader.GetOutput())
-smoothFilter.SetSigma(sigma)
+smoothFilter.SetSigma(args.sigma)
 
 writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(smoothFilter.GetOutput())
 
 writer.Update()

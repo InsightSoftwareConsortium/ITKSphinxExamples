@@ -14,15 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + " <InputFileName> <OutputFileName>")
-    sys.exit(1)
-
-inputFileName = sys.argv[1]
-outputFileName = sys.argv[2]
+parser = argparse.ArgumentParser(description="Compute RBG Image To Grayscale Image.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+args = parser.parse_args()
 
 Dimension = 2
 
@@ -34,12 +32,12 @@ OutputPixelType = itk.UC
 OutputImageType = itk.Image[OutputPixelType, Dimension]
 
 reader = itk.ImageFileReader[InputImageType].New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 rgbFilter = itk.RGBToLuminanceImageFilter.New(reader)
 
 writer = itk.ImageFileWriter[OutputImageType].New()
-writer.SetFileName(outputFileName)
+writer.SetFileName(args.output_image)
 writer.SetInput(rgbFilter.GetOutput())
 
 writer.Update()

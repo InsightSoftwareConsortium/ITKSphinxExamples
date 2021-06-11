@@ -14,13 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
+
+parser = argparse.ArgumentParser(description="Compute Inverse FFT Of Image.")
+parser.add_argument("input_image", nargs="?")
+args = parser.parse_args()
 
 dimension = 2
 float_image_type = itk.Image[itk.F, dimension]
 
-if len(sys.argv) < 2:
+if not args.input_image:
     corner = itk.Index[dimension]()
     corner.Fill(0)
 
@@ -38,7 +42,7 @@ if len(sys.argv) < 2:
     image[40:100, 40:100] = 100
 
 else:
-    image = itk.imread(sys.argv[1], pixel_type=itk.F)
+    image = itk.imread(args.input_image, pixel_type=itk.F)
 
 # Define some types
 unsigned_char_image_type = itk.Image[itk.UC, dimension]

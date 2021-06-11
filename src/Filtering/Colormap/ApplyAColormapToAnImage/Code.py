@@ -14,15 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage>")
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
+parser = argparse.ArgumentParser(description="Apply A Colormap To An Image.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+args = parser.parse_args()
 PixelType = itk.UC
 Dimension = 2
 
@@ -30,7 +28,7 @@ ImageType = itk.Image[PixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[ImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 RGBPixelType = itk.RGBPixel[PixelType]
 RGBImageType = itk.Image[RGBPixelType, Dimension]
@@ -42,7 +40,7 @@ rgbfilter.SetColormap(itk.ScalarToRGBColormapImageFilterEnums.RGBColormapFilter_
 
 WriterType = itk.ImageFileWriter[RGBImageType]
 writer = WriterType.New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(rgbfilter.GetOutput())
 
 writer.Update()

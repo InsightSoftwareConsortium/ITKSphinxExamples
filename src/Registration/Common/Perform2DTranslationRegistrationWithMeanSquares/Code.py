@@ -16,6 +16,7 @@
 
 import sys
 import itk
+import argparse
 
 from distutils.version import StrictVersion as VS
 
@@ -23,23 +24,20 @@ if VS(itk.Version.GetITKVersion()) < VS("4.9.0"):
     print("ITK 4.9.0 is required.")
     sys.exit(1)
 
-if len(sys.argv) != 6:
-    print(
-        "Usage: " + sys.argv[0] + " <fixedImageFile> <movingImageFile> "
-        "<outputImagefile> <differenceImageAfter> <differenceImageBefore>"
-    )
-    sys.exit(1)
-
-fixedImageFile = sys.argv[1]
-movingImageFile = sys.argv[2]
-outputImageFile = sys.argv[3]
-differenceImageAfterFile = sys.argv[4]
-differenceImageBeforeFile = sys.argv[5]
+parser = argparse.ArgumentParser(
+    description="Perform 2D Translation Registration With Mean Squares."
+)
+parser.add_argument("fixed_input_image")
+parser.add_argument("moving_input_image")
+parser.add_argument("output_image")
+parser.add_argument("difference_image_after")
+parser.add_argument("difference_image_before")
+args = parser.parse_args()
 
 PixelType = itk.ctype("float")
 
-fixedImage = itk.imread(fixedImageFile, PixelType)
-movingImage = itk.imread(movingImageFile, PixelType)
+fixedImage = itk.imread(args.fixed_input_image, PixelType)
+movingImage = itk.imread(args.moving_input_image, PixelType)
 
 Dimension = fixedImage.GetImageDimension()
 FixedImageType = itk.Image[PixelType, Dimension]
@@ -115,8 +113,7 @@ OutputImageType = itk.Image[OutputPixelType, Dimension]
 
 caster = itk.CastImageFilter[FixedImageType, OutputImageType].New(Input=resampler)
 
-writer = itk.ImageFileWriter.New(Input=caster, FileName=outputImageFile)
-writer.SetFileName(outputImageFile)
+writer = itk.ImageFileWriter.New(Input=caster, FileName=args.output_image)
 writer.Update()
 
 difference = itk.SubtractImageFilter.New(Input1=fixedImage, Input2=resampler)
@@ -131,9 +128,9 @@ intensityRescaler = itk.RescaleIntensityImageFilter[
 
 resampler.SetDefaultPixelValue(1)
 writer.SetInput(intensityRescaler.GetOutput())
-writer.SetFileName(differenceImageAfterFile)
+writer.SetFileName(args.difference_image_after)
 writer.Update()
 
 resampler.SetTransform(identityTransform)
-writer.SetFileName(differenceImageBeforeFile)
+writer.SetFileName(args.difference_image_before)
 writer.Update()

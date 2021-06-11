@@ -16,17 +16,23 @@
 
 import sys
 import os
-
 import itk
+import argparse
 
-if len(sys.argv) < 2:
-    print("Usage: " + sys.argv[0] + " [DicomDirectory [outputFileName [seriesName]]]")
-    print("If DicomDirectory is not specified, current directory is used\n")
+parser = argparse.ArgumentParser(description="Read DICOM Series And Write 3D Image.")
+parser.add_argument(
+    "dicom_directory",
+    nargs="?",
+    help="If DicomDirectory is not specified, current directory is used",
+)
+parser.add_argument("output_image", nargs="?")
+parser.add_argument("series_name", nargs="?")
+args = parser.parse_args()
 
 # current directory by default
 dirName = "."
-if len(sys.argv) > 1:
-    dirName = sys.argv[1]
+if args.dicom_directory:
+    dirName = args.dicom_directory
 
 PixelType = itk.ctype("signed short")
 Dimension = 3
@@ -53,8 +59,8 @@ for uid in seriesUID:
 seriesFound = False
 for uid in seriesUID:
     seriesIdentifier = uid
-    if len(sys.argv) > 3:
-        seriesIdentifier = sys.argv[3]
+    if args.series_name:
+        seriesIdentifier = args.series_name
         seriesFound = True
     print("Reading: " + seriesIdentifier)
     fileNames = namesGenerator.GetFileNames(seriesIdentifier)
@@ -67,8 +73,8 @@ for uid in seriesUID:
 
     writer = itk.ImageFileWriter[ImageType].New()
     outFileName = os.path.join(dirName, seriesIdentifier + ".nrrd")
-    if len(sys.argv) > 2:
-        outFileName = sys.argv[2]
+    if args.output_image:
+        outFileName = args.output_image
     writer.SetFileName(outFileName)
     writer.UseCompressionOn()
     writer.SetInput(reader.GetOutput())

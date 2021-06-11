@@ -14,21 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 6:
-    print(
-        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-        "<maximumRMSError> <numberOfIterations> <numberOfLayers>"
-    )
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-maximumRMSError = float(sys.argv[3])
-numberOfIterations = int(sys.argv[4])
-numberOfLayers = int(sys.argv[5])
+parser = argparse.ArgumentParser(
+    description="Smooth Binary Image Before Surface Extraction."
+)
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("maximum_RMS_error", type=float)
+parser.add_argument("number_of_iterations", type=int)
+parser.add_argument("number_of_layers", type=int)
+args = parser.parse_args()
 
 PixelType = itk.F
 Dimension = 2
@@ -36,18 +33,18 @@ ImageType = itk.Image[PixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[ImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 AntiAliasFilterType = itk.AntiAliasBinaryImageFilter[ImageType, ImageType]
 antialiasfilter = AntiAliasFilterType.New()
 antialiasfilter.SetInput(reader.GetOutput())
-antialiasfilter.SetMaximumRMSError(maximumRMSError)
-antialiasfilter.SetNumberOfIterations(numberOfIterations)
-antialiasfilter.SetNumberOfLayers(numberOfLayers)
+antialiasfilter.SetMaximumRMSError(args.maximum_RMS_error)
+antialiasfilter.SetNumberOfIterations(args.number_of_iterations)
+antialiasfilter.SetNumberOfLayers(args.number_of_layers)
 
 WriterType = itk.ImageFileWriter[ImageType]
 writer = WriterType.New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(antialiasfilter.GetOutput())
 
 writer.Update()

@@ -14,18 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 2:
-    print("Usage: " + sys.argv[0] + " <OutputFileName>")
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Set Pixel Value In One Image.")
+parser.add_argument("output_image")
+args = parser.parse_args()
 
 Dimension = 2
 
 PixelType = itk.UC
-
-OutputFileName = sys.argv[1]
 
 ImageType = itk.Image[PixelType, Dimension]
 
@@ -96,4 +94,4 @@ pixelIndex[1] = 145
 
 image.SetPixel(pixelIndex, 200)
 
-itk.imwrite(image, OutputFileName)
+itk.imwrite(image, args.output_image)

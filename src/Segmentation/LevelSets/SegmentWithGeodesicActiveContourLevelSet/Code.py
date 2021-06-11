@@ -14,31 +14,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 11:
-    print(
-        "Usage: " + sys.argv[0] + "<InputFileName>  <OutputFileName>"
-        " <seedX> <seedY> <InitialDistance> <Sigma> <SigmoidAlpha> "
-        "<SigmoidBeta> <PropagationScaling> <NumberOfIterations>"
-    )
-    sys.exit(1)
+parser = argparse.ArgumentParser(
+    description="Segment With Geodesic Active Contour Level Set."
+)
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("seed_x", type=int)
+parser.add_argument("seed_y", type=int)
+parser.add_argument("initial_distance", type=float)
+parser.add_argument("sigma", type=float)
+parser.add_argument("sigmoid_alpha", type=float)
+parser.add_argument("sigmoid_beta", type=float)
+parser.add_argument("propagation_scaling", type=float)
+parser.add_argument("number_of_iterations", type=int)
+args = parser.parse_args()
 
-inputFileName = sys.argv[1]
-
-
-outputFileName = sys.argv[2]
-seedPosX = int(sys.argv[3])
-seedPosY = int(sys.argv[4])
-
-initialDistance = float(sys.argv[5])
-sigma = float(sys.argv[6])
-alpha = float(sys.argv[7])
-beta = float(sys.argv[8])
-propagationScaling = float(sys.argv[9])
-numberOfIterations = int(sys.argv[10])
-seedValue = -initialDistance
+seedValue = -args.initial_distance
 
 Dimension = 2
 
@@ -52,7 +46,7 @@ ReaderType = itk.ImageFileReader[InputImageType]
 WriterType = itk.ImageFileWriter[OutputImageType]
 
 reader = ReaderType.New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 SmoothingFilterType = itk.CurvatureAnisotropicDiffusionImageFilter[
     InputImageType, InputImageType
@@ -67,15 +61,15 @@ GradientFilterType = itk.GradientMagnitudeRecursiveGaussianImageFilter[
     InputImageType, InputImageType
 ]
 gradientMagnitude = GradientFilterType.New()
-gradientMagnitude.SetSigma(sigma)
+gradientMagnitude.SetSigma(args.sigma)
 gradientMagnitude.SetInput(smoothing.GetOutput())
 
 SigmoidFilterType = itk.SigmoidImageFilter[InputImageType, InputImageType]
 sigmoid = SigmoidFilterType.New()
 sigmoid.SetOutputMinimum(0.0)
 sigmoid.SetOutputMaximum(1.0)
-sigmoid.SetAlpha(alpha)
-sigmoid.SetBeta(beta)
+sigmoid.SetAlpha(args.sigmoid_alpha)
+sigmoid.SetBeta(args.sigmoid_beta)
 sigmoid.SetInput(gradientMagnitude.GetOutput())
 
 FastMarchingFilterType = itk.FastMarchingImageFilter[InputImageType, InputImageType]
@@ -85,11 +79,11 @@ GeoActiveContourFilterType = itk.GeodesicActiveContourLevelSetImageFilter[
     InputImageType, InputImageType, InputPixelType
 ]
 geodesicActiveContour = GeoActiveContourFilterType.New()
-geodesicActiveContour.SetPropagationScaling(propagationScaling)
+geodesicActiveContour.SetPropagationScaling(args.propagation_scaling)
 geodesicActiveContour.SetCurvatureScaling(1.0)
 geodesicActiveContour.SetAdvectionScaling(1.0)
 geodesicActiveContour.SetMaximumRMSError(0.02)
-geodesicActiveContour.SetNumberOfIterations(numberOfIterations)
+geodesicActiveContour.SetNumberOfIterations(args.number_of_iterations)
 geodesicActiveContour.SetInput(fastMarching.GetOutput())
 geodesicActiveContour.SetFeatureImage(sigmoid.GetOutput())
 
@@ -102,8 +96,8 @@ thresholder.SetInsideValue(itk.NumericTraits[OutputPixelType].max())
 thresholder.SetInput(geodesicActiveContour.GetOutput())
 
 seedPosition = itk.Index[Dimension]()
-seedPosition[0] = seedPosX
-seedPosition[1] = seedPosY
+seedPosition[0] = args.seed_x
+seedPosition[1] = args.seed_y
 
 node = itk.LevelSetNode[InputPixelType, Dimension]()
 node.SetValue(seedValue)
@@ -158,7 +152,7 @@ caster4.SetOutputMaximum(itk.NumericTraits[OutputPixelType].max())
 fastMarching.SetOutputSize(reader.GetOutput().GetBufferedRegion().GetSize())
 
 writer = WriterType.New()
-writer.SetFileName(outputFileName)
+writer.SetFileName(args.output_image)
 writer.SetInput(thresholder.GetOutput())
 writer.Update()
 

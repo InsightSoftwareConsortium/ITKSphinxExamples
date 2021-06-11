@@ -16,6 +16,7 @@
 
 import sys
 import itk
+import argparse
 
 from distutils.version import StrictVersion as VS
 
@@ -23,25 +24,18 @@ if VS(itk.Version.GetITKVersion()) < VS("4.7.0"):
     print("ITK 4.7.0 is required (see example documentation).")
     sys.exit(1)
 
-if len(sys.argv) != 5:
-    print(
-        "Usage: "
-        + sys.argv[0]
-        + " [InputFileName] [OutputFileNameX] [OutputFileNameY]"
-        + " [OutputFileNameMagnitude]"
-    )
-    sys.exit(1)
-
-inputFileName = sys.argv[1]
-outputFileNameX = sys.argv[2]
-outputFileNameY = sys.argv[3]
-outputFileNameMagnitude = sys.argv[4]
+parser = argparse.ArgumentParser(description="Apply Gradient Recursive Gaussian.")
+parser.add_argument("input_image")
+parser.add_argument("output_image_x")
+parser.add_argument("output_image_y")
+parser.add_argument("output_image_magnitude")
+args = parser.parse_args()
 
 Dimension = 2
 
 filenames = []
-filenames.append(outputFileNameX)
-filenames.append(outputFileNameY)
+filenames.append(args.output_image_x)
+filenames.append(args.output_image_y)
 
 # Input and output are png files, use unsigned char
 PixelType = itk.UC
@@ -57,7 +51,7 @@ CovImageType = itk.Image[CovPixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[ImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 FilterType = itk.GradientRecursiveGaussianImageFilter[ImageType, CovImageType]
 gradientFilter = FilterType.New()
@@ -95,6 +89,6 @@ magnitudeFilter.SetInput(gradientFilter.GetOutput())
 # Rescale for png output
 rescaler.SetInput(magnitudeFilter.GetOutput())
 
-writer.SetFileName(outputFileNameMagnitude)
+writer.SetFileName(args.output_image_magnitude)
 writer.SetInput(rescaler.GetOutput())
 writer.Update()

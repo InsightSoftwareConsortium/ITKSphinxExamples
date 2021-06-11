@@ -14,14 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 2:
-    print("Usage: " + sys.argv[0] + " <OutputImage>")
-    sys.exit(1)
-
-output_file = sys.argv[1]
+parser = argparse.ArgumentParser(
+    description="Combine Two Images With Checker Board Pattern."
+)
+parser.add_argument("output_image")
+args = parser.parse_args()
 
 dimension = 2
 pixel_type = itk.UC
@@ -48,4 +48,4 @@ image2.FillBuffer(255)
 
 output = itk.checker_board_image_filter(image1, image2)
 
-itk.imwrite(output, output_file)
+itk.imwrite(output, args.output_image)

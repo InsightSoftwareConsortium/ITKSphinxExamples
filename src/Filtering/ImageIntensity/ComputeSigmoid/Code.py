@@ -14,41 +14,35 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 7:
-    print(
-        "Usage: " + sys.argv[0] + " <inputImage> <outputImage>"
-        "<OutputMin> <OutputMax> <Alpha> <Beta>"
-    )
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
+parser = argparse.ArgumentParser(description="Compute Sigmoid.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("output_min", type=int)
+parser.add_argument("output_max", type=int)
+parser.add_argument("alpha", type=float)
+parser.add_argument("beta", type=float)
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
 
 ImageType = itk.Image[PixelType, Dimension]
 
-outputMinimum = int(sys.argv[3])
-outputMaximum = int(sys.argv[4])
-alpha = float(sys.argv[5])
-beta = float(sys.argv[6])
-
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 sigmoidFilter = itk.SigmoidImageFilter[ImageType, ImageType].New()
 sigmoidFilter.SetInput(reader.GetOutput())
-sigmoidFilter.SetOutputMinimum(outputMinimum)
-sigmoidFilter.SetOutputMaximum(outputMaximum)
-sigmoidFilter.SetAlpha(alpha)
-sigmoidFilter.SetBeta(beta)
+sigmoidFilter.SetOutputMinimum(args.output_min)
+sigmoidFilter.SetOutputMaximum(args.output_max)
+sigmoidFilter.SetAlpha(args.alpha)
+sigmoidFilter.SetBeta(args.beta)
 
 writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(sigmoidFilter.GetOutput())
 
 writer.Update()

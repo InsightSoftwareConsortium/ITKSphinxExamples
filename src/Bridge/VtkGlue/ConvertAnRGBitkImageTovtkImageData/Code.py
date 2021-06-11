@@ -16,6 +16,7 @@
 
 import sys
 import itk
+import argparse
 
 from distutils.version import StrictVersion as VS
 
@@ -23,13 +24,13 @@ if VS(itk.Version.GetITKVersion()) < VS("5.2.0"):
     print("ITK 5.2.0 is required.")
     sys.exit(1)
 
-if len(sys.argv) != 2:
-    print("Usage: " + sys.argv[0] + " <InputFileName>")
-    sys.exit(1)
+parser = argparse.ArgumentParser(
+    description="Convert An RBG itk Image to vtk Image Data."
+)
+parser.add_argument("input_image")
+args = parser.parse_args()
 
-imageFileName = sys.argv[1]
-
-inputImage = itk.imread(imageFileName)
+inputImage = itk.imread(args.input_image)
 
 vtkImage = itk.image_to_vtk_image(inputImage)
 

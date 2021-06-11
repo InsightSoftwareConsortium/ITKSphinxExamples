@@ -14,11 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) > 1:
-    output_filename = sys.argv[1]
+parser = argparse.ArgumentParser(description="Write An Image.")
+parser.add_argument("output_image", nargs="?")
+args = parser.parse_args()
+
+if args.output_image:
+    output_filename = args.output_image
 else:
     output_filename = "testPython.png"
 

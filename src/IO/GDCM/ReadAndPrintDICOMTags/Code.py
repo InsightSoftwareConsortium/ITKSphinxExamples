@@ -16,15 +16,20 @@
 
 import sys
 import itk
+import argparse
 
-if len(sys.argv) != 2:
-    print("Usage: " + sys.argv[0] + " [DicomDirectory]")
-    print("If DicomDirectory is not specified, current directory is used\n")
+parser = argparse.ArgumentParser(description="Read And Print DICOM Tags.")
+parser.add_argument(
+    "dicom_directory",
+    nargs="?",
+    help="If DicomDirectory is not specified, current directory is used",
+)
+args = parser.parse_args()
 
 # current directory by default
 dirName = "."
-if len(sys.argv) > 1:
-    dirName = sys.argv[1]
+if args.dicom_directory:
+    dirName = args.dicom_directory
 
 # Setup the image readers with their type
 PixelType = itk.ctype("signed short")

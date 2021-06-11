@@ -14,11 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 2:
-    print("Usage: " + sys.argv[0] + " <InputFileName>")
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Read An Image.")
+parser.add_argument("input_image")
+args = parser.parse_args()
 
-image = itk.imread(sys.argv[1])
+image = itk.imread(args.input_image)

@@ -14,16 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + " <inputImage> <outputImage> <radius>")
-    sys.exit(1)
-
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-radiusValue = int(sys.argv[3])
+parser = argparse.ArgumentParser(description="Dilate A Binary Image.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("radius", type=int)
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
@@ -32,10 +30,10 @@ ImageType = itk.Image[PixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[ImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 StructuringElementType = itk.FlatStructuringElement[Dimension]
-structuringElement = StructuringElementType.Ball(radiusValue)
+structuringElement = StructuringElementType.Ball(args.radius)
 
 DilateFilterType = itk.BinaryDilateImageFilter[
     ImageType, ImageType, StructuringElementType
@@ -47,7 +45,7 @@ dilateFilter.SetForegroundValue(255)
 
 WriterType = itk.ImageFileWriter[ImageType]
 writer = WriterType.New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(dilateFilter.GetOutput())
 
 writer.Update()

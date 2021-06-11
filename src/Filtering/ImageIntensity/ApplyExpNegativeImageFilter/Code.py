@@ -14,34 +14,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
-
 import itk
+import argparse
 
-if len(sys.argv) != 4:
-    print(
-        "Usage: " + sys.argv[0] + "<InputFileName> "
-        "<InputFileName> <OutputFileName> <K: ExpNegative parameter>"
-    )
-    sys.exit(1)
-
-inputFileName = sys.argv[1]
-outputFileName = sys.argv[2]
-k = float(sys.argv[3])
+parser = argparse.ArgumentParser(description="Apply Exp Negative Image Filter.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("k", help="ExpNegative parameter.", type=float)
+args = parser.parse_args()
 
 Dimension = 2
 PixelType = itk.F
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 expFilter = itk.ExpNegativeImageFilter[ImageType, ImageType].New()
 expFilter.SetInput(reader.GetOutput())
-expFilter.SetFactor(k)
+expFilter.SetFactor(args.k)
 
 writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(outputFileName)
+writer.SetFileName(args.output_image)
 writer.SetInput(expFilter.GetOutput())
 
 writer.Update()

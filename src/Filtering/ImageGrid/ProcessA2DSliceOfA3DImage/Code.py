@@ -14,21 +14,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + " input3DImageFile  output3DImageFile  sliceNumber")
-    sys.exit(1)
-inputFilename = sys.argv[1]
-outputFilename = sys.argv[2]
+parser = argparse.ArgumentParser(description="Process A 2D Slice Of A 3D Image.")
+parser.add_argument("input_3D_image")
+parser.add_argument("output_3D_image")
+parser.add_argument("slice_number", type=int)
+args = parser.parse_args()
 
 Dimension = 3
 PixelType = itk.ctype("short")
 ImageType = itk.Image[PixelType, Dimension]
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputFilename)
+reader.SetFileName(args.input_3D_image)
 reader.Update()
 inputImage = reader.GetOutput()
 
@@ -40,7 +40,7 @@ inputRegion = inputImage.GetBufferedRegion()
 size = inputRegion.GetSize()
 size[2] = 1  # we extract along z direction
 start = inputRegion.GetIndex()
-sliceNumber = int(sys.argv[3])
+sliceNumber = args.slice_number
 start[2] = sliceNumber
 desiredRegion = inputRegion
 desiredRegion.SetSize(size)
@@ -62,4 +62,4 @@ medianFilter.UpdateLargestPossibleRegion()
 medianImage = medianFilter.GetOutput()
 pasteFilter.SetSourceRegion(medianImage.GetBufferedRegion())
 
-itk.imwrite(pasteFilter.GetOutput(), outputFilename)
+itk.imwrite(pasteFilter.GetOutput(), args.output_3D_image)

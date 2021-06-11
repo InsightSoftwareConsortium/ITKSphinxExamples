@@ -16,6 +16,7 @@
 
 import sys
 import itk
+import argparse
 
 from distutils.version import StrictVersion as VS
 
@@ -23,22 +24,22 @@ if VS(itk.Version.GetITKVersion()) < VS("4.8.0"):
     print("ITK 4.8.0 is required (see example documentation).")
     sys.exit(1)
 
-if len(sys.argv) != 6:
-    print(
-        "Usage: "
-        + sys.argv[0]
-        + " [InputFileName] [OutputFileName1X] [OutputFileName1Y]"
-        + " [OutputFileName2X] [OutputFileName2Y]"
-    )
-    sys.exit(1)
+parser = argparse.ArgumentParser(
+    description="Apply Gradient Recursive Gaussian With Vector Input."
+)
+parser.add_argument("input_image")
+parser.add_argument("output_image_1x")
+parser.add_argument("output_image_1y")
+parser.add_argument("output_image_2x")
+parser.add_argument("output_image_2y")
+args = parser.parse_args()
 
-inputFileName = sys.argv[1]
-outputFileName1X = sys.argv[2]
-outputFileName1Y = sys.argv[3]
-outputFileName2X = sys.argv[4]
-outputFileName2Y = sys.argv[5]
-
-filenames = [outputFileName1X, outputFileName1Y, outputFileName2X, outputFileName2Y]
+filenames = [
+    args.output_image_1x,
+    args.output_image_1y,
+    args.output_image_2x,
+    args.output_image_2y,
+]
 
 ImageDimension = 2
 VectorDimension = 2
@@ -55,7 +56,7 @@ CovImageType = itk.Image[CovPixelType, ImageDimension]
 
 ReaderType = itk.ImageFileReader[ImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 # Invert the input image
 InvertType = itk.InvertIntensityImageFilter[ImageType, ImageType]

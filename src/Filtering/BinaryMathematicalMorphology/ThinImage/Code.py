@@ -14,15 +14,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
+
+parser = argparse.ArgumentParser(description="Thin Image.")
+parser.add_argument("input_image", nargs="?")
+args = parser.parse_args()
 
 PixelType = itk.UC
 Dimension = 2
 ImageType = itk.Image[PixelType, Dimension]
 
-if len(sys.argv) == 2:
-    image = itk.imread(sys.argv[1])
+if args.input_image:
+    image = itk.imread(args.input_image)
 
 else:
     # Create an image

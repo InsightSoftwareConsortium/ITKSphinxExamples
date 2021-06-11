@@ -14,20 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 5:
-    print(
-        "Usage: " + sys.argv[0] + " <inputImage> <outputImage> "
-        "<numberOfIterations> <conductance>"
-    )
-    sys.exit(1)
+parser = argparse.ArgumentParser(
+    description="Compute Perona Malik Anisotropic Diffusion."
+)
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("number_of_iterations", type=int)
+parser.add_argument("conductance", type=float)
+args = parser.parse_args()
 
-inputImage = sys.argv[1]
-outputImage = sys.argv[2]
-numberOfIterations = int(sys.argv[3])
-conductance = float(sys.argv[4])
 
 Dimension = 2
 InputPixelType = itk.UC
@@ -37,7 +35,7 @@ OutputImageType = itk.Image[OutputPixelType, Dimension]
 
 ReaderType = itk.ImageFileReader[InputImageType]
 reader = ReaderType.New()
-reader.SetFileName(inputImage)
+reader.SetFileName(args.input_image)
 
 CastFilterType = itk.CastImageFilter[InputImageType, OutputImageType]
 castfilter = CastFilterType.New()
@@ -48,13 +46,13 @@ FilterType = itk.GradientAnisotropicDiffusionImageFilter[
 ]
 gradientfilter = FilterType.New()
 gradientfilter.SetInput(castfilter.GetOutput())
-gradientfilter.SetNumberOfIterations(numberOfIterations)
+gradientfilter.SetNumberOfIterations(args.number_of_iterations)
 gradientfilter.SetTimeStep(0.125)
-gradientfilter.SetConductanceParameter(conductance)
+gradientfilter.SetConductanceParameter(args.conductance)
 
 WriterType = itk.ImageFileWriter[OutputImageType]
 writer = WriterType.New()
-writer.SetFileName(outputImage)
+writer.SetFileName(args.output_image)
 writer.SetInput(gradientfilter.GetOutput())
 
 writer.Update()

@@ -16,14 +16,13 @@
 
 import sys
 import itk
+import argparse
 
-if len(sys.argv) != 4:
-    print("Usage: " + sys.argv[0] + " <InputFileName> <LabelMap> <OutputFileName>")
-    sys.exit(1)
-
-inputFileName = sys.argv[1]
-labelFileName = sys.argv[2]
-outputFileName = sys.argv[3]
+parser = argparse.ArgumentParser(description="Overlay Label Map On Top Of An Image.")
+parser.add_argument("input_image")
+parser.add_argument("label_map")
+parser.add_argument("output_image")
+args = parser.parse_args()
 
 PixelType = itk.ctype("unsigned char")
 Dimension = 2
@@ -32,10 +31,10 @@ ImageType = itk.Image[PixelType, Dimension]
 
 
 reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(inputFileName)
+reader.SetFileName(args.input_image)
 
 labelReader = itk.ImageFileReader[ImageType].New()
-labelReader.SetFileName(labelFileName)
+labelReader.SetFileName(args.label_map)
 
 
 LabelType = itk.ctype("unsigned long")
@@ -54,4 +53,4 @@ overlayFilter.SetFeatureImage(reader.GetOutput())
 overlayFilter.SetOpacity(0.5)
 
 
-itk.imwrite(overlayFilter.GetOutput(), outputFileName)
+itk.imwrite(overlayFilter.GetOutput(), args.output_image)

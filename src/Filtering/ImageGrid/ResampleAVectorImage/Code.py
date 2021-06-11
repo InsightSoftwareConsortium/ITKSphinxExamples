@@ -14,19 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 3:
-    print("Usage: " + sys.argv[0] + " [input_filename] [output_filename]")
-    sys.exit(1)
-
-input_filename = sys.argv[1]
-output_filename = sys.argv[2]
+parser = argparse.ArgumentParser(description="Resample A Vector Image.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+args = parser.parse_args()
 
 PixelType = itk.RGBPixel[itk.UC]
 
-input_image = itk.imread(input_filename, pixel_type=PixelType)
+input_image = itk.imread(args.input_image, pixel_type=PixelType)
 
 ImageType = type(input_image)
 interpolator = itk.LinearInterpolateImageFunction[ImageType, itk.D].New()
@@ -44,4 +42,4 @@ output_image = itk.resample_image_filter(
     size=[300, 300],
 )
 
-itk.imwrite(output_image, output_filename)
+itk.imwrite(output_image, args.output_image)

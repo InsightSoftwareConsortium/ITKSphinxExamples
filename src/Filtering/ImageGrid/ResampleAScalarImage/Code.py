@@ -14,22 +14,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
+import argparse
 
-if len(sys.argv) != 5:
-    print(
-        "Usage: "
-        + sys.argv[0]
-        + " <input_filename> <output_filename> <size_x> <size_y>"
-    )
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Resample A Scalar Image.")
+parser.add_argument("input_image")
+parser.add_argument("output_image")
+parser.add_argument("size_x", type=int)
+parser.add_argument("size_y", type=int)
+args = parser.parse_args()
 
-input_filename = sys.argv[1]
-output_filename = sys.argv[2]
-output_size = [int(sys.argv[3]), int(sys.argv[4])]
+output_size = [args.size_x, args.size_y]
 
-input_image = itk.imread(input_filename)
+input_image = itk.imread(args.input_image)
 
 input_spacing = itk.spacing(input_image)
 input_size = itk.size(input_image)
@@ -48,4 +45,4 @@ output_image = itk.resample_image_filter(
     transform=transform,
 )
 
-itk.imwrite(output_image, output_filename)
+itk.imwrite(output_image, args.output_image)
