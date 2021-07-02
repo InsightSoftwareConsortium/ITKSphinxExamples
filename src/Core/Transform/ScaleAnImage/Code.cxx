@@ -32,11 +32,7 @@ main(int, char *[])
   ImageType::Pointer image = ImageType::New();
   CreateImage(image);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer inputWriter = WriterType::New();
-  inputWriter->SetFileName("input.png");
-  inputWriter->SetInput(image);
-  inputWriter->Update();
+  itk::WriteImage(image, "input.png");
 
   // using TransformType = itk::ScaleTransform<float, 2>; // If you want to use float here, you must use:
   // using ResampleImageFilterType = itk::ResampleImageFilter<ImageType, ImageType, float>; later.
@@ -60,10 +56,7 @@ main(int, char *[])
   resampleFilter->SetSize(image->GetLargestPossibleRegion().GetSize());
   resampleFilter->Update();
 
-  WriterType::Pointer outputWriter = WriterType::New();
-  outputWriter->SetFileName("output.png");
-  outputWriter->SetInput(resampleFilter->GetOutput());
-  outputWriter->Update();
+  itk::WriteImage(resampleFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }
