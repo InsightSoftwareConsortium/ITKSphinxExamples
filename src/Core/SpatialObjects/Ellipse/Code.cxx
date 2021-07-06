@@ -87,16 +87,10 @@ main(int argc, char * argv[])
 
   imageFilter->SetOutsideValue(0);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-
-  writer->SetFileName(argv[1]);
-  writer->SetInput(imageFilter->GetOutput());
-
   try
   {
     imageFilter->Update();
-    writer->Update();
+    itk::WriteImage(imageFilter->GetOutput(), argv[1]);
   }
   catch (itk::ExceptionObject & excp)
   {

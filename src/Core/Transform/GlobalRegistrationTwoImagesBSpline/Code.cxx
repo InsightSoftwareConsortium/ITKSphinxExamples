@@ -227,18 +227,12 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 
   using OutputWriterType = itk::ImageFileWriter<OutputImageType>;
 
-  OutputWriterType::Pointer writer = OutputWriterType::New();
-  CastFilterType::Pointer   caster = CastFilterType::New();
-
-
-  writer->SetFileName("output.png");
-
+  CastFilterType::Pointer caster = CastFilterType::New();
   caster->SetInput(resample->GetOutput());
-  writer->SetInput(caster->GetOutput());
 
   try
   {
-    writer->Update();
+    itk::WriteImage(caster->GetOutput(), "output.png");
   }
   catch (itk::ExceptionObject & err)
   {

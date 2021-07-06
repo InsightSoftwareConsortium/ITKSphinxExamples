@@ -17,7 +17,6 @@
  *=========================================================================*/
 #include "itkImage.h"
 #include "itkScaleTransform.h"
-#include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
 #include "itkResampleImageFilter.h"
 

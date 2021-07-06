@@ -47,20 +47,18 @@ main(int argc, char * argv[])
   using ImageType = itk::Image<unsigned char, 2>;
   using FilterType = itk::OilPaintingImageFilter<ImageType>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-  reader->Update();
+  std::string inputFileName = argv[1];
+  const auto  input = itk::ReadImage<ImageType>(inputFileName);
 
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetNumberOfBins(numberOfBins);
   filter->SetRadius(radius);
   filter->Update();
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(reader->GetFileName()));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(inputFileName));
 
   std::stringstream desc;
   desc << "OilPaintingImageFilter, bins = " << numberOfBins << " radius = " << radius;

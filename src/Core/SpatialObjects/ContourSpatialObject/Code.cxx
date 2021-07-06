@@ -63,11 +63,7 @@ main(int /*argc*/, char * /*argv*/[])
   imageFilter->SetInput(contour);
   imageFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("contour.png");
-  writer->SetInput(imageFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(imageFilter->GetOutput(), "contour.png");
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;

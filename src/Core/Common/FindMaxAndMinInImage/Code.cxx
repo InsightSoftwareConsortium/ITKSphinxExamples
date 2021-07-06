@@ -46,24 +46,19 @@ main(int argc, char * argv[])
 
     return EXIT_FAILURE;
   }
-  std::string inputFilename = argv[1];
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-
-  reader->SetFileName(inputFilename.c_str());
-  reader->Update();
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   using ImageCalculatorFilterType = itk::MinimumMaximumImageCalculator<ImageType>;
 
   ImageCalculatorFilterType::Pointer imageCalculatorFilter = ImageCalculatorFilterType::New();
-  imageCalculatorFilter->SetImage(reader->GetOutput());
+  imageCalculatorFilter->SetImage(input);
   imageCalculatorFilter->Compute();
 
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
   ConnectorType::Pointer originalConnector = ConnectorType::New();
 
-  originalConnector->SetInput(reader->GetOutput());
+  originalConnector->SetInput(input);
 
   vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5

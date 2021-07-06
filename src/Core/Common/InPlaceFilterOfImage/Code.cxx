@@ -46,15 +46,7 @@ main(int argc, char * argv[])
     return EXIT_FAILURE;
   }
 
-  std::string inputFilename = argv[1];
-
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-
-  reader->SetFileName(inputFilename.c_str());
-  reader->Update();
-
-  ImageType::Pointer image = reader->GetOutput();
+  ImageType::Pointer image = itk::ReadImage<ImageType>(argv[1]);
 
   ApplyThresholding(image);
 

@@ -86,19 +86,12 @@ main(int argc, char * argv[])
     return EXIT_FAILURE;
   }
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[2]);
-  writer->UseCompressionOn();
+  const auto input = itk::ReadImage<InputImageType>(argv[1]);
 
   try
   {
-    OutputImageType::Pointer outImage = segmentationAndCustomColorization(reader->GetOutput());
-    writer->SetInput(outImage);
-    writer->Update();
+    OutputImageType::Pointer outImage = segmentationAndCustomColorization(input);
+    itk::WriteImage(outImage, argv[2], true); // compression
   }
   catch (itk::ExceptionObject & error)
   {

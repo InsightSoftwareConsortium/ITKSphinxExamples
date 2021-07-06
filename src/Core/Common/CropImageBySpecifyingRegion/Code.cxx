@@ -18,7 +18,6 @@
 // This is different from CropImageFilter only in the way
 // that the region to crop is specified.
 #include "itkImage.h"
-#include <itkImageFileReader.h>
 #include <itkExtractImageFilter.h>
 
 int

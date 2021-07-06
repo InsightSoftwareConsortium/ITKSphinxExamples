@@ -39,18 +39,11 @@ main(int argc, char * argv[])
 
   using ImageType = itk::Image<PixelType, ImageDimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[2]);
-  writer->SetInput(reader->GetOutput());
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   try
   {
-    writer->Update();
+    itk::WriteImage(input, argv[2]);
   }
   catch (itk::ExceptionObject & err)
   {

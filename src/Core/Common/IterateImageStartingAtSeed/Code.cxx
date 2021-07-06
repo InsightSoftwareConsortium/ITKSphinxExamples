@@ -16,10 +16,8 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileWriter.h"
 #include "itkFloodFilledImageFunctionConditionalIterator.h"
 #include "itkBinaryThresholdImageFunction.h"
-#include "itkImageFileWriter.h"
 
 using ImageType = itk::Image<unsigned char, 2>;
 

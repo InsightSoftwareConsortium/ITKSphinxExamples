@@ -84,17 +84,8 @@ main(int, char *[])
   CreateEllipseImage(movingImage);
 
   // Write the two synthetic inputs
-  using WriterType = itk::ImageFileWriter<ImageType>;
-
-  WriterType::Pointer fixedWriter = WriterType::New();
-  fixedWriter->SetFileName("fixed.png");
-  fixedWriter->SetInput(fixedImage);
-  fixedWriter->Update();
-
-  WriterType::Pointer movingWriter = WriterType::New();
-  movingWriter->SetFileName("moving.png");
-  movingWriter->SetInput(movingImage);
-  movingWriter->Update();
+  itk::WriteImage(fixedImage, "fixed.png");
+  itk::WriteImage(movingImage, "moving.png");
 
   // Set the registration inputs
   registration->SetFixedImage(fixedImage);
@@ -197,13 +188,10 @@ main(int, char *[])
 
   using CastFilterType = itk::CastImageFilter<ImageType, ImageType>;
 
-  WriterType::Pointer     writer = WriterType::New();
   CastFilterType::Pointer caster = CastFilterType::New();
-  writer->SetFileName("output.png");
-
   caster->SetInput(resampler->GetOutput());
-  writer->SetInput(caster->GetOutput());
-  writer->Update();
+
+  itk::WriteImage(caster->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }

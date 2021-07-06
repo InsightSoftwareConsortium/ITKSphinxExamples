@@ -46,14 +46,11 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputImageFile);
-  reader->Update();
+  const auto input = itk::ReadImage<ImageType>(inputImageFile);
 
   using ResampleFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
   ResampleFilterType::Pointer resizeFilter = ResampleFilterType::New();
-  resizeFilter->SetInput(reader->GetOutput());
+  resizeFilter->SetInput(input);
 
   //     Compute and set the output size
   //
@@ -72,7 +69,7 @@ main(int argc, char * argv[])
   //     or we specify new spacing and compute new height and width
   //     and computations that follows need to be modified a little (as it is
 
-  const ImageType::SpacingType inputSpacing{ reader->GetOutput()->GetSpacing() };
+  const ImageType::SpacingType inputSpacing{ input->GetSpacing() };
   ImageType::SpacingType       outputSpacing;
   for (unsigned int dim = 0; dim < Dimension; ++dim)
   {
@@ -80,7 +77,7 @@ main(int argc, char * argv[])
   }
   resizeFilter->SetOutputSpacing(outputSpacing);
 
-  const ImageType::RegionType inputRegion{ reader->GetOutput()->GetLargestPossibleRegion() };
+  const ImageType::RegionType inputRegion{ input->GetLargestPossibleRegion() };
   const ImageType::SizeType   inputSize{ inputRegion.GetSize() };
   ImageType::SizeType         outputSize;
   for (unsigned int dim = 0; dim < Dimension; ++dim)
@@ -100,13 +97,9 @@ main(int argc, char * argv[])
   gaussianInterpolator->SetAlpha(3.0);
   resizeFilter->SetInterpolator(gaussianInterpolator);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(resizeFilter->GetOutput());
-  writer->SetFileName(outputImageFileLabelImageInterpolator);
   try
   {
-    writer->Update();
+    itk::WriteImage(resizeFilter->GetOutput(), outputImageFileLabelImageInterpolator, true); // compress
   }
   catch (itk::ExceptionObject & error)
   {
@@ -118,10 +111,9 @@ main(int argc, char * argv[])
   NearestNeighborInterpolatorType::Pointer nearestNeighborInterpolator = NearestNeighborInterpolatorType::New();
   resizeFilter->SetInterpolator(nearestNeighborInterpolator);
 
-  writer->SetFileName(outputImageFileNearestNeighborInterpolator);
   try
   {
-    writer->Update();
+    itk::WriteImage(resizeFilter->GetOutput(), outputImageFileNearestNeighborInterpolator, true); // compress
   }
   catch (itk::ExceptionObject & error)
   {

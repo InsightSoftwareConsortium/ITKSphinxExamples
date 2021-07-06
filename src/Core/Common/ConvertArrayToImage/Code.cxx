@@ -85,13 +85,7 @@ main(int, char *[])
   const bool importImageFilterWillOwnTheBuffer = true;
   importFilter->SetImportPointer(localBuffer, numberOfPixels, importImageFilterWillOwnTheBuffer);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-
-  writer->SetFileName("test.png");
-
-  writer->SetInput(importFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(importFilter->GetOutput(), "test.mhd");
 
   return EXIT_SUCCESS;
 }

@@ -44,16 +44,14 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   auto lowerThreshold = static_cast<PixelType>(std::stoi(argv[3]));
   auto upperThreshold = static_cast<PixelType>(std::stoi(argv[4]));
 
   using BinaryThresholdFilterType = itk::BinaryThresholdImageFilter<ImageType, ImageType>;
   BinaryThresholdFilterType::Pointer threshold = BinaryThresholdFilterType::New();
-  threshold->SetInput(reader->GetOutput());
+  threshold->SetInput(input);
   threshold->SetLowerThreshold(lowerThreshold);
   threshold->SetUpperThreshold(upperThreshold);
   threshold->SetOutsideValue(0);

@@ -16,7 +16,6 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileReader.h"
 #include "itkImageRegionExclusionConstIteratorWithIndex.h"
 
 namespace

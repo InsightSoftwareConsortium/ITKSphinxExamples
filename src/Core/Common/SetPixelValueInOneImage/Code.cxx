@@ -105,14 +105,9 @@ main(int argc, char * argv[])
 
   image->SetPixel(pixelIndex, 200);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(image);
-  writer->SetFileName(argv[1]);
-
   try
   {
-    writer->Update();
+    itk::WriteImage(image, argv[1]);
   }
   catch (itk::ExceptionObject & error)
   {
