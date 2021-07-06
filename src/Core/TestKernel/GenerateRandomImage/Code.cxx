@@ -45,13 +45,9 @@ main(int argc, char * argv[])
   randomImageSource->SetNumberOfWorkUnits(1); // to produce reproducible results
   randomImageSource->SetSize(size);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(randomImageSource->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(randomImageSource->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

@@ -41,10 +41,7 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
-  reader->UpdateOutputInformation();
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using TransformType = itk::TranslationTransform<double, Dimension>;
 
@@ -58,16 +55,12 @@ main(int argc, char * argv[])
   using ResampleImageFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
   ResampleImageFilterType::Pointer resampleFilter = ResampleImageFilterType::New();
   resampleFilter->SetTransform(translation.GetPointer());
-  resampleFilter->SetInput(reader->GetOutput());
-  resampleFilter->SetSize(reader->GetOutput()->GetLargestPossibleRegion().GetSize());
+  resampleFilter->SetInput(input);
+  resampleFilter->SetSize(input->GetLargestPossibleRegion().GetSize());
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(resampleFilter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(resampleFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

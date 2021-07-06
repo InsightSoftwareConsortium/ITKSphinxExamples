@@ -59,11 +59,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   imageFilter->SetInput(line);
   imageFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("line.png");
-  writer->SetInput(imageFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(imageFilter->GetOutput(), "line.png");
 
   return EXIT_SUCCESS;
 }

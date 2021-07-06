@@ -30,21 +30,14 @@ main(int, char *[])
   using ScalarImageType = itk::Image<unsigned char, 2>;
   using FilterType = itk::ImageFilterMultipleInputsDifferentType<VectorImageType, ScalarImageType>;
 
-  using ReaderType = itk::ImageFileReader<VectorImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName("Test.jpg");
-  reader->Update();
+  const auto input = itk::ReadImage<VectorImageType>("Test.jpg");
 
   // Create and the filter
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput(reader->GetOutput());
   filter->Update();
 
-  using WriterType = itk::ImageFileWriter<VectorImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("TestOutput.jpg");
-  writer->SetInput(filter->GetOutput());
-  writer->Update();
+  itk::WriteImage(filter->GetOutput(), "TestOutput.jpg");
 
   return EXIT_SUCCESS;
 }

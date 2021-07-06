@@ -53,17 +53,15 @@ main(int argc, char * argv[])
 
   using InputPixelType = unsigned char;
   using InputImageType = itk::Image<InputPixelType, Dimension>;
-  using ImageReaderType = itk::ImageFileReader<InputImageType>;
 
-  ImageReaderType::Pointer imageReader = ImageReaderType::New();
-  imageReader->SetFileName(inputImageName);
+  const auto input = itk::ReadImage<InputImageType>(inputImageName);
 
   using OutputPixelType = unsigned char;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
   using CastFilterType = itk::CastImageFilter<InputImageType, OutputImageType>;
   CastFilterType::Pointer cast = CastFilterType::New();
-  cast->SetInput(imageReader->GetOutput());
+  cast->SetInput(input);
 
   using FilterType = itk::TriangleMeshToBinaryImageFilter<MeshType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
@@ -80,13 +78,9 @@ main(int argc, char * argv[])
     return EXIT_FAILURE;
   }
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputImageName);
-  writer->SetInput(filter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputImageName);
   }
   catch (itk::ExceptionObject & error)
   {

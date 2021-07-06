@@ -39,18 +39,13 @@ main(int argc, char * argv[])
     }
   }
   using ImageType = itk::Image<unsigned char, 2>;
-  using ReaderType = itk::ImageFileReader<ImageType>;
   using IteratorType = itk::ImageRandomNonRepeatingIteratorWithIndex<ImageType>;
-  using WriterType = itk::ImageFileWriter<ImageType>;
 
-  // Read the binary file
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-  reader->Update();
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   // At x% of the pixels, add a uniform random value between 0 and 255
-  IteratorType it(reader->GetOutput(), reader->GetOutput()->GetLargestPossibleRegion());
-  it.SetNumberOfSamples(reader->GetOutput()->GetLargestPossibleRegion().GetNumberOfPixels() * percent);
+  IteratorType it(input, input->GetLargestPossibleRegion());
+  it.SetNumberOfSamples(input->GetLargestPossibleRegion().GetNumberOfPixels() * percent);
   std::cout << "Number of random samples: " << it.GetNumberOfSamples() << std::endl;
   using GeneratorType = itk::Statistics::MersenneTwisterRandomVariateGenerator;
   GeneratorType::Pointer random = GeneratorType::New();
@@ -62,11 +57,7 @@ main(int argc, char * argv[])
     ++it;
   }
 
-  // Write the file
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[2]);
-  writer->SetInput(reader->GetOutput());
-  writer->Update();
+  itk::WriteImage(input, argv[2]);
 
   return EXIT_SUCCESS;
 }

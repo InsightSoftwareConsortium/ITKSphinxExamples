@@ -30,12 +30,7 @@ main(int argc, char * argv[])
 
   using ImageType = itk::Image<unsigned char, 2>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-  reader->Update();
-
-  ImageType::Pointer image = reader->GetOutput();
+  ImageType::Pointer image = itk::ReadImage<ImageType>(argv[1]);
 
   ImageType::SizeType regionSize;
   regionSize[0] = 50;

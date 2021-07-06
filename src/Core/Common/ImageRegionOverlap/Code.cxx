@@ -136,15 +136,9 @@ main(int argc, char * argv[])
     ++itC;
   }
 
-  // Writer
-  using FileWriterType = itk::ImageFileWriter<RGBImageType>;
-  FileWriterType::Pointer writer = FileWriterType::New();
-  writer->SetFileName(out_file_name);
-  writer->SetInput(image);
-
   try
   {
-    writer->Update();
+    itk::WriteImage(image, out_file_name);
   }
   catch (itk::ExceptionObject & error)
   {

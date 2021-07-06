@@ -44,15 +44,9 @@ main(int argc, char * argv[])
     std::cout << "Usage: " << argv[0] << " imageFile1 imageFile2 outputFile" << std::endl;
     return EXIT_FAILURE;
   }
-  ReaderType::Pointer fixedReader = ReaderType::New();
-  fixedReader->SetFileName(argv[1]);
-  fixedReader->Update();
-  ImageType::Pointer fixedImage = fixedReader->GetOutput();
+  ImageType::Pointer fixedImage = itk::ReadImage<ImageType>(argv[1]);
 
-  ReaderType::Pointer movingReader = ReaderType::New();
-  movingReader->SetFileName(argv[2]);
-  movingReader->Update();
-  ImageType::Pointer movingImage = movingReader->GetOutput();
+  ImageType::Pointer movingImage = itk::ReadImage<ImageType>(argv[2]);
 
   // We use floats internally
   using InternalImageType = itk::Image<float, Dimension>;
@@ -255,12 +249,7 @@ main(int argc, char * argv[])
   resample->SetOutputDirection(fixedImage->GetDirection());
   resample->SetDefaultPixelValue(100);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[3]);
-  writer->SetInput(resample->GetOutput());
-  writer->Update();
+  itk::WriteImage(resample->GetOutput(), argv[3]);
 
   return EXIT_SUCCESS;
 }

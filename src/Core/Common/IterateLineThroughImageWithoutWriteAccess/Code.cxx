@@ -16,7 +16,6 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileReader.h"
 #include "itkImageRegionIterator.h"
 #include "itkLineConstIterator.h"
 
