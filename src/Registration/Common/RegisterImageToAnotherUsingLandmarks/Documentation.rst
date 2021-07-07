@@ -36,6 +36,13 @@ Results
 Code
 ----
 
+Python
+......
+
+.. literalinclude:: Code.py
+   :language: python
+   :lines: 1, 20-
+
 C++
 ...
 

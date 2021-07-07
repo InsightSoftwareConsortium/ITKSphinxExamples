@@ -40,9 +40,9 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   ImageType::Pointer movingImage = ImageType::New();
   CreateMovingImage(movingImage);
 
-  using Rigid2DTransformType = itk::Rigid2DTransform<double>;
+  using TransformType = itk::Rigid2DTransform<double>;
   using LandmarkBasedTransformInitializerType =
-    itk::LandmarkBasedTransformInitializer<Rigid2DTransformType, ImageType, ImageType>;
+    itk::LandmarkBasedTransformInitializer<TransformType, ImageType, ImageType>;
 
   LandmarkBasedTransformInitializerType::Pointer landmarkBasedTransformInitializer =
     LandmarkBasedTransformInitializerType::New();
@@ -87,7 +87,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   landmarkBasedTransformInitializer->SetFixedLandmarks(fixedLandmarks);
   landmarkBasedTransformInitializer->SetMovingLandmarks(movingLandmarks);
 
-  Rigid2DTransformType::Pointer transform = Rigid2DTransformType::New();
+  TransformType::Pointer transform = TransformType::New();
 
   transform->SetIdentity();
   landmarkBasedTransformInitializer->SetTransform(transform);
@@ -97,12 +97,9 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   ResampleFilterType::Pointer resampleFilter = ResampleFilterType::New();
   resampleFilter->SetInput(movingImage);
   resampleFilter->SetTransform(transform);
-  resampleFilter->SetSize(fixedImage->GetLargestPossibleRegion().GetSize());
-  resampleFilter->SetOutputOrigin(fixedImage->GetOrigin());
-  resampleFilter->SetOutputSpacing(fixedImage->GetSpacing());
-  resampleFilter->SetOutputDirection(fixedImage->GetDirection());
+  resampleFilter->SetUseReferenceImage(true);
+  resampleFilter->SetReferenceImage(fixedImage);
   resampleFilter->SetDefaultPixelValue(200);
-  resampleFilter->GetOutput();
 
   // Write the output
   using WriterType = itk::ImageFileWriter<ImageType>;
