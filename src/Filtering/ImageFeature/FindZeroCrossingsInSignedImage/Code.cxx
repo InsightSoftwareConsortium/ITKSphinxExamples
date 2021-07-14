@@ -40,11 +40,7 @@ main(int argc, char * argv[])
   }
   else
   {
-    using ReaderType = itk::ImageFileReader<ImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[1]);
-    reader->Update();
-    image = reader->GetOutput();
+    image = itk::ReadImage<ImageType>(argv[1]);
   }
 
   using FilterType = itk::ZeroCrossingImageFilter<ImageType, ImageType>;

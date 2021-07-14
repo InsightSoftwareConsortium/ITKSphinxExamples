@@ -116,14 +116,9 @@ main(int argc, char * argv[])
   marcher->SetAlivePoints(adaptor->GetAlivePoints());
   marcher->SetTrialPoints(adaptor->GetTrialPoints());
 
-  using WriterType = itk::ImageFileWriter<FloatImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(marcher->GetOutput());
-  writer->SetFileName(argv[1]);
-
   try
   {
-    writer->Update();
+    itk::WriteImage(marcher->GetOutput(), argv[1]);
   }
   catch (itk::ExceptionObject & error)
   {

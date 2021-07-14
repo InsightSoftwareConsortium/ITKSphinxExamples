@@ -35,8 +35,6 @@ main(int argc, char * argv[])
 
   using TilerType = itk::TileImageFilter<InputImageType, OutputImageType>;
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-
   if (argc < 4)
   {
     std::cerr << "Usage: " << std::endl;
@@ -75,13 +73,9 @@ main(int argc, char * argv[])
 
   tiler->Update();
 
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(tiler->GetOutput());
-  writer->SetFileName(argv[argc - 1]);
-
   try
   {
-    writer->Update();
+    itk::WriteImage(tiler->GetOutput(), argv[argc - 1]);
   }
   catch (itk::ExceptionObject & excp)
   {

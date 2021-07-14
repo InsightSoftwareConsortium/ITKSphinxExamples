@@ -48,13 +48,11 @@ main(int argc, char * argv[])
   const InputPixelType timeStep = std::stod(argv[4]);
   const InputPixelType conductance = std::stod(argv[5]);
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<InputImageType>(inputFileName);
 
   using FilterType = itk::CurvatureAnisotropicDiffusionImageFilter<InputImageType, InputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetNumberOfIterations(numberOfIterations);
   filter->SetTimeStep(timeStep);
   filter->SetConductanceParameter(conductance);
@@ -65,14 +63,9 @@ main(int argc, char * argv[])
   rescaler->SetOutputMinimum(itk::NumericTraits<OutputPixelType>::min());
   rescaler->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(rescaler->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(rescaler->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

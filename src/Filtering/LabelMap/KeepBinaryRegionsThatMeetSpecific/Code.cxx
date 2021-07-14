@@ -40,14 +40,8 @@ main(int, char *[])
   opening->SetAttribute(BinaryOpeningType::LabelObjectType::MEAN);
   opening->Update();
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("input.mhd");
-  writer->SetInput(featureImage);
-  writer->Update();
-  writer->SetFileName("output.mhd");
-  writer->SetInput(opening->GetOutput());
-  writer->Update();
+  itk::WriteImage(featureImage, "input.mhd");
+  itk::WriteImage(opening->GetOutput(), "output.mhd");
 
   return EXIT_SUCCESS;
 }

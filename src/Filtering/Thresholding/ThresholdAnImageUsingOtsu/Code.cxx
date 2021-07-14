@@ -46,13 +46,11 @@ main(int argc, char * argv[])
 
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(InputImage);
+  const auto input = itk::ReadImage<ImageType>(InputImage);
 
   using FilterType = itk::OtsuMultipleThresholdsImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetNumberOfHistogramBins(NumberOfHistogramBins);
   filter->SetNumberOfThresholds(NumberOfThresholds);
   filter->SetLabelOffset(LabelOffset);
@@ -74,14 +72,9 @@ main(int argc, char * argv[])
   rescaler->SetOutputMinimum(0);
   rescaler->SetOutputMaximum(255);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(OutputImage);
-  writer->SetInput(rescaler->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(rescaler->GetOutput(), OutputImage);
   }
   catch (itk::ExceptionObject & e)
   {

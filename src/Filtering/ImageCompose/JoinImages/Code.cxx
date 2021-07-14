@@ -16,7 +16,6 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileWriter.h"
 #include "itkRescaleIntensityImageFilter.h"
 #include "itkJoinImageFilter.h"
 #include "itkVectorImageToImageAdaptor.h"

@@ -40,27 +40,20 @@ main(int argc, char * argv[])
   using InputPixelType = unsigned char;
   using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<InputImageType>(argv[1]);
 
   using OutputPixelType = float;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
   using FilterType = itk::GradientAnisotropicDiffusionImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetNumberOfIterations(std::stoi(argv[3]));
   filter->SetTimeStep(0.125);
   filter->SetConductanceParameter(std::stod(argv[4]));
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[2]);
-  writer->SetInput(filter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), argv[2]);
   }
   catch (itk::ExceptionObject & error)
   {

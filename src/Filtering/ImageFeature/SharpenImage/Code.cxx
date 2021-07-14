@@ -37,28 +37,26 @@ main(int argc, char * argv[])
   }
 
   // Parse command line arguments
-  std::string inputFilename = argv[1];
+  std::string inputFileName = argv[1];
 
   // Setup types
   using FloatImageType = itk::Image<float, 2>;
 
-  using readerType = itk::ImageFileReader<FloatImageType>;
-  readerType::Pointer reader = readerType::New();
-  reader->SetFileName(inputFilename);
+  const auto input = itk::ReadImage<FloatImageType>(inputFileName);
 
   using LaplacianSharpeningImageFilterType = itk::LaplacianSharpeningImageFilter<FloatImageType, FloatImageType>;
   LaplacianSharpeningImageFilterType::Pointer laplacianSharpeningImageFilter =
     LaplacianSharpeningImageFilterType::New();
-  laplacianSharpeningImageFilter->SetInput(reader->GetOutput());
+  laplacianSharpeningImageFilter->SetInput(input);
 
   using SubtractType = itk::SubtractImageFilter<FloatImageType>;
   SubtractType::Pointer diff = SubtractType::New();
-  diff->SetInput1(reader->GetOutput());
+  diff->SetInput1(input);
   diff->SetInput2(laplacianSharpeningImageFilter->GetOutput());
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   std::stringstream desc;
   desc << "LaplacianSharpeningImageFilter";

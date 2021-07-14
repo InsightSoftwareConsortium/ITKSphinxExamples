@@ -33,11 +33,7 @@ main(int, char *[])
   ImageType::Pointer image = ImageType::New();
   CreateImage(image);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("input.png");
-  writer->SetInput(image);
-  writer->Update();
+  itk::WriteImage(image, "input.png");
 
   using BinaryNotImageFilterType = itk::BinaryNotImageFilter<ImageType>;
 
@@ -45,9 +41,7 @@ main(int, char *[])
   binaryNotFilter->SetInput(image);
   binaryNotFilter->Update();
 
-  writer->SetFileName("output.png");
-  writer->SetInput(binaryNotFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(binaryNotFilter->GetOutput(), "output.png");
 #endif
 
   return EXIT_SUCCESS;

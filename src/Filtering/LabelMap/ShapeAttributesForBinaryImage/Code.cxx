@@ -45,13 +45,7 @@ main(int argc, char * argv[])
   }
   else
   {
-    fileName = argv[1];
-    using ReaderType = itk::ImageFileReader<InputImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(fileName);
-    reader->Update();
-
-    image = reader->GetOutput();
+    image = itk::ReadImage<InputImageType>(fileName);
   }
 
 

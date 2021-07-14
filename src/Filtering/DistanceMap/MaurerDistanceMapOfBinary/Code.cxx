@@ -42,11 +42,7 @@ main(int argc, char * argv[])
   }
   else
   {
-    using ReaderType = itk::ImageFileReader<UnsignedCharImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[1]);
-    reader->Update();
-    image = reader->GetOutput();
+    image = itk::ReadImage<UnsignedCharImageType>(argv[1]);
   }
 
   using SignedMaurerDistanceMapImageFilterType =

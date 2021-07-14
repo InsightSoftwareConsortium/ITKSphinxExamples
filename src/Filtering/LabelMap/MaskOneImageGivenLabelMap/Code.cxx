@@ -57,12 +57,9 @@ main(int argc, char * argv[])
     borderSize = static_cast<ImageType::SizeValueType>(std::stoi(argv[8]));
   }
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader1 = ReaderType::New();
-  reader1->SetFileName(inputFileName);
+  const auto input1 = itk::ReadImage<ImageType>(inputFileName);
 
-  ReaderType::Pointer reader2 = ReaderType::New();
-  reader2->SetFileName(labelMapFileName);
+  const auto input2 = itk::ReadImage<ImageType>(labelMapFileName);
 
   using LabelObjectType = itk::LabelObject<PixelType, Dimension>;
   using LabelMapType = itk::LabelMap<LabelObjectType>;
@@ -70,12 +67,12 @@ main(int argc, char * argv[])
   // convert the label image into a LabelMap
   using LabelImage2LabelMapType = itk::LabelImageToLabelMapFilter<ImageType, LabelMapType>;
   LabelImage2LabelMapType::Pointer convert = LabelImage2LabelMapType::New();
-  convert->SetInput(reader2->GetOutput());
+  convert->SetInput(input2);
 
   using FilterType = itk::LabelMapMaskImageFilter<LabelMapType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput(convert->GetOutput());
-  filter->SetFeatureImage(reader1->GetOutput());
+  filter->SetFeatureImage(input1);
 
   // The label to be used to mask the image is passed via SetLabel
   filter->SetLabel(label);
@@ -100,14 +97,9 @@ main(int argc, char * argv[])
 
   filter->SetCropBorder(border);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(filter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

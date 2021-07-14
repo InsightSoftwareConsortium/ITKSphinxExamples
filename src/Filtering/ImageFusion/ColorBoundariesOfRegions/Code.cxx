@@ -54,11 +54,7 @@ main(int, char *[])
   labelMapContourOverlayImageFilter->SetOpacity(.5);
   labelMapContourOverlayImageFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<RGBImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("output.png");
-  writer->SetInput(labelMapContourOverlayImageFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(labelMapContourOverlayImageFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }
@@ -99,9 +95,5 @@ CreateImage(ImageType::Pointer image)
     ++imageIterator;
   }
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("image.png");
-  writer->SetInput(image);
-  writer->Update();
+  itk::WriteImage(image, "image.png");
 }

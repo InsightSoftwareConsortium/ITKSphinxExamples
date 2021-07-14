@@ -16,9 +16,7 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileWriter.h"
 #include "itkMinimumImageFilter.h"
-#include "itkImageFileReader.h"
 #include "itkImageRegionIterator.h"
 
 using ImageType = itk::Image<unsigned char, 2>;

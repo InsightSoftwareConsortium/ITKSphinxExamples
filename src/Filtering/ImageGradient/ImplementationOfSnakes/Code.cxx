@@ -38,7 +38,6 @@ using OutputPixelType = itk::CovariantVector<float, 2>;
 using OutputImageType = itk::Image<OutputPixelType, 2>;
 using FilterType = itk::GradientRecursiveGaussianImageFilter<FloatImageType, OutputImageType>;
 using GradMagfilterType = itk::GradientMagnitudeImageFilter<ImageType, FloatImageType>;
-using ReaderType = itk::ImageFileReader<ImageType>;
 } // namespace
 
 vnl_vector<double>
@@ -70,13 +69,9 @@ main(int argc, char * argv[])
   }
   else if (argc == 8)
   {
-    // Open the image
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[7]);
     try
     {
-      reader->Update();
-      image = reader->GetOutput();
+      image = itk::ReadImage<ImageType>(argv[7]);
       w = image->GetLargestPossibleRegion().GetSize()[0];
       h = image->GetLargestPossibleRegion().GetSize()[1];
     }

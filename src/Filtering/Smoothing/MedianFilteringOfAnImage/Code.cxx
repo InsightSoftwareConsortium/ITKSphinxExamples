@@ -40,9 +40,7 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::MedianImageFilter<ImageType, ImageType>;
   FilterType::Pointer medianFilter = FilterType::New();
@@ -51,16 +49,11 @@ main(int argc, char * argv[])
   radius.Fill(radiusValue);
 
   medianFilter->SetRadius(radius);
-  medianFilter->SetInput(reader->GetOutput());
-
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(medianFilter->GetOutput());
-  writer->SetFileName(outputFileName);
+  medianFilter->SetInput(input);
 
   try
   {
-    writer->Update();
+    itk::WriteImage(medianFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

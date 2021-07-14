@@ -33,18 +33,12 @@ main(int, char *[])
   ImageType::Pointer image1 = ImageType::New();
   CreateImage1(image1);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("input1.png");
-  writer->SetInput(image1);
-  writer->Update();
+  itk::WriteImage(image1, "input1.png");
 
   ImageType::Pointer image2 = ImageType::New();
   CreateImage2(image2);
 
-  writer->SetFileName("input2.png");
-  writer->SetInput(image2);
-  writer->Update();
+  itk::WriteImage(image1, "input1.png");
 
   using OrImageFilterType = itk::OrImageFilter<ImageType>;
   OrImageFilterType::Pointer orFilter = OrImageFilterType::New();
@@ -52,9 +46,7 @@ main(int, char *[])
   orFilter->SetInput(1, image2);
   orFilter->Update();
 
-  writer->SetFileName("output.png");
-  writer->SetInput(orFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(orFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }

@@ -117,11 +117,7 @@ main()
     outputImage->SetPixel(index, 255);
   }
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("spline.png");
-  writer->SetInput(outputImage);
-  writer->Update();
+  itk::WriteImage(outputImage, "spline.png");
 
   return EXIT_SUCCESS;
 };

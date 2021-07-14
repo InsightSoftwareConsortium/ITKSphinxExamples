@@ -16,9 +16,7 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileWriter.h"
 #include "itkStatisticsImageFilter.h"
-#include "itkImageFileReader.h"
 
 using ImageType = itk::Image<unsigned char, 2>;
 

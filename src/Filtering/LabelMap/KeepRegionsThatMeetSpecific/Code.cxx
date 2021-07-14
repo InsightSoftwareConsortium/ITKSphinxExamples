@@ -68,12 +68,7 @@ main(int, char *[])
   colormapImageFilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Jet);
   colormapImageFilter->Update();
 
-  // Write the output
-  using WriterType = itk::ImageFileWriter<RGBImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(colormapImageFilter->GetOutput());
-  writer->SetFileName("output.png");
-  writer->Update();
+  itk::WriteImage(colormapImageFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }

@@ -59,13 +59,11 @@ main(int argc, char * argv[])
   using CovPixelType = itk::CovariantVector<DoublePixelType, Dimension>;
   using CovImageType = itk::Image<CovPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::GradientRecursiveGaussianImageFilter<ImageType, CovImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
 
   // Allows to select the X or Y output images
   using IndexSelectionType = itk::VectorIndexSelectionCastImageFilter<CovImageType, DoubleImageType>;
@@ -79,20 +77,14 @@ main(int argc, char * argv[])
   rescaler->SetOutputMaximum(itk::NumericTraits<PixelType>::max());
   rescaler->SetInput(indexSelectionFilter->GetOutput());
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(rescaler->GetOutput());
-
   // Write the X and Y images
   for (int i = 0; i < 2; ++i)
   {
-
-    writer->SetFileName(filenames[i]);
     indexSelectionFilter->SetIndex(i);
 
     try
     {
-      writer->Update();
+      itk::WriteImage(rescaler->GetOutput(), filenames[i]);
     }
     catch (itk::ExceptionObject & error)
     {
@@ -109,11 +101,9 @@ main(int argc, char * argv[])
   // Rescale for png output
   rescaler->SetInput(magnitudeFilter->GetOutput());
 
-  writer->SetFileName(outputFileNameMagnitude);
-  writer->SetInput(rescaler->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(rescaler->GetOutput(), outputFileNameMagnitude);
   }
   catch (itk::ExceptionObject & error)
   {

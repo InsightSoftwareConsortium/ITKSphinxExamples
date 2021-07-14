@@ -29,7 +29,6 @@
 #include "itkYenThresholdImageFilter.h"
 
 #include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
 
 #include "itksys/SystemTools.hxx"
 #include <sstream>
@@ -70,14 +69,11 @@ main(int argc, char * argv[])
   using TriangleFilterType = itk::TriangleThresholdImageFilter<InputImageType, OutputImageType>;
   using YenFilterType = itk::YenThresholdImageFilter<InputImageType, OutputImageType>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<InputImageType>(argv[1]);
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   using FilterContainerType =
     std::map<std::string, itk::HistogramThresholdImageFilter<InputImageType, OutputImageType>::Pointer>;
@@ -101,7 +97,7 @@ main(int argc, char * argv[])
   {
     (*it).second->SetInsideValue(255);
     (*it).second->SetOutsideValue(0);
-    (*it).second->SetInput(reader->GetOutput());
+    (*it).second->SetInput(input);
     (*it).second->SetNumberOfHistogramBins(100);
     (*it).second->Update();
     std::stringstream desc;

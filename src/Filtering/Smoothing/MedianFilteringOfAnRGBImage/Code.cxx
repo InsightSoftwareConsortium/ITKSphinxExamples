@@ -70,10 +70,7 @@ main(int argc, char * argv[])
   using MyPixelType = itk::myRGBPixel<unsigned char>;
   using MyImageType = itk::Image<MyPixelType, Dimension>;
 
-  // Create and setup a reader
-  using ReaderType = itk::ImageFileReader<MyImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<MyImageType>(argv[1]);
 
   // Create and setup a median filter
   using FilterType = itk::MedianImageFilter<MyImageType, MyImageType>;
@@ -83,7 +80,7 @@ main(int argc, char * argv[])
   radius.Fill(std::stoi(argv[3]));
 
   medianFilter->SetRadius(radius);
-  medianFilter->SetInput(reader->GetOutput());
+  medianFilter->SetInput(input);
 
   // Cast the custom myRBGPixel's to RGBPixel's
   using RGBPixelType = itk::RGBPixel<unsigned char>;
@@ -92,14 +89,9 @@ main(int argc, char * argv[])
   CastType::Pointer cast = CastType::New();
   cast->SetInput(medianFilter->GetOutput());
 
-  using WriterType = itk::ImageFileWriter<RGBImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(cast->GetOutput());
-  writer->SetFileName(argv[2]);
-
   try
   {
-    writer->Update();
+    itk::WriteImage(cast->GetOutput(), argv[2]);
   }
   catch (itk::ExceptionObject & error)
   {

@@ -17,7 +17,6 @@
  *=========================================================================*/
 
 #include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
 #include "itkImageMomentsCalculator.h"
 
 int
@@ -39,16 +38,13 @@ main(int argc, char * argv[])
   using PixelType = unsigned short;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
-  reader->Update();
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   // clang-format off
   using FilterType = itk::ImageMomentsCalculator<ImageType>;
   // clang-format on
   FilterType::Pointer filter = FilterType::New();
-  filter->SetImage(reader->GetOutput());
+  filter->SetImage(input);
   filter->Compute();
   filter->Print(std::cout, 0);
 

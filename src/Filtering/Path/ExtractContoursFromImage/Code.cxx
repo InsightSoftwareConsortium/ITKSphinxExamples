@@ -98,9 +98,5 @@ CreateImage(UnsignedCharImageType::Pointer image)
     image->SetPixel(pixel, 255);
   }
 
-  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("image.png");
-  writer->SetInput(image);
-  writer->Update();
+  itk::WriteImage(image, "image.png");
 }

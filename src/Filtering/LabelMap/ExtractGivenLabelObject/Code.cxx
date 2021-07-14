@@ -47,16 +47,14 @@ main(int argc, char * argv[])
   outputFileName[1] = argv[3];
   const auto label = static_cast<PixelType>(std::stoi(argv[4]));
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using LabelObjectType = itk::LabelObject<PixelType, Dimension>;
   using LabelMapType = itk::LabelMap<LabelObjectType>;
 
   using LabelImageToLabelMapFilterType = itk::LabelImageToLabelMapFilter<ImageType, LabelMapType>;
   LabelImageToLabelMapFilterType::Pointer labelMapConverter = LabelImageToLabelMapFilterType::New();
-  labelMapConverter->SetInput(reader->GetOutput());
+  labelMapConverter->SetInput(input);
   labelMapConverter->SetBackgroundValue(itk::NumericTraits<PixelType>::Zero);
 
   using SelectorType = itk::LabelSelectionLabelMapFilter<LabelMapType>;
@@ -70,13 +68,9 @@ main(int argc, char * argv[])
     LabelMapToLabelImageFilterType::Pointer labelImageConverter = LabelMapToLabelImageFilterType::New();
     labelImageConverter->SetInput(selector->GetOutput(i));
 
-    using WriterType = itk::ImageFileWriter<ImageType>;
-    WriterType::Pointer writer = WriterType::New();
-    writer->SetFileName(outputFileName[i]);
-    writer->SetInput(labelImageConverter->GetOutput());
     try
     {
-      writer->Update();
+      itk::WriteImage(labelImageConverter->GetOutput(), outputFileName[i]);
     }
     catch (itk::ExceptionObject & error)
     {

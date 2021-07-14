@@ -54,14 +54,9 @@ main(int argc, char * argv[])
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput(randomImageSource->GetOutput());
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[1]);
-  writer->SetInput(filter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), argv[1]);
   }
   catch (itk::ExceptionObject & error)
   {

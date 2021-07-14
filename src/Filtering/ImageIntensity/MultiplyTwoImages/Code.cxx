@@ -41,28 +41,20 @@ main(int argc, char * argv[])
   using InputPixelType = unsigned char;
   using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader1 = ReaderType::New();
-  reader1->SetFileName(inputFileName1);
-
-  ReaderType::Pointer reader2 = ReaderType::New();
-  reader2->SetFileName(inputFileName2);
+  const auto input1 = itk::ReadImage<InputImageType>(inputFileName1);
+  const auto input2 = itk::ReadImage<InputImageType>(inputFileName2);
 
   using OutputPixelType = unsigned int;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
   using FilterType = itk::MultiplyImageFilter<InputImageType, InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput1(reader1->GetOutput());
-  filter->SetInput2(reader2->GetOutput());
+  filter->SetInput1(input1);
+  filter->SetInput2(input2);
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(filter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

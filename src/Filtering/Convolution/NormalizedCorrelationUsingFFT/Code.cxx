@@ -16,7 +16,6 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileReader.h"
 #include "itkFFTNormalizedCorrelationImageFilter.h"
 #include "itkRegionOfInterestImageFilter.h"
 #include "itkImageKernelOperator.h"
@@ -38,10 +37,6 @@ using FloatImageType = itk::Image<float, 2>;
 static void
 CreateImage(ImageType::Pointer image, const itk::Index<2> & cornerOfSquare);
 
-template <typename TImage>
-static void
-WriteImage(TImage * const image, const std::string & filename);
-
 int
 main(int, char *[])
 {
@@ -54,14 +49,14 @@ main(int, char *[])
   cornerOfFixedSquare[0] = 3;
   cornerOfFixedSquare[1] = 8;
   CreateImage(fixedImage, cornerOfFixedSquare);
-  WriteImage(fixedImage.GetPointer(), "fixedImage.png");
+  itk::WriteImage(fixedImage.GetPointer(), "fixedImage.png");
 
   ImageType::Pointer movingImage = ImageType::New();
   itk::Index<2>      cornerOfMovingSquare;
   cornerOfMovingSquare[0] = cornerOfFixedSquare[0] + offset[0];
   cornerOfMovingSquare[1] = cornerOfFixedSquare[1] + offset[1];
   CreateImage(movingImage, cornerOfMovingSquare);
-  WriteImage(movingImage.GetPointer(), "movingImage.png");
+  itk::WriteImage(movingImage.GetPointer(), "movingImage.png");
 
   // Perform normalized correlation
   using CorrelationFilterType = itk::FFTNormalizedCorrelationImageFilter<ImageType, FloatImageType>;
@@ -70,7 +65,7 @@ main(int, char *[])
   correlationFilter->SetMovingImage(movingImage);
   correlationFilter->Update();
 
-  WriteImage(correlationFilter->GetOutput(), "correlation.mha");
+  itk::WriteImage(correlationFilter->GetOutput(), "correlation.mha");
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, ImageType>;
   RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
@@ -78,7 +73,7 @@ main(int, char *[])
   rescaleFilter->SetOutputMinimum(0);
   rescaleFilter->SetOutputMaximum(255);
   rescaleFilter->Update();
-  WriteImage(rescaleFilter->GetOutput(), "correlation.png");
+  itk::WriteImage(rescaleFilter->GetOutput(), "correlation.png");
 
   using MinimumMaximumImageCalculatorType = itk::MinimumMaximumImageCalculator<FloatImageType>;
   MinimumMaximumImageCalculatorType::Pointer minimumMaximumImageCalculatorFilter =
@@ -133,15 +128,4 @@ CreateImage(ImageType::Pointer image, const itk::Index<2> & cornerOfSquare)
 
     ++imageIterator;
   }
-}
-
-template <typename TImage>
-void
-WriteImage(TImage * const image, const std::string & filename)
-{
-  using WriterType = itk::ImageFileWriter<TImage>;
-  typename WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(filename);
-  writer->SetInput(image);
-  writer->Update();
 }

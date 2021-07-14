@@ -38,18 +38,14 @@ main(int argc, char * argv[])
 
   // Typedef's for pixel, image, reader and writer types
   using T_InputPixel = unsigned char;
+  using T_Image = itk::Image<T_InputPixel, 2>;
+
+  const auto input = itk::ReadImage<T_Image>(argv[1]);
 
   // Doesn't work for RGB pixels
   // using T_OutputPixel = unsigned char;
   // using T_InputPixel = itk::CovariantVector<unsigned char, 3>;
   // using T_OutputPixel = itk::CovariantVector<unsigned char, 3>;
-
-  using T_Image = itk::Image<T_InputPixel, 2>;
-  using T_Reader = itk::ImageFileReader<T_Image>;
-
-  using T_WritePixel = unsigned char;
-  using T_WriteImage = itk::Image<T_WritePixel, 2>;
-  using T_Writer = itk::ImageFileWriter<T_WriteImage>;
 
   // Typedefs for the different (numerous!) elements of the "resampling"
 
@@ -69,13 +65,6 @@ main(int argc, char * argv[])
 
   // The resampler type itself.
   using T_ResampleFilter = itk::ResampleImageFilter<T_Image, T_Image>;
-
-
-  // Prepare the reader and update it right away to know the sizes beforehand.
-
-  T_Reader::Pointer pReader = T_Reader::New();
-  pReader->SetFileName(argv[1]);
-  pReader->Update();
 
   // Prepare the resampler.
 
@@ -123,13 +112,13 @@ main(int argc, char * argv[])
   unsigned int nNewHeight = std::stoi(argv[4]);
 
   // Fetch original image size.
-  const T_Image::RegionType & inputRegion = pReader->GetOutput()->GetLargestPossibleRegion();
+  const T_Image::RegionType & inputRegion = input->GetLargestPossibleRegion();
   const T_Image::SizeType &   vnInputSize = inputRegion.GetSize();
   unsigned int                nOldWidth = vnInputSize[0];
   unsigned int                nOldHeight = vnInputSize[1];
 
   // Fetch original image spacing.
-  const T_Image::SpacingType & vfInputSpacing = pReader->GetOutput()->GetSpacing();
+  const T_Image::SpacingType & vfInputSpacing = input->GetSpacing();
   // Will be {1.0, 1.0} in the usual
   // case.
 
@@ -149,13 +138,10 @@ main(int argc, char * argv[])
 
   // Specify the input.
 
-  _pResizeFilter->SetInput(pReader->GetOutput());
+  _pResizeFilter->SetInput(input);
 
   // Write the result
-  T_Writer::Pointer pWriter = T_Writer::New();
-  pWriter->SetFileName(argv[2]);
-  pWriter->SetInput(_pResizeFilter->GetOutput());
-  pWriter->Update();
+  itk::WriteImage(_pResizeFilter->GetOutput(), argv[2]);
 
   return EXIT_SUCCESS;
 }

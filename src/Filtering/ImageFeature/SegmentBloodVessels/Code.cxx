@@ -51,13 +51,11 @@ main(int argc, char * argv[])
   using PixelType = float;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputImage);
+  const auto input = itk::ReadImage<ImageType>(inputImage);
 
   using HessianFilterType = itk::HessianRecursiveGaussianImageFilter<ImageType>;
   HessianFilterType::Pointer hessianFilter = HessianFilterType::New();
-  hessianFilter->SetInput(reader->GetOutput());
+  hessianFilter->SetInput(input);
   hessianFilter->SetSigma(sigma);
 
   using VesselnessMeasureFilterType = itk::Hessian3DToVesselnessMeasureImageFilter<PixelType>;
@@ -66,14 +64,9 @@ main(int argc, char * argv[])
   vesselnessFilter->SetAlpha1(alpha1);
   vesselnessFilter->SetAlpha2(alpha2);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(vesselnessFilter->GetOutput());
-  writer->SetFileName(outputImage);
-
   try
   {
-    writer->Update();
+    itk::WriteImage(vesselnessFilter->GetOutput(), outputImage);
   }
   catch (itk::ExceptionObject & error)
   {

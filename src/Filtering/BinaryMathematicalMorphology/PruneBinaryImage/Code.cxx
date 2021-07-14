@@ -19,7 +19,6 @@
 #include "itkBinaryPruningImageFilter.h"
 #include "itkImageFileReader.h"
 #include "itkBinaryBallStructuringElement.h"
-#include "itkImageFileWriter.h"
 
 #ifdef ENABLE_QUICKVIEW
 #  include "QuickView.h"
@@ -47,10 +46,7 @@ main(int argc, char * argv[])
   }
   else
   {
-    using ReaderType = itk::ImageFileReader<ImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[1]);
-    image = reader->GetOutput();
+    image = itk::ReadImage<ImageType>(argv[1]);
     std::stringstream ssIteration(argv[2]);
   }
 

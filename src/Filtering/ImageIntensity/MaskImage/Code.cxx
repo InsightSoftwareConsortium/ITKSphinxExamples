@@ -47,22 +47,19 @@ main(int argc, char * argv[])
     return EXIT_FAILURE;
   }
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-  reader->Update();
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   ImageType::Pointer mask = ImageType::New();
-  CreateHalfMask(reader->GetOutput(), mask);
+  CreateHalfMask(input, mask);
 
   using MaskFilterType = itk::MaskImageFilter<ImageType, ImageType>;
   MaskFilterType::Pointer maskFilter = MaskFilterType::New();
-  maskFilter->SetInput(reader->GetOutput());
+  maskFilter->SetInput(input);
   maskFilter->SetMaskImage(mask);
   mask->Print(std::cout);
 #  ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   std::stringstream desc;
   desc << "Mask";

@@ -51,14 +51,12 @@ main(int argc, char * argv[])
   using RGBImageType = itk::Image<itk::RGBPixel<float>, 2>;
 
   // 1) Read the RGB image
-  using ReaderType = itk::ImageFileReader<RGBImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<RGBImageType>(inputFileName);
 
   // 2) Cast to Vector image for processing
   using AdaptorInputType = itk::RGBToVectorImageAdaptor<RGBImageType>;
   AdaptorInputType::Pointer adaptInput = AdaptorInputType::New();
-  adaptInput->SetImage(reader->GetOutput());
+  adaptInput->SetImage(input);
   using CastInputType = itk::CastImageFilter<AdaptorInputType, FloatImageType>;
   CastInputType::Pointer castInput = CastInputType::New();
   castInput->SetInput(adaptInput);
@@ -90,7 +88,7 @@ main(int argc, char * argv[])
   // 5) Display the input and smoothed images
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddRGBImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(inputFileName));
+  viewer.AddRGBImage(input, true, itksys::SystemTools::GetFilenameName(inputFileName));
 
   std::stringstream desc;
   desc << "VectorGradientAnisotropicDiffusionImageFilter\niterations: " << filter->GetNumberOfIterations()

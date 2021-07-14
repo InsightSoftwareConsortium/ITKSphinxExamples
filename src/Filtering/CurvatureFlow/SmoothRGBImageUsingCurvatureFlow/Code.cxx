@@ -47,27 +47,23 @@ main(int argc, char * argv[])
     std::stringstream ss(argv[2]);
     ss >> iterations;
   }
-  std::string inputFilename = argv[1];
+  std::string inputFileName = argv[1];
 
   // Setup types
   using ComponentType = float;
   using PixelType = itk::RGBPixel<ComponentType>;
   using RGBImageType = itk::Image<PixelType, 2>;
   using ImageType = itk::Image<ComponentType, 2>;
-  using ReaderType = itk::ImageFileReader<RGBImageType>;
   using ImageAdaptorType = itk::NthElementImageAdaptor<RGBImageType, unsigned char>;
   using ComposeType = itk::ComposeImageFilter<ImageType, RGBImageType>;
   using CurvatureFlowType = itk::CurvatureFlowImageFilter<ImageAdaptorType, ImageType>;
 
-  // Create and setup a reader
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFilename);
-  reader->Update();
+  const auto input = itk::ReadImage<RGBImageType>(inputFileName);
 
   // Run the filter for each component
   ImageAdaptorType::Pointer rAdaptor = ImageAdaptorType::New();
   rAdaptor->SelectNthElement(0);
-  rAdaptor->SetImage(reader->GetOutput());
+  rAdaptor->SetImage(input);
 
   CurvatureFlowType::Pointer rCurvatureFilter = CurvatureFlowType::New();
   rCurvatureFilter->SetInput(rAdaptor);
@@ -76,7 +72,7 @@ main(int argc, char * argv[])
 
   ImageAdaptorType::Pointer gAdaptor = ImageAdaptorType::New();
   gAdaptor->SelectNthElement(1);
-  gAdaptor->SetImage(reader->GetOutput());
+  gAdaptor->SetImage(input);
 
   CurvatureFlowType::Pointer gCurvatureFilter = CurvatureFlowType::New();
   gCurvatureFilter->SetInput(gAdaptor);
@@ -85,7 +81,7 @@ main(int argc, char * argv[])
 
   ImageAdaptorType::Pointer bAdaptor = ImageAdaptorType::New();
   bAdaptor->SelectNthElement(2);
-  bAdaptor->SetImage(reader->GetOutput());
+  bAdaptor->SetImage(input);
 
   CurvatureFlowType::Pointer bCurvatureFilter = CurvatureFlowType::New();
   bCurvatureFilter->SetInput(bAdaptor);
@@ -101,7 +97,7 @@ main(int argc, char * argv[])
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddRGBImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(inputFilename));
+  viewer.AddRGBImage(input, true, itksys::SystemTools::GetFilenameName(inputFileName));
 
   std::stringstream desc;
   desc << "CurvatureFlow iterations = " << iterations;

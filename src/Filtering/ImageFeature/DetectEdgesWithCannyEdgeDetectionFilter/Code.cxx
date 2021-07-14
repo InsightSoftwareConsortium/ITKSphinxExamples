@@ -48,13 +48,11 @@ main(int argc, char * argv[])
   using InputImageType = itk::Image<InputPixelType, Dimension>;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputImage);
+  const auto input = itk::ReadImage<InputImageType>(inputImage);
 
   using FilterType = itk::CannyEdgeDetectionImageFilter<InputImageType, InputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetVariance(variance);
   filter->SetLowerThreshold(lowerThreshold);
   filter->SetUpperThreshold(upperThreshold);
@@ -65,14 +63,9 @@ main(int argc, char * argv[])
   rescaler->SetOutputMinimum(0);
   rescaler->SetOutputMaximum(255);
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputImage);
-  writer->SetInput(rescaler->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(rescaler->GetOutput(), outputImage);
   }
   catch (itk::ExceptionObject & e)
   {

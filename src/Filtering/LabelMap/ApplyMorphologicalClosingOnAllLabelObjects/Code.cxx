@@ -46,16 +46,14 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using LabelObjectType = itk::LabelObject<PixelType, Dimension>;
   using LabelMapType = itk::LabelMap<LabelObjectType>;
 
   using LabelImageToLabelMapFilterType = itk::LabelImageToLabelMapFilter<ImageType, LabelMapType>;
   LabelImageToLabelMapFilterType::Pointer labelMapConverter = LabelImageToLabelMapFilterType::New();
-  labelMapConverter->SetInput(reader->GetOutput());
+  labelMapConverter->SetInput(input);
   labelMapConverter->SetBackgroundValue(itk::NumericTraits<PixelType>::Zero);
 
   using StructuringElementType = itk::FlatStructuringElement<Dimension>;
@@ -82,13 +80,9 @@ main(int argc, char * argv[])
   LabelMapToLabelImageFilterType::Pointer labelImageConverter = LabelMapToLabelImageFilterType::New();
   labelImageConverter->SetInput(unique->GetOutput());
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(labelImageConverter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(labelImageConverter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

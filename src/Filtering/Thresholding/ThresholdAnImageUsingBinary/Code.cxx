@@ -46,26 +46,19 @@ main(int argc, char * argv[])
 
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(InputImage);
+  const auto input = itk::ReadImage<ImageType>(InputImage);
 
   using FilterType = itk::BinaryThresholdImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetLowerThreshold(LowerThreshold);
   filter->SetUpperThreshold(UpperThreshold);
   filter->SetOutsideValue(OutsideValue);
   filter->SetInsideValue(InsideValue);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(OutputImage);
-  writer->SetInput(filter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), OutputImage);
   }
   catch (itk::ExceptionObject & e)
   {

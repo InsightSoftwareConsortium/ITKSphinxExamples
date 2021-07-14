@@ -17,7 +17,6 @@
  *=========================================================================*/
 #include "itkImage.h"
 #include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
 #include "itkZeroCrossingBasedEdgeDetectionImageFilter.h"
 
 #include "itksys/SystemTools.hxx"
@@ -44,28 +43,24 @@ main(int argc, char * argv[])
   }
 
   // Parse command line arguments
-  std::string inputFilename = argv[1];
+  std::string inputFileName = argv[1];
 
   // Setup types
   using FloatImageType = itk::Image<float, 2>;
-  using ReaderType = itk::ImageFileReader<FloatImageType>;
-
   using FilterType = itk::ZeroCrossingBasedEdgeDetectionImageFilter<FloatImageType, FloatImageType>;
 
-  // Create and setup a reader
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFilename.c_str());
+  const auto input = itk::ReadImage<FloatImageType>(inputFileName);
 
   // Create and setup a derivative filter
   FilterType::Pointer edgeDetector = FilterType::New();
-  edgeDetector->SetInput(reader->GetOutput());
+  edgeDetector->SetInput(input);
   FilterType::ArrayType variance;
   variance.Fill(var);
   edgeDetector->SetVariance(variance);
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(inputFilename));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(inputFilename));
 
   std::stringstream desc;
   desc << "ZeroBasedEdgeDetection, variance = " << edgeDetector->GetVariance();

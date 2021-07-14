@@ -43,13 +43,11 @@ main(int argc, char * argv[])
   using OutputPixelType = unsigned char;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<InputImageType>(inputFileName);
 
   using FilterType = itk::LaplacianImageFilter<InputImageType, InputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
 
   using RescaleType = itk::RescaleIntensityImageFilter<InputImageType, OutputImageType>;
   RescaleType::Pointer rescaler = RescaleType::New();
@@ -57,14 +55,9 @@ main(int argc, char * argv[])
   rescaler->SetOutputMinimum(itk::NumericTraits<OutputPixelType>::min());
   rescaler->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(rescaler->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(rescaler->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

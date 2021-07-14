@@ -64,14 +64,12 @@ main(int argc, char * argv[])
   using CovPixelType = itk::CovariantVector<DoublePixelType, CovDimension>;
   using CovImageType = itk::Image<CovPixelType, ImageDimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   // Invert the input image
   using InvertType = itk::InvertIntensityImageFilter<ImageType, ImageType>;
   InvertType::Pointer inverter = InvertType::New();
-  inverter->SetInput(reader->GetOutput());
+  inverter->SetInput(input);
 
   // Cast the image to double type.
   using CasterType = itk::CastImageFilter<ImageType, DoubleImageType>;
@@ -83,7 +81,7 @@ main(int argc, char * argv[])
   // image
   using ComposeType = itk::ComposeImageFilter<DoubleImageType, VecImageType>;
   ComposeType::Pointer composer = ComposeType::New();
-  caster->SetInput(reader->GetOutput());
+  caster->SetInput(input);
   composer->SetInput(0, caster->GetOutput());
   caster2->SetInput(inverter->GetOutput());
   composer->SetInput(1, caster2->GetOutput());
@@ -106,19 +104,14 @@ main(int argc, char * argv[])
   rescaler->SetOutputMaximum(itk::NumericTraits<PixelType>::max());
   rescaler->SetInput(indexSelectionFilter->GetOutput());
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(rescaler->GetOutput());
-
   // Write the X and Y images
   for (int i = 0; i < 4; ++i)
   {
     indexSelectionFilter->SetIndex(i);
-    writer->SetFileName(filenames[i]);
 
     try
     {
-      writer->Update();
+      itk::WriteImage(rescaler->GetOutput(), filenames[i]);
     }
     catch (itk::ExceptionObject & error)
     {

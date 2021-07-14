@@ -16,7 +16,6 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileReader.h"
 #include "itkContourMeanDistanceImageFilter.h"
 
 #ifdef ENABLE_QUICKVIEW

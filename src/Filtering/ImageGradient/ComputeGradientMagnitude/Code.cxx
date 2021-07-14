@@ -43,25 +43,17 @@ main(int argc, char * argv[])
   using OutputPixelType = float;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  // Create and setup a reader
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<InputImageType>(inputFileName);
 
   // Create and setup a gradient filter
   using FilterType = itk::GradientMagnitudeImageFilter<InputImageType, OutputImageType>;
 
   FilterType::Pointer gradientFilter = FilterType::New();
-  gradientFilter->SetInput(reader->GetOutput());
-
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(gradientFilter->GetOutput());
+  gradientFilter->SetInput(input);
 
   try
   {
-    writer->Update();
+    itk::WriteImage(gradientFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

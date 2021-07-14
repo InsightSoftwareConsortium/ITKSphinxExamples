@@ -34,11 +34,7 @@ main(int, char *[])
   squareImageFilter->SetInput(image);
   squareImageFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("output.png");
-  writer->SetInput(squareImageFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(squareImageFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }

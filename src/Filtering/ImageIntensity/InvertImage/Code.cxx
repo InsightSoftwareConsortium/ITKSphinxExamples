@@ -39,11 +39,7 @@ main(int argc, char * argv[])
   unsigned int maximum = 255;
   if (argc > 1)
   {
-    using ReaderType = itk::ImageFileReader<ImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[1]);
-    reader->Update();
-    image = reader->GetOutput();
+    image = itk::ReadImage<ImageType>(argv[1]);
     desc << itksys::SystemTools::GetFilenameName(argv[1]);
     if (argc > 2)
     {

@@ -39,18 +39,15 @@ main(int argc, char * argv[])
     std::cerr << argv[0] << " InputImageFile [radius]" << std::endl;
     return EXIT_FAILURE;
   }
-  std::string inputFilename = argv[1];
+  std::string inputFileName = argv[1];
 
   // Setup types
   using ImageType = itk::Image<float, 2>;
-  using ReaderType = itk::ImageFileReader<ImageType>;
   using FilterType = itk::MedianImageFilter<ImageType, ImageType>;
   using SubtractType = itk::SubtractImageFilter<ImageType>;
   using PasteType = itk::PasteImageFilter<ImageType, ImageType>;
 
-  // Create and setup a reader
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFilename);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   // Create and setup a median filter
   FilterType::Pointer       medianFilter = FilterType::New();
@@ -61,11 +58,9 @@ main(int argc, char * argv[])
     radius.Fill(atoi(argv[2]));
   }
 
-  reader->Update();
-
   itk::Size<2> processSize;
-  processSize[0] = reader->GetOutput()->GetLargestPossibleRegion().GetSize()[0] / 2;
-  processSize[1] = reader->GetOutput()->GetLargestPossibleRegion().GetSize()[1] / 2;
+  processSize[0] = input->GetLargestPossibleRegion().GetSize()[0] / 2;
+  processSize[1] = input->GetLargestPossibleRegion().GetSize()[1] / 2;
 
   itk::Index<2> processIndex;
   processIndex[0] = processSize[0] / 2;
@@ -74,23 +69,23 @@ main(int argc, char * argv[])
   itk::ImageRegion<2> processRegion(processIndex, processSize);
 
   medianFilter->SetRadius(radius);
-  medianFilter->SetInput(reader->GetOutput());
+  medianFilter->SetInput(input);
   medianFilter->GetOutput()->SetRequestedRegion(processRegion);
 
   PasteType::Pointer pasteFilter = PasteType::New();
 
   pasteFilter->SetSourceImage(medianFilter->GetOutput());
   pasteFilter->SetSourceRegion(medianFilter->GetOutput()->GetRequestedRegion());
-  pasteFilter->SetDestinationImage(reader->GetOutput());
+  pasteFilter->SetDestinationImage(input);
   pasteFilter->SetDestinationIndex(processIndex);
 
   SubtractType::Pointer diff = SubtractType::New();
-  diff->SetInput1(reader->GetOutput());
+  diff->SetInput1(input);
   diff->SetInput2(pasteFilter->GetOutput());
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(inputFilename));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(inputFileName));
 
   std::stringstream desc;
   desc << "Median/PasteImageFilter, radius = " << radius;

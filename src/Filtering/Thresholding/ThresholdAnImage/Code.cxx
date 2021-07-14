@@ -40,26 +40,20 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   unsigned char lowerThreshold = std::stoi(argv[3]);
   unsigned char upperThreshold = std::stoi(argv[4]);
 
   using FilterType = itk::ThresholdImageFilter<ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->ThresholdOutside(lowerThreshold, upperThreshold);
   filter->SetOutsideValue(0);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(filter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

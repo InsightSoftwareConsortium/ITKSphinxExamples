@@ -44,14 +44,8 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
-
-  ReaderType::Pointer labelReader = ReaderType::New();
-  labelReader->SetFileName(labelFileName);
-
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
+  const auto label = itk::ReadImage<ImageType>(labelFileName);
 
   using LabelType = PixelType;
   using LabelObjectType = itk::LabelObject<LabelType, Dimension>;
@@ -59,22 +53,17 @@ main(int argc, char * argv[])
 
   using ConverterType = itk::LabelImageToLabelMapFilter<ImageType, LabelMapType>;
   ConverterType::Pointer converter = ConverterType::New();
-  converter->SetInput(labelReader->GetOutput());
+  converter->SetInput(label);
 
   using FilterType = itk::LabelMapOverlayImageFilter<LabelMapType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput(converter->GetOutput());
-  filter->SetFeatureImage(reader->GetOutput());
+  filter->SetFeatureImage(input);
   filter->SetOpacity(0.5);
 
-
-  using WriterType = itk::ImageFileWriter<FilterType::OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(filter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

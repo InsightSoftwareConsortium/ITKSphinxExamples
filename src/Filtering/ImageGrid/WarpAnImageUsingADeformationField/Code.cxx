@@ -45,19 +45,9 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  using WriterType = itk::ImageFileWriter<ImageType>;
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
-  using FieldReaderType = itk::ImageFileReader<DisplacementFieldType>;
-
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
-
-  FieldReaderType::Pointer fieldReader = FieldReaderType::New();
-  fieldReader->SetFileName(displacementFieldFileName);
-  fieldReader->Update();
-
-  DisplacementFieldType::ConstPointer deformationField = fieldReader->GetOutput();
+  const auto deformationField = itk::ReadImage<DisplacementFieldType>(displacementFieldFileName);
 
   using FilterType = itk::WarpImageFilter<ImageType, ImageType, DisplacementFieldType>;
 
@@ -75,15 +65,11 @@ main(int argc, char * argv[])
 
   filter->SetDisplacementField(deformationField);
 
-  filter->SetInput(reader->GetOutput());
-
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(filter->GetOutput());
-  writer->SetFileName(outputFileName);
+  filter->SetInput(input);
 
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

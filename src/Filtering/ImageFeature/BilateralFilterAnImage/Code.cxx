@@ -46,32 +46,28 @@ main(int argc, char * argv[])
   }
 
   // Parse command line arguments
-  std::string inputFilename = argv[1];
+  std::string inputFileName = argv[1];
 
   // Setup types
   using ImageType = itk::Image<float, 2>;
-
-  using ReaderType = itk::ImageFileReader<ImageType>;
   using FilterType = itk::BilateralImageFilter<ImageType, ImageType>;
   using SubtractImageFilterType = itk::SubtractImageFilter<ImageType>;
 
-  // Create and setup a reader
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFilename.c_str());
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   // Create and setup a derivative filter
   FilterType::Pointer bilateralFilter = FilterType::New();
-  bilateralFilter->SetInput(reader->GetOutput());
+  bilateralFilter->SetInput(input);
   bilateralFilter->SetDomainSigma(domainSigma);
   bilateralFilter->SetRangeSigma(rangeSigma);
 
   SubtractImageFilterType::Pointer diff = SubtractImageFilterType::New();
-  diff->SetInput1(reader->GetOutput());
+  diff->SetInput1(input);
   diff->SetInput2(bilateralFilter->GetOutput());
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   std::stringstream desc;
   desc << "Bilateral\ndomainSigma = " << domainSigma << " rangeSigma = " << rangeSigma;

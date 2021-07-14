@@ -41,26 +41,19 @@ main(int argc, char * argv[])
   using InputPixelType = unsigned char;
   using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<InputImageType>(inputFileName);
 
   using OutputPixelType = double;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
   using FilterType = itk::AccumulateImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetAccumulateDimension(accumulateDimension);
-
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(filter->GetOutput());
 
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

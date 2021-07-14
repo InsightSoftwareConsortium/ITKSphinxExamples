@@ -35,16 +35,9 @@ main(int, char *[])
   ValuedRegionalMinimaImageFilter::Pointer filter = ValuedRegionalMinimaImageFilter::New();
   filter->SetInput(image);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
+  itk::WriteImage(image, "input.png");
 
-  writer->SetFileName("input.png");
-  writer->SetInput(image);
-  writer->Update();
-
-  writer->SetFileName("output.png");
-  writer->SetInput(filter->GetOutput());
-  writer->Update();
+  itk::WriteImage(filter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }
