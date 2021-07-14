@@ -45,9 +45,7 @@ main(int argc, char * argv[])
   using PixelType = itk::RGBPixel<PixelComponentType>;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::ResampleImageFilter<ImageType, ImageType>;
 
@@ -89,15 +87,11 @@ main(int argc, char * argv[])
   size[1] = 300; // number of pixels along Y
 
   filter->SetSize(size);
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(filter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

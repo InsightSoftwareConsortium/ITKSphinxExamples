@@ -33,18 +33,12 @@ main(int, char *[])
   ImageType::Pointer image1 = ImageType::New();
   CreateImage1(image1);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("input1.png");
-  writer->SetInput(image1);
-  writer->Update();
+  itk::WriteImage(image1, "input1.png");
 
   ImageType::Pointer image2 = ImageType::New();
   CreateImage2(image2);
 
-  writer->SetFileName("input2.png");
-  writer->SetInput(image2);
-  writer->Update();
+  itk::WriteImage(image2, "input2.png");
 
   using AndImageFilterType = itk::AndImageFilter<ImageType>;
 
@@ -53,9 +47,7 @@ main(int, char *[])
   andFilter->SetInput(1, image2);
   andFilter->Update();
 
-  writer->SetFileName("output.png");
-  writer->SetInput(andFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(andFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }

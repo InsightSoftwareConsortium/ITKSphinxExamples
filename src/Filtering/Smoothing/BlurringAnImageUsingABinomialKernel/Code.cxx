@@ -37,16 +37,13 @@ main(int argc, char * argv[])
   using InputImageType = itk::Image<InputPixelType, 2>;
   using OutputImageType = itk::Image<OutputPixelType, 2>;
 
+  const auto input = itk::ReadImage<InputImageType>(argv[1]);
+
+  const unsigned int repetitions = std::stoi(argv[3]);
 
   using FilterType = itk::BinomialBlurImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-
-  reader->SetFileName(argv[1]);
-  const unsigned int repetitions = std::stoi(argv[3]);
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetRepetitions(repetitions);
   filter->Update();
 
@@ -57,14 +54,9 @@ main(int argc, char * argv[])
   RescaleFilterType::Pointer rescaler = RescaleFilterType::New();
   rescaler->SetOutputMinimum(0);
   rescaler->SetOutputMaximum(255);
-
-  using WriterType = itk::ImageFileWriter<WriteImageType>;
-  WriterType::Pointer writer = WriterType::New();
-
-  writer->SetFileName(argv[2]);
   rescaler->SetInput(filter->GetOutput());
-  writer->SetInput(rescaler->GetOutput());
-  writer->Update();
+
+  itk::WriteImage(rescaler->GetOutput(), argv[2]);
 
   return EXIT_SUCCESS;
 }

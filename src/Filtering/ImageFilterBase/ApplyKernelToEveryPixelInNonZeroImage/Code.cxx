@@ -64,11 +64,7 @@ main(int, char *[])
   rescaleFilter->SetInput(maskNeighborhoodOperatorImageFilter->GetOutput());
   rescaleFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("output.png");
-  writer->SetInput(rescaleFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(rescaleFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }
@@ -107,11 +103,7 @@ CreateHalfMask(UnsignedCharImageType::Pointer image, UnsignedCharImageType::Poin
   rescaleFilter->SetInput(mask);
   rescaleFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("mask.png");
-  writer->SetInput(rescaleFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(rescaleFilter->GetOutput(), "mask.png");
 }
 
 
@@ -143,9 +135,5 @@ CreateImage(UnsignedCharImageType::Pointer image)
     }
   }
 
-  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("input.png");
-  writer->SetInput(image);
-  writer->Update();
+  itk::WriteImage(image, "input.png");
 }

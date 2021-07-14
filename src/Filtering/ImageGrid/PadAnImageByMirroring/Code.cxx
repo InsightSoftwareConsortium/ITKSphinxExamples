@@ -38,9 +38,7 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   ImageType::SizeType lowerBound;
   lowerBound[0] = 20;
@@ -52,18 +50,13 @@ main(int argc, char * argv[])
 
   using FilterType = itk::MirrorPadImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetPadLowerBound(lowerBound);
   filter->SetPadUpperBound(upperBound);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[2]);
-  writer->SetInput(filter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), argv[2]);
   }
   catch (itk::ExceptionObject & error)
   {

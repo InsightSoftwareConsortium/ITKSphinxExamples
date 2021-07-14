@@ -41,11 +41,7 @@ main(int, char *[])
   filter->SetOutputMaximum(255);
   filter->Update();
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("output.png");
-  writer->SetInput(image);
-  writer->Update();
+  itk::WriteImage(image, "output.png");
 
   return EXIT_SUCCESS;
 }

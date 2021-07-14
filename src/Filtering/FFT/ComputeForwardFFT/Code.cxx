@@ -48,9 +48,7 @@ main(int argc, char * argv[])
   using FloatPixelType = float;
   using FloatImageType = itk::Image<FloatPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<FloatImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<FloatImageType>(inputFileName);
 
   using UnsignedCharPixelType = unsigned char;
   using UnsignedCharImageType = itk::Image<UnsignedCharPixelType, Dimension>;
@@ -59,7 +57,7 @@ main(int argc, char * argv[])
   // multiple of small prime numbers.
   using PadFilterType = itk::WrapPadImageFilter<FloatImageType, FloatImageType>;
   PadFilterType::Pointer padFilter = PadFilterType::New();
-  padFilter->SetInput(reader->GetOutput());
+  padFilter->SetInput(input);
   PadFilterType::SizeType padding;
   // Input size is [48, 62, 42].  Pad to [48, 64, 48].
   padding[0] = 0;
@@ -84,13 +82,9 @@ main(int argc, char * argv[])
   realRescaleFilter->SetOutputMinimum(itk::NumericTraits<UnsignedCharPixelType>::min());
   realRescaleFilter->SetOutputMaximum(itk::NumericTraits<UnsignedCharPixelType>::max());
 
-  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-  WriterType::Pointer realWriter = WriterType::New();
-  realWriter->SetFileName(realFileName);
-  realWriter->SetInput(realRescaleFilter->GetOutput());
   try
   {
-    realWriter->Update();
+    itk::WriteImage(realRescaleFilter->GetOutput(), realFileName);
   }
   catch (itk::ExceptionObject & error)
   {
@@ -108,12 +102,9 @@ main(int argc, char * argv[])
   imaginaryRescaleFilter->SetOutputMinimum(itk::NumericTraits<UnsignedCharPixelType>::min());
   imaginaryRescaleFilter->SetOutputMaximum(itk::NumericTraits<UnsignedCharPixelType>::max());
 
-  WriterType::Pointer complexWriter = WriterType::New();
-  complexWriter->SetFileName(imaginaryFileName);
-  complexWriter->SetInput(imaginaryRescaleFilter->GetOutput());
   try
   {
-    complexWriter->Update();
+    itk::WriteImage(imaginaryRescaleFilter->GetOutput(), imaginaryFileName);
   }
   catch (itk::ExceptionObject & error)
   {
@@ -131,12 +122,9 @@ main(int argc, char * argv[])
   magnitudeRescaleFilter->SetOutputMinimum(itk::NumericTraits<UnsignedCharPixelType>::min());
   magnitudeRescaleFilter->SetOutputMaximum(itk::NumericTraits<UnsignedCharPixelType>::max());
 
-  WriterType::Pointer magnitudeWriter = WriterType::New();
-  magnitudeWriter->SetFileName(modulusFileName);
-  magnitudeWriter->SetInput(magnitudeRescaleFilter->GetOutput());
   try
   {
-    magnitudeWriter->Update();
+    itk::WriteImage(magnitudeRescaleFilter->GetOutput(), modulusFileName);
   }
   catch (itk::ExceptionObject & error)
   {

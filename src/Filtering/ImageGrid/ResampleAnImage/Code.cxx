@@ -45,12 +45,7 @@ main(int argc, char * argv[])
   using ScalarType = double;
   using IndexValueType = typename itk::Index<Dimension>::IndexValueType;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  typename ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
-  reader->Update();
-
-  const typename ImageType::Pointer     inputImage = reader->GetOutput();
+  const typename ImageType::Pointer     inputImage = itk::ReadImage<ImageType>(inputFileName);
   const typename ImageType::RegionType  inputRegion = inputImage->GetLargestPossibleRegion();
   const typename ImageType::SizeType    inputSize = inputRegion.GetSize();
   const typename ImageType::SpacingType inputSpacing = inputImage->GetSpacing();
@@ -104,14 +99,9 @@ main(int argc, char * argv[])
   resampleFilter->SetOutputSpacing(outputSpacing);
   resampleFilter->SetOutputOrigin(outputOrigin);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  typename WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(resampleFilter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(resampleFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

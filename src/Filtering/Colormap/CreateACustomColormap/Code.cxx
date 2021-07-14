@@ -45,10 +45,7 @@ main(int argc, char * argv[])
   using RGBImageType = itk::Image<RGBPixelType, 2>;
   using ImageType = itk::Image<PixelType, 2>;
 
-
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   using ColormapType = itk::Function::CustomColormapFunction<PixelType, RGBPixelType>;
   ColormapType::Pointer colormap = ColormapType::New();
@@ -78,17 +75,12 @@ main(int argc, char * argv[])
   using ColormapFilterType = itk::ScalarToRGBColormapImageFilter<ImageType, RGBImageType>;
   ColormapFilterType::Pointer colormapFilter1 = ColormapFilterType::New();
 
-  colormapFilter1->SetInput(reader->GetOutput());
+  colormapFilter1->SetInput(input);
   colormapFilter1->SetColormap(colormap);
-
-  using WriterType = itk::ImageFileWriter<RGBImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(colormapFilter1->GetOutput());
-  writer->SetFileName(argv[2]);
 
   try
   {
-    writer->Update();
+    itk::WriteImage(colormapFilter1->GetOutput(), argv[2]);
   }
   catch (itk::ExceptionObject & error)
   {

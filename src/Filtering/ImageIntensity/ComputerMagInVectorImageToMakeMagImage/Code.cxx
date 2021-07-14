@@ -34,23 +34,18 @@ main(int argc, char * argv[])
   }
 
   // Parse command line arguments
-  std::string inputFilename = argv[1];
-  std::string outputFilename = argv[2];
+  std::string inputFileName = argv[1];
+  std::string outputFileName = argv[2];
 
   // Setup types
   using VectorImageType = itk::VectorImage<float, 2>;
   using UnsignedCharImageType = itk::Image<unsigned char, 2>;
 
-  // Create and setup a reader
-  using ReaderType = itk::ImageFileReader<VectorImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFilename);
-
-  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
+  const auto input = itk::ReadImage<VectorImageType>(inputFileName);
 
   using VectorMagnitudeFilterType = itk::VectorMagnitudeImageFilter<VectorImageType, UnsignedCharImageType>;
   VectorMagnitudeFilterType::Pointer magnitudeFilter = VectorMagnitudeFilterType::New();
-  magnitudeFilter->SetInput(reader->GetOutput());
+  magnitudeFilter->SetInput(input);
 
   // To write the magnitude image file, we should rescale the gradient values
   // to a reasonable range
@@ -61,11 +56,7 @@ main(int argc, char * argv[])
   rescaler->SetOutputMaximum(255);
   rescaler->SetInput(magnitudeFilter->GetOutput());
 
-  WriterType::Pointer writer = WriterType::New();
-
-  writer->SetFileName(outputFilename);
-  writer->SetInput(rescaler->GetOutput());
-  writer->Update();
+  itk::WriteImage(rescaler->GetOutput(), outputFileName);
 
   return EXIT_SUCCESS;
 }

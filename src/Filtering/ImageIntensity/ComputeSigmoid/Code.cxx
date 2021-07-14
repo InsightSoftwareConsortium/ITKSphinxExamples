@@ -47,26 +47,19 @@ main(int argc, char * argv[])
   const ScalarType alpha = std::stod(argv[5]);
   const ScalarType beta = std::stod(argv[6]);
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::SigmoidImageFilter<ImageType, ImageType>;
   FilterType::Pointer sigmoidFilter = FilterType::New();
-  sigmoidFilter->SetInput(reader->GetOutput());
+  sigmoidFilter->SetInput(input);
   sigmoidFilter->SetOutputMinimum(outputMinimum);
   sigmoidFilter->SetOutputMaximum(outputMaximum);
   sigmoidFilter->SetAlpha(alpha);
   sigmoidFilter->SetBeta(beta);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(sigmoidFilter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(sigmoidFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

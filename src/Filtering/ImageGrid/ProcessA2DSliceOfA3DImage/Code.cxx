@@ -35,21 +35,17 @@ main(int argc, char ** argv)
   }
 
   using PixelType = short;
-
   using ImageType = itk::Image<PixelType, 3>;
-
   using ReaderType = itk::ImageFileReader<ImageType>;
-  using WriterType = itk::ImageFileWriter<ImageType>;
 
   // Here we recover the file names from the command line arguments
-  const char * inputFilename = argv[1];
-  const char * outputFilename = argv[2];
+  const char * inputFileName = argv[1];
+  const char * outputFileName = argv[2];
 
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFilename);
+  ImageType::Pointer inputImage;
   try
   {
-    reader->Update();
+    inputImage = itk::ReadImage<ImageType>(inputFileName);
   }
   catch (itk::ExceptionObject & err)
   {
@@ -58,15 +54,11 @@ main(int argc, char ** argv)
     return EXIT_FAILURE;
   }
 
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFilename);
-
   using ExtractFilterType = itk::ExtractImageFilter<ImageType, ImageType>;
   ExtractFilterType::Pointer extractFilter = ExtractFilterType::New();
   extractFilter->SetDirectionCollapseToSubmatrix();
 
   // set up the extraction region [one slice]
-  const ImageType *     inputImage = reader->GetOutput();
   ImageType::RegionType inputRegion = inputImage->GetBufferedRegion();
   ImageType::SizeType   size = inputRegion.GetSize();
   size[2] = 1; // we extract along z direction
@@ -96,11 +88,10 @@ main(int argc, char ** argv)
   medianFilter->UpdateLargestPossibleRegion();
   const ImageType * medianImage = medianFilter->GetOutput();
   pasteFilter->SetSourceRegion(medianImage->GetBufferedRegion());
-  writer->SetInput(pasteFilter->GetOutput());
 
   try
   {
-    writer->Update();
+    itk::WriteImage(pasteFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & err)
   {

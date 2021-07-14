@@ -39,9 +39,8 @@ main(int argc, char * argv[])
   }
 
   using ImageType = itk::Image<unsigned char, 2>;
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   using StructuringElementType = itk::FlatStructuringElement<2>;
   StructuringElementType::RadiusType elementRadius;
@@ -52,14 +51,14 @@ main(int argc, char * argv[])
   using BinaryErodeImageFilterType = itk::BinaryErodeImageFilter<ImageType, ImageType, StructuringElementType>;
 
   BinaryErodeImageFilterType::Pointer erodeFilter = BinaryErodeImageFilterType::New();
-  erodeFilter->SetInput(reader->GetOutput());
+  erodeFilter->SetInput(input);
   erodeFilter->SetKernel(structuringElement);
   erodeFilter->SetForegroundValue(255); // Intensity value to erode
   erodeFilter->SetBackgroundValue(0);   // Replacement value for eroded voxels
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput());
+  viewer.AddImage(input);
   viewer.AddImage(erodeFilter->GetOutput());
   viewer.Visualize();
 #endif

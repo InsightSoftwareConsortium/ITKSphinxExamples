@@ -18,7 +18,6 @@
 #include "itkImage.h"
 #include "itkCovariantVector.h"
 #include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
 #include "itkGradientImageFilter.h"
 
 #include <itkImageToVTKImageFilter.h>
@@ -51,27 +50,24 @@ main(int argc, char * argv[])
   }
 
   // Parse command line arguments
-  std::string inputFilename = argv[1];
+  std::string inputFileName = argv[1];
 
   // Setup types
   using FloatImageType = itk::Image<float, 2>;
   using UnsignedCharImageType = itk::Image<unsigned char, 2>;
 
-  // Create and setup a reader
-  using ReaderType = itk::ImageFileReader<UnsignedCharImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFilename.c_str());
+  const auto input = itk::ReadImage<UnsignedCharImageType>(inputFileName);
 
   // Create and setup a gradient filter
   using GradientFilterType = itk::GradientImageFilter<UnsignedCharImageType, float>;
   GradientFilterType::Pointer gradientFilter = GradientFilterType::New();
-  gradientFilter->SetInput(reader->GetOutput());
+  gradientFilter->SetInput(input);
   gradientFilter->Update();
 
   // Visualize original image
   using ConnectorType = itk::ImageToVTKImageFilter<UnsignedCharImageType>;
   ConnectorType::Pointer originalConnector = ConnectorType::New();
-  originalConnector->SetInput(reader->GetOutput());
+  originalConnector->SetInput(input);
 
   vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();
   originalActor->SetInput(originalConnector->GetOutput());

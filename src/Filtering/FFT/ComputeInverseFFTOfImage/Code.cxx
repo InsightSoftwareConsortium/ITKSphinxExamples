@@ -42,13 +42,7 @@ main(int argc, char * argv[])
   }
   else
   {
-    // Read the image
-    using ReaderType = itk::ImageFileReader<FloatImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[1]);
-    reader->Update();
-
-    image = reader->GetOutput();
+    image = itk::ReadImage<FloatImageType>(argv[1]);
   }
 
   // Define some types
@@ -73,12 +67,7 @@ main(int argc, char * argv[])
   castFilter->SetInput(ifftFilter->GetOutput());
   castFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("ifft.png");
-  writer->SetInput(castFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(castFilter->GetOutput(), "ifft.png");
 
   return EXIT_SUCCESS;
 }

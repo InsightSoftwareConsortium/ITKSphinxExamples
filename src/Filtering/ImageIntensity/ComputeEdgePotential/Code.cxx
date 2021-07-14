@@ -58,11 +58,7 @@ main(int /*argc*/, char * /*argv*/[])
   rescaleFilter->SetOutputMaximum(255);
   rescaleFilter->Update();
 
-  using FileWriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-  FileWriterType::Pointer writer = FileWriterType::New();
-  writer->SetFileName("output.png");
-  writer->SetInput(rescaleFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(rescaleFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }

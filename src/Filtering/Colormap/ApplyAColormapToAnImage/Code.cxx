@@ -40,26 +40,19 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   using RGBPixelType = itk::RGBPixel<unsigned char>;
   using RGBImageType = itk::Image<RGBPixelType, Dimension>;
 
   using RGBFilterType = itk::ScalarToRGBColormapImageFilter<ImageType, RGBImageType>;
   RGBFilterType::Pointer rgbfilter = RGBFilterType::New();
-  rgbfilter->SetInput(reader->GetOutput());
+  rgbfilter->SetInput(input);
   rgbfilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Hot);
-
-  using WriterType = itk::ImageFileWriter<RGBImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[2]);
-  writer->SetInput(rgbfilter->GetOutput());
 
   try
   {
-    writer->Update();
+    itk::WriteImage(rgbfilter->GetOutput(), argv[2]);
   }
   catch (itk::ExceptionObject & error)
   {

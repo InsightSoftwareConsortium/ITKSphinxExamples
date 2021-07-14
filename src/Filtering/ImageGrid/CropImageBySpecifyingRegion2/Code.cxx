@@ -41,16 +41,12 @@ main(int argc, char * argv[])
 
   if (argc > 1)
   {
-    using ReaderType = itk::ImageFileReader<ImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[1]);
+    image = itk::ReadImage<ImageType>(argv[1]);
     if (argc > 2)
     {
       cropSize[0] = std::stoi(argv[2]);
       cropSize[1] = std::stoi(argv[3]);
     }
-    reader->Update();
-    image = reader->GetOutput();
     desc << itksys::SystemTools::GetFilenameName(argv[1]);
   }
   else

@@ -48,28 +48,19 @@ main(int argc, char * argv[])
   index[0] = startX;
   index[1] = startY;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer sourceReader = ReaderType::New();
-  sourceReader->SetFileName(sourceFileName);
-  sourceReader->Update();
-
-  ReaderType::Pointer destinationReader = ReaderType::New();
-  destinationReader->SetFileName(destinationFileName);
+  const auto source = itk::ReadImage<ImageType>(sourceFileName);
+  const auto destination = itk::ReadImage<ImageType>(destinationFileName);
 
   using FilterType = itk::PasteImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetSourceImage(sourceReader->GetOutput());
-  filter->SetSourceRegion(sourceReader->GetOutput()->GetLargestPossibleRegion());
-  filter->SetDestinationImage(destinationReader->GetOutput());
+  filter->SetSourceImage(source);
+  filter->SetSourceRegion(source->GetLargestPossibleRegion());
+  filter->SetDestinationImage(destination);
   filter->SetDestinationIndex(index);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(filter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

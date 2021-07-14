@@ -44,13 +44,11 @@ main(int argc, char * argv[])
   using InputImageType = itk::Image<InputPixelType, Dimension>;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputImage);
+  const auto input = itk::ReadImage<InputImageType>(inputImage);
 
   using RescaleType = itk::RescaleIntensityImageFilter<InputImageType, InputImageType>;
   RescaleType::Pointer rescale = RescaleType::New();
-  rescale->SetInput(reader->GetOutput());
+  rescale->SetInput(input);
   rescale->SetOutputMinimum(0);
   rescale->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
 
@@ -58,14 +56,9 @@ main(int argc, char * argv[])
   FilterType::Pointer filter = FilterType::New();
   filter->SetInput(rescale->GetOutput());
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputImage);
-  writer->SetInput(filter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputImage);
   }
   catch (itk::ExceptionObject & e)
   {

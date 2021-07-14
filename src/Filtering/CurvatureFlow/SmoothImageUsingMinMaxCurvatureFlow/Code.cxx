@@ -20,7 +20,6 @@
 #include "itkMinMaxCurvatureFlowImageFilter.h"
 #include "itkSubtractImageFilter.h"
 #include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
 
 #ifdef ENABLE_QUICKVIEW
 #  include "QuickView.h"
@@ -44,32 +43,29 @@ main(int argc, char * argv[])
     std::stringstream ss(argv[2]);
     ss >> iterations;
   }
-  std::string inputFilename = argv[1];
 
   using PixelType = float;
   constexpr unsigned int Dimension = 2;
 
   using ImageType = itk::Image<PixelType, Dimension>;
-  using ReaderType = itk::ImageFileReader<ImageType>;
   using MinMaxCurvatureFlowImageFilterType = itk::MinMaxCurvatureFlowImageFilter<ImageType, ImageType>;
   using SubtractType = itk::SubtractImageFilter<ImageType>;
 
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFilename);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   MinMaxCurvatureFlowImageFilterType::Pointer minMaxCurvatureFlowImageFilter =
     MinMaxCurvatureFlowImageFilterType::New();
-  minMaxCurvatureFlowImageFilter->SetInput(reader->GetOutput());
+  minMaxCurvatureFlowImageFilter->SetInput(input);
   minMaxCurvatureFlowImageFilter->SetNumberOfIterations(iterations);
   minMaxCurvatureFlowImageFilter->SetTimeStep(0.125);
 
   SubtractType::Pointer diff = SubtractType::New();
-  diff->SetInput1(reader->GetOutput());
+  diff->SetInput1(input);
   diff->SetInput2(minMaxCurvatureFlowImageFilter->GetOutput());
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(inputFilename));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(inputFileName));
 
   std::stringstream desc;
   desc << "MinMaxCurvatureFlow, iterations = " << iterations;

@@ -65,9 +65,6 @@ main(int argc, char * argv[])
   constexpr unsigned int Dimension = 2;
   using my_PixelType = float;
   using ImageType = itk::Image<my_PixelType, Dimension>;
-
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  using WriterType = itk::ImageFileWriter<ImageType>;
   using ScaleType = itk::MultiplyImageFilter<ImageType, ImageType, ImageType>;
 
   unsigned int nb_train = atoi(argv[1]);
@@ -82,10 +79,7 @@ main(int argc, char * argv[])
 
   for (unsigned int k = 0; k < nb_train; k++)
   {
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(shapeModeFileNames[k].c_str());
-    reader->Update();
-    trainingImages[k] = reader->GetOutput();
+    trainingImages[k] = itk::ReadImage<ImageType>(shapeModeFileNames[k]);
   }
 
   using my_Estimatortype = itk::ImagePCAShapeModelEstimator<ImageType, ImageType>;
@@ -119,14 +113,12 @@ main(int argc, char * argv[])
     double sv_n = sv / sv_mean;
     // double sv_n=sv;
     std::cout << "writing: " << outFileNames[k] << std::endl;
-
     std::cout << "svd[" << k << "]: " << sv << " norm: " << sv_n << std::endl;
-    WriterType::Pointer writer = WriterType::New();
-    writer->SetFileName(outFileNames[k].c_str());
+
     scaler->SetInput(filter->GetOutput(k));
     scaler->SetConstant(sv_n);
-    writer->SetInput(scaler->GetOutput());
-    writer->Update();
+
+    itk::WriteImage(scaler->GetOutput(), outFileNames[k]);
   }
 
   return EXIT_SUCCESS;

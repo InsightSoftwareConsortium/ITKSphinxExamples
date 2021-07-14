@@ -38,11 +38,7 @@ main(int argc, char * argv[])
   }
   else // Input image argument provided
   {
-    using ReaderType = itk::ImageFileReader<FloatImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[1]);
-    reader->Update();
-    image = reader->GetOutput();
+    image = itk::ReadImage<FloatImageType>(argv[1]);
   }
 
   using ClampFilterType = itk::ClampImageFilter<FloatImageType, UnsignedCharImageType>;

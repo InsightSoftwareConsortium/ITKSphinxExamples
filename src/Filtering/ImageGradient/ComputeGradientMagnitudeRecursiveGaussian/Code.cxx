@@ -40,25 +40,16 @@ main(int argc, char * argv[])
   using PixelType = float;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputImage);
-
-  using ImageType = itk::Image<PixelType, Dimension>;
+  const auto input = itk::ReadImage<ImageType>(inputImage);
 
   using FilterType = itk::GradientMagnitudeRecursiveGaussianImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetSigma(sigma);
-
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputImage);
-  writer->SetInput(filter->GetOutput());
 
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputImage);
   }
   catch (itk::ExceptionObject & error)
   {

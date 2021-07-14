@@ -36,11 +36,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   noiseImageFilter->SetRadius(1);
   noiseImageFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("output.mhd");
-  writer->SetInput(noiseImageFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(noiseImageFilter->GetOutput(), "output.mhd");
 
   return EXIT_SUCCESS;
 }
@@ -80,9 +76,5 @@ CreateImage(ImageType::Pointer image)
   pixel.Fill(20);
   image->SetPixel(pixel, 255);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("input.mhd");
-  writer->SetInput(image);
-  writer->Update();
+  itk::WriteImage(image, "input.mhd");
 }

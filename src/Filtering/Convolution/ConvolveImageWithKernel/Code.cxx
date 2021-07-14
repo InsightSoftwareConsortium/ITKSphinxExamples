@@ -50,16 +50,12 @@ main(int argc, char * argv[])
   ImageType::Pointer kernel = ImageType::New();
   CreateKernel(kernel, width);
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  using FilterType = itk::ConvolutionImageFilter<ImageType>;
-
-  // Create and setup a reader
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   // Convolve image with kernel.
+  using FilterType = itk::ConvolutionImageFilter<ImageType>;
   FilterType::Pointer convolutionFilter = FilterType::New();
-  convolutionFilter->SetInput(reader->GetOutput());
+  convolutionFilter->SetInput(input);
 #if ITK_VERSION_MAJOR >= 4
   convolutionFilter->SetKernelImage(kernel);
 #else
@@ -67,7 +63,7 @@ main(int argc, char * argv[])
 #endif
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage<ImageType>(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage<ImageType>(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   std::stringstream desc;
   desc << "ConvolutionFilter\n"

@@ -46,14 +46,8 @@ main(int argc, char * argv[])
   using ImageType = itk::Image<unsigned char, 2>;
 
   // Read images
-  using ImageReaderType = itk::ImageFileReader<ImageType>;
-  ImageReaderType::Pointer reader1 = ImageReaderType::New();
-  reader1->SetFileName(input1FileName);
-  reader1->Update();
-
-  ImageReaderType::Pointer reader2 = ImageReaderType::New();
-  reader2->SetFileName(input2FileName);
-  reader2->Update();
+  const auto input1 = itk::ReadImage<ImageType>(input1FileName);
+  const auto input2 = itk::ReadImage<ImageType>(input2FileName);
 
   // Tile the images side-by-side
   using TileFilterType = itk::TileImageFilter<ImageType, ImageType>;
@@ -67,22 +61,16 @@ main(int argc, char * argv[])
 
   tileFilter->SetLayout(layout);
 
-  tileFilter->SetInput(0, reader1->GetOutput());
-  tileFilter->SetInput(1, reader2->GetOutput());
+  tileFilter->SetInput(0, input1);
+  tileFilter->SetInput(1, input2);
 
   // Set the value of output pixels which are created by mismatched size input images.
   // If the two images are the same height, this will not be used.
   unsigned char fillerValue = 128;
   tileFilter->SetDefaultPixelValue(fillerValue);
-
   tileFilter->Update();
 
-  // Write the output image
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(tileFilter->GetOutput());
-  writer->SetFileName(outputFileName);
-  writer->Update();
+  itk::WriteImage(tileFilter->GetOutput(), outputFileName);
 
   return EXIT_SUCCESS;
 }

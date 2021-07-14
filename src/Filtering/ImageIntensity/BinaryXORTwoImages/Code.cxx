@@ -42,11 +42,7 @@ main(int, char *[])
   xorFilter->SetInput2(image2);
   xorFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("output.png");
-  writer->SetInput(xorFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(xorFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }

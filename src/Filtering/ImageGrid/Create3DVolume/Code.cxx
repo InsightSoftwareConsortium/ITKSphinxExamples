@@ -40,9 +40,6 @@ main(int argc, char * argv[])
   using InputImageType = itk::Image<PixelType, InputDimension>;
   using OutputImageType = itk::Image<PixelType, OutputDimension>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-
   using FilterType = itk::TileImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
 
@@ -55,20 +52,17 @@ main(int argc, char * argv[])
 
   for (int ii = 1; ii < argc - 1; ++ii)
   {
-    reader->SetFileName(argv[ii]);
+    InputImageType::Pointer input;
 
     try
     {
-      reader->Update();
+      input = itk::ReadImage<InputImageType>(argv[ii]);
     }
     catch (itk::ExceptionObject & e)
     {
       std::cerr << e << std::endl;
       return EXIT_FAILURE;
     }
-
-    InputImageType::Pointer input = reader->GetOutput();
-    input->DisconnectPipeline();
 
     filter->SetInput(ii - 1, input);
   }
@@ -77,14 +71,9 @@ main(int argc, char * argv[])
 
   filter->SetDefaultPixelValue(defaultValue);
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[argc - 1]);
-  writer->SetInput(filter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), argv[argc - 1]);
   }
   catch (itk::ExceptionObject & error)
   {

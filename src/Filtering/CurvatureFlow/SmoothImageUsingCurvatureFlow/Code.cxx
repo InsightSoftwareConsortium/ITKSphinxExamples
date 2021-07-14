@@ -45,28 +45,24 @@ main(int argc, char * argv[])
   constexpr unsigned int Dimension = 2;
   using InternalImageType = itk::Image<InternalPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<InternalImageType>;
-
-  ReaderType::Pointer reader = ReaderType::New();
-
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<InternalImageType>(argv[1]);
 
   using CurvatureFlowImageFilterType = itk::CurvatureFlowImageFilter<InternalImageType, InternalImageType>;
 
   CurvatureFlowImageFilterType::Pointer smoothing = CurvatureFlowImageFilterType::New();
 
-  smoothing->SetInput(reader->GetOutput());
+  smoothing->SetInput(input);
   smoothing->SetNumberOfIterations(iterations);
   smoothing->SetTimeStep(0.125);
 
   using SubtractImageFilterType = itk::SubtractImageFilter<InternalImageType>;
   SubtractImageFilterType::Pointer diff = SubtractImageFilterType::New();
-  diff->SetInput1(reader->GetOutput());
+  diff->SetInput1(input);
   diff->SetInput2(smoothing->GetOutput());
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage<InternalImageType>(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage<InternalImageType>(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   std::stringstream desc;
   desc << "CurvatureFlow\niterations = " << iterations;

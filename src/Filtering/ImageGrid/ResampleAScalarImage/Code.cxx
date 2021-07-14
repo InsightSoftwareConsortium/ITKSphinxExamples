@@ -48,12 +48,7 @@ main(int argc, char * argv[])
     outputSize[dim] = std::stoi(argv[k++]);
   }
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
-  reader->UpdateOutputInformation();
-
-  ImageType::Pointer inputImage = reader->GetOutput();
+  const auto inputImage = itk::ReadImage<ImageType>(inputFileName);
 
   ImageType::SizeType inputSize = inputImage->GetLargestPossibleRegion().GetSize();
   std::cout << "Input Size: " << inputSize << std::endl;
@@ -82,13 +77,9 @@ main(int argc, char * argv[])
   filter->SetOutputOrigin(inputImage->GetOrigin());
   filter->SetTransform(TransformType::New());
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(filter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

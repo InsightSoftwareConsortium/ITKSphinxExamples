@@ -47,30 +47,18 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  // Read the file to be converted
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputImage);
-
-  using ImageType = itk::Image<PixelType, Dimension>;
+  const auto input = itk::ReadImage<ImageType>(inputImage);
 
   // Create the filter and apply the algorithm to the image
   using FilterType = itk::AdditiveGaussianNoiseImageFilter<ImageType, ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetMean(mean);                   // Set the mean
   filter->SetStandardDeviation(deviation); // Set the standard deviation
 
-  // Set the writer to save file
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputImage);
-  writer->SetInput(filter->GetOutput());
-
-  // Write the output image
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputImage);
   }
   catch (itk::ExceptionObject & error)
   {

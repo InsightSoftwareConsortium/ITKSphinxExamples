@@ -17,7 +17,6 @@
  *=========================================================================*/
 
 #include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
 #include "itkVersor.h"
 #include "itkChangeInformationImageFilter.h"
 

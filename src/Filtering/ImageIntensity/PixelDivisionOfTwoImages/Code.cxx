@@ -42,11 +42,7 @@ main(int, char *[])
   divideImageFilter->SetInput2(image2);
   divideImageFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("test.png");
-  writer->SetInput(divideImageFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(divideImageFilter->GetOutput(), "test.png");
 
   return EXIT_SUCCESS;
 }

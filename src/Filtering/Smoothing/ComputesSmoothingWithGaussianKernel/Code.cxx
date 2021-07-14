@@ -40,24 +40,17 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::SmoothingRecursiveGaussianImageFilter<ImageType, ImageType>;
   FilterType::Pointer smoothFilter = FilterType::New();
 
   smoothFilter->SetSigma(sigmaValue);
-  smoothFilter->SetInput(reader->GetOutput());
-
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(smoothFilter->GetOutput());
-  writer->SetFileName(outputFileName);
+  smoothFilter->SetInput(input);
 
   try
   {
-    writer->Update();
+    itk::WriteImage(smoothFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

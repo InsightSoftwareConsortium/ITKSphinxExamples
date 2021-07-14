@@ -47,29 +47,25 @@ main(int argc, char * argv[])
 
   using InputPixelType = float;
   using OutputPixelType = float;
-
   using InputImageType = itk::Image<InputPixelType, Dimension>;
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
-
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
+
+  const auto input = itk::ReadImage<InputImageType>(inputFileName);
 
   using FilterType = itk::BinaryMinMaxCurvatureFlowImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetThreshold(255);
   filter->SetNumberOfIterations(numberOfIterations);
 
   using SubtractType = itk::SubtractImageFilter<OutputImageType>;
   SubtractType::Pointer diff = SubtractType::New();
-  diff->SetInput1(reader->GetOutput());
+  diff->SetInput1(input);
   diff->SetInput2(filter->GetOutput());
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(inputFileName));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(inputFileName));
 
   std::stringstream desc;
   desc << "BinaryMinMaxCurvature, iterations = " << numberOfIterations;

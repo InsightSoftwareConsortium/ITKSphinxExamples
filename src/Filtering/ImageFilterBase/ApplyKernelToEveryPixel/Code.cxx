@@ -93,9 +93,5 @@ CastRescaleAndWrite(FloatImageType::Pointer image, const std::string & filename)
   rescaleFilter->SetOutputMaximum(255);
   rescaleFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(filename);
-  writer->SetInput(rescaleFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(rescaleFilter->GetOutput(), filename);
 }

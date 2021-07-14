@@ -35,29 +35,25 @@ main(int argc, char * argv[])
   }
 
   // Parse command line arguments
-  std::string inputFilename = argv[1];
+  std::string inputFileName = argv[1];
 
   // Setup types
   using FloatImageType = itk::Image<float, 2>;
   using UnsignedCharImageType = itk::Image<unsigned char, 2>;
 
-  using readerType = itk::ImageFileReader<UnsignedCharImageType>;
-
   using filterType = itk::DerivativeImageFilter<UnsignedCharImageType, FloatImageType>;
 
-  // Create and setup a reader
-  readerType::Pointer reader = readerType::New();
-  reader->SetFileName(inputFilename.c_str());
+  const auto input = itk::ReadImage<UnsignedCharImageType>(inputFileName);
 
   // Create and setup a derivative filter
   filterType::Pointer derivativeFilter = filterType::New();
-  derivativeFilter->SetInput(reader->GetOutput());
+  derivativeFilter->SetInput(input);
   derivativeFilter->SetDirection(0); // "x" axis
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
 
-  viewer.AddImage<UnsignedCharImageType>(reader->GetOutput());
+  viewer.AddImage<UnsignedCharImageType>(input);
   viewer.AddImage<FloatImageType>(derivativeFilter->GetOutput());
   viewer.Visualize();
 #endif

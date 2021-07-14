@@ -60,14 +60,9 @@ main(int argc, char * argv[])
   checkerBoardFilter->SetInput1(image1);
   checkerBoardFilter->SetInput2(image2);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(checkerBoardFilter->GetOutput());
-  writer->SetFileName(argv[1]);
-
   try
   {
-    writer->Update();
+    itk::WriteImage(checkerBoardFilter->GetOutput(), argv[1]);
   }
   catch (itk::ExceptionObject & error)
   {

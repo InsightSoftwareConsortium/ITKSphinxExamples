@@ -79,9 +79,5 @@ CreateImage(ImageType::Pointer image)
     ++imageIterator;
   }
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("image.png");
-  writer->SetInput(image);
-  writer->Update();
+  itk::WriteImage(image, "image.png");
 }

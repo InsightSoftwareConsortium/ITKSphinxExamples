@@ -42,14 +42,7 @@ main(int argc, char * argv[])
     return EXIT_FAILURE;
   }
 
-  std::string filename = argv[1];
-
-  using ReaderType = itk::ImageFileReader<FloatImageType>;
-
-  // Read the image
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(filename.c_str());
-  reader->Update();
+  const auto input = itk::ReadImage<FloatImageType>(argv[1]);
 
   // Extract a small region
   using ExtractFilterType = itk::RegionOfInterestImageFilter<FloatImageType, FloatImageType>;
@@ -65,7 +58,7 @@ main(int argc, char * argv[])
   FloatImageType::RegionType desiredRegion(start, patchSize);
 
   extractFilter->SetRegionOfInterest(desiredRegion);
-  extractFilter->SetInput(reader->GetOutput());
+  extractFilter->SetInput(input);
   extractFilter->Update();
 
   // Perform normalized correlation
@@ -83,7 +76,7 @@ main(int argc, char * argv[])
   kernelOperator.CreateToRadius(radius);
 
   CorrelationFilterType::Pointer correlationFilter = CorrelationFilterType::New();
-  correlationFilter->SetInput(reader->GetOutput());
+  correlationFilter->SetInput(input);
   correlationFilter->SetTemplate(kernelOperator);
   correlationFilter->Update();
 
@@ -101,7 +94,6 @@ main(int argc, char * argv[])
   // (50,50)
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, UnsignedCharImageType>;
-  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
   {
     RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
     rescaleFilter->SetInput(correlationFilter->GetOutput());
@@ -109,10 +101,7 @@ main(int argc, char * argv[])
     rescaleFilter->SetOutputMaximum(255);
     rescaleFilter->Update();
 
-    WriterType::Pointer writer = WriterType::New();
-    writer->SetInput(rescaleFilter->GetOutput());
-    writer->SetFileName("correlation.png");
-    writer->Update();
+    itk::WriteImage(rescaleFilter->GetOutput(), "correlation.png");
   }
 
   {
@@ -122,10 +111,7 @@ main(int argc, char * argv[])
     rescaleFilter->SetOutputMaximum(255);
     rescaleFilter->Update();
 
-    WriterType::Pointer writer = WriterType::New();
-    writer->SetInput(rescaleFilter->GetOutput());
-    writer->SetFileName("patch.png");
-    writer->Update();
+    itk::WriteImage(rescaleFilter->GetOutput(), "patch.png");
   }
 
   // Extract the best matching patch
@@ -137,12 +123,12 @@ main(int argc, char * argv[])
 
   ExtractFilterType::Pointer bestPatchExtractFilter = ExtractFilterType::New();
   bestPatchExtractFilter->SetRegionOfInterest(bestPatchRegion);
-  bestPatchExtractFilter->SetInput(reader->GetOutput());
+  bestPatchExtractFilter->SetInput(input);
   bestPatchExtractFilter->Update();
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput());
+  viewer.AddImage(input);
   viewer.AddImage(extractFilter->GetOutput());
   viewer.AddImage(correlationFilter->GetOutput());
   viewer.AddImage(bestPatchExtractFilter->GetOutput());

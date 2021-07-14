@@ -66,11 +66,7 @@ main(int, char *[])
   colormapImageFilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Jet);
   colormapImageFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<RGBImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(colormapImageFilter->GetOutput());
-  writer->SetFileName("output.png");
-  writer->Update();
+  itk::WriteImage(colormapImageFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }
@@ -113,9 +109,5 @@ CreateImage(ImageType::Pointer image)
     ++imageIterator;
   }
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("input.png");
-  writer->SetInput(image);
-  writer->Update();
+  itk::WriteImage(image, "input.png");
 }

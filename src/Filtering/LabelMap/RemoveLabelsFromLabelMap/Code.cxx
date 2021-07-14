@@ -16,7 +16,6 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileWriter.h"
 #include "itkImageRegionIterator.h"
 #include "itkBinaryImageToLabelMapFilter.h"
 

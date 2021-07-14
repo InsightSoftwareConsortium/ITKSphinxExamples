@@ -40,31 +40,22 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader1 = ReaderType::New();
-  reader1->SetFileName(inputFileName1);
-
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader2 = ReaderType::New();
-  reader2->SetFileName(inputFileName2);
+  const auto input1 = itk::ReadImage<ImageType>(inputFileName1);
+  const auto input2 = itk::ReadImage<ImageType>(inputFileName2);
 
   using TileFilterType = itk::TileImageFilter<ImageType, ImageType>;
   TileFilterType::Pointer tileFilter = TileFilterType::New();
-  tileFilter->SetInput(0, reader1->GetOutput());
-  tileFilter->SetInput(1, reader2->GetOutput());
+  tileFilter->SetInput(0, input1);
+  tileFilter->SetInput(1, input2);
   TileFilterType::LayoutArrayType layout;
   layout[0] = 1;
   layout[1] = 1;
   layout[2] = 2;
   tileFilter->SetLayout(layout);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(tileFilter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(tileFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

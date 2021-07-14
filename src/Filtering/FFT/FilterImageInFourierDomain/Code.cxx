@@ -51,15 +51,13 @@ main(int argc, char * argv[])
   using PixelType = float;
   using RealImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<RealImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<RealImageType>(inputFileName);
 
   // Some FFT filter implementations, like VNL's, need the image size to be a
   // multiple of small prime numbers.
   using PadFilterType = itk::WrapPadImageFilter<RealImageType, RealImageType>;
   PadFilterType::Pointer padFilter = PadFilterType::New();
-  padFilter->SetInput(reader->GetOutput());
+  padFilter->SetInput(input);
   PadFilterType::SizeType padding;
   // Input size is [48, 62, 42].  Pad to [48, 64, 48].
   padding[0] = 0;
@@ -122,13 +120,9 @@ main(int argc, char * argv[])
   InverseFilterType::Pointer inverseFFTFilter = InverseFilterType::New();
   inverseFFTFilter->SetInput(multiplyFilter->GetOutput());
 
-  using WriterType = itk::ImageFileWriter<RealImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(inverseFFTFilter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(inverseFFTFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

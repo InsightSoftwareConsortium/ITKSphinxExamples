@@ -40,13 +40,8 @@ main(int, char *[])
   maskNegatedImageFilter->SetInput(image);
   maskNegatedImageFilter->SetMaskImage(mask);
   maskNegatedImageFilter->Update();
-  ;
 
-  using FileWriterType = itk::ImageFileWriter<ImageType>;
-  FileWriterType::Pointer writer = FileWriterType::New();
-  writer->SetFileName("output.png");
-  writer->SetInput(maskNegatedImageFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(maskNegatedImageFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }

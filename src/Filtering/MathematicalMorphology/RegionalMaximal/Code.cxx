@@ -36,16 +36,9 @@ main(int, char *[])
   RegionalMaximaImageFilter::Pointer filter = RegionalMaximaImageFilter::New();
   filter->SetInput(image);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
+  itk::WriteImage(image, "intensityblobs.png");
 
-  writer->SetFileName("intensityblobs.png");
-  writer->SetInput(image);
-  writer->Update();
-
-  writer->SetFileName("maximal.png");
-  writer->SetInput(filter->GetOutput());
-  writer->Update();
+  itk::WriteImage(filter->GetOutput(), "maximal.png");
 
   return EXIT_SUCCESS;
 }

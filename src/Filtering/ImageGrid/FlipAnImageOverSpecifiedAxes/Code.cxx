@@ -37,14 +37,12 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   using FlipImageFilterType = itk::FlipImageFilter<ImageType>;
 
   FlipImageFilterType::Pointer flipFilter = FlipImageFilterType::New();
-  flipFilter->SetInput(reader->GetOutput());
+  flipFilter->SetInput(input);
 
   FlipImageFilterType::FlipAxesArrayType flipAxes;
   if (std::stoi(argv[3]) == 0)
@@ -60,14 +58,9 @@ main(int argc, char * argv[])
 
   flipFilter->SetFlipAxes(flipAxes);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[2]);
-  writer->SetInput(flipFilter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(flipFilter->GetOutput(), argv[2]);
   }
   catch (itk::ExceptionObject & error)
   {

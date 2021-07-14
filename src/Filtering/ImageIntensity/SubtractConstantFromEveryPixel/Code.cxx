@@ -35,11 +35,7 @@ main(int, char *[])
   subtractConstantFromImageFilter->SetConstant2(2);
   subtractConstantFromImageFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("output.png");
-  writer->SetInput(subtractConstantFromImageFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(subtractConstantFromImageFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }

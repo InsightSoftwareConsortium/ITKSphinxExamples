@@ -39,25 +39,18 @@ main(int argc, char * argv[])
   using InputPixelType = itk::RGBPixel<ComponentType>;
   using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<InputImageType>(argv[1]);
 
   using OutputPixelType = unsigned char;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
   using FilterType = itk::RGBToLuminanceImageFilter<InputImageType, OutputImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
-
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[2]);
-  writer->SetInput(filter->GetOutput());
+  filter->SetInput(input);
 
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), argv[2]);
   }
   catch (itk::ExceptionObject & error)
   {

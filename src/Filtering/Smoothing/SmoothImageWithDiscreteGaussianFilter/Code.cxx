@@ -35,7 +35,7 @@ main(int argc, char * argv[])
   }
 
   // Parse command line argumentsa
-  std::string inputFilename = argv[1];
+  std::string inputFileName = argv[1];
 
   double variance = 4.0;
   if (argc > 2)
@@ -47,22 +47,18 @@ main(int argc, char * argv[])
   using UnsignedCharImageType = itk::Image<unsigned char, 2>;
   using FloatImageType = itk::Image<float, 2>;
 
-  using readerType = itk::ImageFileReader<UnsignedCharImageType>;
-
   using filterType = itk::DiscreteGaussianImageFilter<UnsignedCharImageType, FloatImageType>;
 
-  // Create and setup a reader
-  readerType::Pointer reader = readerType::New();
-  reader->SetFileName(inputFilename.c_str());
+  const auto input = itk::ReadImage<UnsignedCharImageType>(inputFileName);
 
   // Create and setup a Gaussian filter
   filterType::Pointer gaussianFilter = filterType::New();
-  gaussianFilter->SetInput(reader->GetOutput());
+  gaussianFilter->SetInput(input);
   gaussianFilter->SetVariance(variance);
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage<UnsignedCharImageType>(reader->GetOutput());
+  viewer.AddImage<UnsignedCharImageType>(input);
   viewer.AddImage<FloatImageType>(gaussianFilter->GetOutput());
   viewer.Visualize();
 #endif

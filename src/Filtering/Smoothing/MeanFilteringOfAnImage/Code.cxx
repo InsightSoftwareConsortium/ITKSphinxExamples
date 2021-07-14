@@ -40,9 +40,7 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::MeanImageFilter<ImageType, ImageType>;
   FilterType::Pointer meanFilter = FilterType::New();
@@ -51,16 +49,11 @@ main(int argc, char * argv[])
   radius.Fill(radiusValue);
 
   meanFilter->SetRadius(radius);
-  meanFilter->SetInput(reader->GetOutput());
-
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(meanFilter->GetOutput());
-  writer->SetFileName(outputFileName);
+  meanFilter->SetInput(input);
 
   try
   {
-    writer->Update();
+    itk::WriteImage(meanFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

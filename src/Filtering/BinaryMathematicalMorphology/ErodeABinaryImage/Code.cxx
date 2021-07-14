@@ -38,11 +38,9 @@ main(int argc, char * argv[])
 
   using PixelType = unsigned char;
   constexpr unsigned int Dimension = 2;
-
   using ImageType = itk::Image<PixelType, Dimension>;
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputImage);
+
+  const auto input = itk::ReadImage<ImageType>(inputImage);
 
   using StructuringElementType = itk::FlatStructuringElement<Dimension>;
   StructuringElementType::RadiusType radius;
@@ -52,19 +50,14 @@ main(int argc, char * argv[])
   using BinaryErodeImageFilterType = itk::BinaryErodeImageFilter<ImageType, ImageType, StructuringElementType>;
 
   BinaryErodeImageFilterType::Pointer erodeFilter = BinaryErodeImageFilterType::New();
-  erodeFilter->SetInput(reader->GetOutput());
+  erodeFilter->SetInput(input);
   erodeFilter->SetKernel(structuringElement);
   erodeFilter->SetForegroundValue(255); // Intensity value to erode
   erodeFilter->SetBackgroundValue(0);   // Replacement value for eroded voxels
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(erodeFilter->GetOutput());
-  writer->SetFileName(outputImage);
-
   try
   {
-    writer->Update();
+    itk::WriteImage(erodeFilter->GetOutput(), outputImage);
   }
   catch (itk::ExceptionObject & e)
   {

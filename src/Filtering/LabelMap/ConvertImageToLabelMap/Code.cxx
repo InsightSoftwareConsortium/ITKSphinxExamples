@@ -16,7 +16,6 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileWriter.h"
 #include "itkLabelImageToLabelMapFilter.h"
 #include "itkConnectedComponentImageFilter.h"
 

@@ -35,9 +35,7 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using FileReaderType = itk::ImageFileReader<ImageType>;
-  FileReaderType::Pointer reader = FileReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   using AdaptiveHistogramEqualizationImageFilterType = itk::AdaptiveHistogramEqualizationImageFilter<ImageType>;
   AdaptiveHistogramEqualizationImageFilterType::Pointer adaptiveHistogramEqualizationImageFilter =
@@ -54,16 +52,11 @@ main(int argc, char * argv[])
   radius.Fill(radiusSize);
   adaptiveHistogramEqualizationImageFilter->SetRadius(radius);
 
-  adaptiveHistogramEqualizationImageFilter->SetInput(reader->GetOutput());
+  adaptiveHistogramEqualizationImageFilter->SetInput(input);
 
   adaptiveHistogramEqualizationImageFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(argv[2]);
-  writer->SetInput(adaptiveHistogramEqualizationImageFilter->GetOutput());
-
-  writer->Update();
+  itk::WriteImage(adaptiveHistogramEqualizationImageFilter->GetOutput(), argv[2]);
 
   return EXIT_SUCCESS;
 }

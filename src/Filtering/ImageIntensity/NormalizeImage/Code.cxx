@@ -37,17 +37,15 @@ main(int argc, char * argv[])
 
   using FloatImageType = itk::Image<double, 2>;
 
-  using ReaderType = itk::ImageFileReader<FloatImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<FloatImageType>(argv[1]);
 
   using NormalizeFilterType = itk::NormalizeImageFilter<FloatImageType, FloatImageType>;
   NormalizeFilterType::Pointer normalizeFilter = NormalizeFilterType::New();
-  normalizeFilter->SetInput(reader->GetOutput());
+  normalizeFilter->SetInput(input);
 
   using StatisticsFilterType = itk::StatisticsImageFilter<FloatImageType>;
   StatisticsFilterType::Pointer statistics1 = StatisticsFilterType::New();
-  statistics1->SetInput(reader->GetOutput());
+  statistics1->SetInput(input);
 
   StatisticsFilterType::Pointer statistics2 = StatisticsFilterType::New();
   statistics2->SetInput(normalizeFilter->GetOutput());
