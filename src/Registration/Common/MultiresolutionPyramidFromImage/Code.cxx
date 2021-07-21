@@ -54,14 +54,10 @@ main(int, char *[])
     rescaleFilter->SetOutputMaximum(255);
     rescaleFilter->Update();
 
-    using FileWriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-    FileWriterType::Pointer writer = FileWriterType::New();
-    std::stringstream       ss;
+    std::stringstream ss;
     ss << "output_" << i << ".png";
     std::cout << "Writing " << ss.str() << std::endl;
-    writer->SetFileName(ss.str());
-    writer->SetInput(rescaleFilter->GetOutput());
-    writer->Update();
+    itk::WriteImage(rescaleFilter->GetOutput(), ss.str());
   }
 
   return EXIT_SUCCESS;

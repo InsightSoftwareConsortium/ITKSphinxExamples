@@ -37,11 +37,7 @@ main(int argc, char * argv[])
   constexpr unsigned int MeasurementVectorSize = 1; // Grayscale
   const auto             binsPerDimension = static_cast<unsigned int>(std::stoi(argv[2]));
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-
-  ImageType::Pointer image = reader->GetOutput();
+  ImageType::Pointer image = itk::ReadImage<ImageType>(argv[1]);
 
   using ImageToHistogramFilterType = itk::Statistics::ImageToHistogramFilter<ImageType>;
 

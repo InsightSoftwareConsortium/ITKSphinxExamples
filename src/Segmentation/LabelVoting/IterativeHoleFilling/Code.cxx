@@ -44,29 +44,23 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::VotingBinaryIterativeHoleFillingImageFilter<ImageType>;
   FilterType::InputSizeType radius;
   radius.Fill(r);
 
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
   filter->SetRadius(radius);
   filter->SetMajorityThreshold(majorityThreshold);
   filter->SetBackgroundValue(itk::NumericTraits<PixelType>::Zero);
   filter->SetForegroundValue(itk::NumericTraits<PixelType>::max());
   filter->SetMaximumNumberOfIterations(numberOfIterations);
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(filter->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(filter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

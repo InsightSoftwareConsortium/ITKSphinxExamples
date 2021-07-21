@@ -128,17 +128,8 @@ main(int, char *[])
     ++outputIterator;
   }
 
-  using WriterType = itk::ImageFileWriter<ColorImageType>;
-  WriterType::Pointer inputWriter = WriterType::New();
-  inputWriter->SetFileName("input.mha");
-  inputWriter->SetInput(image);
-  inputWriter->Update();
-
-  using ScalarWriterType = itk::ImageFileWriter<ScalarImageType>;
-  ScalarWriterType::Pointer outputWriter = ScalarWriterType::New();
-  outputWriter->SetFileName("output.mha");
-  outputWriter->SetInput(outputImage);
-  outputWriter->Update();
+  itk::WriteImage(image, "input.mha");
+  itk::WriteImage(outputImage, "output.mha");
 
 
   return EXIT_SUCCESS;

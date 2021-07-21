@@ -17,7 +17,6 @@
  *=========================================================================*/
 #include "itkBlockMatchingImageFilter.h"
 #include "itkImage.h"
-#include "itkImageFileWriter.h"
 #include "itkPoint.h"
 #include "itkPointSet.h"
 
@@ -35,12 +34,6 @@ main(int /*argc*/, char * /*argv*/[])
 
   ImageType::Pointer movingImage = ImageType::New();
   CreateImage(movingImage, 50);
-
-  //  using WriterType = itk::ImageFileWriter<ImageType>;
-  //  WriterType::Pointer writer = WriterType::New();
-  //  writer->SetFileName("input.png");
-  //  writer->SetInput(input);
-  //  writer->Update();
 
   //  using BlockMatchingImageFilterType = itk::BlockMatchingImageFilter<ImageType, ImageType, PointSetType>;
   using BlockMatchingImageFilterType = itk::BlockMatchingImageFilter<ImageType>;

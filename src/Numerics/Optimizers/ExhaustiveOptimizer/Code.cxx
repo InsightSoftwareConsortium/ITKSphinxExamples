@@ -74,16 +74,12 @@ main(int argc, char * argv[])
   }
   using FixedImageType = itk::Image<double, 2>;
   using MovingImageType = itk::Image<double, 2>;
-  using FixedImageReaderType = itk::ImageFileReader<FixedImageType>;
-  using MovingImageReaderType = itk::ImageFileReader<MovingImageType>;
   using TransformType = itk::Euler2DTransform<double>;
   using OptimizerType = itk::ExhaustiveOptimizerv4<double>;
   using MetricType = itk::MeanSquaresImageToImageMetricv4<FixedImageType, MovingImageType>;
   using TransformInitializerType = itk::CenteredTransformInitializer<TransformType, FixedImageType, MovingImageType>;
   using RegistrationType = itk::ImageRegistrationMethodv4<FixedImageType, MovingImageType, TransformType>;
 
-  FixedImageReaderType::Pointer     fixedImageReader = FixedImageReaderType::New();
-  MovingImageReaderType::Pointer    movingImageReader = MovingImageReaderType::New();
   FixedImageType::Pointer           fixedImage = FixedImageType::New();
   MovingImageType::Pointer          movingImage = MovingImageType::New();
   TransformType::Pointer            transform = TransformType::New();
@@ -92,13 +88,8 @@ main(int argc, char * argv[])
   RegistrationType::Pointer         registration = RegistrationType::New();
   TransformInitializerType::Pointer initializer = TransformInitializerType::New();
 
-  fixedImageReader->SetFileName(argv[1]);
-  fixedImageReader->Update();
-  fixedImage = fixedImageReader->GetOutput();
-
-  movingImageReader->SetFileName(argv[2]);
-  movingImageReader->Update();
-  movingImage = movingImageReader->GetOutput();
+  fixedImage = itk::ReadImage<FixedImageType>(argv[1]);
+  movingImage = itk::ReadImage<MovingImageType>(argv[2]);
 
   // Create the Command observer and register it with the optimizer.
   //

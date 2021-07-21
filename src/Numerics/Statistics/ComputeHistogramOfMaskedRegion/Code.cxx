@@ -170,9 +170,5 @@ void CreateHalfMask(itk::ImageRegion<2> region, UnsignedCharImageType::Pointer m
   rescaleFilter->SetInput(mask);
   rescaleFilter->Update();
 
-  using WriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("mask.png");
-  writer->SetInput(rescaleFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(rescaleFilter->GetOutput(), "mask.png");
 }

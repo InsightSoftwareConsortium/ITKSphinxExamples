@@ -156,14 +156,8 @@ main(int argc, char * argv[])
   metric->SetFixedImageStandardDeviation(0.4);
   metric->SetMovingImageStandardDeviation(0.4);
 
-  using FixedImageReaderType = itk::ImageFileReader<FixedImageType>;
-  using MovingImageReaderType = itk::ImageFileReader<MovingImageType>;
-
-  FixedImageReaderType::Pointer  fixedImageReader = FixedImageReaderType::New();
-  MovingImageReaderType::Pointer movingImageReader = MovingImageReaderType::New();
-
-  fixedImageReader->SetFileName(fixedImageFile);
-  movingImageReader->SetFileName(movingImageFile);
+  const auto fixedImage = itk::ReadImage<FixedImageType>(fixedImageFile);
+  const auto movingImage = itk::ReadImage<MovingImageType>(movingImageFile);
 
   using FixedNormalizeFilterType = itk::NormalizeImageFilter<FixedImageType, InternalImageType>;
 
@@ -181,8 +175,8 @@ main(int argc, char * argv[])
   fixedSmoother->SetVariance(2.0);
   movingSmoother->SetVariance(2.0);
 
-  fixedNormalizer->SetInput(fixedImageReader->GetOutput());
-  movingNormalizer->SetInput(movingImageReader->GetOutput());
+  fixedNormalizer->SetInput(fixedImage);
+  movingNormalizer->SetInput(movingImage);
 
   fixedSmoother->SetInput(fixedNormalizer->GetOutput());
   movingSmoother->SetInput(movingNormalizer->GetOutput());
@@ -310,10 +304,7 @@ main(int argc, char * argv[])
   ResampleFilterType::Pointer resample = ResampleFilterType::New();
 
   resample->SetTransform(finalTransform);
-  resample->SetInput(movingImageReader->GetOutput());
-
-  FixedImageType::Pointer fixedImage = fixedImageReader->GetOutput();
-
+  resample->SetInput(movingImage);
   resample->SetSize(fixedImage->GetLargestPossibleRegion().GetSize());
   resample->SetOutputOrigin(fixedImage->GetOrigin());
   resample->SetOutputSpacing(fixedImage->GetSpacing());
@@ -327,27 +318,19 @@ main(int argc, char * argv[])
 
   using CastFilterType = itk::CastImageFilter<FixedImageType, OutputImageType>;
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-
-  WriterType::Pointer     writer = WriterType::New();
   CastFilterType::Pointer caster = CastFilterType::New();
-
-  writer->SetFileName(outputImageFile);
   caster->SetInput(resample->GetOutput());
-  writer->SetInput(caster->GetOutput());
-  writer->Update();
 
+  itk::WriteImage(caster->GetOutput(), outputImageFile);
 
   // Generate checkerboards before and after registration
   using CheckerBoardFilterType = itk::CheckerBoardImageFilter<FixedImageType>;
 
   CheckerBoardFilterType::Pointer checker = CheckerBoardFilterType::New();
-
   checker->SetInput1(fixedImage);
   checker->SetInput2(resample->GetOutput());
 
   caster->SetInput(checker->GetOutput());
-  writer->SetInput(caster->GetOutput());
 
   // Before registration
   TransformType::Pointer identityTransform = TransformType::New();
@@ -356,24 +339,14 @@ main(int argc, char * argv[])
 
   if (argc > 4)
   {
-    writer->SetFileName(checkerBoardBefore);
+    itk::WriteImage(caster->GetOutput(), checkerBoardBefore);
   }
 
   // After registration
   resample->SetTransform(finalTransform);
   if (argc > 5)
   {
-    writer->SetFileName(checkerBoardAfter);
-  }
-
-  try
-  {
-    writer->Update();
-  }
-  catch (itk::ExceptionObject & error)
-  {
-    std::cerr << "Error: " << error << std::endl;
-    return EXIT_FAILURE;
+    itk::WriteImage(caster->GetOutput(), checkerBoardAfter);
   }
 
   return EXIT_SUCCESS;

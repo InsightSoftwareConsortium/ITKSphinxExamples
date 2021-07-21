@@ -25,23 +25,15 @@ int
 main(int argc, char * argv[])
 {
   using ImageType = itk::Image<double, 2>;
-  using ReaderType = itk::ImageFileReader<ImageType>;
 
   if (argc < 3)
   {
     std::cout << "Usage: " << argv[0] << " imageFile1 imageFile2" << std::endl;
     return EXIT_FAILURE;
   }
-  ReaderType::Pointer fixedReader = ReaderType::New();
-  fixedReader->SetFileName(argv[1]);
-  fixedReader->Update();
 
-  ReaderType::Pointer movingReader = ReaderType::New();
-  movingReader->SetFileName(argv[2]);
-  movingReader->Update();
-
-  ImageType::Pointer fixedImage = fixedReader->GetOutput();
-  ImageType::Pointer movingImage = movingReader->GetOutput();
+  ImageType::Pointer fixedImage = itk::ReadImage<ImageType>(argv[1]);
+  ImageType::Pointer movingImage = itk::ReadImage<ImageType>(argv[2]);
 
   using MetricType = itk::MeanSquaresImageToImageMetric<ImageType, ImageType>;
   using InterpolatorType = itk::LinearInterpolateImageFunction<ImageType, double>;

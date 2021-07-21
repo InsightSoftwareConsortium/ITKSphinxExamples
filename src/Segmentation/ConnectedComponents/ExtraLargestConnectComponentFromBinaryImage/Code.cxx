@@ -40,16 +40,14 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   using OutputImageType = itk::Image<unsigned short, Dimension>;
 
   using ConnectedComponentImageFilterType = itk::ConnectedComponentImageFilter<ImageType, OutputImageType>;
 
   ConnectedComponentImageFilterType::Pointer connected = ConnectedComponentImageFilterType::New();
-  connected->SetInput(reader->GetOutput());
+  connected->SetInput(input);
   connected->Update();
 
   std::cout << "Number of objects: " << connected->GetObjectCount() << std::endl;
@@ -71,7 +69,7 @@ main(int argc, char * argv[])
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   std::stringstream desc;
   desc << "Largest object of " << connected->GetObjectCount() << " objects";

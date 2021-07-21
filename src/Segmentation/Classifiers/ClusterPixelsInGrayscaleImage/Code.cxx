@@ -15,8 +15,6 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
 #include "itkScalarImageKmeansImageFilter.h"
 #include "itkRelabelComponentImageFilter.h"
 #include "itkRescaleIntensityImageFilter.h"

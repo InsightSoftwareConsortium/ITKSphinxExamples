@@ -135,16 +135,8 @@ main(int argc, char * argv[])
 
   if (argc > 2)
   {
-    using ReaderType = itk::ImageFileReader<InputImageType>;
-    ReaderType::Pointer fixedReader = ReaderType::New();
-    fixedReader->SetFileName(argv[1]);
-    fixedReader->Update();
-    fixedImage = fixedReader->GetOutput();
-
-    ReaderType::Pointer movingReader = ReaderType::New();
-    movingReader->SetFileName(argv[2]);
-    movingReader->Update();
-    movingImage = movingReader->GetOutput();
+    fixedImage = itk::ReadImage<InputImageType>(argv[1]);
+    movingImage = itk::ReadImage<InputImageType>(argv[2]);
   }
   else
   {

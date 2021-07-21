@@ -138,11 +138,7 @@ CreateImage(UnsignedCharImageType::Pointer image)
     ++imageIterator;
   }
 
-  using FileWriterType = itk::ImageFileWriter<UnsignedCharImageType>;
-  FileWriterType::Pointer writer = FileWriterType::New();
-  writer->SetFileName("input.png");
-  writer->SetInput(image);
-  writer->Update();
+  itk::WriteImage(image, "input.png");
 }
 
 void
@@ -163,9 +159,5 @@ PerformSegmentation(FloatImageType::Pointer image, const float threshold, const 
   std::stringstream ss;
   ss << "output_" << threshold << "_" << level << ".png";
 
-  using FileWriterType = itk::ImageFileWriter<RGBImageType>;
-  FileWriterType::Pointer writer = FileWriterType::New();
-  writer->SetFileName(ss.str());
-  writer->SetInput(colormapImageFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(colormapImageFilter->GetOutput(), ss.str());
 }

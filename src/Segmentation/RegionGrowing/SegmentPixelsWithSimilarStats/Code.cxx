@@ -39,10 +39,7 @@ main(int argc, char * argv[])
   }
   std::string inputFileName = argv[1];
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName.c_str());
-  reader->Update();
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using ConfidenceConnectedFilterType = itk::ConfidenceConnectedImageFilter<ImageType, ImageType>;
   ConfidenceConnectedFilterType::Pointer confidenceConnectedFilter = ConfidenceConnectedFilterType::New();
@@ -56,11 +53,11 @@ main(int argc, char * argv[])
   seed[0] = std::stoi(argv[2]);
   seed[1] = std::stoi(argv[3]);
   confidenceConnectedFilter->SetSeed(seed);
-  confidenceConnectedFilter->SetInput(reader->GetOutput());
+  confidenceConnectedFilter->SetInput(input);
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(inputFileName));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(inputFileName));
 
   std::stringstream desc;
   desc << "ConfidenceConnected Seed: " << seed[0] << ", " << seed[1];

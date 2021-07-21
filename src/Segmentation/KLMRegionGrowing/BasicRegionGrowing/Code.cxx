@@ -16,7 +16,6 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileWriter.h"
 #include "itkRegionGrowImageFilter.h"
 #include "itkCastImageFilter.h"
 

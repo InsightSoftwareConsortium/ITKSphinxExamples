@@ -159,11 +159,7 @@ main(int, char *[])
     ind[1] = 75;
     image->SetPixel(ind, 255);
 
-    using ImageWriterType = itk::ImageFileWriter<ImageType>;
-    ImageWriterType::Pointer imageFileWriter = ImageWriterType::New();
-    imageFileWriter->SetFileName("image.png");
-    imageFileWriter->SetInput(image);
-    imageFileWriter->Update();
+    itk::WriteImage(image, "image.png");
   }
 
   return EXIT_SUCCESS;

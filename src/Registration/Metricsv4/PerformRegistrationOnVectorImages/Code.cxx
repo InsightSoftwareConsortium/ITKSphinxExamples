@@ -70,25 +70,8 @@ main(int argc, char * argv[])
 
   using ParametersValueType = double;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer fixedImageReader = ReaderType::New();
-  fixedImageReader->SetFileName(fixedImageFile);
-  ReaderType::Pointer movingImageReader = ReaderType::New();
-  movingImageReader->SetFileName(movingImageFile);
-
-  // Get the input images
-  try
-  {
-    fixedImageReader->Update();
-    movingImageReader->Update();
-  }
-  catch (itk::ExceptionObject & error)
-  {
-    std::cerr << "Error while reading images: " << error << std::endl;
-    return EXIT_FAILURE;
-  }
-  InputImageType::Pointer fixedImage = fixedImageReader->GetOutput();
-  InputImageType::Pointer movingImage = movingImageReader->GetOutput();
+  InputImageType::Pointer fixedImage = itk::ReadImage<InputImageType>(fixedImageFile);
+  InputImageType::Pointer movingImage = itk::ReadImage<InputImageType>(movingImageFile);
 
   using AffineTransformType = itk::AffineTransform<ParametersValueType, Dimension>;
   AffineTransformType::Pointer affineTransform = AffineTransformType::New();
@@ -220,7 +203,7 @@ main(int argc, char * argv[])
   using ResampleFilterType = itk::ResampleImageFilter<InputImageType, InputImageType>;
   ResampleFilterType::Pointer resampler = ResampleFilterType::New();
   resampler->SetTransform(compositeTransform);
-  resampler->SetInput(movingImageReader->GetOutput());
+  resampler->SetInput(movingImage);
   resampler->SetReferenceImage(fixedImage);
   resampler->SetUseReferenceImage(true);
 
@@ -231,13 +214,9 @@ main(int argc, char * argv[])
   CastFilterType::Pointer caster = CastFilterType::New();
   caster->SetInput(resampler->GetOutput());
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(resampledMovingImageFile);
-  writer->SetInput(caster->GetOutput());
   try
   {
-    writer->UpdateLargestPossibleRegion();
+    itk::WriteImage(caster->GetOutput(), resampledMovingImageFile);
   }
   catch (itk::ExceptionObject & error)
   {

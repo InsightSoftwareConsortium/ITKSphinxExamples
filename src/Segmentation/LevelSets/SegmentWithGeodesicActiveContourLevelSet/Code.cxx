@@ -59,18 +59,14 @@ main(int argc, char * argv[])
   using OutputPixelType = unsigned char;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<InputImageType>(inputFileName);
 
   using SmoothingFilterType = itk::CurvatureAnisotropicDiffusionImageFilter<InputImageType, InputImageType>;
   SmoothingFilterType::Pointer smoothing = SmoothingFilterType::New();
   smoothing->SetTimeStep(0.125);
   smoothing->SetNumberOfIterations(5);
   smoothing->SetConductanceParameter(9.0);
-  smoothing->SetInput(reader->GetOutput());
+  smoothing->SetInput(input);
 
   using GradientFilterType = itk::GradientMagnitudeRecursiveGaussianImageFilter<InputImageType, InputImageType>;
   GradientFilterType::Pointer gradientMagnitude = GradientFilterType::New();
@@ -131,50 +127,33 @@ main(int argc, char * argv[])
   CastFilterType::Pointer caster3 = CastFilterType::New();
   CastFilterType::Pointer caster4 = CastFilterType::New();
 
-  WriterType::Pointer writer1 = WriterType::New();
-  WriterType::Pointer writer2 = WriterType::New();
-  WriterType::Pointer writer3 = WriterType::New();
-  WriterType::Pointer writer4 = WriterType::New();
-
   caster1->SetInput(smoothing->GetOutput());
-  writer1->SetInput(caster1->GetOutput());
-  writer1->SetFileName("GeodesicActiveContourImageFilterOutput1.png");
   caster1->SetOutputMinimum(itk::NumericTraits<OutputPixelType>::min());
   caster1->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
-  writer1->Update();
+  itk::WriteImage(caster1->GetOutput(), "GeodesicActiveContourImageFilterOutput1.png");
 
   caster2->SetInput(gradientMagnitude->GetOutput());
-  writer2->SetInput(caster2->GetOutput());
-  writer2->SetFileName("GeodesicActiveContourImageFilterOutput2.png");
   caster2->SetOutputMinimum(itk::NumericTraits<OutputPixelType>::min());
   caster2->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
-  writer2->Update();
+  itk::WriteImage(caster2->GetOutput(), "GeodesicActiveContourImageFilterOutput2.png");
 
   caster3->SetInput(sigmoid->GetOutput());
-  writer3->SetInput(caster3->GetOutput());
-  writer3->SetFileName("GeodesicActiveContourImageFilterOutput3.png");
   caster3->SetOutputMinimum(itk::NumericTraits<OutputPixelType>::min());
   caster3->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
-  writer3->Update();
+  itk::WriteImage(caster3->GetOutput(), "GeodesicActiveContourImageFilterOutput3.png");
 
   caster4->SetInput(fastMarching->GetOutput());
-  writer4->SetInput(caster4->GetOutput());
-  writer4->SetFileName("GeodesicActiveContourImageFilterOutput4.png");
   caster4->SetOutputMinimum(itk::NumericTraits<OutputPixelType>::min());
   caster4->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
 
-  InputImageType::Pointer inImage = reader->GetOutput();
-  fastMarching->SetOutputDirection(inImage->GetDirection());
-  fastMarching->SetOutputOrigin(inImage->GetOrigin());
-  fastMarching->SetOutputRegion(inImage->GetBufferedRegion());
-  fastMarching->SetOutputSpacing(inImage->GetSpacing());
+  fastMarching->SetOutputDirection(input->GetDirection());
+  fastMarching->SetOutputOrigin(input->GetOrigin());
+  fastMarching->SetOutputRegion(input->GetBufferedRegion());
+  fastMarching->SetOutputSpacing(input->GetSpacing());
 
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(thresholder->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(thresholder->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {
@@ -191,7 +170,7 @@ main(int argc, char * argv[])
 
   try
   {
-    writer4->Update();
+    itk::WriteImage(caster4->GetOutput(), "GeodesicActiveContourImageFilterOutput4.png");
   }
   catch (itk::ExceptionObject & error)
   {
@@ -199,14 +178,9 @@ main(int argc, char * argv[])
     return EXIT_FAILURE;
   }
 
-  using InternalWriterType = itk::ImageFileWriter<InputImageType>;
-
-  InternalWriterType::Pointer mapWriter = InternalWriterType::New();
-  mapWriter->SetInput(fastMarching->GetOutput());
-  mapWriter->SetFileName("GeodesicActiveContourImageFilterOutput4.mha");
   try
   {
-    mapWriter->Update();
+    itk::WriteImage(fastMarching->GetOutput(), "GeodesicActiveContourImageFilterOutput4.mha");
   }
   catch (itk::ExceptionObject & error)
   {
@@ -214,12 +188,9 @@ main(int argc, char * argv[])
     return EXIT_FAILURE;
   }
 
-  InternalWriterType::Pointer speedWriter = InternalWriterType::New();
-  speedWriter->SetInput(sigmoid->GetOutput());
-  speedWriter->SetFileName("GeodesicActiveContourImageFilterOutput3.mha");
   try
   {
-    speedWriter->Update();
+    itk::WriteImage(sigmoid->GetOutput(), "GeodesicActiveContourImageFilterOutput3.mha");
   }
   catch (itk::ExceptionObject & error)
   {
@@ -227,12 +198,9 @@ main(int argc, char * argv[])
     return EXIT_FAILURE;
   }
 
-  InternalWriterType::Pointer gradientWriter = InternalWriterType::New();
-  gradientWriter->SetInput(gradientMagnitude->GetOutput());
-  gradientWriter->SetFileName("GeodesicActiveContourImageFilterOutput2.mha");
   try
   {
-    gradientWriter->Update();
+    itk::WriteImage(gradientMagnitude->GetOutput(), "GeodesicActiveContourImageFilterOutput2.mha");
   }
   catch (itk::ExceptionObject & error)
   {
