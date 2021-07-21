@@ -60,16 +60,11 @@ main(int argc, char * argv[])
   }
   else
   {
-    using ReaderType = itk::ImageFileReader<ImageType>;
-    ReaderType::Pointer reader = ReaderType::New();
-    reader->SetFileName(argv[1]);
-    reader->Update();
-
     if (argc > 2)
     {
       distanceThreshold = static_cast<PixelType>(atoi(argv[2]));
     }
-    image = reader->GetOutput();
+    image = itk::ReadImage<ImageType>(argv[1]);
   }
 
 

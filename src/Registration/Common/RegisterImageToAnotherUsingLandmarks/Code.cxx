@@ -101,12 +101,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   resampleFilter->SetReferenceImage(fixedImage);
   resampleFilter->SetDefaultPixelValue(200);
 
-  // Write the output
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(resampleFilter->GetOutput());
-  writer->SetFileName("output.png");
-  writer->Update();
+  itk::WriteImage(resampleFilter->GetOutput(), "output.png");
 
   return EXIT_SUCCESS;
 }
@@ -141,12 +136,7 @@ CreateFixedImage(ImageType::Pointer image)
     ++imageIterator;
   }
 
-  // Write the deformation field
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(image);
-  writer->SetFileName("fixed.png");
-  writer->Update();
+  itk::WriteImage(image, "fixed.png");
 }
 
 
@@ -180,10 +170,5 @@ CreateMovingImage(ImageType::Pointer image)
     ++imageIterator;
   }
 
-  // Write the deformation field
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(image);
-  writer->SetFileName("moving.png");
-  writer->Update();
+  itk::WriteImage(image, "moving.png");
 }

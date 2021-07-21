@@ -31,7 +31,6 @@
 #include "itkConnectedComponentImageFilter.h"
 #include "itkLabelToRGBImageFilter.h"
 #include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
 
 #include "itksys/SystemTools.hxx"
 #include <sstream>
@@ -76,14 +75,11 @@ main(int argc, char * argv[])
   using ConnectedComponentImageFilterType = itk::ConnectedComponentImageFilter<OutputImageType, OutputImageType>;
   using RGBFilterType = itk::LabelToRGBImageFilter<OutputImageType, RGBImageType>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<InputImageType>(argv[1]);
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(reader->GetOutput(), true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   using FilterContainerType =
     std::map<std::string, itk::HistogramThresholdImageFilter<InputImageType, OutputImageType>::Pointer>;
@@ -108,7 +104,7 @@ main(int argc, char * argv[])
     (*it).second->SetInsideValue(255);
     (*it).second->SetOutsideValue(0);
     (*it).second->SetNumberOfHistogramBins(25);
-    (*it).second->SetInput(reader->GetOutput());
+    (*it).second->SetInput(input);
     try
     {
       (*it).second->Update();

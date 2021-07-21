@@ -55,14 +55,8 @@ main(int argc, char * argv[])
   using FixedImageType = itk::Image<PixelType, Dimension>;
   using MovingImageType = itk::Image<PixelType, Dimension>;
 
-
-  using FixedImageReaderType = itk::ImageFileReader<FixedImageType>;
-  auto fixedImageReader = FixedImageReaderType::New();
-  fixedImageReader->SetFileName(fixedImageFile);
-
-  using MovingImageReaderType = itk::ImageFileReader<MovingImageType>;
-  auto movingImageReader = MovingImageReaderType::New();
-  movingImageReader->SetFileName(movingImageFile);
+  const auto fixedImage = itk::ReadImage<FixedImageType>(fixedImageFile);
+  const auto movingImage = itk::ReadImage<MovingImageType>(movingImageFile);
 
 
   using TransformType = itk::TranslationTransform<double, Dimension>;
@@ -83,8 +77,8 @@ main(int argc, char * argv[])
   registration->SetInitialTransform(initialTransform);
   registration->SetMetric(metric);
   registration->SetOptimizer(optimizer);
-  registration->SetFixedImage(fixedImageReader->GetOutput());
-  registration->SetMovingImage(movingImageReader->GetOutput());
+  registration->SetFixedImage(fixedImage);
+  registration->SetMovingImage(movingImage);
 
   auto                          movingInitialTransform = TransformType::New();
   TransformType::ParametersType initialParameters(movingInitialTransform->GetNumberOfParameters());
@@ -145,9 +139,8 @@ main(int argc, char * argv[])
 
   using ResampleFilterType = itk::ResampleImageFilter<MovingImageType, FixedImageType>;
   auto resampler = ResampleFilterType::New();
-  resampler->SetInput(movingImageReader->GetOutput());
+  resampler->SetInput(movingImage);
   resampler->SetTransform(outputCompositeTransform);
-  auto fixedImage = fixedImageReader->GetOutput();
   resampler->SetUseReferenceImage(true);
   resampler->SetReferenceImage(fixedImage);
   resampler->SetDefaultPixelValue(100);
@@ -159,15 +152,11 @@ main(int argc, char * argv[])
   auto caster = CastFilterType::New();
   caster->SetInput(resampler->GetOutput());
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  auto writer = WriterType::New();
-  writer->SetFileName(outputImageFile);
-  writer->SetInput(caster->GetOutput());
-  writer->Update();
+  itk::WriteImage(caster->GetOutput(), outputImageFile);
 
   using DifferenceFilterType = itk::SubtractImageFilter<FixedImageType, FixedImageType, FixedImageType>;
   auto difference = DifferenceFilterType::New();
-  difference->SetInput1(fixedImageReader->GetOutput());
+  difference->SetInput1(fixedImage);
   difference->SetInput2(resampler->GetOutput());
 
   using RescalerType = itk::RescaleIntensityImageFilter<FixedImageType, OutputImageType>;
@@ -177,14 +166,10 @@ main(int argc, char * argv[])
   intensityRescaler->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
 
   resampler->SetDefaultPixelValue(1);
-
-  writer->SetInput(intensityRescaler->GetOutput());
-  writer->SetFileName(differenceImageAfterFile);
-  writer->Update();
+  itk::WriteImage(intensityRescaler->GetOutput(), differenceImageAfterFile);
 
   resampler->SetTransform(identityTransform);
-  writer->SetFileName(differenceImageBeforeFile);
-  writer->Update();
+  itk::WriteImage(intensityRescaler->GetOutput(), differenceImageBeforeFile);
 
   return EXIT_SUCCESS;
 }

@@ -16,7 +16,6 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileReader.h"
 #include "itkCustomColormapFunction.h"
 #include "itkScalarToRGBColormapImageFilter.h"
 #include "itkRGBPixel.h"

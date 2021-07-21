@@ -65,20 +65,16 @@ main(int argc, char * argv[])
 
   using PixelType = signed short;
   constexpr unsigned int Dimension = 2;
-
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  // create a reader
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputImageFileName);
+  const auto input = itk::ReadImage<ImageType>(inputImageFileName);
 
   // Instantiate the ScalarImageKmeansImageFilter
   using KMeansFilterType = itk::ScalarImageKmeansImageFilter<ImageType>;
 
   KMeansFilterType::Pointer kmeansFilter = KMeansFilterType::New();
 
-  kmeansFilter->SetInput(reader->GetOutput());
+  kmeansFilter->SetInput(input);
 
   // Make the output image intellegable by expanding the range of output image values, if desired
 
@@ -91,22 +87,9 @@ main(int argc, char * argv[])
     kmeansFilter->AddClassWithInitialMean(userMeans[k]);
   }
 
-  // Create and setup a writer
-
-  using OutputImageType = KMeansFilterType::OutputImageType;
-
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-
-  WriterType::Pointer writer = WriterType::New();
-
-  writer->SetInput(kmeansFilter->GetOutput());
-
-  writer->SetFileName(outputImageFileName);
-
-  // execut the pipeline
   try
   {
-    writer->Update();
+    itk::WriteImage(kmeansFilter->GetOutput(), outputImageFileName);
   }
   catch (itk::ExceptionObject & excp)
   {

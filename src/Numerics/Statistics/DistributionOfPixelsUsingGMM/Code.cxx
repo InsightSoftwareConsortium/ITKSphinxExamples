@@ -24,7 +24,6 @@
 #include "itkImageToListSampleFilter.h"
 #include "itkCovariantVector.h"
 #include "itkImageRegionIterator.h"
-#include "itkImageFileReader.h"
 #include "itkSimpleFilterWatcher.h"
 
 using PixelType = itk::CovariantVector<unsigned char, 3>;

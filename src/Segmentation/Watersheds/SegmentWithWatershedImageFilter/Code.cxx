@@ -50,14 +50,12 @@ main(int argc, char * argv[])
   using RGBImageType = itk::Image<RGBPixelType, Dimension>;
   using LabeledImageType = itk::Image<itk::IdentifierType, Dimension>;
 
-  using FileReaderType = itk::ImageFileReader<InputImageType>;
-  FileReaderType::Pointer reader = FileReaderType::New();
-  reader->SetFileName(argv[1]);
+  const auto input = itk::ReadImage<InputImageType>(argv[1]);
 
   using GradientMagnitudeImageFilterType = itk::GradientMagnitudeImageFilter<InputImageType, FloatImageType>;
   GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
 
-  gradientMagnitudeImageFilter->SetInput(reader->GetOutput());
+  gradientMagnitudeImageFilter->SetInput(input);
   gradientMagnitudeImageFilter->Update();
 
   using WatershedFilterType = itk::WatershedImageFilter<FloatImageType>;
@@ -78,11 +76,7 @@ main(int argc, char * argv[])
   colormapImageFilter->SetInput(watershed->GetOutput());
   colormapImageFilter->Update();
 
-  using FileWriterType = itk::ImageFileWriter<RGBImageType>;
-  FileWriterType::Pointer writer = FileWriterType::New();
-  writer->SetFileName(argv[2]);
-  writer->SetInput(colormapImageFilter->GetOutput());
-  writer->Update();
+  itk::WriteImage(colormapImageFilter->GetOutput(), argv[2]);
 
   return EXIT_SUCCESS;
 }
