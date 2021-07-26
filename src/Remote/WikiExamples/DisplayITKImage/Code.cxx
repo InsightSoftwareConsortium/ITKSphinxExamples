@@ -40,14 +40,12 @@ main(int argc, char * argv[])
   }
 
   using ImageType = itk::Image<itk::RGBPixel<unsigned char>, 2>;
-  using ReaderType = itk::ImageFileReader<ImageType>;
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
 
-  ReaderType::Pointer    reader = ReaderType::New();
   ConnectorType::Pointer connector = ConnectorType::New();
 
-  reader->SetFileName(argv[1]);
-  connector->SetInput(reader->GetOutput());
+  const auto input = itk::ReadImage<ImageType>(argv[1]);
+  connector->SetInput(input);
 
   vtkSmartPointer<vtkImageActor> actor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5

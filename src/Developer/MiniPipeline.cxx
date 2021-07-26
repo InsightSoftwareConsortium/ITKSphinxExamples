@@ -1,5 +1,4 @@
 #include "itkImage.h"
-#include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
 
 #include "ImageFilterY.h"
@@ -28,11 +27,7 @@ main(int, char *[])
   std::cout << "Input:" << std::endl;
   std::cout << filter->GetOutput()->GetLargestPossibleRegion() << std::endl;
 
-  using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName("Output.png");
-  writer->SetInput(filter->GetOutput());
-  writer->Update();
+  itk::WriteImage(filter->GetOutput(), "Output.png");
 
   return EXIT_SUCCESS;
 }

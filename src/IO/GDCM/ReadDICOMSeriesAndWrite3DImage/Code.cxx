@@ -102,9 +102,7 @@ main(int argc, char * argv[])
       reader->SetFileNames(fileNames);
       reader->ForceOrthogonalDirectionOff(); // properly read CTs with gantry tilt
 
-      using WriterType = itk::ImageFileWriter<ImageType>;
-      WriterType::Pointer writer = WriterType::New();
-      std::string         outFileName;
+      std::string outFileName;
       if (argc > 2)
       {
         outFileName = argv[2];
@@ -113,13 +111,10 @@ main(int argc, char * argv[])
       {
         outFileName = dirName + std::string("/") + seriesIdentifier + ".nrrd";
       }
-      writer->SetFileName(outFileName);
-      writer->UseCompressionOn();
-      writer->SetInput(reader->GetOutput());
       std::cout << "Writing: " << outFileName << std::endl;
       try
       {
-        writer->Update();
+        itk::WriteImage(reader->GetOutput(), outFileName, true); // compression
       }
       catch (itk::ExceptionObject & ex)
       {

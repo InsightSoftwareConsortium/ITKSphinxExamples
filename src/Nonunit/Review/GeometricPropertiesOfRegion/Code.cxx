@@ -16,7 +16,6 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageFileWriter.h"
 #include "itkImageRegionIterator.h"
 #include "itkImageFileReader.h"
 #include "itkLabelGeometryImageFilter.h"
@@ -57,18 +56,9 @@ main(int argc, char * argv[])
   }
   else if (argc > 3)
   {
-    using ImageReaderType = itk::ImageFileReader<ImageType>;
-    ImageReaderType::Pointer labelReader = ImageReaderType::New();
-    labelReader->SetFileName(argv[1]);
-    labelReader->Update();
+    labelImage = itk::ReadImage<ImageType>(argv[1]);
 
-    labelImage = labelReader->GetOutput();
-
-    ImageReaderType::Pointer intensityReader = ImageReaderType::New();
-    intensityReader->SetFileName(argv[2]);
-    intensityReader->Update();
-
-    intensityImage = intensityReader->GetOutput();
+    intensityImage = itk::ReadImage<ImageType>(argv[2]);
 
     label = std::stoi(argv[3]);
   }

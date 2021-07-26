@@ -40,13 +40,11 @@ main(int argc, char * argv[])
   using PixelType = itk::RGBPixel<PixelComponentType>;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::ImageToVTKImageFilter<ImageType>;
   FilterType::Pointer filter = FilterType::New();
-  filter->SetInput(reader->GetOutput());
+  filter->SetInput(input);
 
   try
   {
