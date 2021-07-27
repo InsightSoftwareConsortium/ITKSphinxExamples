@@ -93,20 +93,8 @@ main(int argc, char ** argv)
   DomainFunctionType::Pointer domainFunction = DomainFunctionType::New();
   domainFunction->SetEpsilon(epsilon);
 
-  // We instantiate reader and writer types in the following lines.
-  //
-  using ReaderType = itk::ImageFileReader<InternalImageType>;
-  using WriterType = itk::ImageFileWriter<InternalImageType>;
 
-  ReaderType::Pointer reader = ReaderType::New();
-  WriterType::Pointer writer = WriterType::New();
-
-  reader->SetFileName(argv[1]);
-  reader->Update();
-
-  writer->SetFileName(argv[2]);
-
-  InternalImageType::Pointer featureImage = reader->GetOutput();
+  InternalImageType::Pointer featureImage = itk::ReadImage<InternalImageType>(argv[1]);
 
   //  We declare now the type of the FastMarchingImageFilter that
   //  will be used to generate the initial level set in the form of a distance
@@ -239,12 +227,9 @@ main(int argc, char ** argv)
 
   levelSetFilter->Update();
 
-
-  writer->SetInput(levelSetFilter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(levelSetFilter->GetOutput(), argv[1]);
   }
   catch (itk::ExceptionObject & excep)
   {

@@ -36,15 +36,13 @@ main(int argc, char * argv[])
 
   using ImageType = itk::Image<PixelType, Dimension>;
   using ReaderType = itk::ImageSeriesReader<ImageType>;
-  using WriterType = itk::ImageFileWriter<ImageType>;
 
   ReaderType::Pointer reader = ReaderType::New();
-  WriterType::Pointer writer = WriterType::New();
 
   const unsigned int first = std::stoi(argv[2]);
   const unsigned int last = std::stoi(argv[3]);
 
-  const char * outputFilename = argv[4];
+  const char * outputFileName = argv[4];
 
   using NameGeneratorType = itk::NumericSeriesFileNames;
 
@@ -67,11 +65,9 @@ main(int argc, char * argv[])
 
   reader->SetFileNames(names);
 
-  writer->SetFileName(outputFilename);
-  writer->SetInput(reader->GetOutput());
   try
   {
-    writer->Update();
+    itk::WriteImage(reader->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & err)
   {

@@ -44,21 +44,19 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using InputImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<InputImageType>(inputFileName);
 
   using OutputPixelType = unsigned char;
   using RescaleImageType = itk::Image<OutputPixelType, Dimension>;
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<InputImageType, RescaleImageType>;
   RescaleFilterType::Pointer rescale = RescaleFilterType::New();
-  rescale->SetInput(reader->GetOutput());
+  rescale->SetInput(input);
   rescale->SetOutputMinimum(0);
   rescale->SetOutputMaximum(255);
   rescale->UpdateLargestPossibleRegion();
 
-  InputImageType::RegionType region = reader->GetOutput()->GetLargestPossibleRegion();
+  InputImageType::RegionType region = input->GetLargestPossibleRegion();
   InputImageType::SizeType   size = region.GetSize();
 
   itk::NumericSeriesFileNames::Pointer fnames = itk::NumericSeriesFileNames::New();

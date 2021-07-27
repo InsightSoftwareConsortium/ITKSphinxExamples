@@ -48,13 +48,7 @@ main(int argc, char * argv[])
   using InputPixelType = unsigned char;
   using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  // Read input image (to be processed).
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-  reader->Update();
-
-  InputImageType::Pointer input = reader->GetOutput();
+  InputImageType::Pointer input = itk::ReadImage<InputImageType>(argv[1]);
 
   int numberOfIterations = std::stoi(argv[2]);
 

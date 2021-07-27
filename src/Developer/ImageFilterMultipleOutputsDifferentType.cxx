@@ -17,21 +17,9 @@ main(int, char *[])
   FilterType::Pointer filter = FilterType::New();
   filter->Update();
 
-  {
-    using WriterType = itk::ImageFileWriter<OutputImageType1>;
-    WriterType::Pointer writer = WriterType::New();
-    writer->SetFileName("TestOutput1.jpg");
-    writer->SetInput(filter->GetOutput1());
-    writer->Update();
-  }
+  itk::WriteImage(filter->GetOutput1(), "TestOutput1.jpg");
 
-  {
-    using WriterType = itk::ImageFileWriter<OutputImageType2>;
-    WriterType::Pointer writer = WriterType::New();
-    writer->SetFileName("TestOutput2.jpg");
-    writer->SetInput(filter->GetOutput2());
-    writer->Update();
-  }
+  itk::WriteImage(filter->GetOutput2(), "TestOutput2.jpg");
 
   return EXIT_SUCCESS;
 }

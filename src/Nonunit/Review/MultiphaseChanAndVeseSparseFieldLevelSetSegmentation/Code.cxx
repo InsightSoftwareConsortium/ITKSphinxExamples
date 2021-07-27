@@ -71,35 +71,15 @@ main(int argc, char ** argv)
                                                                             LevelSetFunctionType,
                                                                             SharedDataHelperType>;
 
-  using LevelSetReaderType = itk::ImageFileReader<LevelSetImageType>;
-  using FeatureReaderType = itk::ImageFileReader<FeatureImageType>;
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-
   using DomainFunctionType = itk::AtanRegularizedHeavisideStepFunction<ScalarPixelType, ScalarPixelType>;
 
   DomainFunctionType::Pointer domainFunction = DomainFunctionType::New();
   domainFunction->SetEpsilon(epsilon);
 
-  LevelSetReaderType::Pointer contourReader1 = LevelSetReaderType::New();
-  contourReader1->SetFileName(argv[1]);
-  contourReader1->Update();
-
-  LevelSetReaderType::Pointer contourReader2 = LevelSetReaderType::New();
-  contourReader2->SetFileName(argv[2]);
-  contourReader2->Update();
-
-  LevelSetReaderType::Pointer contourReader3 = LevelSetReaderType::New();
-  contourReader3->SetFileName(argv[3]);
-  contourReader3->Update();
-
-  FeatureReaderType::Pointer featureReader = FeatureReaderType::New();
-  featureReader->SetFileName(argv[4]);
-  featureReader->Update();
-
-  FeatureImageType::Pointer  featureImage = featureReader->GetOutput();
-  LevelSetImageType::Pointer contourImage1 = contourReader1->GetOutput();
-  LevelSetImageType::Pointer contourImage2 = contourReader2->GetOutput();
-  LevelSetImageType::Pointer contourImage3 = contourReader3->GetOutput();
+  LevelSetImageType::Pointer contourImage1 = itk::ReadImage<LevelSetImageType>(argv[1]);
+  LevelSetImageType::Pointer contourImage2 = itk::ReadImage<LevelSetImageType>(argv[2]);
+  LevelSetImageType::Pointer contourImage3 = itk::ReadImage<LevelSetImageType>(argv[3]);
+  FeatureImageType::Pointer  featureImage = itk::ReadImage<FeatureImageType>(argv[4]);
 
   MultiLevelSetType::Pointer levelSetFilter = MultiLevelSetType::New();
   levelSetFilter->SetFunctionCount(3);
@@ -126,13 +106,9 @@ main(int argc, char ** argv)
 
   levelSetFilter->Update();
 
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetInput(levelSetFilter->GetOutput());
-  writer->SetFileName(argv[5]);
-
   try
   {
-    writer->Update();
+    itk::WriteImage(levelSetFilter->GetOutput(), argv[5]);
   }
   catch (itk::ExceptionObject & excep)
   {

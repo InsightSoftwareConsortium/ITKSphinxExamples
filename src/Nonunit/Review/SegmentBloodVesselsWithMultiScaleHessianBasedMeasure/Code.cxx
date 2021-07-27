@@ -59,9 +59,7 @@ main(int argc, char * argv[])
   using PixelType = float;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using HessianPixelType = itk::SymmetricSecondRankTensor<double, Dimension>;
   using HessianImageType = itk::Image<HessianPixelType, Dimension>;
@@ -76,7 +74,7 @@ main(int argc, char * argv[])
   using MultiScaleEnhancementFilterType =
     itk::MultiScaleHessianBasedMeasureImageFilter<ImageType, HessianImageType, ImageType>;
   MultiScaleEnhancementFilterType::Pointer multiScaleEnhancementFilter = MultiScaleEnhancementFilterType::New();
-  multiScaleEnhancementFilter->SetInput(reader->GetOutput());
+  multiScaleEnhancementFilter->SetInput(input);
   multiScaleEnhancementFilter->SetHessianToMeasureFilter(objectnessFilter);
   multiScaleEnhancementFilter->SetSigmaStepMethodToLogarithmic();
   multiScaleEnhancementFilter->SetSigmaMinimum(sigmaMinimum);
@@ -88,14 +86,9 @@ main(int argc, char * argv[])
   RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput(multiScaleEnhancementFilter->GetOutput());
 
-  using WriterType = itk::ImageFileWriter<OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
-  writer->SetFileName(outputFileName);
-  writer->SetInput(rescaleFilter->GetOutput());
-
   try
   {
-    writer->Update();
+    itk::WriteImage(rescaleFilter->GetOutput(), outputFileName);
   }
   catch (itk::ExceptionObject & error)
   {

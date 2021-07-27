@@ -43,12 +43,7 @@ main(int argc, char * argv[])
   using InputPixelType = unsigned char;
   using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  // Read input image (to be processed).
-  using ReaderType = itk::ImageFileReader<InputImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-
-  InputImageType::Pointer input = reader->GetOutput();
+  InputImageType::Pointer input = itk::ReadImage<InputImageType>(argv[1]);
 
   using LevelSetPixelType = float;
   using LevelSetType = itk::WhitakerSparseLevelSetImage<LevelSetPixelType, Dimension>;

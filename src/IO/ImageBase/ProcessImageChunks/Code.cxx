@@ -44,11 +44,9 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(inputFileName);
-  reader->UpdateOutputInformation();
-  ImageType::RegionType fullRegion = reader->GetOutput()->GetLargestPossibleRegion();
+  const auto input = itk::ReadImage<ImageType>(inputFileName);
+
+  ImageType::RegionType fullRegion = input->GetLargestPossibleRegion();
   ImageType::SizeType   fullSize = fullRegion.GetSize();
   // when reading image from file, start index is always 0
 
@@ -58,7 +56,7 @@ main(int argc, char * argv[])
 
   using MedianType = itk::MedianImageFilter<ImageType, ImageType>;
   MedianType::Pointer median = MedianType::New();
-  median->SetInput(reader->GetOutput());
+  median->SetInput(input);
   median->SetRadius(2);
 
   using WriterType = itk::ImageFileWriter<ImageType>;
