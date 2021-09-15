@@ -108,24 +108,22 @@ watershed_image = itk.watershed_image_filter(
     distance_map_image, threshold=args.watershed_threshold, level=args.level,
 )
 
-# distance_map_array = itk.array_view_from_image(distance_map_image)
-# watershed_array = itk.array_view_from_image(watershed_image)
+# Reduce the maximum label number by using sequential labels
+relabeled_image = itk.relabel_component_image_filter(watershed_image)
 
-# Cast to unsigned char so that it can be written as a TIFF image
-# WatershedImageFilter produces itk.ULL, but CastImageFilter does not wrap
-# itk.ULL: see ITK issue 2551
-# ws_cast_image = itk.cast_image_filter(watershed_image, ttype=(watershed_image.__class__, uchar_image_type))
-# Workaround
-rgb_ws_image = itk.scalar_to_rgb_colormap_image_filter(watershed_image, colormap=itk.ScalarToRGBColormapImageFilterEnums.RGBColormapFilter_Jet)
+# Debugging output
+itk.imwrite(relabeled_image, args.watershed_output_filename + '.nrrd')
 
-# itk.imwrite(ws_cast_image, args.watershed_output_filename)
-itk.imwrite(rgb_ws_image, args.watershed_output_filename)
+# Cast to unsigned short so that it can be written as a TIFF image
+label_image_type = itk.Image[itk.US, dimension]
+ws_cast_image = itk.cast_image_filter(relabeled_image, ttype=(relabeled_image.__class__, label_image_type))
+itk.imwrite(ws_cast_image, args.watershed_output_filename)
 
 # Clean the segmentation image: remove small objects by performing an
 # opening morphological operation
 structuring_element_type = itk.FlatStructuringElement[dimension]
 structuring_element = structuring_element_type.Ball(args.cleaning_structuring_element_radius)
 
-segmented_clean_image = itk.binary_morphological_opening_image_filter(watershed_image, kernel=structuring_element)
+segmented_clean_image = itk.binary_morphological_opening_image_filter(ws_cast_image, kernel=structuring_element)
 
 itk.imwrite(segmented_clean_image, args.segmentation_result_output_filename)
