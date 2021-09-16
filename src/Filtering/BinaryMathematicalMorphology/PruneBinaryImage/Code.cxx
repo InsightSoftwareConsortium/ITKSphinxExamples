@@ -45,12 +45,7 @@ main(int argc, char * argv[])
   std::string        outputFilename = "Output.png";
   unsigned int       iteration = 1;
 
-  if (argc == 1)
-  {
-    image = ImageType::New();
-    CreateImage(image.GetPointer());
-  }
-  else if (argc < 4)
+  if (argc >= 4)
   {
     image = itk::ReadImage<ImageType>(argv[1]);
 
@@ -58,6 +53,11 @@ main(int argc, char * argv[])
     ssIteration >> iteration;
 
     outputFilename = argv[3];
+  }
+  else
+  {
+    image = ImageType::New();
+    CreateImage(image.GetPointer());
   }
 
   std::cout << "Iterations: " << iteration << std::endl;
@@ -94,7 +94,7 @@ CreateImage(TImage * const image)
   typename TImage::RegionType region(corner, size);
 
   image->SetRegions(region);
-  image->Allocate();
+  image->Allocate(true);
 
   // Make a square
   for (int r = 40; r < 100; r++)
