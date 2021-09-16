@@ -41,12 +41,7 @@ main(int argc, char * argv[])
   unsigned int       radius = 5;
   std::string        outputFilename = "Output.png";
 
-  if (argc == 1)
-  {
-    image = ImageType::New();
-    CreateImage(image);
-  }
-  else if (argc < 4)
+  if (argc >= 4)
   {
     image = itk::ReadImage<ImageType>(argv[1]);
 
@@ -54,6 +49,11 @@ main(int argc, char * argv[])
     ss >> radius;
 
     outputFilename = argv[3];
+  }
+  else
+  {
+    image = ImageType::New();
+    CreateImage(image);
   }
 
   std::cout << "Radius: " << radius << std::endl;
@@ -111,7 +111,7 @@ CreateImage(ImageType * const image)
   itk::ImageRegion<2> region(corner, size);
 
   image->SetRegions(region);
-  image->Allocate();
+  image->Allocate(true);
 
   // Make a square
   for (unsigned int r = 40; r < 100; r++)
