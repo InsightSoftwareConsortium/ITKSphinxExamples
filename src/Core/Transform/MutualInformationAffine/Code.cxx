@@ -37,7 +37,6 @@ using ImageType = itk::Image<PixelType, Dimension>;
 int
 main(int argc, char * argv[])
 {
-  using ReaderType = itk::ImageFileReader<ImageType>;
 
   if (argc < 4)
   {

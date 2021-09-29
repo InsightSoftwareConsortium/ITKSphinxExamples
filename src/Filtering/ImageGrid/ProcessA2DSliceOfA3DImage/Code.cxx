@@ -36,7 +36,6 @@ main(int argc, char ** argv)
 
   using PixelType = short;
   using ImageType = itk::Image<PixelType, 3>;
-  using ReaderType = itk::ImageFileReader<ImageType>;
 
   // Here we recover the file names from the command line arguments
   const char * inputFileName = argv[1];
