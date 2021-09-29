@@ -1,0 +1,96 @@
+# Commit prefix regexes
+type:Compiler:
+  title: "^COMP:.*"
+
+type:Bug:
+  title: "^BUG:.*"
+
+area:Documentation:
+  title: "^DOC:.*"
+
+type:Enhancement:
+  title: "^ENH:.*"
+
+type:Performance:
+  title: "^PERF:.*"
+
+type:Style:
+  title: "^STYLE:.*"
+
+type:Coverage:
+  title: "coverage"
+
+type:Design:
+  title: "design"
+
+# Filename regexes
+area:Bridge:
+  files:
+    - "src/Bridge/*"
+
+area:Core:
+  files:
+    - "src/Core/*"
+
+area:Documentation:
+  files:
+    - "Documentation/*"
+    - "Documentation.rst"
+
+area:Filtering:
+  files:
+    - "src/Filtering/*"
+
+area:IO:
+  files:
+    - "src/IO/*"
+
+area:Numerics:
+  files:
+    - "src/Numerics/*"
+
+area:Nonunit:
+  files:
+    - "src/Nonunit/*"
+
+area:Registration:
+  files:
+    - "src/Registration/*"
+
+area:Remotes:
+  files:
+    - "src/Remote/*"
+
+area:Segmentation:
+  files:
+    - "src/Segmentation/*"
+
+area:Video:
+  files:
+    - "src/Video/*"
+
+language:C++:
+  files:
+    - "Code.cxx"
+
+language:Python:
+  files:
+    - "Code.py"
+
+type:Python notebook:
+  files:
+    - ".*.ipynb"
+
+type:Data:
+  files:
+    - ".*.sha512"
+
+type:Infrastructure:
+  files:
+    - ".binder/*"
+    - ".github/*"
+    - "CMake/*"
+    - "Formatting/*"
+    - "Superbuild/*"
+    - "Utilities/*"
+    - "index.rst"

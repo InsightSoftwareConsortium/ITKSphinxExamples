@@ -23,5 +23,6 @@ jobs:
         VALIDATE_ALL_CODEBASE: false
         VALIDATE_PYTHON_BLACK: true
         VALIDATE_YAML: true
+        FILTER_REGEX_EXCLUDE: .github/labeler.yml
         DEFAULT_BRANCH: master
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
