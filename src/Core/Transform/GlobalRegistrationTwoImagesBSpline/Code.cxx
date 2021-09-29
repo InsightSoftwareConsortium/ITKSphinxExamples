@@ -225,8 +225,6 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 
   using CastFilterType = itk::CastImageFilter<ImageType, OutputImageType>;
 
-  using OutputWriterType = itk::ImageFileWriter<OutputImageType>;
-
   CastFilterType::Pointer caster = CastFilterType::New();
   caster->SetInput(resample->GetOutput());
 

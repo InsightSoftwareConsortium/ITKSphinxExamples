@@ -25,7 +25,6 @@ main(int, char *[])
 {
   using PixelType = unsigned char;
   constexpr unsigned int Dimension = 3;
-  using ImageType = itk::Image<PixelType, Dimension>;
   using ImportFilterType = itk::ImportImageFilter<PixelType, Dimension>;
 
   ImportFilterType::Pointer importFilter = ImportFilterType::New();
