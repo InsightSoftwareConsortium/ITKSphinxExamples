@@ -45,6 +45,7 @@ main(int argc, char * argv[])
   }
   else
   {
+    fileName = argv[1];
     image = itk::ReadImage<InputImageType>(fileName);
   }
 
