@@ -15,25 +15,27 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-#include "itkLiThresholdImageFilter.h"
-#include "itkHuangThresholdImageFilter.h"
-#include "itkIntermodesThresholdImageFilter.h"
-#include "itkIsoDataThresholdImageFilter.h"
-#include "itkKittlerIllingworthThresholdImageFilter.h"
-#include "itkMaximumEntropyThresholdImageFilter.h"
-#include "itkMomentsThresholdImageFilter.h"
-#include "itkOtsuThresholdImageFilter.h"
-#include "itkRenyiEntropyThresholdImageFilter.h"
-#include "itkShanbhagThresholdImageFilter.h"
-#include "itkTriangleThresholdImageFilter.h"
-#include "itkYenThresholdImageFilter.h"
 
-#include "itkImageFileReader.h"
-
-#include "itksys/SystemTools.hxx"
 #include <sstream>
+#include <iostream>
 #include <map>
 #ifdef ENABLE_QUICKVIEW
+#  include "itkLiThresholdImageFilter.h"
+#  include "itkHuangThresholdImageFilter.h"
+#  include "itkIntermodesThresholdImageFilter.h"
+#  include "itkIsoDataThresholdImageFilter.h"
+#  include "itkKittlerIllingworthThresholdImageFilter.h"
+#  include "itkMaximumEntropyThresholdImageFilter.h"
+#  include "itkMomentsThresholdImageFilter.h"
+#  include "itkOtsuThresholdImageFilter.h"
+#  include "itkRenyiEntropyThresholdImageFilter.h"
+#  include "itkShanbhagThresholdImageFilter.h"
+#  include "itkTriangleThresholdImageFilter.h"
+#  include "itkYenThresholdImageFilter.h"
+
+#  include "itkImageFileReader.h"
+
+#  include "itksys/SystemTools.hxx"
 #  include "QuickView.h"
 #endif
 
@@ -47,7 +49,7 @@ main(int argc, char * argv[])
     std::cerr << std::endl;
     return EXIT_FAILURE;
   }
-
+#ifdef ENABLE_QUICKVIEW
   using InputPixelType = short;
   using OutputPixelType = unsigned char;
 
@@ -71,7 +73,6 @@ main(int argc, char * argv[])
 
   const auto input = itk::ReadImage<InputImageType>(argv[1]);
 
-#ifdef ENABLE_QUICKVIEW
   QuickView viewer;
   viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
 
@@ -107,6 +108,8 @@ main(int argc, char * argv[])
 
 
   viewer.Visualize();
+#else
+  std::cout << " Example requires compilation with ENABLE_QUICKVIEW defined." << std::endl;
 #endif
   return EXIT_SUCCESS;
 }
