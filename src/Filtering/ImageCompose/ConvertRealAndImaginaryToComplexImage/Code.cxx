@@ -17,11 +17,7 @@
  *=========================================================================*/
 #include "itkImage.h"
 
-#if ITK_VERSION_MAJOR < 4
-#  include "itkRealAndImaginaryToComplexImageFilter.h"
-#else
-#  include "itkComposeImageFilter.h"
-#endif
+#include "itkComposeImageFilter.h"
 
 #include <complex>
 
@@ -34,12 +30,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   ImageType::Pointer realImage = ImageType::New();
   ImageType::Pointer imaginaryImage = ImageType::New();
 
-#if ITK_VERSION_MAJOR < 4
-  using RealAndImaginaryToComplexImageFilterType =
-    itk::RealAndImaginaryToComplexImageFilter<ImageType, ComplexImageType>;
-#else
   using RealAndImaginaryToComplexImageFilterType = itk::ComposeImageFilter<ImageType, ComplexImageType>;
-#endif
   RealAndImaginaryToComplexImageFilterType::Pointer realAndImaginaryToComplexImageFilter =
     RealAndImaginaryToComplexImageFilterType::New();
   realAndImaginaryToComplexImageFilter->SetInput1(realImage);

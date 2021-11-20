@@ -17,21 +17,13 @@
  *=========================================================================*/
 #include "itkConfigure.h"
 
-#if (ITK_VERSION_MAJOR < 4) // These are all defaults in ITKv4
-//  Not supported in ITKv3.
-int
-main(int argc, char * argv[])
-{
-  return 0;
-}
-#else
-#  include "itkImage.h"
-#  include "itkImageFileReader.h"
-#  include "itkMaskImageFilter.h"
-#  include "itkImageRegionIterator.h"
-#  ifdef ENABLE_QUICKVIEW
-#    include "QuickView.h"
-#  endif
+#include "itkImage.h"
+#include "itkImageFileReader.h"
+#include "itkMaskImageFilter.h"
+#include "itkImageRegionIterator.h"
+#ifdef ENABLE_QUICKVIEW
+#  include "QuickView.h"
+#endif
 
 using ImageType = itk::Image<unsigned char, 2>;
 
@@ -102,4 +94,3 @@ CreateHalfMask(ImageType::Pointer image, ImageType::Pointer & mask)
     ++imageIterator;
   }
 }
-#endif

@@ -107,11 +107,7 @@ main(int, char *[])
   {
     std::cout << "Vertices No." << j;
     j++;
-#if ITK_VERSION_MAJOR < 4
-    std::cout << ": At (" << (*allVerts)[0] << "," << (*allVerts)[1] << ")" << std::endl;
-#else
     std::cout << ": At (" << (allVerts.Value())[0] << "," << (allVerts.Value())[1] << ")" << std::endl;
-#endif
   }
 
   // Write the resulting mesh
