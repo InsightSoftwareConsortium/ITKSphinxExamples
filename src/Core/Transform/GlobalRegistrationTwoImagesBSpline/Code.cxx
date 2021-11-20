@@ -30,7 +30,6 @@
 #include "itkImageFileWriter.h"
 #include "itkResampleImageFilter.h"
 #include "itkCastImageFilter.h"
-#include "itkSquaredDifferenceImageFilter.h"
 
 #ifdef ENABLE_QUICKVIEW
 #  include "QuickView.h"
@@ -42,9 +41,9 @@ using PixelType = float;
 using ImageType = itk::Image<PixelType, ImageDimension>;
 
 static void
-CreateEllipseImage(ImageType::Pointer image);
+CreateEllipseImage(const ImageType::Pointer & image);
 static void
-CreateCircleImage(ImageType::Pointer image);
+CreateCircleImage(const ImageType::Pointer & image);
 
 int
 main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
@@ -252,7 +251,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 }
 
 void
-CreateEllipseImage(ImageType::Pointer image)
+CreateEllipseImage(const ImageType::Pointer & image)
 {
   using EllipseType = itk::EllipseSpatialObject<ImageDimension>;
 
@@ -300,7 +299,7 @@ CreateEllipseImage(ImageType::Pointer image)
 }
 
 void
-CreateCircleImage(ImageType::Pointer image)
+CreateCircleImage(const ImageType::Pointer & image)
 {
   using EllipseType = itk::EllipseSpatialObject<ImageDimension>;
 

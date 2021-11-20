@@ -22,10 +22,10 @@
 
 template <typename TImage>
 static void
-CreateImage(TImage * const image);
+CreateImage(TImage * image);
 
 int
-main(int argc, char * argv[])
+main(int argc, char * [])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
