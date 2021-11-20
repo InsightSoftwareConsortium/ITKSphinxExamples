@@ -25,20 +25,19 @@ from math import pi, sin, cos
 
 import itk
 
-# Generate two circles with a small offset
-def make_circles(dimension: int = 2):
 
-    PointSetType = itk.PointSet[itk.F, dimension]
+# Generate two circles with a small offset
+def make_circles(l_dimension: int = 2):
+    PointSetType = itk.PointSet[itk.F, l_dimension]
 
     RADIUS = 100
-    offset = [2.0] * dimension
+    offset = [2.0] * l_dimension
 
     fixed_points = PointSetType.New()
     moving_points = PointSetType.New()
     fixed_points.Initialize()
     moving_points.Initialize()
 
-    count = 0
     step = 0.1
     for count in range(0, int(2 * pi / step) + 1):
 
@@ -46,17 +45,17 @@ def make_circles(dimension: int = 2):
 
         fixed_point = list()
         fixed_point.append(RADIUS * cos(theta))
-        for dim in range(1, dimension):
+        for dim in range(1, l_dimension):
             fixed_point.append(RADIUS * sin(theta))
         fixed_points.SetPoint(count, fixed_point)
 
-        moving_point = [fixed_point[dim] + offset[dim] for dim in range(0, dimension)]
+        moving_point = [fixed_point[dim] + offset[dim] for dim in range(0, l_dimension)]
         moving_points.SetPoint(count, moving_point)
 
     return fixed_points, moving_points
 
 
-def test_registration(dimension: int = 2):
+def test_registration(l_dimension: int = 2):
     # Define test parameters
 
     num_iterations = 10
@@ -65,9 +64,8 @@ def test_registration(dimension: int = 2):
     tolerance = 0.05
 
     # Define types
-    PointType = itk.Point[itk.F, dimension]
-    PointSetType = itk.PointSet[itk.F, dimension]
-    AffineTransformType = itk.AffineTransform[itk.D, dimension]
+    PointSetType = itk.PointSet[itk.F, l_dimension]
+    AffineTransformType = itk.AffineTransform[itk.D, l_dimension]
     PointSetMetricType = itk.JensenHavrdaCharvatTsallisPointSetToPointSetMetricv4[
         PointSetType
     ]
@@ -77,7 +75,7 @@ def test_registration(dimension: int = 2):
     OptimizerType = itk.RegularStepGradientDescentOptimizerv4[itk.D]
 
     # Make point sets
-    fixed_set, moving_set = make_circles(dimension)
+    fixed_set, moving_set = make_circles(l_dimension)
 
     transform = AffineTransformType.New()
     transform.SetIdentity()
@@ -140,7 +138,7 @@ def test_registration(dimension: int = 2):
 
         difference = [
             transformed_moving_point[dim] - transformed_fixed_point[dim]
-            for dim in range(0, dimension)
+            for dim in range(0, l_dimension)
         ]
 
         print(
@@ -151,7 +149,7 @@ def test_registration(dimension: int = 2):
             f"\t{print_point(difference)}"
         )
 
-        if any(abs(difference[dim]) > tolerance for dim in range(0, dimension)):
+        if any(abs(difference[dim]) > tolerance for dim in range(0, l_dimension)):
             passed = False
 
     if not passed:
