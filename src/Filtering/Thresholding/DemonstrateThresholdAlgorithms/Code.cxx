@@ -51,9 +51,13 @@ main(int argc, char * argv[])
   }
 #ifdef ENABLE_QUICKVIEW
   using InputPixelType = short;
-  using OutputPixelType = unsigned char;
 
   using InputImageType = itk::Image<InputPixelType, 2>;
+
+  const auto input = itk::ReadImage<InputImageType>(argv[1]);
+
+#ifdef ENABLE_QUICKVIEW
+  using OutputPixelType = unsigned char;
   using OutputImageType = itk::Image<OutputPixelType, 2>;
 
   using LiFilterType = itk::LiThresholdImageFilter<InputImageType, OutputImageType>;
