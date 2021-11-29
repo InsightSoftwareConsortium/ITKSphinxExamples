@@ -37,6 +37,7 @@ if not args.input_image:
 
     image = float_image_type.New(Regions=region)
     image.Allocate()
+    image.FillBuffer(0)
 
     # Make a square
     image[40:100, 40:100] = 100
