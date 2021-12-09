@@ -30,6 +30,6 @@ args = parser.parse_args()
 
 inputImage = itk.imread(args.input_image)
 
-vtkImage = itk.image_to_vtk_image(inputImage)
+vtkImage = itk.vtk_image_from_image(inputImage)
 
 print(vtkImage)
