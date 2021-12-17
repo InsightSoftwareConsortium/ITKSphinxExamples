@@ -1,7 +1,6 @@
 #ifndef __itkImageSource_hxx
 #define __itkImageSource_hxx
 
-#include "ImageSource.h"
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"
 #include "itkImageRegionConstIterator.h"

@@ -1,7 +1,6 @@
 #ifndef __itkMyInPlaceImageFilter_hxx
 #define __itkMyInPlaceImageFilter_hxx
 
-#include "MyInPlaceImageFilter.h"
 
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"

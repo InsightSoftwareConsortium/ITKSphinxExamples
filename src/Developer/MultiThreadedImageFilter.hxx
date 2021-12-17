@@ -1,7 +1,6 @@
 #ifndef __itkMultiThreadedImageFilter_hxx
 #define __itkMultiThreadedImageFilter_hxx
 
-#include "MultiThreadedImageFilter.h"
 
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"

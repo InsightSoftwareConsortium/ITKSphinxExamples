@@ -1,7 +1,6 @@
 #ifndef __itkOilPaintingImageFilter_hxx
 #define __itkOilPaintingImageFilter_hxx
 
-#include "itkOilPaintingImageFilter.h"
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"
 #include "itkImageRegionConstIterator.h"
