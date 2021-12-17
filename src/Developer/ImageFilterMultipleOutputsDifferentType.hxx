@@ -1,7 +1,6 @@
 #ifndef __itkImageFilterMultipleOutputsDifferentType_hxx
 #define __itkImageFilterMultipleOutputsDifferentType_hxx
 
-#include "ImageFilterMultipleOutputsDifferentType.h"
 
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"
