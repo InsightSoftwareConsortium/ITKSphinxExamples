@@ -9,6 +9,8 @@ template <typename TImage, typename TMask>
 class ImageFilterMultipleInputsDifferentType : public ImageToImageFilter<TImage, TImage>
 {
 public:
+  ITK_DISALLOW_COPY_AND_MOVE(ImageFilterMultipleInputsDifferentType);
+
   /** Standard class type alias. */
   using Self = ImageFilterMultipleInputsDifferentType;
   using Superclass = ImageToImageFilter<TImage, TImage>;
@@ -40,11 +42,6 @@ protected:
   /** Does the real work. */
   void
   GenerateData() override;
-
-private:
-  ImageFilterMultipleInputsDifferentType(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
 };
 } // namespace itk
 

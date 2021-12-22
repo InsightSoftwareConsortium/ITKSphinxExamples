@@ -11,6 +11,8 @@ class ImageFilterMultipleOutputsDifferentType
                                                           // output image type in MakeOutput()
 {
 public:
+  ITK_DISALLOW_COPY_AND_MOVE(ImageFilterMultipleOutputsDifferentType);
+
   /** Standard class type alias. */
   using Self = ImageFilterMultipleOutputsDifferentType;
   using Superclass = ImageToImageFilter<TInputImage, TOutputImage1>;
@@ -38,11 +40,6 @@ protected:
   /**  Create the Output */
   DataObject::Pointer
   MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx) override;
-
-private:
-  ImageFilterMultipleOutputsDifferentType(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
 };
 } // namespace itk
 

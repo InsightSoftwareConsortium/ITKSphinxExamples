@@ -11,6 +11,8 @@ template <class TImage>
 class ImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:
+  ITK_DISALLOW_COPY_AND_MOVE(ImageFilter);
+
   /** Standard class type alias. */
   using Self = ImageFilter;
   using Superclass = ImageToImageFilter<TImage, TImage>;
@@ -40,11 +42,6 @@ protected:
   /** Does the real work. */
   void
   GenerateData() override;
-
-private:
-  ImageFilter(const Self &); // purposely not implemented
-  void
-  operator=(const Self &); // purposely not implemented
 };
 } // namespace itk
 

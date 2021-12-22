@@ -11,6 +11,8 @@ template <class TImage>
 class ImageSource : public ProcessObject
 {
 public:
+  ITK_DISALLOW_COPY_AND_MOVE(ImageSource);
+
   /** Standard class type alias. */
   using Self = ImageSource;
   using Superclass = ProcessObject;
@@ -29,11 +31,6 @@ protected:
   /** Does the real work. */
   virtual void
   GenerateData();
-
-private:
-  ImageSource(const Self &); // purposely not implemented
-  void
-  operator=(const Self &); // purposely not implemented
 };
 } // namespace itk
 

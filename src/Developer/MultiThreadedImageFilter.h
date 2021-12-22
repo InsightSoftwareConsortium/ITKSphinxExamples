@@ -9,6 +9,8 @@ template <class TImage>
 class MultiThreadedImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:
+  ITK_DISALLOW_COPY_AND_MOVE(MultiThreadedImageFilter);
+
   /** Standard class type alias. */
   using Self = MultiThreadedImageFilter;
   using Superclass = ImageToImageFilter<TImage, TImage>;
@@ -28,11 +30,6 @@ protected:
 
   void
   DynamicThreadedGenerateData(const OutputImageRegionType &) override;
-
-private:
-  MultiThreadedImageFilter(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
 };
 } // namespace itk
 
