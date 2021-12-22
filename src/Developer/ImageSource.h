@@ -39,7 +39,7 @@ private:
 
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#  include "ImageFilter.hxx"
+#  include "ImageSource.hxx"
 #endif
 
 
