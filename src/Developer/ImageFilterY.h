@@ -36,7 +36,7 @@ public:
   using InternalGaussianFilterPointer = typename InternalGaussianFilterType::Pointer;
 
 protected:
-  ImageFilter();
+  ImageFilter() = default;
   ~ImageFilter() override = default;
 
   /** Does the real work. */
