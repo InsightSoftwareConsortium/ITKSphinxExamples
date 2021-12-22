@@ -5,7 +5,7 @@
 
 namespace itk
 {
-template <class TImage>
+template <typename TImage>
 class ImageFilterMultipleOutputs : public ImageToImageFilter<TImage, TImage>
 {
 public:

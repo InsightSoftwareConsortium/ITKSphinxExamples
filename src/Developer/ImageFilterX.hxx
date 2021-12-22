@@ -8,7 +8,7 @@
 namespace itk
 {
 
-template <class TImage>
+template <typename TImage>
 void
 ImageFilter<TImage>::GenerateData()
 {}

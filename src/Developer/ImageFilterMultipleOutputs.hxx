@@ -9,7 +9,7 @@
 namespace itk
 {
 
-template <class TImage>
+template <typename TImage>
 ImageFilterMultipleOutputs<TImage>::ImageFilterMultipleOutputs()
 {
   this->SetNumberOfRequiredOutputs(2);
@@ -19,7 +19,7 @@ ImageFilterMultipleOutputs<TImage>::ImageFilterMultipleOutputs()
   this->SetNthOutput(1, this->MakeOutput(1));
 }
 
-template <class TImage>
+template <typename TImage>
 void
 ImageFilterMultipleOutputs<TImage>::GenerateData()
 {
@@ -80,7 +80,7 @@ ImageFilterMultipleOutputs<TImage>::GenerateData()
   }
 }
 
-template <class TImage>
+template <typename TImage>
 DataObject::Pointer
 ImageFilterMultipleOutputs<TImage>::MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx)
 {
@@ -102,14 +102,14 @@ ImageFilterMultipleOutputs<TImage>::MakeOutput(ProcessObject::DataObjectPointerA
   return output.GetPointer();
 }
 
-template <class TImage>
+template <typename TImage>
 TImage *
 ImageFilterMultipleOutputs<TImage>::GetOutput1()
 {
   return dynamic_cast<TImage *>(this->ProcessObject::GetOutput(0));
 }
 
-template <class TImage>
+template <typename TImage>
 TImage *
 ImageFilterMultipleOutputs<TImage>::GetOutput2()
 {

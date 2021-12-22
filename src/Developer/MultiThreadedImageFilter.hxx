@@ -9,7 +9,7 @@
 namespace itk
 {
 
-template <class TImage>
+template <typename TImage>
 void
 MultiThreadedImageFilter<TImage>::DynamicThreadedGenerateData(const OutputImageRegionType & region)
 {

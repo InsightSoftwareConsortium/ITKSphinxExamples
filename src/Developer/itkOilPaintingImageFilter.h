@@ -14,7 +14,7 @@ namespace itk
  *
  * \ingroup ImageFilters
  */
-template <class TImage>
+template <typename TImage>
 class OilPaintingImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:

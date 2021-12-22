@@ -7,7 +7,7 @@
 
 namespace itk
 {
-template <class TImage>
+template <typename TImage>
 class ImageSource : public ProcessObject
 {
 public:

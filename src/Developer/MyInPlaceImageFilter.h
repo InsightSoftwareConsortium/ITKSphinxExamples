@@ -5,7 +5,7 @@
 
 namespace itk
 {
-template <class TImage>
+template <typename TImage>
 class MyInPlaceImageFilter : public InPlaceImageFilter<TImage>
 {
 public:

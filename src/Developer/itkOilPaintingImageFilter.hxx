@@ -9,14 +9,14 @@
 
 namespace itk
 {
-template <class TImage>
+template <typename TImage>
 OilPaintingImageFilter<TImage>::OilPaintingImageFilter()
 {
   this->m_NumberOfBins = 20;
   this->SetRadius(5);
 }
 
-template <class TImage>
+template <typename TImage>
 void
 OilPaintingImageFilter<TImage>::SetRadius(unsigned int radius)
 {
@@ -26,7 +26,7 @@ OilPaintingImageFilter<TImage>::SetRadius(unsigned int radius)
   }
 }
 
-template <class TImage>
+template <typename TImage>
 void
 OilPaintingImageFilter<TImage>::BeforeThreadedGenerateData()
 {
@@ -38,7 +38,7 @@ OilPaintingImageFilter<TImage>::BeforeThreadedGenerateData()
   m_Minimum = calculatorI->GetMinimum();
 }
 
-template <class TImage>
+template <typename TImage>
 void
 OilPaintingImageFilter<TImage>::DynamicThreadedGenerateData(const typename TImage::RegionType & outputRegionForThread)
 {
