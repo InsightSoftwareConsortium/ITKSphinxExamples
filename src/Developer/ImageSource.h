@@ -26,7 +26,7 @@ public:
 
 protected:
   ImageSource() = default;
-  ~ImageSource() = default;
+  ~ImageSource() override = default;
 
   /** Does the real work. */
   virtual void
