@@ -25,8 +25,8 @@ public:
   itkTypeMacro(ImageSource, ProcessObject);
 
 protected:
-  ImageSource() {}
-  ~ImageSource() {}
+  ImageSource() = default;
+  ~ImageSource() = default;
 
   /** Does the real work. */
   virtual void
