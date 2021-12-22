@@ -1,5 +1,5 @@
-#ifndef __itkImageFilter_h
-#define __itkImageFilter_h
+#ifndef __MultiThreadedImageFilter_h
+#define __MultiThreadedImageFilter_h
 
 #include "itkImageToImageFilter.h"
 
@@ -42,4 +42,4 @@ private:
 #endif
 
 
-#endif // __itkMultiThreadedImageFilter_h
+#endif // __MultiThreadedImageFilter_h

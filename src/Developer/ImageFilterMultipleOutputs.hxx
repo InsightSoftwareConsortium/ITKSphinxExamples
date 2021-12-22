@@ -1,5 +1,5 @@
-#ifndef __itkImageFilterMultipleOutputs_hxx
-#define __itkImageFilterMultipleOutputs_hxx
+#ifndef __ImageFilterMultipleOutputs_hxx
+#define __ImageFilterMultipleOutputs_hxx
 
 
 #include "itkObjectFactory.h"

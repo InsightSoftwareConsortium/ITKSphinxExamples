@@ -1,5 +1,5 @@
-#ifndef __itkImageSource_hxx
-#define __itkImageSource_hxx
+#ifndef __ImageSource_hxx
+#define __ImageSource_hxx
 
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"

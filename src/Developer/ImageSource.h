@@ -1,5 +1,5 @@
-#ifndef __itkImageFilter_h
-#define __itkImageFilter_h
+#ifndef __ImageSource_h
+#define __ImageSource_h
 
 #include "itkProcessObject.h"
 
@@ -43,4 +43,4 @@ private:
 #endif
 
 
-#endif // __itkImageFilter_h
+#endif // __ImageSource_h

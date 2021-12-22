@@ -1,5 +1,5 @@
-#ifndef __itkImageFilter_h
-#define __itkImageFilter_h
+#ifndef __ImageFilterY_h
+#define __ImageFilterY_h
 
 #include "itkImageToImageFilter.h"
 
@@ -54,4 +54,4 @@ private:
 #endif
 
 
-#endif // __itkImageFilter_h
+#endif // __ImageFilterY_h

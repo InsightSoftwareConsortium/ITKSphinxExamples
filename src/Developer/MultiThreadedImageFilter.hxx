@@ -1,5 +1,5 @@
-#ifndef __itkMultiThreadedImageFilter_hxx
-#define __itkMultiThreadedImageFilter_hxx
+#ifndef __MultiThreadedImageFilter_hxx
+#define __MultiThreadedImageFilter_hxx
 
 
 #include "itkObjectFactory.h"
