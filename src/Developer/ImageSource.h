@@ -17,6 +17,7 @@ public:
   using Self = ImageSource;
   using Superclass = ProcessObject;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);

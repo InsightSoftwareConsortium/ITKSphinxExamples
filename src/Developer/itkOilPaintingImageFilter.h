@@ -23,6 +23,8 @@ public:
   using Self = OilPaintingImageFilter;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
+
   using RadiusType = typename NeighborhoodIterator<TImage>::RadiusType;
 
   /** Method for creation through the object factory. */

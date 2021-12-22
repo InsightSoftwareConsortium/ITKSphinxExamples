@@ -15,6 +15,7 @@ public:
   using Self = MultiThreadedImageFilter;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using OutputImageRegionType = typename Superclass::OutputImageRegionType;
 
