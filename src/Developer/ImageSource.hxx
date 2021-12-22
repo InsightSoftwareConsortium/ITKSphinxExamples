@@ -10,7 +10,7 @@ namespace itk
 
 template <class TImage>
 void
-ImageFilter<TImage>::GenerateData()
+ImageSource<TImage>::GenerateData()
 {
   double a = 2.1;
   itkExceptionMacro("Here is a variable: " << a << " and then more text.");

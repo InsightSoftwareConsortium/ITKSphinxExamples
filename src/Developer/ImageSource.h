@@ -8,11 +8,11 @@
 namespace itk
 {
 template <class TImage>
-class ImageFilter : public ImageToImageFilter<TImage, TImage>
+class ImageSource : public ImageToImageFilter<TImage, TImage>
 {
 public:
   /** Standard class type alias. */
-  using Self = ImageFilter;
+  using Self = ImageSource;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
 
@@ -20,18 +20,18 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ImageFilter, ImageToImageFilter);
+  itkTypeMacro(ImageSource, ImageToImageFilter);
 
 protected:
-  ImageFilter() {}
-  ~ImageFilter() {}
+  ImageSource() {}
+  ~ImageSource() {}
 
   /** Does the real work. */
   virtual void
   GenerateData();
 
 private:
-  ImageFilter(const Self &); // purposely not implemented
+  ImageSource(const Self &); // purposely not implemented
   void
   operator=(const Self &); // purposely not implemented
 };
