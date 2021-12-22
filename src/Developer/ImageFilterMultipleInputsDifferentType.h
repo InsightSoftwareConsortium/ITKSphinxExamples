@@ -1,5 +1,5 @@
-#ifndef __ImageFilterMultipleInputsDifferentType_h
-#define __ImageFilterMultipleInputsDifferentType_h
+#ifndef ImageFilterMultipleInputsDifferentType_h
+#define ImageFilterMultipleInputsDifferentType_h
 
 #include "itkImageToImageFilter.h"
 
@@ -54,4 +54,4 @@ private:
 #endif
 
 
-#endif // __ImageFilterMultipleInputsDifferentType_h
+#endif // ImageFilterMultipleInputsDifferentType_h

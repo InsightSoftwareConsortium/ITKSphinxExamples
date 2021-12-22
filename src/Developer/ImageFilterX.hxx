@@ -1,5 +1,5 @@
-#ifndef __ImageFilterX_hxx
-#define __ImageFilterX_hxx
+#ifndef ImageFilterX_hxx
+#define ImageFilterX_hxx
 
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"

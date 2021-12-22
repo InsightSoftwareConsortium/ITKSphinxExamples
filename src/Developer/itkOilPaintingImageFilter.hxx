@@ -1,5 +1,5 @@
-#ifndef __itkOilPaintingImageFilter_hxx
-#define __itkOilPaintingImageFilter_hxx
+#ifndef itkOilPaintingImageFilter_hxx
+#define itkOilPaintingImageFilter_hxx
 
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"
@@ -90,4 +90,4 @@ OilPaintingImageFilter<TImage>::DynamicThreadedGenerateData(const typename TImag
 
 } // namespace itk
 
-#endif //__itkOilPaintingImageFilter_hxx
+#endif // itkOilPaintingImageFilter_hxx

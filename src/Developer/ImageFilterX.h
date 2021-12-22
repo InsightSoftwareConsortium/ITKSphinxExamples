@@ -1,5 +1,5 @@
-#ifndef __ImageFilterX_h
-#define __ImageFilterX_h
+#ifndef ImageFilterX_h
+#define ImageFilterX_h
 
 #include "itkImageToImageFilter.h"
 

@@ -1,5 +1,5 @@
-#ifndef __MyInPlaceImageFilter_hxx
-#define __MyInPlaceImageFilter_hxx
+#ifndef MyInPlaceImageFilter_hxx
+#define MyInPlaceImageFilter_hxx
 
 
 #include "itkObjectFactory.h"

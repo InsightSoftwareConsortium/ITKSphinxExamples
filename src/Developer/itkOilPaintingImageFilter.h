@@ -1,5 +1,5 @@
-#ifndef __itkOilPaintingImageFilter_h
-#define __itkOilPaintingImageFilter_h
+#ifndef itkOilPaintingImageFilter_h
+#define itkOilPaintingImageFilter_h
 
 #include "itkImageToImageFilter.h"
 #include "itkNeighborhoodIterator.h"
@@ -62,4 +62,4 @@ private:
 #  include "itkOilPaintingImageFilter.hxx"
 #endif
 
-#endif // __itkOilPaintingImageFilter_h
+#endif // itkOilPaintingImageFilter_h
