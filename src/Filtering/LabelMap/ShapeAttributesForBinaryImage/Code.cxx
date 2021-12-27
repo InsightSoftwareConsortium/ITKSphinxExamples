@@ -25,7 +25,7 @@ static void
 CreateImage(TImage * image);
 
 int
-main(int argc, char *[])
+main(int argc, char * argv[])
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
