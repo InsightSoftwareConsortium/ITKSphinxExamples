@@ -1,18 +1,21 @@
-#ifndef __itkImageFilter_h
-#define __itkImageFilter_h
+#ifndef ImageFilterX_h
+#define ImageFilterX_h
 
 #include "itkImageToImageFilter.h"
 
 namespace itk
 {
-template <class TImage>
+template <typename TImage>
 class ImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:
+  ITK_DISALLOW_COPY_AND_MOVE(ImageFilter);
+
   /** Standard class type alias. */
   using Self = ImageFilter;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -32,11 +35,6 @@ protected:
   GenerateData() override;
 
   double m_Variable;
-
-private:
-  ImageFilter(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
 };
 } // namespace itk
 
@@ -46,4 +44,4 @@ private:
 #endif
 
 
-#endif // __itkImageFilter_h
+#endif // __ImageFilterX_h

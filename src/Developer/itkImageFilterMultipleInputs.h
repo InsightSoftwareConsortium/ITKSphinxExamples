@@ -5,7 +5,7 @@
 
 namespace itk
 {
-template <class TImage>
+template <typename TImage>
 class ImageFilterMultipleInputs : public ImageToImageFilter<TImage, TImage>
 {
 public:
@@ -14,6 +14,7 @@ public:
   using Self = ImageFilterMultipleInputs;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);

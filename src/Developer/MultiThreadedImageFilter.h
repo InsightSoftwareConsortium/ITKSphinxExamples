@@ -1,18 +1,21 @@
-#ifndef __itkImageFilter_h
-#define __itkImageFilter_h
+#ifndef MultiThreadedImageFilter_h
+#define MultiThreadedImageFilter_h
 
 #include "itkImageToImageFilter.h"
 
 namespace itk
 {
-template <class TImage>
+template <typename TImage>
 class MultiThreadedImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:
+  ITK_DISALLOW_COPY_AND_MOVE(MultiThreadedImageFilter);
+
   /** Standard class type alias. */
   using Self = MultiThreadedImageFilter;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   using OutputImageRegionType = typename Superclass::OutputImageRegionType;
 
@@ -28,11 +31,6 @@ protected:
 
   void
   DynamicThreadedGenerateData(const OutputImageRegionType &) override;
-
-private:
-  MultiThreadedImageFilter(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
 };
 } // namespace itk
 
@@ -42,4 +40,4 @@ private:
 #endif
 
 
-#endif // __itkMultiThreadedImageFilter_h
+#endif // MultiThreadedImageFilter_h

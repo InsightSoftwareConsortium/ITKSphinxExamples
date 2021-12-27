@@ -1,5 +1,5 @@
-#ifndef __itkMultiThreadedImageFilter_hxx
-#define __itkMultiThreadedImageFilter_hxx
+#ifndef MultiThreadedImageFilter_hxx
+#define MultiThreadedImageFilter_hxx
 
 
 #include "itkObjectFactory.h"
@@ -9,7 +9,7 @@
 namespace itk
 {
 
-template <class TImage>
+template <typename TImage>
 void
 MultiThreadedImageFilter<TImage>::DynamicThreadedGenerateData(const OutputImageRegionType & region)
 {

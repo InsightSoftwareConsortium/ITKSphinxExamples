@@ -1,5 +1,5 @@
-#ifndef __itkImageFilterMultipleInputsDifferentType_h
-#define __itkImageFilterMultipleInputsDifferentType_h
+#ifndef ImageFilterMultipleInputsDifferentType_h
+#define ImageFilterMultipleInputsDifferentType_h
 
 #include "itkImageToImageFilter.h"
 
@@ -9,10 +9,13 @@ template <typename TImage, typename TMask>
 class ImageFilterMultipleInputsDifferentType : public ImageToImageFilter<TImage, TImage>
 {
 public:
+  ITK_DISALLOW_COPY_AND_MOVE(ImageFilterMultipleInputsDifferentType);
+
   /** Standard class type alias. */
   using Self = ImageFilterMultipleInputsDifferentType;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -40,11 +43,6 @@ protected:
   /** Does the real work. */
   void
   GenerateData() override;
-
-private:
-  ImageFilterMultipleInputsDifferentType(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
 };
 } // namespace itk
 
@@ -54,4 +52,4 @@ private:
 #endif
 
 
-#endif // __itkImageFilterMultipleInputsDifferentType_h
+#endif // ImageFilterMultipleInputsDifferentType_h

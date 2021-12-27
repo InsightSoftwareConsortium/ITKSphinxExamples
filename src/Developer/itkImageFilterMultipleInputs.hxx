@@ -9,27 +9,27 @@
 namespace itk
 {
 
-template <class TImage>
+template <typename TImage>
 ImageFilterMultipleInputs<TImage>::ImageFilterMultipleInputs()
 {
   this->SetNumberOfRequiredInputs(2);
 }
 
-template <class TImage>
+template <typename TImage>
 void
 ImageFilterMultipleInputs<TImage>::SetInputImage(const TImage * image)
 {
   this->SetNthInput(0, const_cast<TImage *>(image));
 }
 
-template <class TImage>
+template <typename TImage>
 void
 ImageFilterMultipleInputs<TImage>::SetInputMask(const TImage * mask)
 {
   this->SetNthInput(1, const_cast<TImage *>(mask));
 }
 
-template <class TImage>
+template <typename TImage>
 void
 ImageFilterMultipleInputs<TImage>::GenerateData()
 {

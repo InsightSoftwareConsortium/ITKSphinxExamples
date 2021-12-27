@@ -1,5 +1,5 @@
-#ifndef __itkImageFilterMultipleOutputsDifferentType_h
-#define __itkImageFilterMultipleOutputsDifferentType_h
+#ifndef ImageFilterMultipleOutputsDifferentType_h
+#define ImageFilterMultipleOutputsDifferentType_h
 
 #include "itkImageToImageFilter.h"
 
@@ -11,10 +11,13 @@ class ImageFilterMultipleOutputsDifferentType
                                                           // output image type in MakeOutput()
 {
 public:
+  ITK_DISALLOW_COPY_AND_MOVE(ImageFilterMultipleOutputsDifferentType);
+
   /** Standard class type alias. */
   using Self = ImageFilterMultipleOutputsDifferentType;
   using Superclass = ImageToImageFilter<TInputImage, TOutputImage1>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -38,11 +41,6 @@ protected:
   /**  Create the Output */
   DataObject::Pointer
   MakeOutput(ProcessObject::DataObjectPointerArraySizeType idx) override;
-
-private:
-  ImageFilterMultipleOutputsDifferentType(const Self &) = delete; // purposely not implemented
-  void
-  operator=(const Self &) = delete; // purposely not implemented
 };
 } // namespace itk
 
@@ -52,4 +50,4 @@ private:
 #endif
 
 
-#endif // __itkImageFilterMultipleOutputsDifferentType_h
+#endif // ImageFilterMultipleOutputsDifferentType_h

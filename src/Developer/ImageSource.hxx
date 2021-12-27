@@ -1,5 +1,5 @@
-#ifndef __itkImageSource_hxx
-#define __itkImageSource_hxx
+#ifndef ImageSource_hxx
+#define ImageSource_hxx
 
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"
@@ -8,9 +8,9 @@
 namespace itk
 {
 
-template <class TImage>
+template <typename TImage>
 void
-ImageFilter<TImage>::GenerateData()
+ImageSource<TImage>::GenerateData()
 {
   double a = 2.1;
   itkExceptionMacro("Here is a variable: " << a << " and then more text.");

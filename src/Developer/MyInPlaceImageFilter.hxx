@@ -1,5 +1,5 @@
-#ifndef __itkMyInPlaceImageFilter_hxx
-#define __itkMyInPlaceImageFilter_hxx
+#ifndef MyInPlaceImageFilter_hxx
+#define MyInPlaceImageFilter_hxx
 
 
 #include "itkObjectFactory.h"
@@ -9,7 +9,7 @@
 namespace itk
 {
 
-template <class TImage>
+template <typename TImage>
 void
 MyInPlaceImageFilter<TImage>::GenerateData()
 {

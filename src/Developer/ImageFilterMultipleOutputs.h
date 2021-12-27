@@ -1,11 +1,11 @@
-#ifndef __itkImageFilterMultipleOutputs_h
-#define __itkImageFilterMultipleOutputs_h
+#ifndef ImageFilterMultipleOutputs_h
+#define ImageFilterMultipleOutputs_h
 
 #include "itkImageToImageFilter.h"
 
 namespace itk
 {
-template <class TImage>
+template <typename TImage>
 class ImageFilterMultipleOutputs : public ImageToImageFilter<TImage, TImage>
 {
 public:
@@ -14,6 +14,7 @@ public:
   using Self = ImageFilterMultipleOutputs;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -46,4 +47,4 @@ protected:
 #endif
 
 
-#endif // __itkImageFilterMultipleOutputs_h
+#endif // ImageFilterMultipleOutputs_h

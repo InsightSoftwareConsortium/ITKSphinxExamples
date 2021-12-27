@@ -1,11 +1,11 @@
-#ifndef __itkImageFilter_h
-#define __itkImageFilter_h
+#ifndef ImageFilter_h
+#define ImageFilter_h
 
 #include "itkImageToImageFilter.h"
 
 namespace itk
 {
-template <class TImage>
+template <typename TImage>
 class ImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:
@@ -14,6 +14,7 @@ public:
   using Self = ImageFilter;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -37,4 +38,4 @@ protected:
 #endif
 
 
-#endif // __itkImageFilter_h
+#endif // ImageFilter_h

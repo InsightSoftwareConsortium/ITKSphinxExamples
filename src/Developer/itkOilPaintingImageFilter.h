@@ -1,5 +1,5 @@
-#ifndef __itkOilPaintingImageFilter_h
-#define __itkOilPaintingImageFilter_h
+#ifndef itkOilPaintingImageFilter_h
+#define itkOilPaintingImageFilter_h
 
 #include "itkImageToImageFilter.h"
 #include "itkNeighborhoodIterator.h"
@@ -14,7 +14,7 @@ namespace itk
  *
  * \ingroup ImageFilters
  */
-template <class TImage>
+template <typename TImage>
 class OilPaintingImageFilter : public ImageToImageFilter<TImage, TImage>
 {
 public:
@@ -23,6 +23,8 @@ public:
   using Self = OilPaintingImageFilter;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
+
   using RadiusType = typename NeighborhoodIterator<TImage>::RadiusType;
 
   /** Method for creation through the object factory. */
@@ -62,4 +64,4 @@ private:
 #  include "itkOilPaintingImageFilter.hxx"
 #endif
 
-#endif // __itkOilPaintingImageFilter_h
+#endif // itkOilPaintingImageFilter_h

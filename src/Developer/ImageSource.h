@@ -1,46 +1,44 @@
-#ifndef __itkImageFilter_h
-#define __itkImageFilter_h
+#ifndef ImageSource_h
+#define ImageSource_h
 
-#include "itkImageToImageFilter.h"
+#include "itkProcessObject.h"
 
 #include <set>
 
 namespace itk
 {
-template <class TImage>
-class ImageFilter : public ImageToImageFilter<TImage, TImage>
+template <typename TImage>
+class ImageSource : public ProcessObject
 {
 public:
+  ITK_DISALLOW_COPY_AND_MOVE(ImageSource);
+
   /** Standard class type alias. */
-  using Self = ImageFilter;
-  using Superclass = ImageToImageFilter<TImage, TImage>;
+  using Self = ImageSource;
+  using Superclass = ProcessObject;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ImageFilter, ImageToImageFilter);
+  itkTypeMacro(ImageSource, ProcessObject);
 
 protected:
-  ImageFilter() {}
-  ~ImageFilter() {}
+  ImageSource() = default;
+  ~ImageSource() override = default;
 
   /** Does the real work. */
   virtual void
   GenerateData();
-
-private:
-  ImageFilter(const Self &); // purposely not implemented
-  void
-  operator=(const Self &); // purposely not implemented
 };
 } // namespace itk
 
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#  include "ImageFilter.hxx"
+#  include "ImageSource.hxx"
 #endif
 
 
-#endif // __itkImageFilter_h
+#endif // ImageSource_h

@@ -1,11 +1,11 @@
-#ifndef __itkMyInPlaceImageFilter_h
-#define __itkMyInPlaceImageFilter_h
+#ifndef MyInPlaceImageFilter_h
+#define MyInPlaceImageFilter_h
 
 #include "itkInPlaceImageFilter.h"
 
 namespace itk
 {
-template <class TImage>
+template <typename TImage>
 class MyInPlaceImageFilter : public InPlaceImageFilter<TImage>
 {
 public:
@@ -14,6 +14,7 @@ public:
   using Self = MyInPlaceImageFilter;
   using Superclass = InPlaceImageFilter<TImage>;
   using Pointer = SmartPointer<Self>;
+  using ConstPointer = SmartPointer<const Self>;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
