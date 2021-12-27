@@ -49,7 +49,7 @@ main(int argc, char * argv[])
   maskFilter->SetInput(input);
   maskFilter->SetMaskImage(mask);
   mask->Print(std::cout);
-#  ifdef ENABLE_QUICKVIEW
+#ifdef ENABLE_QUICKVIEW
   QuickView viewer;
   viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
 
@@ -62,7 +62,7 @@ main(int argc, char * argv[])
   viewer.AddImage(maskFilter->GetOutput(), true, desc2.str());
 
   viewer.Visualize();
-#  endif
+#endif
   return EXIT_SUCCESS;
 }
 

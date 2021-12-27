@@ -56,7 +56,7 @@ main(int argc, char * argv[])
 
   const auto input = itk::ReadImage<InputImageType>(argv[1]);
 
-#ifdef ENABLE_QUICKVIEW
+#  ifdef ENABLE_QUICKVIEW
   using OutputPixelType = unsigned char;
   using OutputImageType = itk::Image<OutputPixelType, 2>;
 
@@ -112,8 +112,8 @@ main(int argc, char * argv[])
 
 
   viewer.Visualize();
-#else
+#  else
   std::cout << " Example requires compilation with ENABLE_QUICKVIEW defined." << std::endl;
-#endif
+#  endif
   return EXIT_SUCCESS;
 }
