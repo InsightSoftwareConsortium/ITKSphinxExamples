@@ -6,7 +6,7 @@ find_package( ITK REQUIRED )
 # Registering the IO classes manually is usually not necessary,
 # unless this variable is set before calling
 #   "include( ${ITK_USE_FILE} )"
-set( ITK_NO_IO_FACTORY_REGISTER_MANAGER 1 )
+set( ITK_NO_IMAGEIO_FACTORY_REGISTER_MANAGER 1 )
 include( ${ITK_USE_FILE} )
 
 add_executable( RegisterIOFactories Code.cxx )
