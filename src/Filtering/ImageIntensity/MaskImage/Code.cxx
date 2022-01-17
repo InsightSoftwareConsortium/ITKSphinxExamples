@@ -51,7 +51,7 @@ main(int argc, char * argv[])
   mask->Print(std::cout);
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage(input.GetPointer(), true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   std::stringstream desc;
   desc << "Mask";

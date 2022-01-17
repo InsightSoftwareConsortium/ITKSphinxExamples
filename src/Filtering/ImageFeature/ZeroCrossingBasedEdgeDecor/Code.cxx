@@ -60,7 +60,7 @@ main(int argc, char * argv[])
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(inputFilename));
+  viewer.AddImage(input.GetPointer(), true, itksys::SystemTools::GetFilenameName(inputFileName));
 
   std::stringstream desc;
   desc << "ZeroBasedEdgeDetection, variance = " << edgeDetector->GetVariance();

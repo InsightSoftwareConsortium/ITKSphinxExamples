@@ -56,7 +56,7 @@ main(int argc, char * argv[])
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage(input.GetPointer(), true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   std::stringstream desc;
   desc << "LaplacianSharpeningImageFilter";

@@ -77,7 +77,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<InputImageType>(argv[1]);
 
   QuickView viewer;
-  viewer.AddImage(input, true, itksys::SystemTools::GetFilenameName(argv[1]));
+  viewer.AddImage(input.GetPointer(), true, itksys::SystemTools::GetFilenameName(argv[1]));
 
   using FilterContainerType =
     std::map<std::string, itk::HistogramThresholdImageFilter<InputImageType, OutputImageType>::Pointer>;
