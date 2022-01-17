@@ -57,7 +57,7 @@ main(int argc, char * argv[])
   statistics1->Update();
   desc1 << itksys::SystemTools::GetFilenameName(argv[1]) << "\nMean: " << statistics1->GetMean()
         << " Variance: " << statistics1->GetVariance();
-  viewer.AddImage(reader->GetOutput(), true, desc1.str());
+  viewer.AddImage(input.GetPointer(), true, desc1.str());
 
   std::stringstream desc2;
   statistics2->Update();

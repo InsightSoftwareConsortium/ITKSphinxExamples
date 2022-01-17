@@ -97,7 +97,7 @@ main(int argc, char * argv[])
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddRGBImage(input, true, itksys::SystemTools::GetFilenameName(inputFileName));
+  viewer.AddRGBImage(input.GetPointer(), true, itksys::SystemTools::GetFilenameName(inputFileName));
 
   std::stringstream desc;
   desc << "CurvatureFlow iterations = " << iterations;

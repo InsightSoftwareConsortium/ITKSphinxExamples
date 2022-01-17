@@ -87,7 +87,7 @@ main(int argc, char * argv[])
   // 5) Display the input and smoothed images
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddRGBImage(input, true, itksys::SystemTools::GetFilenameName(inputFileName));
+  viewer.AddRGBImage(input.GetPointer(), true, itksys::SystemTools::GetFilenameName(inputFileName));
 
   std::stringstream desc;
   desc << "VectorCurvatureAnisotropicDiffusionImageFilter\niterations: " << filter->GetNumberOfIterations()

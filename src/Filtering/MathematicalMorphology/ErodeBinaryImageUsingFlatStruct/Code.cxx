@@ -58,7 +58,7 @@ main(int argc, char * argv[])
 
 #ifdef ENABLE_QUICKVIEW
   QuickView viewer;
-  viewer.AddImage(input);
+  viewer.AddImage(input.GetPointer());
   viewer.AddImage(erodeFilter->GetOutput());
   viewer.Visualize();
 #endif
