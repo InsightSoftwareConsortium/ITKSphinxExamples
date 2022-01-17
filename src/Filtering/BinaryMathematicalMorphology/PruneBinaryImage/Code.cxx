@@ -25,11 +25,6 @@
 #  include "QuickView.h"
 #endif
 
-namespace
-{
-using ImageType = itk::Image<unsigned char, 2>;
-}
-
 template <typename TImage>
 void
 CreateImage(TImage * const image);
