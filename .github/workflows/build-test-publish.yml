@@ -262,7 +262,10 @@ jobs:
             cmake-build-type: "Release"
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          path: Ex
+          submodules: recursive
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
@@ -309,18 +312,19 @@ jobs:
 
       - name: Fetch CTest driver script
         run: |
-          curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITK/dashboard/itk_common.cmake -O
+          curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITKSphinxExamples/dashboard/itkexamples_common.cmake -O
 
       - name: Configure CTest script
         shell: bash
         run: |
+          mv Ex ../../
           operating_system="${{ matrix.os }}"
           cat > dashboard.cmake << EOF
           set(CTEST_SITE "GitHubActions")
-          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/.." CTEST_DASHBOARD_ROOT)
-          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/" CTEST_SOURCE_DIRECTORY)
-          file(TO_CMAKE_PATH "${GITHUB_WORKSPACE}/ITKSphinxExamples-build" CTEST_BINARY_DIRECTORY)
-          set(dashboard_source_name "${GITHUB_REPOSITORY}")
+          file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/.." CTEST_DASHBOARD_ROOT)
+          file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../Ex" CTEST_SOURCE_DIRECTORY)
+          file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../bld/" CTEST_BINARY_DIRECTORY)
+          set(dashboard_superbuild 1)
           if(ENV{GITHUB_REF} MATCHES "master")
             set(branch "-master")
             set(dashboard_model "Continuous")
@@ -328,7 +332,7 @@ jobs:
             set(branch "-${GITHUB_REF}")
             set(dashboard_model "Experimental")
           endif()
-          set(CTEST_BUILD_NAME "${GITHUB_REPOSITORY}-${operating_system}-\${branch}")
+          set(CTEST_BUILD_NAME "${GITHUB_REPOSITORY}-${operating_system}-\${branch}-docs")
           set(CTEST_UPDATE_VERSION_ONLY 1)
           set(CTEST_TEST_ARGS \${CTEST_TEST_ARGS} PARALLEL_LEVEL \${PARALLEL_LEVEL})
           set(CTEST_BUILD_CONFIGURATION "Release")
@@ -341,15 +345,17 @@ jobs:
           set(dashboard_no_clean 1)
           set(ENV{CC} ${{ matrix.c-compiler }})
           set(ENV{CXX} ${{ matrix.cxx-compiler }})
+          if(WIN32)
+            set(ENV{PATH} "\${CTEST_DASHBOARD_ROOT}/ITK-build/bin;\$ENV{PATH}")
+          endif()
           set(dashboard_cache "
-          ITK_DIR:PATH=\${CTEST_DASHBOARD_ROOT}/ITK-build
           BUILD_TESTING:BOOL=ON
           BUILD_DOCUMENTATION:BOOL=ON
           ")
           string(TIMESTAMP build_date "%Y-%m-%d")
           message("CDash Build Identifier: \${build_date} \${CTEST_BUILD_NAME}")
           message("CTEST_SITE = \${CTEST_SITE}")
-          include(\${CTEST_SCRIPT_DIRECTORY}/itk_common.cmake)
+          include(\${CTEST_SCRIPT_DIRECTORY}/itkexamples_common.cmake)
           EOF
           cat dashboard.cmake
 
@@ -362,14 +368,14 @@ jobs:
         with:
           name: Documentation
           path: |
-            ${{ github.workspace }}/ITKSphinxExamples-build/ITKSphinxExamples-*-html.tar.gz
-            ${{ github.workspace }}/ITKSphinxExamples-build/ITKSphinxExamples-*-html.zip
+            ${{ github.workspace }}/../../bld/ITKEx-build/ITKSphinxExamples-*-html.tar.gz
+            ${{ github.workspace }}/../../bld/ITKEx-build/ITKSphinxExamples-*-html.zip
 
       - name: Unpack site
         shell: bash
         run: |
           mkdir site
-          tar --strip-components=1 -xf ${{ github.workspace }}/ITKSphinxExamples-build/ITKSphinxExamples-*-html.tar.gz -C site
+          tar --strip-components=1 -xf ${{ github.workspace }}/../../ITKEx-build/ITKSphinxExamples-*-html.tar.gz -C site
 
       - name: Publish website to Netlify
         uses: nwtgck/actions-netlify@v1.1.13
