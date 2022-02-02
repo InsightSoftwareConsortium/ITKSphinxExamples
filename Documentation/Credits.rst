@@ -1,12 +1,9 @@
 Credits
 ==========
 
-.. toctree::
-   :maxdepth: 2
-
-   gitstats/index
-   gitstats/authors
-   gitstats/activity
-   gitstats/files
-   gitstats/lines
-   gitstats/tags
+.. contributors:: InsightSoftwareConsortium/ITKSphinxExamples
+    :contributions:
+    :avatars:
+    :exclude: itkrobot
+    :limit: 100
+    :order: DESC
