@@ -251,16 +251,6 @@ if(BUILD_DOCUMENTATION)
   # was built before build_html.
   add_dependencies(copy_sources ITKSphinxExamplesData)
 
-  configure_file("${ITKSphinxExamples_SOURCE_DIR}/Utilities/SphinxExtensions/RunGitStats.cmake.in"
-    "${ITKSphinxExamples_BINARY_DIR}/Utilities/SphinxExtensions/RunGitStats.cmake"
-    @ONLY)
-  add_custom_target(gitstats ALL
-    COMMAND ${CMAKE_COMMAND} -P "${ITKSphinxExamples_BINARY_DIR}/Utilities/SphinxExtensions/RunGitStats.cmake"
-    WORKING_DIRECTORY ${ITKSphinxExamples_BINARY_DIR}
-    COMMENT "Running gitstats"
-    )
-  add_dependencies(gitstats copy_sources)
-
   # A high level target that the individual targets depend on.
   add_custom_target(CreateDownloadableArchives ALL
     ${CMAKE_COMMAND} -E echo "Done creating individual example downloadable archives..."
@@ -282,7 +272,7 @@ if(BUILD_DOCUMENTATION)
   set(SPHINX_CONF_DIR ${ITKSphinxExamples_BINARY_DIR}/Formatting)
   set(SPHINX_INPUT_DIR ${ITKSphinxExamples_BINARY_DIR})
   set(SPHINX_DESTINATION ${ITKSphinxExamples_BINARY_DIR})
-  set(SPHINX_DEPENDENCIES gitstats ITKDoxygenXML ITKSphinxExamplesData ITKDoxygenTAG CreateDownloadableArchives)
+  set(SPHINX_DEPENDENCIES ITKDoxygenXML ITKSphinxExamplesData ITKDoxygenTAG CreateDownloadableArchives)
 
   option(DOC_WITH_LOCAL_DOXYGEN "Generate documentation with local doxygen" OFF)
   mark_as_advanced(DOC_WITH_LOCAL_DOXYGEN)

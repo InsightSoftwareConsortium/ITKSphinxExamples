@@ -4,9 +4,6 @@
 [submodule "Utilities/SphinxExtensions/breathe"]
 	path = Utilities/SphinxExtensions/breathe
 	url = https://github.com/michaeljones/breathe
-[submodule "Utilities/SphinxExtensions/gitstats"]
-	path = Utilities/SphinxExtensions/gitstats
-	url = https://github.com/arnaudgelas/gitstats.git
 [submodule "Utilities/SphinxExtensions/sphinx-bootstrap-theme"]
 	path = Utilities/SphinxExtensions/sphinx-bootstrap-theme
 	url = https://github.com/ryan-roemer/sphinx-bootstrap-theme
