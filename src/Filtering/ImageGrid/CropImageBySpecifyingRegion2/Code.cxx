@@ -107,6 +107,11 @@ CreateImage(ImageType::Pointer image)
   image->Allocate();
   image->FillBuffer(itk::NumericTraits<ImageType::PixelType>::ZeroValue());
 
+  PixelType rgbPixel;
+  rgbPixel[0] = 200;
+  rgbPixel[1] = 200;
+  rgbPixel[2] = 200;
+
   // Make a rectangle, centered at (100,150) with sides 160 & 240
   // This provides a 20 x 30 border around the square for the crop filter to remove
   for (unsigned int r = 20; r < 180; r++)
@@ -117,7 +122,7 @@ CreateImage(ImageType::Pointer image)
       pixelIndex[0] = r;
       pixelIndex[1] = c;
 
-      image->SetPixel(pixelIndex, 200);
+      image->SetPixel(pixelIndex, rgbPixel);
     }
   }
 }
