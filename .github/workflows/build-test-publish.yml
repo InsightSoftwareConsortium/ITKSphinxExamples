@@ -295,21 +295,6 @@ jobs:
           SITE_PACKAGES_DIR=$(python3 "-c" "from distutils import sysconfig; print(sysconfig.get_python_lib())")
           sed -i "6559d" ${SITE_PACKAGES_DIR}/sphinx/domains/cpp.py
 
-      - name: Download ITK
-        run: |
-          cd ..
-          git clone https://github.com/InsightSoftwareConsortium/ITK.git
-          cd ITK
-          git checkout ${{ matrix.itk-git-tag }}
-
-      - name: Build ITK
-        run: |
-          cd ..
-          mkdir ITK-build
-          cd ITK-build
-          cmake -DCMAKE_C_COMPILER:FILEPATH="${{ matrix.c-compiler }}" -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_CXX_COMPILER="${{ matrix.cxx-compiler }}" -DCMAKE_BUILD_TYPE:STRING=${{ matrix.cmake-build-type }} -DBUILD_TESTING:BOOL=OFF -GNinja ../ITK
-          ninja
-
       - name: Fetch CTest driver script
         run: |
           curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITKSphinxExamples/dashboard/itkexamples_common.cmake -O
