@@ -2,7 +2,7 @@
 # Get and build itk
 
 if(NOT ITK_TAG)
-  set(ITK_TAG "v5.2.0")
+  set(ITK_TAG "v5.3rc03")
 endif()
 
 set(_vtk_args)
