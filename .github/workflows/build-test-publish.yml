@@ -365,18 +365,12 @@ jobs:
           mkdir site
           tar --strip-components=1 -xf /home/runner/work/bld/ITKEx-build/ITKSphinxExamples-*-html.tar.gz -C site
 
-      - name: Publish website to Netlify
-        uses: nwtgck/actions-netlify@v1.1.13
+      - name: Deploy website to Fleek
+        uses: fleekhq/action-deploy@v1
+        id: deploy
         with:
-          publish-dir: './site'
-          production-branch: master
-          production-deploy: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: ${{ github.event.pull_request.title }})
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 5
+          apiKey: ${{ secrets.FLEEK_API_KEY }}
+        timeout-minutes: 15
+
+      - name: Get Fleek output URL
+        run: echo "Deploy url is ${{ steps.deploy.outputs.deployUrl }}"
