@@ -362,8 +362,8 @@ jobs:
       - name: Unpack site
         shell: bash
         run: |
-          mkdir site
-          tar --strip-components=1 -xf /home/runner/work/bld/ITKEx-build/ITKSphinxExamples-*-html.tar.gz -C site
+          mkdir /home/runner/work/site
+          tar --strip-components=1 -xf /home/runner/work/bld/ITKEx-build/ITKSphinxExamples-*-html.tar.gz -C /home/runner/work/site
 
       - name: Deploy website to Fleek
         uses: fleekhq/action-deploy@v1
