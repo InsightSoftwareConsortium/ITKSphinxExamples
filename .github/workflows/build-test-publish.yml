@@ -370,6 +370,7 @@ jobs:
         id: deploy
         with:
           apiKey: ${{ secrets.FLEEK_API_KEY }}
+          workDir: /home/runner/work/Ex
         timeout-minutes: 15
 
       - name: Get Fleek output URL
