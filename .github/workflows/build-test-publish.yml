@@ -304,6 +304,7 @@ jobs:
       - name: Configure CTest script
         shell: bash
         run: |
+          mv Ex/.fleek.json .
           mv Ex ../../
           operating_system="${{ matrix.os }}"
           cat > dashboard.cmake << EOF
