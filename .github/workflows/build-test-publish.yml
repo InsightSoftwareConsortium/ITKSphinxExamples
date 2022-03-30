@@ -290,7 +290,7 @@ jobs:
           python -m pip install --ignore-installed six
           python -m pip install ipython
 
-          echo "Workspace: ${{ GITHUB_WORKSPACE }}"
+          echo "Workspace: ${{ github.workspace }}"
 
       - name: Remove Duplicate Declaration Warnings
         run: |
@@ -364,9 +364,9 @@ jobs:
       - name: Unpack site
         shell: bash
         run: |
-          mkdir ${{ GITHUB_WORKSPACE }}/site
-          echo "Unpack to ${{ GITHUB_WORKSPACE }}/site"
-          tar --strip-components=1 -xf /home/runner/work/bld/ITKEx-build/ITKSphinxExamples-*-html.tar.gz -C ${{ GITHUB_WORKSPACE }}/site
+          mkdir ${{ github.workspace }}/site
+          echo "Unpack to ${{ github.workspace }}/site"
+          tar --strip-components=1 -xf /home/runner/work/bld/ITKEx-build/ITKSphinxExamples-*-html.tar.gz -C ${{ github.workspace }}/site
 
       - name: Deploy website to Fleek
         uses: fleekhq/action-deploy@v1
