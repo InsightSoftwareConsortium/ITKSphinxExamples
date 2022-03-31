@@ -304,7 +304,6 @@ jobs:
       - name: Configure CTest script
         shell: bash
         run: |
-          mv Ex/.fleek.json .
           mv Ex ../../
           operating_system="${{ matrix.os }}"
           cat > dashboard.cmake << EOF
@@ -365,6 +364,7 @@ jobs:
       - name: Unpack site
         shell: bash
         run: |
+          cp ../../Ex/.fleek.json .
           mkdir ${{ github.workspace }}/site
           echo "Unpack to ${{ github.workspace }}/site"
           tar --strip-components=1 -xf /home/runner/work/bld/ITKEx-build/ITKSphinxExamples-*-html.tar.gz -C ${{ github.workspace }}/site
