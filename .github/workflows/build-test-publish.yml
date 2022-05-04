@@ -2,6 +2,9 @@ name: Build, test, publish
 
 on: [push,pull_request]
 
+env:
+  itk-git-tag: "e801e637634d1cdf050b358299fd7b3771418f2e"
+
 jobs:
   build-test-cxx:
     runs-on: ${{ matrix.os }}
@@ -13,17 +16,14 @@ jobs:
           - os: ubuntu-18.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
-            itk-git-tag: "a89145bccda6a36f42cfdd45d3a6b27234ff54fe"
             cmake-build-type: "MinSizeRel"
           - os: windows-2019
             c-compiler: "cl.exe"
             cxx-compiler: "cl.exe"
-            itk-git-tag: "a89145bccda6a36f42cfdd45d3a6b27234ff54fe"
             cmake-build-type: "Release"
           - os: macos-10.15
             c-compiler: "clang"
             cxx-compiler: "clang++"
-            itk-git-tag: "a89145bccda6a36f42cfdd45d3a6b27234ff54fe"
             cmake-build-type: "MinSizeRel"
 
     steps:
@@ -49,7 +49,7 @@ jobs:
           cd ..
           git clone https://github.com/InsightSoftwareConsortium/ITK.git
           cd ITK
-          git checkout ${{ matrix.itk-git-tag }}
+          git checkout ${{ env.itk-git-tag }}
 
       - name: Build ITK
         if: matrix.os != 'windows-2019'
@@ -259,7 +259,6 @@ jobs:
           - os: ubuntu-18.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
-            itk-git-tag: "a89145bccda6a36f42cfdd45d3a6b27234ff54fe"
             cmake-build-type: "Release"
 
     steps:
@@ -364,18 +363,22 @@ jobs:
       - name: Unpack site
         shell: bash
         run: |
-          cp ../../Ex/.fleek.json .
           mkdir ${{ github.workspace }}/site
           echo "Unpack to ${{ github.workspace }}/site"
           tar --strip-components=1 -xf /home/runner/work/bld/ITKEx-build/ITKSphinxExamples-*-html.tar.gz -C ${{ github.workspace }}/site
 
-      - name: Deploy website to Fleek
-        uses: fleekhq/action-deploy@v1
-        id: deploy
+      - name: Deploy website to Netlify
+        uses: nwtgck/actions-netlify@v1.1.13
         with:
-          apiKey: ${{ secrets.FLEEK_API_KEY }}
-          #workDir: /home/runner/work/Ex
-        timeout-minutes: 15
-
-      - name: Get Fleek output URL
-        run: echo "Deploy url is ${{ steps.deploy.outputs.deployUrl }}"
+          publish-dir: '${{ github.workspace }}/site'
+          production-branch: master
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: ${{ github.event.pull_request.title }})
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
