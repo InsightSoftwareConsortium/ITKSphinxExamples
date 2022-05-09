@@ -4,7 +4,7 @@ if(NOT GIT_FOUND)
   message(ERROR "Cannot find git. git is required for Superbuild")
 endif()
 
-option( USE_GIT_PROTOCOL "If behind a firewall turn this off to use http instead." ON)
+option( USE_GIT_PROTOCOL "If behind a firewall turn this off to use http instead." OFF)
 
 set(git_protocol "git")
 if(NOT USE_GIT_PROTOCOL)
