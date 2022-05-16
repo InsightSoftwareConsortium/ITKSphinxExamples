@@ -46,7 +46,7 @@ main(int argc, char ** argv)
   {
     inputImage = itk::ReadImage<ImageType>(inputFileName);
   }
-  catch (itk::ExceptionObject & err)
+  catch (const itk::ExceptionObject & err)
   {
     std::cerr << "ExceptionObject caught !" << std::endl;
     std::cerr << err << std::endl;
@@ -92,7 +92,7 @@ main(int argc, char ** argv)
   {
     itk::WriteImage(pasteFilter->GetOutput(), outputFileName);
   }
-  catch (itk::ExceptionObject & err)
+  catch (const itk::ExceptionObject & err)
   {
     std::cerr << "ExceptionObject caught !" << std::endl;
     std::cerr << err << std::endl;

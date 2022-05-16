@@ -67,7 +67,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(rescaler->GetOutput(), outputImage);
   }
-  catch (itk::ExceptionObject & e)
+  catch (const itk::ExceptionObject & e)
   {
     std::cerr << "Error: " << e << std::endl;
     return EXIT_FAILURE;

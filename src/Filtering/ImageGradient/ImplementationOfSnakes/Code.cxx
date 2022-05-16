@@ -75,7 +75,7 @@ main(int argc, char * argv[])
       w = image->GetLargestPossibleRegion().GetSize()[0];
       h = image->GetLargestPossibleRegion().GetSize()[1];
     }
-    catch (itk::ExceptionObject & err)
+    catch (const itk::ExceptionObject & err)
     {
       std::cerr << "Caught unexpected exception " << err;
       return EXIT_FAILURE;

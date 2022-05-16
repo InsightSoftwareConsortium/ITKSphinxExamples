@@ -52,7 +52,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(filter->GetOutput(), argv[2]);
   }
-  catch (itk::ExceptionObject & e)
+  catch (const itk::ExceptionObject & e)
   {
     std::cerr << "Error: " << e << std::endl;
     return EXIT_FAILURE;

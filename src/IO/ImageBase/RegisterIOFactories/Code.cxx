@@ -58,7 +58,7 @@ main(int argc, char * argv[])
   {
     reader->Update();
   }
-  catch (itk::ImageFileReaderException &)
+  catch (const itk::ImageFileReaderException &)
   {
     std::cout << "fail.\n" << std::endl;
   }
@@ -77,7 +77,7 @@ main(int argc, char * argv[])
     reader->Update();
     std::cout << "succeed.\n" << std::endl;
   }
-  catch (itk::ImageFileReaderException & error)
+  catch (const itk::ImageFileReaderException & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -92,7 +92,7 @@ main(int argc, char * argv[])
   {
     reader->Update();
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;

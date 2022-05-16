@@ -93,7 +93,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(cast->GetOutput(), argv[2]);
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;

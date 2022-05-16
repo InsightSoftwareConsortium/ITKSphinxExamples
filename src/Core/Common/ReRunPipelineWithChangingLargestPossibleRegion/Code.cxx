@@ -61,7 +61,7 @@ main(int argc, char * argv[])
     std::cout << largestRegion << std::endl;
     ;
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -77,7 +77,7 @@ main(int argc, char * argv[])
     reader->SetFileNames(fileNames);
     reader->Update();
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     // Print out the error that occurs
     std::cout << "Error: " << error << std::endl;
@@ -97,7 +97,7 @@ main(int argc, char * argv[])
     std::cout << largestRegion << std::endl;
     ;
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;

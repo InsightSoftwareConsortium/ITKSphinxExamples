@@ -146,7 +146,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
     std::cout << "Optimizer stop condition = " << registration->GetOptimizer()->GetStopConditionDescription()
               << std::endl;
   }
-  catch (itk::ExceptionObject & err)
+  catch (const itk::ExceptionObject & err)
   {
     std::cerr << "ExceptionObject caught !" << std::endl;
     std::cerr << err << std::endl;
@@ -186,7 +186,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   {
     itk::WriteImage(caster->GetOutput(), "output.png");
   }
-  catch (itk::ExceptionObject & err)
+  catch (const itk::ExceptionObject & err)
   {
     std::cerr << "ExceptionObject caught !" << std::endl;
     std::cerr << err << std::endl;

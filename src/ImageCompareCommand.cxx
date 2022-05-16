@@ -201,7 +201,7 @@ main(int argc, char ** argv)
                           toleranceNumberOfPixels);
     }
   }
-  catch (itk::ExceptionObject & e)
+  catch (const itk::ExceptionObject & e)
   {
     std::cerr << "ITK test driver caught an ITK exception:\n";
     std::cerr << e << "\n";
@@ -246,7 +246,7 @@ RegressionTestImage(const char * testImageFilename,
   {
     baselineReader->UpdateLargestPossibleRegion();
   }
-  catch (itk::ExceptionObject & e)
+  catch (const itk::ExceptionObject & e)
   {
     std::cerr << "Exception detected while reading " << baselineImageFilename << " : " << e;
     return 1000;
@@ -259,7 +259,7 @@ RegressionTestImage(const char * testImageFilename,
   {
     testReader->UpdateLargestPossibleRegion();
   }
-  catch (itk::ExceptionObject & e)
+  catch (const itk::ExceptionObject & e)
   {
     std::cerr << "Exception detected while reading " << testImageFilename << " : " << e << std::endl;
     return 1000;
