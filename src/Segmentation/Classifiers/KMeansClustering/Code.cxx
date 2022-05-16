@@ -91,7 +91,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(kmeansFilter->GetOutput(), outputImageFileName);
   }
-  catch (itk::ExceptionObject & excp)
+  catch (const itk::ExceptionObject & excp)
   {
     std::cerr << "Problem encountered while writing ";
     std::cerr << " image file : " << outputImageFileName << std::endl;

@@ -118,7 +118,7 @@ main(int argc, char * argv[])
         {
           writer->Update();
         }
-        catch (itk::ExceptionObject & error)
+        catch (const itk::ExceptionObject & error)
         {
           std::cerr << "Exception for chunk: " << x << ' ' << y << ' ' << z << error << std::endl;
           return EXIT_FAILURE;

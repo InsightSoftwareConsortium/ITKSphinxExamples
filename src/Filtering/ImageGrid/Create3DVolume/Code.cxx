@@ -58,7 +58,7 @@ main(int argc, char * argv[])
     {
       input = itk::ReadImage<InputImageType>(argv[ii]);
     }
-    catch (itk::ExceptionObject & e)
+    catch (const itk::ExceptionObject & e)
     {
       std::cerr << e << std::endl;
       return EXIT_FAILURE;
@@ -75,7 +75,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(filter->GetOutput(), argv[argc - 1]);
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;

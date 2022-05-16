@@ -92,7 +92,7 @@ main(int argc, char * argv[])
     imageFilter->Update();
     itk::WriteImage(imageFilter->GetOutput(), argv[1], true); // compress
   }
-  catch (itk::ExceptionObject & excp)
+  catch (const itk::ExceptionObject & excp)
   {
     std::cerr << excp << std::endl;
     return EXIT_FAILURE;

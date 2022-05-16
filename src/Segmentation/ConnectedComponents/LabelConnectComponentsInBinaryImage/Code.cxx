@@ -109,7 +109,7 @@ main(int argc, char * argv[])
     {
       (*it).second->Update();
     }
-    catch (itk::ExceptionObject & err)
+    catch (const itk::ExceptionObject & err)
     {
       std::cout << "Caught exception" << std::endl;
       std::cout << err << std::endl;

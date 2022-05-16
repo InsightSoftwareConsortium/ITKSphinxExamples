@@ -86,7 +86,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(realRescaleFilter->GetOutput(), realFileName);
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -106,7 +106,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(imaginaryRescaleFilter->GetOutput(), imaginaryFileName);
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -126,7 +126,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(magnitudeRescaleFilter->GetOutput(), modulusFileName);
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;

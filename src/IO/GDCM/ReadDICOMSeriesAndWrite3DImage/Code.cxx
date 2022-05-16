@@ -116,14 +116,14 @@ main(int argc, char * argv[])
       {
         itk::WriteImage(reader->GetOutput(), outFileName, true); // compression
       }
-      catch (itk::ExceptionObject & ex)
+      catch (const itk::ExceptionObject & ex)
       {
         std::cout << ex << std::endl;
         continue;
       }
     }
   }
-  catch (itk::ExceptionObject & ex)
+  catch (const itk::ExceptionObject & ex)
   {
     std::cout << ex << std::endl;
     return EXIT_FAILURE;

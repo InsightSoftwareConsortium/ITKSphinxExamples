@@ -155,7 +155,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(thresholder->GetOutput(), outputFileName);
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -172,7 +172,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(caster4->GetOutput(), "GeodesicActiveContourImageFilterOutput4.png");
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -182,7 +182,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(fastMarching->GetOutput(), "GeodesicActiveContourImageFilterOutput4.mha");
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -192,7 +192,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(sigmoid->GetOutput(), "GeodesicActiveContourImageFilterOutput3.mha");
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -202,7 +202,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(gradientMagnitude->GetOutput(), "GeodesicActiveContourImageFilterOutput2.mha");
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;

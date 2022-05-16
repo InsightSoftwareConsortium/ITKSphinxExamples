@@ -101,7 +101,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(resizeFilter->GetOutput(), outputImageFileLabelImageInterpolator, true); // compress
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -115,7 +115,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(resizeFilter->GetOutput(), outputImageFileNearestNeighborInterpolator, true); // compress
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;

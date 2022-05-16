@@ -193,7 +193,7 @@ main(int argc, char * argv[])
       std::cout << "*** Skipping displacement field optimization.\n";
     }
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -218,7 +218,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(caster->GetOutput(), resampledMovingImageFile);
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;

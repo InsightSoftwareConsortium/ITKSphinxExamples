@@ -71,7 +71,7 @@ main(int argc, char * argv[])
   {
     reader->UpdateOutputInformation();
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
@@ -108,7 +108,7 @@ main(int argc, char * argv[])
   {
     filter->UpdateOutputInformation();
   }
-  catch (itk::ExceptionObject & error)
+  catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;

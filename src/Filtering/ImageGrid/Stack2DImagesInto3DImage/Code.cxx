@@ -77,7 +77,7 @@ main(int argc, char * argv[])
   {
     itk::WriteImage(tiler->GetOutput(), argv[argc - 1]);
   }
-  catch (itk::ExceptionObject & excp)
+  catch (const itk::ExceptionObject & excp)
   {
     std::cerr << excp << std::endl;
     return EXIT_FAILURE;
