@@ -36,12 +36,7 @@ main(int argc, char * argv[])
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-  reader->Update();
-
-  ImageType::Pointer image = reader->GetOutput();
+  ImageType::Pointer image = itk::ReadImage<ImageType>(argv[1]);
 
   return EXIT_SUCCESS;
 }
