@@ -37,7 +37,7 @@ int
 main(int, char *[])
 {
   // Create a demo image
-  ColorImageType::Pointer image = ColorImageType::New();
+  auto image = ColorImageType::New();
   CreateImage(image);
 
   // Compute pixel clusters using KMeans
@@ -47,7 +47,7 @@ main(int, char *[])
 
   using ImageKmeansModelEstimatorType = itk::ImageKmeansModelEstimator<ColorImageType, MembershipFunctionType>;
 
-  ImageKmeansModelEstimatorType::Pointer kmeansEstimator = ImageKmeansModelEstimatorType::New();
+  auto kmeansEstimator = ImageKmeansModelEstimatorType::New();
   kmeansEstimator->SetInputImage(image);
   kmeansEstimator->SetNumberOfModels(3);
   kmeansEstimator->SetThreshold(0.01);
@@ -59,10 +59,10 @@ main(int, char *[])
   // Classify each pixel
   using SampleType = itk::Statistics::ListSample<MeasurementVectorType>;
   using ClassifierType = itk::Statistics::SampleClassifierFilter<SampleType>;
-  ClassifierType::Pointer classifier = ClassifierType::New();
+  auto classifier = ClassifierType::New();
 
   using DecisionRuleType = itk::Statistics::MinimumDecisionRule;
-  DecisionRuleType::Pointer decisionRule = DecisionRuleType::New();
+  auto decisionRule = DecisionRuleType::New();
 
   classifier->SetDecisionRule(decisionRule);
   classifier->SetNumberOfClasses(3);
@@ -87,7 +87,7 @@ main(int, char *[])
   }
 
   // Setup class labels
-  ClassLabelVectorObjectType::Pointer classLabelsObject = ClassLabelVectorObjectType::New();
+  auto classLabelsObject = ClassLabelVectorObjectType::New();
   classifier->SetClassLabels(classLabelsObject);
 
   ClassLabelVectorType & classLabelsVector = classLabelsObject->Get();
@@ -97,14 +97,14 @@ main(int, char *[])
 
   // Perform the classification
   using SampleAdaptorType = itk::Statistics::ImageToListSampleAdaptor<ColorImageType>;
-  SampleAdaptorType::Pointer sample = SampleAdaptorType::New();
+  auto sample = SampleAdaptorType::New();
   sample->SetImage(image);
 
   classifier->SetInput(sample);
   classifier->Update();
 
   // Prepare the output image
-  ScalarImageType::Pointer outputImage = ScalarImageType::New();
+  auto outputImage = ScalarImageType::New();
   outputImage->SetRegions(image->GetLargestPossibleRegion());
   outputImage->Allocate();
   outputImage->FillBuffer(0);

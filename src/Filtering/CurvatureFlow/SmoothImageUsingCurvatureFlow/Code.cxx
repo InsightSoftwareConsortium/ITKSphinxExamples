@@ -49,14 +49,14 @@ main(int argc, char * argv[])
 
   using CurvatureFlowImageFilterType = itk::CurvatureFlowImageFilter<InternalImageType, InternalImageType>;
 
-  CurvatureFlowImageFilterType::Pointer smoothing = CurvatureFlowImageFilterType::New();
+  auto smoothing = CurvatureFlowImageFilterType::New();
 
   smoothing->SetInput(input);
   smoothing->SetNumberOfIterations(iterations);
   smoothing->SetTimeStep(0.125);
 
   using SubtractImageFilterType = itk::SubtractImageFilter<InternalImageType>;
-  SubtractImageFilterType::Pointer diff = SubtractImageFilterType::New();
+  auto diff = SubtractImageFilterType::New();
   diff->SetInput1(input);
   diff->SetInput2(smoothing->GetOutput());
 

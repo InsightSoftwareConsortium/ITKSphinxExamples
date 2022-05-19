@@ -70,12 +70,12 @@ main(int argc, char * argv[])
 
   using ConnectedComponentImageFilterType = itk::ScalarConnectedComponentImageFilter<ImageType, LabelImageType>;
 
-  ConnectedComponentImageFilterType::Pointer connected = ConnectedComponentImageFilterType::New();
+  auto connected = ConnectedComponentImageFilterType::New();
   connected->SetInput(image);
   connected->SetDistanceThreshold(distanceThreshold);
 
   using RelabelFilterType = itk::RelabelComponentImageFilter<LabelImageType, LabelImageType>;
-  RelabelFilterType::Pointer        relabel = RelabelFilterType::New();
+  auto                              relabel = RelabelFilterType::New();
   RelabelFilterType::ObjectSizeType minSize = 20;
   if (argc > 3)
   {
@@ -88,7 +88,7 @@ main(int argc, char * argv[])
   SummarizeLabelStatistics(image.GetPointer(), relabel->GetOutput());
 
   using RGBFilterType = itk::LabelToRGBImageFilter<LabelImageType, RGBImageType>;
-  RGBFilterType::Pointer rgbFilter = RGBFilterType::New();
+  auto rgbFilter = RGBFilterType::New();
   rgbFilter->SetInput(relabel->GetOutput());
 
 #ifdef ENABLE_QUICKVIEW
@@ -157,7 +157,7 @@ void
 SummarizeLabelStatistics(TImage * image, TLabelImage * labelImage)
 {
   using LabelStatisticsImageFilterType = itk::LabelStatisticsImageFilter<TImage, TLabelImage>;
-  typename LabelStatisticsImageFilterType::Pointer labelStatisticsImageFilter = LabelStatisticsImageFilterType::New();
+  auto labelStatisticsImageFilter = LabelStatisticsImageFilterType::New();
   labelStatisticsImageFilter->SetLabelInput(labelImage);
   labelStatisticsImageFilter->SetInput(image);
   labelStatisticsImageFilter->UseHistogramsOn(); // needed to compute median

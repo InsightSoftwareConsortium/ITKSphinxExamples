@@ -56,7 +56,7 @@ main(int argc, char * argv[])
   // Some FFT filter implementations, like VNL's, need the image size to be a
   // multiple of small prime numbers.
   using PadFilterType = itk::WrapPadImageFilter<FloatImageType, FloatImageType>;
-  PadFilterType::Pointer padFilter = PadFilterType::New();
+  auto padFilter = PadFilterType::New();
   padFilter->SetInput(input);
   PadFilterType::SizeType padding;
   // Input size is [48, 62, 42].  Pad to [48, 64, 48].
@@ -66,18 +66,18 @@ main(int argc, char * argv[])
   padFilter->SetPadUpperBound(padding);
 
   using FFTType = itk::ForwardFFTImageFilter<FloatImageType>;
-  FFTType::Pointer fftFilter = FFTType::New();
+  auto fftFilter = FFTType::New();
   fftFilter->SetInput(padFilter->GetOutput());
 
   using FFTOutputImageType = FFTType::OutputImageType;
 
   // Extract the real part
   using RealFilterType = itk::ComplexToRealImageFilter<FFTOutputImageType, FloatImageType>;
-  RealFilterType::Pointer realFilter = RealFilterType::New();
+  auto realFilter = RealFilterType::New();
   realFilter->SetInput(fftFilter->GetOutput());
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, UnsignedCharImageType>;
-  RescaleFilterType::Pointer realRescaleFilter = RescaleFilterType::New();
+  auto realRescaleFilter = RescaleFilterType::New();
   realRescaleFilter->SetInput(realFilter->GetOutput());
   realRescaleFilter->SetOutputMinimum(itk::NumericTraits<UnsignedCharPixelType>::min());
   realRescaleFilter->SetOutputMaximum(itk::NumericTraits<UnsignedCharPixelType>::max());
@@ -94,10 +94,10 @@ main(int argc, char * argv[])
 
   // Extract the imaginary part
   using ImaginaryFilterType = itk::ComplexToImaginaryImageFilter<FFTOutputImageType, FloatImageType>;
-  ImaginaryFilterType::Pointer imaginaryFilter = ImaginaryFilterType::New();
+  auto imaginaryFilter = ImaginaryFilterType::New();
   imaginaryFilter->SetInput(fftFilter->GetOutput());
 
-  RescaleFilterType::Pointer imaginaryRescaleFilter = RescaleFilterType::New();
+  auto imaginaryRescaleFilter = RescaleFilterType::New();
   imaginaryRescaleFilter->SetInput(imaginaryFilter->GetOutput());
   imaginaryRescaleFilter->SetOutputMinimum(itk::NumericTraits<UnsignedCharPixelType>::min());
   imaginaryRescaleFilter->SetOutputMaximum(itk::NumericTraits<UnsignedCharPixelType>::max());
@@ -114,10 +114,10 @@ main(int argc, char * argv[])
 
   // Compute the magnitude
   using ModulusFilterType = itk::ComplexToModulusImageFilter<FFTOutputImageType, FloatImageType>;
-  ModulusFilterType::Pointer modulusFilter = ModulusFilterType::New();
+  auto modulusFilter = ModulusFilterType::New();
   modulusFilter->SetInput(fftFilter->GetOutput());
 
-  RescaleFilterType::Pointer magnitudeRescaleFilter = RescaleFilterType::New();
+  auto magnitudeRescaleFilter = RescaleFilterType::New();
   magnitudeRescaleFilter->SetInput(modulusFilter->GetOutput());
   magnitudeRescaleFilter->SetOutputMinimum(itk::NumericTraits<UnsignedCharPixelType>::min());
   magnitudeRescaleFilter->SetOutputMaximum(itk::NumericTraits<UnsignedCharPixelType>::max());

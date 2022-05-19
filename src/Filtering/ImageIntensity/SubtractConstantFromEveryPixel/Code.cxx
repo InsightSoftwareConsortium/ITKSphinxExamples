@@ -26,11 +26,11 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using SubtractImageFilterType = itk::SubtractImageFilter<ImageType, ImageType, ImageType>;
-  SubtractImageFilterType::Pointer subtractConstantFromImageFilter = SubtractImageFilterType::New();
+  auto subtractConstantFromImageFilter = SubtractImageFilterType::New();
   subtractConstantFromImageFilter->SetInput(image);
   subtractConstantFromImageFilter->SetConstant2(2);
   subtractConstantFromImageFilter->Update();

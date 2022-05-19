@@ -22,7 +22,7 @@ int
 main(int, char *[])
 {
   using GeneratorType = itk::Statistics::MersenneTwisterRandomVariateGenerator;
-  GeneratorType::Pointer generator = GeneratorType::New();
+  auto generator = GeneratorType::New();
   generator->Initialize();
 
   // Get an int between 0 and 5

@@ -24,11 +24,11 @@ main(int, char *[])
 {
   // Setup types
   using ImageType = itk::Image<unsigned char, 2>;
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
 
   // Create and the filter
   using FilterType = itk::CastImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(image);
   filter->Update();
 

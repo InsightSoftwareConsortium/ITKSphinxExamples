@@ -49,7 +49,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(InputImage);
 
   using FilterType = itk::BinaryThresholdImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetLowerThreshold(LowerThreshold);
   filter->SetUpperThreshold(UpperThreshold);

@@ -29,15 +29,15 @@ CreateImage2(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage1(image1);
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage2(image2);
 
   using DivideImageFilterType = itk::DivideImageFilter<ImageType, ImageType, ImageType>;
 
-  DivideImageFilterType::Pointer divideImageFilter = DivideImageFilterType::New();
+  auto divideImageFilter = DivideImageFilterType::New();
   divideImageFilter->SetInput1(image1);
   divideImageFilter->SetInput2(image2);
   divideImageFilter->Update();

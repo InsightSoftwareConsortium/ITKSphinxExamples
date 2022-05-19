@@ -26,11 +26,11 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using BinaryImageToLabelMapFilterType = itk::BinaryImageToLabelMapFilter<ImageType>;
-  BinaryImageToLabelMapFilterType::Pointer binaryImageToLabelMapFilter = BinaryImageToLabelMapFilterType::New();
+  auto binaryImageToLabelMapFilter = BinaryImageToLabelMapFilterType::New();
   binaryImageToLabelMapFilter->SetInput(image);
   binaryImageToLabelMapFilter->Update();
 

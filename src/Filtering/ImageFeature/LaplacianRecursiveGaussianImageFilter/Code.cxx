@@ -44,7 +44,7 @@ main(int argc, char * argv[])
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
   using FilterType = itk::LaplacianRecursiveGaussianImageFilter<InputImageType, OutputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->Update();
 

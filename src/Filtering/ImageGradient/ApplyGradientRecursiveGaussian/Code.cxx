@@ -62,17 +62,17 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::GradientRecursiveGaussianImageFilter<ImageType, CovImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
 
   // Allows to select the X or Y output images
   using IndexSelectionType = itk::VectorIndexSelectionCastImageFilter<CovImageType, DoubleImageType>;
-  IndexSelectionType::Pointer indexSelectionFilter = IndexSelectionType::New();
+  auto indexSelectionFilter = IndexSelectionType::New();
   indexSelectionFilter->SetInput(filter->GetOutput());
 
   // Rescale for png output
   using RescalerType = itk::RescaleIntensityImageFilter<DoubleImageType, ImageType>;
-  RescalerType::Pointer rescaler = RescalerType::New();
+  auto rescaler = RescalerType::New();
   rescaler->SetOutputMinimum(itk::NumericTraits<PixelType>::min());
   rescaler->SetOutputMaximum(itk::NumericTraits<PixelType>::max());
   rescaler->SetInput(indexSelectionFilter->GetOutput());
@@ -95,7 +95,7 @@ main(int argc, char * argv[])
 
   // Compute the magnitude of the vector and output the image
   using MagnitudeType = itk::VectorMagnitudeImageFilter<CovImageType, DoubleImageType>;
-  MagnitudeType::Pointer magnitudeFilter = MagnitudeType::New();
+  auto magnitudeFilter = MagnitudeType::New();
   magnitudeFilter->SetInput(filter->GetOutput());
 
   // Rescale for png output

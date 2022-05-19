@@ -123,7 +123,7 @@ MeshType::Pointer
 CreateMeshWithEdges()
 {
 
-  MeshType::Pointer mesh = MeshType::New();
+  auto mesh = MeshType::New();
 
   // Create 4 points and add them to the mesh
   MeshType::PointType p0, p1, p2, p3;
@@ -222,7 +222,7 @@ ConvertMeshToUnstructuredGrid(MeshType::Pointer mesh, vtkUnstructuredGrid * unst
     MeshType::CellTraits,
     itk::LineCell<itk::CellInterface<MeshType::PixelType, MeshType::CellTraits>>,
     VisitVTKCellsClass>;
-  LineVisitor::Pointer lv = LineVisitor::New();
+  auto lv = LineVisitor::New();
   lv->SetTypeArray(types);
   lv->SetCellCounter(&vtkCellCount);
   lv->SetCellArray(cells);
@@ -233,7 +233,7 @@ ConvertMeshToUnstructuredGrid(MeshType::Pointer mesh, vtkUnstructuredGrid * unst
     MeshType::CellTraits,
     itk::TriangleCell<itk::CellInterface<MeshType::PixelType, MeshType::CellTraits>>,
     VisitVTKCellsClass>;
-  TriangleVisitor::Pointer tv = TriangleVisitor::New();
+  auto tv = TriangleVisitor::New();
   tv->SetTypeArray(types);
   tv->SetCellCounter(&vtkCellCount);
   tv->SetCellArray(cells);
@@ -244,7 +244,7 @@ ConvertMeshToUnstructuredGrid(MeshType::Pointer mesh, vtkUnstructuredGrid * unst
     MeshType::CellTraits,
     itk::QuadrilateralCell<itk::CellInterface<MeshType::PixelType, MeshType::CellTraits>>,
     VisitVTKCellsClass>;
-  QuadrilateralVisitor::Pointer qv = QuadrilateralVisitor::New();
+  auto qv = QuadrilateralVisitor::New();
   qv->SetTypeArray(types);
   qv->SetCellCounter(&vtkCellCount);
   qv->SetCellArray(cells);

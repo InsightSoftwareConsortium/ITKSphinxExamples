@@ -74,7 +74,7 @@ main(int argc, char * argv[])
   typename ImageType::PointType   outputOrigin = inputOrigin;
 
   using ScaleTransformType = itk::ScaleTransform<ScalarType, Dimension>;
-  typename ScaleTransformType::Pointer scaleTransform = ScaleTransformType::New();
+  auto scaleTransform = ScaleTransformType::New();
 
   typename ScaleTransformType::ParametersType scaleTransformParameters = scaleTransform->GetParameters();
   itk::Point<ScalarType, Dimension>           scaleTransformCenter;
@@ -87,10 +87,10 @@ main(int argc, char * argv[])
   scaleTransform->SetCenter(scaleTransformCenter);
 
   using LinearInterpolatorType = itk::LinearInterpolateImageFunction<ImageType, ScalarType>;
-  typename LinearInterpolatorType::Pointer interpolator = LinearInterpolatorType::New();
+  auto interpolator = LinearInterpolatorType::New();
 
   using ResampleFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
-  typename ResampleFilterType::Pointer resampleFilter = ResampleFilterType::New();
+  auto resampleFilter = ResampleFilterType::New();
 
   resampleFilter->SetInput(inputImage);
   resampleFilter->SetTransform(scaleTransform);

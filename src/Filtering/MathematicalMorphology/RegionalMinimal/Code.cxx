@@ -27,11 +27,11 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using RegionalMinimaImageFilterType = itk::RegionalMinimaImageFilter<ImageType, ImageType>;
-  RegionalMinimaImageFilterType::Pointer regionalMinimaImageFilter = RegionalMinimaImageFilterType::New();
+  auto regionalMinimaImageFilter = RegionalMinimaImageFilterType::New();
   regionalMinimaImageFilter->SetInput(image);
   regionalMinimaImageFilter->Update();
 

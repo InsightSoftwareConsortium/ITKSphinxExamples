@@ -74,14 +74,14 @@ main(int argc, char * argv[])
   InputImageType::Pointer movingImage = itk::ReadImage<InputImageType>(movingImageFile);
 
   using AffineTransformType = itk::AffineTransform<ParametersValueType, Dimension>;
-  AffineTransformType::Pointer affineTransform = AffineTransformType::New();
+  auto affineTransform = AffineTransformType::New();
 
   using DisplacementTransformType =
     itk::GaussianSmoothingOnUpdateDisplacementFieldTransform<ParametersValueType, Dimension>;
-  DisplacementTransformType::Pointer displacementTransform = DisplacementTransformType::New();
+  auto displacementTransform = DisplacementTransformType::New();
 
   using DisplacementFieldType = DisplacementTransformType::DisplacementFieldType;
-  DisplacementFieldType::Pointer displacementField = DisplacementFieldType::New();
+  auto displacementField = DisplacementFieldType::New();
 
   // Set the displacement field to be the same as the fixed image region, which will
   // act by default as the virtual domain in this example.
@@ -101,7 +101,7 @@ main(int argc, char * argv[])
 
   // Identity transform for fixed image
   using IdentityTransformType = itk::IdentityTransform<ParametersValueType, Dimension>;
-  IdentityTransformType::Pointer identityTransform = IdentityTransformType::New();
+  auto identityTransform = IdentityTransformType::New();
 
   // The metric
   using VirtualImageType = itk::Image<double, Dimension>;
@@ -110,10 +110,10 @@ main(int argc, char * argv[])
   using MetricType =
     itk::MeanSquaresImageToImageMetricv4<InputImageType, InputImageType, VirtualImageType, double, MetricTraitsType>;
   using PointSetType = MetricType::FixedSampledPointSetType;
-  MetricType::Pointer metric = MetricType::New();
+  auto metric = MetricType::New();
 
   using PointType = PointSetType::PointType;
-  PointSetType::Pointer                             pointSet = PointSetType::New();
+  auto                                              pointSet = PointSetType::New();
   itk::ImageRegionIteratorWithIndex<InputImageType> fixedImageIt(fixedImage, fixedImage->GetLargestPossibleRegion());
   itk::SizeValueType                                index = 0;
   itk::SizeValueType                                count = 0;
@@ -156,7 +156,7 @@ main(int argc, char * argv[])
   //
   std::cout << "First do an affine registration..." << std::endl;
   using OptimizerType = itk::GradientDescentOptimizerv4;
-  OptimizerType::Pointer optimizer = OptimizerType::New();
+  auto optimizer = OptimizerType::New();
   optimizer->SetMetric(metric);
   optimizer->SetNumberOfIterations(numberOfAffineIterations);
   optimizer->SetScalesEstimator(shiftScaleEstimator);
@@ -168,7 +168,7 @@ main(int argc, char * argv[])
   //
   std::cout << "Now, add the displacement field to the composite transform..." << std::endl;
   using CompositeType = itk::CompositeTransform<ParametersValueType, Dimension>;
-  CompositeType::Pointer compositeTransform = CompositeType::New();
+  auto compositeTransform = CompositeType::New();
   compositeTransform->AddTransform(affineTransform);
   compositeTransform->AddTransform(displacementTransform);
   // Optimize only the displacement field, but still using the
@@ -201,7 +201,7 @@ main(int argc, char * argv[])
 
   // Warp the image with the displacement field
   using ResampleFilterType = itk::ResampleImageFilter<InputImageType, InputImageType>;
-  ResampleFilterType::Pointer resampler = ResampleFilterType::New();
+  auto resampler = ResampleFilterType::New();
   resampler->SetTransform(compositeTransform);
   resampler->SetInput(movingImage);
   resampler->SetReferenceImage(fixedImage);
@@ -211,7 +211,7 @@ main(int argc, char * argv[])
   using OutputPixelType = itk::Vector<unsigned char, NumberOfPixelComponents>;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
   using CastFilterType = itk::CastImageFilter<InputImageType, OutputImageType>;
-  CastFilterType::Pointer caster = CastFilterType::New();
+  auto caster = CastFilterType::New();
   caster->SetInput(resampler->GetOutput());
 
   try

@@ -51,7 +51,7 @@ main(int argc, char * argv[])
   region.SetSize(size);
   region.SetIndex(start);
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   image->SetRegions(region);
   image->Allocate();
 
@@ -60,7 +60,7 @@ main(int argc, char * argv[])
   ind[1] = 10;
 
   using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetFileName(outputFilename);
   writer->SetInput(image);
 

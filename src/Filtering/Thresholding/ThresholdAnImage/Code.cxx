@@ -46,7 +46,7 @@ main(int argc, char * argv[])
   unsigned char upperThreshold = std::stoi(argv[4]);
 
   using FilterType = itk::ThresholdImageFilter<ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->ThresholdOutside(lowerThreshold, upperThreshold);
   filter->SetOutsideValue(0);

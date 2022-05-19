@@ -35,7 +35,7 @@ main(int argc, char * argv[])
   using MeshType = itk::QuadEdgeMesh<CoordType, Dimension>;
   using VTKReaderType = itk::VTKPolyDataReader<MeshType>;
 
-  VTKReaderType::Pointer reader = VTKReaderType::New();
+  auto reader = VTKReaderType::New();
   reader->SetFileName(argv[1]);
 
   try
@@ -52,7 +52,7 @@ main(int argc, char * argv[])
 
   using BoundaryExtractorType = itk::QuadEdgeMeshBoundaryEdgesMeshFunction<MeshType>;
 
-  BoundaryExtractorType::Pointer extractor = BoundaryExtractorType::New();
+  auto extractor = BoundaryExtractorType::New();
 
   using MeshPointIdentifier = MeshType::PointIdentifier;
 

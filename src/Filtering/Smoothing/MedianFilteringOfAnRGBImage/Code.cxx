@@ -74,7 +74,7 @@ main(int argc, char * argv[])
 
   // Create and setup a median filter
   using FilterType = itk::MedianImageFilter<MyImageType, MyImageType>;
-  FilterType::Pointer medianFilter = FilterType::New();
+  auto medianFilter = FilterType::New();
 
   FilterType::InputSizeType radius;
   radius.Fill(std::stoi(argv[3]));
@@ -86,7 +86,7 @@ main(int argc, char * argv[])
   using RGBPixelType = itk::RGBPixel<unsigned char>;
   using RGBImageType = itk::Image<RGBPixelType, Dimension>;
   using CastType = itk::CastImageFilter<MyImageType, RGBImageType>;
-  CastType::Pointer cast = CastType::New();
+  auto cast = CastType::New();
   cast->SetInput(medianFilter->GetOutput());
 
   try

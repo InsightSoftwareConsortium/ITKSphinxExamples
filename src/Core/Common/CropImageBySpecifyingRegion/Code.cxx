@@ -33,7 +33,7 @@ main(int, char *[])
 
   ImageType::RegionType region(start, size);
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   image->SetRegions(region);
   image->Allocate();
   image->FillBuffer(5);
@@ -51,7 +51,7 @@ main(int, char *[])
   std::cout << "desiredRegion: " << desiredRegion << std::endl;
 
   using FilterType = itk::ExtractImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetExtractionRegion(desiredRegion);
   filter->SetInput(image);
 #if ITK_VERSION_MAJOR >= 4

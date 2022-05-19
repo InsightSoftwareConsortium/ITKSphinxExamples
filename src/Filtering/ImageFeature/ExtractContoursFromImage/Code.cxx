@@ -27,7 +27,7 @@ static void CreateImage(UnsignedCharImageType::Pointer image);
 
 int main(int, char *[])
 {
-  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  auto image = UnsignedCharImageType::New();
   CreateImage(image);
 
   using SimpleContourExtractorImageFilterType = itk::SimpleContourExtractorImageFilter <UnsignedCharImageType, UnsignedCharImageType>;
@@ -37,7 +37,7 @@ int main(int, char *[])
   contourFilter->Update();
 
   using WriterType = itk::ImageFileWriter< UnsignedCharImageType  >;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetFileName("output.png");
   writer->SetInput(contourFilter->GetOutput());
   writer->Update();
@@ -78,7 +78,7 @@ void CreateImage(UnsignedCharImageType::Pointer image)
     }
 
   using WriterType = itk::ImageFileWriter< UnsignedCharImageType  >;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetFileName("input.png");
   writer->SetInput(image);
   writer->Update();

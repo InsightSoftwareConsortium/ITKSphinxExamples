@@ -29,15 +29,15 @@ CreateImage2(ImageType * image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage1(image1);
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage2(image2);
 
   using MaximumImageFilterType = itk::MaximumImageFilter<ImageType>;
 
-  MaximumImageFilterType::Pointer maximumImageFilter = MaximumImageFilterType::New();
+  auto maximumImageFilter = MaximumImageFilterType::New();
   maximumImageFilter->SetInput(0, image1);
   maximumImageFilter->SetInput(1, image2);
   maximumImageFilter->Update();

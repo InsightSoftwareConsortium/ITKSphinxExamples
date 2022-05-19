@@ -27,12 +27,12 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using ValuedRegionalMinimaImageFilter = itk::ValuedRegionalMinimaImageFilter<ImageType, ImageType>;
 
-  ValuedRegionalMinimaImageFilter::Pointer filter = ValuedRegionalMinimaImageFilter::New();
+  auto filter = ValuedRegionalMinimaImageFilter::New();
   filter->SetInput(image);
 
   itk::WriteImage(image, "input.png");

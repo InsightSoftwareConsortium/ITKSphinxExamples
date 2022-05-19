@@ -49,7 +49,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputImageFile);
 
   using ResampleFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
-  ResampleFilterType::Pointer resizeFilter = ResampleFilterType::New();
+  auto resizeFilter = ResampleFilterType::New();
   resizeFilter->SetInput(input);
 
   //     Compute and set the output size
@@ -87,7 +87,7 @@ main(int argc, char * argv[])
   resizeFilter->SetSize(outputSize);
 
   using GaussianInterpolatorType = itk::LabelImageGaussianInterpolateImageFunction<ImageType, double>;
-  GaussianInterpolatorType::Pointer   gaussianInterpolator = GaussianInterpolatorType::New();
+  auto                                gaussianInterpolator = GaussianInterpolatorType::New();
   GaussianInterpolatorType::ArrayType sigma;
   for (unsigned int dim = 0; dim < Dimension; ++dim)
   {
@@ -108,7 +108,7 @@ main(int argc, char * argv[])
   }
 
   using NearestNeighborInterpolatorType = itk::NearestNeighborInterpolateImageFunction<ImageType, double>;
-  NearestNeighborInterpolatorType::Pointer nearestNeighborInterpolator = NearestNeighborInterpolatorType::New();
+  auto nearestNeighborInterpolator = NearestNeighborInterpolatorType::New();
   resizeFilter->SetInterpolator(nearestNeighborInterpolator);
 
   try

@@ -68,19 +68,19 @@ main(int argc, char * argv[])
 
   // Invert the input image
   using InvertType = itk::InvertIntensityImageFilter<ImageType, ImageType>;
-  InvertType::Pointer inverter = InvertType::New();
+  auto inverter = InvertType::New();
   inverter->SetInput(input);
 
   // Cast the image to double type.
   using CasterType = itk::CastImageFilter<ImageType, DoubleImageType>;
-  CasterType::Pointer caster = CasterType::New();
-  CasterType::Pointer caster2 = CasterType::New();
+  auto caster = CasterType::New();
+  auto caster2 = CasterType::New();
 
   // Create an image, were each pixel has 2 values: first value is the value
   // coming from the input image, second value is coming from the inverted
   // image
   using ComposeType = itk::ComposeImageFilter<DoubleImageType, VecImageType>;
-  ComposeType::Pointer composer = ComposeType::New();
+  auto composer = ComposeType::New();
   caster->SetInput(input);
   composer->SetInput(0, caster->GetOutput());
   caster2->SetInput(inverter->GetOutput());
@@ -89,17 +89,17 @@ main(int argc, char * argv[])
   // Apply the gradient filter on the two images, this will return and image
   // with 4 values per pixel: two X and Y gradients
   using FilterType = itk::GradientRecursiveGaussianImageFilter<VecImageType, CovImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(composer->GetOutput());
 
   // Set up the filter to select each gradient
   using IndexSelectionType = itk::VectorIndexSelectionCastImageFilter<CovImageType, DoubleImageType>;
-  IndexSelectionType::Pointer indexSelectionFilter = IndexSelectionType::New();
+  auto indexSelectionFilter = IndexSelectionType::New();
   indexSelectionFilter->SetInput(filter->GetOutput());
 
   // Rescale for png output
   using RescalerType = itk::RescaleIntensityImageFilter<DoubleImageType, ImageType>;
-  RescalerType::Pointer rescaler = RescalerType::New();
+  auto rescaler = RescalerType::New();
   rescaler->SetOutputMinimum(itk::NumericTraits<PixelType>::min());
   rescaler->SetOutputMaximum(itk::NumericTraits<PixelType>::max());
   rescaler->SetInput(indexSelectionFilter->GetOutput());

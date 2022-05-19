@@ -32,7 +32,7 @@ main(int, char *[])
 {
 
   // Create a spherical mesh with known radius and resolution.
-  TSphere::Pointer    source = TSphere::New();
+  auto                source = TSphere::New();
   TSphere::VectorType scale;
   scale.Fill(5.0);
   source->SetScale(scale);
@@ -54,12 +54,12 @@ main(int, char *[])
   }
 
   // Convert the triangle mesh to a simplex mesh.
-  TConvert::Pointer convert = TConvert::New();
+  auto convert = TConvert::New();
   convert->SetInput(source->GetOutput());
   convert->Update();
 
   // Calculate the volume and area of the simplex mesh.
-  TVolume::Pointer volume = TVolume::New();
+  auto volume = TVolume::New();
   volume->SetSimplexMesh(convert->GetOutput());
   volume->Compute();
 

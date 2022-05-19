@@ -130,8 +130,8 @@ public:
 int
 main(int argc, char * argv[])
 {
-  InputImageType::Pointer fixedImage = InputImageType::New();
-  InputImageType::Pointer movingImage = InputImageType::New();
+  auto fixedImage = InputImageType::New();
+  auto movingImage = InputImageType::New();
 
   if (argc > 2)
   {
@@ -149,16 +149,16 @@ main(int argc, char * argv[])
 
   // Normalize the images
   using NormalizeFilterType = itk::NormalizeImageFilter<InputImageType, InternalImageType>;
-  NormalizeFilterType::Pointer fixedNormalizer = NormalizeFilterType::New();
-  NormalizeFilterType::Pointer movingNormalizer = NormalizeFilterType::New();
+  auto fixedNormalizer = NormalizeFilterType::New();
+  auto movingNormalizer = NormalizeFilterType::New();
 
   fixedNormalizer->SetInput(fixedImage);
   movingNormalizer->SetInput(movingImage);
 
   // Smooth the normalized images
   using GaussianFilterType = itk::DiscreteGaussianImageFilter<InternalImageType, InternalImageType>;
-  GaussianFilterType::Pointer fixedSmoother = GaussianFilterType::New();
-  GaussianFilterType::Pointer movingSmoother = GaussianFilterType::New();
+  auto fixedSmoother = GaussianFilterType::New();
+  auto movingSmoother = GaussianFilterType::New();
 
   fixedSmoother->SetVariance(3.0);
   fixedSmoother->SetInput(fixedNormalizer->GetOutput());
@@ -173,11 +173,11 @@ main(int argc, char * argv[])
   using RegistrationType = itk::ImageRegistrationMethod<InternalImageType, InternalImageType>;
   using InitializerType = itk::CenteredTransformInitializer<TransformType, InputImageType, InputImageType>;
 
-  InitializerType::Pointer  initializer = InitializerType::New();
-  TransformType::Pointer    transform = TransformType::New();
-  OptimizerType::Pointer    optimizer = OptimizerType::New();
-  InterpolatorType::Pointer interpolator = InterpolatorType::New();
-  RegistrationType::Pointer registration = RegistrationType::New();
+  auto initializer = InitializerType::New();
+  auto transform = TransformType::New();
+  auto optimizer = OptimizerType::New();
+  auto interpolator = InterpolatorType::New();
+  auto registration = RegistrationType::New();
 
   // Set up the registration framework
   initializer->SetFixedImage(fixedImage);
@@ -192,7 +192,7 @@ main(int argc, char * argv[])
   registration->SetTransform(transform);
   registration->SetInterpolator(interpolator);
 
-  MetricType::Pointer metric = MetricType::New();
+  auto metric = MetricType::New();
 
   registration->SetMetric(metric);
   registration->SetFixedImage(fixedSmoother->GetOutput());
@@ -242,12 +242,12 @@ main(int argc, char * argv[])
 
   optimizer->SetScales(optimizerScales);
 
-  TransformType::Pointer finalTransform = TransformType::New();
+  auto finalTransform = TransformType::New();
   finalTransform->SetParameters(initialParameters);
   finalTransform->SetFixedParameters(transform->GetFixedParameters());
 
   using ResampleFilterType = itk::ResampleImageFilter<InputImageType, InputImageType>;
-  ResampleFilterType::Pointer resample = ResampleFilterType::New();
+  auto resample = ResampleFilterType::New();
   resample->SetTransform(finalTransform);
   resample->SetInput(movingImage);
   resample->SetSize(fixedImage->GetLargestPossibleRegion().GetSize());
@@ -259,7 +259,7 @@ main(int argc, char * argv[])
 
   // Set up the visualization pipeline
   using CheckerBoardFilterType = itk::CheckerBoardImageFilter<InputImageType>;
-  CheckerBoardFilterType::Pointer          checkerboard = CheckerBoardFilterType::New();
+  auto                                     checkerboard = CheckerBoardFilterType::New();
   CheckerBoardFilterType::PatternArrayType pattern;
   pattern[0] = 4;
   pattern[1] = 4;
@@ -269,15 +269,15 @@ main(int argc, char * argv[])
   checkerboard->SetInput2(resample->GetOutput());
 
   using FlipFilterType = itk::FlipImageFilter<InputImageType>;
-  FlipFilterType::Pointer flip = FlipFilterType::New();
-  bool                    flipAxes[3] = { false, true, false };
+  auto flip = FlipFilterType::New();
+  bool flipAxes[3] = { false, true, false };
   flip->SetFlipAxes(flipAxes);
   flip->SetInput(checkerboard->GetOutput());
   flip->Update();
 
   // VTK visualization pipeline
   using ConnectorType = itk::ImageToVTKImageFilter<InputImageType>;
-  ConnectorType::Pointer connector = ConnectorType::New();
+  auto connector = ConnectorType::New();
   connector->SetInput(flip->GetOutput());
 
   vtkSmartPointer<vtkImageActor> actor = vtkSmartPointer<vtkImageActor>::New();

@@ -28,7 +28,7 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using WrapPadImageFilterType = itk::WrapPadImageFilter<ImageType, ImageType>;
@@ -41,7 +41,7 @@ main(int, char *[])
   upperBound[0] = 50;
   upperBound[1] = 40;
 
-  WrapPadImageFilterType::Pointer padFilter = WrapPadImageFilterType::New();
+  auto padFilter = WrapPadImageFilterType::New();
   padFilter->SetInput(image);
   padFilter->SetPadLowerBound(lowerBound);
   padFilter->SetPadUpperBound(upperBound);

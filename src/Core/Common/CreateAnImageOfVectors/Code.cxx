@@ -26,7 +26,7 @@ main(int, char *[])
   using ImageType = itk::Image<PixelType, 3>;
 
   // Then the image object can be created
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
 
   // The image region should be initialized
   const ImageType::IndexType start = { { 0, 0, 0 } };      // First index at {X,Y,Z}

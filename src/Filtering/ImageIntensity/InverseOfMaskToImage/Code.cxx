@@ -29,14 +29,14 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
-  ImageType::Pointer mask = ImageType::New();
+  auto mask = ImageType::New();
   CreateHalfMask(image, mask);
 
   using MaskNegatedImageFilterType = itk::MaskNegatedImageFilter<ImageType, ImageType>;
-  MaskNegatedImageFilterType::Pointer maskNegatedImageFilter = MaskNegatedImageFilterType::New();
+  auto maskNegatedImageFilter = MaskNegatedImageFilterType::New();
   maskNegatedImageFilter->SetInput(image);
   maskNegatedImageFilter->SetMaskImage(mask);
   maskNegatedImageFilter->Update();

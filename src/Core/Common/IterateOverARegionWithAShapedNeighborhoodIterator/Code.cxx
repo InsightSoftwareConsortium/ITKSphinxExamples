@@ -36,7 +36,7 @@ main(int, char *[])
 
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
 
   ImageType::IndexType start;
   start.Fill(0);

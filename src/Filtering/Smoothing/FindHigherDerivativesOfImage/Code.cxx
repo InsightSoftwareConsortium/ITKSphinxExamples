@@ -47,7 +47,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<UnsignedCharImageType>(inputFileName);
 
   // Create and setup a gaussian filter
-  filterType::Pointer gaussianFilter = filterType::New();
+  auto gaussianFilter = filterType::New();
   gaussianFilter->SetInput(input);
   gaussianFilter->SetDirection(0); // "x" axis
   gaussianFilter->SetSecondOrder();

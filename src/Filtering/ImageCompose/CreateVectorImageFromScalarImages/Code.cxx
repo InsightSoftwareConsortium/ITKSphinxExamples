@@ -31,17 +31,17 @@ CreateImage(ScalarImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ScalarImageType::Pointer image0 = ScalarImageType::New();
+  auto image0 = ScalarImageType::New();
   CreateImage(image0);
 
-  ScalarImageType::Pointer image1 = ScalarImageType::New();
+  auto image1 = ScalarImageType::New();
   CreateImage(image1);
 
-  ScalarImageType::Pointer image2 = ScalarImageType::New();
+  auto image2 = ScalarImageType::New();
   CreateImage(image2);
 
   using ImageToVectorImageFilterType = itk::ComposeImageFilter<ScalarImageType>;
-  ImageToVectorImageFilterType::Pointer imageToVectorImageFilter = ImageToVectorImageFilterType::New();
+  auto imageToVectorImageFilter = ImageToVectorImageFilterType::New();
   imageToVectorImageFilter->SetInput(0, image0);
   imageToVectorImageFilter->SetInput(1, image1);
   imageToVectorImageFilter->SetInput(2, image2);

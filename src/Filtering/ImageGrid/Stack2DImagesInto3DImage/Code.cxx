@@ -42,7 +42,7 @@ main(int argc, char * argv[])
     return EXIT_FAILURE;
   }
 
-  TilerType::Pointer tiler = TilerType::New();
+  auto tiler = TilerType::New();
 
   itk::FixedArray<unsigned int, OutputImageDimension> layout;
 
@@ -54,7 +54,7 @@ main(int argc, char * argv[])
 
   unsigned int inputImageNumber = 0;
 
-  ImageReaderType::Pointer reader = ImageReaderType::New();
+  auto reader = ImageReaderType::New();
 
   InputImageType::Pointer inputImageTile;
 

@@ -30,16 +30,16 @@ CreateImage2(UnsignedCharImageType::Pointer image);
 int
 main(int, char *[])
 {
-  UnsignedCharImageType::Pointer image1 = UnsignedCharImageType::New();
+  auto image1 = UnsignedCharImageType::New();
   CreateImage1(image1);
 
-  UnsignedCharImageType::Pointer image2 = UnsignedCharImageType::New();
+  auto image2 = UnsignedCharImageType::New();
   CreateImage2(image2);
 
   using SquaredDifferenceImageFilterType =
     itk::SquaredDifferenceImageFilter<UnsignedCharImageType, UnsignedCharImageType, FloatImageType>;
 
-  SquaredDifferenceImageFilterType::Pointer squaredDifferenceFilter = SquaredDifferenceImageFilterType::New();
+  auto squaredDifferenceFilter = SquaredDifferenceImageFilterType::New();
   squaredDifferenceFilter->SetInput1(image1);
   squaredDifferenceFilter->SetInput2(image2);
   squaredDifferenceFilter->Update();

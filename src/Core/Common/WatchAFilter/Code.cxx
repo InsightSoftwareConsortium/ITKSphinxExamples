@@ -57,12 +57,12 @@ main(int, char *[])
 
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage<ImageType>(image);
 
   using ThresholdImageFilterType = itk::ThresholdImageFilter<ImageType>;
 
-  ThresholdImageFilterType::Pointer thresholdFilter = ThresholdImageFilterType::New();
+  auto thresholdFilter = ThresholdImageFilterType::New();
   thresholdFilter->SetInput(image);
   thresholdFilter->ThresholdBelow(100);
   thresholdFilter->SetOutsideValue(0);

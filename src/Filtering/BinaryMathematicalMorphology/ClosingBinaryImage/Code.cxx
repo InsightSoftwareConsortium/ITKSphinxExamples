@@ -64,13 +64,13 @@ main(int argc, char * argv[])
 
   using BinaryMorphologicalClosingImageFilterType =
     itk::BinaryMorphologicalClosingImageFilter<ImageType, ImageType, StructuringElementType>;
-  BinaryMorphologicalClosingImageFilterType::Pointer closingFilter = BinaryMorphologicalClosingImageFilterType::New();
+  auto closingFilter = BinaryMorphologicalClosingImageFilterType::New();
   closingFilter->SetInput(image);
   closingFilter->SetKernel(structuringElement);
   closingFilter->Update();
 
   using SubtractType = itk::SubtractImageFilter<ImageType>;
-  SubtractType::Pointer diff = SubtractType::New();
+  auto diff = SubtractType::New();
   diff->SetInput1(closingFilter->GetOutput());
   diff->SetInput2(image);
 

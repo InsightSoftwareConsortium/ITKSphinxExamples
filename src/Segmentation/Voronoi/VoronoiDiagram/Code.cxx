@@ -34,8 +34,8 @@ main(int, char *[])
   using PointIdIterator = CellType::PointIdIterator;
   using NeighborIdIterator = VoronoiDiagramType::NeighborIdIterator;
 
-  VoronoiDiagramType::Pointer   voronoiDiagram = VoronoiDiagramType::New();
-  VoronoiGeneratorType::Pointer voronoiGenerator = VoronoiGeneratorType::New();
+  auto voronoiDiagram = VoronoiDiagramType::New();
+  auto voronoiGenerator = VoronoiGeneratorType::New();
 
   PointType insize;
   insize[0] = width;
@@ -112,7 +112,7 @@ main(int, char *[])
 
   // Write the resulting mesh
   using WriterType = itk::VTKPolyDataWriter<VoronoiDiagramType::Superclass>;
-  WriterType::Pointer vtkPolyDataWriter = WriterType::New();
+  auto vtkPolyDataWriter = WriterType::New();
   vtkPolyDataWriter->SetInput(voronoiDiagram);
   vtkPolyDataWriter->SetFileName("voronoi.vtk");
   vtkPolyDataWriter->Update();
@@ -129,7 +129,7 @@ main(int, char *[])
 
     ImageType::RegionType region(start, size);
 
-    ImageType::Pointer image = ImageType::New();
+    auto image = ImageType::New();
     image->SetRegions(region);
     image->Allocate();
     image->FillBuffer(0);

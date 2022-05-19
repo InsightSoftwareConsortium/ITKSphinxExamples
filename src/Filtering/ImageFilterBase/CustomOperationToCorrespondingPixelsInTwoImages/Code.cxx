@@ -60,18 +60,18 @@ public:
 int
 main(int, char *[])
 {
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage(image1);
   image1->FillBuffer(2);
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage(image2);
   image2->FillBuffer(5);
 
   using FilterType =
     itk::BinaryFunctorImageFilter<ImageType, ImageType, ImageType, Functor::MySquaredDifference<ImageType::PixelType>>;
 
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput1(image1);
   filter->SetInput2(image2);
   filter->Update();

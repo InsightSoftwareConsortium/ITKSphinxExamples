@@ -38,7 +38,7 @@ main(int argc, char * argv[])
   using MeshType = itk::Mesh<CoordinateType, Dimension>;
 
   using ReaderType = itk::MeshFileReader<MeshType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileName(argv[1]);
   reader->Update();
 

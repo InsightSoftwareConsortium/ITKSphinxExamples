@@ -43,12 +43,12 @@ main(int argc, char * argv[])
   // construct one object of this class.
   using ReaderType = itk::ImageSeriesReader<ImageType>;
 
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
 
   // A GDCMImageIO object is created and assigned to the reader.
   using ImageIOType = itk::GDCMImageIO;
 
-  ImageIOType::Pointer dicomIO = ImageIOType::New();
+  auto dicomIO = ImageIOType::New();
 
   reader->SetImageIO(dicomIO);
 
@@ -59,7 +59,7 @@ main(int argc, char * argv[])
 
   using NamesGeneratorType = itk::GDCMSeriesFileNames;
 
-  NamesGeneratorType::Pointer nameGenerator = NamesGeneratorType::New();
+  auto nameGenerator = NamesGeneratorType::New();
 
   nameGenerator->SetInputDirectory(argv[1]);
 

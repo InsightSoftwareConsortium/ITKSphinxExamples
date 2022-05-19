@@ -45,7 +45,7 @@ main(int argc, char * argv[])
   using OutputPixelType = float;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
   using FilterType = itk::GradientAnisotropicDiffusionImageFilter<InputImageType, OutputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetNumberOfIterations(std::stoi(argv[3]));
   filter->SetTimeStep(0.125);

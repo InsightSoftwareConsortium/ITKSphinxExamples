@@ -29,15 +29,15 @@ int
 main(int /*argc*/, char * /*argv*/[])
 {
   // Create input images
-  ImageType::Pointer fixedImage = ImageType::New();
+  auto fixedImage = ImageType::New();
   CreateImage(fixedImage, 40);
 
-  ImageType::Pointer movingImage = ImageType::New();
+  auto movingImage = ImageType::New();
   CreateImage(movingImage, 50);
 
   //  using BlockMatchingImageFilterType = itk::BlockMatchingImageFilter<ImageType, ImageType, PointSetType>;
   using BlockMatchingImageFilterType = itk::BlockMatchingImageFilter<ImageType>;
-  BlockMatchingImageFilterType::Pointer blockMatchingImageFilter = BlockMatchingImageFilterType::New();
+  auto blockMatchingImageFilter = BlockMatchingImageFilterType::New();
 
   // Generate feature points
   //  using PointSetType = itk::PointSet< float, 2>;
@@ -45,7 +45,7 @@ main(int /*argc*/, char * /*argv*/[])
   using PointType = PointSetType::PointType;
   using PointsContainerPointer = PointSetType::PointsContainerPointer;
 
-  PointSetType::Pointer  pointSet = PointSetType::New();
+  auto                   pointSet = PointSetType::New();
   PointsContainerPointer points = pointSet->GetPoints();
 
   PointType p0, p1, p2, p3;

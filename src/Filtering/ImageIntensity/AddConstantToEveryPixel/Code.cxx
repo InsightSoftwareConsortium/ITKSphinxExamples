@@ -26,11 +26,11 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using AddImageFilterType = itk::AddImageFilter<ImageType, ImageType, ImageType>;
-  AddImageFilterType::Pointer addImageFilter = AddImageFilterType::New();
+  auto addImageFilter = AddImageFilterType::New();
   addImageFilter->SetInput(image);
   addImageFilter->SetConstant2(2);
   addImageFilter->Update();

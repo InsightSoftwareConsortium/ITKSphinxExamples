@@ -30,14 +30,14 @@ CreateImage2(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage1(image1);
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage2(image2);
 
   using XorImageFilterType = itk::XorImageFilter<ImageType>;
-  XorImageFilterType::Pointer xorFilter = XorImageFilterType::New();
+  auto xorFilter = XorImageFilterType::New();
   xorFilter->SetInput1(image1);
   xorFilter->SetInput2(image2);
   xorFilter->Update();

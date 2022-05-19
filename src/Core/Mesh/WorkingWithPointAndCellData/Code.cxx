@@ -34,7 +34,7 @@ main(int, char *[])
 {
 
   // Create the sphere source.
-  TSphere::Pointer sphere = TSphere::New();
+  auto sphere = TSphere::New();
   sphere->Update();
 
   // We now assign it to a mesh pointer.
@@ -65,7 +65,7 @@ main(int, char *[])
 
   // Finally, we'll write the data to file.  Note that the only mesh file
   // formats supported by ITK which support cell and point data are .vtk and .gii.
-  TMeshWriter::Pointer meshWriter = TMeshWriter::New();
+  auto meshWriter = TMeshWriter::New();
   meshWriter->SetFileName("mesh.vtk");
   meshWriter->SetInput(mesh);
   meshWriter->Update();

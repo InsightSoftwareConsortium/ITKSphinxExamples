@@ -52,8 +52,8 @@ main(int argc, char * argv[])
   // Normalize the images
   using NormalizeFilterType = itk::NormalizeImageFilter<ImageType, InternalImageType>;
 
-  NormalizeFilterType::Pointer fixedNormalizer = NormalizeFilterType::New();
-  NormalizeFilterType::Pointer movingNormalizer = NormalizeFilterType::New();
+  auto fixedNormalizer = NormalizeFilterType::New();
+  auto movingNormalizer = NormalizeFilterType::New();
 
   fixedNormalizer->SetInput(fixedImage);
   movingNormalizer->SetInput(movingImage);
@@ -61,8 +61,8 @@ main(int argc, char * argv[])
   // Smooth the normalized images
   using GaussianFilterType = itk::DiscreteGaussianImageFilter<InternalImageType, InternalImageType>;
 
-  GaussianFilterType::Pointer fixedSmoother = GaussianFilterType::New();
-  GaussianFilterType::Pointer movingSmoother = GaussianFilterType::New();
+  auto fixedSmoother = GaussianFilterType::New();
+  auto movingSmoother = GaussianFilterType::New();
 
   fixedSmoother->SetVariance(2.0);
   movingSmoother->SetVariance(2.0);
@@ -76,16 +76,16 @@ main(int argc, char * argv[])
   using RegistrationType = itk::ImageRegistrationMethod<InternalImageType, InternalImageType>;
   using MetricType = itk::MutualInformationImageToImageMetric<InternalImageType, InternalImageType>;
 
-  TransformType::Pointer    transform = TransformType::New();
-  OptimizerType::Pointer    optimizer = OptimizerType::New();
-  InterpolatorType::Pointer interpolator = InterpolatorType::New();
-  RegistrationType::Pointer registration = RegistrationType::New();
+  auto transform = TransformType::New();
+  auto optimizer = OptimizerType::New();
+  auto interpolator = InterpolatorType::New();
+  auto registration = RegistrationType::New();
 
   registration->SetOptimizer(optimizer);
   registration->SetTransform(transform);
   registration->SetInterpolator(interpolator);
 
-  MetricType::Pointer metric = MetricType::New();
+  auto metric = MetricType::New();
   registration->SetMetric(metric);
 
   //  The metric requires a number of parameters to be selected, including
@@ -216,12 +216,12 @@ main(int argc, char * argv[])
 
   using ResampleFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
 
-  TransformType::Pointer finalTransform = TransformType::New();
+  auto finalTransform = TransformType::New();
 
   finalTransform->SetParameters(finalParameters);
   finalTransform->SetFixedParameters(transform->GetFixedParameters());
 
-  ResampleFilterType::Pointer resample = ResampleFilterType::New();
+  auto resample = ResampleFilterType::New();
 
   resample->SetTransform(finalTransform);
   resample->SetInput(movingImage);

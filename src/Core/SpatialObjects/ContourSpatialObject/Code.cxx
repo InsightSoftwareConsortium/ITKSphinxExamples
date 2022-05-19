@@ -52,11 +52,11 @@ main(int /*argc*/, char * /*argv*/[])
   points.push_back(point);
 
   // Create a contour from the list of points
-  ContourType::Pointer contour = ContourType::New();
+  auto contour = ContourType::New();
   contour->SetControlPoints(points);
 
-  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
-  itk::Size<2>                            size;
+  auto         imageFilter = SpatialObjectToImageFilterType::New();
+  itk::Size<2> size;
   size.Fill(50);
   imageFilter->SetInsideValue(255); // white
   imageFilter->SetSize(size);

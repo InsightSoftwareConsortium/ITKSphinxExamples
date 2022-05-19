@@ -54,7 +54,7 @@ main(int argc, char ** argv)
   }
 
   using ExtractFilterType = itk::ExtractImageFilter<ImageType, ImageType>;
-  ExtractFilterType::Pointer extractFilter = ExtractFilterType::New();
+  auto extractFilter = ExtractFilterType::New();
   extractFilter->SetDirectionCollapseToSubmatrix();
 
   // set up the extraction region [one slice]
@@ -70,9 +70,9 @@ main(int argc, char ** argv)
 
   extractFilter->SetExtractionRegion(desiredRegion);
   using PasteFilterType = itk::PasteImageFilter<ImageType>;
-  PasteFilterType::Pointer pasteFilter = PasteFilterType::New();
+  auto pasteFilter = PasteFilterType::New();
   using MedianFilterType = itk::MedianImageFilter<ImageType, ImageType>;
-  MedianFilterType::Pointer medianFilter = MedianFilterType::New();
+  auto medianFilter = MedianFilterType::New();
   extractFilter->SetInput(inputImage);
   medianFilter->SetInput(extractFilter->GetOutput());
   pasteFilter->SetSourceImage(medianFilter->GetOutput());

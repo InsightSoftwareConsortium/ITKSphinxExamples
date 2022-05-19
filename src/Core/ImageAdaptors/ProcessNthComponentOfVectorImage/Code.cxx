@@ -28,18 +28,18 @@ CreateImage(VectorImageType::Pointer image);
 int
 main(int, char *[])
 {
-  VectorImageType::Pointer image = VectorImageType::New();
+  auto image = VectorImageType::New();
   CreateImage(image);
 
   using ImageAdaptorType = itk::NthElementImageAdaptor<VectorImageType, float>;
 
-  ImageAdaptorType::Pointer adaptor = ImageAdaptorType::New();
+  auto adaptor = ImageAdaptorType::New();
 
   adaptor->SelectNthElement(0);
   adaptor->SetImage(image);
 
   using BlurFilterType = itk::BinomialBlurImageFilter<ImageAdaptorType, itk::Image<float, 2>>;
-  BlurFilterType::Pointer blurFilter = BlurFilterType::New();
+  auto blurFilter = BlurFilterType::New();
   blurFilter->SetInput(adaptor);
   blurFilter->Update();
 

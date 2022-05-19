@@ -36,8 +36,8 @@ main(int, char *[])
   using TraitsType = itk::DefaultConvertPixelTraits<RGBPixelType>;
   using RGBAConverterType = itk::ConvertPixelBuffer<ComponentType, RGBPixelType, TraitsType>;
 
-  RGBImageType::Pointer  rgbImg = RGBImageType::New();
-  RGBAImageType::Pointer rgbaImg = RGBAImageType::New();
+  auto rgbImg = RGBImageType::New();
+  auto rgbaImg = RGBAImageType::New();
 
   // Create the two images
   // RGBAImage

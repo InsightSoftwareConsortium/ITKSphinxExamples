@@ -52,7 +52,7 @@ main(int argc, char * argv[])
   }
 
   using FilterType = itk::OtsuThresholdImageFilter<ImageType, ImageType>;
-  FilterType::Pointer otsuFilter = FilterType::New();
+  auto otsuFilter = FilterType::New();
   otsuFilter->SetInput(image);
   otsuFilter->Update(); // To compute threshold
 

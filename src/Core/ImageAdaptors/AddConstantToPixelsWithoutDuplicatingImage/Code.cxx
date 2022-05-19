@@ -28,14 +28,14 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using AddPixelAccessorType = itk::Accessor::AddPixelAccessor<ImageType::PixelType>;
   using ImageAdaptorType = itk::ImageAdaptor<ImageType, AddPixelAccessorType>;
 
-  ImageAdaptorType::Pointer adaptor = ImageAdaptorType::New();
-  AddPixelAccessorType      addPixelAccessor;
+  auto                 adaptor = ImageAdaptorType::New();
+  AddPixelAccessorType addPixelAccessor;
 
 
   adaptor->SetImage(image);

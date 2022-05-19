@@ -32,7 +32,7 @@ OutputImageType::Pointer
 segmentationAndCustomColorization(InputImageType::Pointer inImage)
 {
   using WatershedFilterType = itk::WatershedImageFilter<InputImageType>;
-  WatershedFilterType::Pointer watershed = WatershedFilterType::New();
+  auto watershed = WatershedFilterType::New();
   watershed->SetThreshold(0.05);
   watershed->SetLevel(0.3);
   watershed->SetInput(inImage);
@@ -41,7 +41,7 @@ segmentationAndCustomColorization(InputImageType::Pointer inImage)
   LabeledImageType::Pointer image = watershed->GetOutput();
   image->DisconnectPipeline();
 
-  OutputImageType::Pointer outImage = OutputImageType::New();
+  auto outImage = OutputImageType::New();
   outImage->CopyInformation(image);
   outImage->SetRegions(image->GetBufferedRegion());
   outImage->Allocate(true);

@@ -29,7 +29,7 @@ CreateImage(ImageType::Pointer image);
 int
 main(int argc, char * argv[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   if (argc == 2)
   {
     image = itk::ReadImage<ImageType>(argv[1]);
@@ -41,13 +41,13 @@ main(int argc, char * argv[])
   }
 
   using BinaryThinningImageFilterType = itk::BinaryThinningImageFilter<ImageType, ImageType>;
-  BinaryThinningImageFilterType::Pointer binaryThinningImageFilter = BinaryThinningImageFilterType::New();
+  auto binaryThinningImageFilter = BinaryThinningImageFilterType::New();
   binaryThinningImageFilter->SetInput(image);
   binaryThinningImageFilter->Update();
 
   // Rescale the image so that it can be seen (the output is 0 and 1, we want 0 and 255)
   using RescaleType = itk::RescaleIntensityImageFilter<ImageType, ImageType>;
-  RescaleType::Pointer rescaler = RescaleType::New();
+  auto rescaler = RescaleType::New();
   rescaler->SetInput(binaryThinningImageFilter->GetOutput());
   rescaler->SetOutputMinimum(0);
   rescaler->SetOutputMaximum(255);

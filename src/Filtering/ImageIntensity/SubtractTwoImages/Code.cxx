@@ -40,22 +40,22 @@ CreateImage2(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage1(image1);
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage2(image2);
 
   using SubtractImageFilterType = itk::SubtractImageFilter<ImageType, ImageType>;
 
-  SubtractImageFilterType::Pointer subtractFilter = SubtractImageFilterType::New();
+  auto subtractFilter = SubtractImageFilterType::New();
   subtractFilter->SetInput1(image1);
   subtractFilter->SetInput2(image2);
   subtractFilter->Update();
 
   // Visualize first image
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-  ConnectorType::Pointer connector1 = ConnectorType::New();
+  auto connector1 = ConnectorType::New();
   connector1->SetInput(image1);
 
   vtkSmartPointer<vtkImageActor> actor1 = vtkSmartPointer<vtkImageActor>::New();
@@ -68,7 +68,7 @@ main(int, char *[])
 
   // Visualize second image
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-  ConnectorType::Pointer connector2 = ConnectorType::New();
+  auto connector2 = ConnectorType::New();
   connector2->SetInput(image2);
 
   vtkSmartPointer<vtkImageActor> actor2 = vtkSmartPointer<vtkImageActor>::New();
@@ -81,7 +81,7 @@ main(int, char *[])
 #endif
 
   // Visualize subtracted image
-  ConnectorType::Pointer subtractConnector = ConnectorType::New();
+  auto subtractConnector = ConnectorType::New();
   subtractConnector->SetInput(subtractFilter->GetOutput());
 
   vtkSmartPointer<vtkImageActor> subtractActor = vtkSmartPointer<vtkImageActor>::New();

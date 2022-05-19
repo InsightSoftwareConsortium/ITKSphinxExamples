@@ -51,7 +51,7 @@ main(int argc, char * argv[])
 
   // Create the filter and apply the algorithm to the image
   using FilterType = itk::AdditiveGaussianNoiseImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetMean(mean);                   // Set the mean
   filter->SetStandardDeviation(deviation); // Set the standard deviation

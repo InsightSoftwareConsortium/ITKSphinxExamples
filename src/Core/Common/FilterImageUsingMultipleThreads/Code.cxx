@@ -36,11 +36,11 @@ main(int, char *[])
   using ImageType = itk::Image<int, 2>;
   using FilterType = itk::MultiThreadedImageFilter<ImageType>;
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image.GetPointer());
 
   // Create and the filter
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(image);
   // filter->SetNumberOfThreads(3); // There is no need to specify this, it is automatically determined
   filter->Update();

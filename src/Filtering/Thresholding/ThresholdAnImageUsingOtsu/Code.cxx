@@ -49,7 +49,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(InputImage);
 
   using FilterType = itk::OtsuMultipleThresholdsImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetNumberOfHistogramBins(NumberOfHistogramBins);
   filter->SetNumberOfThresholds(NumberOfThresholds);
@@ -67,7 +67,7 @@ main(int argc, char * argv[])
   std::cout << std::endl;
 
   using RescaleType = itk::RescaleIntensityImageFilter<ImageType, ImageType>;
-  RescaleType::Pointer rescaler = RescaleType::New();
+  auto rescaler = RescaleType::New();
   rescaler->SetInput(filter->GetOutput());
   rescaler->SetOutputMinimum(0);
   rescaler->SetOutputMaximum(255);

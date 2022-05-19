@@ -37,7 +37,7 @@ main(int argc, char * argv[])
   using ImageType = itk::Image<PixelType, Dimension>;
   using ReaderType = itk::ImageSeriesReader<ImageType>;
 
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
 
   const unsigned int first = std::stoi(argv[2]);
   const unsigned int last = std::stoi(argv[3]);
@@ -46,7 +46,7 @@ main(int argc, char * argv[])
 
   using NameGeneratorType = itk::NumericSeriesFileNames;
 
-  NameGeneratorType::Pointer nameGenerator = NameGeneratorType::New();
+  auto nameGenerator = NameGeneratorType::New();
 
   nameGenerator->SetSeriesFormat(argv[1]);
 

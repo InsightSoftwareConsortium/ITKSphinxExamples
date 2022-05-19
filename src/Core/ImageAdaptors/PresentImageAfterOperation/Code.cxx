@@ -54,7 +54,7 @@ private:
 int
 main(int, char *[])
 {
-  VectorImageType::Pointer image = VectorImageType::New();
+  auto image = VectorImageType::New();
   CreateImage(image);
 
   itk::Index<2> index;
@@ -64,7 +64,7 @@ main(int, char *[])
 
   using ImageAdaptorType = itk::ImageAdaptor<VectorImageType, VectorPixelAccessor>;
 
-  ImageAdaptorType::Pointer adaptor = ImageAdaptorType::New();
+  auto adaptor = ImageAdaptorType::New();
 
   VectorPixelAccessor accessor;
   accessor.SetIndex(0);

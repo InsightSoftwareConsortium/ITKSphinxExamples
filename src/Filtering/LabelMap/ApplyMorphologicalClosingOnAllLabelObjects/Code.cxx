@@ -52,7 +52,7 @@ main(int argc, char * argv[])
   using LabelMapType = itk::LabelMap<LabelObjectType>;
 
   using LabelImageToLabelMapFilterType = itk::LabelImageToLabelMapFilter<ImageType, LabelMapType>;
-  LabelImageToLabelMapFilterType::Pointer labelMapConverter = LabelImageToLabelMapFilterType::New();
+  auto labelMapConverter = LabelImageToLabelMapFilterType::New();
   labelMapConverter->SetInput(input);
   labelMapConverter->SetBackgroundValue(itk::NumericTraits<PixelType>::Zero);
 
@@ -64,20 +64,20 @@ main(int argc, char * argv[])
 
   using MorphologicalFilterType =
     itk::BinaryMorphologicalClosingImageFilter<ImageType, ImageType, StructuringElementType>;
-  MorphologicalFilterType::Pointer closingFilter = MorphologicalFilterType::New();
+  auto closingFilter = MorphologicalFilterType::New();
 
   using ObjectByObjectLabelMapFilterType = itk::ObjectByObjectLabelMapFilter<LabelMapType>;
-  ObjectByObjectLabelMapFilterType::Pointer objectByObjectLabelMapFilter = ObjectByObjectLabelMapFilterType::New();
+  auto objectByObjectLabelMapFilter = ObjectByObjectLabelMapFilterType::New();
   objectByObjectLabelMapFilter->SetInput(labelMapConverter->GetOutput());
   objectByObjectLabelMapFilter->SetBinaryInternalOutput(true);
   objectByObjectLabelMapFilter->SetFilter(closingFilter);
 
   using UniqueLabelMapFilterType = itk::LabelUniqueLabelMapFilter<LabelMapType>;
-  UniqueLabelMapFilterType::Pointer unique = UniqueLabelMapFilterType::New();
+  auto unique = UniqueLabelMapFilterType::New();
   unique->SetInput(objectByObjectLabelMapFilter->GetOutput());
 
   using LabelMapToLabelImageFilterType = itk::LabelMapToLabelImageFilter<LabelMapType, ImageType>;
-  LabelMapToLabelImageFilterType::Pointer labelImageConverter = LabelMapToLabelImageFilterType::New();
+  auto labelImageConverter = LabelMapToLabelImageFilterType::New();
   labelImageConverter->SetInput(unique->GetOutput());
 
   try

@@ -104,7 +104,7 @@ main(int argc, char * argv[])
   pix_blue[2] = 255;
 
   // A black canvas
-  RGBImageType::Pointer image = RGBImageType::New();
+  auto image = RGBImageType::New();
   image->SetRegions(region);
   image->Allocate();
   image->FillBuffer(pix_black);

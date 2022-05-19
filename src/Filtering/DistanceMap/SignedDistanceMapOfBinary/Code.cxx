@@ -35,7 +35,7 @@ CreateImage(UnsignedCharImageType::Pointer image);
 int
 main(int argc, char * argv[])
 {
-  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  auto image = UnsignedCharImageType::New();
   if (argc < 2)
   {
     CreateImage(image);

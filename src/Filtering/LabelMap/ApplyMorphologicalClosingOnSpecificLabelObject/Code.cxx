@@ -55,12 +55,12 @@ main(int argc, char * argv[])
   using LabelMapType = itk::LabelMap<LabelObjectType>;
 
   using LabelImageToLabelMapFilterType = itk::LabelImageToLabelMapFilter<ImageType, LabelMapType>;
-  LabelImageToLabelMapFilterType::Pointer labelMapConverter = LabelImageToLabelMapFilterType::New();
+  auto labelMapConverter = LabelImageToLabelMapFilterType::New();
   labelMapConverter->SetInput(input);
   labelMapConverter->SetBackgroundValue(itk::NumericTraits<PixelType>::Zero);
 
   using SelectorType = itk::LabelSelectionLabelMapFilter<LabelMapType>;
-  SelectorType::Pointer selector = SelectorType::New();
+  auto selector = SelectorType::New();
   selector->SetInput(labelMapConverter->GetOutput());
   selector->SetLabel(label);
 
@@ -72,26 +72,26 @@ main(int argc, char * argv[])
 
   using MorphologicalFilterType =
     itk::BinaryMorphologicalClosingImageFilter<ImageType, ImageType, StructuringElementType>;
-  MorphologicalFilterType::Pointer closingFilter = MorphologicalFilterType::New();
+  auto closingFilter = MorphologicalFilterType::New();
 
   using ObjectByObjectLabelMapFilterType = itk::ObjectByObjectLabelMapFilter<LabelMapType>;
-  ObjectByObjectLabelMapFilterType::Pointer objectByObjectLabelMapFilter = ObjectByObjectLabelMapFilterType::New();
+  auto objectByObjectLabelMapFilter = ObjectByObjectLabelMapFilterType::New();
   objectByObjectLabelMapFilter->SetInput(selector->GetOutput(0));
   objectByObjectLabelMapFilter->SetBinaryInternalOutput(true);
   objectByObjectLabelMapFilter->SetFilter(closingFilter);
 
   using MergeLabelFilterType = itk::MergeLabelMapFilter<LabelMapType>;
-  MergeLabelFilterType::Pointer merger = MergeLabelFilterType::New();
+  auto merger = MergeLabelFilterType::New();
   merger->SetInput(0, objectByObjectLabelMapFilter->GetOutput(0));
   merger->SetInput(1, selector->GetOutput(1));
   merger->SetMethod(itk::MergeLabelMapFilterEnums::ChoiceMethod::KEEP);
 
   using UniqueLabelMapFilterType = itk::LabelUniqueLabelMapFilter<LabelMapType>;
-  UniqueLabelMapFilterType::Pointer unique = UniqueLabelMapFilterType::New();
+  auto unique = UniqueLabelMapFilterType::New();
   unique->SetInput(merger->GetOutput());
 
   using LabelMapToLabelImageFilterType = itk::LabelMapToLabelImageFilter<LabelMapType, ImageType>;
-  LabelMapToLabelImageFilterType::Pointer labelImageConverter = LabelMapToLabelImageFilterType::New();
+  auto labelImageConverter = LabelMapToLabelImageFilterType::New();
   labelImageConverter->SetInput(unique->GetOutput());
 
   try

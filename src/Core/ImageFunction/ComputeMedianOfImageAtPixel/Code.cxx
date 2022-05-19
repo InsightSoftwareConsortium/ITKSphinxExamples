@@ -28,11 +28,11 @@ CreateImage(UnsignedCharImageType::Pointer image);
 int
 main(int, char *[])
 {
-  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  auto image = UnsignedCharImageType::New();
   CreateImage(image);
 
   using MedianImageFunctionType = itk::MedianImageFunction<UnsignedCharImageType>;
-  MedianImageFunctionType::Pointer medianImageFunction = MedianImageFunctionType::New();
+  auto medianImageFunction = MedianImageFunctionType::New();
   medianImageFunction->SetInputImage(image);
 
   itk::Index<2> index;

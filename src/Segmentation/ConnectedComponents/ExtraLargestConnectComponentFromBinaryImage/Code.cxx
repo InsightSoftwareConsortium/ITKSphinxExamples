@@ -46,7 +46,7 @@ main(int argc, char * argv[])
 
   using ConnectedComponentImageFilterType = itk::ConnectedComponentImageFilter<ImageType, OutputImageType>;
 
-  ConnectedComponentImageFilterType::Pointer connected = ConnectedComponentImageFilterType::New();
+  auto connected = ConnectedComponentImageFilterType::New();
   connected->SetInput(input);
   connected->Update();
 
@@ -62,7 +62,7 @@ main(int argc, char * argv[])
     LabelShapeKeepNObjectsImageFilterType::LabelObjectType::NUMBER_OF_PIXELS);
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<OutputImageType, ImageType>;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  auto rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetOutputMinimum(0);
   rescaleFilter->SetOutputMaximum(itk::NumericTraits<PixelType>::max());
   rescaleFilter->SetInput(labelShapeKeepNObjectsImageFilter->GetOutput());

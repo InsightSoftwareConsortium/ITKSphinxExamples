@@ -49,16 +49,16 @@ main(int argc, char * argv[])
 
   using FilterType = itk::ResampleImageFilter<ImageType, ImageType>;
 
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
 
   using InterpolatorType = itk::LinearInterpolateImageFunction<ImageType, double>;
 
-  InterpolatorType::Pointer interpolator = InterpolatorType::New();
+  auto interpolator = InterpolatorType::New();
 
   filter->SetInterpolator(interpolator);
 
   using TransformType = itk::IdentityTransform<double, Dimension>;
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
 
   filter->SetTransform(transform);
 

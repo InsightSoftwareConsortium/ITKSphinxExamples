@@ -40,22 +40,22 @@ CreateImage2(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage1(image1);
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage2(image2);
 
   using AddImageFilterType = itk::AddImageFilter<ImageType, ImageType>;
 
-  AddImageFilterType::Pointer addFilter = AddImageFilterType::New();
+  auto addFilter = AddImageFilterType::New();
   addFilter->SetInput1(image1);
   addFilter->SetInput2(image2);
   addFilter->Update();
 
   // Visualize first image
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-  ConnectorType::Pointer connector1 = ConnectorType::New();
+  auto connector1 = ConnectorType::New();
   connector1->SetInput(image1);
 
   vtkSmartPointer<vtkImageActor> actor1 = vtkSmartPointer<vtkImageActor>::New();
@@ -67,7 +67,7 @@ main(int, char *[])
 #endif
   // Visualize first image
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-  ConnectorType::Pointer connector2 = ConnectorType::New();
+  auto connector2 = ConnectorType::New();
   connector2->SetInput(image2);
 
   vtkSmartPointer<vtkImageActor> actor2 = vtkSmartPointer<vtkImageActor>::New();
@@ -79,7 +79,7 @@ main(int, char *[])
 #endif
 
   // Visualize joined image
-  ConnectorType::Pointer addConnector = ConnectorType::New();
+  auto addConnector = ConnectorType::New();
   addConnector->SetInput(addFilter->GetOutput());
 
   vtkSmartPointer<vtkImageActor> addActor = vtkSmartPointer<vtkImageActor>::New();

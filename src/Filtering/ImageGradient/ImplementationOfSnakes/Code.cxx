@@ -117,12 +117,12 @@ main(int argc, char * argv[])
   }
 
   // Compute the magnitude gradient
-  GradMagfilterType::Pointer gradientMagnitudeFilter = GradMagfilterType::New();
+  auto gradientMagnitudeFilter = GradMagfilterType::New();
   gradientMagnitudeFilter->SetInput(image);
   gradientMagnitudeFilter->Update();
 
   // Compute the gradient of the gradient magnitude
-  FilterType::Pointer gradientFilter = FilterType::New();
+  auto gradientFilter = FilterType::New();
   gradientFilter->SetInput(gradientMagnitudeFilter->GetOutput());
   gradientFilter->SetSigma(sigma);
   gradientFilter->Update();

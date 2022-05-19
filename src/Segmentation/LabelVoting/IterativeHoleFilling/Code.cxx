@@ -50,7 +50,7 @@ main(int argc, char * argv[])
   FilterType::InputSizeType radius;
   radius.Fill(r);
 
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetRadius(radius);
   filter->SetMajorityThreshold(majorityThreshold);

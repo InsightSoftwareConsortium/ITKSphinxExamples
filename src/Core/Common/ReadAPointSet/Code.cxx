@@ -37,7 +37,7 @@ main(int argc, char * argv[])
   std::cout << "Input file: " << InputFilename << std::endl;
 
   // using PointSetType = itk::PointSet<double, 3 >;
-  // PointSetType::Pointer pointsSet = PointSetType::New();
+  // auto pointsSet = PointSetType::New();
   // using PointType = PointSetType::PointType;
 
   constexpr unsigned int Dimension = 3;
@@ -46,7 +46,7 @@ main(int argc, char * argv[])
   using MeshType = itk::Mesh<CoordType, Dimension>;
 
   using ReaderType = itk::VTKPolyDataReader<MeshType>;
-  ReaderType::Pointer polyDataReader = ReaderType::New();
+  auto polyDataReader = ReaderType::New();
 
   using PointType = ReaderType::PointType;
   using VectorType = ReaderType::VectorType;

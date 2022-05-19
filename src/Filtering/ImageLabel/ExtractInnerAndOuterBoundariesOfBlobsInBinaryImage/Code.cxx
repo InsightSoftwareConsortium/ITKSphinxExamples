@@ -31,13 +31,13 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using binaryContourImageFilterType = itk::BinaryContourImageFilter<ImageType, ImageType>;
 
   // Outer boundary
-  binaryContourImageFilterType::Pointer binaryContourFilter = binaryContourImageFilterType::New();
+  auto binaryContourFilter = binaryContourImageFilterType::New();
   binaryContourFilter->SetInput(image);
   binaryContourFilter->SetForegroundValue(0);
   binaryContourFilter->SetBackgroundValue(255);
@@ -46,11 +46,11 @@ main(int, char *[])
   // Invert the result
   using InvertIntensityImageFilterType = itk::InvertIntensityImageFilter<ImageType>;
 
-  InvertIntensityImageFilterType::Pointer invertIntensityFilter = InvertIntensityImageFilterType::New();
+  auto invertIntensityFilter = InvertIntensityImageFilterType::New();
   invertIntensityFilter->SetInput(binaryContourFilter->GetOutput());
   invertIntensityFilter->Update();
 
-  ImageType::Pointer outerBoundary = ImageType::New();
+  auto outerBoundary = ImageType::New();
   outerBoundary->Graft(invertIntensityFilter->GetOutput());
 
   // Inner boundary

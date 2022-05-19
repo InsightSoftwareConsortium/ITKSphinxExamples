@@ -30,14 +30,14 @@ int
 main(int, char *[])
 {
 #if ITK_VERSION_MAJOR >= 4
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   itk::WriteImage(image, "input.png");
 
   using BinaryNotImageFilterType = itk::BinaryNotImageFilter<ImageType>;
 
-  BinaryNotImageFilterType::Pointer binaryNotFilter = BinaryNotImageFilterType::New();
+  auto binaryNotFilter = BinaryNotImageFilterType::New();
   binaryNotFilter->SetInput(image);
   binaryNotFilter->Update();
 

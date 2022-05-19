@@ -23,7 +23,7 @@ main(int, char *[])
 {
   using PixelType = itk::RGBPixel<unsigned char>;
   using ColormapType = itk::Function::JetColormapFunction<float, PixelType>;
-  ColormapType::Pointer colormap = ColormapType::New();
+  auto colormap = ColormapType::New();
 
   colormap->SetMinimumInputValue(0.0);
   colormap->SetMaximumInputValue(1.0);

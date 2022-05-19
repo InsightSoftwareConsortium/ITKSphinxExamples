@@ -54,12 +54,12 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputImage);
 
   using HessianFilterType = itk::HessianRecursiveGaussianImageFilter<ImageType>;
-  HessianFilterType::Pointer hessianFilter = HessianFilterType::New();
+  auto hessianFilter = HessianFilterType::New();
   hessianFilter->SetInput(input);
   hessianFilter->SetSigma(sigma);
 
   using VesselnessMeasureFilterType = itk::Hessian3DToVesselnessMeasureImageFilter<PixelType>;
-  VesselnessMeasureFilterType::Pointer vesselnessFilter = VesselnessMeasureFilterType::New();
+  auto vesselnessFilter = VesselnessMeasureFilterType::New();
   vesselnessFilter->SetInput(hessianFilter->GetOutput());
   vesselnessFilter->SetAlpha1(alpha1);
   vesselnessFilter->SetAlpha2(alpha2);

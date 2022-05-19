@@ -37,7 +37,7 @@ main(int, char *[])
 
   ImageType::RegionType exclusionRegion(exclusionRegionIndex, exclusionRegionSize);
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   itk::ImageRegionExclusionConstIteratorWithIndex<ImageType> imageIterator(image, image->GetLargestPossibleRegion());

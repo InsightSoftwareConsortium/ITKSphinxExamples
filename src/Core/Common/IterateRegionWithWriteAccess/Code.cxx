@@ -71,7 +71,7 @@ main(int argc, char * argv[])
 
   // Visualize
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-  ConnectorType::Pointer connector = ConnectorType::New();
+  auto connector = ConnectorType::New();
   connector->SetInput(image);
 
   vtkSmartPointer<vtkImageActor> actor = vtkSmartPointer<vtkImageActor>::New();

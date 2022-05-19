@@ -34,7 +34,7 @@ main(int argc, char * argv[])
   }
 
   using TransformType = itk::Rigid2DTransform<float>;
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
 
 #if (ITK_VERSION_MAJOR == 4 && ITK_VERSION_MINOR >= 5) || ITK_VERSION_MAJOR > 4
   itk::TransformFileWriterTemplate<float>::Pointer writer = itk::TransformFileWriterTemplate<float>::New();

@@ -49,7 +49,7 @@ main(int argc, char * argv[])
   region.SetSize(size);
   region.SetIndex(start);
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   image->SetRegions(region);
   image->Allocate();
 
@@ -81,8 +81,8 @@ main(int argc, char * argv[])
 
   using WriterType = itk::ImageFileWriter<ImageType>;
   using TIFFIOType = itk::TIFFImageIO;
-  WriterType::Pointer writer = WriterType::New();
-  TIFFIOType::Pointer tiffIO = TIFFIOType::New();
+  auto writer = WriterType::New();
+  auto tiffIO = TIFFIOType::New();
   tiffIO->SetPixelType(itk::IOPixelEnum::RGBA);
   writer->SetFileName(outputFilename);
   writer->SetInput(image);

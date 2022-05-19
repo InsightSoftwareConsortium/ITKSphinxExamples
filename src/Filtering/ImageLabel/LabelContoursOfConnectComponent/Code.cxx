@@ -56,16 +56,16 @@ main(int argc, char * argv[])
 
   // Generate connected components
   using ConnectedComponentImageFilterType = itk::ConnectedComponentImageFilter<ImageType, ImageType>;
-  ConnectedComponentImageFilterType::Pointer connectedComponentImageFilter = ConnectedComponentImageFilterType::New();
+  auto connectedComponentImageFilter = ConnectedComponentImageFilterType::New();
   connectedComponentImageFilter->SetInput(image);
 
   // Generate contours for each component
   using LabelContourImageFilterType = itk::LabelContourImageFilter<ImageType, ImageType>;
-  LabelContourImageFilterType::Pointer labelContourImageFilter = LabelContourImageFilterType::New();
+  auto labelContourImageFilter = LabelContourImageFilterType::New();
   labelContourImageFilter->SetInput(connectedComponentImageFilter->GetOutput());
 
   using RGBFilterType = itk::ScalarToRGBColormapImageFilter<ImageType, RGBImageType>;
-  RGBFilterType::Pointer rgbFilter = RGBFilterType::New();
+  auto rgbFilter = RGBFilterType::New();
   rgbFilter->SetInput(labelContourImageFilter->GetOutput());
   rgbFilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Jet);
 

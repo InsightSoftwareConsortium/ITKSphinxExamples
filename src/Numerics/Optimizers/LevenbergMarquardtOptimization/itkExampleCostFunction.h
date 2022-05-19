@@ -82,9 +82,9 @@ protected:
     // C and K are our parameters
     // In the actual data, these parameters are 5.5 and 0.5
     using GeneratorType = itk::Statistics::MersenneTwisterRandomVariateGenerator;
-    GeneratorType::Pointer randomEngine = GeneratorType::New();
-    double                 actualC = 5.5;
-    double                 actualK = 0.5;
+    auto   randomEngine = GeneratorType::New();
+    double actualC = 5.5;
+    double actualK = 0.5;
     for (unsigned int i = 0; i < 100; ++i)
     {
       double position = double(i) / 100;

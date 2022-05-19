@@ -30,18 +30,18 @@ CreateImage2(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage1(image1);
 
   itk::WriteImage(image1, "input1.png");
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage2(image2);
 
   itk::WriteImage(image1, "input1.png");
 
   using OrImageFilterType = itk::OrImageFilter<ImageType>;
-  OrImageFilterType::Pointer orFilter = OrImageFilterType::New();
+  auto orFilter = OrImageFilterType::New();
   orFilter->SetInput(0, image1);
   orFilter->SetInput(1, image2);
   orFilter->Update();

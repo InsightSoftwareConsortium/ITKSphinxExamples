@@ -63,7 +63,7 @@ main(int argc, char * argv[])
   const ImageType::SizeType & size = input->GetLargestPossibleRegion().GetSize();
 
   using ResampleImageFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
-  ResampleImageFilterType::Pointer resample = ResampleImageFilterType::New();
+  auto resample = ResampleImageFilterType::New();
   resample->SetInput(input);
   resample->SetReferenceImage(input);
   resample->UseReferenceImageOn();
@@ -72,12 +72,12 @@ main(int argc, char * argv[])
 
   constexpr unsigned int Radius = 3;
   using InterpolatorType = itk::WindowedSincInterpolateImageFunction<ImageType, Radius>;
-  InterpolatorType::Pointer interpolator = InterpolatorType::New();
+  auto interpolator = InterpolatorType::New();
 
   resample->SetInterpolator(interpolator);
 
   using TransformType = itk::AffineTransform<ScalarType, Dimension>;
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
 
   // get transform parameters from MatrixType
   TransformType::ParametersType parameters(Dimension * Dimension + Dimension);

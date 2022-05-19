@@ -41,11 +41,11 @@ main(int argc, char * argv[])
 
   const auto input = itk::ReadImage<ImageType>(argv[1]);
 
-  ImageType::Pointer mask = ImageType::New();
+  auto mask = ImageType::New();
   CreateHalfMask(input, mask);
 
   using MaskFilterType = itk::MaskImageFilter<ImageType, ImageType>;
-  MaskFilterType::Pointer maskFilter = MaskFilterType::New();
+  auto maskFilter = MaskFilterType::New();
   maskFilter->SetInput(input);
   maskFilter->SetMaskImage(mask);
   mask->Print(std::cout);

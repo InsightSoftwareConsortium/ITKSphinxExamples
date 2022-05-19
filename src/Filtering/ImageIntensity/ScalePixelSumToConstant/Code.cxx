@@ -28,7 +28,7 @@ int
 main(int, char *[])
 {
   // Create an image
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using NormalizeToConstantImageFilterType = itk::NormalizeToConstantImageFilter<ImageType, ImageType>;

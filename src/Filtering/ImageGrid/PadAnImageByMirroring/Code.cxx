@@ -49,7 +49,7 @@ main(int argc, char * argv[])
   upperBound[1] = 40;
 
   using FilterType = itk::MirrorPadImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetPadLowerBound(lowerBound);
   filter->SetPadUpperBound(upperBound);

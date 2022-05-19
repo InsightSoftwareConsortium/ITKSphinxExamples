@@ -53,12 +53,12 @@ main(int argc, char * argv[])
   using ConnectedComponentImageFilterType = itk::ConnectedComponentImageFilter<InputImageType, OutputImageType>;
   using I2LType = itk::LabelImageToShapeLabelMapFilter<OutputImageType, LabelMapType>;
 
-  ConnectedComponentImageFilterType::Pointer connected = ConnectedComponentImageFilterType::New();
+  auto connected = ConnectedComponentImageFilterType::New();
   connected->SetInput(image);
   connected->Update();
 
   using I2LType = itk::LabelImageToShapeLabelMapFilter<OutputImageType, LabelMapType>;
-  I2LType::Pointer i2l = I2LType::New();
+  auto i2l = I2LType::New();
   i2l->SetInput(connected->GetOutput());
   i2l->SetComputePerimeter(true);
   i2l->Update();

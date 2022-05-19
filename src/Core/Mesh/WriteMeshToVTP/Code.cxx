@@ -32,7 +32,7 @@ main(int, char *[])
   MeshType::Pointer mesh = CreateMeshWithEdges();
 
   using WriterType = itk::VTKPolyDataWriter<MeshType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetInput(mesh);
   writer->SetFileName("test.vtk");
   writer->Update();
@@ -45,7 +45,7 @@ MeshType::Pointer
 CreateMeshWithEdges()
 {
 
-  MeshType::Pointer mesh = MeshType::New();
+  auto mesh = MeshType::New();
 
   // Create points
   MeshType::PointType p0, p1, p2, p3;

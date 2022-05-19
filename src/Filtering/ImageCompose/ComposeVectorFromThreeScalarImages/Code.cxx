@@ -28,11 +28,11 @@ CreateImage(ScalarImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ScalarImageType::Pointer image = ScalarImageType::New();
+  auto image = ScalarImageType::New();
   CreateImage(image);
 
   using ComposeCovariantVectorImageFilterType = itk::ComposeImageFilter<ScalarImageType, VectorImageType>;
-  ComposeCovariantVectorImageFilterType::Pointer composeFilter = ComposeCovariantVectorImageFilterType::New();
+  auto composeFilter = ComposeCovariantVectorImageFilterType::New();
 
   composeFilter->SetInput1(image);
   composeFilter->SetInput2(image);

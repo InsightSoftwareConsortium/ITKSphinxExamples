@@ -26,7 +26,7 @@ ReadImage(const char * fileName, typename TImage::Pointer image)
   using ImageType = TImage;
   using ImageReaderType = itk::ImageFileReader<ImageType>;
 
-  typename ImageReaderType::Pointer reader = ImageReaderType::New();
+  auto reader = ImageReaderType::New();
   reader->SetFileName(fileName);
 
   try
@@ -60,7 +60,7 @@ ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum component
       using PixelType = unsigned char;
       using ImageType = itk::Image<PixelType, VDimension>;
 
-      typename ImageType::Pointer image = ImageType::New();
+      auto image = ImageType::New();
 
       if (ReadImage<ImageType>(inputFileName, image) == EXIT_FAILURE)
       {
@@ -76,7 +76,7 @@ ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum component
       using PixelType = char;
       using ImageType = itk::Image<PixelType, VDimension>;
 
-      typename ImageType::Pointer image = ImageType::New();
+      auto image = ImageType::New();
 
       if (ReadImage<ImageType>(inputFileName, image) == EXIT_FAILURE)
       {
@@ -92,7 +92,7 @@ ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum component
       using PixelType = unsigned short;
       using ImageType = itk::Image<PixelType, VDimension>;
 
-      typename ImageType::Pointer image = ImageType::New();
+      auto image = ImageType::New();
 
       if (ReadImage<ImageType>(inputFileName, image) == EXIT_FAILURE)
       {
@@ -108,7 +108,7 @@ ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum component
       using PixelType = short;
       using ImageType = itk::Image<PixelType, VDimension>;
 
-      typename ImageType::Pointer image = ImageType::New();
+      auto image = ImageType::New();
 
       if (ReadImage<ImageType>(inputFileName, image) == EXIT_FAILURE)
       {
@@ -124,7 +124,7 @@ ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum component
       using PixelType = unsigned int;
       using ImageType = itk::Image<PixelType, VDimension>;
 
-      typename ImageType::Pointer image = ImageType::New();
+      auto image = ImageType::New();
 
       if (ReadImage<ImageType>(inputFileName, image) == EXIT_FAILURE)
       {
@@ -140,7 +140,7 @@ ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum component
       using PixelType = int;
       using ImageType = itk::Image<PixelType, VDimension>;
 
-      typename ImageType::Pointer image = ImageType::New();
+      auto image = ImageType::New();
 
       if (ReadImage<ImageType>(inputFileName, image) == EXIT_FAILURE)
       {
@@ -156,7 +156,7 @@ ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum component
       using PixelType = unsigned long;
       using ImageType = itk::Image<PixelType, VDimension>;
 
-      typename ImageType::Pointer image = ImageType::New();
+      auto image = ImageType::New();
 
       if (ReadImage<ImageType>(inputFileName, image) == EXIT_FAILURE)
       {
@@ -172,7 +172,7 @@ ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum component
       using PixelType = long;
       using ImageType = itk::Image<PixelType, VDimension>;
 
-      typename ImageType::Pointer image = ImageType::New();
+      auto image = ImageType::New();
 
       if (ReadImage<ImageType>(inputFileName, image) == EXIT_FAILURE)
       {
@@ -188,7 +188,7 @@ ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum component
       using PixelType = float;
       using ImageType = itk::Image<PixelType, VDimension>;
 
-      typename ImageType::Pointer image = ImageType::New();
+      auto image = ImageType::New();
 
       if (ReadImage<ImageType>(inputFileName, image) == EXIT_FAILURE)
       {
@@ -204,7 +204,7 @@ ReadScalarImage(const char * inputFileName, const itk::IOComponentEnum component
       using PixelType = double;
       using ImageType = itk::Image<PixelType, VDimension>;
 
-      typename ImageType::Pointer image = ImageType::New();
+      auto image = ImageType::New();
 
       if (ReadImage<ImageType>(inputFileName, image) == EXIT_FAILURE)
       {

@@ -33,7 +33,7 @@ CreateImage(ImageType::Pointer image);
 int
 main(int argc, char * argv[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   if (argc < 2)
   {
     CreateImage(image);
@@ -44,7 +44,7 @@ main(int argc, char * argv[])
   }
 
   using FilterType = itk::ZeroCrossingImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(image);
   filter->SetBackgroundValue(0);
   filter->SetForegroundValue(255);

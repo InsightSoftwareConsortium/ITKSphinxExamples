@@ -39,7 +39,7 @@ main(int, char *[])
 MeshType::Pointer
 CreatePointOnlyMesh()
 {
-  MeshType::Pointer mesh = MeshType::New();
+  auto mesh = MeshType::New();
 
   // Create points
   MeshType::PointType p0, p1, p2, p3;

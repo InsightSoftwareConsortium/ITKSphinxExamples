@@ -63,11 +63,11 @@ main(int, char *[])
   using RegistrationType = itk::ImageRegistrationMethod<ImageType, ImageType>;
 
   // Create components
-  MetricType::Pointer       metric = MetricType::New();
-  TransformType::Pointer    transform = TransformType::New();
-  OptimizerType::Pointer    optimizer = OptimizerType::New();
-  InterpolatorType::Pointer interpolator = InterpolatorType::New();
-  RegistrationType::Pointer registration = RegistrationType::New();
+  auto metric = MetricType::New();
+  auto transform = TransformType::New();
+  auto optimizer = OptimizerType::New();
+  auto interpolator = InterpolatorType::New();
+  auto registration = RegistrationType::New();
 
   // Each component is now connected to the instance of the registration method.
   registration->SetMetric(metric);
@@ -76,8 +76,8 @@ main(int, char *[])
   registration->SetInterpolator(interpolator);
 
   // Get the two images
-  ImageType::Pointer fixedImage = ImageType::New();
-  ImageType::Pointer movingImage = ImageType::New();
+  auto fixedImage = ImageType::New();
+  auto movingImage = ImageType::New();
 
   CreateSphereImage(fixedImage);
   CreateEllipseImage(movingImage);
@@ -108,7 +108,7 @@ main(int, char *[])
   optimizer->SetNumberOfIterations(200);
 
   // Connect an observer
-  // CommandIterationUpdate::Pointer observer = CommandIterationUpdate::New();
+  // auto observer = CommandIterationUpdate::New();
   // optimizer->AddObserver( itk::IterationEvent(), observer );
 
   try
@@ -169,7 +169,7 @@ main(int, char *[])
 
   //  A resampling filter is created and the moving image is connected as  its input.
 
-  ResampleFilterType::Pointer resampler = ResampleFilterType::New();
+  auto resampler = ResampleFilterType::New();
   resampler->SetInput(movingImage);
 
   //  The Transform that is produced as output of the Registration method is
@@ -201,7 +201,7 @@ main(int, char *[])
 
   using CastFilterType = itk::CastImageFilter<ImageType, ImageType>;
 
-  CastFilterType::Pointer caster = CastFilterType::New();
+  auto caster = CastFilterType::New();
   caster->SetInput(resampler->GetOutput());
 
   itk::WriteImage(caster->GetOutput(), "output.png");
@@ -217,7 +217,7 @@ main(int, char *[])
       FixedImageType,
       FixedImageType >;
 
-  DifferenceFilterType::Pointer difference = DifferenceFilterType::New();
+  auto difference = DifferenceFilterType::New();
 
   difference->SetInput1( fixedImageReader->GetOutput() );
   difference->SetInput2( resampler->GetOutput() );
@@ -234,7 +234,7 @@ CreateEllipseImage(ImageType::Pointer image)
 
   using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<EllipseType, ImageType>;
 
-  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
+  auto imageFilter = SpatialObjectToImageFilterType::New();
 
   ImageType::SizeType size;
   size[0] = 100;
@@ -246,14 +246,14 @@ CreateEllipseImage(ImageType::Pointer image)
   spacing.Fill(1);
   imageFilter->SetSpacing(spacing);
 
-  EllipseType::Pointer   ellipse = EllipseType::New();
+  auto                   ellipse = EllipseType::New();
   EllipseType::ArrayType radiusArray;
   radiusArray[0] = 10;
   radiusArray[1] = 20;
   ellipse->SetRadiusInObjectSpace(radiusArray);
 
   using TransformType = EllipseType::TransformType;
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
   transform->SetIdentity();
 
   TransformType::OutputVectorType translation;
@@ -282,7 +282,7 @@ CreateSphereImage(ImageType::Pointer image)
 
   using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<EllipseType, ImageType>;
 
-  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
+  auto imageFilter = SpatialObjectToImageFilterType::New();
 
   ImageType::SizeType size;
   size[0] = 100;
@@ -294,14 +294,14 @@ CreateSphereImage(ImageType::Pointer image)
   spacing.Fill(1);
   imageFilter->SetSpacing(spacing);
 
-  EllipseType::Pointer   ellipse = EllipseType::New();
+  auto                   ellipse = EllipseType::New();
   EllipseType::ArrayType radiusArray;
   radiusArray[0] = 10;
   radiusArray[1] = 10;
   ellipse->SetRadiusInObjectSpace(radiusArray);
 
   using TransformType = EllipseType::TransformType;
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
   transform->SetIdentity();
 
   TransformType::OutputVectorType translation;

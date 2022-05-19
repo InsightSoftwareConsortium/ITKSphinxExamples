@@ -48,7 +48,7 @@ main(int argc, char * argv[])
   using MeshCellIdentifier = MeshType::CellIdentifier;
 
   using ReaderType = itk::MeshFileReader<MeshType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileName(inputFileName);
 
   MeshPointer mesh = reader->GetOutput();
@@ -134,7 +134,7 @@ main(int argc, char * argv[])
 
   // save the corresponding mesh
   using MeshWriterType = itk::MeshFileWriter<MeshType>;
-  MeshWriterType::Pointer writer = MeshWriterType::New();
+  auto writer = MeshWriterType::New();
   writer->SetInput(output);
   writer->SetFileName(outputFileName);
 

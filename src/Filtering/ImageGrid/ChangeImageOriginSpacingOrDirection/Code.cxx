@@ -65,7 +65,7 @@ main(int argc, char * argv[])
   using ImageType = itk::Image<PixelType, Dimension>;
 
   using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileName(inputFileName);
   try
   {
@@ -80,7 +80,7 @@ main(int argc, char * argv[])
   std::cout << "Original image: " << inputImage << std::endl;
 
   using FilterType = itk::ChangeInformationImageFilter<ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(reader->GetOutput());
 
   const ImageType::SpacingType spacing(scalingFactor);

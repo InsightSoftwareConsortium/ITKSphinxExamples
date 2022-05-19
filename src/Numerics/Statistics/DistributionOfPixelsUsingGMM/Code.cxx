@@ -42,7 +42,7 @@ int
 main(int /*argc*/, char * /*argv*/[])
 {
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
 
 #ifdef USE_CONTROLLED_IMAGE
   ControlledImage(image);
@@ -51,7 +51,7 @@ main(int /*argc*/, char * /*argv*/[])
 #endif
 
   using ImageToListSampleFilterType = itk::Statistics::ImageToListSampleFilter<ImageType>;
-  ImageToListSampleFilterType::Pointer imageToListSampleFilter = ImageToListSampleFilterType::New();
+  auto imageToListSampleFilter = ImageToListSampleFilterType::New();
   imageToListSampleFilter->SetInput(image);
   imageToListSampleFilter->Update();
 
@@ -152,7 +152,7 @@ main(int /*argc*/, char * /*argv*/[])
 
   using EstimatorType =
     itk::Statistics::ExpectationMaximizationMixtureModelEstimator<ImageToListSampleFilterType::ListSampleType>;
-  EstimatorType::Pointer estimator = EstimatorType::New();
+  auto estimator = EstimatorType::New();
 
   estimator->SetSample(imageToListSampleFilter->GetOutput());
   estimator->SetMaximumIteration(200);
@@ -189,13 +189,13 @@ main(int /*argc*/, char * /*argv*/[])
   using FilterType = itk::Statistics::SampleClassifierFilter<ImageToListSampleFilterType::ListSampleType>;
 
   using DecisionRuleType = itk::Statistics::MaximumDecisionRule;
-  DecisionRuleType::Pointer decisionRule = DecisionRuleType::New();
+  auto decisionRule = DecisionRuleType::New();
 
   using ClassLabelVectorObjectType = FilterType::ClassLabelVectorObjectType;
   using ClassLabelVectorType = FilterType::ClassLabelVectorType;
 
-  ClassLabelVectorObjectType::Pointer classLabelsObject = ClassLabelVectorObjectType::New();
-  ClassLabelVectorType &              classLabelVector = classLabelsObject->Get();
+  auto                   classLabelsObject = ClassLabelVectorObjectType::New();
+  ClassLabelVectorType & classLabelVector = classLabelsObject->Get();
 
   using ClassLabelType = FilterType::ClassLabelType;
 
@@ -208,7 +208,7 @@ main(int /*argc*/, char * /*argv*/[])
   ClassLabelType class2 = 2;
   classLabelVector.push_back(class2);
 
-  FilterType::Pointer sampleClassifierFilter = FilterType::New();
+  auto sampleClassifierFilter = FilterType::New();
   sampleClassifierFilter->SetInput(imageToListSampleFilter->GetOutput());
   sampleClassifierFilter->SetNumberOfClasses(numberOfClasses);
   sampleClassifierFilter->SetClassLabels(classLabelsObject);

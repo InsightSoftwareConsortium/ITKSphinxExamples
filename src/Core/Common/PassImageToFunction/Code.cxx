@@ -41,7 +41,7 @@ TemplateStandardPointer(const TImage *)
 int
 main(int, char *[])
 {
-  ImageType::Pointer  image = ImageType::New();
+  auto                image = ImageType::New();
   itk::Index<2>       corner = { { 0, 0 } };
   itk::Size<2>        size = { { 10, 10 } };
   itk::ImageRegion<2> region(corner, size);

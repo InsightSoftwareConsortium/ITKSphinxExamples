@@ -30,13 +30,13 @@ main(int, char *[])
 
   using RandomSourceType = itk::RandomImageSource<ImageType>;
 
-  RandomSourceType::Pointer randomImageSource = RandomSourceType::New();
+  auto randomImageSource = RandomSourceType::New();
   randomImageSource->SetNumberOfWorkUnits(1); // to produce non-random results
 
   ImageType::Pointer image = randomImageSource->GetOutput();
 
   using DuplicatorType = itk::ImageDuplicator<ImageType>;
-  DuplicatorType::Pointer duplicator = DuplicatorType::New();
+  auto duplicator = DuplicatorType::New();
   duplicator->SetInputImage(image);
   duplicator->Update();
 

@@ -48,11 +48,11 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   }
 
   // Create a line from the list of points
-  LineType::Pointer line = LineType::New();
+  auto line = LineType::New();
   line->SetPoints(points);
 
-  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
-  itk::Size<2>                            size;
+  auto         imageFilter = SpatialObjectToImageFilterType::New();
+  itk::Size<2> size;
   size.Fill(50);
   imageFilter->SetInsideValue(255); // white
   imageFilter->SetSize(size);

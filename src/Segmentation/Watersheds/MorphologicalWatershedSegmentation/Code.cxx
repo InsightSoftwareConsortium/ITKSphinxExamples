@@ -74,11 +74,11 @@ main(int argc, char * argv[])
             << "Threshold: " << threshold << std::endl
             << "Level: " << level << std::endl;
 
-  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  auto image = UnsignedCharImageType::New();
   CreateImage(image);
 
   using GradientMagnitudeImageFilterType = itk::GradientMagnitudeImageFilter<UnsignedCharImageType, FloatImageType>;
-  GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
+  auto gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
   gradientMagnitudeImageFilter->SetInput(image);
   gradientMagnitudeImageFilter->Update();
 
@@ -145,13 +145,13 @@ void
 PerformSegmentation(FloatImageType::Pointer image, const float threshold, const float level)
 {
   using MorphologicalWatershedFilterType = itk::MorphologicalWatershedImageFilter<FloatImageType, LabeledImageType>;
-  MorphologicalWatershedFilterType::Pointer watershedFilter = MorphologicalWatershedFilterType::New();
+  auto watershedFilter = MorphologicalWatershedFilterType::New();
   watershedFilter->SetLevel(level);
   watershedFilter->SetInput(image);
   watershedFilter->Update();
 
   using RGBFilterType = itk::ScalarToRGBColormapImageFilter<LabeledImageType, RGBImageType>;
-  RGBFilterType::Pointer colormapImageFilter = RGBFilterType::New();
+  auto colormapImageFilter = RGBFilterType::New();
   colormapImageFilter->SetInput(watershedFilter->GetOutput());
   colormapImageFilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Jet);
   colormapImageFilter->Update();

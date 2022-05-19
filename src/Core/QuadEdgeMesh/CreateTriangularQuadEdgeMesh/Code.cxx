@@ -38,7 +38,7 @@ main(int argc, char * argv[])
   using CoordType = double;
   using MeshType = itk::QuadEdgeMesh<CoordType, Dimension>;
 
-  MeshType::Pointer mesh = MeshType::New();
+  auto mesh = MeshType::New();
 
   using PointsContainer = MeshType::PointsContainer;
   using PointsContainerPointer = MeshType::PointsContainerPointer;
@@ -81,7 +81,7 @@ main(int argc, char * argv[])
   }
 
   using WriterType = itk::MeshFileWriter<MeshType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetFileName(outputFileName);
   writer->SetInput(mesh);
   try

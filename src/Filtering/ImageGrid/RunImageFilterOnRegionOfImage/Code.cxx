@@ -50,7 +50,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   // Create and setup a median filter
-  FilterType::Pointer       medianFilter = FilterType::New();
+  auto                      medianFilter = FilterType::New();
   FilterType::InputSizeType radius;
   radius.Fill(2);
   if (argc > 2)
@@ -72,14 +72,14 @@ main(int argc, char * argv[])
   medianFilter->SetInput(input);
   medianFilter->GetOutput()->SetRequestedRegion(processRegion);
 
-  PasteType::Pointer pasteFilter = PasteType::New();
+  auto pasteFilter = PasteType::New();
 
   pasteFilter->SetSourceImage(medianFilter->GetOutput());
   pasteFilter->SetSourceRegion(medianFilter->GetOutput()->GetRequestedRegion());
   pasteFilter->SetDestinationImage(input);
   pasteFilter->SetDestinationIndex(processIndex);
 
-  SubtractType::Pointer diff = SubtractType::New();
+  auto diff = SubtractType::New();
   diff->SetInput1(input);
   diff->SetInput2(pasteFilter->GetOutput());
 

@@ -50,7 +50,7 @@ main(int argc, char * argv[])
   laplacianSharpeningImageFilter->SetInput(input);
 
   using SubtractType = itk::SubtractImageFilter<FloatImageType>;
-  SubtractType::Pointer diff = SubtractType::New();
+  auto diff = SubtractType::New();
   diff->SetInput1(input);
   diff->SetInput2(laplacianSharpeningImageFilter->GetOutput());
 

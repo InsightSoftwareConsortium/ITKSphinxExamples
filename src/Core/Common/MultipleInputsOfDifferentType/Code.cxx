@@ -33,7 +33,7 @@ main(int, char *[])
   const auto input = itk::ReadImage<VectorImageType>("Test.jpg");
 
   // Create and the filter
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(reader->GetOutput());
   filter->Update();
 

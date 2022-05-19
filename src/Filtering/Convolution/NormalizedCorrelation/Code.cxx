@@ -47,7 +47,7 @@ main(int argc, char * argv[])
   // Extract a small region
   using ExtractFilterType = itk::RegionOfInterestImageFilter<FloatImageType, FloatImageType>;
 
-  ExtractFilterType::Pointer extractFilter = ExtractFilterType::New();
+  auto extractFilter = ExtractFilterType::New();
 
   FloatImageType::IndexType start;
   start.Fill(50);
@@ -75,7 +75,7 @@ main(int argc, char * argv[])
 
   kernelOperator.CreateToRadius(radius);
 
-  CorrelationFilterType::Pointer correlationFilter = CorrelationFilterType::New();
+  auto correlationFilter = CorrelationFilterType::New();
   correlationFilter->SetInput(input);
   correlationFilter->SetTemplate(kernelOperator);
   correlationFilter->Update();
@@ -95,7 +95,7 @@ main(int argc, char * argv[])
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, UnsignedCharImageType>;
   {
-    RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+    auto rescaleFilter = RescaleFilterType::New();
     rescaleFilter->SetInput(correlationFilter->GetOutput());
     rescaleFilter->SetOutputMinimum(0);
     rescaleFilter->SetOutputMaximum(255);
@@ -105,7 +105,7 @@ main(int argc, char * argv[])
   }
 
   {
-    RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+    auto rescaleFilter = RescaleFilterType::New();
     rescaleFilter->SetInput(extractFilter->GetOutput());
     rescaleFilter->SetOutputMinimum(0);
     rescaleFilter->SetOutputMaximum(255);
@@ -121,7 +121,7 @@ main(int argc, char * argv[])
 
   FloatImageType::RegionType bestPatchRegion(bestPatchStart, patchSize);
 
-  ExtractFilterType::Pointer bestPatchExtractFilter = ExtractFilterType::New();
+  auto bestPatchExtractFilter = ExtractFilterType::New();
   bestPatchExtractFilter->SetRegionOfInterest(bestPatchRegion);
   bestPatchExtractFilter->SetInput(input);
   bestPatchExtractFilter->Update();

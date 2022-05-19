@@ -27,7 +27,7 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   ImageType::RegionType region = image->GetLargestPossibleRegion();

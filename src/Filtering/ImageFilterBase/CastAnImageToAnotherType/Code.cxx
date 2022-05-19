@@ -47,13 +47,13 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<InputImageType>(inputImage);
 
   using RescaleType = itk::RescaleIntensityImageFilter<InputImageType, InputImageType>;
-  RescaleType::Pointer rescale = RescaleType::New();
+  auto rescale = RescaleType::New();
   rescale->SetInput(input);
   rescale->SetOutputMinimum(0);
   rescale->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());
 
   using FilterType = itk::CastImageFilter<InputImageType, OutputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(rescale->GetOutput());
 
   try

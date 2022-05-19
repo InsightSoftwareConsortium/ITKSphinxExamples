@@ -26,7 +26,7 @@ main(int, char *[])
   using RGBPixelType = itk::RGBPixel<unsigned char>;
 
   using RGBImageType = itk::Image<RGBPixelType, Dimension>;
-  RGBImageType::Pointer image = RGBImageType::New();
+  auto image = RGBImageType::New();
 
   return EXIT_SUCCESS;
 }

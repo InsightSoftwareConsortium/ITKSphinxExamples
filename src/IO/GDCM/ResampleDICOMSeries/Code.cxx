@@ -96,13 +96,13 @@ main(int argc, char * argv[])
   ////////////////////////////////////////////////
   // 1) Read the input series
 
-  ImageIOType::Pointer             gdcmIO = ImageIOType::New();
-  InputNamesGeneratorType::Pointer inputNames = InputNamesGeneratorType::New();
+  auto gdcmIO = ImageIOType::New();
+  auto inputNames = InputNamesGeneratorType::New();
   inputNames->SetInputDirectory(argv[1]);
 
   const ReaderType::FileNamesContainer & filenames = inputNames->GetInputFileNames();
 
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
 
   reader->SetImageIO(gdcmIO);
   reader->SetFileNames(filenames);
@@ -119,9 +119,9 @@ main(int argc, char * argv[])
 
   ////////////////////////////////////////////////
   // 2) Resample the series
-  InterpolatorType::Pointer interpolator = InterpolatorType::New();
+  auto interpolator = InterpolatorType::New();
 
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
   transform->SetIdentity();
 
   const InputImageType::SpacingType & inputSpacing = reader->GetOutput()->GetSpacing();
@@ -158,7 +158,7 @@ main(int argc, char * argv[])
   outputSize[1] = static_cast<SizeValueType>(inputSize[1] * inputSpacing[1] / outputSpacing[1] + .5);
   outputSize[2] = static_cast<SizeValueType>(inputSize[2] * inputSpacing[2] / outputSpacing[2] + .5);
 
-  ResampleFilterType::Pointer resampler = ResampleFilterType::New();
+  auto resampler = ResampleFilterType::New();
   resampler->SetInput(reader->GetOutput());
   resampler->SetTransform(transform);
   resampler->SetInterpolator(interpolator);
@@ -306,7 +306,7 @@ main(int argc, char * argv[])
     interceptShift = -atoi(tagValue.c_str());
   }
 
-  ShiftScaleType::Pointer shiftScale = ShiftScaleType::New();
+  auto shiftScale = ShiftScaleType::New();
   shiftScale->SetInput(resampler->GetOutput());
   shiftScale->SetShift(interceptShift);
 #endif
@@ -318,14 +318,14 @@ main(int argc, char * argv[])
   itksys::SystemTools::MakeDirectory(argv[2]);
 
   // Generate the file names
-  OutputNamesGeneratorType::Pointer outputNames = OutputNamesGeneratorType::New();
-  std::string                       seriesFormat(argv[2]);
+  auto        outputNames = OutputNamesGeneratorType::New();
+  std::string seriesFormat(argv[2]);
   seriesFormat = seriesFormat + "/" + "IM%d.dcm";
   outputNames->SetSeriesFormat(seriesFormat.c_str());
   outputNames->SetStartIndex(1);
   outputNames->SetEndIndex(outputSize[2]);
 
-  SeriesWriterType::Pointer seriesWriter = SeriesWriterType::New();
+  auto seriesWriter = SeriesWriterType::New();
 #if ((ITK_VERSION_MAJOR == 4) && (ITK_VERSION_MINOR < 6))
   seriesWriter->SetInput(shiftScale->GetOutput());
 #else

@@ -32,7 +32,7 @@ main(int, char *[])
   using PointType = PointSetType::PointType;
   using PointsContainerPointer = PointSetType::PointsContainerPointer;
 
-  PointSetType::Pointer  pointSet = PointSetType::New();
+  auto                   pointSet = PointSetType::New();
   PointsContainerPointer points = pointSet->GetPoints();
 
   // Create points
@@ -54,7 +54,7 @@ main(int, char *[])
 
   using BoundingBoxType = itk::BoundingBox<PointIdentifier, Dimension, CoordType>;
 
-  BoundingBoxType::Pointer boundingBox = BoundingBoxType::New();
+  auto boundingBox = BoundingBoxType::New();
   boundingBox->SetPoints(points);
   boundingBox->ComputeBoundingBox();
 

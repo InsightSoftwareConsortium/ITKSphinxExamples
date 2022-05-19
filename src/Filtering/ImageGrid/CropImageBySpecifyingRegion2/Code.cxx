@@ -35,7 +35,7 @@ CreateImage(ImageType::Pointer image);
 int
 main(int argc, char * argv[])
 {
-  ImageType::Pointer  image = ImageType::New();
+  auto                image = ImageType::New();
   ImageType::SizeType cropSize;
   std::stringstream   desc;
 
@@ -59,7 +59,7 @@ main(int argc, char * argv[])
 
   using CropImageFilterType = itk::CropImageFilter<ImageType, ImageType>;
 
-  CropImageFilterType::Pointer cropFilter = CropImageFilterType::New();
+  auto cropFilter = CropImageFilterType::New();
   cropFilter->SetInput(image);
   // The SetBoundaryCropSize( cropSize ) method specifies the size of
   // the boundary to be cropped at both the uppper & lower ends of the

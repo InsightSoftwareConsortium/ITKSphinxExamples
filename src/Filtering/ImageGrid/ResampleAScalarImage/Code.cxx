@@ -70,7 +70,7 @@ main(int argc, char * argv[])
   using TransformPrecisionType = double;
   using TransformType = itk::IdentityTransform<TransformPrecisionType, Dimension>;
   using FilterType = itk::ResampleImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(inputImage);
   filter->SetSize(outputSize);
   filter->SetOutputSpacing(outputSpacing);

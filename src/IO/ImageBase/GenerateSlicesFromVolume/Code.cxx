@@ -50,7 +50,7 @@ main(int argc, char * argv[])
   using RescaleImageType = itk::Image<OutputPixelType, Dimension>;
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<InputImageType, RescaleImageType>;
-  RescaleFilterType::Pointer rescale = RescaleFilterType::New();
+  auto rescale = RescaleFilterType::New();
   rescale->SetInput(input);
   rescale->SetOutputMinimum(0);
   rescale->SetOutputMaximum(255);
@@ -68,7 +68,7 @@ main(int argc, char * argv[])
   using OutputImageType = itk::Image<OutputPixelType, 2>;
 
   using WriterType = itk::ImageSeriesWriter<RescaleImageType, OutputImageType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetInput(rescale->GetOutput());
   writer->SetFileNames(fnames->GetFileNames());
 

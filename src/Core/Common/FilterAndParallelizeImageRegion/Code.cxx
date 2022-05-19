@@ -40,7 +40,7 @@ log1xViaLogImageFilter(ImageType::Pointer & image)
 
   // classic filter declaration and invocation
   using LogType = itk::LogImageFilter<ImageType, ImageType>;
-  LogType::Pointer logF = LogType::New();
+  auto logF = LogType::New();
   logF->SetInput(image);
   logF->SetInPlace(true);
   logF->Update();
@@ -78,7 +78,7 @@ main(int, char *[])
   // create an image
   ImageType::RegionType region = { { 0, 0 }, { 50, 20 } }; // indices zero, size 50x20
   using RandomSourceType = itk::RandomImageSource<ImageType>;
-  RandomSourceType::Pointer randomImageSource = RandomSourceType::New();
+  auto randomImageSource = RandomSourceType::New();
   randomImageSource->SetSize(region.GetSize());
   // we don't want overflow on 1+x operation, so set max pixel value
   randomImageSource->SetMax(itk::NumericTraits<PixelType>::max() - 1);
@@ -90,7 +90,7 @@ main(int, char *[])
 
   // create another image, to be passed to the alternative method
   using DuplicatorType = itk::ImageDuplicator<ImageType>;
-  DuplicatorType::Pointer duplicator = DuplicatorType::New();
+  auto duplicator = DuplicatorType::New();
   duplicator->SetInputImage(image);
   duplicator->Update();
 

@@ -42,7 +42,7 @@ main(int argc, char * argv[])
   using ImageType = itk::Image<itk::RGBPixel<unsigned char>, 2>;
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
 
-  ConnectorType::Pointer connector = ConnectorType::New();
+  auto connector = ConnectorType::New();
 
   const auto input = itk::ReadImage<ImageType>(argv[1]);
   connector->SetInput(input);

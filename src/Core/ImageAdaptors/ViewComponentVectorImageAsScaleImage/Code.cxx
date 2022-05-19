@@ -29,11 +29,11 @@ CreateImage(VectorImageType::Pointer image);
 int
 main(int, char *[])
 {
-  VectorImageType::Pointer image = VectorImageType::New();
+  auto image = VectorImageType::New();
   CreateImage(image);
 
   using ImageAdaptorType = itk::VectorImageToImageAdaptor<float, 2>;
-  ImageAdaptorType::Pointer adaptor = ImageAdaptorType::New();
+  auto adaptor = ImageAdaptorType::New();
   adaptor->SetExtractComponentIndex(0);
   adaptor->SetImage(image);
 

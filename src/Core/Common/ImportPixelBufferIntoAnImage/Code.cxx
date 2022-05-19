@@ -38,7 +38,7 @@ main(int argc, char * argv[])
 
   using ImageType = itk::Image<PixelType, Dimension>;
   using ImportFilterType = itk::ImportImageFilter<PixelType, Dimension>;
-  ImportFilterType::Pointer importFilter = ImportFilterType::New();
+  auto importFilter = ImportFilterType::New();
   // This filter requires the user to specify the size of the image to be
   // produced as output.  The `SetRegion()` method is used to this end.
   // The image size should exactly match the number of pixels available in the
@@ -102,7 +102,7 @@ main(int argc, char * argv[])
   // Finally, we can connect the output of this filter to a pipeline.
   // For simplicity we just use a writer here, but it could be any other filter.
   using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
 
   writer->SetFileName(argv[1]);
   writer->SetInput(importFilter->GetOutput());

@@ -25,7 +25,7 @@ using ImageType = itk::Image<unsigned char, 2>;
 ImageType::Pointer
 ReturnSmartPointer()
 {
-  ImageType::Pointer  image = ImageType::New();
+  auto                image = ImageType::New();
   itk::Index<2>       corner = { { 0, 0 } };
   itk::Size<2>        size = { { 10, 10 } };
   itk::ImageRegion<2> region(corner, size);
@@ -38,7 +38,7 @@ ReturnSmartPointer()
 ImageType *
 ReturnPointer()
 {
-  ImageType::Pointer  image = ImageType::New();
+  auto                image = ImageType::New();
   itk::Index<2>       corner = { { 0, 0 } };
   itk::Size<2>        size = { { 10, 10 } };
   itk::ImageRegion<2> region(corner, size);

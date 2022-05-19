@@ -28,7 +28,7 @@ main()
   constexpr unsigned int numberOfComponents = 2;
   using HistogramType = itk::Statistics::Histogram<MeasurementType, FrequencyContainerType>;
 
-  HistogramType::Pointer histogram = HistogramType::New();
+  auto histogram = HistogramType::New();
   histogram->SetMeasurementVectorSize(numberOfComponents);
 
   // We initialize it as a 3x3 histogram with equal size intervals.

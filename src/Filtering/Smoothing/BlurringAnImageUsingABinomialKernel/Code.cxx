@@ -42,7 +42,7 @@ main(int argc, char * argv[])
   const unsigned int repetitions = std::stoi(argv[3]);
 
   using FilterType = itk::BinomialBlurImageFilter<InputImageType, OutputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetRepetitions(repetitions);
   filter->Update();
@@ -51,7 +51,7 @@ main(int argc, char * argv[])
   using WriteImageType = itk::Image<WritePixelType, 2>;
   using RescaleFilterType = itk::RescaleIntensityImageFilter<OutputImageType, WriteImageType>;
 
-  RescaleFilterType::Pointer rescaler = RescaleFilterType::New();
+  auto rescaler = RescaleFilterType::New();
   rescaler->SetOutputMinimum(0);
   rescaler->SetOutputMaximum(255);
   rescaler->SetInput(filter->GetOutput());

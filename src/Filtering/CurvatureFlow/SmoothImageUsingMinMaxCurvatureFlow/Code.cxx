@@ -59,7 +59,7 @@ main(int argc, char * argv[])
   minMaxCurvatureFlowImageFilter->SetNumberOfIterations(iterations);
   minMaxCurvatureFlowImageFilter->SetTimeStep(0.125);
 
-  SubtractType::Pointer diff = SubtractType::New();
+  auto diff = SubtractType::New();
   diff->SetInput1(input);
   diff->SetInput2(minMaxCurvatureFlowImageFilter->GetOutput());
 

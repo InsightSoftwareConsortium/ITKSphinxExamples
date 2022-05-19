@@ -27,11 +27,11 @@ CreateImage(ImageType::Pointer image);
 int
 main(int /*argc*/, char * /*argv*/[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using FunctionType = itk::BinaryThresholdImageFunction<ImageType, double>;
-  FunctionType::Pointer function = FunctionType::New();
+  auto function = FunctionType::New();
   function->SetInputImage(image);
   function->ThresholdAbove(100); // we are looking to capture 255
 

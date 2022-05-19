@@ -31,7 +31,7 @@ main()
 
   using PointSetType = itk::PointSet<DataType, ParametricDimension>;
 
-  PointSetType::Pointer pointSet = PointSetType::New();
+  auto pointSet = PointSetType::New();
 
   PointSetType::PointType param0, param1, param2;
 
@@ -59,7 +59,7 @@ main()
 
   using ImageType = itk::Image<DataType, ParametricDimension>;
   using SplineFilterType = itk::BSplineScatteredDataPointSetToImageFilter<PointSetType, ImageType>;
-  SplineFilterType::Pointer splineFilter = SplineFilterType::New();
+  auto splineFilter = SplineFilterType::New();
 
   int splineorder = 2; // complexity of the spline
 
@@ -91,7 +91,7 @@ main()
   // The output will consist of a 1-D image where each voxel contains the
   // (x,y,z) locations of the points
   using OutputImageType = itk::Image<unsigned char, 2>;
-  OutputImageType::Pointer  outputImage = OutputImageType::New();
+  auto                      outputImage = OutputImageType::New();
   OutputImageType::SizeType size;
   size.Fill(200);
 

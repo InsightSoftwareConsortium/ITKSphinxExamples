@@ -45,18 +45,18 @@ main(int argc, char * argv[])
   region.SetSize(size);
   region.SetIndex(start);
 
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   image1->SetRegions(region);
   image1->Allocate();
   image1->FillBuffer(0);
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   image2->SetRegions(region);
   image2->Allocate();
   image2->FillBuffer(255);
 
   using CheckerBoardFilterType = itk::CheckerBoardImageFilter<ImageType>;
-  CheckerBoardFilterType::Pointer checkerBoardFilter = CheckerBoardFilterType::New();
+  auto checkerBoardFilter = CheckerBoardFilterType::New();
   checkerBoardFilter->SetInput1(image1);
   checkerBoardFilter->SetInput2(image2);
 

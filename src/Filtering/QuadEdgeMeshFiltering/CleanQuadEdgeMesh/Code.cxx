@@ -42,7 +42,7 @@ main(int argc, char * argv[])
   using ReaderType = itk::MeshFileReader<MeshType>;
   using WriterType = itk::MeshFileWriter<MeshType>;
 
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileName(argv[1]);
 
   MeshType::Pointer mesh = reader->GetOutput();
@@ -52,11 +52,11 @@ main(int argc, char * argv[])
   ssout >> tol;
 
   using CleanFilterType = itk::CleanQuadEdgeMeshFilter<MeshType, MeshType>;
-  CleanFilterType::Pointer filter = CleanFilterType::New();
+  auto filter = CleanFilterType::New();
   filter->SetInput(mesh);
   filter->SetRelativeTolerance(tol);
 
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetInput(filter->GetOutput());
   writer->SetFileName(argv[3]);
 

@@ -26,7 +26,7 @@ main(int, char *[])
   constexpr unsigned int Dimension = 3;
 
   using PointSetType = itk::PointSet<PixelType, Dimension>;
-  PointSetType::Pointer PointSet = PointSetType::New();
+  auto PointSet = PointSetType::New();
 
   using PointsContainerPointer = PointSetType::PointsContainerPointer;
   PointsContainerPointer points = PointSet->GetPoints();

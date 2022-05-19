@@ -134,11 +134,11 @@ main(int argc, char * argv[])
   using MetricType = itk::MutualInformationImageToImageMetric<InternalImageType, InternalImageType>;
 
 
-  TransformType::Pointer    transform = TransformType::New();
-  OptimizerType::Pointer    optimizer = OptimizerType::New();
-  InterpolatorType::Pointer interpolator = InterpolatorType::New();
-  RegistrationType::Pointer registration = RegistrationType::New();
-  MetricType::Pointer       metric = MetricType::New();
+  auto transform = TransformType::New();
+  auto optimizer = OptimizerType::New();
+  auto interpolator = InterpolatorType::New();
+  auto registration = RegistrationType::New();
+  auto metric = MetricType::New();
 
   registration->SetOptimizer(optimizer);
   registration->SetTransform(transform);
@@ -163,14 +163,14 @@ main(int argc, char * argv[])
 
   using MovingNormalizeFilterType = itk::NormalizeImageFilter<MovingImageType, InternalImageType>;
 
-  FixedNormalizeFilterType::Pointer fixedNormalizer = FixedNormalizeFilterType::New();
+  auto fixedNormalizer = FixedNormalizeFilterType::New();
 
-  MovingNormalizeFilterType::Pointer movingNormalizer = MovingNormalizeFilterType::New();
+  auto movingNormalizer = MovingNormalizeFilterType::New();
 
   using GaussianFilterType = itk::DiscreteGaussianImageFilter<InternalImageType, InternalImageType>;
 
-  GaussianFilterType::Pointer fixedSmoother = GaussianFilterType::New();
-  GaussianFilterType::Pointer movingSmoother = GaussianFilterType::New();
+  auto fixedSmoother = GaussianFilterType::New();
+  auto movingSmoother = GaussianFilterType::New();
 
   fixedSmoother->SetVariance(2.0);
   movingSmoother->SetVariance(2.0);
@@ -259,7 +259,7 @@ main(int argc, char * argv[])
   // learning rate in order to maintain a similar optimizer behavior.
   optimizer->SetLearningRate(15.0);
 
-  CommandIterationUpdate::Pointer observer = CommandIterationUpdate::New();
+  auto observer = CommandIterationUpdate::New();
   optimizer->AddObserver(itk::IterationEvent(), observer);
 
   try
@@ -296,12 +296,12 @@ main(int argc, char * argv[])
 
   using ResampleFilterType = itk::ResampleImageFilter<MovingImageType, FixedImageType>;
 
-  TransformType::Pointer finalTransform = TransformType::New();
+  auto finalTransform = TransformType::New();
 
   finalTransform->SetParameters(finalParameters);
   finalTransform->SetFixedParameters(transform->GetFixedParameters());
 
-  ResampleFilterType::Pointer resample = ResampleFilterType::New();
+  auto resample = ResampleFilterType::New();
 
   resample->SetTransform(finalTransform);
   resample->SetInput(movingImage);
@@ -318,7 +318,7 @@ main(int argc, char * argv[])
 
   using CastFilterType = itk::CastImageFilter<FixedImageType, OutputImageType>;
 
-  CastFilterType::Pointer caster = CastFilterType::New();
+  auto caster = CastFilterType::New();
   caster->SetInput(resample->GetOutput());
 
   itk::WriteImage(caster->GetOutput(), outputImageFile);
@@ -326,14 +326,14 @@ main(int argc, char * argv[])
   // Generate checkerboards before and after registration
   using CheckerBoardFilterType = itk::CheckerBoardImageFilter<FixedImageType>;
 
-  CheckerBoardFilterType::Pointer checker = CheckerBoardFilterType::New();
+  auto checker = CheckerBoardFilterType::New();
   checker->SetInput1(fixedImage);
   checker->SetInput2(resample->GetOutput());
 
   caster->SetInput(checker->GetOutput());
 
   // Before registration
-  TransformType::Pointer identityTransform = TransformType::New();
+  auto identityTransform = TransformType::New();
   identityTransform->SetIdentity();
   resample->SetTransform(identityTransform);
 

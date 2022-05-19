@@ -29,22 +29,22 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using BinaryImageToLabelMapFilterType = itk::BinaryImageToLabelMapFilter<ImageType>;
-  BinaryImageToLabelMapFilterType::Pointer binaryImageToLabelMapFilter = BinaryImageToLabelMapFilterType::New();
+  auto binaryImageToLabelMapFilter = BinaryImageToLabelMapFilterType::New();
   binaryImageToLabelMapFilter->SetInput(image);
   binaryImageToLabelMapFilter->Update();
 
   using LabelMapToLabelImageFilterType =
     itk::LabelMapToLabelImageFilter<BinaryImageToLabelMapFilterType::OutputImageType, ImageType>;
-  LabelMapToLabelImageFilterType::Pointer labelMapToLabelImageFilter = LabelMapToLabelImageFilterType::New();
+  auto labelMapToLabelImageFilter = LabelMapToLabelImageFilterType::New();
   labelMapToLabelImageFilter->SetInput(binaryImageToLabelMapFilter->GetOutput());
   labelMapToLabelImageFilter->Update();
 
   using LabelStatisticsImageFilterType = itk::LabelStatisticsImageFilter<ImageType, ImageType>;
-  LabelStatisticsImageFilterType::Pointer labelStatisticsImageFilter = LabelStatisticsImageFilterType::New();
+  auto labelStatisticsImageFilter = LabelStatisticsImageFilterType::New();
   labelStatisticsImageFilter->SetLabelInput(labelMapToLabelImageFilter->GetOutput());
   labelStatisticsImageFilter->SetInput(image);
   labelStatisticsImageFilter->Update();

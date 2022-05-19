@@ -27,7 +27,7 @@ CreateImage(VectorImageType::Pointer image);
 int
 main(int, char *[])
 {
-  VectorImageType::Pointer image = VectorImageType::New();
+  auto image = VectorImageType::New();
   CreateImage(image);
 
   itk::Index<2> index;
@@ -37,7 +37,7 @@ main(int, char *[])
 
   using ImageAdaptorType = itk::NthElementImageAdaptor<VectorImageType, float>;
 
-  ImageAdaptorType::Pointer adaptor = ImageAdaptorType::New();
+  auto adaptor = ImageAdaptorType::New();
 
   adaptor->SelectNthElement(0);
   adaptor->SetImage(image);

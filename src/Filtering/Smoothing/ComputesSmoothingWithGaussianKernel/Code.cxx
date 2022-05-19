@@ -43,7 +43,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::SmoothingRecursiveGaussianImageFilter<ImageType, ImageType>;
-  FilterType::Pointer smoothFilter = FilterType::New();
+  auto smoothFilter = FilterType::New();
 
   smoothFilter->SetSigma(sigmaValue);
   smoothFilter->SetInput(input);

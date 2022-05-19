@@ -50,7 +50,7 @@ main(int argc, char * argv[])
 
   // Compute the FFT
   using FFTType = itk::ForwardFFTImageFilter<FloatImageType>;
-  FFTType::Pointer fftFilter = FFTType::New();
+  auto fftFilter = FFTType::New();
   fftFilter->SetInput(image);
   fftFilter->Update();
 
@@ -58,12 +58,12 @@ main(int argc, char * argv[])
   // using IFFTType = itk::InverseFFTImageFilter<FFTType::OutputImageType, UnsignedCharImageType>; // This does not work
   // - output type seems to need to be float, but it is just an error, not a concept check error...
   using IFFTType = itk::InverseFFTImageFilter<FFTType::OutputImageType, FloatImageType>;
-  IFFTType::Pointer ifftFilter = IFFTType::New();
+  auto ifftFilter = IFFTType::New();
   ifftFilter->SetInput(fftFilter->GetOutput());
   ifftFilter->Update();
 
   using CastFilterType = itk::CastImageFilter<FloatImageType, UnsignedCharImageType>;
-  CastFilterType::Pointer castFilter = CastFilterType::New();
+  auto castFilter = CastFilterType::New();
   castFilter->SetInput(ifftFilter->GetOutput());
   castFilter->Update();
 

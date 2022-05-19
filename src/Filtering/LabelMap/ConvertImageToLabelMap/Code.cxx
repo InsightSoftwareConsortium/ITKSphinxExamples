@@ -27,16 +27,16 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using ConnectedComponentImageFilterType = itk::ConnectedComponentImageFilter<ImageType, ImageType>;
-  ConnectedComponentImageFilterType::Pointer connectedComponentImageFilter = ConnectedComponentImageFilterType::New();
+  auto connectedComponentImageFilter = ConnectedComponentImageFilterType::New();
   connectedComponentImageFilter->SetInput(image);
   connectedComponentImageFilter->Update();
 
   using LabelImageToLabelMapFilterType = itk::LabelImageToLabelMapFilter<ImageType>;
-  LabelImageToLabelMapFilterType::Pointer labelImageToLabelMapFilter = LabelImageToLabelMapFilterType::New();
+  auto labelImageToLabelMapFilter = LabelImageToLabelMapFilterType::New();
   labelImageToLabelMapFilter->SetInput(connectedComponentImageFilter->GetOutput());
   labelImageToLabelMapFilter->Update();
 

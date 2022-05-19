@@ -36,10 +36,10 @@ CreateHalfMask(UnsignedCharImageType::Pointer image, UnsignedCharImageType::Poin
 int
 main(int, char *[])
 {
-  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  auto image = UnsignedCharImageType::New();
   CreateImage(image);
 
-  UnsignedCharImageType::Pointer mask = UnsignedCharImageType::New();
+  auto mask = UnsignedCharImageType::New();
   CreateHalfMask(image, mask);
 
   using SobelOperatorType = itk::SobelOperator<float, 2>;
@@ -60,7 +60,7 @@ main(int, char *[])
   maskNeighborhoodOperatorImageFilter->Update();
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, UnsignedCharImageType>;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  auto rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput(maskNeighborhoodOperatorImageFilter->GetOutput());
   rescaleFilter->Update();
 
@@ -99,7 +99,7 @@ CreateHalfMask(UnsignedCharImageType::Pointer image, UnsignedCharImageType::Poin
   }
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<UnsignedCharImageType, UnsignedCharImageType>;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  auto rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput(mask);
   rescaleFilter->Update();
 

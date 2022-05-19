@@ -23,7 +23,7 @@ main(int, char *[])
 {
   using TransformType = itk::Euler3DTransform<float>;
 
-  TransformType::Pointer        transform = TransformType::New();
+  auto                          transform = TransformType::New();
   TransformType::ParametersType parameters(6);
   parameters[0] = 0.1;
   parameters[1] = 0.2;

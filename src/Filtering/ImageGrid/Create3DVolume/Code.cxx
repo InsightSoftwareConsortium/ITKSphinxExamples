@@ -41,7 +41,7 @@ main(int argc, char * argv[])
   using OutputImageType = itk::Image<PixelType, OutputDimension>;
 
   using FilterType = itk::TileImageFilter<InputImageType, OutputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
 
   itk::FixedArray<unsigned int, OutputDimension> layout;
   layout[0] = 2;

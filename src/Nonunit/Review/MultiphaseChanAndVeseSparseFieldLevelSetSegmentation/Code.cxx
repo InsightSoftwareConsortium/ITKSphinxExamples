@@ -73,7 +73,7 @@ main(int argc, char ** argv)
 
   using DomainFunctionType = itk::AtanRegularizedHeavisideStepFunction<ScalarPixelType, ScalarPixelType>;
 
-  DomainFunctionType::Pointer domainFunction = DomainFunctionType::New();
+  auto domainFunction = DomainFunctionType::New();
   domainFunction->SetEpsilon(epsilon);
 
   LevelSetImageType::Pointer contourImage1 = itk::ReadImage<LevelSetImageType>(argv[1]);
@@ -81,7 +81,7 @@ main(int argc, char ** argv)
   LevelSetImageType::Pointer contourImage3 = itk::ReadImage<LevelSetImageType>(argv[3]);
   FeatureImageType::Pointer  featureImage = itk::ReadImage<FeatureImageType>(argv[4]);
 
-  MultiLevelSetType::Pointer levelSetFilter = MultiLevelSetType::New();
+  auto levelSetFilter = MultiLevelSetType::New();
   levelSetFilter->SetFunctionCount(3);
   levelSetFilter->SetFeatureImage(featureImage);
   levelSetFilter->SetLevelSet(0, contourImage1);

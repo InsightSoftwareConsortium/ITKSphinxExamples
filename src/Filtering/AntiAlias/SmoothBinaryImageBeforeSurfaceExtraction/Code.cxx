@@ -58,7 +58,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::AntiAliasBinaryImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetMaximumRMSError(maximumRMSError);
   filter->SetNumberOfIterations(numberOfIterations);

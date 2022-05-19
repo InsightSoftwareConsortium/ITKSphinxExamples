@@ -48,7 +48,7 @@ main(int argc, char * argv[])
   upperExtendRegion.Fill(std::stoi(argv[4]));
 
   using FilterType = itk::ConstantPadImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetPadLowerBound(lowerExtendRegion);
   filter->SetPadUpperBound(upperExtendRegion);

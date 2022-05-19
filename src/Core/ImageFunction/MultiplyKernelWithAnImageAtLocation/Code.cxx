@@ -27,7 +27,7 @@ CreateImage(UnsignedCharImageType::Pointer image);
 int
 main(int, char *[])
 {
-  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  auto image = UnsignedCharImageType::New();
   CreateImage(image);
 
   itk::Neighborhood<float, 2> neighborhood;

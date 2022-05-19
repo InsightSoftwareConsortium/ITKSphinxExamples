@@ -39,12 +39,12 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using KMeansFilterType = itk::ScalarImageKmeansImageFilter<ImageType>;
 
-  KMeansFilterType::Pointer kmeansFilter = KMeansFilterType::New();
+  auto kmeansFilter = KMeansFilterType::New();
 
   kmeansFilter->SetInput(image);
   kmeansFilter->SetUseNonContiguousLabels(true);
@@ -67,12 +67,12 @@ main(int, char *[])
 
   using RelabelFilterType = itk::RelabelComponentImageFilter<OutputImageType, OutputImageType>;
 
-  RelabelFilterType::Pointer relabeler = RelabelFilterType::New();
+  auto relabeler = RelabelFilterType::New();
 
   relabeler->SetInput(kmeansFilter->GetOutput());
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<ImageType, ImageType>;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  auto rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput(relabeler->GetOutput());
   rescaleFilter->SetOutputMinimum(0);
   rescaleFilter->SetOutputMaximum(255);
@@ -95,7 +95,7 @@ main(int, char *[])
 
   // Visualize
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-  ConnectorType::Pointer originalConnector = ConnectorType::New();
+  auto originalConnector = ConnectorType::New();
   originalConnector->SetInput(image);
   vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
@@ -105,7 +105,7 @@ main(int, char *[])
   originalActor->SetInputData(originalConnector->GetOutput());
 #endif
 
-  ConnectorType::Pointer outputConnector = ConnectorType::New();
+  auto outputConnector = ConnectorType::New();
   outputConnector->SetInput(rescaleFilter->GetOutput());
 
   vtkSmartPointer<vtkImageActor> outputActor = vtkSmartPointer<vtkImageActor>::New();

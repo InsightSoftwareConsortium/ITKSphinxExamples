@@ -83,7 +83,7 @@ main(int argc, char * argv[])
   }
 
   using my_Estimatortype = itk::ImagePCAShapeModelEstimator<ImageType, ImageType>;
-  my_Estimatortype::Pointer filter = my_Estimatortype::New();
+  auto filter = my_Estimatortype::New();
   filter->SetNumberOfTrainingImages(nb_train);
   filter->SetNumberOfPrincipalComponentsRequired(2);
 
@@ -101,7 +101,7 @@ main(int argc, char * argv[])
   fileNamesOutCreator->SetSeriesFormat(argv[4]);
   const std::vector<std::string> & outFileNames = fileNamesOutCreator->GetFileNames();
 
-  ScaleType::Pointer scaler = ScaleType::New();
+  auto scaler = ScaleType::New();
 
   filter->Update();
   my_Estimatortype::VectorOfDoubleType v = filter->GetEigenValues();

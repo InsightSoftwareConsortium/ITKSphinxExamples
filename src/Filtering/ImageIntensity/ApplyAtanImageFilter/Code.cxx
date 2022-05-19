@@ -43,7 +43,7 @@ main(int argc, char * argv[])
 
   using RandomImageSourceType = itk::RandomImageSource<InputImageType>;
 
-  RandomImageSourceType::Pointer randomImageSource = RandomImageSourceType::New();
+  auto randomImageSource = RandomImageSourceType::New();
   randomImageSource->SetNumberOfWorkUnits(1); // to produce non-random results
   randomImageSource->SetSize(size);
 
@@ -51,7 +51,7 @@ main(int argc, char * argv[])
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
   using FilterType = itk::AtanImageFilter<InputImageType, OutputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(randomImageSource->GetOutput());
 
   try

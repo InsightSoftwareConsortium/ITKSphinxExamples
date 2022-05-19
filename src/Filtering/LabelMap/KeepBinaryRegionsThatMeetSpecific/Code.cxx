@@ -25,13 +25,13 @@ CreateImage(ImageType::Pointer image1, ImageType::Pointer image2);
 int
 main(int, char *[])
 {
-  ImageType::Pointer binaryImage = ImageType::New();
-  ImageType::Pointer featureImage = ImageType::New();
+  auto binaryImage = ImageType::New();
+  auto featureImage = ImageType::New();
 
   CreateImage(binaryImage, featureImage);
 
   using BinaryOpeningType = itk::BinaryStatisticsOpeningImageFilter<ImageType, ImageType>;
-  BinaryOpeningType::Pointer opening = BinaryOpeningType::New();
+  auto opening = BinaryOpeningType::New();
   opening->SetInput(binaryImage);
   opening->SetFeatureImage(featureImage);
   opening->SetBackgroundValue(0);

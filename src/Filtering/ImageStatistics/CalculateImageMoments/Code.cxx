@@ -43,7 +43,7 @@ main(int argc, char * argv[])
   // clang-format off
   using FilterType = itk::ImageMomentsCalculator<ImageType>;
   // clang-format on
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetImage(input);
   filter->Compute();
   filter->Print(std::cout, 0);

@@ -27,8 +27,8 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   using ImageType = itk::Image<unsigned char, 2>;
   using ComplexImageType = itk::Image<std::complex<float>, 2>;
 
-  ImageType::Pointer realImage = ImageType::New();
-  ImageType::Pointer imaginaryImage = ImageType::New();
+  auto realImage = ImageType::New();
+  auto imaginaryImage = ImageType::New();
 
   using RealAndImaginaryToComplexImageFilterType = itk::ComposeImageFilter<ImageType, ComplexImageType>;
   RealAndImaginaryToComplexImageFilterType::Pointer realAndImaginaryToComplexImageFilter =

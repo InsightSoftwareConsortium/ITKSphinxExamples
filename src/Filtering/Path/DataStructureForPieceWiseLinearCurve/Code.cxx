@@ -22,7 +22,7 @@ main(int, char *[])
 {
   using PathType = itk::PolyLineParametricPath<2>;
 
-  PathType::Pointer path = PathType::New();
+  auto path = PathType::New();
   path->Initialize();
 
   using ContinuousIndexType = PathType::ContinuousIndexType;

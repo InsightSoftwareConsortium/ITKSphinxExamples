@@ -41,14 +41,14 @@ main(int argc, char * argv[])
   using ImageType = itk::Image<PixelType, Dimension>;
 
   using NameGeneratorType = itk::NumericSeriesFileNames;
-  NameGeneratorType::Pointer nameGenerator = NameGeneratorType::New();
+  auto nameGenerator = NameGeneratorType::New();
   nameGenerator->SetSeriesFormat(seriesFormat);
   nameGenerator->SetStartIndex(startIndex);
   nameGenerator->SetEndIndex(endIndex);
   std::vector<std::string> fileNames = nameGenerator->GetFileNames();
 
   using ReaderType = itk::ImageSeriesReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileNames(fileNames);
 
   try

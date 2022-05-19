@@ -48,7 +48,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   using ColormapType = itk::Function::CustomColormapFunction<PixelType, RGBPixelType>;
-  ColormapType::Pointer colormap = ColormapType::New();
+  auto colormap = ColormapType::New();
 
   ColormapType::ChannelType redChannel;
   ColormapType::ChannelType greenChannel;
@@ -73,7 +73,7 @@ main(int argc, char * argv[])
   colormap->SetBlueChannel(blueChannel);
 
   using ColormapFilterType = itk::ScalarToRGBColormapImageFilter<ImageType, RGBImageType>;
-  ColormapFilterType::Pointer colormapFilter1 = ColormapFilterType::New();
+  auto colormapFilter1 = ColormapFilterType::New();
 
   colormapFilter1->SetInput(input);
   colormapFilter1->SetColormap(colormap);

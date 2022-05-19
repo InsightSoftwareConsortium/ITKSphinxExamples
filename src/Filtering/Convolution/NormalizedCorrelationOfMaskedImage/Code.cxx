@@ -43,14 +43,14 @@ int
 main(int, char *[])
 {
   // Setup mask
-  MaskType::Pointer mask = MaskType::New();
+  auto mask = MaskType::New();
   CreateMask(mask);
 
   itk::WriteImage(mask.GetPointer(), "mask.png");
 
   // Setup image1
-  ImageType::Pointer image1 = ImageType::New();
-  itk::Index<2>      cornerOfSquare1;
+  auto          image1 = ImageType::New();
+  itk::Index<2> cornerOfSquare1;
   cornerOfSquare1[0] = 3;
   cornerOfSquare1[1] = 8;
   CreateImageOfSquare(image1, cornerOfSquare1);
@@ -61,8 +61,8 @@ main(int, char *[])
   offset[0] = 20;
   offset[1] = 6;
 
-  ImageType::Pointer image2 = ImageType::New();
-  itk::Index<2>      cornerOfSquare2;
+  auto          image2 = ImageType::New();
+  itk::Index<2> cornerOfSquare2;
   cornerOfSquare2[0] = cornerOfSquare1[0] + offset[0];
   cornerOfSquare2[1] = cornerOfSquare1[1] + offset[1];
   CreateImageOfSquare(image2, cornerOfSquare2);
@@ -90,7 +90,7 @@ main(int, char *[])
   // <input type, mask type, output type>
   using CorrelationFilterType =
     itk::NormalizedCorrelationImageFilter<ImageType, MaskType, FloatImageType, unsigned char>;
-  CorrelationFilterType::Pointer correlationFilter = CorrelationFilterType::New();
+  auto correlationFilter = CorrelationFilterType::New();
   correlationFilter->SetInput(image2);
   correlationFilter->SetMaskImage(mask);
   correlationFilter->SetTemplate(kernelOperator);
@@ -99,7 +99,7 @@ main(int, char *[])
   itk::WriteImage(correlationFilter->GetOutput(), "correlation.mha");
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, ImageType>;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  auto rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput(correlationFilter->GetOutput());
   rescaleFilter->SetOutputMinimum(0);
   rescaleFilter->SetOutputMaximum(255);

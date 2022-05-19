@@ -47,7 +47,7 @@ main(int argc, char * argv[])
     itk::QuadEdgeMeshExtendedTraits<VectorType, Dimension, 2, CoordType, CoordType, VectorType, bool, bool>;
 
   using ReaderType = itk::MeshFileReader<InputMeshType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileName(argv[1]);
   reader->Update();
 
@@ -83,7 +83,7 @@ main(int argc, char * argv[])
     }
   }
 
-  NormalFilterType::Pointer normals = NormalFilterType::New();
+  auto normals = NormalFilterType::New();
   normals->SetInput(reader->GetOutput());
   normals->SetWeight(weight_type);
   normals->Update();

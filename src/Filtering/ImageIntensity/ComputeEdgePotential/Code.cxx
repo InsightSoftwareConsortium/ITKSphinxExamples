@@ -35,24 +35,24 @@ main(int /*argc*/, char * /*argv*/[])
   using FloatImageType = itk::Image<float, 2>;
   using VectorImageType = itk::Image<itk::CovariantVector<float, 2>, 2>;
 
-  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  auto image = UnsignedCharImageType::New();
   CreateImage(image);
 
   // Create and setup a gradient filter
   using GradientFilterType = itk::GradientImageFilter<UnsignedCharImageType, float>;
-  GradientFilterType::Pointer gradientFilter = GradientFilterType::New();
+  auto gradientFilter = GradientFilterType::New();
   gradientFilter->SetInput(image);
   gradientFilter->Update();
 
   // Create and setup an edge potential filter
   using EdgePotentialImageFilterType = itk::EdgePotentialImageFilter<VectorImageType, FloatImageType>;
-  EdgePotentialImageFilterType::Pointer edgePotentialImageFilter = EdgePotentialImageFilterType::New();
+  auto edgePotentialImageFilter = EdgePotentialImageFilterType::New();
   edgePotentialImageFilter->SetInput(gradientFilter->GetOutput());
   edgePotentialImageFilter->Update();
 
   // Scale so we can write to a PNG
   using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, UnsignedCharImageType>;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  auto rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput(edgePotentialImageFilter->GetOutput());
   rescaleFilter->SetOutputMinimum(0);
   rescaleFilter->SetOutputMaximum(255);

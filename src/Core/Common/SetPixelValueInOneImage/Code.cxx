@@ -47,7 +47,7 @@ main(int argc, char * argv[])
 
   region.SetSize(size);
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   image->SetRegions(region);
   image->Allocate();
   image->FillBuffer(itk::NumericTraits<PixelType>::Zero);

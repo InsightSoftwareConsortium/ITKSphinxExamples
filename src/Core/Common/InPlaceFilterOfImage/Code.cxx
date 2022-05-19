@@ -52,7 +52,7 @@ main(int argc, char * argv[])
 
   // Visualize
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-  ConnectorType::Pointer connector = ConnectorType::New();
+  auto connector = ConnectorType::New();
   connector->SetInput(image);
 
   vtkSmartPointer<vtkImageActor> actor = vtkSmartPointer<vtkImageActor>::New();
@@ -92,7 +92,7 @@ ApplyThresholding(ImageType::Pointer image)
 
   using BinaryThresholdImageFilterType = itk::BinaryThresholdImageFilter<ImageType, ImageType>;
 
-  BinaryThresholdImageFilterType::Pointer thresholdFilter = BinaryThresholdImageFilterType::New();
+  auto thresholdFilter = BinaryThresholdImageFilterType::New();
   thresholdFilter->SetInput(image);
   thresholdFilter->SetLowerThreshold(10);
   thresholdFilter->SetUpperThreshold(50);

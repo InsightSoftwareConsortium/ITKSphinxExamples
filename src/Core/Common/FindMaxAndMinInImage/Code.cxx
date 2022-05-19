@@ -51,12 +51,12 @@ main(int argc, char * argv[])
 
   using ImageCalculatorFilterType = itk::MinimumMaximumImageCalculator<ImageType>;
 
-  ImageCalculatorFilterType::Pointer imageCalculatorFilter = ImageCalculatorFilterType::New();
+  auto imageCalculatorFilter = ImageCalculatorFilterType::New();
   imageCalculatorFilter->SetImage(input);
   imageCalculatorFilter->Compute();
 
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-  ConnectorType::Pointer originalConnector = ConnectorType::New();
+  auto originalConnector = ConnectorType::New();
 
   originalConnector->SetInput(input);
 

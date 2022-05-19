@@ -61,36 +61,36 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<RGBImageType>(inputFileName);
 
   // Run the filter for each component
-  ImageAdaptorType::Pointer rAdaptor = ImageAdaptorType::New();
+  auto rAdaptor = ImageAdaptorType::New();
   rAdaptor->SelectNthElement(0);
   rAdaptor->SetImage(input);
 
-  CurvatureFlowType::Pointer rCurvatureFilter = CurvatureFlowType::New();
+  auto rCurvatureFilter = CurvatureFlowType::New();
   rCurvatureFilter->SetInput(rAdaptor);
   rCurvatureFilter->SetNumberOfIterations(iterations);
   rCurvatureFilter->Update();
 
-  ImageAdaptorType::Pointer gAdaptor = ImageAdaptorType::New();
+  auto gAdaptor = ImageAdaptorType::New();
   gAdaptor->SelectNthElement(1);
   gAdaptor->SetImage(input);
 
-  CurvatureFlowType::Pointer gCurvatureFilter = CurvatureFlowType::New();
+  auto gCurvatureFilter = CurvatureFlowType::New();
   gCurvatureFilter->SetInput(gAdaptor);
   gCurvatureFilter->SetNumberOfIterations(iterations);
   gCurvatureFilter->Update();
 
-  ImageAdaptorType::Pointer bAdaptor = ImageAdaptorType::New();
+  auto bAdaptor = ImageAdaptorType::New();
   bAdaptor->SelectNthElement(2);
   bAdaptor->SetImage(input);
 
-  CurvatureFlowType::Pointer bCurvatureFilter = CurvatureFlowType::New();
+  auto bCurvatureFilter = CurvatureFlowType::New();
   bCurvatureFilter->SetInput(bAdaptor);
   bCurvatureFilter->SetNumberOfIterations(iterations);
   bCurvatureFilter->Update();
 
   // compose an RGB image from the three filtered images
 
-  ComposeType::Pointer compose = ComposeType::New();
+  auto compose = ComposeType::New();
   compose->SetInput1(rCurvatureFilter->GetOutput());
   compose->SetInput2(gCurvatureFilter->GetOutput());
   compose->SetInput3(bCurvatureFilter->GetOutput());

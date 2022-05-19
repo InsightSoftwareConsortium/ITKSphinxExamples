@@ -80,20 +80,20 @@ main(int argc, char * argv[])
   using TransformInitializerType = itk::CenteredTransformInitializer<TransformType, FixedImageType, MovingImageType>;
   using RegistrationType = itk::ImageRegistrationMethodv4<FixedImageType, MovingImageType, TransformType>;
 
-  FixedImageType::Pointer           fixedImage = FixedImageType::New();
-  MovingImageType::Pointer          movingImage = MovingImageType::New();
-  TransformType::Pointer            transform = TransformType::New();
-  MetricType::Pointer               metric = MetricType::New();
-  OptimizerType::Pointer            optimizer = OptimizerType::New();
-  RegistrationType::Pointer         registration = RegistrationType::New();
-  TransformInitializerType::Pointer initializer = TransformInitializerType::New();
+  auto fixedImage = FixedImageType::New();
+  auto movingImage = MovingImageType::New();
+  auto transform = TransformType::New();
+  auto metric = MetricType::New();
+  auto optimizer = OptimizerType::New();
+  auto registration = RegistrationType::New();
+  auto initializer = TransformInitializerType::New();
 
   fixedImage = itk::ReadImage<FixedImageType>(argv[1]);
   movingImage = itk::ReadImage<MovingImageType>(argv[2]);
 
   // Create the Command observer and register it with the optimizer.
   //
-  CommandIterationUpdate::Pointer observer = CommandIterationUpdate::New();
+  auto observer = CommandIterationUpdate::New();
   optimizer->AddObserver(itk::IterationEvent(), observer);
 
   unsigned int             angles = 12;

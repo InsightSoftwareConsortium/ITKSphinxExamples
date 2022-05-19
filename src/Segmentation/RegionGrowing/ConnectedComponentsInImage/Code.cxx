@@ -38,13 +38,13 @@ CreateImage(ImageType::Pointer image);
 int
 main(int argc, char * argv[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using ConnectedFilterType = itk::ConnectedThresholdImageFilter<ImageType, ImageType>;
-  ConnectedFilterType::Pointer connectedThreshold = ConnectedFilterType::New();
-  float                        lower = 95.0;
-  float                        upper = 105.0;
+  auto  connectedThreshold = ConnectedFilterType::New();
+  float lower = 95.0;
+  float upper = 105.0;
   connectedThreshold->SetLower(lower);
   connectedThreshold->SetUpper(upper);
 
@@ -68,7 +68,7 @@ main(int argc, char * argv[])
 
   // Visualize
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-  ConnectorType::Pointer connector2 = ConnectorType::New();
+  auto connector2 = ConnectorType::New();
   connector2->SetInput(image);
 
   vtkSmartPointer<vtkImageActor> actor2 = vtkSmartPointer<vtkImageActor>::New();
@@ -80,7 +80,7 @@ main(int argc, char * argv[])
 #endif
 
   // Visualize joined image
-  ConnectorType::Pointer addConnector = ConnectorType::New();
+  auto addConnector = ConnectorType::New();
   addConnector->SetInput(connectedThreshold->GetOutput());
 
   vtkSmartPointer<vtkImageActor> addActor = vtkSmartPointer<vtkImageActor>::New();

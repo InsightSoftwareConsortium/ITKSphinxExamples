@@ -31,7 +31,7 @@ CastRescaleAndWrite(FloatImageType::Pointer image, const std::string & filename)
 int
 main(int, char *[])
 {
-  FloatImageType::Pointer image = FloatImageType::New();
+  auto image = FloatImageType::New();
   CreateImage(image);
   CastRescaleAndWrite(image, "input.png");
 
@@ -43,7 +43,7 @@ main(int, char *[])
   sobelOperator.CreateToRadius(radius);
 
   using NeighborhoodOperatorImageFilterType = itk::NeighborhoodOperatorImageFilter<FloatImageType, FloatImageType>;
-  NeighborhoodOperatorImageFilterType::Pointer filter = NeighborhoodOperatorImageFilterType::New();
+  auto filter = NeighborhoodOperatorImageFilterType::New();
   filter->SetOperator(sobelOperator);
   filter->SetInput(image);
   filter->Update();
@@ -87,7 +87,7 @@ CastRescaleAndWrite(FloatImageType::Pointer image, const std::string & filename)
 {
   using UnsignedCharImageType = itk::Image<unsigned char, 2>;
   using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, UnsignedCharImageType>;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  auto rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput(image);
   rescaleFilter->SetOutputMinimum(0);
   rescaleFilter->SetOutputMaximum(255);
