@@ -1,5 +1,5 @@
-add_example( CombineTwoImagesWithCheckerBoardPattern )
-compare_to_baseline( EXAMPLE_NAME CombineTwoImagesWithCheckerBoardPattern BASELINE_PREFIX OutputBaseline )
+add_example(CombineTwoImagesWithCheckerBoardPattern)
+compare_to_baseline(EXAMPLE_NAME CombineTwoImagesWithCheckerBoardPattern BASELINE_PREFIX OutputBaseline)
 
 add_example(SquaredDifferenceOfTwoImages)
 add_example(AbsValueOfTwoImages)

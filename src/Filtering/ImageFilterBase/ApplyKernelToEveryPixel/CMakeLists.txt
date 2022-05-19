@@ -24,7 +24,7 @@ enable_testing()
 add_test(NAME ApplyKernelToEveryPixelTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplyKernelToEveryPixel)
 
-if( ITK_WRAP_PYTHON )
-  add_test( NAME ApplyKernelToEveryPixelTestPython
+if(ITK_WRAP_PYTHON)
+  add_test(NAME ApplyKernelToEveryPixelTestPython
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py)
 endif()

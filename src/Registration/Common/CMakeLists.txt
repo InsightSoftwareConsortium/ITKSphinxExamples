@@ -1,10 +1,10 @@
-add_example( PerformMultiModalityRegistrationWithMutualInformation )
-compare_to_baseline( EXAMPLE_NAME PerformMultiModalityRegistrationWithMutualInformation BASELINE_PREFIX OutputBaseline
-  OPTIONS LABELS RUNS_LONG )
+add_example(PerformMultiModalityRegistrationWithMutualInformation)
+compare_to_baseline(EXAMPLE_NAME PerformMultiModalityRegistrationWithMutualInformation BASELINE_PREFIX OutputBaseline
+  OPTIONS LABELS RUNS_LONG)
 
 if(ITKV4_COMPATIBILITY)
-  add_example( Perform2DTranslationRegistrationWithMeanSquares )
-  compare_to_baseline( EXAMPLE_NAME Perform2DTranslationRegistrationWithMeanSquares BASELINE_PREFIX OutputBaseline )
+  add_example(Perform2DTranslationRegistrationWithMeanSquares)
+  compare_to_baseline(EXAMPLE_NAME Perform2DTranslationRegistrationWithMeanSquares BASELINE_PREFIX OutputBaseline)
 endif()
 
 add_example(MultiresolutionPyramidFromImage)

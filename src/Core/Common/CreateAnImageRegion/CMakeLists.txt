@@ -1,27 +1,27 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( CreateAnImageRegion )
+project(CreateAnImageRegion)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( CreateAnImageRegion Code.cxx Code.py )
-target_link_libraries( CreateAnImageRegion ${ITK_LIBRARIES} )
+add_executable(CreateAnImageRegion Code.cxx Code.py)
+target_link_libraries(CreateAnImageRegion ${ITK_LIBRARIES})
 
-install( TARGETS CreateAnImageRegion
+install(TARGETS CreateAnImageRegion
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx Code.py CMakeLists.txt
+install(FILES Code.cxx Code.py CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAnImageRegion
   COMPONENT Code
 )
 
 enable_testing()
 set(testOutputRegex "ImageRegion")
-add_test( NAME CreateAnImageRegionTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateAnImageRegion )
+add_test(NAME CreateAnImageRegionTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateAnImageRegion)
 set_tests_properties(CreateAnImageRegionTest PROPERTIES
     PASS_REGULAR_EXPRESSION "${testOutputRegex}")
 

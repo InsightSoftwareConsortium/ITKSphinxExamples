@@ -24,8 +24,8 @@ enable_testing()
 add_test(NAME CreateGaussianDerivativeKernelTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateGaussianDerivativeKernel)
 
-if( ITK_WRAP_PYTHON )
-  add_test( NAME CreateGaussianDerivativeKernelTestPython
+if(ITK_WRAP_PYTHON)
+  add_test(NAME CreateGaussianDerivativeKernelTestPython
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     )
 endif()

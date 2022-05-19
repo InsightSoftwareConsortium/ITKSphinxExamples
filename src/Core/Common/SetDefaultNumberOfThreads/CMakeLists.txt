@@ -29,7 +29,7 @@ add_test(NAME SetDefaultNumberOfThreadsTest
 
 if(ITK_WRAP_PYTHON)
   find_package(PythonInterp REQUIRED)
-  add_test( NAME SetDefaultNumberOfThreadsTestPython
+  add_test(NAME SetDefaultNumberOfThreadsTestPython
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${test_options}
     )

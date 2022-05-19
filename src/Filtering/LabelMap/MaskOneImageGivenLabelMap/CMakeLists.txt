@@ -1,25 +1,25 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( MaskOneImageGivenLabelMap )
+project(MaskOneImageGivenLabelMap)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( MaskOneImageGivenLabelMap Code.cxx )
-target_link_libraries( MaskOneImageGivenLabelMap ${ITK_LIBRARIES} )
+add_executable(MaskOneImageGivenLabelMap Code.cxx)
+target_link_libraries(MaskOneImageGivenLabelMap ${ITK_LIBRARIES})
 
-install( TARGETS MaskOneImageGivenLabelMap
+install(TARGETS MaskOneImageGivenLabelMap
   DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Filtering/LabelMap/MaskOneImageGivenLabelMap
   COMPONENT Code
   )
 
 enable_testing()
-add_test( NAME MaskOneImageGivenLabelMapTest
+add_test(NAME MaskOneImageGivenLabelMapTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MaskOneImageGivenLabelMap
     ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
     ${CMAKE_CURRENT_BINARY_DIR}/2th_cthead1.png
@@ -27,7 +27,7 @@ add_test( NAME MaskOneImageGivenLabelMapTest
     100
     0
 )
-add_test( NAME MaskOneImageGivenLabelMapTestNegateCrop
+add_test(NAME MaskOneImageGivenLabelMapTestNegateCrop
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MaskOneImageGivenLabelMap
     ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
     ${CMAKE_CURRENT_BINARY_DIR}/2th_cthead1.png

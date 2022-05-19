@@ -1,14 +1,14 @@
-add_example( ComputeGradientMagnitude )
-compare_to_baseline( EXAMPLE_NAME ComputeGradientMagnitude
+add_example(ComputeGradientMagnitude)
+compare_to_baseline(EXAMPLE_NAME ComputeGradientMagnitude
   BASELINE_PREFIX ComputeGradientMagnitudeTestOutputBaseline
 )
 
-add_example( ComputeGradientMagnitudeRecursiveGaussian )
-compare_to_baseline( EXAMPLE_NAME ComputeGradientMagnitudeRecursiveGaussian
+add_example(ComputeGradientMagnitudeRecursiveGaussian)
+compare_to_baseline(EXAMPLE_NAME ComputeGradientMagnitudeRecursiveGaussian
   BASELINE_PREFIX ComputeGradientMagnitudeRecursiveGaussianTestOutputBaseline
 )
 
-add_example( ApplyGradientRecursiveGaussian )
+add_example(ApplyGradientRecursiveGaussian)
 compare_to_baseline(
   EXAMPLE_NAME ApplyGradientRecursiveGaussian
   TEST_NAME ApplyGradientRecursiveGaussianTestBaselineComparisonX
@@ -31,7 +31,7 @@ compare_to_baseline(
   TEST_IMAGE OutputMagnitude.png
 )
 
-add_example( ApplyGradientRecursiveGaussianWithVectorInput )
+add_example(ApplyGradientRecursiveGaussianWithVectorInput)
 compare_to_baseline(
   EXAMPLE_NAME ApplyGradientRecursiveGaussianWithVectorInput
   TEST_NAME ApplyGradientRecursiveGaussianWithVectorInputTestBaselineComparison1X

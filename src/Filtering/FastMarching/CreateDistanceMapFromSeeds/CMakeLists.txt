@@ -1,25 +1,25 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( CreateDistanceMapFromSeeds )
+project(CreateDistanceMapFromSeeds)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( CreateDistanceMapFromSeeds Code.cxx )
-target_link_libraries( CreateDistanceMapFromSeeds ${ITK_LIBRARIES} )
+add_executable(CreateDistanceMapFromSeeds Code.cxx)
+target_link_libraries(CreateDistanceMapFromSeeds ${ITK_LIBRARIES})
 
-install( TARGETS CreateDistanceMapFromSeeds
+install(TARGETS CreateDistanceMapFromSeeds
   DESTINATION bin/ITKSphinxExamples/Filtering/FastMarching
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Filtering/FastMarching/CreateDistanceMapFromSeeds
   COMPONENT Code
 )
 
 enable_testing()
-add_test( NAME CreateDistanceMapFromSeedsTest
+add_test(NAME CreateDistanceMapFromSeedsTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateDistanceMapFromSeeds
     ${CMAKE_CURRENT_BINARY_DIR}/Output.mha
 )

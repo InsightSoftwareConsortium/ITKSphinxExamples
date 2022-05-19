@@ -1,19 +1,19 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( ConvertRGBImageToGrayscaleImage )
+project(ConvertRGBImageToGrayscaleImage)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( ConvertRGBImageToGrayscaleImage Code.cxx )
-target_link_libraries( ConvertRGBImageToGrayscaleImage ${ITK_LIBRARIES} )
+add_executable(ConvertRGBImageToGrayscaleImage Code.cxx)
+target_link_libraries(ConvertRGBImageToGrayscaleImage ${ITK_LIBRARIES})
 
-install( TARGETS ConvertRGBImageToGrayscaleImage
+install(TARGETS ConvertRGBImageToGrayscaleImage
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageIntensity/ConvertRGBImageToGrayscaleImage
   COMPONENT Code
 )
@@ -22,7 +22,7 @@ enable_testing()
 set(input_image ${CMAKE_CURRENT_BINARY_DIR}/itk_eg_logo.png)
 set(output_image Output.png)
 
-add_test( NAME ConvertRGBImageToGrayscaleImageTest
+add_test(NAME ConvertRGBImageToGrayscaleImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ConvertRGBImageToGrayscaleImage
     ${input_image}
     ${output_image}

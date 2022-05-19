@@ -1,23 +1,23 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( IterateOverARegionWithAShapedNeighborhoodIterator )
+project(IterateOverARegionWithAShapedNeighborhoodIterator)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( IterateOverARegionWithAShapedNeighborhoodIterator Code.cxx )
-target_link_libraries( IterateOverARegionWithAShapedNeighborhoodIterator ${ITK_LIBRARIES} )
+add_executable(IterateOverARegionWithAShapedNeighborhoodIterator Code.cxx)
+target_link_libraries(IterateOverARegionWithAShapedNeighborhoodIterator ${ITK_LIBRARIES})
 
-install( TARGETS IterateOverARegionWithAShapedNeighborhoodIterator
+install(TARGETS IterateOverARegionWithAShapedNeighborhoodIterator
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Common/IterateOverARegionWithAShapedNeighborhoodIterator
   COMPONENT Code
 )
 
 enable_testing()
-add_test( NAME IterateOverARegionWithAShapedNeighborhoodIteratorTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/IterateOverARegionWithAShapedNeighborhoodIterator )
+add_test(NAME IterateOverARegionWithAShapedNeighborhoodIteratorTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/IterateOverARegionWithAShapedNeighborhoodIterator)

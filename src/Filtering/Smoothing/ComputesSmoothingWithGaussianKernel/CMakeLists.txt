@@ -1,33 +1,33 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( ComputesSmoothingWithGaussianKernel )
+project(ComputesSmoothingWithGaussianKernel)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( ComputesSmoothingWithGaussianKernel Code.cxx )
-target_link_libraries( ComputesSmoothingWithGaussianKernel ${ITK_LIBRARIES} )
+add_executable(ComputesSmoothingWithGaussianKernel Code.cxx)
+target_link_libraries(ComputesSmoothingWithGaussianKernel ${ITK_LIBRARIES})
 
-install( TARGETS ComputesSmoothingWithGaussianKernel
+install(TARGETS ComputesSmoothingWithGaussianKernel
   DESTINATION bin/ITKSphinxExamples/Filtering/Smoothing
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Filtering/Smoothing/ComputesSmoothingWithGaussianKernel
   COMPONENT Code
 )
 
 enable_testing()
-add_test( NAME ComputesSmoothingWithGaussianKernelTest
+add_test(NAME ComputesSmoothingWithGaussianKernelTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputesSmoothingWithGaussianKernel
     ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
     Output.png
     3
   )
 
-if( ITK_WRAP_PYTHON )
-  add_test( NAME ComputesSmoothingWithGaussianKernelTestPython
+if(ITK_WRAP_PYTHON)
+  add_test(NAME ComputesSmoothingWithGaussianKernelTestPython
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
       OutputPython.png

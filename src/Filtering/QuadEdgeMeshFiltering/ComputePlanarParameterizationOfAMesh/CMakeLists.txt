@@ -1,27 +1,27 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( ComputePlanarParameterizationOfAMesh )
+project(ComputePlanarParameterizationOfAMesh)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( ComputePlanarParameterizationOfAMesh Code.cxx )
-target_link_libraries( ComputePlanarParameterizationOfAMesh ${ITK_LIBRARIES} )
+add_executable(ComputePlanarParameterizationOfAMesh Code.cxx)
+target_link_libraries(ComputePlanarParameterizationOfAMesh ${ITK_LIBRARIES})
 
-install( TARGETS ComputePlanarParameterizationOfAMesh
+install(TARGETS ComputePlanarParameterizationOfAMesh
   DESTINATION bin/ITKSphinxExamples/Filtering/QuadEdgeMeshFiltering
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Filtering/QuadEdgeMeshFiltering/ComputePlanarParameterizationOfAMesh
   COMPONENT Code
   )
 
 enable_testing()
 
-foreach( border 0 1 )
-  foreach( coeff 0 1 2 3 4 )
+foreach(border 0 1)
+  foreach(coeff 0 1 2 3 4)
     add_test(NAME ComputePlanarParameterizationOfAMeshTestb${border}_c${coeff}
       COMMAND ComputePlanarParameterizationOfAMesh
         ${CMAKE_CURRENT_BINARY_DIR}/mushroom.vtk ${border} ${coeff}

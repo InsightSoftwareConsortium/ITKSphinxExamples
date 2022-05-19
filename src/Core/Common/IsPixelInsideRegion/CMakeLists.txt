@@ -1,26 +1,26 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( IsPixelInsideRegion )
+project(IsPixelInsideRegion)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( IsPixelInsideRegion Code.cxx )
-target_link_libraries( IsPixelInsideRegion ${ITK_LIBRARIES} )
+add_executable(IsPixelInsideRegion Code.cxx)
+target_link_libraries(IsPixelInsideRegion ${ITK_LIBRARIES})
 
-install( TARGETS IsPixelInsideRegion
+install(TARGETS IsPixelInsideRegion
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx Code.py CMakeLists.txt
+install(FILES Code.cxx Code.py CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Common/IsPixelInsideRegion
   COMPONENT Code
 )
 
 enable_testing()
-add_test( NAME IsPixelInsideRegionTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/IsPixelInsideRegion )
+add_test(NAME IsPixelInsideRegionTest
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/IsPixelInsideRegion)
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME IsPixelInsideRegionPython

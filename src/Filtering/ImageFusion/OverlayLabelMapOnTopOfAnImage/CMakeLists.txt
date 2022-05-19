@@ -24,7 +24,7 @@ set(input_images
   ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
   ${CMAKE_CURRENT_BINARY_DIR}/label.png
   )
-set(output_image Output.png )
+set(output_image Output.png)
 
 add_test(NAME OverlayLabelMapOnTopOfAnImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/OverlayLabelMapOnTopOfAnImage

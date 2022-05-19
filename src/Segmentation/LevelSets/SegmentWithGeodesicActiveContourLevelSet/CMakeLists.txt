@@ -1,19 +1,19 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( SegmentWithGeodesicActiveContourLevelSet )
+project(SegmentWithGeodesicActiveContourLevelSet)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( SegmentWithGeodesicActiveContourLevelSet Code.cxx )
-target_link_libraries( SegmentWithGeodesicActiveContourLevelSet ${ITK_LIBRARIES} )
+add_executable(SegmentWithGeodesicActiveContourLevelSet Code.cxx)
+target_link_libraries(SegmentWithGeodesicActiveContourLevelSet ${ITK_LIBRARIES})
 
-install( TARGETS SegmentWithGeodesicActiveContourLevelSet
+install(TARGETS SegmentWithGeodesicActiveContourLevelSet
   DESTINATION bin/ITKSphinxExamples/Segmentation/LevelSets
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Segmentation/LevelSets/SegmentWithGeodesicActiveContourLevelSet
   COMPONENT Code
   )
@@ -48,7 +48,7 @@ add_test(NAME GeodesicActiveContourGrayMatterTest
     40 90 5.0 .5 -0.3 2.0 10.0 800
   )
 
-if( ITK_WRAP_PYTHON )
+if(ITK_WRAP_PYTHON)
   add_test(NAME GeodesicActiveContourLeftVentricleTestPython
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
