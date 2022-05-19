@@ -19,7 +19,7 @@
 #include "itkNumericSeriesFileNames.h"
 
 int
-main(int, char *[])
+main()
 {
   itk::NumericSeriesFileNames::Pointer numericSeriesFileNames = itk::NumericSeriesFileNames::New();
   numericSeriesFileNames->SetStartIndex(0);

@@ -40,7 +40,7 @@ static void
 CreateSphereImage(ImageType::Pointer image);
 
 int
-main(int, char *[])
+main()
 {
   //  The transform that will map the fixed image into the moving image.
   using TransformType = itk::AffineTransform<double, Dimension>;

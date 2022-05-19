@@ -29,7 +29,7 @@ void
 CastRescaleAndWrite(FloatImageType::Pointer image, const std::string & filename);
 
 int
-main(int, char *[])
+main()
 {
   FloatImageType::Pointer image = FloatImageType::New();
   CreateImage(image);

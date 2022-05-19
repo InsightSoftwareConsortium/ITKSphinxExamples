@@ -19,7 +19,7 @@
 #include "itkBinaryBallStructuringElement.h"
 
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 3;
   using PixelType = float;

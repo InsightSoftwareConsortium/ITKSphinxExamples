@@ -19,7 +19,7 @@
 #include "itkCovariantVector.h"
 
 int
-main(int, char *[])
+main()
 {
   using VectorType = itk::CovariantVector<double, 3>;
   VectorType v;

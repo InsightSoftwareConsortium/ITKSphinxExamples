@@ -34,7 +34,7 @@ static void
 CreateImage(ColorImageType::Pointer image);
 
 int
-main(int, char *[])
+main()
 {
   // Create a demo image
   ColorImageType::Pointer image = ColorImageType::New();

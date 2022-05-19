@@ -20,7 +20,7 @@
 #include "itkImage.h"
 
 int
-main(int, char *[])
+main()
 {
   using PixelType = itk::Vector<float, 3>;
   using ImageType = itk::Image<PixelType, 3>;

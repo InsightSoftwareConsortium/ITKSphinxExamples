@@ -19,7 +19,7 @@
 #include "itkAzimuthElevationToCartesianTransform.h"
 
 int
-main(int, char *[])
+main()
 {
   using PointType = itk::Point<double, 3>;
   PointType spherical;

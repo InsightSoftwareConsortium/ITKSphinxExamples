@@ -28,7 +28,7 @@ Multiply();
 // static void Inverse();
 
 int
-main(int, char *[])
+main()
 {
   Construct();
   Multiply();

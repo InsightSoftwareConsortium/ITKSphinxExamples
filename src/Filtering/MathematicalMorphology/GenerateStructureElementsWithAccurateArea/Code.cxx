@@ -23,7 +23,7 @@ bool
 ComputeAreaError(SEType k, unsigned int thickness = 0);
 
 int
-main(int, char *[])
+main()
 {
   int  scalarRadius = 5;
   int  scalarThickness = 2;

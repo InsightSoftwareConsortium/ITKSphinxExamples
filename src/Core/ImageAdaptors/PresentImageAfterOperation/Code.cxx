@@ -52,7 +52,7 @@ private:
 };
 
 int
-main(int, char *[])
+main()
 {
   VectorImageType::Pointer image = VectorImageType::New();
   CreateImage(image);

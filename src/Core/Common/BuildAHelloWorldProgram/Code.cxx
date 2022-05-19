@@ -19,7 +19,7 @@
 #include "itkImage.h"
 
 int
-main(int, char *[])
+main()
 {
   using ImageType = itk::Image<unsigned short, 3>;
   ImageType::Pointer image = ImageType::New();

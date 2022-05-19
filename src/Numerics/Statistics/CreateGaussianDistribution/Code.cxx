@@ -18,7 +18,7 @@
 #include "itkGaussianDistribution.h"
 
 int
-main(int, char *[])
+main()
 {
   itk::Statistics::GaussianDistribution::Pointer gaussian = itk::Statistics::GaussianDistribution::New();
   gaussian->SetMean(2.0);

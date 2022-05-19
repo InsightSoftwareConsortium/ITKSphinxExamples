@@ -31,7 +31,7 @@ static void
 CreateImage(FloatImageType::Pointer image);
 
 int
-main(int, char *[])
+main()
 {
   FloatImageType::Pointer image = FloatImageType::New();
   CreateImage(image);

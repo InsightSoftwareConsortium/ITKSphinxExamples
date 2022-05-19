@@ -28,7 +28,7 @@ void
 CreateSample(SampleType::Pointer sample);
 
 int
-main(int, char *[])
+main()
 {
   SampleType::Pointer sample = SampleType::New();
   CreateSample(sample);

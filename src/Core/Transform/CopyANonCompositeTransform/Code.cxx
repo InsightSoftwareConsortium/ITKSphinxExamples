@@ -19,7 +19,7 @@
 #include "itkEuler3DTransform.h"
 
 int
-main(int, char *[])
+main()
 {
   using TransformType = itk::Euler3DTransform<float>;
 

@@ -58,7 +58,7 @@ public:
 } // namespace Functor
 
 int
-main(int, char *[])
+main()
 {
   ImageType::Pointer image1 = ImageType::New();
   CreateImage(image1);

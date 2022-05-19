@@ -49,7 +49,7 @@ ReturnPointer()
 }
 
 int
-main(int, char *[])
+main()
 {
   {
     // This is how it should be done.

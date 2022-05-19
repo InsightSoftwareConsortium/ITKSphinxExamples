@@ -21,7 +21,7 @@
 #include "itkComposeImageFilter.h"
 
 int
-main(int, char *[])
+main()
 {
   using FloatImage2DType = itk::Image<float, 2>;
 

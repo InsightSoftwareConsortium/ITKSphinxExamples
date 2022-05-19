@@ -19,7 +19,7 @@
 #include "itkImageRandomConstIteratorWithIndex.h"
 
 int
-main(int, char *[])
+main()
 {
   using ImageType = itk::Image<unsigned char, 2>;
   ImageType::Pointer image = ImageType::New();

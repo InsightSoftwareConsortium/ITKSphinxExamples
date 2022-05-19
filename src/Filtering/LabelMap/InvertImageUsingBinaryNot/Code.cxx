@@ -27,7 +27,7 @@ static void
 CreateImage(ImageType::Pointer image);
 
 int
-main(int, char *[])
+main()
 {
 #if ITK_VERSION_MAJOR >= 4
   ImageType::Pointer image = ImageType::New();

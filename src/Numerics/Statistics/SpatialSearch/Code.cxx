@@ -21,7 +21,7 @@
 #include "itkEuclideanDistanceMetric.h"
 
 int
-main(int, char *[])
+main()
 {
   using MeasurementVectorType = itk::Vector<float, 2>;
 

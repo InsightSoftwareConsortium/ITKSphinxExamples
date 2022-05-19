@@ -7,7 +7,7 @@ static void
 CreateImage(TImage * const image);
 
 int
-main(int, char *[])
+main()
 {
   // Setup types
   using ImageType = itk::Image<int, 2>;

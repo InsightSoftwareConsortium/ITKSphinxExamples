@@ -25,7 +25,7 @@ void
 OutputImageType(const itk::ImageBase<2> * input);
 
 int
-main(int, char *[])
+main()
 {
   FloatScalarImageType::Pointer floatImage = FloatScalarImageType::New();
   itk::ImageBase<2>::Pointer    floatCopy = CreateImageWithSameType(floatImage);

@@ -30,7 +30,7 @@
 #include <vector>
 
 int
-main(int, char *[])
+main()
 {
   using DerivativeOperatorType = itk::DerivativeOperator<float, 2>;
   using ForwardDifferenceOperatorType = itk::ForwardDifferenceOperator<float, 2>;

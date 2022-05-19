@@ -20,7 +20,7 @@
 #include <iostream>
 
 int
-main(int, char *[])
+main()
 {
   using MatrixType = itk::Matrix<double, 2, 2>;
   MatrixType M;

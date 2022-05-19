@@ -27,7 +27,7 @@ IsPixelTypeFloatingPoint(const TImage * const)
 }
 
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 2;
   using FloatImageType = itk::Image<float, Dimension>;

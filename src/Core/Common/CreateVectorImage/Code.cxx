@@ -18,7 +18,7 @@
 #include "itkVectorImage.h"
 
 int
-main(int, char *[])
+main()
 {
   // Create an image
   using ImageType = itk::VectorImage<float, 2>;

@@ -18,7 +18,7 @@
 #include <itkGaussianDerivativeOperator.h>
 
 int
-main(int, char *[])
+main()
 {
   using GaussianDerivativeOperatorType = itk::GaussianDerivativeOperator<float, 2>;
   GaussianDerivativeOperatorType gaussianDerivativeOperator;

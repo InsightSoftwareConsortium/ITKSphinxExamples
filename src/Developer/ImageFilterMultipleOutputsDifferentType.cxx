@@ -5,7 +5,7 @@
 #include "ImageFilterMultipleOutputsDifferentType.h"
 
 int
-main(int, char *[])
+main()
 {
   // Setup types
   using InputImageType = itk::Image<unsigned char, 2>;

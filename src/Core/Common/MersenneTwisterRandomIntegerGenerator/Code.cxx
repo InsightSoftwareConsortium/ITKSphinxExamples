@@ -19,7 +19,7 @@
 #include "itkMersenneTwisterRandomVariateGenerator.h"
 
 int
-main(int, char *[])
+main()
 {
   using GeneratorType = itk::Statistics::MersenneTwisterRandomVariateGenerator;
   GeneratorType::Pointer generator = GeneratorType::New();

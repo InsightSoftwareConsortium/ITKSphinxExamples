@@ -18,7 +18,7 @@
 #include <itkImageRandomNonRepeatingConstIteratorWithIndex.h>
 
 int
-main(int, char *[])
+main()
 {
   itk::RandomPermutation rp(5);
 

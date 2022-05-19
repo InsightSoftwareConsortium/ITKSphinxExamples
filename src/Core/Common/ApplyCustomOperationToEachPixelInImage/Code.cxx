@@ -62,7 +62,7 @@ public:
 };
 
 int
-main(int, char *[])
+main()
 {
   using ImageType = itk::VectorImage<float, 2>;
 

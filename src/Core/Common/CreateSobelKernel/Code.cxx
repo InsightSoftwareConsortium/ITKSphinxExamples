@@ -18,7 +18,7 @@
 #include <itkSobelOperator.h>
 
 int
-main(int, char *[])
+main()
 {
   using SobelOperatorType = itk::SobelOperator<float, 2>;
   SobelOperatorType sobelOperator;

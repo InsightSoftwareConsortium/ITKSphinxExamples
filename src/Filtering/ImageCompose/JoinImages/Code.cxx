@@ -26,7 +26,7 @@ static void
 CreateImage(ImageType::Pointer image, unsigned char value);
 
 int
-main(int, char *[])
+main()
 {
   ImageType::Pointer image1 = ImageType::New();
   CreateImage(image1, 0);

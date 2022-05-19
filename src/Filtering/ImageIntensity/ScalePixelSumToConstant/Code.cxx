@@ -25,7 +25,7 @@ static void
 CreateImage(ImageType::Pointer image);
 
 int
-main(int, char *[])
+main()
 {
   // Create an image
   ImageType::Pointer image = ImageType::New();

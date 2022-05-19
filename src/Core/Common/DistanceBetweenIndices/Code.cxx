@@ -23,7 +23,7 @@
 #include <iostream>
 
 int
-main(int, char *[])
+main()
 {
   itk::Index<2> pixel1;
   pixel1.Fill(2);

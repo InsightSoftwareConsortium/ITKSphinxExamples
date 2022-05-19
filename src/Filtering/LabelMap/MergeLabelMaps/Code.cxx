@@ -19,7 +19,7 @@
 #include "itkMergeLabelMapFilter.h"
 
 int
-main(int, char *[])
+main()
 {
   using ImageType = itk::Image<int, 3>;
 

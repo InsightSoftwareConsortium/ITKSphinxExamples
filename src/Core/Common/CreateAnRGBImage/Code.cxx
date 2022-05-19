@@ -20,7 +20,7 @@
 #include "itkRGBPixel.h"
 
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 2;
   using RGBPixelType = itk::RGBPixel<unsigned char>;

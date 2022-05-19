@@ -20,7 +20,7 @@
 #include "itkImageFileReader.h"
 
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = double;

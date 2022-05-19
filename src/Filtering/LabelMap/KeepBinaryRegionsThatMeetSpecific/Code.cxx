@@ -23,7 +23,7 @@ void
 CreateImage(ImageType::Pointer image1, ImageType::Pointer image2);
 
 int
-main(int, char *[])
+main()
 {
   ImageType::Pointer binaryImage = ImageType::New();
   ImageType::Pointer featureImage = ImageType::New();

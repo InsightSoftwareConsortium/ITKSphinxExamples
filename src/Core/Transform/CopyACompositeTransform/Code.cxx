@@ -22,7 +22,7 @@
 #include "itkCompositeTransformIOHelper.h"
 
 int
-main(int, char *[])
+main()
 {
   using ScalarType = float;
   constexpr unsigned int Dimension = 3;

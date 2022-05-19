@@ -26,7 +26,7 @@ MeshType::Pointer
 CreateMeshWithEdges();
 
 int
-main(int, char *[])
+main()
 {
 
   MeshType::Pointer mesh = CreateMeshWithEdges();

@@ -21,7 +21,7 @@
 #include <itkExtractImageFilter.h>
 
 int
-main(int, char *[])
+main()
 {
   using ImageType = itk::Image<unsigned char, 2>;
 

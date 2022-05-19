@@ -39,7 +39,7 @@ static void
 CreateImage(ImageType::Pointer image, const itk::Index<2> & cornerOfSquare);
 
 int
-main(int, char *[])
+main()
 {
   itk::Index<2> offset;
   offset[0] = 5;

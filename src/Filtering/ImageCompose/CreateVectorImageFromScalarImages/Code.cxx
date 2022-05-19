@@ -29,7 +29,7 @@ static void
 CreateImage(ScalarImageType::Pointer image);
 
 int
-main(int, char *[])
+main()
 {
   ScalarImageType::Pointer image0 = ScalarImageType::New();
   CreateImage(image0);

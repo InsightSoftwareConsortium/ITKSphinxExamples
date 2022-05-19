@@ -33,7 +33,7 @@ LongFunction()
 }
 
 int
-main(int, char *[])
+main()
 {
   itk::TimeProbe clock;
 
