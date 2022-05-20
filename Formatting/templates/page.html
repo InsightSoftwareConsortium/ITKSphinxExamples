@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{# emit a * for every slash so they can be counted #}
+{%- macro countslashes(str) %}
+  {%- set slashcount = 0 %}
+  {%- for char in str %}
+    {%- if char == '/' -%}
+      *
+    {%- endif %}
+  {%- endfor -%}
+{%- endmacro %}
+{%- set slashcount =  countslashes(pagename)|length %}
+
+{%- macro examplename(str) %}
+  {%- set slashcount = 0 %}
+  {%- for char in str %}
+    {%- if char == '/' -%}
+      {%- set slashcount = slashcount + 1 %}
+    {%- else %}
+      {%- if slashcount > 2 and slashcount < 4 %}{{ char }}{%- endif %}
+    {%- endif %}
+  {%- endfor -%}
+{%- endmacro %}
+{%- set archivename = examplename(pagename)%}
+
+{% block body %}
+  {%- if slashcount == 4 %}
+    <p>
+      <a href="{{ meta.get("name") ~ ".zip" }}">
+        <i class="fas fa-download"></i> <span class="hidden-sm hidden-tablet">&nbsp; {{ _('Download this example') }}</span>
+      </a>
+    </p>
+  {%- endif %}
+  {{ body }}
+{% endblock %}
