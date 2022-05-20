@@ -58,7 +58,7 @@ main(int argc, char * argv[])
   // List the files
   //
   std::vector<std::string>::iterator nit;
-  for (nit = names.begin(); nit != names.end(); nit++)
+  for (nit = names.begin(); nit != names.end(); ++nit)
   {
     std::cout << "File: " << (*nit).c_str() << std::endl;
   }

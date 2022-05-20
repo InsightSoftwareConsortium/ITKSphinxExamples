@@ -100,7 +100,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 
   TransformType::PhysicalDimensionsType fixedPhysicalDimensions;
   TransformType::MeshSizeType           meshSize;
-  for (unsigned int i = 0; i < ImageDimension; i++)
+  for (unsigned int i = 0; i < ImageDimension; ++i)
   {
     fixedPhysicalDimensions[i] =
       fixedImage->GetSpacing()[i] * static_cast<double>(fixedImage->GetLargestPossibleRegion().GetSize()[i] - 1);

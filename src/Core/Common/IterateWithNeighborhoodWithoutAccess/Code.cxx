@@ -53,7 +53,7 @@ main(int argc, char * argv[])
 
   while (!iterator.IsAtEnd())
   {
-    for (unsigned int i = 0; i < 9; i++)
+    for (unsigned int i = 0; i < 9; ++i)
     {
       ImageType::IndexType index = iterator.GetIndex(i);
       std::cout << index[0] << " " << index[1] << std::endl;

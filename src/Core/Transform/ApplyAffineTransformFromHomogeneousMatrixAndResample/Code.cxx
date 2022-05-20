@@ -81,14 +81,14 @@ main(int argc, char * argv[])
 
   // get transform parameters from MatrixType
   TransformType::ParametersType parameters(Dimension * Dimension + Dimension);
-  for (unsigned int i = 0; i < Dimension; i++)
+  for (unsigned int i = 0; i < Dimension; ++i)
   {
-    for (unsigned int j = 0; j < Dimension; j++)
+    for (unsigned int j = 0; j < Dimension; ++j)
     {
       parameters[i * Dimension + j] = matrix[i][j];
     }
   }
-  for (unsigned int i = 0; i < Dimension; i++)
+  for (unsigned int i = 0; i < Dimension; ++i)
   {
     parameters[i + Dimension * Dimension] = matrix[i][Dimension];
   }

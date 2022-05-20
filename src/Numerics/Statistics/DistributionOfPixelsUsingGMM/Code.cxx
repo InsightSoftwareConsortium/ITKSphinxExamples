@@ -62,14 +62,14 @@ main(int /*argc*/, char * /*argv*/[])
 
   // Create the first set (for the first cluster/model) of initial parameters
   std::vector<ParametersType> initialParameters(numberOfClasses);
-  for (unsigned int i = 0; i < 3; i++)
+  for (unsigned int i = 0; i < 3; ++i)
   {
     params[i] = 5.0; // mean of dimension i
   }
   unsigned int counter = 0;
-  for (unsigned int i = 0; i < 3; i++)
+  for (unsigned int i = 0; i < 3; ++i)
   {
-    for (unsigned int j = 0; j < 3; j++)
+    for (unsigned int j = 0; j < 3; ++j)
     {
       if (i == j)
       {
@@ -91,9 +91,9 @@ main(int /*argc*/, char * /*argv*/[])
   params[1] = 5.0;
   params[2] = 5.0;
   counter = 0;
-  for (unsigned int i = 0; i < 3; i++)
+  for (unsigned int i = 0; i < 3; ++i)
   {
-    for (unsigned int j = 0; j < 3; j++)
+    for (unsigned int j = 0; j < 3; ++j)
     {
       if (i == j)
       {
@@ -113,9 +113,9 @@ main(int /*argc*/, char * /*argv*/[])
   params[1] = 210.0;
   params[2] = 5.0;
   counter = 0;
-  for (unsigned int i = 0; i < 3; i++)
+  for (unsigned int i = 0; i < 3; ++i)
   {
-    for (unsigned int j = 0; j < 3; j++)
+    for (unsigned int j = 0; j < 3; ++j)
     {
       if (i == j)
       {
@@ -131,7 +131,7 @@ main(int /*argc*/, char * /*argv*/[])
   initialParameters[2] = params;
 
   std::cout << "Initial parameters: " << std::endl;
-  for (unsigned int i = 0; i < numberOfClasses; i++)
+  for (unsigned int i = 0; i < numberOfClasses; ++i)
   {
     std::cout << initialParameters[i] << std::endl;
   }
@@ -142,7 +142,7 @@ main(int /*argc*/, char * /*argv*/[])
 
   // Create the components
   std::vector<ComponentType::Pointer> components;
-  for (unsigned int i = 0; i < numberOfClasses; i++)
+  for (unsigned int i = 0; i < numberOfClasses; ++i)
   {
     components.push_back(ComponentType::New());
     (components[i])->SetSample(imageToListSampleFilter->GetOutput());
@@ -166,7 +166,7 @@ main(int /*argc*/, char * /*argv*/[])
 
   estimator->SetInitialProportions(initialProportions);
 
-  for (unsigned int i = 0; i < numberOfClasses; i++)
+  for (unsigned int i = 0; i < numberOfClasses; ++i)
   {
     estimator->AddComponent(components[i]);
   }
@@ -174,7 +174,7 @@ main(int /*argc*/, char * /*argv*/[])
   estimator->Update();
 
   // Output the results
-  for (unsigned int i = 0; i < numberOfClasses; i++)
+  for (unsigned int i = 0; i < numberOfClasses; ++i)
   {
     std::cout << "Cluster[" << i << "]" << std::endl;
     std::cout << "    Parameters:" << std::endl;

@@ -31,7 +31,7 @@ main()
 
   std::cout << derivativeOperator << std::endl;
 
-  for (unsigned int i = 0; i < 9; i++)
+  for (unsigned int i = 0; i < 9; ++i)
   {
     std::cout << derivativeOperator.GetOffset(i) << " " << derivativeOperator.GetElement(i) << std::endl;
   }

@@ -136,9 +136,9 @@ VectorImageToVTKImage(itk::Image<itk::CovariantVector<float, 2>, 2>::Pointer vec
   vectors->SetName("GradientVectors");
 
   int counter = 0;
-  for (unsigned int j = 0; j < imageSize[1]; j++)
+  for (unsigned int j = 0; j < imageSize[1]; ++j)
   {
-    for (unsigned int i = 0; i < imageSize[0]; i++)
+    for (unsigned int i = 0; i < imageSize[0]; ++i)
     {
       itk::Image<itk::CovariantVector<float, 2>, 2>::IndexType index;
       index[0] = i;

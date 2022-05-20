@@ -31,7 +31,7 @@ main()
 
   std::cout << gaussianOperator << std::endl;
 
-  for (unsigned int i = 0; i < 9; i++)
+  for (unsigned int i = 0; i < 9; ++i)
   {
     std::cout << gaussianOperator.GetOffset(i) << " " << gaussianOperator.GetElement(i) << std::endl;
   }

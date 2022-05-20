@@ -54,7 +54,7 @@ main(int argc, char * argv[])
   }
 
   std::vector<double> userMeans;
-  for (unsigned k = 0; k < numberOfInitialClasses; k++)
+  for (unsigned k = 0; k < numberOfInitialClasses; ++k)
   {
     const double userProvidedInitialMean = std::stod(argv[k + argoffset]);
     userMeans.push_back(userProvidedInitialMean);
@@ -82,7 +82,7 @@ main(int argc, char * argv[])
 
   // initialize using the user input means
 
-  for (unsigned k = 0; k < numberOfInitialClasses; k++)
+  for (unsigned k = 0; k < numberOfInitialClasses; ++k)
   {
     kmeansFilter->AddClassWithInitialMean(userMeans[k]);
   }

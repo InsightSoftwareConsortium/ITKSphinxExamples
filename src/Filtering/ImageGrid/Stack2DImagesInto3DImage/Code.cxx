@@ -58,7 +58,7 @@ main(int argc, char * argv[])
 
   InputImageType::Pointer inputImageTile;
 
-  for (int i = 1; i < argc - 1; i++)
+  for (int i = 1; i < argc - 1; ++i)
   {
     reader->SetFileName(argv[i]);
     reader->UpdateLargestPossibleRegion();

@@ -130,9 +130,9 @@ CreateImage(TImage * const image)
   image->Allocate();
 
   // Make a square
-  for (typename TImage::IndexValueType r = 20; r < 80; r++)
+  for (typename TImage::IndexValueType r = 20; r < 80; ++r)
   {
-    for (typename TImage::IndexValueType c = 30; c < 100; c++)
+    for (typename TImage::IndexValueType c = 30; c < 100; ++c)
     {
       typename TImage::IndexType pixelIndex = { { r, c } };
 
@@ -141,9 +141,9 @@ CreateImage(TImage * const image)
   }
 
   // Make another square
-  for (typename TImage::IndexValueType r = 100; r < 130; r++)
+  for (typename TImage::IndexValueType r = 100; r < 130; ++r)
   {
-    for (typename TImage::IndexValueType c = 115; c < 160; c++)
+    for (typename TImage::IndexValueType c = 115; c < 160; ++c)
     {
       typename TImage::IndexType pixelIndex = { { r, c } };
 

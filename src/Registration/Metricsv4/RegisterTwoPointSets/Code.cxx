@@ -111,7 +111,7 @@ main(int argc, char * argv[])
 
   // two circles with a small offset
   PointType offset;
-  for (unsigned int d = 0; d < Dimension; d++)
+  for (unsigned int d = 0; d < Dimension; ++d)
   {
     offset[d] = 2.0;
   }
@@ -195,7 +195,7 @@ main(int argc, char * argv[])
   PointType::ValueType                             tolerance = 1e-2;
   AffineTransformType::InverseTransformBasePointer movingInverse = metric->GetMovingTransform()->GetInverseTransform();
   AffineTransformType::InverseTransformBasePointer fixedInverse = metric->GetFixedTransform()->GetInverseTransform();
-  for (unsigned int n = 0; n < metric->GetNumberOfComponents(); n++)
+  for (unsigned int n = 0; n < metric->GetNumberOfComponents(); ++n)
   {
     // compare the points in virtual domain
     PointType transformedMovingPoint = movingInverse->TransformPoint(movingPoints->GetPoint(n));

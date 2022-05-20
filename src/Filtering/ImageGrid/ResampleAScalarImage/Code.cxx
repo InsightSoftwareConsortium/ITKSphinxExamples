@@ -43,7 +43,7 @@ main(int argc, char * argv[])
 
   ImageType::SizeType outputSize;
 
-  for (unsigned int dim = 0, k = 3; dim < Dimension; dim++)
+  for (unsigned int dim = 0, k = 3; dim < Dimension; ++dim)
   {
     outputSize[dim] = std::stoi(argv[k++]);
   }
@@ -58,7 +58,7 @@ main(int argc, char * argv[])
 
   ImageType::SpacingType outputSpacing;
 
-  for (unsigned int dim = 0; dim < Dimension; dim++)
+  for (unsigned int dim = 0; dim < Dimension; ++dim)
   {
     outputSpacing[dim] = static_cast<double>(inputSpacing[dim]) * static_cast<double>(inputSize[dim]) /
                          static_cast<double>(outputSize[dim]);

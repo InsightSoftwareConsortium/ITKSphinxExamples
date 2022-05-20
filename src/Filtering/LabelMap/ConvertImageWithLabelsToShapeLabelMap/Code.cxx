@@ -70,9 +70,9 @@ CreateImage(ImageType::Pointer image)
   image->Allocate();
 
   // Make a square
-  for (unsigned int r = 20; r < 80; r++)
+  for (unsigned int r = 20; r < 80; ++r)
   {
-    for (unsigned int c = 30; c < 100; c++)
+    for (unsigned int c = 30; c < 100; ++c)
     {
       ImageType::IndexType pixelIndex;
       pixelIndex[0] = r;
@@ -83,9 +83,9 @@ CreateImage(ImageType::Pointer image)
   }
 
   // Make another square
-  for (unsigned int r = 100; r < 130; r++)
+  for (unsigned int r = 100; r < 130; ++r)
   {
-    for (unsigned int c = 115; c < 160; c++)
+    for (unsigned int c = 115; c < 160; ++c)
     {
       ImageType::IndexType pixelIndex;
       pixelIndex[0] = r;

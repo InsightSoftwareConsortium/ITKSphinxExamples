@@ -34,7 +34,7 @@ main()
 
   int noObjects = 4;
 
-  for (int i = 1; i <= noObjects; i++)
+  for (int i = 1; i <= noObjects; ++i)
   {
     auto labelMap = LabelMapType::New();
     auto labelObject = LabelObjectType::New();

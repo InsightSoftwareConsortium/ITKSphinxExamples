@@ -47,7 +47,7 @@ main()
   std::cout << "Histogram vector size: " << histogram->GetMeasurementVectorSize() << std::endl;
 
 
-  for (unsigned int i = 0; i < histogram->GetSize()[0]; i++)
+  for (unsigned int i = 0; i < histogram->GetSize()[0]; ++i)
   {
     std::cout << "Frequency of " << i << " : (" << histogram->GetBinMin(0, i) << " to " << histogram->GetBinMax(0, i)
               << ") = " << histogram->GetFrequency(i) << std::endl;

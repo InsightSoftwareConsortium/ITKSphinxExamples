@@ -35,7 +35,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 
   // Create a list of points
   std::vector<LineType::LinePointType> points;
-  for (unsigned int i = 0; i < 20; i++)
+  for (unsigned int i = 0; i < 20; ++i)
   {
     LineType::LinePointType point;
     point.SetPositionInObjectSpace(10, i);

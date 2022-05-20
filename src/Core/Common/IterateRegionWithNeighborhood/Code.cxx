@@ -67,7 +67,7 @@ main(int argc, char * argv[])
     // Set the current pixel to white
     iterator.SetCenterPixel(255);
 
-    for (unsigned int i = 0; i < 9; i++)
+    for (unsigned int i = 0; i < 9; ++i)
     {
       ImageType::IndexType index = iterator.GetIndex(i);
       std::cout << index[0] << " " << index[1] << std::endl;

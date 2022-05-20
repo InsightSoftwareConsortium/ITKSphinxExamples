@@ -75,9 +75,9 @@ CreateImage(ImageType::Pointer image)
   image->FillBuffer(0);
 
   // Make a white square
-  for (unsigned int r = 40; r < 60; r++)
+  for (unsigned int r = 40; r < 60; ++r)
   {
-    for (unsigned int c = 40; c < 60; c++)
+    for (unsigned int c = 40; c < 60; ++c)
     {
       ImageType::IndexType pixelIndex;
       pixelIndex[0] = r;

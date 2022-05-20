@@ -14,7 +14,7 @@ ImageFilter<TImage>::GenerateData()
   InternalGaussianFilterPointer smoothingFilters[ImageDimension];
 
   // Instantiate all filters
-  for (unsigned int i = 0; i < ImageDimension; i++)
+  for (unsigned int i = 0; i < ImageDimension; ++i)
   {
     smoothingFilters[i] = InternalGaussianFilterType::New();
     smoothingFilters[i]->SetOrder(GaussianOrderEnum::ZeroOrder);
@@ -22,7 +22,7 @@ ImageFilter<TImage>::GenerateData()
   }
 
   // Connect all filters (start at 1 because 0th filter is connected to the input
-  for (unsigned int i = 1; i < ImageDimension; i++)
+  for (unsigned int i = 1; i < ImageDimension; ++i)
   {
     smoothingFilters[i]->SetInput(smoothingFilters[i - 1]->GetOutput());
   }

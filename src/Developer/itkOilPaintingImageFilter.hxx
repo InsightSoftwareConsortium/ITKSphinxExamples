@@ -52,7 +52,7 @@ OilPaintingImageFilter<TImage>::DynamicThreadedGenerateData(const typename TImag
 
   while (!out.IsAtEnd())
   {
-    for (unsigned int i = 0; i < m_NumberOfBins; i++)
+    for (unsigned int i = 0; i < m_NumberOfBins; ++i)
     {
       bins[i] = 0; // reset histogram
     }
@@ -69,7 +69,7 @@ OilPaintingImageFilter<TImage>::DynamicThreadedGenerateData(const typename TImag
     // find the peak
     unsigned           maxIndex = 0;
     unsigned long long maxBin = bins[0];
-    for (unsigned int i = 1; i < m_NumberOfBins; i++)
+    for (unsigned int i = 1; i < m_NumberOfBins; ++i)
     {
       if (bins[i] > maxBin)
       {

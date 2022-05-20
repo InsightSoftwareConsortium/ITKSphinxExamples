@@ -141,7 +141,7 @@ main(int argc, char * argv[])
   outputSpacing[2] = std::stod(argv[5]);
 
   bool changeInSpacing = false;
-  for (unsigned int i = 0; i < 3; i++)
+  for (unsigned int i = 0; i < 3; ++i)
   {
     if (outputSpacing[i] == 0.0)
     {
@@ -195,7 +195,7 @@ main(int argc, char * argv[])
   itk::ExposeMetaData<std::string>(*inputDict, "0008|0016", sopClassUID);
   gdcmIO->KeepOriginalUIDOn();
 
-  for (unsigned int f = 0; f < outputSize[2]; f++)
+  for (unsigned int f = 0; f < outputSize[2]; ++f)
   {
     // Create a new dictionary for this slice
     auto dict = new ReaderType::DictionaryType;
@@ -247,7 +247,7 @@ main(int argc, char * argv[])
 
     // Derivation Description - How this image was derived
     value.str("");
-    for (int i = 0; i < argc; i++)
+    for (int i = 0; i < argc; ++i)
     {
       value << argv[i] << " ";
     }

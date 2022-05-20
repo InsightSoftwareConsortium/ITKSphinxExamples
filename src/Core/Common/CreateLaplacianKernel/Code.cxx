@@ -30,7 +30,7 @@ main()
 
   std::cout << laplacianOperator << std::endl;
 
-  for (unsigned int i = 0; i < laplacianOperator.GetSize()[0] * laplacianOperator.GetSize()[1]; i++)
+  for (unsigned int i = 0; i < laplacianOperator.GetSize()[0] * laplacianOperator.GetSize()[1]; ++i)
   {
     std::cout << laplacianOperator.GetOffset(i) << " " << laplacianOperator.GetElement(i) << std::endl;
   }

@@ -33,7 +33,7 @@ main()
   v[1] = 2;
   std::cout << v << std::endl;
 
-  for (unsigned int i = 0; i < v.Size(); i++)
+  for (unsigned int i = 0; i < v.Size(); ++i)
   {
     std::cout << v[i] << " ";
   }
@@ -81,7 +81,7 @@ VariableLengthVectorToVector()
   using FixedVectorType = itk::Vector<double, 2>;
   FixedVectorType fixedLengthVector;
 
-  for (unsigned int i = 0; i < FixedVectorType::GetVectorDimension(); i++)
+  for (unsigned int i = 0; i < FixedVectorType::GetVectorDimension(); ++i)
   {
     fixedLengthVector[i] = variableLengthVector[i];
   }

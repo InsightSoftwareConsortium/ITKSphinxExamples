@@ -77,7 +77,7 @@ main()
   voronoiGenerator->Update();
   voronoiDiagram = voronoiGenerator->GetOutput();
 
-  for (unsigned int i = 0; i < seeds.size(); i++)
+  for (unsigned int i = 0; i < seeds.size(); ++i)
   {
     PointType currP = voronoiDiagram->GetSeed(i);
     std::cout << "Seed No." << i << ": At (" << currP[0] << "," << currP[1] << ")" << std::endl;

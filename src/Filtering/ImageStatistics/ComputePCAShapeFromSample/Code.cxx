@@ -58,7 +58,7 @@ main(int argc, char * argv[])
     return 1;
   }
 
-  for (int i = 0; i < argc; i++)
+  for (int i = 0; i < argc; ++i)
   {
     std::cout << "id: " << i << " arg: " << argv[i] << std::endl;
   }
@@ -77,7 +77,7 @@ main(int argc, char * argv[])
   fileNamesCreator->SetSeriesFormat(argv[2]);
   const std::vector<std::string> & shapeModeFileNames = fileNamesCreator->GetFileNames();
 
-  for (unsigned int k = 0; k < nb_train; k++)
+  for (unsigned int k = 0; k < nb_train; ++k)
   {
     trainingImages[k] = itk::ReadImage<ImageType>(shapeModeFileNames[k]);
   }
@@ -87,7 +87,7 @@ main(int argc, char * argv[])
   filter->SetNumberOfTrainingImages(nb_train);
   filter->SetNumberOfPrincipalComponentsRequired(2);
 
-  for (unsigned int k = 0; k < nb_train; k++)
+  for (unsigned int k = 0; k < nb_train; ++k)
   {
     filter->SetInput(k, trainingImages[k]);
   }
@@ -107,7 +107,7 @@ main(int argc, char * argv[])
   my_Estimatortype::VectorOfDoubleType v = filter->GetEigenValues();
   double                               sv_mean = sqrt(v[0]);
 
-  for (unsigned int k = 0; k < nb_modes; k++)
+  for (unsigned int k = 0; k < nb_modes; ++k)
   {
     double sv = sqrt(v[k]);
     double sv_n = sv / sv_mean;

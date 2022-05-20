@@ -62,7 +62,7 @@ main(int argc, char * argv[])
   selector->SetInput(labelMapConverter->GetOutput());
   selector->SetLabel(label);
 
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < 2; ++i)
   {
     using LabelMapToLabelImageFilterType = itk::LabelMapToLabelImageFilter<LabelMapType, ImageType>;
     auto labelImageConverter = LabelMapToLabelImageFilterType::New();

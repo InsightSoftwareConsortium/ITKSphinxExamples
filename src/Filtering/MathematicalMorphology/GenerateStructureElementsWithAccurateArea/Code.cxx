@@ -142,7 +142,7 @@ ComputeAreaError(SEType k, unsigned int thickness)
   {
     return EXIT_FAILURE;
   }
-  for (unsigned int i = 0; i < SEType::NeighborhoodDimension; i++)
+  for (unsigned int i = 0; i < SEType::NeighborhoodDimension; ++i)
   {
     expectedOuterForegroundArea *= k.GetRadius()[i];
     expectedInnerForegroundArea *= (k.GetRadius()[i] - thickness);
