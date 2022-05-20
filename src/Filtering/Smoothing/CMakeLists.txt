@@ -17,6 +17,3 @@ compare_to_baseline(EXAMPLE_NAME FindHigherDerivativesOfImage
   )
 
 add_example(SmoothImageWithDiscreteGaussianFilter)
-compare_to_baseline(EXAMPLE_NAME SmoothImageWithDiscreteGaussianFilter
-  BASELINE_PREFIX SmoothImageWithDiscreteGaussianFilter
-  )
