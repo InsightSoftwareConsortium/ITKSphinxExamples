@@ -22,6 +22,7 @@ add_example(AddOffsetToIndex)
 add_example(GetNameOfClass)
 add_example(CreateAnImageRegion)
 add_example(IsPixelInsideRegion)
+add_example(ImageBufferAndIndexRange)
 add_example(ImageRegionIntersection)
 
 add_example(ImageRegionOverlap)

@@ -58,6 +58,7 @@ Common
   GetNameOfClass/Documentation.rst
   GetOrSetMemberVariableOfITKClass/Documentation.rst
   GetTypeBasicInformation/Documentation.rst
+  ImageBufferAndIndexRange/Documentation.rst
   ImageRegionIntersection/Documentation.rst
   ImageRegionOverlap/Documentation.rst
   ImportPixelBufferIntoAnImage/Documentation.rst
