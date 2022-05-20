@@ -49,6 +49,7 @@ Common
   DistanceBetweenPoints/Documentation.rst
   DoDataParallelThreading/Documentation.rst
   DuplicateAnImage/Documentation.rst
+  EagerModuleLoadingPython/Documentation.rst
   FilterAndParallelizeImageRegion/Documentation.rst
   FilterImage/Documentation.rst
   FilterImageUsingMultipleThreads/Documentation.rst
