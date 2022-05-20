@@ -108,7 +108,9 @@ endmacro()
 #                                    // ${EXAMPLE_NAME}TestPython.
 # )
 function(compare_to_baseline)
-  set(options)
+  set(options
+    PYTHON_ONLY
+  )
 
   set(oneValueArgs
     EXAMPLE_NAME
@@ -160,6 +162,7 @@ function(compare_to_baseline)
     set(test_name ${LOCAL_COMPARISON_TEST_NAME})
   endif()
 
+  if(NOT ${PYTHON_ONLY})
   add_test(NAME ${test_name}
     COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageCompareCommand"
       --test-image "${test_image}"
@@ -169,6 +172,7 @@ function(compare_to_baseline)
   set_tests_properties(${test_name}
     PROPERTIES DEPENDS ${depends}
     )
+  endif()
 
   if(ITK_WRAP_PYTHON AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/Code.py")
     set(python_test_name ${test_name}Python)
