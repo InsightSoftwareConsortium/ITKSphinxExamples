@@ -1,4 +1,17 @@
-add_example(FilterImageInFourierDomain)
+add_example(ComputeFFTInOneDimension)
+compare_to_baseline(
+  PYTHON_ONLY
+  EXAMPLE_NAME ComputeFFTInOneDimension
+  TEST_NAME ComputeFFTInOneDimensionModulusBaselineComparison
+  BASELINE_PREFIX MouseLiver1DFFTModulusOutputBaseline
+)
+compare_to_baseline(
+  PYTHON_ONLY
+  EXAMPLE_NAME ComputeFFTInOneDimension
+  TEST_NAME ComputeFFTInOneDimensionPhaseBaselineComparison
+  BASELINE_PREFIX MouseLiver1DFFTPhaseOutputBaseline
+)
+
 compare_to_baseline(
   EXAMPLE_NAME FilterImageInFourierDomain
   BASELINE_PREFIX OutputBaseline
