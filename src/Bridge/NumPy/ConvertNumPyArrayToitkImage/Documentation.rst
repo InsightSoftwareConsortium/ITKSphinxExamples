@@ -1,25 +1,32 @@
 :name: ConvertNumPyArrayToitkImage
 
 Interface ITK with NumPy Array
-=============================
+===============================
 
 .. index::
    single: Image
-   single: instantiate
 
 Synopsis
 --------
 
-This example illustrates interfacing ITK Image data with NumPy array. While doing this, there are two key issues to
-to keep in mind. One, the order of indexes is different between ITK image data class and NumPy array.
-Second, there are two ways to access ITK image data as a NumPy array. i) Get direct access to memory with the data called
-"View" functions (array_view_from_image and image_view_from_array), or ii) Copy the data (array_from_image and image_from_array).
-If the view functions are used, the data can't be modified.
+This example illustrates interfacing ITK Image data with NumPy array.
+While doing this, there are two key issues to keep in mind. One, the order of
+indexes is different between ITK image data class and NumPy array.
+Second, there are two ways to access ITK image data as a NumPy array.
+i) Get direct access to memory with the data called"View" functions, or
+ii) Copy the data using array_from_image function. If the view functions are used,
+the data can't be modified.
 
 Results
 -------
+The size of the ITK image data read from the input file  = itkSize2 ([221, 257])
 
-NA
+The size of the NumPy array viewed from itk::Image = (257, 221)
+The size of the NumPy array copied from itk::Image = (257, 221)
+ITK image data size after convesion from NumPy = itkSize2 ([221, 257])
+
+ITK image data pixel value at [2,1] = 6
+NumPy array pixel value at [2,1] = 8
 
 
 Code
