@@ -26,6 +26,11 @@ Results
 
   Output In VTK Window
 
+.. figure:: MatplotlibVisualizeConvolution.png
+  :scale: 70%
+
+  Output In Matplotlib
+
 Code
 ----
 
