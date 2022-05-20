@@ -1,25 +1,25 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( ComputeHistogramFromGrayscaleImage )
+project(ComputeHistogramFromGrayscaleImage)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( ComputeHistogramFromGrayscaleImage Code.cxx )
-target_link_libraries( ComputeHistogramFromGrayscaleImage ${ITK_LIBRARIES} )
+add_executable(ComputeHistogramFromGrayscaleImage Code.cxx)
+target_link_libraries(ComputeHistogramFromGrayscaleImage ${ITK_LIBRARIES})
 
-install( TARGETS ComputeHistogramFromGrayscaleImage
+install(TARGETS ComputeHistogramFromGrayscaleImage
   DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Numerics/Statistics/ComputeHistogramFromGrayscaleImage
   COMPONENT Code
 )
 
 enable_testing()
-add_test( NAME ComputeHistogramFromGrayscaleImageTest
+add_test(NAME ComputeHistogramFromGrayscaleImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeHistogramFromGrayscaleImage
     ${CMAKE_CURRENT_BINARY_DIR}/sf4.png
     16

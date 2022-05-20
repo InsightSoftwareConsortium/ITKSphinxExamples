@@ -1,25 +1,25 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( ApplyAffineTransformFromHomogeneousMatrixAndResample )
+project(ApplyAffineTransformFromHomogeneousMatrixAndResample)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( ApplyAffineTransformFromHomogeneousMatrixAndResample Code.cxx )
-target_link_libraries( ApplyAffineTransformFromHomogeneousMatrixAndResample ${ITK_LIBRARIES} )
+add_executable(ApplyAffineTransformFromHomogeneousMatrixAndResample Code.cxx)
+target_link_libraries(ApplyAffineTransformFromHomogeneousMatrixAndResample ${ITK_LIBRARIES})
 
-install( TARGETS ApplyAffineTransformFromHomogeneousMatrixAndResample
+install(TARGETS ApplyAffineTransformFromHomogeneousMatrixAndResample
   DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Transform/ApplyAffineTransformFromHomogeneousMatrixAndResample
   COMPONENT Code
   )
 
 enable_testing()
-add_test( NAME ApplyAffineTransformFromHomogeneousMatrixAndResampleTest
+add_test(NAME ApplyAffineTransformFromHomogeneousMatrixAndResampleTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplyAffineTransformFromHomogeneousMatrixAndResample
     ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
     Output.png

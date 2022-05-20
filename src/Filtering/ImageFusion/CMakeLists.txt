@@ -1,6 +1,6 @@
 
-add_example( OverlayLabelMapOnTopOfAnImage )
-compare_to_baseline( EXAMPLE_NAME OverlayLabelMapOnTopOfAnImage BASELINE_PREFIX OutputBaseline )
+add_example(OverlayLabelMapOnTopOfAnImage)
+compare_to_baseline(EXAMPLE_NAME OverlayLabelMapOnTopOfAnImage BASELINE_PREFIX OutputBaseline)
 
 add_example(ColorLabeledRegions)
 compare_to_baseline(EXAMPLE_NAME ColorLabeledRegions

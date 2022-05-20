@@ -1,26 +1,26 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( Create3DVolume )
+project(Create3DVolume)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( Create3DVolume
-  Code.cxx )
-target_link_libraries( Create3DVolume ${ITK_LIBRARIES} )
+add_executable(Create3DVolume
+  Code.cxx)
+target_link_libraries(Create3DVolume ${ITK_LIBRARIES})
 
-install( TARGETS Create3DVolume
+install(TARGETS Create3DVolume
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt Code.py
+install(FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/Create3DVolume
   COMPONENT Code
   )
 
 enable_testing()
-add_test( NAME Create3DVolumeTest
+add_test(NAME Create3DVolumeTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Create3DVolume
     ${CMAKE_CURRENT_BINARY_DIR}/mri3D_0.mha
     ${CMAKE_CURRENT_BINARY_DIR}/mri3D_1.mha
@@ -28,8 +28,8 @@ add_test( NAME Create3DVolumeTest
     Output.mha
   )
 
-if( ITK_WRAP_PYTHON )
-  add_test( NAME Create3DVolumeTestPython
+if(ITK_WRAP_PYTHON)
+  add_test(NAME Create3DVolumeTestPython
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/mri3D_0.mha
       ${CMAKE_CURRENT_BINARY_DIR}/mri3D_1.mha

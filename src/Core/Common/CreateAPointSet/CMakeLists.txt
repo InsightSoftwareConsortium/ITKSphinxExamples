@@ -1,25 +1,25 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( CreateAPointSet )
+project(CreateAPointSet)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( CreateAPointSet Code.py Code.cxx )
-target_link_libraries( CreateAPointSet ${ITK_LIBRARIES} )
+add_executable(CreateAPointSet Code.py Code.cxx)
+target_link_libraries(CreateAPointSet ${ITK_LIBRARIES})
 
-install( TARGETS CreateAPointSet
+install(TARGETS CreateAPointSet
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
-install( FILES Code.cxx Code.py CMakeLists.txt
+install(FILES Code.cxx Code.py CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAPointSet
   COMPONENT Code
 )
 
 enable_testing()
-add_test( NAME CreateAPointSetTest
+add_test(NAME CreateAPointSetTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateAPointSet
 )
 

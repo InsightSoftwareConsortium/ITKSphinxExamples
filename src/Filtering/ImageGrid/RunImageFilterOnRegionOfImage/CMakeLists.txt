@@ -6,7 +6,7 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 if(ENABLE_QUICKVIEW)
-  find_package( VTK REQUIRED
+  find_package(VTK REQUIRED
     COMPONENTS
       ${_vtk_prefix}RenderingCore
       ${_vtk_prefix}RenderingGL2PSOpenGL2

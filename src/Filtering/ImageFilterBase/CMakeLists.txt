@@ -1,5 +1,5 @@
-add_example( CastAnImageToAnotherType )
-compare_to_baseline( EXAMPLE_NAME CastAnImageToAnotherType BASELINE_PREFIX OutputBaseline )
+add_example(CastAnImageToAnotherType)
+compare_to_baseline(EXAMPLE_NAME CastAnImageToAnotherType BASELINE_PREFIX OutputBaseline)
 
 add_example(ApplyKernelToEveryPixel)
 compare_to_baseline(EXAMPLE_NAME ApplyKernelToEveryPixel

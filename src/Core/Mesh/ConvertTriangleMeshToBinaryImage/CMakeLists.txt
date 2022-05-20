@@ -1,25 +1,25 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( ConvertTriangleMeshToBinaryImage )
+project(ConvertTriangleMeshToBinaryImage)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( ConvertTriangleMeshToBinaryImage Code.cxx )
-target_link_libraries( ConvertTriangleMeshToBinaryImage ${ITK_LIBRARIES} )
+add_executable(ConvertTriangleMeshToBinaryImage Code.cxx)
+target_link_libraries(ConvertTriangleMeshToBinaryImage ${ITK_LIBRARIES})
 
-install( TARGETS ConvertTriangleMeshToBinaryImage
+install(TARGETS ConvertTriangleMeshToBinaryImage
   DESTINATION bin/ITKSphinxExamples/Core/Mesh
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Mesh/ConvertTriangleMeshToBinaryImage
   COMPONENT Code
   )
 
 enable_testing()
-add_test( NAME ConvertTriangleMeshToBinaryImageTest
+add_test(NAME ConvertTriangleMeshToBinaryImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ConvertTriangleMeshToBinaryImage
     ${CMAKE_CURRENT_BINARY_DIR}/HeadMRVolume.mha
     ${CMAKE_CURRENT_BINARY_DIR}/torus.vtk

@@ -1,4 +1,4 @@
-add_example( ReadDICOMSeriesAndWrite3DImage )
+add_example(ReadDICOMSeriesAndWrite3DImage)
 
 #TODO: When example has valid input, uncomment below.
 #add_example(ResampleDICOMSeries)

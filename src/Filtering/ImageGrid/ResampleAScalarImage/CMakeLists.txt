@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project(ResampleAScalarImage )
+project(ResampleAScalarImage)
 
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})

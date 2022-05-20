@@ -1,3 +1,3 @@
-add_example( ConvertAnITKGrayScaleImageToCVMat )
-compare_to_baseline( EXAMPLE_NAME ConvertAnITKGrayScaleImageToCVMat
-  BASELINE_PREFIX OutputBaseline )
+add_example(ConvertAnITKGrayScaleImageToCVMat)
+compare_to_baseline(EXAMPLE_NAME ConvertAnITKGrayScaleImageToCVMat
+  BASELINE_PREFIX OutputBaseline)

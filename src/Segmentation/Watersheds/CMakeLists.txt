@@ -1,7 +1,7 @@
 
 add_example(SegmentWithWatershedImageFilter)
 
-foreach( i RANGE 1 5 )
+foreach(i RANGE 1 5)
   compare_to_baseline(
     EXAMPLE_NAME SegmentWithWatershedImageFilter
     TEST_NAME SegmentWithWatershedImageFilterTest0${i}BaselineComparison

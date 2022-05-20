@@ -22,7 +22,7 @@ add_test(NAME CreateAnRGBImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateAnRGBImage)
 
 if(ITK_WRAP_PYTHON)
-  add_test( NAME CreateAnRGBImageTestPython
+  add_test(NAME CreateAnRGBImageTestPython
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     )
 endif()

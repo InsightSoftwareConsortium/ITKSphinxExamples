@@ -1,25 +1,25 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( PermuteAxesOfAnImage )
+project(PermuteAxesOfAnImage)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( PermuteAxesOfAnImage Code.cxx )
-target_link_libraries( PermuteAxesOfAnImage ${ITK_LIBRARIES} )
+add_executable(PermuteAxesOfAnImage Code.cxx)
+target_link_libraries(PermuteAxesOfAnImage ${ITK_LIBRARIES})
 
-install( TARGETS PermuteAxesOfAnImage
+install(TARGETS PermuteAxesOfAnImage
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/PermuteAxesOfAnImage
   COMPONENT Code
   )
 
 enable_testing()
-add_test( NAME PermuteAxesOfAnImageTest
+add_test(NAME PermuteAxesOfAnImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/PermuteAxesOfAnImage
     ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
     Output.png

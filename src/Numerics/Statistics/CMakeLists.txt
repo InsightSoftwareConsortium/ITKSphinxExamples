@@ -1,4 +1,4 @@
-add_example( ComputeHistogramFromGrayscaleImage )
+add_example(ComputeHistogramFromGrayscaleImage)
 add_example(HistogramCreationAndBinAccess)
 
 add_example(CreateGaussianDistribution)

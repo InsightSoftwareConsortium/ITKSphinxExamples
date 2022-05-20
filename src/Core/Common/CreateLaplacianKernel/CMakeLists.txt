@@ -24,8 +24,8 @@ enable_testing()
 add_test(NAME CreateLaplacianKernelTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateLaplacianKernel)
 
-if( ITK_WRAP_PYTHON )
-  add_test( NAME CreateLaplacianKernelTestPython
+if(ITK_WRAP_PYTHON)
+  add_test(NAME CreateLaplacianKernelTestPython
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     )
 endif()

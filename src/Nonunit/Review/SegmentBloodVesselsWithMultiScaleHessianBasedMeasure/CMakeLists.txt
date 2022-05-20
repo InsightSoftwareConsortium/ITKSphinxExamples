@@ -1,19 +1,19 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project( SegmentBloodVesselsWithMultiScaleHessianBasedMeasure )
+project(SegmentBloodVesselsWithMultiScaleHessianBasedMeasure)
 
-find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
+find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
-add_executable( SegmentBloodVesselsWithMultiScaleHessianBasedMeasure Code.cxx )
-target_link_libraries( SegmentBloodVesselsWithMultiScaleHessianBasedMeasure ${ITK_LIBRARIES} )
+add_executable(SegmentBloodVesselsWithMultiScaleHessianBasedMeasure Code.cxx)
+target_link_libraries(SegmentBloodVesselsWithMultiScaleHessianBasedMeasure ${ITK_LIBRARIES})
 
-install( TARGETS SegmentBloodVesselsWithMultiScaleHessianBasedMeasure
+install(TARGETS SegmentBloodVesselsWithMultiScaleHessianBasedMeasure
   DESTINATION bin/ITKSphinxExamples/Nonunit/Review
   COMPONENT Runtime
   )
 
-install( FILES Code.cxx CMakeLists.txt Code.py
+install(FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKSphinxExamples/Code/Nonunit/Review/SegmentBloodVesselsWithMultiScaleHessianBasedMeasure
   COMPONENT Code
   )
@@ -26,7 +26,7 @@ set(sigma_minimum 2.0)
 set(sigma_maximum 6.0)
 set(number_of_sigma_steps 3)
 
-add_test( NAME SegmentBloodVesselsWithMultiScaleHessianBasedMeasureTest
+add_test(NAME SegmentBloodVesselsWithMultiScaleHessianBasedMeasureTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentBloodVesselsWithMultiScaleHessianBasedMeasure
     ${input_image}
     ${output_image}

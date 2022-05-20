@@ -1,6 +1,6 @@
-add_example( SegmentBloodVesselsWithMultiScaleHessianBasedMeasure )
-compare_to_baseline( EXAMPLE_NAME SegmentBloodVesselsWithMultiScaleHessianBasedMeasure
-  BASELINE_PREFIX OutputBaseline )
+add_example(SegmentBloodVesselsWithMultiScaleHessianBasedMeasure)
+compare_to_baseline(EXAMPLE_NAME SegmentBloodVesselsWithMultiScaleHessianBasedMeasure
+  BASELINE_PREFIX OutputBaseline)
 
 # TODO: Examples below contain errors from original Wiki
 #add_example(MultiphaseChanAndVeseSparseFieldLevelSetSegmentation)
