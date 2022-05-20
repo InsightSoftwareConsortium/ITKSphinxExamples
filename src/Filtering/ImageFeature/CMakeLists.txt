@@ -33,3 +33,5 @@ add_example(FindZeroCrossingsInSignedImage)
 #===================================
 
 add_example(AdditiveGaussianNoiseImageFilter)
+
+add_example(DerivativeImage)
