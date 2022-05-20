@@ -94,6 +94,7 @@ Common
   PassImageToFunction/Documentation.rst
   PermuteSequenceOfIndices/Documentation.rst
   PiConstant/Documentation.rst
+  PrintModuleLoadingPython/Documentation.rst
   ProduceImageProgrammatically/Documentation.rst
   RandomSelectOfPixelsFromRegion/Documentation.rst
   RandomSelectPixelFromRegionWithoutReplacee/Documentation.rst
