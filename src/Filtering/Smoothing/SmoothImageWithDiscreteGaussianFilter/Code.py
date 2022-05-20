@@ -25,20 +25,8 @@ parser.add_argument("output_image")
 parser.add_argument("sigma", type=float)
 args = parser.parse_args()
 
-PixelType = itk.UC
-Dimension = 2
+image = itk.imread(args.input_image)
 
-ImageType = itk.Image[PixelType, Dimension]
+smooth_image = itk.discrete_gaussian_image_filter(image, sigma=args.sigma)
 
-reader = itk.ImageFileReader[ImageType].New()
-reader.SetFileName(args.input_image)
-
-smoother = itk.DiscreteGaussianImageFilter[ImageType, ImageType].New()
-smoother.SetInput(reader.GetOutput())
-smoother.SetSigma(args.sigma)
-
-writer = itk.ImageFileWriter[ImageType].New()
-writer.SetFileName(args.output_image)
-writer.SetInput(smoother.GetOutput())
-
-writer.Update()
+itk.imwrite(smooth_image, args.output_image)
