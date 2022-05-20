@@ -40,14 +40,14 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<FloatImageType>(argv[1]);
 
   using NormalizeFilterType = itk::NormalizeImageFilter<FloatImageType, FloatImageType>;
-  NormalizeFilterType::Pointer normalizeFilter = NormalizeFilterType::New();
+  auto normalizeFilter = NormalizeFilterType::New();
   normalizeFilter->SetInput(input);
 
   using StatisticsFilterType = itk::StatisticsImageFilter<FloatImageType>;
-  StatisticsFilterType::Pointer statistics1 = StatisticsFilterType::New();
+  auto statistics1 = StatisticsFilterType::New();
   statistics1->SetInput(input);
 
-  StatisticsFilterType::Pointer statistics2 = StatisticsFilterType::New();
+  auto statistics2 = StatisticsFilterType::New();
   statistics2->SetInput(normalizeFilter->GetOutput());
 
 #ifdef ENABLE_QUICKVIEW

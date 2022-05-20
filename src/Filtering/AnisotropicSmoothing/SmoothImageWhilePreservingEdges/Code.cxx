@@ -55,10 +55,10 @@ main(int argc, char * argv[])
 
   // 2) Cast to Vector image for processing
   using AdaptorInputType = itk::RGBToVectorImageAdaptor<RGBImageType>;
-  AdaptorInputType::Pointer adaptInput = AdaptorInputType::New();
+  auto adaptInput = AdaptorInputType::New();
   adaptInput->SetImage(input);
   using CastInputType = itk::CastImageFilter<AdaptorInputType, FloatImageType>;
-  CastInputType::Pointer castInput = CastInputType::New();
+  auto castInput = CastInputType::New();
   castInput->SetInput(adaptInput);
 
   // 3) Smooth the image
@@ -79,10 +79,10 @@ main(int argc, char * argv[])
 
   // 4) Cast the Vector image to an RGB image for display
   using AdaptorOutputType = itk::VectorToRGBImageAdaptor<FloatImageType>;
-  AdaptorOutputType::Pointer adaptOutput = AdaptorOutputType::New();
+  auto adaptOutput = AdaptorOutputType::New();
   adaptOutput->SetImage(filter->GetOutput());
   using CastOutputType = itk::CastImageFilter<AdaptorOutputType, RGBImageType>;
-  CastOutputType::Pointer castOutput = CastOutputType::New();
+  auto castOutput = CastOutputType::New();
   castOutput->SetInput(adaptOutput);
 
   // 5) Display the input and smoothed images

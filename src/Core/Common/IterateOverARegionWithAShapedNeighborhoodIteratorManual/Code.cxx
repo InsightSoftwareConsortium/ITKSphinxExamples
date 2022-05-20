@@ -34,7 +34,7 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using IteratorType = itk::ShapedNeighborhoodIterator<ImageType>;

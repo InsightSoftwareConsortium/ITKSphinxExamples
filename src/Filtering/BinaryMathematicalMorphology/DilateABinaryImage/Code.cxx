@@ -49,7 +49,7 @@ main(int argc, char * argv[])
 
   using BinaryDilateImageFilterType = itk::BinaryDilateImageFilter<ImageType, ImageType, StructuringElementType>;
 
-  BinaryDilateImageFilterType::Pointer dilateFilter = BinaryDilateImageFilterType::New();
+  auto dilateFilter = BinaryDilateImageFilterType::New();
   dilateFilter->SetInput(input);
   dilateFilter->SetKernel(structuringElement);
   dilateFilter->SetForegroundValue(255); // Value to dilate

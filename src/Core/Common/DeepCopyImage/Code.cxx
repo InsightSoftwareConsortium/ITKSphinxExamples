@@ -40,8 +40,8 @@ int
 main(int, char *[])
 {
   using ImageType = itk::Image<unsigned char, 2>;
-  ImageType::Pointer image1 = ImageType::New();
-  ImageType::Pointer image2 = ImageType::New();
+  auto image1 = ImageType::New();
+  auto image2 = ImageType::New();
 
   DeepCopy<ImageType>(image1, image2);
 

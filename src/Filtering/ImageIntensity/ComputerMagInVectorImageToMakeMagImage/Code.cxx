@@ -44,14 +44,14 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<VectorImageType>(inputFileName);
 
   using VectorMagnitudeFilterType = itk::VectorMagnitudeImageFilter<VectorImageType, UnsignedCharImageType>;
-  VectorMagnitudeFilterType::Pointer magnitudeFilter = VectorMagnitudeFilterType::New();
+  auto magnitudeFilter = VectorMagnitudeFilterType::New();
   magnitudeFilter->SetInput(input);
 
   // To write the magnitude image file, we should rescale the gradient values
   // to a reasonable range
   using rescaleFilterType = itk::RescaleIntensityImageFilter<UnsignedCharImageType, UnsignedCharImageType>;
 
-  rescaleFilterType::Pointer rescaler = rescaleFilterType::New();
+  auto rescaler = rescaleFilterType::New();
   rescaler->SetOutputMinimum(0);
   rescaler->SetOutputMaximum(255);
   rescaler->SetInput(magnitudeFilter->GetOutput());

@@ -29,7 +29,7 @@ CreateImage(UnsignedCharImageType::Pointer image);
 int
 main(int, char *[])
 {
-  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  auto image = UnsignedCharImageType::New();
   CreateImage(image);
 
   using ApproximateSignedDistanceMapImageFilterType =
@@ -42,7 +42,7 @@ main(int, char *[])
   approximateSignedDistanceMapImageFilter->Update();
 
   using ContourExtractor2DImageFilterType = itk::ContourExtractor2DImageFilter<FloatImageType>;
-  ContourExtractor2DImageFilterType::Pointer contourExtractor2DImageFilter = ContourExtractor2DImageFilterType::New();
+  auto contourExtractor2DImageFilter = ContourExtractor2DImageFilterType::New();
   contourExtractor2DImageFilter->SetInput(approximateSignedDistanceMapImageFilter->GetOutput());
   contourExtractor2DImageFilter->SetContourValue(0);
   contourExtractor2DImageFilter->Update();

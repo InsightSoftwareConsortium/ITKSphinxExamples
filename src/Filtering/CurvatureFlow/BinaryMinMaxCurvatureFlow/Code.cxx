@@ -53,13 +53,13 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<InputImageType>(inputFileName);
 
   using FilterType = itk::BinaryMinMaxCurvatureFlowImageFilter<InputImageType, OutputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetThreshold(255);
   filter->SetNumberOfIterations(numberOfIterations);
 
   using SubtractType = itk::SubtractImageFilter<OutputImageType>;
-  SubtractType::Pointer diff = SubtractType::New();
+  auto diff = SubtractType::New();
   diff->SetInput1(input);
   diff->SetInput2(filter->GetOutput());
 

@@ -22,7 +22,7 @@ int
 main(int, char *[])
 {
   using ImageType = itk::Image<unsigned char, 3>;
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
 
   ImageType::IndexType start;
   start[0] = 0; // first index on X

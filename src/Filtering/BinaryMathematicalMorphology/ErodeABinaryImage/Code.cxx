@@ -49,7 +49,7 @@ main(int argc, char * argv[])
 
   using BinaryErodeImageFilterType = itk::BinaryErodeImageFilter<ImageType, ImageType, StructuringElementType>;
 
-  BinaryErodeImageFilterType::Pointer erodeFilter = BinaryErodeImageFilterType::New();
+  auto erodeFilter = BinaryErodeImageFilterType::New();
   erodeFilter->SetInput(input);
   erodeFilter->SetKernel(structuringElement);
   erodeFilter->SetForegroundValue(255); // Intensity value to erode

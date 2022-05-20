@@ -30,11 +30,11 @@ CreateSample(SampleType::Pointer sample);
 int
 main(int, char *[])
 {
-  SampleType::Pointer sample = SampleType::New();
+  auto sample = SampleType::New();
   CreateSample(sample);
 
   using SampleToHistogramFilterType = itk::Statistics::SampleToHistogramFilter<SampleType, HistogramType>;
-  SampleToHistogramFilterType::Pointer sampleToHistogramFilter = SampleToHistogramFilterType::New();
+  auto sampleToHistogramFilter = SampleToHistogramFilterType::New();
   sampleToHistogramFilter->SetInput(sample);
 
   SampleToHistogramFilterType::HistogramSizeType histogramSize(1);

@@ -31,7 +31,7 @@ main(int, char *[])
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
 
   CheckIfPixelTypeIsTheSameAs<ImageType, unsigned char>(image.GetPointer());
 

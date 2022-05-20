@@ -28,12 +28,12 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using IntensityWindowingImageFilterType = itk::IntensityWindowingImageFilter<ImageType, ImageType>;
 
-  IntensityWindowingImageFilterType::Pointer filter = IntensityWindowingImageFilterType::New();
+  auto filter = IntensityWindowingImageFilterType::New();
   filter->SetInput(image);
   filter->SetWindowMinimum(0);
   filter->SetWindowMaximum(100);

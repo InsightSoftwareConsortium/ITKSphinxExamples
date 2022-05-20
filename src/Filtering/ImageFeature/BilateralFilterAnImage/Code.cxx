@@ -56,12 +56,12 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   // Create and setup a derivative filter
-  FilterType::Pointer bilateralFilter = FilterType::New();
+  auto bilateralFilter = FilterType::New();
   bilateralFilter->SetInput(input);
   bilateralFilter->SetDomainSigma(domainSigma);
   bilateralFilter->SetRangeSigma(rangeSigma);
 
-  SubtractImageFilterType::Pointer diff = SubtractImageFilterType::New();
+  auto diff = SubtractImageFilterType::New();
   diff->SetInput1(input);
   diff->SetInput2(bilateralFilter->GetOutput());
 

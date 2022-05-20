@@ -27,14 +27,14 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   std::cout << "Original size: " << image->GetLargestPossibleRegion().GetSize() << std::endl;
 
   using ShrinkImageFilterType = itk::ShrinkImageFilter<ImageType, ImageType>;
 
-  ShrinkImageFilterType::Pointer shrinkFilter = ShrinkImageFilterType::New();
+  auto shrinkFilter = ShrinkImageFilterType::New();
   shrinkFilter->SetInput(image);
   shrinkFilter->SetShrinkFactor(0, 2); // shrink the first dimension by a factor of 2 (i.e. 100 gets changed to 50)
   shrinkFilter->SetShrinkFactor(1, 3); // shrink the second dimension by a factor of 3 (i.e. 100 gets changed to 33)

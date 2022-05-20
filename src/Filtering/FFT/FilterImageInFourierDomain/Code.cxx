@@ -56,7 +56,7 @@ main(int argc, char * argv[])
   // Some FFT filter implementations, like VNL's, need the image size to be a
   // multiple of small prime numbers.
   using PadFilterType = itk::WrapPadImageFilter<RealImageType, RealImageType>;
-  PadFilterType::Pointer padFilter = PadFilterType::New();
+  auto padFilter = PadFilterType::New();
   padFilter->SetInput(input);
   PadFilterType::SizeType padding;
   // Input size is [48, 62, 42].  Pad to [48, 64, 48].
@@ -67,7 +67,7 @@ main(int argc, char * argv[])
 
   using ForwardFFTFilterType = itk::ForwardFFTImageFilter<RealImageType>;
   using ComplexImageType = ForwardFFTFilterType::OutputImageType;
-  ForwardFFTFilterType::Pointer forwardFFTFilter = ForwardFFTFilterType::New();
+  auto forwardFFTFilter = ForwardFFTFilterType::New();
   forwardFFTFilter->SetInput(padFilter->GetOutput());
 
   try
@@ -82,7 +82,7 @@ main(int argc, char * argv[])
 
   // A Gaussian is used here to create a low-pass filter.
   using GaussianSourceType = itk::GaussianImageSource<RealImageType>;
-  GaussianSourceType::Pointer gaussianSource = GaussianSourceType::New();
+  auto gaussianSource = GaussianSourceType::New();
   gaussianSource->SetNormalized(true);
   ComplexImageType::ConstPointer        transformedInput = forwardFFTFilter->GetOutput();
   const ComplexImageType::RegionType    inputRegion(transformedInput->GetLargestPossibleRegion());
@@ -108,16 +108,16 @@ main(int argc, char * argv[])
   gaussianSource->SetMean(mean);
 
   using FFTShiftFilterType = itk::FFTShiftImageFilter<RealImageType, RealImageType>;
-  FFTShiftFilterType::Pointer fftShiftFilter = FFTShiftFilterType::New();
+  auto fftShiftFilter = FFTShiftFilterType::New();
   fftShiftFilter->SetInput(gaussianSource->GetOutput());
 
   using MultiplyFilterType = itk::MultiplyImageFilter<ComplexImageType, RealImageType, ComplexImageType>;
-  MultiplyFilterType::Pointer multiplyFilter = MultiplyFilterType::New();
+  auto multiplyFilter = MultiplyFilterType::New();
   multiplyFilter->SetInput1(forwardFFTFilter->GetOutput());
   multiplyFilter->SetInput2(fftShiftFilter->GetOutput());
 
   using InverseFilterType = itk::InverseFFTImageFilter<ComplexImageType, RealImageType>;
-  InverseFilterType::Pointer inverseFFTFilter = InverseFilterType::New();
+  auto inverseFFTFilter = InverseFilterType::New();
   inverseFFTFilter->SetInput(multiplyFilter->GetOutput());
 
   try

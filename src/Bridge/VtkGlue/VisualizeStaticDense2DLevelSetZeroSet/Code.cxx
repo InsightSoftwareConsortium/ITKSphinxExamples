@@ -60,13 +60,13 @@ main(int argc, char * argv[])
   // Generate a binary mask that will be used as initialization for the level
   // set evolution.
   using OtsuFilterType = itk::OtsuMultipleThresholdsImageFilter<InputImageType, LevelSetImageType>;
-  OtsuFilterType::Pointer otsu = OtsuFilterType::New();
+  auto otsu = OtsuFilterType::New();
   otsu->SetInput(input);
   otsu->SetNumberOfHistogramBins(256);
   otsu->SetNumberOfThresholds(1);
 
   using RescaleType = itk::RescaleIntensityImageFilter<LevelSetImageType, LevelSetImageType>;
-  RescaleType::Pointer rescaler = RescaleType::New();
+  auto rescaler = RescaleType::New();
   rescaler->SetInput(otsu->GetOutput());
   rescaler->SetOutputMinimum(0);
   rescaler->SetOutputMaximum(1);
@@ -74,7 +74,7 @@ main(int argc, char * argv[])
   // convert a binary mask to a level-set function
   using BinaryImageToLevelSetType = itk::BinaryImageToLevelSetImageAdaptor<LevelSetImageType, LevelSetType>;
 
-  BinaryImageToLevelSetType::Pointer adaptor = BinaryImageToLevelSetType::New();
+  auto adaptor = BinaryImageToLevelSetType::New();
   adaptor->SetInputImage(rescaler->GetOutput());
   adaptor->Initialize();
 
@@ -82,7 +82,7 @@ main(int argc, char * argv[])
 
   // Create the visualizer
   using VisualizationType = itk::VTKVisualizeImageLevelSetIsoValues<InputImageType, LevelSetType>;
-  VisualizationType::Pointer visualizer = VisualizationType::New();
+  auto visualizer = VisualizationType::New();
   visualizer->SetInputImage(input);
   visualizer->SetLevelSet(levelSet);
 

@@ -33,13 +33,13 @@ CreateImage(FloatImageType::Pointer image);
 int
 main(int, char *[])
 {
-  FloatImageType::Pointer image = FloatImageType::New();
+  auto image = FloatImageType::New();
   CreateImage(image);
 
   // Take the absolute value of the image
   using AbsImageFilterType = itk::AbsImageFilter<FloatImageType, FloatImageType>;
 
-  AbsImageFilterType::Pointer absFilter = AbsImageFilterType::New();
+  auto absFilter = AbsImageFilterType::New();
   absFilter->SetInput(image);
 
 #ifdef ENABLE_QUICKVIEW

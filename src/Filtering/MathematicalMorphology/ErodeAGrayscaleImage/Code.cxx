@@ -50,7 +50,7 @@ main(int argc, char * argv[])
 
   using GrayscaleErodeImageFilterType = itk::GrayscaleErodeImageFilter<ImageType, ImageType, StructuringElementType>;
 
-  GrayscaleErodeImageFilterType::Pointer erodeFilter = GrayscaleErodeImageFilterType::New();
+  auto erodeFilter = GrayscaleErodeImageFilterType::New();
   erodeFilter->SetInput(input);
   erodeFilter->SetKernel(structuringElement);
 

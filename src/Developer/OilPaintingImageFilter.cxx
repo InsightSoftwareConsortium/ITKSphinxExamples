@@ -32,7 +32,7 @@ main(int argc, char * argv[])
 
   const auto input = itk::ReadImage<ImageType>(argv[1]);
 
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetNumberOfBins(numberOfBins);
   filter->SetRadius(radius);

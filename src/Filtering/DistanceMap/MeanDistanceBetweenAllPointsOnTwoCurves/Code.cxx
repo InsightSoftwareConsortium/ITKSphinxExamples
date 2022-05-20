@@ -35,10 +35,10 @@ main(int, char *[])
 {
   using ImageType = itk::Image<unsigned char, 2>;
 
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage1(image1.GetPointer());
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage2(image2.GetPointer());
 
   using ContourMeanDistanceImageFilterType = itk::ContourMeanDistanceImageFilter<ImageType, ImageType>;

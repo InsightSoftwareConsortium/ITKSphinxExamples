@@ -46,7 +46,7 @@ main(int argc, char * argv[])
   }
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<ImageType, ImageType>;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  auto rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput(image);
   rescaleFilter->SetOutputMinimum(0);
   rescaleFilter->SetOutputMaximum(255);

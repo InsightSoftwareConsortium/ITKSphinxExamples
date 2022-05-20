@@ -26,11 +26,11 @@ CreateImage(ImageType::Pointer image);
 int
 main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using StatisticsImageFilterType = itk::StatisticsImageFilter<ImageType>;
-  StatisticsImageFilterType::Pointer statisticsImageFilter = StatisticsImageFilterType::New();
+  auto statisticsImageFilter = StatisticsImageFilterType::New();
   statisticsImageFilter->SetInput(image);
   statisticsImageFilter->Update();
 

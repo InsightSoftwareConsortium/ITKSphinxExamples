@@ -42,7 +42,7 @@ main(int argc, char * argv[])
   using ImageType = itk::Image<PixelType, Dimension>;
 
   using NamesGeneratorType = itk::GDCMSeriesFileNames;
-  NamesGeneratorType::Pointer nameGenerator = NamesGeneratorType::New();
+  auto nameGenerator = NamesGeneratorType::New();
 
   nameGenerator->SetUseSeriesDetails(true);
   nameGenerator->AddSeriesRestriction("0008|0021");
@@ -95,9 +95,9 @@ main(int argc, char * argv[])
       FileNamesContainer fileNames = nameGenerator->GetFileNames(seriesIdentifier);
 
       using ReaderType = itk::ImageSeriesReader<ImageType>;
-      ReaderType::Pointer reader = ReaderType::New();
+      auto reader = ReaderType::New();
       using ImageIOType = itk::GDCMImageIO;
-      ImageIOType::Pointer dicomIO = ImageIOType::New();
+      auto dicomIO = ImageIOType::New();
       reader->SetImageIO(dicomIO);
       reader->SetFileNames(fileNames);
       reader->ForceOrthogonalDirectionOff(); // properly read CTs with gantry tilt

@@ -27,7 +27,7 @@ main(int, char *[])
   using FilterType = itk::ImageFilter<ImageType>;
 
   // Create and the filter
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->Update();
 
   return EXIT_SUCCESS;

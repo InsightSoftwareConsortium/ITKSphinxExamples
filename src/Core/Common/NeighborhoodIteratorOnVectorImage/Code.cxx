@@ -24,7 +24,7 @@ int
 main(int, char *[])
 {
   // Create an image
-  VectorImageType::Pointer image = VectorImageType::New();
+  auto image = VectorImageType::New();
 
   itk::Index<2> start;
   start.Fill(0);

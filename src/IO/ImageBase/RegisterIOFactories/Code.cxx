@@ -41,7 +41,7 @@ main(int argc, char * argv[])
   using ImageType = itk::Image<PixelType, Dimension>;
 
   using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
 
   using RegisteredObjectsContainerType = std::list<itk::LightObject::Pointer>;
 

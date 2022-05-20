@@ -48,7 +48,7 @@ main(int argc, char * argv[])
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
   using FilterType = itk::MultiplyImageFilter<InputImageType, InputImageType, OutputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput1(input1);
   filter->SetInput2(input2);
 

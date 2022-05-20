@@ -44,7 +44,7 @@ main(int, char *[])
   std::cout << "Created random image." << std::endl;
 
   using DerivativeImageFilterType = itk::DerivativeImageFilter<ImageType, ImageType>;
-  DerivativeImageFilterType::Pointer derivativeFilter = DerivativeImageFilterType::New();
+  auto derivativeFilter = DerivativeImageFilterType::New();
   derivativeFilter->SetInput(randomImageSource->GetOutput());
   derivativeFilter->SetDirection(0); // "x" axis
   derivativeFilter->GetOutput()->SetRequestedRegion(smallSize);

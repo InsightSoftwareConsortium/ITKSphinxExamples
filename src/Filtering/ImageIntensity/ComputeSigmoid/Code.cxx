@@ -50,7 +50,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::SigmoidImageFilter<ImageType, ImageType>;
-  FilterType::Pointer sigmoidFilter = FilterType::New();
+  auto sigmoidFilter = FilterType::New();
   sigmoidFilter->SetInput(input);
   sigmoidFilter->SetOutputMinimum(outputMinimum);
   sigmoidFilter->SetOutputMaximum(outputMaximum);

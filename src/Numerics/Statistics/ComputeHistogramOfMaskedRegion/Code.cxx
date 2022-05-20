@@ -37,10 +37,10 @@ main(int, char *[])
 {
   constexpr unsigned int MeasurementVectorSize = 3; // RGB
 
-  RGBImageType::Pointer image = RGBImageType::New();
+  auto image = RGBImageType::New();
   CreateImage(image);
 
-  UnsignedCharImageType::Pointer mask = UnsignedCharImageType::New();
+  auto mask = UnsignedCharImageType::New();
   CreateHalfMask(image->GetLargestPossibleRegion(), mask);
 
   using HistogramFilterType = itk::Statistics::MaskedImageToHistogramFilter<RGBImageType, UnsignedCharImageType>;
@@ -48,7 +48,7 @@ main(int, char *[])
   using HistogramSizeType = HistogramFilterType::HistogramSizeType;
   using HistogramType = HistogramFilterType::HistogramType;
 
-  HistogramFilterType::Pointer histogramFilter = HistogramFilterType::New();
+  auto histogramFilter = HistogramFilterType::New();
   histogramFilter->SetInput(image);
   histogramFilter->SetMaskImage(mask);
   histogramFilter->SetAutoMinimumMaximum(true);
@@ -166,7 +166,7 @@ void CreateHalfMask(itk::ImageRegion<2> region, UnsignedCharImageType::Pointer m
   }
 
   using RescaleFilterType = itk::RescaleIntensityImageFilter<UnsignedCharImageType, UnsignedCharImageType>;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  auto rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput(mask);
   rescaleFilter->Update();
 

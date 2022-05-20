@@ -52,7 +52,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<FloatImageType>(inputFileName);
 
   // Create and setup a derivative filter
-  FilterType::Pointer edgeDetector = FilterType::New();
+  auto edgeDetector = FilterType::New();
   edgeDetector->SetInput(input);
   FilterType::ArrayType variance;
   variance.Fill(var);

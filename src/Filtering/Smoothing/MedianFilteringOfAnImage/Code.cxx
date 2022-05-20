@@ -43,7 +43,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::MedianImageFilter<ImageType, ImageType>;
-  FilterType::Pointer medianFilter = FilterType::New();
+  auto medianFilter = FilterType::New();
 
   FilterType::InputSizeType radius;
   radius.Fill(radiusValue);

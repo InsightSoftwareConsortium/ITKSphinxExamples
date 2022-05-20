@@ -41,18 +41,18 @@ main(int argc, char * argv[])
 
   // Read the file in.
   using ReaderType = itk::MeshFileReader<MeshType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileName(argv[1]);
 
   // Process the mesh.
   MeshType::Pointer mesh = reader->GetOutput();
   using DelaunayConformFilterType = itk::DelaunayConformingQuadEdgeMeshFilter<MeshType, MeshType>;
-  DelaunayConformFilterType::Pointer filter = DelaunayConformFilterType::New();
+  auto filter = DelaunayConformFilterType::New();
   filter->SetInput(mesh);
 
   // Write the output.
   using WriterType = itk::MeshFileWriter<MeshType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetInput(filter->GetOutput());
   writer->SetFileName(argv[2]);
 

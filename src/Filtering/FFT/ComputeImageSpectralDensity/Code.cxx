@@ -49,7 +49,7 @@ main(int argc, char * argv[])
   // Some FFT filter implementations, like VNL's, need the image size to be a
   // multiple of small prime numbers.
   using PadFilterType = itk::WrapPadImageFilter<RealImageType, RealImageType>;
-  PadFilterType::Pointer padFilter = PadFilterType::New();
+  auto padFilter = PadFilterType::New();
   padFilter->SetInput(input);
   PadFilterType::SizeType padding;
   // Input size is [48, 62, 42].  Pad to [48, 64, 48].
@@ -60,24 +60,24 @@ main(int argc, char * argv[])
 
   using ForwardFFTFilterType = itk::ForwardFFTImageFilter<RealImageType>;
   using ComplexImageType = ForwardFFTFilterType::OutputImageType;
-  ForwardFFTFilterType::Pointer forwardFFTFilter = ForwardFFTFilterType::New();
+  auto forwardFFTFilter = ForwardFFTFilterType::New();
   forwardFFTFilter->SetInput(padFilter->GetOutput());
 
   using ComplexToModulusFilterType = itk::ComplexToModulusImageFilter<ComplexImageType, RealImageType>;
-  ComplexToModulusFilterType::Pointer complexToModulusFilter = ComplexToModulusFilterType::New();
+  auto complexToModulusFilter = ComplexToModulusFilterType::New();
   complexToModulusFilter->SetInput(forwardFFTFilter->GetOutput());
 
   // Window and shift the output for visualization.
   using OutputPixelType = unsigned short;
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
   using WindowingFilterType = itk::IntensityWindowingImageFilter<RealImageType, OutputImageType>;
-  WindowingFilterType::Pointer windowingFilter = WindowingFilterType::New();
+  auto windowingFilter = WindowingFilterType::New();
   windowingFilter->SetInput(complexToModulusFilter->GetOutput());
   windowingFilter->SetWindowMinimum(0);
   windowingFilter->SetWindowMaximum(20000);
 
   using FFTShiftFilterType = itk::FFTShiftImageFilter<OutputImageType, OutputImageType>;
-  FFTShiftFilterType::Pointer fftShiftFilter = FFTShiftFilterType::New();
+  auto fftShiftFilter = FFTShiftFilterType::New();
   fftShiftFilter->SetInput(windowingFilter->GetOutput());
 
   try

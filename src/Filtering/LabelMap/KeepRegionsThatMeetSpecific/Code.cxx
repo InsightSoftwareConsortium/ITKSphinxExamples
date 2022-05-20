@@ -31,7 +31,7 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   // Create a ShapeLabelMap from the image
@@ -44,7 +44,7 @@ main(int, char *[])
   // Remove label objects that have PERIMETER greater than 50
   using ShapeOpeningLabelMapFilterType =
     itk::ShapeOpeningLabelMapFilter<BinaryImageToShapeLabelMapFilterType::OutputImageType>;
-  ShapeOpeningLabelMapFilterType::Pointer shapeOpeningLabelMapFilter = ShapeOpeningLabelMapFilterType::New();
+  auto shapeOpeningLabelMapFilter = ShapeOpeningLabelMapFilterType::New();
   shapeOpeningLabelMapFilter->SetInput(binaryImageToShapeLabelMapFilter->GetOutput());
   shapeOpeningLabelMapFilter->SetLambda(50);
   shapeOpeningLabelMapFilter->ReverseOrderingOn();
@@ -54,7 +54,7 @@ main(int, char *[])
   // Create a label image
   using LabelMapToLabelImageFilterType =
     itk::LabelMapToLabelImageFilter<BinaryImageToShapeLabelMapFilterType::OutputImageType, LabelImageType>;
-  LabelMapToLabelImageFilterType::Pointer labelMapToLabelImageFilter = LabelMapToLabelImageFilterType::New();
+  auto labelMapToLabelImageFilter = LabelMapToLabelImageFilterType::New();
   labelMapToLabelImageFilter->SetInput(shapeOpeningLabelMapFilter->GetOutput());
   labelMapToLabelImageFilter->Update();
 
@@ -63,7 +63,7 @@ main(int, char *[])
 
   // Color each label/object a different color
   using RGBFilterType = itk::ScalarToRGBColormapImageFilter<LabelImageType, RGBImageType>;
-  RGBFilterType::Pointer colormapImageFilter = RGBFilterType::New();
+  auto colormapImageFilter = RGBFilterType::New();
   colormapImageFilter->SetInput(labelMapToLabelImageFilter->GetOutput());
   colormapImageFilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Jet);
   colormapImageFilter->Update();
@@ -112,7 +112,7 @@ CreateImage(ImageType::Pointer image)
   }
 
   using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetFileName("input.png");
   writer->SetInput(image);
   writer->Update();

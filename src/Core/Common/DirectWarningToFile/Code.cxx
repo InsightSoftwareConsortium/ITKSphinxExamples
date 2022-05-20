@@ -22,7 +22,7 @@ int
 main(int argc, char * argv[])
 {
   using myFileOutputWindow = itk::FileOutputWindow;
-  myFileOutputWindow::Pointer window = myFileOutputWindow::New();
+  auto window = myFileOutputWindow::New();
 
   if (argc > 1)
   {
@@ -37,7 +37,7 @@ main(int argc, char * argv[])
   itkGenericOutputMacro("This should be in the file: " << window->GetFileName());
   // Warning
   using TransformType = itk::ScaleTransform<float, 2>;
-  TransformType::Pointer             transform = TransformType::New();
+  auto                               transform = TransformType::New();
   TransformType::FixedParametersType parameters(3);
   transform->SetFixedParameters(parameters);
 

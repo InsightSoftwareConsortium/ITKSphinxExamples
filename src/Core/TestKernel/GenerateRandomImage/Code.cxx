@@ -41,7 +41,7 @@ main(int argc, char * argv[])
 
   using RandomImageSourceType = itk::RandomImageSource<ImageType>;
 
-  RandomImageSourceType::Pointer randomImageSource = RandomImageSourceType::New();
+  auto randomImageSource = RandomImageSourceType::New();
   randomImageSource->SetNumberOfWorkUnits(1); // to produce reproducible results
   randomImageSource->SetSize(size);
 

@@ -29,15 +29,15 @@ main(int, char *[])
   using LabelObjectType = BI2SLMType::LabelObjectType;
 
   using MergerType = itk::MergeLabelMapFilter<LabelMapType>;
-  MergerType::Pointer merger = MergerType::New();
+  auto merger = MergerType::New();
   merger->SetMethod(itk::MergeLabelMapFilterEnums::ChoiceMethod::PACK);
 
   int noObjects = 4;
 
   for (int i = 1; i <= noObjects; i++)
   {
-    LabelMapType::Pointer    labelMap = LabelMapType::New();
-    LabelObjectType::Pointer labelObject = LabelObjectType::New();
+    auto labelMap = LabelMapType::New();
+    auto labelObject = LabelObjectType::New();
 
     labelObject->SetLabel(1);
     labelMap->AddLabelObject(labelObject);

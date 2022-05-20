@@ -42,7 +42,7 @@ main(int argc, char * argv[])
   }
 
   using ClampFilterType = itk::ClampImageFilter<FloatImageType, UnsignedCharImageType>;
-  ClampFilterType::Pointer clampFilter = ClampFilterType::New();
+  auto clampFilter = ClampFilterType::New();
   clampFilter->SetInput(image);
   clampFilter->Update();
 

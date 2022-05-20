@@ -31,7 +31,7 @@ int
 main(int, char *[])
 {
   // Create an image
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   // Store some data in it
@@ -56,14 +56,14 @@ main(int, char *[])
 
   // Write the image (and the data) to a file
   using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetFileName("test.mhd");
   writer->SetInput(image);
   writer->Update();
 
   // Read the image (and data) from the file
   using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileName("test.mhd");
 
   // Display the data

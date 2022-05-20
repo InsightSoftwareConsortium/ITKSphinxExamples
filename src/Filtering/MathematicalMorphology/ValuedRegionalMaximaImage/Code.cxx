@@ -28,12 +28,12 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using ValuedRegionalMaximaImageFilter = itk::ValuedRegionalMaximaImageFilter<ImageType, ImageType>;
 
-  ValuedRegionalMaximaImageFilter::Pointer filter = ValuedRegionalMaximaImageFilter::New();
+  auto filter = ValuedRegionalMaximaImageFilter::New();
   filter->SetInput(image);
 
   itk::WriteImage(image, "intensityblobs.png");

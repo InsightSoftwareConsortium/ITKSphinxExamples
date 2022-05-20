@@ -30,19 +30,19 @@ CreateImage2(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage1(image1);
 
   itk::WriteImage(image1, "input1.png");
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage2(image2);
 
   itk::WriteImage(image2, "input2.png");
 
   using AndImageFilterType = itk::AndImageFilter<ImageType>;
 
-  AndImageFilterType::Pointer andFilter = AndImageFilterType::New();
+  auto andFilter = AndImageFilterType::New();
   andFilter->SetInput(0, image1);
   andFilter->SetInput(1, image2);
   andFilter->Update();

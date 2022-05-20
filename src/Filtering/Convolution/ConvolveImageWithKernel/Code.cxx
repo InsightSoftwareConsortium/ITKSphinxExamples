@@ -47,14 +47,14 @@ main(int argc, char * argv[])
     width = std::stoi(argv[2]);
   }
 
-  ImageType::Pointer kernel = ImageType::New();
+  auto kernel = ImageType::New();
   CreateKernel(kernel, width);
 
   const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   // Convolve image with kernel.
   using FilterType = itk::ConvolutionImageFilter<ImageType>;
-  FilterType::Pointer convolutionFilter = FilterType::New();
+  auto convolutionFilter = FilterType::New();
   convolutionFilter->SetInput(input);
 #if ITK_VERSION_MAJOR >= 4
   convolutionFilter->SetKernelImage(kernel);

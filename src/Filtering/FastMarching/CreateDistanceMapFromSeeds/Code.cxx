@@ -42,10 +42,10 @@ main(int argc, char * argv[])
 
   using FastMarchingType = itk::FastMarchingImageFilterBase<FloatImageType, FloatImageType>;
 
-  CriterionType::Pointer criterion = CriterionType::New();
+  auto criterion = CriterionType::New();
   criterion->SetThreshold(100.);
 
-  FastMarchingType::Pointer marcher = FastMarchingType::New();
+  auto marcher = FastMarchingType::New();
   marcher->SetStoppingCriterion(criterion);
 
   // specify the size of the output image
@@ -53,7 +53,7 @@ main(int argc, char * argv[])
   marcher->SetOutputSize(size);
 
   // setup a speed image of ones
-  FloatImageType::Pointer speedImage = FloatImageType::New();
+  auto speedImage = FloatImageType::New();
 
   FloatImageType::RegionType region;
   region.SetSize(size);
@@ -64,7 +64,7 @@ main(int argc, char * argv[])
   speedImage->FillBuffer(1.0);
 
   // setup a 'alive image'
-  FloatImageType::Pointer AliveImage = FloatImageType::New();
+  auto AliveImage = FloatImageType::New();
   AliveImage->SetLargestPossibleRegion(region);
   AliveImage->SetBufferedRegion(region);
   AliveImage->Allocate();
@@ -79,7 +79,7 @@ main(int argc, char * argv[])
   AliveImage->SetPixel(index, 1.0);
 
   // setup a 'trial image'
-  FloatImageType::Pointer TrialImage = FloatImageType::New();
+  auto TrialImage = FloatImageType::New();
   TrialImage->SetLargestPossibleRegion(region);
   TrialImage->SetBufferedRegion(region);
   TrialImage->Allocate();
@@ -104,7 +104,7 @@ main(int argc, char * argv[])
 
   using AdaptorType = itk::FastMarchingImageToNodePairContainerAdaptor<FloatImageType, FloatImageType, FloatImageType>;
 
-  AdaptorType::Pointer adaptor = AdaptorType::New();
+  auto adaptor = AdaptorType::New();
 
   adaptor->SetAliveImage(AliveImage.GetPointer());
   adaptor->SetAliveValue(0.0);

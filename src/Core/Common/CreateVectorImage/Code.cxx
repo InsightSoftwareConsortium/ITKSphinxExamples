@@ -31,7 +31,7 @@ main(int, char *[])
 
   ImageType::RegionType region(start, size);
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   image->SetRegions(region);
   image->SetVectorLength(2);
   image->Allocate();

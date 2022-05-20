@@ -57,12 +57,12 @@ main(int argc, char * argv[])
 
   using ParametrizationType = itk::ParameterizationQuadEdgeMeshFilter<MeshType, MeshType, SolverTraits>;
 
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileName(inputFileName);
 
   MeshType::Pointer mesh = reader->GetOutput();
 
-  BorderTransformType::Pointer border_transform = BorderTransformType::New();
+  auto border_transform = BorderTransformType::New();
   border_transform->SetInput(reader->GetOutput());
 
   int               border;
@@ -92,7 +92,7 @@ main(int argc, char * argv[])
   itk::AuthalicMatrixCoefficients<MeshType>                 coeff3;
   itk::HarmonicMatrixCoefficients<MeshType>                 coeff4;
 
-  ParametrizationType::Pointer param = ParametrizationType::New();
+  auto param = ParametrizationType::New();
   param->SetInput(mesh);
   param->SetBorderTransform(border_transform);
 
@@ -124,7 +124,7 @@ main(int argc, char * argv[])
       return EXIT_FAILURE;
   }
 
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetInput(param->GetOutput());
   writer->SetFileName(outputFileName);
 

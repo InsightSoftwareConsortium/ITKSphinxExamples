@@ -46,7 +46,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<UnsignedCharImageType>(inputFileName);
 
   // Create and setup a derivative filter
-  filterType::Pointer derivativeFilter = filterType::New();
+  auto derivativeFilter = filterType::New();
   derivativeFilter->SetInput(input);
   derivativeFilter->SetDirection(0); // "x" axis
 

@@ -56,7 +56,7 @@ main(int, char *[])
   using ImageType = itk::Image<PixelType, Dimension>;
 
   using SourceType = itk::GaussianImageSource<ImageType>;
-  SourceType::Pointer source = SourceType::New();
+  auto source = SourceType::New();
 
   ImageType::SizeType size;
   size.Fill(128);
@@ -66,7 +66,7 @@ main(int, char *[])
   sigma.Fill(45.0);
   source->SetSigma(sigma);
 
-  MyCommand::Pointer myCommand = MyCommand::New();
+  auto myCommand = MyCommand::New();
   source->AddObserver(itk::ProgressEvent(), myCommand);
 
   source->Update();

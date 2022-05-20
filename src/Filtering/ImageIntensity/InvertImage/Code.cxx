@@ -31,8 +31,8 @@ CreateImage(ImageType::Pointer image);
 int
 main(int argc, char * argv[])
 {
-  ImageType::Pointer image = ImageType::New();
-  std::stringstream  desc;
+  auto              image = ImageType::New();
+  std::stringstream desc;
 
   CreateImage(image);
 
@@ -55,7 +55,7 @@ main(int argc, char * argv[])
 
   using InvertIntensityImageFilterType = itk::InvertIntensityImageFilter<ImageType>;
 
-  InvertIntensityImageFilterType::Pointer invertIntensityFilter = InvertIntensityImageFilterType::New();
+  auto invertIntensityFilter = InvertIntensityImageFilterType::New();
   invertIntensityFilter->SetInput(image);
   invertIntensityFilter->SetMaximum(maximum);
 

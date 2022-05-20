@@ -52,7 +52,7 @@ main(int argc, char * argv[])
   const auto destination = itk::ReadImage<ImageType>(destinationFileName);
 
   using FilterType = itk::PasteImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetSourceImage(source);
   filter->SetSourceRegion(source->GetLargestPossibleRegion());
   filter->SetDestinationImage(destination);

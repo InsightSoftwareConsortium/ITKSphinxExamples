@@ -11,7 +11,7 @@ main(int, char *[])
   using FilterType = itk::ImageFilterMultipleOutputs<ImageType>;
 
   // Create and the filter
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->Update();
 
   itk::WriteImage(filter->GetOutput1(), "TestOutput1.jpg");

@@ -42,7 +42,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using ConfidenceConnectedFilterType = itk::ConfidenceConnectedImageFilter<ImageType, ImageType>;
-  ConfidenceConnectedFilterType::Pointer confidenceConnectedFilter = ConfidenceConnectedFilterType::New();
+  auto confidenceConnectedFilter = ConfidenceConnectedFilterType::New();
   confidenceConnectedFilter->SetInitialNeighborhoodRadius(3);
   confidenceConnectedFilter->SetMultiplier(3);
   confidenceConnectedFilter->SetNumberOfIterations(25);

@@ -29,7 +29,7 @@ main(int, char *[])
   std::cout << "spherical: " << spherical << std::endl;
 
   using AzimuthElevationToCartesian = itk::AzimuthElevationToCartesianTransform<double, 3>;
-  AzimuthElevationToCartesian::Pointer azimuthElevation = AzimuthElevationToCartesian::New();
+  auto azimuthElevation = AzimuthElevationToCartesian::New();
 
   std::cout << "Cartesian: " << azimuthElevation->TransformAzElToCartesian(spherical) << std::endl;
 

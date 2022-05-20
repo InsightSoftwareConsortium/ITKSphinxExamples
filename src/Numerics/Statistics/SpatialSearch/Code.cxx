@@ -26,7 +26,7 @@ main(int, char *[])
   using MeasurementVectorType = itk::Vector<float, 2>;
 
   using SampleType = itk::Statistics::ListSample<MeasurementVectorType>;
-  SampleType::Pointer sample = SampleType::New();
+  auto sample = SampleType::New();
   sample->SetMeasurementVectorSize(2);
 
   MeasurementVectorType mv;
@@ -38,7 +38,7 @@ main(int, char *[])
   }
 
   using TreeGeneratorType = itk::Statistics::KdTreeGenerator<SampleType>;
-  TreeGeneratorType::Pointer treeGenerator = TreeGeneratorType::New();
+  auto treeGenerator = TreeGeneratorType::New();
   treeGenerator->SetSample(sample);
   treeGenerator->SetBucketSize(16);
   treeGenerator->Update();

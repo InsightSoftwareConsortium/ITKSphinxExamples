@@ -28,7 +28,7 @@ CreateImage(UnsignedCharImageType::Pointer image);
 int
 main(int, char *[])
 {
-  UnsignedCharImageType::Pointer image = UnsignedCharImageType::New();
+  auto image = UnsignedCharImageType::New();
   CreateImage(image);
 
   using FloatImageType = itk::Image<float, 2>;
@@ -48,7 +48,7 @@ main(int, char *[])
   {
     // Scale so we can write to a PNG
     using RescaleFilterType = itk::RescaleIntensityImageFilter<FloatImageType, UnsignedCharImageType>;
-    RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+    auto rescaleFilter = RescaleFilterType::New();
     rescaleFilter->SetInput(recursiveMultiResolutionPyramidImageFilter->GetOutput(i));
     rescaleFilter->SetOutputMinimum(0);
     rescaleFilter->SetOutputMaximum(255);

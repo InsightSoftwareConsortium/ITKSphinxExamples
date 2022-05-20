@@ -72,7 +72,7 @@ main(int argc, char * argv[])
   // Instantiate the ScalarImageKmeansImageFilter
   using KMeansFilterType = itk::ScalarImageKmeansImageFilter<ImageType>;
 
-  KMeansFilterType::Pointer kmeansFilter = KMeansFilterType::New();
+  auto kmeansFilter = KMeansFilterType::New();
 
   kmeansFilter->SetInput(input);
 

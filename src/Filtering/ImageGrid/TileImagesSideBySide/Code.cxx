@@ -52,7 +52,7 @@ main(int argc, char * argv[])
   // Tile the images side-by-side
   using TileFilterType = itk::TileImageFilter<ImageType, ImageType>;
 
-  TileFilterType::Pointer tileFilter = TileFilterType::New();
+  auto tileFilter = TileFilterType::New();
 
   itk::FixedArray<unsigned int, 2> layout;
 

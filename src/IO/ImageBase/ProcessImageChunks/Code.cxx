@@ -55,12 +55,12 @@ main(int argc, char * argv[])
   ImageType::SizeType  size;
 
   using MedianType = itk::MedianImageFilter<ImageType, ImageType>;
-  MedianType::Pointer median = MedianType::New();
+  auto median = MedianType::New();
   median->SetInput(input);
   median->SetRadius(2);
 
   using WriterType = itk::ImageFileWriter<ImageType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetFileName(outputFileName);
 
   // Use for loops to split the image into chunks.

@@ -48,7 +48,7 @@ public:
 
     using TransformType = itk::Rigid2DTransform<float>;
 
-    TransformType::Pointer transform = TransformType::New();
+    auto transform = TransformType::New();
     transform->SetAngle(itk::Math::pi / 2.0);
 
     VectorType outputV = transform->TransformVector(v);
@@ -78,7 +78,7 @@ main(int, char *[])
   region.SetSize(size);
   region.SetIndex(start);
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   image->SetRegions(region);
   image->SetVectorLength(2);
   image->Allocate();
@@ -98,7 +98,7 @@ main(int, char *[])
   using FilterType =
     itk::UnaryFunctorImageFilter<ImageType, ImageType, RotateVectors<ImageType::PixelType, ImageType::PixelType>>;
 
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(image);
   filter->Update();
 

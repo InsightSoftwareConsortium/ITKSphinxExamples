@@ -39,7 +39,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<FloatImageType>(inputFileName);
 
   using VectorRescaleFilterType = itk::VectorRescaleIntensityImageFilter<FloatImageType, UnsignedCharImageType>;
-  VectorRescaleFilterType::Pointer rescaleFilter = VectorRescaleFilterType::New();
+  auto rescaleFilter = VectorRescaleFilterType::New();
   rescaleFilter->SetInput(input);
   rescaleFilter->SetOutputMaximumMagnitude(255);
   rescaleFilter->Update();

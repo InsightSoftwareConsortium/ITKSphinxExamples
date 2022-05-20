@@ -30,7 +30,7 @@ main(int, char *[])
 {
 
   // Instantiate the optimizer
-  OptimizerType::Pointer optimizer = OptimizerType::New();
+  auto optimizer = OptimizerType::New();
 
   // Set properties pertinent to convergence
   optimizer->SetMaximumNumberOfIterations(100);
@@ -41,7 +41,7 @@ main(int, char *[])
   // The cost function is a 2D paraboloid in the x-y plane
   // with the equation f(x,y) = (x+5)^2+(y-7)^2 + 5
   // and a global minimum at (x,y) = (-5, 7)
-  CostType::Pointer cost = CostType::New();
+  auto cost = CostType::New();
 
   // Assign the cost function to the optimizer
   optimizer->SetCostFunction(cost.GetPointer());

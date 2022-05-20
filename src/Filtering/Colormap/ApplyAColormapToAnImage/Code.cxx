@@ -46,7 +46,7 @@ main(int argc, char * argv[])
   using RGBImageType = itk::Image<RGBPixelType, Dimension>;
 
   using RGBFilterType = itk::ScalarToRGBColormapImageFilter<ImageType, RGBImageType>;
-  RGBFilterType::Pointer rgbfilter = RGBFilterType::New();
+  auto rgbfilter = RGBFilterType::New();
   rgbfilter->SetInput(input);
   rgbfilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Hot);
 

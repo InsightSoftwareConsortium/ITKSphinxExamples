@@ -28,7 +28,7 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   itk::WriteImage(image, "input.png");
@@ -36,7 +36,7 @@ main(int, char *[])
   // using TransformType = itk::ScaleTransform<float, 2>; // If you want to use float here, you must use:
   // using ResampleImageFilterType = itk::ResampleImageFilter<ImageType, ImageType, float>; later.
   using TransformType = itk::ScaleTransform<double, 2>;
-  TransformType::Pointer    scaleTransform = TransformType::New();
+  auto                      scaleTransform = TransformType::New();
   itk::FixedArray<float, 2> scale;
   scale[0] = 1.5; // newWidth/oldWidth
   scale[1] = 1.5;
@@ -49,7 +49,7 @@ main(int, char *[])
   scaleTransform->SetCenter(center);
 
   using ResampleImageFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
-  ResampleImageFilterType::Pointer resampleFilter = ResampleImageFilterType::New();
+  auto resampleFilter = ResampleImageFilterType::New();
   resampleFilter->SetTransform(scaleTransform);
   resampleFilter->SetInput(image);
   resampleFilter->SetSize(image->GetLargestPossibleRegion().GetSize());

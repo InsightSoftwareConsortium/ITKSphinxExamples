@@ -30,10 +30,10 @@ CreateImage2(UnsignedCharImageType::Pointer image);
 int
 main(int, char *[])
 {
-  UnsignedCharImageType::Pointer image1 = UnsignedCharImageType::New();
+  auto image1 = UnsignedCharImageType::New();
   CreateImage1(image1);
 
-  UnsignedCharImageType::Pointer image2 = UnsignedCharImageType::New();
+  auto image2 = UnsignedCharImageType::New();
   CreateImage2(image2);
 
   using AbsoluteValueDifferenceImageFilterType =

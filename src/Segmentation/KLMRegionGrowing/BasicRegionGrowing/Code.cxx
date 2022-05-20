@@ -38,13 +38,13 @@ CreateImage(ImageType::Pointer image);
 int
 main(int argc, char * argv[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using RegionGrowImageFilterType = itk::RegionGrowImageFilter<ImageType, ImageType>;
-  RegionGrowImageFilterType::Pointer regionGrow = RegionGrowImageFilterType::New();
-  float                              lower = 95.0;
-  float                              upper = 105.0;
+  auto  regionGrow = RegionGrowImageFilterType::New();
+  float lower = 95.0;
+  float upper = 105.0;
   regionGrow->SetLower(lower);
   regionGrow->SetUpper(upper);
 
@@ -68,14 +68,14 @@ main(int argc, char * argv[])
 
   // Visualize
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
-  ConnectorType::Pointer connector2 = ConnectorType::New();
+  auto connector2 = ConnectorType::New();
   connector2->SetInput(image2);
 
   vtkSmartPointer<vtkImageActor> actor2 = vtkSmartPointer<vtkImageActor>::New();
   actor2->SetInput(connector2->GetOutput());
 
   // Visualize joined image
-  ConnectorType::Pointer addConnector = ConnectorType::New();
+  auto addConnector = ConnectorType::New();
   addConnector->SetInput(addFilter->GetOutput());
 
   vtkSmartPointer<vtkImageActor> addActor = vtkSmartPointer<vtkImageActor>::New();

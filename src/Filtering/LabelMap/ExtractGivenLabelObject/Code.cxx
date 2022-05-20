@@ -53,19 +53,19 @@ main(int argc, char * argv[])
   using LabelMapType = itk::LabelMap<LabelObjectType>;
 
   using LabelImageToLabelMapFilterType = itk::LabelImageToLabelMapFilter<ImageType, LabelMapType>;
-  LabelImageToLabelMapFilterType::Pointer labelMapConverter = LabelImageToLabelMapFilterType::New();
+  auto labelMapConverter = LabelImageToLabelMapFilterType::New();
   labelMapConverter->SetInput(input);
   labelMapConverter->SetBackgroundValue(itk::NumericTraits<PixelType>::Zero);
 
   using SelectorType = itk::LabelSelectionLabelMapFilter<LabelMapType>;
-  SelectorType::Pointer selector = SelectorType::New();
+  auto selector = SelectorType::New();
   selector->SetInput(labelMapConverter->GetOutput());
   selector->SetLabel(label);
 
   for (int i = 0; i < 2; i++)
   {
     using LabelMapToLabelImageFilterType = itk::LabelMapToLabelImageFilter<LabelMapType, ImageType>;
-    LabelMapToLabelImageFilterType::Pointer labelImageConverter = LabelMapToLabelImageFilterType::New();
+    auto labelImageConverter = LabelMapToLabelImageFilterType::New();
     labelImageConverter->SetInput(selector->GetOutput(i));
 
     try

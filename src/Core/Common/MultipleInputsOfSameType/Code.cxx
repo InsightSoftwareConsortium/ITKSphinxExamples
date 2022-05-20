@@ -26,11 +26,11 @@ main(int, char *[])
   using ImageType = itk::Image<unsigned char, 2>;
   using FilterType = itk::ImageFilterMultipleInputs<ImageType>;
 
-  ImageType::Pointer image = ImageType::New();
-  ImageType::Pointer mask = ImageType::New();
+  auto image = ImageType::New();
+  auto mask = ImageType::New();
 
   // Create and the filter
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInputImage(image);
   filter->SetInputMask(mask);
   filter->Update();

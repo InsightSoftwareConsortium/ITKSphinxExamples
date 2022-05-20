@@ -28,7 +28,7 @@ main(int, char *[])
   constexpr unsigned int Dimension = 3;
 
   using EulerTransformType = itk::Euler3DTransform<ScalarType>;
-  EulerTransformType::Pointer        eulerTransform = EulerTransformType::New();
+  auto                               eulerTransform = EulerTransformType::New();
   EulerTransformType::ParametersType eulerParameters(6);
   eulerParameters[0] = 0.1;
   eulerParameters[1] = 0.2;
@@ -45,7 +45,7 @@ main(int, char *[])
   eulerTransform->SetFixedParameters(eulerFixedParameters);
 
   using ScaleTransformType = itk::ScaleTransform<ScalarType, Dimension>;
-  ScaleTransformType::Pointer        scaleTransform = ScaleTransformType::New();
+  auto                               scaleTransform = ScaleTransformType::New();
   ScaleTransformType::ParametersType scaleParameters(Dimension);
   scaleParameters[0] = 0.6;
   scaleParameters[1] = 0.7;
@@ -53,7 +53,7 @@ main(int, char *[])
   scaleTransform->SetParameters(scaleParameters);
 
   using CompositeTransformType = itk::CompositeTransform<ScalarType, Dimension>;
-  CompositeTransformType::Pointer compositeTransform = CompositeTransformType::New();
+  auto compositeTransform = CompositeTransformType::New();
   compositeTransform->AddTransform(eulerTransform);
   compositeTransform->AddTransform(scaleTransform);
   std::cout << "Original transform: " << compositeTransform << std::endl;

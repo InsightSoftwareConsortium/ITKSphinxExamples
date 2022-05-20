@@ -49,11 +49,11 @@ main(int argc, char * argv[])
   vector[0] = std::stod(argv[3]);
   vector[1] = std::stod(argv[4]);
 
-  TransformType::Pointer translation = TransformType::New();
+  auto translation = TransformType::New();
   translation->Translate(vector);
 
   using ResampleImageFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
-  ResampleImageFilterType::Pointer resampleFilter = ResampleImageFilterType::New();
+  auto resampleFilter = ResampleImageFilterType::New();
   resampleFilter->SetTransform(translation.GetPointer());
   resampleFilter->SetInput(input);
   resampleFilter->SetSize(input->GetLargestPossibleRegion().GetSize());

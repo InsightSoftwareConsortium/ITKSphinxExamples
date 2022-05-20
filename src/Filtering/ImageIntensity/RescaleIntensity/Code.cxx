@@ -41,7 +41,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(argv[1]);
 
   using FilterType = itk::RescaleIntensityImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetOutputMinimum(std::stoi(argv[3]));
   filter->SetOutputMaximum(std::stoi(argv[4]));

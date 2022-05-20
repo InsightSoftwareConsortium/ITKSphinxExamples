@@ -49,7 +49,7 @@ main(int argc, char * argv[])
   magnitude->Update();
 
   using FilterType = itk::VTKImageToImageFilter<ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(magnitude->GetOutput());
 
   try

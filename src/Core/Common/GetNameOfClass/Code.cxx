@@ -25,7 +25,7 @@ main(int, char *[])
   using PixelType = unsigned char;
 
   using ImageType = itk::Image<PixelType, Dimension>;
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
 
   std::cout << "image is type: " << image->GetNameOfClass() << std::endl;
 

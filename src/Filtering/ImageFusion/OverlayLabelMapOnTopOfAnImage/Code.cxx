@@ -52,11 +52,11 @@ main(int argc, char * argv[])
   using LabelMapType = itk::LabelMap<LabelObjectType>;
 
   using ConverterType = itk::LabelImageToLabelMapFilter<ImageType, LabelMapType>;
-  ConverterType::Pointer converter = ConverterType::New();
+  auto converter = ConverterType::New();
   converter->SetInput(label);
 
   using FilterType = itk::LabelMapOverlayImageFilter<LabelMapType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(converter->GetOutput());
   filter->SetFeatureImage(input);
   filter->SetOpacity(0.5);

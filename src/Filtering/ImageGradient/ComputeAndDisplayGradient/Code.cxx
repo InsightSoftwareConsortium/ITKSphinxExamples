@@ -60,13 +60,13 @@ main(int argc, char * argv[])
 
   // Create and setup a gradient filter
   using GradientFilterType = itk::GradientImageFilter<UnsignedCharImageType, float>;
-  GradientFilterType::Pointer gradientFilter = GradientFilterType::New();
+  auto gradientFilter = GradientFilterType::New();
   gradientFilter->SetInput(input);
   gradientFilter->Update();
 
   // Visualize original image
   using ConnectorType = itk::ImageToVTKImageFilter<UnsignedCharImageType>;
-  ConnectorType::Pointer originalConnector = ConnectorType::New();
+  auto originalConnector = ConnectorType::New();
   originalConnector->SetInput(input);
 
   vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();

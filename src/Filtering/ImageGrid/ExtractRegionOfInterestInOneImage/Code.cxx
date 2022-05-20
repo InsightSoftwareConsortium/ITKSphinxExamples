@@ -62,7 +62,7 @@ main(int argc, char * argv[])
   region.SetUpperIndex(end);
 
   using FilterType = itk::RegionOfInterestImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetRegionOfInterest(region);
 

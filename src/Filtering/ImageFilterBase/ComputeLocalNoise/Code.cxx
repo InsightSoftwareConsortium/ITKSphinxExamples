@@ -27,11 +27,11 @@ CreateImage(ImageType::Pointer image);
 int
 main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using NoiseImageFilterType = itk::NoiseImageFilter<ImageType, ImageType>;
-  NoiseImageFilterType::Pointer noiseImageFilter = NoiseImageFilterType::New();
+  auto noiseImageFilter = NoiseImageFilterType::New();
   noiseImageFilter->SetInput(image);
   noiseImageFilter->SetRadius(1);
   noiseImageFilter->Update();

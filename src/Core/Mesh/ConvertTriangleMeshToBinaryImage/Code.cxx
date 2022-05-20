@@ -48,7 +48,7 @@ main(int argc, char * argv[])
   using MeshType = itk::Mesh<MeshPixelType, Dimension>;
 
   using MeshReaderType = itk::MeshFileReader<MeshType>;
-  MeshReaderType::Pointer meshReader = MeshReaderType::New();
+  auto meshReader = MeshReaderType::New();
   meshReader->SetFileName(inputMeshName);
 
   using InputPixelType = unsigned char;
@@ -60,11 +60,11 @@ main(int argc, char * argv[])
   using OutputImageType = itk::Image<OutputPixelType, Dimension>;
 
   using CastFilterType = itk::CastImageFilter<InputImageType, OutputImageType>;
-  CastFilterType::Pointer cast = CastFilterType::New();
+  auto cast = CastFilterType::New();
   cast->SetInput(input);
 
   using FilterType = itk::TriangleMeshToBinaryImageFilter<MeshType, OutputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(meshReader->GetOutput());
   filter->SetInfoImage(cast->GetOutput());
   filter->SetInsideValue(itk::NumericTraits<OutputPixelType>::max());

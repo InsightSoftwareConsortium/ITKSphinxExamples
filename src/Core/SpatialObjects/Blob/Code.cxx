@@ -32,7 +32,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
     points.push_back(point);
   }
 
-  BlobType::Pointer blob = BlobType::New();
+  auto blob = BlobType::New();
   blob->SetPoints(points);
 
   BlobType::BoundingBoxType::BoundsArrayType bounds = blob->GetMyBoundingBoxInWorldSpace()->GetBounds();

@@ -48,7 +48,7 @@ main(int argc, char * argv[])
   // Create and setup a gradient filter
   using FilterType = itk::GradientMagnitudeImageFilter<InputImageType, OutputImageType>;
 
-  FilterType::Pointer gradientFilter = FilterType::New();
+  auto gradientFilter = FilterType::New();
   gradientFilter->SetInput(input);
 
   try

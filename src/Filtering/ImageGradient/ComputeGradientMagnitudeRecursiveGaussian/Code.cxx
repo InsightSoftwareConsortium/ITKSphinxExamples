@@ -43,7 +43,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputImage);
 
   using FilterType = itk::GradientMagnitudeRecursiveGaussianImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetSigma(sigma);
 

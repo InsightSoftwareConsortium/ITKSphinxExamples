@@ -53,13 +53,13 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<InputImageType>(argv[1]);
 
   using GradientMagnitudeImageFilterType = itk::GradientMagnitudeImageFilter<InputImageType, FloatImageType>;
-  GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
+  auto gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
 
   gradientMagnitudeImageFilter->SetInput(input);
   gradientMagnitudeImageFilter->Update();
 
   using WatershedFilterType = itk::WatershedImageFilter<FloatImageType>;
-  WatershedFilterType::Pointer watershed = WatershedFilterType::New();
+  auto watershed = WatershedFilterType::New();
 
   float threshold = std::stod(argv[3]);
   float level = std::stod(argv[4]);
@@ -71,7 +71,7 @@ main(int argc, char * argv[])
   watershed->Update();
 
   using RGBFilterType = itk::ScalarToRGBColormapImageFilter<LabeledImageType, RGBImageType>;
-  RGBFilterType::Pointer colormapImageFilter = RGBFilterType::New();
+  auto colormapImageFilter = RGBFilterType::New();
   colormapImageFilter->SetColormap(itk::ScalarToRGBColormapImageFilterEnums::RGBColormapFilter::Jet);
   colormapImageFilter->SetInput(watershed->GetOutput());
   colormapImageFilter->Update();

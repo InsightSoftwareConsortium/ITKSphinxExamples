@@ -62,7 +62,7 @@ main(int argc, char * argv[])
   // Generate a binary mask that will be used as initialization for the level
   // set evolution.
   using BinaryImageType = itk::Image<LevelSetOutputType, Dimension>;
-  BinaryImageType::Pointer binary = BinaryImageType::New();
+  auto binary = BinaryImageType::New();
   binary->SetRegions(input->GetLargestPossibleRegion());
   binary->CopyInformation(input);
   binary->Allocate();
@@ -90,19 +90,19 @@ main(int argc, char * argv[])
   // convert a binary mask to a level-set function
   using BinaryImageToLevelSetType = itk::BinaryImageToLevelSetImageAdaptor<BinaryImageType, LevelSetType>;
 
-  BinaryImageToLevelSetType::Pointer adaptor = BinaryImageToLevelSetType::New();
+  auto adaptor = BinaryImageToLevelSetType::New();
   adaptor->SetInputImage(binary);
   adaptor->Initialize();
   LevelSetType::Pointer levelSet = adaptor->GetModifiableLevelSet();
 
   // The Heaviside function
   using HeavisideFunctionType = itk::SinRegularizedHeavisideStepFunction<LevelSetRealType, LevelSetRealType>;
-  HeavisideFunctionType::Pointer heaviside = HeavisideFunctionType::New();
+  auto heaviside = HeavisideFunctionType::New();
   heaviside->SetEpsilon(1.5);
 
   // Create the level set container
   using LevelSetContainerType = itk::LevelSetContainer<itk::IdentifierType, LevelSetType>;
-  LevelSetContainerType::Pointer levelSetContainer = LevelSetContainerType::New();
+  auto levelSetContainer = LevelSetContainerType::New();
   levelSetContainer->SetHeaviside(heaviside);
   levelSetContainer->AddLevelSet(0, levelSet);
 
@@ -111,19 +111,19 @@ main(int argc, char * argv[])
   // // Chan and Vese internal term
   using ChanAndVeseInternalTermType =
     itk::LevelSetEquationChanAndVeseInternalTerm<InputImageType, LevelSetContainerType>;
-  ChanAndVeseInternalTermType::Pointer cvInternalTerm = ChanAndVeseInternalTermType::New();
+  auto cvInternalTerm = ChanAndVeseInternalTermType::New();
   cvInternalTerm->SetInput(input);
   cvInternalTerm->SetCoefficient(0.5);
 
   // // Chan and Vese external term
   using ChanAndVeseExternalTermType =
     itk::LevelSetEquationChanAndVeseExternalTerm<InputImageType, LevelSetContainerType>;
-  ChanAndVeseExternalTermType::Pointer cvExternalTerm = ChanAndVeseExternalTermType::New();
+  auto cvExternalTerm = ChanAndVeseExternalTermType::New();
   cvExternalTerm->SetInput(input);
 
   // Create term container (equation rhs)
   using TermContainerType = itk::LevelSetEquationTermContainer<InputImageType, LevelSetContainerType>;
-  TermContainerType::Pointer termContainer = TermContainerType::New();
+  auto termContainer = TermContainerType::New();
   termContainer->SetLevelSetContainer(levelSetContainer);
   termContainer->SetInput(input);
   termContainer->AddTerm(0, cvInternalTerm);
@@ -131,31 +131,31 @@ main(int argc, char * argv[])
 
   // Create equation container
   using EquationContainerType = itk::LevelSetEquationContainer<TermContainerType>;
-  EquationContainerType::Pointer equationContainer = EquationContainerType::New();
+  auto equationContainer = EquationContainerType::New();
   equationContainer->SetLevelSetContainer(levelSetContainer);
   equationContainer->AddEquation(0, termContainer);
 
   // Create stopping criteria
   using StoppingCriterionType = itk::LevelSetEvolutionNumberOfIterationsStoppingCriterion<LevelSetContainerType>;
-  StoppingCriterionType::Pointer criterion = StoppingCriterionType::New();
+  auto criterion = StoppingCriterionType::New();
   criterion->SetNumberOfIterations(numberOfIterations);
 
   // Create the visualizer
   using VisualizationType = itk::VTKVisualizeImageLevelSetIsoValues<InputImageType, LevelSetType>;
-  VisualizationType::Pointer visualizer = VisualizationType::New();
+  auto visualizer = VisualizationType::New();
   visualizer->SetInputImage(input);
   visualizer->SetLevelSet(levelSet);
   visualizer->SetScreenCapture(true);
 
   // Create evolution class
   using LevelSetEvolutionType = itk::LevelSetEvolution<EquationContainerType, LevelSetType>;
-  LevelSetEvolutionType::Pointer evolution = LevelSetEvolutionType::New();
+  auto evolution = LevelSetEvolutionType::New();
   evolution->SetEquationContainer(equationContainer);
   evolution->SetStoppingCriterion(criterion);
   evolution->SetLevelSetContainer(levelSetContainer);
 
   using IterationUpdateCommandType = itk::LevelSetIterationUpdateCommand<LevelSetEvolutionType, VisualizationType>;
-  IterationUpdateCommandType::Pointer iterationUpdateCommand = IterationUpdateCommandType::New();
+  auto iterationUpdateCommand = IterationUpdateCommandType::New();
   iterationUpdateCommand->SetFilterToUpdate(visualizer);
   iterationUpdateCommand->SetUpdatePeriod(5);
 

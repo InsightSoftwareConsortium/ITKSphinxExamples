@@ -64,7 +64,7 @@ main(int argc, char * argv[])
   using HessianPixelType = itk::SymmetricSecondRankTensor<double, Dimension>;
   using HessianImageType = itk::Image<HessianPixelType, Dimension>;
   using ObjectnessFilterType = itk::HessianToObjectnessMeasureImageFilter<HessianImageType, ImageType>;
-  ObjectnessFilterType::Pointer objectnessFilter = ObjectnessFilterType::New();
+  auto objectnessFilter = ObjectnessFilterType::New();
   objectnessFilter->SetBrightObject(false);
   objectnessFilter->SetScaleObjectnessMeasure(false);
   objectnessFilter->SetAlpha(0.5);
@@ -73,7 +73,7 @@ main(int argc, char * argv[])
 
   using MultiScaleEnhancementFilterType =
     itk::MultiScaleHessianBasedMeasureImageFilter<ImageType, HessianImageType, ImageType>;
-  MultiScaleEnhancementFilterType::Pointer multiScaleEnhancementFilter = MultiScaleEnhancementFilterType::New();
+  auto multiScaleEnhancementFilter = MultiScaleEnhancementFilterType::New();
   multiScaleEnhancementFilter->SetInput(input);
   multiScaleEnhancementFilter->SetHessianToMeasureFilter(objectnessFilter);
   multiScaleEnhancementFilter->SetSigmaStepMethodToLogarithmic();
@@ -83,7 +83,7 @@ main(int argc, char * argv[])
 
   using OutputImageType = itk::Image<unsigned char, Dimension>;
   using RescaleFilterType = itk::RescaleIntensityImageFilter<ImageType, OutputImageType>;
-  RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+  auto rescaleFilter = RescaleFilterType::New();
   rescaleFilter->SetInput(multiScaleEnhancementFilter->GetOutput());
 
   try

@@ -30,12 +30,12 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using binaryContourImageFilterType = itk::BinaryContourImageFilter<ImageType, ImageType>;
 
-  binaryContourImageFilterType::Pointer binaryContourFilter = binaryContourImageFilterType::New();
+  auto binaryContourFilter = binaryContourImageFilterType::New();
   binaryContourFilter->SetInput(image);
 
 #ifdef ENABLE_QUICKVIEW

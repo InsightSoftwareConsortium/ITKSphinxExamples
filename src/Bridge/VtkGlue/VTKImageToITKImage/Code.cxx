@@ -51,12 +51,12 @@ main(int argc, char * argv[])
 
   using VTKImageToImageType = itk::VTKImageToImageFilter<ImageType>;
 
-  VTKImageToImageType::Pointer vtkImageToImageFilter = VTKImageToImageType::New();
+  auto vtkImageToImageFilter = VTKImageToImageType::New();
   vtkImageToImageFilter->SetInput(luminanceFilter->GetOutput());
   // vtkImageToImageFilter->SetInput(reader->GetOutput());
   vtkImageToImageFilter->Update();
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   image->Graft(vtkImageToImageFilter->GetOutput()); // Need to do this because QuickView can't accept const
 
 #ifdef ENABLE_QUICKVIEW

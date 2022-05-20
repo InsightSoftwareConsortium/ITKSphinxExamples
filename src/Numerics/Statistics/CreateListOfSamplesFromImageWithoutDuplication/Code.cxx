@@ -48,12 +48,12 @@ main(int, char *[])
   using ArrayImageType = itk::Image<MeasurementVectorType, 2>;
   using CasterType = itk::ComposeImageFilter<FloatImage2DType, ArrayImageType>;
 
-  CasterType::Pointer caster = CasterType::New();
+  auto caster = CasterType::New();
   caster->SetInput(random->GetOutput());
   caster->Update();
 
   using SampleType = itk::Statistics::ImageToListSampleAdaptor<ArrayImageType>;
-  SampleType::Pointer sample = SampleType::New();
+  auto sample = SampleType::New();
 
   sample->SetImage(caster->GetOutput());
 

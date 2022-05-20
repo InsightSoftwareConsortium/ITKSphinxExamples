@@ -51,11 +51,11 @@ main(int argc, char * argv[])
 
   using FilterType = itk::WarpImageFilter<ImageType, ImageType, DisplacementFieldType>;
 
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
 
   using InterpolatorType = itk::LinearInterpolateImageFunction<ImageType, double>;
 
-  InterpolatorType::Pointer interpolator = InterpolatorType::New();
+  auto interpolator = InterpolatorType::New();
 
   filter->SetInterpolator(interpolator);
 

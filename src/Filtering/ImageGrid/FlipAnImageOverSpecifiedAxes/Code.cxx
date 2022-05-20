@@ -41,7 +41,7 @@ main(int argc, char * argv[])
 
   using FlipImageFilterType = itk::FlipImageFilter<ImageType>;
 
-  FlipImageFilterType::Pointer flipFilter = FlipImageFilterType::New();
+  auto flipFilter = FlipImageFilterType::New();
   flipFilter->SetInput(input);
 
   FlipImageFilterType::FlipAxesArrayType flipAxes;

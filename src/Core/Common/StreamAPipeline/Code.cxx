@@ -35,20 +35,20 @@ main(int argc, char * argv[])
   using ImageType = itk::Image<PixelType, Dimension>;
 
   using SourceType = itk::RandomImageSource<ImageType>;
-  SourceType::Pointer source = SourceType::New();
+  auto                source = SourceType::New();
   ImageType::SizeType size;
   size.Fill(numberOfSplits);
   source->SetSize(size);
 
   using MonitorFilterType = itk::PipelineMonitorImageFilter<ImageType>;
-  MonitorFilterType::Pointer monitorFilter = MonitorFilterType::New();
+  auto monitorFilter = MonitorFilterType::New();
   monitorFilter->SetInput(source->GetOutput());
   // If ITK was built with the Debug CMake configuration, the filter
   // automatically outputs status information to the console
   monitorFilter->DebugOn();
 
   using StreamingFilterType = itk::StreamingImageFilter<ImageType, ImageType>;
-  StreamingFilterType::Pointer streamingFilter = StreamingFilterType::New();
+  auto streamingFilter = StreamingFilterType::New();
   streamingFilter->SetInput(monitorFilter->GetOutput());
   streamingFilter->SetNumberOfStreamDivisions(numberOfSplits);
 

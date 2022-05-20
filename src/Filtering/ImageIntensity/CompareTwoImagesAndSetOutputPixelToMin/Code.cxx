@@ -29,15 +29,15 @@ CreateImage2(ImageType * image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage1(image1);
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage2(image2);
 
   using MinimumImageFilterType = itk::MinimumImageFilter<ImageType>;
 
-  MinimumImageFilterType::Pointer minimumImageFilter = MinimumImageFilterType::New();
+  auto minimumImageFilter = MinimumImageFilterType::New();
   minimumImageFilter->SetInput(0, image1);
   minimumImageFilter->SetInput(1, image2);
   minimumImageFilter->Update();

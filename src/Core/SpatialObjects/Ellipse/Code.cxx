@@ -37,7 +37,7 @@ main(int argc, char * argv[])
 
   using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<EllipseType, ImageType>;
 
-  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
+  auto imageFilter = SpatialObjectToImageFilterType::New();
 
   //  The SpatialObjectToImageFilter requires that the user defines the grid
   //  parameters of the output image. This includes the number of pixels along
@@ -55,7 +55,7 @@ main(int argc, char * argv[])
 
   imageFilter->SetSpacing(spacing);
 
-  EllipseType::Pointer   ellipse = EllipseType::New();
+  auto                   ellipse = EllipseType::New();
   EllipseType::ArrayType radiusArray;
   radiusArray[0] = 10;
   radiusArray[1] = 20;
@@ -66,7 +66,7 @@ main(int argc, char * argv[])
 
   using TransformType = EllipseType::TransformType;
 
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
 
   transform->SetIdentity();
 

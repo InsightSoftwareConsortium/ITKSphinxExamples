@@ -62,19 +62,19 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<InputImageType>(inputFileName);
 
   using SmoothingFilterType = itk::CurvatureAnisotropicDiffusionImageFilter<InputImageType, InputImageType>;
-  SmoothingFilterType::Pointer smoothing = SmoothingFilterType::New();
+  auto smoothing = SmoothingFilterType::New();
   smoothing->SetTimeStep(0.125);
   smoothing->SetNumberOfIterations(5);
   smoothing->SetConductanceParameter(9.0);
   smoothing->SetInput(input);
 
   using GradientFilterType = itk::GradientMagnitudeRecursiveGaussianImageFilter<InputImageType, InputImageType>;
-  GradientFilterType::Pointer gradientMagnitude = GradientFilterType::New();
+  auto gradientMagnitude = GradientFilterType::New();
   gradientMagnitude->SetSigma(sigma);
   gradientMagnitude->SetInput(smoothing->GetOutput());
 
   using SigmoidFilterType = itk::SigmoidImageFilter<InputImageType, InputImageType>;
-  SigmoidFilterType::Pointer sigmoid = SigmoidFilterType::New();
+  auto sigmoid = SigmoidFilterType::New();
   sigmoid->SetOutputMinimum(0.0);
   sigmoid->SetOutputMaximum(1.0);
   sigmoid->SetAlpha(alpha);
@@ -82,10 +82,10 @@ main(int argc, char * argv[])
   sigmoid->SetInput(gradientMagnitude->GetOutput());
 
   using FastMarchingFilterType = itk::FastMarchingImageFilter<InputImageType, InputImageType>;
-  FastMarchingFilterType::Pointer fastMarching = FastMarchingFilterType::New();
+  auto fastMarching = FastMarchingFilterType::New();
 
   using GeodesicActiveContourFilterType = itk::GeodesicActiveContourLevelSetImageFilter<InputImageType, InputImageType>;
-  GeodesicActiveContourFilterType::Pointer geodesicActiveContour = GeodesicActiveContourFilterType::New();
+  auto geodesicActiveContour = GeodesicActiveContourFilterType::New();
   geodesicActiveContour->SetPropagationScaling(propagationScaling);
   geodesicActiveContour->SetCurvatureScaling(1.0);
   geodesicActiveContour->SetAdvectionScaling(1.0);
@@ -95,7 +95,7 @@ main(int argc, char * argv[])
   geodesicActiveContour->SetFeatureImage(sigmoid->GetOutput());
 
   using ThresholdingFilterType = itk::BinaryThresholdImageFilter<InputImageType, OutputImageType>;
-  ThresholdingFilterType::Pointer thresholder = ThresholdingFilterType::New();
+  auto thresholder = ThresholdingFilterType::New();
   thresholder->SetLowerThreshold(-1000.0);
   thresholder->SetUpperThreshold(0.0);
   thresholder->SetOutsideValue(itk::NumericTraits<OutputPixelType>::min());
@@ -109,8 +109,8 @@ main(int argc, char * argv[])
   seedPosition[0] = seedPosX;
   seedPosition[1] = seedPosY;
 
-  NodeContainer::Pointer seeds = NodeContainer::New();
-  NodeType               node;
+  auto     seeds = NodeContainer::New();
+  NodeType node;
   node.SetValue(seedValue);
   node.SetIndex(seedPosition);
 
@@ -122,10 +122,10 @@ main(int argc, char * argv[])
 
   using CastFilterType = itk::RescaleIntensityImageFilter<InputImageType, OutputImageType>;
 
-  CastFilterType::Pointer caster1 = CastFilterType::New();
-  CastFilterType::Pointer caster2 = CastFilterType::New();
-  CastFilterType::Pointer caster3 = CastFilterType::New();
-  CastFilterType::Pointer caster4 = CastFilterType::New();
+  auto caster1 = CastFilterType::New();
+  auto caster2 = CastFilterType::New();
+  auto caster3 = CastFilterType::New();
+  auto caster4 = CastFilterType::New();
 
   caster1->SetInput(smoothing->GetOutput());
   caster1->SetOutputMinimum(itk::NumericTraits<OutputPixelType>::min());

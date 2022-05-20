@@ -59,10 +59,10 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 
   using RegistrationType = itk::ImageRegistrationMethod<ImageType, ImageType>;
 
-  MetricType::Pointer       metric = MetricType::New();
-  OptimizerType::Pointer    optimizer = OptimizerType::New();
-  InterpolatorType::Pointer interpolator = InterpolatorType::New();
-  RegistrationType::Pointer registration = RegistrationType::New();
+  auto metric = MetricType::New();
+  auto optimizer = OptimizerType::New();
+  auto interpolator = InterpolatorType::New();
+  auto registration = RegistrationType::New();
 
 
   // The old registration framework has problems with multi-threading
@@ -73,14 +73,14 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   registration->SetOptimizer(optimizer);
   registration->SetInterpolator(interpolator);
 
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
   registration->SetTransform(transform);
 
   // Create the synthetic images
-  ImageType::Pointer fixedImage = ImageType::New();
+  auto fixedImage = ImageType::New();
   CreateCircleImage(fixedImage);
 
-  ImageType::Pointer movingImage = ImageType::New();
+  auto movingImage = ImageType::New();
   CreateEllipseImage(movingImage);
 
   // Setup the registration
@@ -162,7 +162,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 
   using ResampleFilterType = itk::ResampleImageFilter<ImageType, ImageType>;
 
-  ResampleFilterType::Pointer resample = ResampleFilterType::New();
+  auto resample = ResampleFilterType::New();
 
   resample->SetTransform(transform);
   resample->SetInput(movingImage);
@@ -179,7 +179,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 
   using CastFilterType = itk::CastImageFilter<ImageType, OutputImageType>;
 
-  CastFilterType::Pointer caster = CastFilterType::New();
+  auto caster = CastFilterType::New();
   caster->SetInput(resample->GetOutput());
 
   try
@@ -212,7 +212,7 @@ CreateEllipseImage(const ImageType::Pointer & image)
 
   using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<EllipseType, ImageType>;
 
-  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
+  auto imageFilter = SpatialObjectToImageFilterType::New();
 
   ImageType::SizeType size;
   size[0] = 100;
@@ -224,14 +224,14 @@ CreateEllipseImage(const ImageType::Pointer & image)
   spacing.Fill(1);
   imageFilter->SetSpacing(spacing);
 
-  EllipseType::Pointer   ellipse = EllipseType::New();
+  auto                   ellipse = EllipseType::New();
   EllipseType::ArrayType radiusArray;
   radiusArray[0] = 10;
   radiusArray[1] = 20;
   ellipse->SetRadiusInObjectSpace(radiusArray);
 
   using TransformType = EllipseType::TransformType;
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
   transform->SetIdentity();
 
   TransformType::OutputVectorType translation;
@@ -260,7 +260,7 @@ CreateCircleImage(const ImageType::Pointer & image)
 
   using SpatialObjectToImageFilterType = itk::SpatialObjectToImageFilter<EllipseType, ImageType>;
 
-  SpatialObjectToImageFilterType::Pointer imageFilter = SpatialObjectToImageFilterType::New();
+  auto imageFilter = SpatialObjectToImageFilterType::New();
 
   ImageType::SizeType size;
   size[0] = 100;
@@ -272,14 +272,14 @@ CreateCircleImage(const ImageType::Pointer & image)
   spacing.Fill(1);
   imageFilter->SetSpacing(spacing);
 
-  EllipseType::Pointer   ellipse = EllipseType::New();
+  auto                   ellipse = EllipseType::New();
   EllipseType::ArrayType radiusArray;
   radiusArray[0] = 10;
   radiusArray[1] = 10;
   ellipse->SetRadiusInObjectSpace(radiusArray);
 
   using TransformType = EllipseType::TransformType;
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
   transform->SetIdentity();
 
   TransformType::OutputVectorType translation;

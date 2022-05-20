@@ -40,7 +40,7 @@ main(int, char *[])
   bigSize.Fill(10000);
 
   using RandomSourceType = itk::RandomImageSource<ImageType>;
-  RandomSourceType::Pointer randomImageSource = RandomSourceType::New();
+  auto randomImageSource = RandomSourceType::New();
   randomImageSource->SetNumberOfWorkUnits(1); // to produce non-random results
   randomImageSource->SetSize(bigSize);
   randomImageSource->GetOutput()->SetRequestedRegion(smallSize);
@@ -49,7 +49,7 @@ main(int, char *[])
 
   using DerivativeImageFilterType = itk::DerivativeImageFilter<ImageType, ImageType>;
 
-  DerivativeImageFilterType::Pointer derivativeFilter = DerivativeImageFilterType::New();
+  auto derivativeFilter = DerivativeImageFilterType::New();
   derivativeFilter->SetInput(randomImageSource->GetOutput());
   derivativeFilter->SetDirection(0); // "x" axis
   derivativeFilter->GetOutput()->SetRequestedRegion(smallSize);

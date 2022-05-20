@@ -51,14 +51,14 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<InputImageType>(inputImage);
 
   using FilterType = itk::CannyEdgeDetectionImageFilter<InputImageType, InputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetVariance(variance);
   filter->SetLowerThreshold(lowerThreshold);
   filter->SetUpperThreshold(upperThreshold);
 
   using RescaleType = itk::RescaleIntensityImageFilter<InputImageType, OutputImageType>;
-  RescaleType::Pointer rescaler = RescaleType::New();
+  auto rescaler = RescaleType::New();
   rescaler->SetInput(filter->GetOutput());
   rescaler->SetOutputMinimum(0);
   rescaler->SetOutputMaximum(255);

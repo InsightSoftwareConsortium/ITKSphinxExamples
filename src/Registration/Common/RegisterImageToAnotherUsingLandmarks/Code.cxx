@@ -34,10 +34,10 @@ CreateMovingImage(ImageType::Pointer image);
 int
 main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 {
-  ImageType::Pointer fixedImage = ImageType::New();
+  auto fixedImage = ImageType::New();
   CreateFixedImage(fixedImage);
 
-  ImageType::Pointer movingImage = ImageType::New();
+  auto movingImage = ImageType::New();
   CreateMovingImage(movingImage);
 
   using TransformType = itk::Rigid2DTransform<double>;
@@ -87,14 +87,14 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   landmarkBasedTransformInitializer->SetFixedLandmarks(fixedLandmarks);
   landmarkBasedTransformInitializer->SetMovingLandmarks(movingLandmarks);
 
-  TransformType::Pointer transform = TransformType::New();
+  auto transform = TransformType::New();
 
   transform->SetIdentity();
   landmarkBasedTransformInitializer->SetTransform(transform);
   landmarkBasedTransformInitializer->InitializeTransform();
 
   using ResampleFilterType = itk::ResampleImageFilter<ImageType, ImageType, double>;
-  ResampleFilterType::Pointer resampleFilter = ResampleFilterType::New();
+  auto resampleFilter = ResampleFilterType::New();
   resampleFilter->SetInput(movingImage);
   resampleFilter->SetTransform(transform);
   resampleFilter->SetUseReferenceImage(true);

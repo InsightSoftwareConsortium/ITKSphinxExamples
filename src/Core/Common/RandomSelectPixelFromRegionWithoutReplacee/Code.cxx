@@ -22,7 +22,7 @@ int
 main(int, char *[])
 {
   using ImageType = itk::Image<unsigned char, 2>;
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
 
   ImageType::SizeType regionSize;
   regionSize.Fill(3);

@@ -69,16 +69,16 @@ main(int argc, char * argv[])
   // Prepare the resampler.
 
   // Instantiate the transform and specify it should be the id transform.
-  T_Transform::Pointer _pTransform = T_Transform::New();
+  auto _pTransform = T_Transform::New();
   _pTransform->SetIdentity();
 
   // Instantiate the b-spline interpolator and set it as the third order
   // for bicubic.
-  T_Interpolator::Pointer _pInterpolator = T_Interpolator::New();
+  auto _pInterpolator = T_Interpolator::New();
   _pInterpolator->SetSplineOrder(3);
 
   // Instantiate the resampler. Wire in the transform and the interpolator.
-  T_ResampleFilter::Pointer _pResizeFilter = T_ResampleFilter::New();
+  auto _pResizeFilter = T_ResampleFilter::New();
   _pResizeFilter->SetTransform(_pTransform);
   _pResizeFilter->SetInterpolator(_pInterpolator);
 

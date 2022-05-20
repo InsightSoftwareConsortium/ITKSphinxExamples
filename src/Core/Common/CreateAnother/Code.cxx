@@ -46,10 +46,10 @@ main(int, char *[])
   using ImageType = itk::Image<PixelType, Dimension>;
 
   using FilterType = itk::AbsImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto                filter = FilterType::New();
   FilterType::Pointer filter2 = dynamic_cast<FilterType *>(filter->CreateAnother().GetPointer());
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage<ImageType>(image);
 
   filter2->SetInput(image);

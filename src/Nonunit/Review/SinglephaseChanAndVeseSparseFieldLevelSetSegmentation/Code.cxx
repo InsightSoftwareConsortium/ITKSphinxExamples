@@ -90,7 +90,7 @@ main(int argc, char ** argv)
   //
   using DomainFunctionType = itk::AtanRegularizedHeavisideStepFunction<ScalarPixelType, ScalarPixelType>;
 
-  DomainFunctionType::Pointer domainFunction = DomainFunctionType::New();
+  auto domainFunction = DomainFunctionType::New();
   domainFunction->SetEpsilon(epsilon);
 
   InternalImageType::Pointer featureImage = itk::ReadImage<InternalImageType>(argv[1]);
@@ -101,7 +101,7 @@ main(int argc, char ** argv)
   //
   using FastMarchingFilterType = itk::FastMarchingImageFilter<InternalImageType, InternalImageType>;
 
-  FastMarchingFilterType::Pointer fastMarching = FastMarchingFilterType::New();
+  auto fastMarching = FastMarchingFilterType::New();
 
   //  The FastMarchingImageFilter requires the user to provide a seed
   //  point from which the level set will be generated. The user can actually
@@ -117,7 +117,7 @@ main(int argc, char ** argv)
   using NodeContainer = FastMarchingFilterType::NodeContainer;
   using NodeType = FastMarchingFilterType::NodeType;
 
-  NodeContainer::Pointer seeds = NodeContainer::New();
+  auto seeds = NodeContainer::New();
 
   InternalImageType::IndexType seedPosition;
 
@@ -174,7 +174,7 @@ main(int argc, char ** argv)
                                                                             LevelSetFunctionType,
                                                                             SharedDataHelperType>;
 
-  MultiLevelSetType::Pointer levelSetFilter = MultiLevelSetType::New();
+  auto levelSetFilter = MultiLevelSetType::New();
 
   //  We set the function count to 1 since a single level-set is being evolved.
   //

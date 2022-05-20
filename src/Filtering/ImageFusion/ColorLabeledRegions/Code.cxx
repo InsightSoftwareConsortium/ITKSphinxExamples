@@ -30,11 +30,11 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using BinaryImageToLabelMapFilterType = itk::BinaryImageToLabelMapFilter<ImageType>;
-  BinaryImageToLabelMapFilterType::Pointer binaryImageToLabelMapFilter = BinaryImageToLabelMapFilterType::New();
+  auto binaryImageToLabelMapFilter = BinaryImageToLabelMapFilterType::New();
   binaryImageToLabelMapFilter->SetInput(image);
   binaryImageToLabelMapFilter->Update();
 
@@ -43,7 +43,7 @@ main(int, char *[])
 
   using LabelMapOverlayImageFilterType =
     itk::LabelMapOverlayImageFilter<BinaryImageToLabelMapFilterType::OutputImageType, ImageType, RGBImageType>;
-  LabelMapOverlayImageFilterType::Pointer labelMapOverlayImageFilter = LabelMapOverlayImageFilterType::New();
+  auto labelMapOverlayImageFilter = LabelMapOverlayImageFilterType::New();
   labelMapOverlayImageFilter->SetInput(binaryImageToLabelMapFilter->GetOutput());
   labelMapOverlayImageFilter->SetFeatureImage(image);
   labelMapOverlayImageFilter->SetOpacity(.5);

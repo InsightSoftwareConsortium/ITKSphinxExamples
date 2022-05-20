@@ -50,13 +50,13 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<InputImageType>(inputFileName);
 
   using FilterType = itk::CurvatureFlowImageFilter<InputImageType, InputImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(input);
   filter->SetNumberOfIterations(numberOfIterations);
   filter->SetTimeStep(timeStep);
 
   using RescaleType = itk::RescaleIntensityImageFilter<InputImageType, OutputImageType>;
-  RescaleType::Pointer rescaler = RescaleType::New();
+  auto rescaler = RescaleType::New();
   rescaler->SetInput(filter->GetOutput());
   rescaler->SetOutputMinimum(itk::NumericTraits<OutputPixelType>::min());
   rescaler->SetOutputMaximum(itk::NumericTraits<OutputPixelType>::max());

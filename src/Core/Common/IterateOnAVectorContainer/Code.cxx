@@ -36,7 +36,7 @@ main(int, char *[])
   p1[0] = 2.0;
   p1[1] = 3.0;
 
-  VectorContainerType::Pointer points = VectorContainerType::New();
+  auto points = VectorContainerType::New();
   points->Reserve(2);
 
   VectorContainerType::Iterator point = points->Begin();

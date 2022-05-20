@@ -50,7 +50,7 @@ main(int argc, char * argv[])
   ImageToHistogramFilterType::HistogramType::SizeType size(MeasurementVectorSize);
   size.Fill(binsPerDimension);
 
-  ImageToHistogramFilterType::Pointer imageToHistogramFilter = ImageToHistogramFilterType::New();
+  auto imageToHistogramFilter = ImageToHistogramFilterType::New();
   imageToHistogramFilter->SetInput(image);
   imageToHistogramFilter->SetHistogramBinMinimum(lowerBound);
   imageToHistogramFilter->SetHistogramBinMaximum(upperBound);

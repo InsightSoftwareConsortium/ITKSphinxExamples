@@ -44,7 +44,7 @@ main(int argc, char * argv[])
   const auto input2 = itk::ReadImage<ImageType>(inputFileName2);
 
   using TileFilterType = itk::TileImageFilter<ImageType, ImageType>;
-  TileFilterType::Pointer tileFilter = TileFilterType::New();
+  auto tileFilter = TileFilterType::New();
   tileFilter->SetInput(0, input1);
   tileFilter->SetInput(1, input2);
   TileFilterType::LayoutArrayType layout;

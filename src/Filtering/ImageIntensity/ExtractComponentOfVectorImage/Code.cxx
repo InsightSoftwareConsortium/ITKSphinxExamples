@@ -29,16 +29,16 @@ CreateImage(VectorImageType::Pointer image);
 int
 main(int, char *[])
 {
-  VectorImageType::Pointer image = VectorImageType::New();
+  auto image = VectorImageType::New();
   CreateImage(image);
 
   using IndexSelectionType = itk::VectorIndexSelectionCastImageFilter<VectorImageType, ScalarImageType>;
-  IndexSelectionType::Pointer indexSelectionFilter = IndexSelectionType::New();
+  auto indexSelectionFilter = IndexSelectionType::New();
   indexSelectionFilter->SetIndex(0);
   indexSelectionFilter->SetInput(image);
 
   using ImageCalculatorFilterType = itk::MinimumMaximumImageCalculator<ScalarImageType>;
-  ImageCalculatorFilterType::Pointer imageCalculatorFilter = ImageCalculatorFilterType::New();
+  auto imageCalculatorFilter = ImageCalculatorFilterType::New();
   imageCalculatorFilter->SetImage(indexSelectionFilter->GetOutput());
   imageCalculatorFilter->Compute();
 

@@ -38,7 +38,7 @@ main(int argc, char * argv[])
   using PixelType = float;
   using ImageType = itk::Image<PixelType, Dimension>;
   using FilterType = itk::MedianImageFilter<ImageType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
 
   const auto filterDefaultThreads = filter->GetMultiThreader()->GetGlobalDefaultNumberOfThreads();
   std::cout << "Filter's default number of threads: " << filterDefaultThreads << std::endl;

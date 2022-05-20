@@ -50,7 +50,7 @@ main(int argc, char * argv[])
   using MeshType = itk::QuadEdgeMesh<PixelType, Dimension, Traits>;
 
   using ReaderType = itk::MeshFileReader<MeshType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileName(argv[1]);
 
   using FastMarchingType = itk::FastMarchingQuadEdgeMeshFilterBase<MeshType, MeshType>;
@@ -71,22 +71,22 @@ main(int argc, char * argv[])
   using NodePairType = FastMarchingType::NodePairType;
   using NodePairContainerType = FastMarchingType::NodePairContainerType;
 
-  NodePairContainerType::Pointer trial = NodePairContainerType::New();
+  auto trial = NodePairContainerType::New();
 
   NodePairType nodePair(0, 0.);
   trial->push_back(nodePair);
 
   using CriterionType = itk::FastMarchingThresholdStoppingCriterion<MeshType, MeshType>;
-  CriterionType::Pointer criterion = CriterionType::New();
+  auto criterion = CriterionType::New();
   criterion->SetThreshold(100.);
 
-  FastMarchingType::Pointer fmmFilter = FastMarchingType::New();
+  auto fmmFilter = FastMarchingType::New();
   fmmFilter->SetInput(mesh);
   fmmFilter->SetTrialPoints(trial);
   fmmFilter->SetStoppingCriterion(criterion);
 
   using WriterType = itk::MeshFileWriter<MeshType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetInput(fmmFilter->GetOutput());
   writer->SetFileName(argv[2]);
 

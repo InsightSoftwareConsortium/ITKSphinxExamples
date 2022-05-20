@@ -26,11 +26,11 @@ CreateImage(ImageType::Pointer image);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using SquareImageFilterType = itk::SquareImageFilter<ImageType, ImageType>;
-  SquareImageFilterType::Pointer squareImageFilter = SquareImageFilterType::New();
+  auto squareImageFilter = SquareImageFilterType::New();
   squareImageFilter->SetInput(image);
   squareImageFilter->Update();
 

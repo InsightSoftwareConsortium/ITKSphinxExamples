@@ -115,10 +115,10 @@ main(int argc, char * argv[])
       std::cout << err << std::endl;
       continue;
     }
-    ConnectedComponentImageFilterType::Pointer connected = ConnectedComponentImageFilterType::New();
+    auto connected = ConnectedComponentImageFilterType::New();
     connected->SetInput((*it).second->GetOutput());
 
-    RGBFilterType::Pointer rgbFilter = RGBFilterType::New();
+    auto rgbFilter = RGBFilterType::New();
     rgbFilter->SetInput(connected->GetOutput());
     std::stringstream desc;
     desc << (*it).first << " threshold = " << (*it).second->GetThreshold();

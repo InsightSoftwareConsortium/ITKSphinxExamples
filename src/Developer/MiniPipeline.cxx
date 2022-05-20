@@ -14,13 +14,13 @@ main(int, char *[])
   using ImageType = itk::Image<unsigned char, 2>;
   using FilterType = itk::ImageFilter<ImageType>;
 
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image.GetPointer());
 
   std::cout << "Input:" << std::endl;
   std::cout << image->GetLargestPossibleRegion() << std::endl;
   // Create and the filter
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(image);
   filter->Update();
 

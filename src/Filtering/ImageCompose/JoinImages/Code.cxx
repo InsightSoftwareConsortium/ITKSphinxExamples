@@ -28,15 +28,15 @@ CreateImage(ImageType::Pointer image, unsigned char value);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image1 = ImageType::New();
+  auto image1 = ImageType::New();
   CreateImage(image1, 0);
 
-  ImageType::Pointer image2 = ImageType::New();
+  auto image2 = ImageType::New();
   CreateImage(image2, 10);
 
   using JoinImageFilterType = itk::JoinImageFilter<ImageType, ImageType>;
 
-  JoinImageFilterType::Pointer joinFilter = JoinImageFilterType::New();
+  auto joinFilter = JoinImageFilterType::New();
   joinFilter->SetInput1(image1);
   joinFilter->SetInput2(image2);
   joinFilter->Update();

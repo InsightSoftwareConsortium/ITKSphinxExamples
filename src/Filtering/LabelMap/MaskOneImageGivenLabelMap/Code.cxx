@@ -66,11 +66,11 @@ main(int argc, char * argv[])
 
   // convert the label image into a LabelMap
   using LabelImage2LabelMapType = itk::LabelImageToLabelMapFilter<ImageType, LabelMapType>;
-  LabelImage2LabelMapType::Pointer convert = LabelImage2LabelMapType::New();
+  auto convert = LabelImage2LabelMapType::New();
   convert->SetInput(input2);
 
   using FilterType = itk::LabelMapMaskImageFilter<LabelMapType, ImageType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(convert->GetOutput());
   filter->SetFeatureImage(input1);
 

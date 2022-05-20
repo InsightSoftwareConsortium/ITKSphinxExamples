@@ -28,8 +28,8 @@ main(int, char *[])
 {
 
   // Instantiate the cost function and optimizer
-  CostType::Pointer      cost = CostType::New();
-  OptimizerType::Pointer optimizer = OptimizerType::New();
+  auto cost = CostType::New();
+  auto optimizer = OptimizerType::New();
 
   optimizer->SetNumberOfIterations(100);
   optimizer->UseCostFunctionGradientOff();

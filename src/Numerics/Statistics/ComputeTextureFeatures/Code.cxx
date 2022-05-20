@@ -26,11 +26,11 @@ static void CreateImage(ImageType::Pointer);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
   CreateImage(image);
 
   using TextureFilterType = itk::Statistics::ScalarImageToTextureFeaturesFilter<ImageType>;
-  TextureFilterType::Pointer textureFilter = TextureFilterType::New();
+  auto textureFilter = TextureFilterType::New();
   textureFilter->SetInput(image);
   textureFilter->Update();
 

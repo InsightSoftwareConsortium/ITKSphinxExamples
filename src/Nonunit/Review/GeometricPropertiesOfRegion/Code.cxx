@@ -39,9 +39,9 @@ CreateLabelImage(ImageType::Pointer image);
 int
 main(int argc, char * argv[])
 {
-  ImageType::Pointer labelImage = ImageType::New();
-  ImageType::Pointer intensityImage = ImageType::New();
-  int                label = 1;
+  auto labelImage = ImageType::New();
+  auto intensityImage = ImageType::New();
+  int  label = 1;
 
   if (argc < 2)
   {
@@ -70,7 +70,7 @@ main(int argc, char * argv[])
   intensityImage->SetOrigin(origin);
 
   using LabelGeometryImageFilterType = itk::LabelGeometryImageFilter<ImageType>;
-  LabelGeometryImageFilterType::Pointer labelGeometryImageFilter = LabelGeometryImageFilterType::New();
+  auto labelGeometryImageFilter = LabelGeometryImageFilterType::New();
   labelGeometryImageFilter->SetInput(labelImage);
   labelGeometryImageFilter->SetIntensityInput(intensityImage);
 
@@ -84,11 +84,11 @@ main(int argc, char * argv[])
   LabelGeometryImageFilterType::LabelsType allLabels = labelGeometryImageFilter->GetLabels();
 
   using RGBFilterType = itk::LabelToRGBImageFilter<ImageType, RGBImageType>;
-  RGBFilterType::Pointer rgbLabelImage = RGBFilterType::New();
+  auto rgbLabelImage = RGBFilterType::New();
   rgbLabelImage->SetInput(labelImage);
 
   using RGBFilterType = itk::LabelToRGBImageFilter<ImageType, RGBImageType>;
-  RGBFilterType::Pointer rgbOrientedImage = RGBFilterType::New();
+  auto rgbOrientedImage = RGBFilterType::New();
   rgbOrientedImage->SetInput(labelGeometryImageFilter->GetOrientedLabelImage(allLabels[label]));
 
 #ifdef ENABLE_QUICKVIEW

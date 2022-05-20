@@ -50,7 +50,7 @@ main(int argc, char * argv[])
   auto upperThreshold = static_cast<PixelType>(std::stoi(argv[4]));
 
   using BinaryThresholdFilterType = itk::BinaryThresholdImageFilter<ImageType, ImageType>;
-  BinaryThresholdFilterType::Pointer threshold = BinaryThresholdFilterType::New();
+  auto threshold = BinaryThresholdFilterType::New();
   threshold->SetInput(input);
   threshold->SetLowerThreshold(lowerThreshold);
   threshold->SetUpperThreshold(upperThreshold);
@@ -59,12 +59,12 @@ main(int argc, char * argv[])
   using MeshType = itk::Mesh<double, Dimension>;
 
   using FilterType = itk::BinaryMask3DMeshSource<ImageType, MeshType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(threshold->GetOutput());
   filter->SetObjectValue(255);
 
   using WriterType = itk::MeshFileWriter<MeshType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetFileName(outputFileName);
   writer->SetInput(filter->GetOutput());
   try

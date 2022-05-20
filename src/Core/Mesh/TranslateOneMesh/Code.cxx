@@ -43,11 +43,11 @@ main(int argc, char * argv[])
   using MeshType = itk::Mesh<PixelType, Dimension>;
 
   using ReaderType = itk::MeshFileReader<MeshType>;
-  ReaderType::Pointer reader = ReaderType::New();
+  auto reader = ReaderType::New();
   reader->SetFileName(inputFileName);
 
   using TransformType = itk::TranslationTransform<MeshType::PointType::CoordRepType, Dimension>;
-  TransformType::Pointer translation = TransformType::New();
+  auto translation = TransformType::New();
 
   TransformType::OutputVectorType displacement;
   displacement.Fill(1.);
@@ -55,12 +55,12 @@ main(int argc, char * argv[])
   translation->Translate(displacement);
 
   using FilterType = itk::TransformMeshFilter<MeshType, MeshType, TransformType>;
-  FilterType::Pointer filter = FilterType::New();
+  auto filter = FilterType::New();
   filter->SetInput(reader->GetOutput());
   filter->SetTransform(translation);
 
   using WriterType = itk::MeshFileWriter<MeshType>;
-  WriterType::Pointer writer = WriterType::New();
+  auto writer = WriterType::New();
   writer->SetFileName(outputFileName);
   writer->SetInput(filter->GetOutput());
   try

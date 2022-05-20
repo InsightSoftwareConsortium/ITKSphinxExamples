@@ -58,7 +58,7 @@ main(int argc, char * argv[])
   std::cout << "Iterations: " << iteration << std::endl;
 
   using BinaryPruningImageFilterType = itk::BinaryPruningImageFilter<ImageType, ImageType>;
-  BinaryPruningImageFilterType::Pointer pruneFilter = BinaryPruningImageFilterType::New();
+  auto pruneFilter = BinaryPruningImageFilterType::New();
   pruneFilter->SetInput(image);
   pruneFilter->SetIteration(iteration);
   pruneFilter->GetOutput();

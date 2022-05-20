@@ -24,10 +24,10 @@ main(int /*argc*/, char * /*argv*/[])
   typedef itk::VectorImage<unsigned char, 2> UnsignedCharVectorImageType;
   typedef itk::VectorImage<float, 2>         FloatVectorImageType;
 
-  FloatVectorImageType::Pointer image = FloatVectorImageType::New();
+  auto image = FloatVectorImageType::New();
 
   typedef itk::CastImageFilter<FloatVectorImageType, UnsignedCharVectorImageType> CastImageFilterType;
-  CastImageFilterType::Pointer vectorCastImageFilter = CastImageFilterType::New();
+  auto vectorCastImageFilter = CastImageFilterType::New();
   vectorCastImageFilter->SetInput(image);
   vectorCastImageFilter->Update();
 

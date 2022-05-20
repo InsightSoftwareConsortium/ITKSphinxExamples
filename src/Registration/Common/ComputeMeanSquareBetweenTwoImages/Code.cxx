@@ -39,10 +39,10 @@ main(int argc, char * argv[])
   using InterpolatorType = itk::LinearInterpolateImageFunction<ImageType, double>;
   using TransformType = itk::TranslationTransform<double, 2>;
 
-  MetricType::Pointer    metric = MetricType::New();
-  TransformType::Pointer transform = TransformType::New();
+  auto metric = MetricType::New();
+  auto transform = TransformType::New();
 
-  InterpolatorType::Pointer interpolator = InterpolatorType::New();
+  auto interpolator = InterpolatorType::New();
   interpolator->SetInputImage(fixedImage);
 
   metric->SetFixedImage(fixedImage);

@@ -31,7 +31,7 @@ void
 OilPaintingImageFilter<TImage>::BeforeThreadedGenerateData()
 {
   using CalculatorType = itk::MinimumMaximumImageCalculator<TImage>;
-  typename CalculatorType::Pointer calculatorI = CalculatorType::New();
+  auto calculatorI = CalculatorType::New();
   calculatorI->SetImage(this->GetInput());
   calculatorI->Compute();
   m_Maximum = calculatorI->GetMaximum();

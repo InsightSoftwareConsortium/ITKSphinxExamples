@@ -40,24 +40,24 @@ CreateRandomColormap(unsigned int size, ColormapType::Pointer colormap);
 int
 main(int, char *[])
 {
-  ImageType::Pointer image = ImageType::New();
+  auto image = ImageType::New();
 
   CreateImage(image);
 
   using FilterType = itk::RelabelComponentImageFilter<ImageType, ImageType>;
-  FilterType::Pointer relabelFilter = FilterType::New();
+  auto relabelFilter = FilterType::New();
   relabelFilter->SetInput(image);
 
   using ColormapFilterType = itk::ScalarToRGBColormapImageFilter<ImageType, RGBImageType>;
-  ColormapFilterType::Pointer colormapFilter1 = ColormapFilterType::New();
+  auto colormapFilter1 = ColormapFilterType::New();
 
-  ColormapType::Pointer largeColormap = ColormapType::New();
+  auto largeColormap = ColormapType::New();
   CreateRandomColormap(255, largeColormap);
 
   colormapFilter1->SetInput(image);
   colormapFilter1->SetColormap(largeColormap);
 
-  ColormapFilterType::Pointer colormapFilter2 = ColormapFilterType::New();
+  auto colormapFilter2 = ColormapFilterType::New();
   colormapFilter2->SetInput(relabelFilter->GetOutput());
   colormapFilter2->SetColormap(largeColormap);
 

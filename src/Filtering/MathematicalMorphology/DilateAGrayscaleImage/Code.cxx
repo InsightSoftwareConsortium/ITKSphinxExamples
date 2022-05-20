@@ -50,7 +50,7 @@ main(int argc, char * argv[])
 
   using GrayscaleDilateImageFilterType = itk::GrayscaleDilateImageFilter<ImageType, ImageType, StructuringElementType>;
 
-  GrayscaleDilateImageFilterType::Pointer dilateFilter = GrayscaleDilateImageFilterType::New();
+  auto dilateFilter = GrayscaleDilateImageFilterType::New();
   dilateFilter->SetInput(input);
   dilateFilter->SetKernel(structuringElement);
 

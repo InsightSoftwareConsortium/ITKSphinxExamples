@@ -36,8 +36,8 @@ CreateImage(ImageType::Pointer image);
 int
 main(int argc, char * argv[])
 {
-  ImageType::Pointer image = ImageType::New();
-  std::string        inputFilename;
+  auto        image = ImageType::New();
+  std::string inputFilename;
   if (argc < 2)
   {
     CreateImage(image);

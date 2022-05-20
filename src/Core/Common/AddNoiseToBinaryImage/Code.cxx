@@ -48,7 +48,7 @@ main(int argc, char * argv[])
   it.SetNumberOfSamples(input->GetLargestPossibleRegion().GetNumberOfPixels() * percent);
   std::cout << "Number of random samples: " << it.GetNumberOfSamples() << std::endl;
   using GeneratorType = itk::Statistics::MersenneTwisterRandomVariateGenerator;
-  GeneratorType::Pointer random = GeneratorType::New();
+  auto random = GeneratorType::New();
 
   it.GoToBegin();
   while (!it.IsAtEnd())

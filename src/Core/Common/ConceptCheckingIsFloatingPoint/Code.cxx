@@ -31,11 +31,11 @@ main(int, char *[])
 {
   constexpr unsigned int Dimension = 2;
   using FloatImageType = itk::Image<float, Dimension>;
-  FloatImageType::Pointer f = FloatImageType::New();
+  auto f = FloatImageType::New();
   IsPixelTypeFloatingPoint(f.GetPointer());
 
   using DoubleImageType = itk::Image<double, Dimension>;
-  DoubleImageType::Pointer d = DoubleImageType::New();
+  auto d = DoubleImageType::New();
   IsPixelTypeFloatingPoint(d.GetPointer());
 
   return EXIT_SUCCESS;
