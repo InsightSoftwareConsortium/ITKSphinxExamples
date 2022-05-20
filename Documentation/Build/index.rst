@@ -17,7 +17,6 @@ Next, install the *itk* package::
 .. figure:: DownloadExampleHighlighted.png
   :alt: Download an example
   :align: center
-  :width: 600
 
   Download `an example
   <https://itk.org/ITKExamples/src/Filtering/BinaryMathematicalMorphology/DilateABinaryImage/Documentation.html>`_

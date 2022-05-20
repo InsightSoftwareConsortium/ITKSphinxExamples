@@ -15,13 +15,13 @@ Individual examples
 To download the code, data, and documentation for an individual example, click
 the **Download** button in the navbar of an example's webpage.
 
-.. figure:: ExampleTarball.png
+.. figure:: DownloadExampleHighlighted.png
   :align: center
-  :alt: Location of the tarball links for an example.
+  :alt: Location of the zip link for an example.
 
   Links to download individual examples.
 
-Once an example tarball has been downloaded and unpacked, follow the additional
+Once an example zip has been downloaded and unpacked, follow the additional
 documentation on :ref:`how to build and run an example <build-individual-examples>`.
 
 Source repository
