@@ -24,7 +24,7 @@ using OptimizerType = itk::LevenbergMarquardtOptimizer;
 using CostType = itk::ExampleCostFunction;
 
 int
-main(int, char *[])
+main()
 {
 
   // Instantiate the cost function and optimizer

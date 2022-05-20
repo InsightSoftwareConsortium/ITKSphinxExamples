@@ -32,7 +32,7 @@ void
 CreateImage(ImageType::Pointer image);
 
 int
-main(int, char *[])
+main()
 {
   auto image = ImageType::New();
   CreateImage(image);

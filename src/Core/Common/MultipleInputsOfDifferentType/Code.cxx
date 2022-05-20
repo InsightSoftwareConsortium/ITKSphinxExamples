@@ -23,7 +23,7 @@
 #include "ImageFilterMultipleInputsDifferentType.h"
 
 int
-main(int, char *[])
+main()
 {
   // Setup types
   using VectorImageType = itk::Image<itk::CovariantVector<unsigned char, 3>, 2>;

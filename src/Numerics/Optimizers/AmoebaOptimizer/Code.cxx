@@ -26,7 +26,7 @@ using CostType = itk::ExampleCostFunction2;
 } // namespace
 
 int
-main(int, char *[])
+main()
 {
 
   // Instantiate the optimizer

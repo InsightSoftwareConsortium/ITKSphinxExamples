@@ -20,7 +20,7 @@
 #include "itkPoint.h"
 
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 2;
   using CoordType = double;

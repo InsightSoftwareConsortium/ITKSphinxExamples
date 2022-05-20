@@ -26,7 +26,7 @@ using ImageType = itk::Image<int, 2>;
 static void CreateImage(ImageType::Pointer);
 
 int
-main(int, char *[])
+main()
 {
 
   ImageType::SizeType exclusionRegionSize;

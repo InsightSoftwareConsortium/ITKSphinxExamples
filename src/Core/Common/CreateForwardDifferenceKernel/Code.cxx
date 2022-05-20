@@ -18,7 +18,7 @@
 #include <itkForwardDifferenceOperator.h>
 
 int
-main(int, char *[])
+main()
 {
   using ForwardDifferenceOperatorType = itk::ForwardDifferenceOperator<float, 2>;
   ForwardDifferenceOperatorType forwardDifferenceOperator;

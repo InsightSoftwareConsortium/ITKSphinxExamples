@@ -31,7 +31,7 @@ static void
 CreateImage2(TImage * const);
 
 int
-main(int, char *[])
+main()
 {
   using ImageType = itk::Image<unsigned char, 2>;
 

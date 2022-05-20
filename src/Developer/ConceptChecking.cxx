@@ -9,7 +9,7 @@ MyFunction(const TImage * const image)
 }
 
 int
-main(int, char *[])
+main()
 {
   using FloatImageType = itk::Image<float, 2>;
   auto floatImage = FloatImageType::New();

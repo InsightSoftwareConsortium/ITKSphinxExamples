@@ -33,7 +33,7 @@ static void
 static void CreateHalfMask(itk::ImageRegion<2>, UnsignedCharImageType::Pointer mask);
 
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int MeasurementVectorSize = 3; // RGB
 

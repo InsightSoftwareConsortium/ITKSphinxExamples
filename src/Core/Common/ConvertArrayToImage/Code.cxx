@@ -21,7 +21,7 @@
 #include "itkImageFileWriter.h"
 
 int
-main(int, char *[])
+main()
 {
   using PixelType = unsigned char;
   constexpr unsigned int Dimension = 3;

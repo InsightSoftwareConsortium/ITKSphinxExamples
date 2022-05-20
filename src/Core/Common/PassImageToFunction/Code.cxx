@@ -39,7 +39,7 @@ TemplateStandardPointer(const TImage *)
 {}
 
 int
-main(int, char *[])
+main()
 {
   auto                image = ImageType::New();
   itk::Index<2>       corner = { { 0, 0 } };

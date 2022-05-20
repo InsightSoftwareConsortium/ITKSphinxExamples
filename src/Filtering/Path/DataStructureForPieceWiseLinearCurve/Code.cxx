@@ -18,7 +18,7 @@
 #include "itkPolyLineParametricPath.h"
 
 int
-main(int, char *[])
+main()
 {
   using PathType = itk::PolyLineParametricPath<2>;
 

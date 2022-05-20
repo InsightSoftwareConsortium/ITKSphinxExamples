@@ -21,7 +21,7 @@
 #include "itkBoundingBox.h"
 
 int
-main(int, char *[])
+main()
 {
   using CoordType = float;
   constexpr unsigned int Dimension = 3;

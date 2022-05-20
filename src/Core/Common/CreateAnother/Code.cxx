@@ -38,7 +38,7 @@ CreateImage(typename TImage::Pointer image)
 }
 
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = double;

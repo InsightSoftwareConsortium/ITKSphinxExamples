@@ -38,7 +38,7 @@ static void
 CreateRandomColormap(unsigned int size, ColormapType::Pointer colormap);
 
 int
-main(int, char *[])
+main()
 {
   auto image = ImageType::New();
 

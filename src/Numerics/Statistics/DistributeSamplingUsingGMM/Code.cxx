@@ -22,7 +22,7 @@
 #include "itkNormalVariateGenerator.h"
 
 int
-main(int, char *[])
+main()
 {
   unsigned int numberOfClasses = 2;
   using MeasurementVectorType = itk::Vector<double, 1>;

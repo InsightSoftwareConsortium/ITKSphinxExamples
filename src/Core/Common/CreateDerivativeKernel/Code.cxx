@@ -18,7 +18,7 @@
 #include <itkDerivativeOperator.h>
 
 int
-main(int, char *[])
+main()
 {
   using DerivativeOperatorType = itk::DerivativeOperator<float, 2>;
   DerivativeOperatorType derivativeOperator;

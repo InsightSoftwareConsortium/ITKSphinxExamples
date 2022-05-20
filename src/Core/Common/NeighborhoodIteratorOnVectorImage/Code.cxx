@@ -21,7 +21,7 @@
 using VectorImageType = itk::VectorImage<unsigned char, 2>;
 
 int
-main(int, char *[])
+main()
 {
   // Create an image
   auto image = VectorImageType::New();

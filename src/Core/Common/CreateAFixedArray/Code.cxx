@@ -20,7 +20,7 @@
 #include "itkFixedArray.h"
 
 int
-main(int, char *[])
+main()
 {
   itk::FixedArray<double, 2> array;
   array[0] = 0;

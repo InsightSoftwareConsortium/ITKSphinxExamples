@@ -18,7 +18,7 @@
 #include <itkLaplacianOperator.h>
 
 int
-main(int, char *[])
+main()
 {
   using LaplacianOperatorType = itk::LaplacianOperator<float, 2>;
   LaplacianOperatorType laplacianOperator;

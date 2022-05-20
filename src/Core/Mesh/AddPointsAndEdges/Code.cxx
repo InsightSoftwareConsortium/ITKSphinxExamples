@@ -27,7 +27,7 @@ void
 CreateMeshWithEdges();
 
 int
-main(int, char *[])
+main()
 {
   // CreatePointOnlyMesh();
   CreateMeshWithEdges();

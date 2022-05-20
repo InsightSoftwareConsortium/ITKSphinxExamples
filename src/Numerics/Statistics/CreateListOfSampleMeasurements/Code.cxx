@@ -19,7 +19,7 @@
 #include "itkVector.h"
 
 int
-main(int, char *[])
+main()
 {
   using MeasurementVectorType = itk::Vector<float, 3>;
   using SampleType = itk::Statistics::ListSample<MeasurementVectorType>;

@@ -19,7 +19,7 @@
 #include <map>
 
 int
-main(int, char *[])
+main()
 {
   using IndexType = itk::Index<2>;
   IndexType                  index = { { 3, 4 } };

@@ -71,7 +71,7 @@ log1xViaParallelizeImageRegion(ImageType::Pointer & image)
 }
 
 int
-main(int, char *[])
+main()
 {
   int result = EXIT_SUCCESS;
 

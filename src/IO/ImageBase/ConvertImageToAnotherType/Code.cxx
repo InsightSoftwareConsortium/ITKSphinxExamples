@@ -23,7 +23,7 @@
 #include "itkImageRandomConstIteratorWithIndex.h"
 
 int
-main(int, char *[])
+main()
 {
   constexpr int xDimension = 200;
   constexpr int yDimension = 100;

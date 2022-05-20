@@ -198,7 +198,7 @@ private:
 
 
 int
-main(int, char *[])
+main()
 {
   // Our cells.
   static const CELL_TYPE cellsArr[] = { NEURON, ASTROCYTE, ASTROCYTE, OLIGODENDROCYTE, ASTROCYTE,

@@ -19,7 +19,7 @@
 #include "itkRGBPixel.h"
 
 int
-main(int, char *[])
+main()
 {
   using PixelType = itk::RGBPixel<unsigned char>;
   using ColormapType = itk::Function::JetColormapFunction<float, PixelType>;

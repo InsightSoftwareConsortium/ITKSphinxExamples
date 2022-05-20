@@ -40,7 +40,7 @@ void
 CreateImageOfSquare(ImageType * const image, const itk::Index<2> & cornerOfSquare);
 
 int
-main(int, char *[])
+main()
 {
   // Setup mask
   auto mask = MaskType::New();

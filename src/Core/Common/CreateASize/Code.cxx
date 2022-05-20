@@ -20,7 +20,7 @@
 #include "itkSize.h"
 
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 2;
   itk::Size<Dimension>   size;

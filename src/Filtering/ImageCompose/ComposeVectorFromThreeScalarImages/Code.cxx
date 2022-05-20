@@ -26,7 +26,7 @@ static void
 CreateImage(ScalarImageType::Pointer image);
 
 int
-main(int, char *[])
+main()
 {
   auto image = ScalarImageType::New();
   CreateImage(image);

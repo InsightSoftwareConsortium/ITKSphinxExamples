@@ -30,7 +30,7 @@ using TSphere = itk::RegularSphereMeshSource<TMesh>;
 using TMeshWriter = itk::MeshFileWriter<TMesh>;
 
 int
-main(int, char *[])
+main()
 {
 
   // Create the sphere source.

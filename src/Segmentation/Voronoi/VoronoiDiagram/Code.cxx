@@ -20,7 +20,7 @@
 #include "itkVTKPolyDataWriter.h"
 
 int
-main(int, char *[])
+main()
 {
   constexpr double height = 100;
   constexpr double width = 100;

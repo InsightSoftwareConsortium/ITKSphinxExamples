@@ -21,7 +21,7 @@
 #include "itkDerivativeImageFilter.h"
 
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = float;

@@ -27,7 +27,7 @@ static void
 CreateImage2(ImageType * image);
 
 int
-main(int, char *[])
+main()
 {
   auto image1 = ImageType::New();
   CreateImage1(image1);

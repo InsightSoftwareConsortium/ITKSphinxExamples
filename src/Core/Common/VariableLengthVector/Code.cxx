@@ -24,7 +24,7 @@ void
 VariableLengthVectorToVector();
 
 int
-main(int, char *[])
+main()
 {
   using VectorType = itk::VariableLengthVector<double>;
   VectorType v;

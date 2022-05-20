@@ -26,7 +26,7 @@ CheckIfPixelTypeIsTheSameAs(const TImage * const)
   itkConceptMacro(nameOfCheck, (itk::Concept::SameType<typename TImage::PixelType, TValue>));
 }
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;

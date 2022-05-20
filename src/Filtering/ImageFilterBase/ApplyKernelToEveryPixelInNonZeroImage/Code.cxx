@@ -34,7 +34,7 @@ static void
 CreateHalfMask(UnsignedCharImageType::Pointer image, UnsignedCharImageType::Pointer mask);
 
 int
-main(int, char *[])
+main()
 {
   auto image = UnsignedCharImageType::New();
   CreateImage(image);

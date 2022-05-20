@@ -24,7 +24,7 @@ using ImageType = itk::Image<float, 2>;
 static void CreateImage(ImageType::Pointer);
 
 int
-main(int, char *[])
+main()
 {
   auto image = ImageType::New();
   CreateImage(image);

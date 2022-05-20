@@ -19,7 +19,7 @@
 #include <itkBackwardDifferenceOperator.h>
 
 int
-main(int, char *[])
+main()
 {
   using PixelType = float;
   constexpr unsigned int Dimension = 2;

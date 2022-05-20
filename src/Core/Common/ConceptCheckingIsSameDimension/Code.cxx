@@ -26,7 +26,7 @@ CheckIfDimensionIsTheSame(const TImage * const)
   itkConceptMacro(nameOfCheck, (itk::Concept::SameDimension<TImage::ImageDimension, VDimension>));
 }
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 2;
   using PixelType = unsigned char;

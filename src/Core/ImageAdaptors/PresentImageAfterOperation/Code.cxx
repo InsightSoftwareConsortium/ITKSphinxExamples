@@ -52,7 +52,7 @@ private:
 };
 
 int
-main(int, char *[])
+main()
 {
   auto image = VectorImageType::New();
   CreateImage(image);

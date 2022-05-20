@@ -23,7 +23,7 @@
 #include "itkNumericTraits.h"
 
 int
-main(int, char *[])
+main()
 {
   using VectorType = itk::CovariantVector<double, 3>;
   using VectorImageType = itk::Image<VectorType, 2>;

@@ -20,7 +20,7 @@
 #include "itkNumericTraits.h"
 
 int
-main(int, char *[])
+main()
 {
   using MyType = float;
 

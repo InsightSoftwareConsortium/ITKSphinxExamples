@@ -19,7 +19,7 @@
 #include "itkCovariantVector.h"
 
 int
-main(int, char *[])
+main()
 {
   constexpr unsigned int Dimension = 3;
   using CoordType = double;

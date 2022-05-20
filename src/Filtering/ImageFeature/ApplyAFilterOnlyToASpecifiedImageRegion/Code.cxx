@@ -20,7 +20,7 @@
 #include "itkDerivativeImageFilter.h"
 
 int
-main(int, char *[])
+main()
 {
   using ImageType = itk::Image<float, 2>;
 

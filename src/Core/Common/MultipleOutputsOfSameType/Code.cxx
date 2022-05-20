@@ -22,7 +22,7 @@
 #include "ImageFilterMultipleOutputs.h"
 
 int
-main(int, char *[])
+main()
 {
   // Setup types
   using ImageType = itk::Image<unsigned char, 2>;

@@ -18,7 +18,7 @@
 #include <itkGaussianOperator.h>
 
 int
-main(int, char *[])
+main()
 {
   using GaussianOperatorType = itk::GaussianOperator<float, 2>;
   GaussianOperatorType gaussianOperator;

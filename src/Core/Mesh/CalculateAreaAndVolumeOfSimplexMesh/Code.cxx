@@ -28,7 +28,7 @@ using TConvert = itk::TriangleMeshToSimplexMeshFilter<TMesh, TSimplex>;
 using TVolume = itk::SimplexMeshVolumeCalculator<TSimplex>;
 
 int
-main(int, char *[])
+main()
 {
 
   // Create a spherical mesh with known radius and resolution.

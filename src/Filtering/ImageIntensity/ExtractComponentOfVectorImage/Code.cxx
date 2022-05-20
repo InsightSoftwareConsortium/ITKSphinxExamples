@@ -27,7 +27,7 @@ static void
 CreateImage(VectorImageType::Pointer image);
 
 int
-main(int, char *[])
+main()
 {
   auto image = VectorImageType::New();
   CreateImage(image);
