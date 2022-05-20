@@ -1,4 +1,4 @@
-How to build, run, and visualize
+Build, Run, Visualize
 ================================
 
 .. _run-python-examples:
