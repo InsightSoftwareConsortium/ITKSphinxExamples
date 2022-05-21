@@ -117,7 +117,7 @@ main(int argc, char * argv[])
   std::cout << "Number of labels: " << labelGeometryImageFilter->GetNumberOfLabels() << std::endl;
   std::cout << std::endl;
 
-  for (allLabelsIt = allLabels.begin(); allLabelsIt != allLabels.end(); allLabelsIt++)
+  for (allLabelsIt = allLabels.begin(); allLabelsIt != allLabels.end(); ++allLabelsIt)
   {
     LabelGeometryImageFilterType::LabelPixelType labelValue = *allLabelsIt;
     std::cout << "\tLabel: " << (int)labelValue << std::endl;

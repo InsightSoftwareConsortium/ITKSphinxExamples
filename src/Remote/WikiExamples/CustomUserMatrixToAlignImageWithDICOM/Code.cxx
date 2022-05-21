@@ -123,8 +123,8 @@ int main(int argc, char *argv[])
   // so that volume is in DICOM patient physical space
   VisualizingImageType::DirectionType d=image->GetDirection();
   vtkMatrix4x4 *mat=vtkMatrix4x4::New(); //start with identity matrix
-  for (int i=0; i<3; i++)
-      for (int k=0; k<3; k++)
+  for (int i=0; i<3; ++i)
+      for (int k=0; k<3; ++k)
           mat->SetElement(i,k, d(i,k));
 
   // Counteract the built-in translation by origin
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
   volume->SetPosition(-origin[0], -origin[1], -origin[2]);
 
   // Add translation to the user matrix
-  for (int i=0; i<3; i++)
+  for (int i=0; i<3; ++i)
     {
     mat->SetElement(i,3, origin[i]);
     }

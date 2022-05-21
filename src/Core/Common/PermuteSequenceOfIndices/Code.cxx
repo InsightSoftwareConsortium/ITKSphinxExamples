@@ -24,7 +24,7 @@ main()
 
   std::cout << std::endl;
 
-  for (unsigned int i = 0; i < 5; i++)
+  for (unsigned int i = 0; i < 5; ++i)
   {
     std::cout << rp[i] << " ";
   }
@@ -32,7 +32,7 @@ main()
 
   rp.Shuffle();
   std::cout << "After shuffle" << std::endl;
-  for (unsigned int i = 0; i < 5; i++)
+  for (unsigned int i = 0; i < 5; ++i)
   {
     std::cout << rp[i] << " ";
   }

@@ -60,7 +60,7 @@ CreateImage(ImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  for (unsigned int i = 0; i < 10; i++)
+  for (unsigned int i = 0; i < 10; ++i)
   {
     ImageType::IndexType pixelIndex;
     pixelIndex[0] = i;

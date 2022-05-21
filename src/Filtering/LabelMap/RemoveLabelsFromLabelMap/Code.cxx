@@ -45,7 +45,7 @@ main()
 
   // Note: do NOT remove the labels inside the loop! The IDs are stored such that they will change when one is deleted.
   // Instead, mark all of the labels to be removed first and then remove them all together.
-  for (unsigned int i = 0; i < binaryImageToLabelMapFilter->GetOutput()->GetNumberOfLabelObjects(); i++)
+  for (unsigned int i = 0; i < binaryImageToLabelMapFilter->GetOutput()->GetNumberOfLabelObjects(); ++i)
   {
     // Get the ith region
     BinaryImageToLabelMapFilterType::OutputImageType::LabelObjectType * labelObject =

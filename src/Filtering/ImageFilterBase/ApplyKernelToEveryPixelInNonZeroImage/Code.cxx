@@ -123,9 +123,9 @@ CreateImage(UnsignedCharImageType::Pointer image)
   image->FillBuffer(0);
 
   // Make a square
-  for (unsigned int r = 30; r < 70; r++)
+  for (unsigned int r = 30; r < 70; ++r)
   {
-    for (unsigned int c = 30; c < 70; c++)
+    for (unsigned int c = 30; c < 70; ++c)
     {
       FloatImageType::IndexType pixelIndex;
       pixelIndex[0] = r;

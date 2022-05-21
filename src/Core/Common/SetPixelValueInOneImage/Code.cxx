@@ -54,7 +54,7 @@ main(int argc, char * argv[])
 
   ImageType::IndexType pixelIndex;
 
-  for (ImageType::IndexValueType r = 0; r < 50; r++)
+  for (ImageType::IndexValueType r = 0; r < 50; ++r)
   {
     pixelIndex[0] = 4 * r;
     pixelIndex[1] = 4 * r;
@@ -67,7 +67,7 @@ main(int argc, char * argv[])
     image->SetPixel(pixelIndex, 255);
   }
 
-  for (ImageType::IndexValueType r = 0; r < 25; r++)
+  for (ImageType::IndexValueType r = 0; r < 25; ++r)
   {
     pixelIndex[0] = 8 * r;
     pixelIndex[1] = 200 + 4 * r;

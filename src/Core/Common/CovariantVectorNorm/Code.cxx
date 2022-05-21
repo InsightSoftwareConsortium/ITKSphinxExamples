@@ -45,7 +45,7 @@ main()
   // another way to normalize
   if (vnorm != 0.)
   {
-    for (unsigned int i = 0; i < u.GetNumberOfComponents(); i++)
+    for (unsigned int i = 0; i < u.GetNumberOfComponents(); ++i)
     {
       u[i] /= vnorm;
     }

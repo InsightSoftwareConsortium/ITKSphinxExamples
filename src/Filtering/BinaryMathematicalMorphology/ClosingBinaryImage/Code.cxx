@@ -113,9 +113,9 @@ CreateImage(ImageType * const image)
   image->Allocate(true);
 
   // Make a square
-  for (unsigned int r = 40; r < 100; r++)
+  for (unsigned int r = 40; r < 100; ++r)
   {
-    for (unsigned int c = 40; c < 100; c++)
+    for (unsigned int c = 40; c < 100; ++c)
     {
       itk::Index<2> pixelIndex;
       pixelIndex[0] = r;

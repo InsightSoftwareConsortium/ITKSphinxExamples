@@ -24,7 +24,7 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
 
   // Create a list of points
   BlobType::BlobPointListType points;
-  for (unsigned int i = 0; i < 20; i++)
+  for (unsigned int i = 0; i < 20; ++i)
   {
     BlobType::BlobPointType point;
     point.SetPositionInObjectSpace(i, i);

@@ -64,9 +64,9 @@ main()
     // operators[operatorId]->Print(std::cout);
     // std::cout << operators[operatorId]->GetNameOfClass() << std::endl;
 
-    for (auto i = -operatorId->GetSize()[0] / 2; i <= operatorId->GetSize()[0] / 2; i++)
+    for (auto i = -operatorId->GetSize()[0] / 2; i <= operatorId->GetSize()[0] / 2; ++i)
     {
-      for (auto j = -operatorId->GetSize()[1] / 2; j <= operatorId->GetSize()[1] / 2; j++)
+      for (auto j = -operatorId->GetSize()[1] / 2; j <= operatorId->GetSize()[1] / 2; ++j)
       {
         itk::Offset<2> offset;
         offset[0] = i;

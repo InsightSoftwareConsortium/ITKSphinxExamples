@@ -67,9 +67,9 @@ CreateImage(FloatImageType * const image)
   image->Allocate();
 
   // Make a square
-  for (unsigned int r = 40; r < 100; r++)
+  for (unsigned int r = 40; r < 100; ++r)
   {
-    for (unsigned int c = 40; c < 100; c++)
+    for (unsigned int c = 40; c < 100; ++c)
     {
       FloatImageType::IndexType pixelIndex;
       pixelIndex[0] = r;

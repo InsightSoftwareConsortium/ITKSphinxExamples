@@ -65,9 +65,9 @@ CreateImage(ImageType::Pointer image)
   image->Allocate();
 
   // Make two intensity blobs
-  for (unsigned int r = 0; r < NumRows; r++)
+  for (unsigned int r = 0; r < NumRows; ++r)
   {
-    for (unsigned int c = 0; c < NumCols; c++)
+    for (unsigned int c = 0; c < NumCols; ++c)
     {
       ImageType::IndexType pixelIndex;
       pixelIndex[0] = c;

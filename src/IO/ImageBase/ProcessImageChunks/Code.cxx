@@ -69,19 +69,19 @@ main(int argc, char * argv[])
   // in order to create samples for a deep learning algorithm.
   // ImageRegionSplitterMultidimensional has a similar
   // functionality to what is implemented below.
-  for (int z = 0; z < zDiv; z++)
+  for (int z = 0; z < zDiv; ++z)
   {
     start[2] = fullSize[2] * double(z) / zDiv;
     end[2] = fullSize[2] * (z + 1.0) / zDiv;
     size[2] = end[2] - start[2];
 
-    for (int y = 0; y < yDiv; y++)
+    for (int y = 0; y < yDiv; ++y)
     {
       start[1] = fullSize[1] * double(y) / yDiv;
       end[1] = fullSize[1] * (y + 1.0) / yDiv;
       size[1] = end[1] - start[1];
 
-      for (int x = 0; x < xDiv; x++)
+      for (int x = 0; x < xDiv; ++x)
       {
         start[0] = fullSize[0] * double(x) / xDiv;
         end[0] = fullSize[0] * (x + 1.0) / xDiv;

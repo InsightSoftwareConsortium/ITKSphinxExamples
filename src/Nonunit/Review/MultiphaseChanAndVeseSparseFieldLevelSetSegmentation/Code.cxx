@@ -92,7 +92,7 @@ main(int argc, char ** argv)
   levelSetFilter->SetUseImageSpacing(1);
   levelSetFilter->SetInPlace(false);
 
-  for (unsigned int i = 0; i < 3; i++)
+  for (unsigned int i = 0; i < 3; ++i)
   {
     levelSetFilter->GetDifferenceFunction(i)->SetDomainFunction(domainFunction);
     levelSetFilter->GetDifferenceFunction(i)->SetCurvatureWeight(curvature_weight);

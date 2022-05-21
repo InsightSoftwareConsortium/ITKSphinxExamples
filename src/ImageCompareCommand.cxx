@@ -339,7 +339,7 @@ RegressionTestImage(const char * testImageFilename,
     region.SetIndex(index);
 
     size = rescale->GetOutput()->GetLargestPossibleRegion().GetSize();
-    for (unsigned int i = 2; i < ITK_TEST_DIMENSION_MAX; i++)
+    for (unsigned int i = 2; i < ITK_TEST_DIMENSION_MAX; ++i)
     {
       size[i] = 0;
     }

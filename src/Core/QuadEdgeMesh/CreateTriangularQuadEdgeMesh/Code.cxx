@@ -53,11 +53,11 @@ main(int argc, char * argv[])
   using PointIdentifier = MeshType::PointIdentifier;
   PointIdentifier k = 0;
 
-  for (int i = 0; i < 10; i++)
+  for (int i = 0; i < 10; ++i)
   {
     p[0] = static_cast<CoordType>(i);
 
-    for (int j = 0; j < 10; j++)
+    for (int j = 0; j < 10; ++j)
     {
       p[1] = static_cast<CoordType>(j);
       points->SetElement(k, p);
@@ -69,9 +69,9 @@ main(int argc, char * argv[])
 
   k = 0;
 
-  for (int i = 0; i < 9; i++)
+  for (int i = 0; i < 9; ++i)
   {
-    for (int j = 0; j < 9; j++)
+    for (int j = 0; j < 9; ++j)
     {
       mesh->AddFaceTriangle(k, k + 1, k + 11);
       mesh->AddFaceTriangle(k, k + 11, k + 10);

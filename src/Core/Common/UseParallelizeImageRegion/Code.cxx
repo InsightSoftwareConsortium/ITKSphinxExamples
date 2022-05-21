@@ -62,7 +62,7 @@ segmentationAndCustomColorization(InputImageType::Pointer inImage)
         OutputPixelType             p;
         p.SetAlpha(iIt.Get());
         static_assert(Dimension <= 3, "Dimension has to be 2 or 3");
-        for (unsigned d = 0; d < Dimension; d++)
+        for (unsigned d = 0; d < Dimension; ++d)
         {
           p.SetElement(d, ind[d]);
         }

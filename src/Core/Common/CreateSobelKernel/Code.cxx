@@ -29,7 +29,7 @@ main()
 
   std::cout << sobelOperator << std::endl;
 
-  for (unsigned int i = 0; i < 9; i++)
+  for (unsigned int i = 0; i < 9; ++i)
   {
     std::cout << sobelOperator.GetElement(i) << std::endl;
   }

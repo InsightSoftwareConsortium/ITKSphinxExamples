@@ -76,9 +76,9 @@ CreateImage1(TImage * const image)
   image->FillBuffer(0);
 
   // Create a diagonal white line through the image
-  for (typename TImage::IndexValueType i = 0; i < 20; i++)
+  for (typename TImage::IndexValueType i = 0; i < 20; ++i)
   {
-    for (typename TImage::IndexValueType j = 0; j < 20; j++)
+    for (typename TImage::IndexValueType j = 0; j < 20; ++j)
     {
       if (i == j)
       {
@@ -104,9 +104,9 @@ CreateImage2(TImage * const image)
   image->FillBuffer(0);
 
   // Create a vertical line of white pixels down the center of the image
-  for (typename TImage::IndexValueType i = 0; i < 20; i++)
+  for (typename TImage::IndexValueType i = 0; i < 20; ++i)
   {
-    for (typename TImage::IndexValueType j = 0; j < 20; j++)
+    for (typename TImage::IndexValueType j = 0; j < 20; ++j)
     {
       if (i == 10)
       {

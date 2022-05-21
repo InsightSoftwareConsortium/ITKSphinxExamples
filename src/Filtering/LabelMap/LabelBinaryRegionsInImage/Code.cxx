@@ -40,14 +40,14 @@ main()
             << std::endl;
 
   // Loop over each region
-  for (unsigned int i = 0; i < binaryImageToLabelMapFilter->GetOutput()->GetNumberOfLabelObjects(); i++)
+  for (unsigned int i = 0; i < binaryImageToLabelMapFilter->GetOutput()->GetNumberOfLabelObjects(); ++i)
   {
     // Get the ith region
     BinaryImageToLabelMapFilterType::OutputImageType::LabelObjectType * labelObject =
       binaryImageToLabelMapFilter->GetOutput()->GetNthLabelObject(i);
 
     // Output the pixels composing the region
-    for (unsigned int pixelId = 0; pixelId < labelObject->Size(); pixelId++)
+    for (unsigned int pixelId = 0; pixelId < labelObject->Size(); ++pixelId)
     {
       std::cout << "Object " << i << " contains pixel " << labelObject->GetIndex(pixelId) << std::endl;
     }

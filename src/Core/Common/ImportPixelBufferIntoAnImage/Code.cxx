@@ -73,10 +73,10 @@ main(int argc, char * argv[])
   const double radius2 = radius * radius;
   PixelType *  it = localBuffer;
 
-  for (unsigned int y = 0; y < size[1]; y++)
+  for (unsigned int y = 0; y < size[1]; ++y)
   {
     const double dy = static_cast<double>(y) - static_cast<double>(size[1]) / 2.0;
-    for (unsigned int x = 0; x < size[0]; x++)
+    for (unsigned int x = 0; x < size[0]; ++x)
     {
       const double dx = static_cast<double>(x) - static_cast<double>(size[0]) / 2.0;
       const double d2 = dx * dx + dy * dy;

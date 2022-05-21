@@ -41,7 +41,7 @@ main()
             << std::endl;
 
   // Loop over all of the blobs
-  for (unsigned int i = 0; i < binaryImageToShapeLabelMapFilter->GetOutput()->GetNumberOfLabelObjects(); i++)
+  for (unsigned int i = 0; i < binaryImageToShapeLabelMapFilter->GetOutput()->GetNumberOfLabelObjects(); ++i)
   {
     BinaryImageToShapeLabelMapFilterType::OutputImageType::LabelObjectType * labelObject =
       binaryImageToShapeLabelMapFilter->GetOutput()->GetNthLabelObject(i);

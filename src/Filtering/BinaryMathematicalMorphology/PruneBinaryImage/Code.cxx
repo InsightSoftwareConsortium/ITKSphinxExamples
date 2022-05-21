@@ -92,9 +92,9 @@ CreateImage(TImage * const image)
   image->Allocate(true);
 
   // Make a square
-  for (int r = 40; r < 100; r++)
+  for (int r = 40; r < 100; ++r)
   {
-    for (int c = 40; c < 100; c++)
+    for (int c = 40; c < 100; ++c)
     {
       typename TImage::IndexType pixelIndex = { { r, c } };
       image->SetPixel(pixelIndex, 50);
