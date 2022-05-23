@@ -19,64 +19,66 @@
 #include "itkMesh.h"
 #include "itkLineCell.h"
 
-int main(int, char *[])
+int
+main(int, char *[])
 {
-  typedef float                     PixelType;
-  typedef itk::Mesh< PixelType, 2 > MeshType;
+  using PixelType = float;
+  using MeshType = itk::Mesh<PixelType, 2>;
 
-  typedef MeshType::CellType        CellType;
-  typedef itk::LineCell< CellType > LineType;
+  using CellType = MeshType::CellType;
+  using LineType = itk::LineCell<CellType>;
 
-  MeshType::Pointer  mesh = MeshType::New();
+  auto mesh = MeshType::New();
 
-  typedef MeshType::PointType PointType;
+  using PointType = MeshType::PointType;
   PointType point;
 
   const unsigned int numberOfPoints = 10;
-  for(unsigned int id=0; id<numberOfPoints; id++)
-    {
-    point[0] = static_cast<PointType::ValueType>( id ); // x
-    point[1] = std::log( static_cast<double>( id ) + itk::Math::eps ); // y
-    mesh->SetPoint( id, point );
-    }
+  for (unsigned int id = 0; id < numberOfPoints; id++)
+  {
+    point[0] = static_cast<PointType::ValueType>(id);              // x
+    point[1] = std::log(static_cast<double>(id) + itk::Math::eps); // y
+    mesh->SetPoint(id, point);
+  }
 
   CellType::CellAutoPointer line;
-  const unsigned int numberOfCells = numberOfPoints-1;
-  for(unsigned int cellId=0; cellId<numberOfCells; cellId++)
-    {
-    line.TakeOwnership(  new LineType  );
-    line->SetPointId( 0, cellId   ); // first point
-    line->SetPointId( 1, cellId+1 ); // second point
-    mesh->SetCell( cellId, line );   // insert the cell
-    }
+  const unsigned int        numberOfCells = numberOfPoints - 1;
+  for (unsigned int cellId = 0; cellId < numberOfCells; cellId++)
+  {
+    line.TakeOwnership(new LineType);
+    line->SetPointId(0, cellId);     // first point
+    line->SetPointId(1, cellId + 1); // second point
+    mesh->SetCell(cellId, line);     // insert the cell
+  }
 
   std::cout << "Points = " << mesh->GetNumberOfPoints() << std::endl;
-  std::cout << "Cells  = " << mesh->GetNumberOfCells()  << std::endl << std::endl;
+  std::cout << "Cells  = " << mesh->GetNumberOfCells() << std::endl << std::endl;
 
   // assign data to cells
-  for(unsigned int cellId=0; cellId<numberOfCells; cellId++)
-    {
-    mesh->SetCellData( cellId, static_cast<PixelType>( cellId * cellId ) );
-    }
+  for (unsigned int cellId = 0; cellId < numberOfCells; cellId++)
+  {
+    mesh->SetCellData(cellId, static_cast<PixelType>(cellId * cellId));
+  }
 
   // retrieve data from cells
-  for(unsigned int cellId=0; cellId<numberOfCells; ++cellId)
-    {
+  for (unsigned int cellId = 0; cellId < numberOfCells; ++cellId)
+  {
     PixelType value = static_cast<PixelType>(0.0);
-    mesh->GetCellData( cellId, &value );
+    mesh->GetCellData(cellId, &value);
     std::cout << "Cell " << cellId << " = " << value << std::endl;
-    }
+  }
 
   // access via an iterator
-  typedef MeshType::CellDataContainer::ConstIterator CellDataIterator;
-  CellDataIterator cellDataIterator  = mesh->GetCellData()->Begin();
-  CellDataIterator end               = mesh->GetCellData()->End();
-  while( cellDataIterator != end )
-    {
+  using CellDataIterator = MeshType::CellDataContainer::ConstIterator;
+  CellDataIterator cellDataIterator = mesh->GetCellData()->Begin();
+  CellDataIterator end = mesh->GetCellData()->End();
+
+  while (cellDataIterator != end)
+  {
     PixelType cellValue = cellDataIterator.Value();
-    //std::cout << cellValue << std::endl; //same values as before
+    // std::cout << cellValue << std::endl; //same values as before
     ++cellDataIterator;
-    }
+  }
 
   return EXIT_SUCCESS;
 }
