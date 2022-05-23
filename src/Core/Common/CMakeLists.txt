@@ -207,3 +207,4 @@ compare_to_baseline(EXAMPLE_NAME MakeOutOfBoundsPixelsReturnConstValue
 endif()
 
 add_example(SetDefaultNumberOfThreads)
+add_example(EagerModuleLoadingPython)
