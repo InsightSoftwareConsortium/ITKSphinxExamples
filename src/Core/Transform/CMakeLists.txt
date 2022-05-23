@@ -15,7 +15,7 @@ compare_to_baseline(
 
 add_example(ScaleAnImage)
 compare_to_baseline(EXAMPLE_NAME ScaleAnImage
-  BASELINE_PREFIX ScaleAnImageOutput
+  BASELINE_PREFIX ScaleAnImageOutputBaseline
   )
 
 add_example(TranslateAVectorImage)
