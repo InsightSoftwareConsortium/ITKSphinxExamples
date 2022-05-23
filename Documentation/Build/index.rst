@@ -1,4 +1,4 @@
-How to build, run, and visualize
+Build, Run, Visualize
 ================================
 
 .. _run-python-examples:
@@ -17,7 +17,6 @@ Next, install the *itk* package::
 .. figure:: DownloadExampleHighlighted.png
   :alt: Download an example
   :align: center
-  :width: 600
 
   Download `an example
   <https://itk.org/ITKExamples/src/Filtering/BinaryMathematicalMorphology/DilateABinaryImage/Documentation.html>`_
