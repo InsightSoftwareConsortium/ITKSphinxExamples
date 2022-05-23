@@ -1,7 +1,7 @@
 :name: ImageBufferAndIndexRange
 
-Image Buffer and Index Range
-============================
+Iterate Over an Image Buffer and an Index Range
+===============================================
 
 .. index::
    single: ImageBufferRange
