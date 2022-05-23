@@ -1,7 +1,7 @@
 :name: DilateUsingFunctionalGrayscale
 
 Dilate a grayscale image using a functional kernel
-========================
+===================================================
 
 .. index::
   single: BinaryBallStructuringElement

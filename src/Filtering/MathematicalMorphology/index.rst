@@ -6,6 +6,7 @@ MathematicalMorphology
 
   CreateABinaryBallStructuringElement/Documentation.rst
   DilateAGrayscaleImage/Documentation.rst
+  DilateUsingFunctionalGrayscale/Documentation.rst
   ErodeAGrayscaleImage/Documentation.rst
   ErodeBinaryImageUsingFlatStruct/Documentation.rst
   GenerateStructureElementsWithAccurateArea/Documentation.rst
