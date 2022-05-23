@@ -6,6 +6,11 @@ Interface ITK with NumPy Array
 .. index::
    single: Image
 
+.. toctree::
+  :maxdepth: 1
+
+  ConvertNumPyArrayToitkImage.ipynb
+
 Synopsis
 --------
 
