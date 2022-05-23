@@ -27,47 +27,50 @@ PixelType = itk.F  # float or double
 
 MeshType = itk.Mesh[PixelType, Dimension]
 PointType = itk.Point[itk.D, Dimension]
-# CellTraits = itk.itkCellTraitsInfo._2FFULLULLULLPF2MCULLPF2
-# CellType = itk.CellInterface[PixelType, CellTraits]()
-# LineType = itk.LineCell()
-
 
 mesh = MeshType.New()
 
-point = PointType()
-
 number_of_points = 10
 for point_id in range(number_of_points):
-    point[0] = float(point_id)
-    point[1] = np.log(float(point_id) + np.finfo(float).eps)
+    point = [float(point_id), np.log(float(point_id) + np.finfo(float).eps)]
     mesh.SetPoint(point_id, point)
 
 number_of_cells = number_of_points - 1
-# for cell_id in range(number_of_cells):
-#
-# CellType::CellAutoPointer line;
-# const unsigned int numberOfCells = numberOfPoints-1;
-# for(unsigned int cellId=0; cellId<numberOfCells; cellId++)
-#   {
-#   line.TakeOwnership(  new LineType  );
-#   line->SetPointId( 0, cellId   ); // first point
-#   line->SetPointId( 1, cellId+1 ); // second point
-#   mesh->SetCell( cellId, line );   // insert the cell
-#   }
-#
-# std::cout << "Points = " << mesh->GetNumberOfPoints() << std::endl;
-# std::cout << "Cells  = " << mesh->GetNumberOfCells()  << std::endl << std::endl;
-#
-# # assign data to cells
-# for(unsigned int cellId=0; cellId<numberOfCells; cellId++)
-#   {
-#   mesh->SetCellData( cellId, static_cast<PixelType>( cellId * cellId ) );
-#   }
-#
-# # retrieve data from cells
-# for(unsigned int cellId=0; cellId<numberOfCells; ++cellId)
-#   {
-#   PixelType value = static_cast<PixelType>(0.0);
-#   mesh->GetCellData( cellId, &value );
-#   std::cout << "Cell " << cellId << " = " << value << std::endl;
-#   }
+
+# All cells are of type LINE so creating numpy of shape [number_of_cells x 2]
+cells_array = np.zeros([number_of_cells, 2], dtype=np.uint64)
+
+for cell_id in range(number_of_cells):
+    cells_array[cell_id][0] = cell_id
+    cells_array[cell_id][1] = cell_id + 1
+
+cells_vector = itk.vector_container_from_array(cells_array.flatten())
+
+# When all cells are same use the second arguement to pass the cell type
+mesh.SetCellsArray(cells_vector, itk.CommonEnums.CellGeometry_LINE_CELL)
+
+print("Points = ", mesh.GetNumberOfPoints())
+print("Cells = ", mesh.GetNumberOfCells())
+
+# Assign data to cells
+
+# This can also be done by setting large array in one function call
+# which would be more efficient than the following approach
+for cell_id in range(number_of_cells):
+    mesh.SetCellData(cell_id, cell_id * cell_id)
+
+
+# Retrieve data from cells
+cell_data = mesh.GetCellData()
+
+# Obtain numpy array from the vector_container
+cell_data_np = itk.array_from_vector_container(cell_data)
+
+for cell_id in range(number_of_cells):
+    # Demonstrating two ways of getting the element
+    # First using GetElement and second using the numpy array
+    if cell_id % 2 == 0:
+        print("Cell ", cell_id, " = ", cell_data.GetElement(cell_id))
+    else:
+        temp = cell_data_np[cell_id]
+        print("Cell ", cell_id, " = ", cell_data_np[cell_id])
