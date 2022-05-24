@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(ScalePixelSumToConstant Code.cxx)
-target_link_libraries(ScalePixelSumToConstant ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ScalePixelSumToConstant
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
   )
@@ -24,4 +24,4 @@ enable_testing()
 
 
 add_test(NAME ScalePixelSumToConstantTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ScalePixelSumToConstant)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})

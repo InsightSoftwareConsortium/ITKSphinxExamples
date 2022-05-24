@@ -5,10 +5,10 @@ project(ConvertFileFormats)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(ConvertFileFormats Code.cxx)
-target_link_libraries(ConvertFileFormats ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ConvertFileFormats
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/IO/ImageBase
   COMPONENT Runtime
   )
@@ -20,7 +20,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME ConvertFileFormatsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ConvertFileFormats
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
     ${CMAKE_CURRENT_BINARY_DIR}/Output.jpg
   )

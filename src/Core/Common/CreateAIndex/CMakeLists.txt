@@ -5,10 +5,10 @@ project(CreateAIndex)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(CreateAIndex Code.py Code.cxx)
-target_link_libraries(CreateAIndex ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS CreateAIndex
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
@@ -20,7 +20,7 @@ install(FILES Code.cxx Code.py CMakeLists.txt
 
 enable_testing()
 add_test(NAME CreateAIndexTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateAIndex)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME CreateAIndexTestPython

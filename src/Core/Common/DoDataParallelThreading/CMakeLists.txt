@@ -5,10 +5,10 @@ project(DoDataParallelThreading)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(DoDataParallelThreading Code.cxx)
-target_link_libraries(DoDataParallelThreading ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS DoDataParallelThreading
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
@@ -20,5 +20,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME DoDataParallelThreadingTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DoDataParallelThreading
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
 )

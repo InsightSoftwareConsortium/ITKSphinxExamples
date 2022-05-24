@@ -4,10 +4,10 @@ project(ReadDICOMSeriesAndWrite3DImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(ReadDICOMSeriesAndWrite3DImage Code.cxx)
-target_link_libraries(ReadDICOMSeriesAndWrite3DImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ReadDICOMSeriesAndWrite3DImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/IO/GDCM
   COMPONENT Runtime
   )
@@ -19,7 +19,7 @@ install(FILES Code.cxx CMakeLists.txt Code.py
 
 enable_testing()
 add_test(NAME ReadDICOMSeriesAndWrite3DImage
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadDICOMSeriesAndWrite3DImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     "${CMAKE_CURRENT_BINARY_DIR}"
     "${CMAKE_CURRENT_BINARY_DIR}/Image3D.nrrd"
     )

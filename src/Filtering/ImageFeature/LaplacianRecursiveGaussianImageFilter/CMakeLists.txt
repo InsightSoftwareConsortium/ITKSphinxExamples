@@ -5,10 +5,10 @@ project(LaplacianRecursiveGaussianImageFilter)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(LaplacianRecursiveGaussianImageFilter Code.cxx)
-target_link_libraries(LaplacianRecursiveGaussianImageFilter ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS LaplacianRecursiveGaussianImageFilter
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature
   COMPONENT Runtime
 )
@@ -24,7 +24,7 @@ set(input_image ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png)
 set(output_image Output.mha)
 
 add_test(NAME LaplacianRecursiveGaussianImageFilterTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LaplacianRecursiveGaussianImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     ${output_image}
   )

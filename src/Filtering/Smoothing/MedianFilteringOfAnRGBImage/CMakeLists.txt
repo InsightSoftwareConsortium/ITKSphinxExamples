@@ -5,10 +5,10 @@ project(MedianFilteringOfAnRGBImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(MedianFilteringOfAnRGBImage Code.cxx)
-target_link_libraries(MedianFilteringOfAnRGBImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS MedianFilteringOfAnRGBImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/Smoothing
   COMPONENT Runtime
 )
@@ -20,7 +20,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME MedianFilteringOfAnRGBImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MedianFilteringOfAnRGBImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/GourdsRGB.png
     Output.png
     2

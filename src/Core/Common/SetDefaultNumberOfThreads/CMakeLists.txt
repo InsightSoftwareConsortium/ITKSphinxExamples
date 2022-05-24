@@ -5,10 +5,10 @@ project(SetDefaultNumberOfThreads)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(SetDefaultNumberOfThreads Code.cxx)
-target_link_libraries(SetDefaultNumberOfThreads ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS SetDefaultNumberOfThreads
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
@@ -23,7 +23,7 @@ enable_testing()
 set(test_options 3)
 
 add_test(NAME SetDefaultNumberOfThreadsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SetDefaultNumberOfThreads
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   ${test_options}
 )
 

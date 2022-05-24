@@ -4,10 +4,10 @@ project(OverlayLabelMapOnTopOfAnImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(OverlayLabelMapOnTopOfAnImage Code.cxx)
-target_link_libraries(OverlayLabelMapOnTopOfAnImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS OverlayLabelMapOnTopOfAnImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageFusion
   COMPONENT Runtime
   )
@@ -27,7 +27,7 @@ set(input_images
 set(output_image Output.png)
 
 add_test(NAME OverlayLabelMapOnTopOfAnImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/OverlayLabelMapOnTopOfAnImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_images}
     ${output_image}
   )

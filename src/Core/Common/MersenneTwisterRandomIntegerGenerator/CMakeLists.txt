@@ -5,10 +5,10 @@ project(MersenneTwisterRandomIntegerGenerator)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(MersenneTwisterRandomIntegerGenerator Code.cxx)
-target_link_libraries(MersenneTwisterRandomIntegerGenerator ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS MersenneTwisterRandomIntegerGenerator
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
@@ -20,4 +20,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME MersenneTwisterRandomIntegerGeneratorTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MersenneTwisterRandomIntegerGenerator)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})

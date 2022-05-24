@@ -5,10 +5,10 @@ project(VectorDotProduct)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(VectorDotProduct Code.cxx Code.py)
-target_link_libraries(VectorDotProduct ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx Code.py)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS VectorDotProduct
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
@@ -20,7 +20,7 @@ install(FILES Code.cxx Code.py CMakeLists.txt
 
 enable_testing()
 add_test(NAME VectorDotProductTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/VectorDotProduct)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME VectorDotProductTestPython

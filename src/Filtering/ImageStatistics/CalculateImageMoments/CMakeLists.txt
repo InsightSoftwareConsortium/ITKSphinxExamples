@@ -5,10 +5,10 @@ project(CalculateImageMoments)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(CalculateImageMoments Code.cxx)
-target_link_libraries(CalculateImageMoments ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS CalculateImageMoments
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKExamples/Filtering/ImageStatistics
   COMPONENT Runtime
 )
@@ -23,7 +23,7 @@ enable_testing()
 set(input_image ${CMAKE_CURRENT_BINARY_DIR}/ellipse.mha)
 
 add_test(NAME CalculateImageMomentsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CalculateImageMoments
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   ${input_image}
 )
 

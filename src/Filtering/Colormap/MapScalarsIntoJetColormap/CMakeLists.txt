@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(MapScalarsIntoJetColormap Code.cxx)
-target_link_libraries(MapScalarsIntoJetColormap ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS MapScalarsIntoJetColormap
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/Colormap
   COMPONENT Runtime
   )
@@ -22,5 +22,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME MapScalarsIntoJetColormapTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MapScalarsIntoJetColormap)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
 

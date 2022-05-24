@@ -5,10 +5,10 @@ project(WriteATIFFImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(WriteATIFFImage Code.cxx)
-target_link_libraries(WriteATIFFImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS WriteATIFFImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/IO/TIFF/
   COMPONENT Runtime
 )
@@ -20,5 +20,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME WriteATIFFImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/WriteATIFFImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/Output.tif)

@@ -5,10 +5,10 @@ project(GetListOfFacesAroundAGivenVertex)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(GetListOfFacesAroundAGivenVertex Code.cxx)
-target_link_libraries(GetListOfFacesAroundAGivenVertex ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS GetListOfFacesAroundAGivenVertex
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/QuadEdgeMesh
   COMPONENT Runtime
   )
@@ -20,4 +20,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME GetListOfFacesAroundAGivenVertexTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/GetListOfFacesAroundAGivenVertex ${CMAKE_CURRENT_BINARY_DIR}/genusZeroSurface01.vtk 0)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME} ${CMAKE_CURRENT_BINARY_DIR}/genusZeroSurface01.vtk 0)

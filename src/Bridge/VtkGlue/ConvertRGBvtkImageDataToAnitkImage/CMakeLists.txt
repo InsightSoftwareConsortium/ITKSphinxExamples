@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(ConvertRGBvtkImageDataToAnitkImage Code.cxx)
-target_link_libraries(ConvertRGBvtkImageDataToAnitkImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ConvertRGBvtkImageDataToAnitkImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
@@ -25,6 +25,6 @@ enable_testing()
 set(input_image ${CMAKE_CURRENT_BINARY_DIR}/VisibleWomanEyeSlice.png)
 
 add_test(NAME ConvertRGBvtkImageDataToAnitkImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ConvertRGBvtkImageDataToAnitkImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
   )

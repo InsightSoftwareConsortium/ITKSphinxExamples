@@ -5,10 +5,10 @@ project(ConvertRGBImageToGrayscaleImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(ConvertRGBImageToGrayscaleImage Code.cxx)
-target_link_libraries(ConvertRGBImageToGrayscaleImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ConvertRGBImageToGrayscaleImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
 )
@@ -23,7 +23,7 @@ set(input_image ${CMAKE_CURRENT_BINARY_DIR}/itk_eg_logo.png)
 set(output_image Output.png)
 
 add_test(NAME ConvertRGBImageToGrayscaleImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ConvertRGBImageToGrayscaleImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     ${output_image}
 )

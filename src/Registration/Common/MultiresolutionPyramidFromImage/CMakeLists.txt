@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(MultiresolutionPyramidFromImage Code.cxx)
-target_link_libraries(MultiresolutionPyramidFromImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS MultiresolutionPyramidFromImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Registration/Common
   COMPONENT Runtime
   )
@@ -22,5 +22,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME MultiresolutionPyramidFromImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MultiresolutionPyramidFromImage)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
 

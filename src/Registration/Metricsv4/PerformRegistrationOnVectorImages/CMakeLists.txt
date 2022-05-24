@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(PerformRegistrationOnVectorImages Code.cxx)
-target_link_libraries(PerformRegistrationOnVectorImages ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS PerformRegistrationOnVectorImages
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Registration/Metricsv4
   COMPONENT Runtime
   )
@@ -30,7 +30,7 @@ set(test_options
   )
 
 add_test(NAME PerformRegistrationOnVectorImagesTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/PerformRegistrationOnVectorImages
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${fixed_image}
     ${moving_image}
     ${output_image}

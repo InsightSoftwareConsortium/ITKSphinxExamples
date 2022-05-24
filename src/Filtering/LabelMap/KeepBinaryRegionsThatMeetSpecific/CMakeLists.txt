@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(KeepBinaryRegionsThatMeetSpecific Code.cxx)
-target_link_libraries(KeepBinaryRegionsThatMeetSpecific ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS KeepBinaryRegionsThatMeetSpecific
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
@@ -22,6 +22,6 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME KeepBinaryRegionsThatMeetSpecificTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/KeepBinaryRegionsThatMeetSpecific
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   )
 

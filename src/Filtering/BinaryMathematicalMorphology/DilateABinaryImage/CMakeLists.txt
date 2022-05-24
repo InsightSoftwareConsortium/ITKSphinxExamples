@@ -13,11 +13,11 @@ find_package(ITK REQUIRED
 include(${ITK_USE_FILE})
 
 
-add_executable(DilateABinaryImage Code.cxx)
-target_link_libraries(DilateABinaryImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
 
-install(TARGETS DilateABinaryImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/BinaryMathematicalMorphology/
   COMPONENT Runtime
   )
@@ -34,7 +34,7 @@ set(output_image Output.png)
 set(test_options 3)
 
 add_test(NAME DilateABinaryImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DilateABinaryImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   ${input_image}
   ${output_image}
   ${test_options}
