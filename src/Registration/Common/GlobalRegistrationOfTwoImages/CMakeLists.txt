@@ -24,3 +24,9 @@ enable_testing()
 
 add_test(NAME GlobalRegistrationOfTwoImagesTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/GlobalRegistrationOfTwoImages)
+
+if( ITK_WRAP_PYTHON )
+  add_test( NAME GlobalRegistrationOfTwoImagesTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    )
+endif()
