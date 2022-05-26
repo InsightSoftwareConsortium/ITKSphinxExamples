@@ -5,10 +5,10 @@ project(SobelEdgeDetectionImageFilter)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(SobelEdgeDetectionImageFilter Code.cxx)
-target_link_libraries(SobelEdgeDetectionImageFilter ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS SobelEdgeDetectionImageFilter
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature
   COMPONENT Runtime
 )
@@ -24,7 +24,7 @@ set(input_image ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png)
 set(output_image Output.mha)
 
 add_test(NAME SobelEdgeDetectionImageFilterTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SobelEdgeDetectionImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     ${output_image}
 )

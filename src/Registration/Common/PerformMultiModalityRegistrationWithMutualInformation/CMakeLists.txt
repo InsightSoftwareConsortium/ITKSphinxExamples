@@ -5,10 +5,10 @@ project(PerformMultiModalityRegistrationWithMutualInformation)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(PerformMultiModalityRegistrationWithMutualInformation Code.cxx)
-target_link_libraries(PerformMultiModalityRegistrationWithMutualInformation ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS PerformMultiModalityRegistrationWithMutualInformation
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Registration/Common
   COMPONENT Runtime
   )
@@ -20,7 +20,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME PerformMultiModalityRegistrationWithMutualInformationTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/PerformMultiModalityRegistrationWithMutualInformation
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   BrainT1SliceBorder20.png
   BrainProtonDensitySliceShifted13x17y.png
   Output.png

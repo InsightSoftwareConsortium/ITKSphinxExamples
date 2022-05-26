@@ -5,10 +5,10 @@ project(CombineTwoImagesWithCheckerBoardPattern)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(CombineTwoImagesWithCheckerBoardPattern Code.cxx)
-target_link_libraries(CombineTwoImagesWithCheckerBoardPattern ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS CombineTwoImagesWithCheckerBoardPattern
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageCompare
   COMPONENT Runtime
 )
@@ -23,7 +23,7 @@ enable_testing()
 set(output_image Output.png)
 
 add_test(NAME CombineTwoImagesWithCheckerBoardPatternTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CombineTwoImagesWithCheckerBoardPattern
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${output_image}
 )
 

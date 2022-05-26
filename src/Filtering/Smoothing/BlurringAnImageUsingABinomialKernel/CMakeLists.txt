@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(BlurringAnImageUsingABinomialKernel Code.cxx)
-target_link_libraries(BlurringAnImageUsingABinomialKernel ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS BlurringAnImageUsingABinomialKernel
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/Smoothing
   COMPONENT Runtime
   )
@@ -26,7 +26,7 @@ set(output_image Output.png)
 set(test_options 5)
 
 add_test(NAME BlurringAnImageUsingABinomialKernelTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/BlurringAnImageUsingABinomialKernel
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     ${output_image}
     ${test_options}

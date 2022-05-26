@@ -5,10 +5,10 @@ project(SegmentBloodVesselsWithMultiScaleHessianBasedMeasure)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(SegmentBloodVesselsWithMultiScaleHessianBasedMeasure Code.cxx)
-target_link_libraries(SegmentBloodVesselsWithMultiScaleHessianBasedMeasure ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS SegmentBloodVesselsWithMultiScaleHessianBasedMeasure
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Nonunit/Review
   COMPONENT Runtime
   )
@@ -27,7 +27,7 @@ set(sigma_maximum 6.0)
 set(number_of_sigma_steps 3)
 
 add_test(NAME SegmentBloodVesselsWithMultiScaleHessianBasedMeasureTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentBloodVesselsWithMultiScaleHessianBasedMeasure
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     ${output_image}
     ${sigma_minimum}

@@ -8,10 +8,10 @@ project(ResampleAVectorImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(ResampleAVectorImage Code.cxx)
-target_link_libraries(ResampleAVectorImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ResampleAVectorImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid/
   COMPONENT Runtime
   )
@@ -24,7 +24,7 @@ install(FILES Code.cxx CMakeLists.txt Code.py
 enable_testing()
 
 add_test(NAME ResampleAVectorImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ResampleAVectorImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   ${input_image}
   ${output_image}
   )

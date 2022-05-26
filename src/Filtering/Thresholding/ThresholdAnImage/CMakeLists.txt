@@ -5,10 +5,10 @@ project(ThresholdAnImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(ThresholdAnImage Code.cxx)
-target_link_libraries(ThresholdAnImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ThresholdAnImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/Thresholding
   COMPONENT Runtime
   )
@@ -20,7 +20,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME ThresholdAnImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ThresholdAnImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
     ${CMAKE_CURRENT_BINARY_DIR}/Output.png
     64

@@ -16,8 +16,8 @@ if(ENABLE_QUICKVIEW)
     include(${VTK_USE_FILE})
   endif()
 
-  add_executable(SegmentPixelsWithSimilarStats Code.cxx)
-  target_link_libraries(SegmentPixelsWithSimilarStats ${ITK_LIBRARIES} ${VTK_LIBRARIES})
+  add_executable(${PROJECT_NAME} Code.cxx)
+  target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES} ${VTK_LIBRARIES})
 
   if(NOT VTK_VERSION VERSION_LESS "8.90.0")
     vtk_module_autoinit(
@@ -26,11 +26,11 @@ if(ENABLE_QUICKVIEW)
       )
   endif()
 else()
-  add_executable(SegmentPixelsWithSimilarStats Code.cxx)
-  target_link_libraries(SegmentPixelsWithSimilarStats ${ITK_LIBRARIES})
+  add_executable(${PROJECT_NAME} Code.cxx)
+  target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 endif()
 
-install(TARGETS SegmentPixelsWithSimilarStats
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Segmentation/RegionGrowing
   COMPONENT Runtime
   )
@@ -46,7 +46,7 @@ enable_testing()
 set(input_image ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png)
 
 add_test(NAME SegmentPixelsWithSimilarStatsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentPixelsWithSimilarStats
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     100
     50

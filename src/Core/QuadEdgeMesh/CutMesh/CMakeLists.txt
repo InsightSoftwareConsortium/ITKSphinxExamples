@@ -5,10 +5,10 @@ project(CutMesh)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(CutMesh Code.cxx)
-target_link_libraries(CutMesh ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS CutMesh
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/QuadEdgeMesh
   COMPONENT Runtime
   )
@@ -20,7 +20,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME CutMeshTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CutMesh
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/genusZeroSurface01.vtk
     CutMeshTestOutput.vtk
 )

@@ -5,10 +5,10 @@ project(AddOffsetToIndex)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(AddOffsetToIndex Code.cxx Code.py)
-target_link_libraries(AddOffsetToIndex ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx Code.py)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS AddOffsetToIndex
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
@@ -20,7 +20,7 @@ install(FILES Code.cxx Code.py CMakeLists.txt
 
 enable_testing()
 add_test(NAME AddOffsetToIndexTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/AddOffsetToIndex
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   )
 
 if(ITK_WRAP_PYTHON)

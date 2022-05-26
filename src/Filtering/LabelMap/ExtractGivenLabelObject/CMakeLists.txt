@@ -4,10 +4,10 @@ project(ExtractGivenLabelObject)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(ExtractGivenLabelObject Code.cxx)
-target_link_libraries(ExtractGivenLabelObject ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ExtractGivenLabelObject
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap
   COMPONENT Runtime
   )
@@ -19,7 +19,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME ExtractGivenLabelObjectTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ExtractGivenLabelObject
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/2th_cthead1.png
     Output1.png
     Output2.png

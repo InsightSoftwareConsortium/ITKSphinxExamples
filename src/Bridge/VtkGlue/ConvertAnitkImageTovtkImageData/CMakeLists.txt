@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(ConvertAnitkImageTovtkImageData Code.cxx)
-target_link_libraries(ConvertAnitkImageTovtkImageData ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ConvertAnitkImageTovtkImageData
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
@@ -25,6 +25,6 @@ enable_testing()
 set(input_image ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png)
 
 add_test(NAME ConvertAnitkImageTovtkImageDataTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ConvertAnitkImageTovtkImageData
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
   )

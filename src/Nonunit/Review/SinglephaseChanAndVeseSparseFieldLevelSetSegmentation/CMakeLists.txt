@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(SinglephaseChanAndVeseSparseFieldLevelSetSegmentation Code.cxx)
-target_link_libraries(SinglephaseChanAndVeseSparseFieldLevelSetSegmentation ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS SinglephaseChanAndVeseSparseFieldLevelSetSegmentation
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Nonunit/Review
   COMPONENT Runtime
   )
@@ -22,4 +22,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME SinglephaseChanAndVeseSparseFieldLevelSetSegmentationTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SinglephaseChanAndVeseSparseFieldLevelSetSegmentation)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})

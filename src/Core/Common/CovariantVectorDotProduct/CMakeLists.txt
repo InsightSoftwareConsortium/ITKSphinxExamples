@@ -5,10 +5,10 @@ project(CovariantVectorDotProduct)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(CovariantVectorDotProduct Code.cxx)
-target_link_libraries(CovariantVectorDotProduct ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS CovariantVectorDotProduct
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
@@ -20,4 +20,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME CovariantVectorDotProductTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CovariantVectorDotProduct)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})

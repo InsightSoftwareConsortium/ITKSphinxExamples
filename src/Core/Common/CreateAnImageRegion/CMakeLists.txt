@@ -5,10 +5,10 @@ project(CreateAnImageRegion)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(CreateAnImageRegion Code.cxx Code.py)
-target_link_libraries(CreateAnImageRegion ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx Code.py)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS CreateAnImageRegion
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
@@ -21,7 +21,7 @@ install(FILES Code.cxx Code.py CMakeLists.txt
 enable_testing()
 set(testOutputRegex "ImageRegion")
 add_test(NAME CreateAnImageRegionTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateAnImageRegion)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
 set_tests_properties(CreateAnImageRegionTest PROPERTIES
     PASS_REGULAR_EXPRESSION "${testOutputRegex}")
 

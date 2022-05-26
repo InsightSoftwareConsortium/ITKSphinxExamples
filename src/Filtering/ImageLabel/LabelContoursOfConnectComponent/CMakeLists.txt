@@ -17,8 +17,8 @@ if(ENABLE_QUICKVIEW)
     include(${VTK_USE_FILE})
   endif()
 
-  add_executable(LabelContoursOfConnectComponent Code.cxx)
-  target_link_libraries(LabelContoursOfConnectComponent ${ITK_LIBRARIES} ${VTK_LIBRARIES})
+  add_executable(${PROJECT_NAME} Code.cxx)
+  target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES} ${VTK_LIBRARIES})
 
   if(NOT VTK_VERSION VERSION_LESS "8.90.0")
     vtk_module_autoinit(
@@ -27,11 +27,11 @@ if(ENABLE_QUICKVIEW)
        )
   endif()
 else()
-  add_executable(LabelContoursOfConnectComponent Code.cxx)
-  target_link_libraries(LabelContoursOfConnectComponent ${ITK_LIBRARIES})
+  add_executable(${PROJECT_NAME} Code.cxx)
+  target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 endif()
 
-install(TARGETS LabelContoursOfConnectComponent
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageLabel
   COMPONENT Runtime
   )
@@ -44,4 +44,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME LabelContoursOfConnectComponentTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LabelContoursOfConnectComponent)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})

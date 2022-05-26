@@ -5,10 +5,10 @@ project(DuplicateAnImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(DuplicateAnImage Code.cxx)
-target_link_libraries(DuplicateAnImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS DuplicateAnImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
@@ -20,7 +20,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME DuplicateAnImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DuplicateAnImage)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME DuplicateAnImageTestPython

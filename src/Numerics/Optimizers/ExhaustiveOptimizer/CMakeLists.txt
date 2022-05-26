@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(ExhaustiveOptimizer Code.cxx)
-target_link_libraries(ExhaustiveOptimizer ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ExhaustiveOptimizer
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Numerics/Optimizers
   COMPONENT Runtime
   )
@@ -26,7 +26,7 @@ set(fixed_image ${CMAKE_CURRENT_BINARY_DIR}/orange.jpg)
 set(moving_image ${CMAKE_CURRENT_BINARY_DIR}/apple.jpg)
 
 add_test(NAME ExhaustiveOptimizerTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ExhaustiveOptimizer
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
 	${fixed_image}
 	${moving_image})
 	

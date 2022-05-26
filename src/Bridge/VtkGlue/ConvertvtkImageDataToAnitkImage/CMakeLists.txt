@@ -14,8 +14,8 @@ if(VTK_VERSION VERSION_LESS "8.90.0")
   include(${VTK_USE_FILE})
 endif()
 
-add_executable(ConvertvtkImageDataToAnitkImage Code.cxx)
-target_link_libraries(ConvertvtkImageDataToAnitkImage
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME}
   ${ITK_LIBRARIES}
   ${VTK_LIBRARIES}
   )
@@ -27,7 +27,7 @@ if(NOT VTK_VERSION VERSION_LESS "8.90.0")
     )
 endif()
 
-install(TARGETS ConvertvtkImageDataToAnitkImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Bridge/VtkGlue
   COMPONENT Runtime
   )
@@ -43,6 +43,6 @@ enable_testing()
 set(input_image ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png)
 
 add_test(NAME ConvertvtkImageDataToAnitkImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ConvertvtkImageDataToAnitkImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
   )

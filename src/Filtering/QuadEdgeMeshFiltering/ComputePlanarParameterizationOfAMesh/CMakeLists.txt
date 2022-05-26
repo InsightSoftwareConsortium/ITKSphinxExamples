@@ -5,10 +5,10 @@ project(ComputePlanarParameterizationOfAMesh)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(ComputePlanarParameterizationOfAMesh Code.cxx)
-target_link_libraries(ComputePlanarParameterizationOfAMesh ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ComputePlanarParameterizationOfAMesh
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/QuadEdgeMeshFiltering
   COMPONENT Runtime
   )

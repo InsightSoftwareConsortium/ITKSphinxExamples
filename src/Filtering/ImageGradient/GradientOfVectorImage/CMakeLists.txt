@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(GradientOfVectorImage Code.cxx)
-target_link_libraries(GradientOfVectorImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS GradientOfVectorImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGradient
   COMPONENT Runtime
   )
@@ -22,4 +22,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME GradientOfVectorImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/GradientOfVectorImage)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})

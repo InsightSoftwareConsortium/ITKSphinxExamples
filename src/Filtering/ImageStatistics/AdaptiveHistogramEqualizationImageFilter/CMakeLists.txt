@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(AdaptiveHistogramEqualizationImageFilter Code.cxx)
-target_link_libraries(AdaptiveHistogramEqualizationImageFilter ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS AdaptiveHistogramEqualizationImageFilter
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/Statistics
   COMPONENT Runtime
   )
@@ -39,7 +39,7 @@ set(radius04 10)
 
 
 add_test(NAME AdaptiveHistogramEqualizationImageFilterTest01
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/AdaptiveHistogramEqualizationImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     AdaptiveHistogramEqualizationImageFilterTest01.png
     ${alpha01}
@@ -47,7 +47,7 @@ add_test(NAME AdaptiveHistogramEqualizationImageFilterTest01
     ${radius01}
   )
 add_test(NAME AdaptiveHistogramEqualizationImageFilterTest02
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/AdaptiveHistogramEqualizationImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     AdaptiveHistogramEqualizationImageFilterTest02.png
     ${alpha02}
@@ -55,7 +55,7 @@ add_test(NAME AdaptiveHistogramEqualizationImageFilterTest02
     ${radius02}
   )
 add_test(NAME AdaptiveHistogramEqualizationImageFilterTest03
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/AdaptiveHistogramEqualizationImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     AdaptiveHistogramEqualizationImageFilterTest03.png
     ${alpha03}
@@ -63,7 +63,7 @@ add_test(NAME AdaptiveHistogramEqualizationImageFilterTest03
     ${radius03}
   )
 add_test(NAME AdaptiveHistogramEqualizationImageFilterTest04
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/AdaptiveHistogramEqualizationImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     AdaptiveHistogramEqualizationImageFilterTest04.png
     ${alpha04}
@@ -71,7 +71,7 @@ add_test(NAME AdaptiveHistogramEqualizationImageFilterTest04
     ${radius01}
   )
  add_test(NAME AdaptiveHistogramEqualizationImageFilterTest05
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/AdaptiveHistogramEqualizationImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     AdaptiveHistogramEqualizationImageFilterTest05.png
     ${alpha05}
@@ -79,7 +79,7 @@ add_test(NAME AdaptiveHistogramEqualizationImageFilterTest04
     ${radius02}
   )
   add_test(NAME AdaptiveHistogramEqualizationImageFilterTest06
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/AdaptiveHistogramEqualizationImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     AdaptiveHistogramEqualizationImageFilterTest06.png
     ${alpha05}

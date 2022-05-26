@@ -5,10 +5,10 @@ project(ApplyGradientRecursiveGaussianWithVectorInput)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(ApplyGradientRecursiveGaussianWithVectorInput Code.cxx)
-target_link_libraries(ApplyGradientRecursiveGaussianWithVectorInput ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ApplyGradientRecursiveGaussianWithVectorInput
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGradient/
   COMPONENT Runtime
 )
@@ -24,7 +24,7 @@ set(input_image ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png)
 set(output_image Output1X.png Output1Y.png Output2X.png Output2Y.png)
 
 add_test(NAME ApplyGradientRecursiveGaussianWithVectorInputTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ApplyGradientRecursiveGaussianWithVectorInput
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     ${output_image}
   )

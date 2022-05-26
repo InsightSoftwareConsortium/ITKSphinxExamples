@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(ProcessA2DSliceOfA3DImage Code.cxx)
-target_link_libraries(ProcessA2DSliceOfA3DImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ProcessA2DSliceOfA3DImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
@@ -26,7 +26,7 @@ set(output_image Output.mha)
 set(test_options 232) # slice number
 
 add_test(NAME ProcessA2DSliceOfA3DImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ProcessA2DSliceOfA3DImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     ${output_image}
     ${test_options}

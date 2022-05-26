@@ -5,10 +5,10 @@ project(RescaleIntensity)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(RescaleIntensity Code.cxx)
-target_link_libraries(RescaleIntensity ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS RescaleIntensity
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageIntensity
   COMPONENT Runtime
 )
@@ -24,7 +24,7 @@ set(input_image ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png)
 set(output_image Output.png)
 
 add_test(NAME RescaleIntensityTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/RescaleIntensity
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     ${output_image}
     0

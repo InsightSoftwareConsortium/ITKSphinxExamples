@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(RegisterTwoPointSets Code.cxx)
-target_link_libraries(RegisterTwoPointSets ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS RegisterTwoPointSets
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Registration/Common
   COMPONENT Runtime
   )
@@ -22,7 +22,7 @@ install(FILES Code.cxx Code.py CMakeLists.txt
 
 enable_testing()
 add_test(NAME RegisterTwoPointSetsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/RegisterTwoPointSets)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
   
 if(ITK_WRAP_PYTHON)
   # TODO broken in itk v5.3rc03

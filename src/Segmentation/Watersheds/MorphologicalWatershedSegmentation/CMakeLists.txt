@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(MorphologicalWatershedSegmentation Code.cxx)
-target_link_libraries(MorphologicalWatershedSegmentation ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS MorphologicalWatershedSegmentation
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Segmentation/Watersheds
   COMPONENT Runtime
   )
@@ -22,7 +22,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME MorphologicalWatershedSegmentationTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/MorphologicalWatershedSegmentation
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     input.png
     20
     3)

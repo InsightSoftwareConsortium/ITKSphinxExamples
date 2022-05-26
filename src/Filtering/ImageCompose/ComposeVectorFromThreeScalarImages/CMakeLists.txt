@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(ComposeVectorFromThreeScalarImages Code.cxx)
-target_link_libraries(ComposeVectorFromThreeScalarImages ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ComposeVectorFromThreeScalarImages
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageCompose
   COMPONENT Runtime
   )
@@ -22,4 +22,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME ComposeVectorFromThreeScalarImagesTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComposeVectorFromThreeScalarImages)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})

@@ -5,10 +5,10 @@ project(UpsampleAnImage)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(UpsampleAnImage Code.cxx)
-target_link_libraries(UpsampleAnImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS UpsampleAnImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
   )
@@ -20,7 +20,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME UpsampleAnImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/UpsampleAnImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
     Output.png
     2

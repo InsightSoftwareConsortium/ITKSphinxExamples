@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(CreateGaussianDistribution Code.cxx)
-target_link_libraries(CreateGaussianDistribution ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS CreateGaussianDistribution
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
@@ -22,5 +22,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME CreateGaussianDistributionTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateGaussianDistribution)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
 

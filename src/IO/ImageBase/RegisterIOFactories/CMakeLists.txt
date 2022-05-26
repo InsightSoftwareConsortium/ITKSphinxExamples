@@ -9,10 +9,10 @@ find_package(ITK REQUIRED)
 set(ITK_NO_IMAGEIO_FACTORY_REGISTER_MANAGER 1)
 include(${ITK_USE_FILE})
 
-add_executable(RegisterIOFactories Code.cxx)
-target_link_libraries(RegisterIOFactories ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS RegisterIOFactories
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/IO/ImageBase
   COMPONENT Runtime
   )
@@ -24,7 +24,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME RegisterIOFactoriesTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/RegisterIOFactories
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/HeadMRVolume.mha
     ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png
   )

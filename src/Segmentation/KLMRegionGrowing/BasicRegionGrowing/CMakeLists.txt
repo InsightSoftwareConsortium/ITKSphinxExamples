@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(BasicRegionGrowing Code.cxx)
-target_link_libraries(BasicRegionGrowing ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS BasicRegionGrowing
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Segmentation/KLMRegionGrowing
   COMPONENT Runtime
   )
@@ -22,5 +22,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME BasicRegionGrowingTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/BasicRegionGrowing)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
 

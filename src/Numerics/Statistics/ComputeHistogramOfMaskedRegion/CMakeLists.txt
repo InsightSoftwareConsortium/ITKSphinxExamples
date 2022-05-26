@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(ComputeHistogramOfMaskedRegion Code.cxx)
-target_link_libraries(ComputeHistogramOfMaskedRegion ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ComputeHistogramOfMaskedRegion
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
@@ -22,5 +22,5 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME ComputeHistogramOfMaskedRegionTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeHistogramOfMaskedRegion)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
 

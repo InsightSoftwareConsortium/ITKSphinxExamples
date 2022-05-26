@@ -5,10 +5,10 @@ project(PrintVertexNeighbors)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(PrintVertexNeighbors Code.cxx)
-target_link_libraries(PrintVertexNeighbors ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS PrintVertexNeighbors
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/QuadEdgeMesh
   COMPONENT Runtime
   )
@@ -20,4 +20,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME PrintVertexNeighborsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/PrintVertexNeighbors ${CMAKE_CURRENT_BINARY_DIR}/wave.vtk 50)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME} ${CMAKE_CURRENT_BINARY_DIR}/wave.vtk 50)

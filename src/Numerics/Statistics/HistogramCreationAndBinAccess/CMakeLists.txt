@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(HistogramCreationAndBinAccess Code.cxx)
-target_link_libraries(HistogramCreationAndBinAccess ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS HistogramCreationAndBinAccess
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
   )
@@ -25,7 +25,7 @@ enable_testing()
 set(HistogramCreationAndBinAccessTest_Regex "Frequency of the bin at index \\[0, 2\\] is 5 and the bin's instance identifier is 6")
 
 add_test(NAME HistogramCreationAndBinAccessTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/HistogramCreationAndBinAccess
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   )
 set_tests_properties(HistogramCreationAndBinAccessTest PROPERTIES
   PASS_REGULAR_EXPRESSION "${HistogramCreationAndBinAccessTest_Regex}")

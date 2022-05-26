@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(ReadWriteVectorImage Code.cxx)
-target_link_libraries(ReadWriteVectorImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ReadWriteVectorImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
   )
@@ -25,7 +25,7 @@ set(input_image ${CMAKE_CURRENT_BINARY_DIR}/mini-vector-fast.nrrd)
 set(output_image Output.nrrd)
 
 add_test(NAME ReadWriteVectorImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ReadWriteVectorImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     ${output_image}
   )

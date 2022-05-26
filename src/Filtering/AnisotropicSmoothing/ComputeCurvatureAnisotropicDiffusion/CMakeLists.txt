@@ -9,10 +9,10 @@ project(ComputeCurvatureAnisotropicDiffusion)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(ComputeCurvatureAnisotropicDiffusion Code.cxx)
-target_link_libraries(ComputeCurvatureAnisotropicDiffusion ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ComputeCurvatureAnisotropicDiffusion
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/AnisotropicSmoothing
   COMPONENT Runtime
   )
@@ -24,7 +24,7 @@ install(FILES Code.cxx CMakeLists.txt Code.py
 
 enable_testing()
 add_test(NAME ComputeCurvatureAnisotropicDiffusionTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ComputeCurvatureAnisotropicDiffusion
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   ${input_image}
   ${output_image}
   ${test_options}

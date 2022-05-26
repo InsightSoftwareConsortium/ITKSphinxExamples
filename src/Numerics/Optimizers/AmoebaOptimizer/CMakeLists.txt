@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(AmoebaOptimizer Code.cxx ExampleCostFunction.h)
-target_link_libraries(AmoebaOptimizer ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx ExampleCostFunction.h)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS AmoebaOptimizer
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Numerics/Optimizers
   COMPONENT Runtime
   )
@@ -23,5 +23,5 @@ install(FILES Code.cxx CMakeLists.txt
 enable_testing()
 
 add_test(NAME AmoebaOptimizerTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/AmoebaOptimizer
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   )

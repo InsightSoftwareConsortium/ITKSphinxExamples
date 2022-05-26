@@ -5,10 +5,10 @@ project(CreateABinaryBallStructuringElement)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(CreateABinaryBallStructuringElement Code.cxx)
-target_link_libraries(CreateABinaryBallStructuringElement ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS CreateABinaryBallStructuringElement
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/MathematicalMorphology
   COMPONENT Runtime
 )
@@ -20,4 +20,4 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME CreateABinaryBallStructuringElementTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CreateABinaryBallStructuringElement)
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})

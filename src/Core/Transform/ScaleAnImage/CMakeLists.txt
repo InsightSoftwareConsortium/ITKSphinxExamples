@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(ScaleAnImage Code.cxx)
-target_link_libraries(ScaleAnImage ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS ScaleAnImage
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
@@ -23,7 +23,7 @@ install(FILES Code.cxx Code.py CMakeLists.txt
 enable_testing()
 
 add_test(NAME ScaleAnImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ScaleAnImage
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/ScaleAnImageInput.png
     ${CMAKE_CURRENT_BINARY_DIR}/ScaleAnImageOutput.png
   )

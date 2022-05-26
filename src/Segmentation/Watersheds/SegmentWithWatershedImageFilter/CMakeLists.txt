@@ -6,10 +6,10 @@ find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
 
-add_executable(SegmentWithWatershedImageFilter Code.cxx)
-target_link_libraries(SegmentWithWatershedImageFilter ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS SegmentWithWatershedImageFilter
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Segmentation/Watersheds
   COMPONENT Runtime
   )
@@ -34,35 +34,35 @@ set(level04 0.75)
 set(level05 0.9)
 
 add_test(NAME SegmentWithWatershedImageFilterTest01
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentWithWatershedImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     SegmentWithWatershedImageFilterTest01.png
     ${threshold01}
     ${level01}
   )
 add_test(NAME SegmentWithWatershedImageFilterTest02
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentWithWatershedImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     SegmentWithWatershedImageFilterTest02.png
     ${threshold02}
     ${level02}
   )
 add_test(NAME SegmentWithWatershedImageFilterTest03
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentWithWatershedImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     SegmentWithWatershedImageFilterTest03.png
     ${threshold03}
     ${level03}
   )
 add_test(NAME SegmentWithWatershedImageFilterTest04
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentWithWatershedImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     SegmentWithWatershedImageFilterTest04.png
     ${threshold04}
     ${level04}
   )
 add_test(NAME SegmentWithWatershedImageFilterTest05
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/SegmentWithWatershedImageFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${input_image}
     SegmentWithWatershedImageFilterTest05.png
     ${threshold05}

@@ -5,10 +5,10 @@ project(DetectEdgesWithCannyEdgeDetectionFilter)
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(DetectEdgesWithCannyEdgeDetectionFilter Code.cxx)
-target_link_libraries(DetectEdgesWithCannyEdgeDetectionFilter ${ITK_LIBRARIES})
+add_executable(${PROJECT_NAME} Code.cxx)
+target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 
-install(TARGETS DetectEdgesWithCannyEdgeDetectionFilter
+install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature
   COMPONENT Runtime
 )
@@ -20,7 +20,7 @@ install(FILES Code.cxx CMakeLists.txt
 
 enable_testing()
 add_test(NAME DetectEdgesWithCannyEdgeDetectionFilterTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DetectEdgesWithCannyEdgeDetectionFilter
+  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
     Output.png
     1
