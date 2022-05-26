@@ -55,6 +55,7 @@ Common
   FilterImageUsingMultipleThreads/Documentation.rst
   FilterImageWithoutCopying/Documentation.rst
   FindMaxAndMinInImage/Documentation.rst
+  GenerateOffsetsShapedImageNeighborhood/Documentation.rst
   GetImageSize/Documentation.rst
   GetNameOfClass/Documentation.rst
   GetOrSetMemberVariableOfITKClass/Documentation.rst
