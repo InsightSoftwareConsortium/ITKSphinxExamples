@@ -242,7 +242,7 @@ VV
 .. _ImageViewer:           https://github.com/KitwareMedical/ImageViewer
 .. _ITKApps:               https://github.com/InsightSoftwareConsortium/ITKApps
 .. _ITK-SNAP:              http://www.itksnap.org/pmwiki/pmwiki.php
-.. _MITK:                  http://www.mitk.org/wiki/MITK
+.. _MITK:                  https://www.mitk.org/wiki/MITK
 .. _Paraview:              https://www.paraview.org/
 .. _Qt:                    https://www.qt.io/developers/
 .. _VTK:                   https://vtk.org/

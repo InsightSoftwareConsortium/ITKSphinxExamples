@@ -6,7 +6,7 @@
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
+ *         https://www.apache.org/licenses/LICENSE-2.0.txt
  *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
@@ -106,7 +106,7 @@ main(int argc, char * argv[])
   //     we do here) or we specify new spacing and compute new height and width
   //     and computations that follows need to be modified a little (as it is
   //     done at step 2 there:
-  //       http://itk.org/Wiki/ITK/Examples/DICOM/ResampleDICOM)
+  //       https://itk.org/Wiki/ITK/Examples/DICOM/ResampleDICOM)
   //
   unsigned int nNewWidth = std::stoi(argv[3]);
   unsigned int nNewHeight = std::stoi(argv[4]);
