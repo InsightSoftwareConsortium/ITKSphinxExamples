@@ -203,7 +203,7 @@ Note that ``breathelink`` and ``breathelinkstruct`` are custom directives which 
 .. _figure directive:          http://docutils.sourceforge.net/docs/ref/rst/directives.html#figure
 .. _literalinclude directive:  https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-literalinclude
 .. _literal block:             http://docutils.sourceforge.net/docs/user/rst/quickref.html#literal-blocks
-.. _Pygments:                  http://pygments.org/
+.. _Pygments:                  https://pygments.org/
 .. _Sphinx index directive:    https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#index-generating-markup
 .. _reStructuredText:          http://docutils.sourceforge.net/rst.html
 .. _doxylink:                  https://pythonhosted.org/sphinxcontrib-doxylink/
