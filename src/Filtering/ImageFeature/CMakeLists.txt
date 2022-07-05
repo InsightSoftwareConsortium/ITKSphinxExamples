@@ -35,3 +35,4 @@ add_example(FindZeroCrossingsInSignedImage)
 add_example(AdditiveGaussianNoiseImageFilter)
 
 add_example(DerivativeImage)
+compare_to_baseline(EXAMPLE_NAME DerivativeImage BASELINE_PREFIX Output)

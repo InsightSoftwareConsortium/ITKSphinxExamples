@@ -10,6 +10,7 @@ ImageFeature
   BilateralFilterAnImage/Documentation.rst
   ComputeLaplacian/Documentation.rst
   DetectEdgesWithCannyEdgeDetectionFilter/Documentation.rst
+  DerivativeImage/Documentation.rst
   ExtractContoursFromImage/Documentation.rst
   FindZeroCrossingsInSignedImage/Documentation.rst
   LaplacianRecursiveGaussianImageFilter/Documentation.rst

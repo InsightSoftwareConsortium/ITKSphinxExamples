@@ -1,7 +1,7 @@
 :name: DerivativeImage
 
 Compute Derivative
-=================
+===================
 
 .. index::
    single: DerivativeImageFilter
@@ -21,14 +21,14 @@ Results
 
   Input image
 
-.. figure:: Output.mha
+.. figure:: Output.png
   :scale: 50%
   :alt: Output image
 
   Output image
 
 
-.. figure:: Output_normalized.mha
+.. figure:: Output_normalized.png
   :scale: 50%
   :alt: Output normalized image
 
