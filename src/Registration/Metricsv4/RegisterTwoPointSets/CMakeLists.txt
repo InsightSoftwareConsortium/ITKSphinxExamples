@@ -23,13 +23,11 @@ install(FILES Code.cxx Code.py CMakeLists.txt
 enable_testing()
 add_test(NAME RegisterTwoPointSetsTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
-  
+
 if(ITK_WRAP_PYTHON)
-  # TODO broken in itk v5.3rc03
-  #      repaired after itk v5.3rc04
-  #add_test(NAME RegisterTwoPointSetsTest2DPython
-  #  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py 2
-  #  )
-  #add_test(NAME RegisterTwoPointSetsTest3DPython
-  #  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py 3)
+  add_test(NAME RegisterTwoPointSetsTest2DPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py 2
+    )
+  add_test(NAME RegisterTwoPointSetsTest3DPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py 3)
 endif()
