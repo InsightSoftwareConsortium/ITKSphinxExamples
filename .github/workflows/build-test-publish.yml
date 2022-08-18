@@ -3,7 +3,7 @@ name: Build, test, publish
 on: [push,pull_request]
 
 env:
-  itk-git-tag: "d6acfd26bfcdec606d605beb1301bddfb17c05a6"
+  itk-git-tag: "v5.3rc04"
 
 jobs:
   build-test-cxx:
