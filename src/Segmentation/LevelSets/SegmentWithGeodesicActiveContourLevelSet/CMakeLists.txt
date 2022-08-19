@@ -50,28 +50,28 @@ add_test(NAME GeodesicActiveContourGrayMatterTest
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME GeodesicActiveContourLeftVentricleTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
       Output1Python.png
       81 114 5.0 1.0 -0.5 3.0 2.0 800
     )
 
   add_test(NAME GeodesicActiveContourRightVentricleTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
       Output2Python.png
       99 114 5.0 1.0 -0.5 3.0 2.0 800
     )
 
   add_test(NAME GeodesicActiveContourWhiteMatterTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
       Output3Python.png
       56 92 5.0 1.0 -0.3 2.0 10.0 800
     )
 
   add_test(NAME GeodesicActiveContourGrayMatterTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
       Output4Python.png
       40 90 5.0 .5 -0.3 2.0 10.0 800

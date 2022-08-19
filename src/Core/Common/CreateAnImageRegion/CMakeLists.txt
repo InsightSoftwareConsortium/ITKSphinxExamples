@@ -27,7 +27,7 @@ set_tests_properties(CreateAnImageRegionTest PROPERTIES
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME CreateAnImageRegionTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     )
   set_tests_properties(CreateAnImageRegionTestPython PROPERTIES
       PASS_REGULAR_EXPRESSION "${testOutputRegex}")

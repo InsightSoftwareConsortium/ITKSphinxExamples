@@ -30,7 +30,7 @@ add_test(NAME ResampleSegmentedImageTest
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME ResampleSegmentedImageTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/2th_cthead1.png
       0.75
       0.6

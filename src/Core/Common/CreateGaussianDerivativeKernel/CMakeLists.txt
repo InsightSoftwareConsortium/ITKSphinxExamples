@@ -26,6 +26,6 @@ add_test(NAME CreateGaussianDerivativeKernelTest
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME CreateGaussianDerivativeKernelTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     )
 endif()

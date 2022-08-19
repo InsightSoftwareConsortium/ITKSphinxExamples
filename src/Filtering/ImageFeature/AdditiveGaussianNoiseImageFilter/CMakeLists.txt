@@ -28,9 +28,9 @@ add_test(NAME AdditiveGaussianNoiseImageFilterTest
   )
 
 if(ITK_WRAP_PYTHON)
-    find_package(PythonInterp REQUIRED)
+    find_package(Python3 COMPONENTS Interpreter REQUIRED)
     add_test(NAME AdditiveGaussianNoiseImageFilterTestPython
-      COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
       OutputPython.png
       20
