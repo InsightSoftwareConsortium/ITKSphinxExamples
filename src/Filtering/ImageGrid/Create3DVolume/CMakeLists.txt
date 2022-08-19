@@ -30,7 +30,7 @@ add_test(NAME Create3DVolumeTest
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME Create3DVolumeTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/mri3D_0.mha
       ${CMAKE_CURRENT_BINARY_DIR}/mri3D_1.mha
       ${CMAKE_CURRENT_BINARY_DIR}/mri3D_2.mha

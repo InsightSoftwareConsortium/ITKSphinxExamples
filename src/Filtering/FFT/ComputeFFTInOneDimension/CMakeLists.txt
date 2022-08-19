@@ -13,9 +13,9 @@ install(FILES Code.py CMakeLists.txt
 enable_testing()
 
 if(ITK_WRAP_PYTHON)
-  find_package(PythonInterp REQUIRED)
+  find_package(Python3 ${PYTHON_REQUIRED_VERSION} COMPONENTS Interpreter)
   add_test(NAME ComputeFFTInOneDimensionTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/MouseLiverRF.mha
       ${CMAKE_CURRENT_BINARY_DIR}/MouseLiver1DFFTModulusOutputPython.mha
       ${CMAKE_CURRENT_BINARY_DIR}/MouseLiver1DFFTPhaseOutputPython.mha

@@ -30,7 +30,7 @@ add_test(NAME DetectEdgesWithCannyEdgeDetectionFilterTest
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME DetectEdgesWithCannyEdgeDetectionFilterTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
       OutputPython.png
       1

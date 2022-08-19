@@ -31,10 +31,10 @@ set_tests_properties(HistogramCreationAndBinAccessTest PROPERTIES
   PASS_REGULAR_EXPRESSION "${HistogramCreationAndBinAccessTest_Regex}")
 
 if(ITK_WRAP_PYTHON)
-  find_package(PythonInterp REQUIRED)
+  find_package(Python3 COMPONENTS Interpreter REQUIRED)
   string(REPLACE . "Python." output_image "${output_image}")
   add_test(NAME HistogramCreationAndBinAccessTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     )
   set_tests_properties(HistogramCreationAndBinAccessTestPython PROPERTIES
     PASS_REGULAR_EXPRESSION "${HistogramCreationAndBinAccessTest_Regex}")

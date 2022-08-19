@@ -36,10 +36,10 @@ add_test(NAME DeformAVolumeWithAThinPlateSplineTest
 )
 
 if(ITK_WRAP_PYTHON)
-  find_package(PythonInterp REQUIRED)
+  find_package(Python3 ${PYTHON_REQUIRED_VERSION} COMPONENTS Interpreter)
   string(REPLACE . "Python." deformed_image "${deformed_image}")
   add_test(NAME DeformAVolumeWithAThinPlateSplineTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${source_landmarks}
       ${target_landmarks}
       ${input_image}

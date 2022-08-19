@@ -17,11 +17,10 @@
 # all listed variables are TRUE
 
 if(NOT NUMPY_FOUND)
-  find_package(PythonInterp)
-  find_package(PythonLibs)
+  find_package(Python3 COMPONENTS Interpreter Development)
 
-  if(PYTHON_EXECUTABLE)
-    execute_process(COMMAND "${PYTHON_EXECUTABLE}"
+  if(Python3_EXECUTABLE)
+    execute_process(COMMAND "${Python3_EXECUTABLE}"
       -c "import numpy; print(numpy.get_include())"
       OUTPUT_VARIABLE _numpy_include_dir
       OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -30,9 +29,11 @@ if(NOT NUMPY_FOUND)
   endif()
 endif()
 
+set(_numpy_search_paths ${Python3_INCLUDE_DIRS})
+list(prepend _numpy_search_paths "${_numpy_include_dir}")
 find_path(NUMPY_INCLUDE_DIR
   numpy/arrayobject.h
-  PATHS "${_numpy_include_dir}" "${PYTHON_INCLUDE_DIR}"
+  PATHS ${_numpy_search_paths}
   PATH_SUFFIXES numpy/core/include
   )
 

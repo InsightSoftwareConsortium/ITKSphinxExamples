@@ -34,7 +34,7 @@ add_test(NAME ExtractIsoSurfaceTest
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME ExtractIsoSurfaceTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     ${input_volume}
     OutputPython.vtk
     ${lower_threshold}
