@@ -25,6 +25,6 @@ add_test(NAME CreateAPointSetTest
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME CreateAPointSetTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     )
 endif()

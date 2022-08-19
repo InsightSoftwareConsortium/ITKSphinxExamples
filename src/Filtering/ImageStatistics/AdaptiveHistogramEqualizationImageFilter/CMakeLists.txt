@@ -91,7 +91,7 @@ add_test(NAME AdaptiveHistogramEqualizationImageFilterTest04
 if(0)
 if(ITK_WRAP_PYTHON)
   add_test(NAME AdaptiveHistogramEqualizationImageFilterTest01Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       AdaptiveHistogramEqualizationImageFilterTest01Python.png
       ${alpha01}
@@ -99,7 +99,7 @@ if(ITK_WRAP_PYTHON)
       ${radius01}
     )
   add_test(NAME AdaptiveHistogramEqualizationImageFilterTest02Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       AdaptiveHistogramEqualizationImageFilterTest02Python.png
       ${alpha02}
@@ -107,7 +107,7 @@ if(ITK_WRAP_PYTHON)
       ${radius02}
     )
   add_test(NAME AdaptiveHistogramEqualizationImageFilterTest03Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       AdaptiveHistogramEqualizationImageFilterTest03Python.png
       ${alpha03}
@@ -115,7 +115,7 @@ if(ITK_WRAP_PYTHON)
       ${radius03}
     )
   add_test(NAME AdaptiveHistogramEqualizationImageFilterTest04Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       AdaptiveHistogramEqualizationImageFilterTest04Python.png
       ${alpha04}
@@ -123,7 +123,7 @@ if(ITK_WRAP_PYTHON)
       ${radius01}
     )
   add_test(NAME AdaptiveHistogramEqualizationImageFilterTest05Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       AdaptiveHistogramEqualizationImageFilterTest05Python.png
       ${alpha05}
@@ -131,7 +131,7 @@ if(ITK_WRAP_PYTHON)
       ${radius02}
     )
   add_test(NAME AdaptiveHistogramEqualizationImageFilterTest06Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       AdaptiveHistogramEqualizationImageFilterTest06Python.png
       ${alpha05}

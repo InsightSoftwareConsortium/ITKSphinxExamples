@@ -13,5 +13,5 @@ install(FILES Code.py CMakeLists.txt
 enable_testing()
 if(ITK_WRAP_PYTHON)
   add_test(NAME PrintModuleLoadingPythonTest
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py)
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py)
 endif()

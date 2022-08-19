@@ -28,9 +28,9 @@ add_test(NAME CalculateImageMomentsTest
 )
 
 if(ITK_WRAP_PYTHON)
-  find_package(PythonInterp REQUIRED)
+  find_package(Python3 COMPONENTS Interpreter REQUIRED)
   add_test(NAME CalculateImageMomentsTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
     )
 endif()

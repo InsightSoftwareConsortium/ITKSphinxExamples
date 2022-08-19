@@ -35,7 +35,7 @@ macro(add_module_archives _module_name)
         get_filename_component(_example_parent_name ${_example_parent_path} NAME)
         set(_archive_target ${_example_parent_name}_${_example_name}_DownloadableArchive)
         add_custom_target(${_archive_target}
-          COMMAND ${PYTHON_EXECUTABLE} ${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateDownloadableArchive.py
+          COMMAND ${Python3_EXECUTABLE} ${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateDownloadableArchive.py
             ${_example_name} ${SPHINX_DESTINATION}
           WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${_example_parent_name}
           COMMENT "Creating downloadable archive for ${_example_name}"

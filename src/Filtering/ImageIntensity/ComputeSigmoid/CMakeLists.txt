@@ -28,7 +28,7 @@ add_test(NAME ComputeSigmoidTest
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME ComputeSigmoidTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
       OutputPython.png
       10 240 10 170

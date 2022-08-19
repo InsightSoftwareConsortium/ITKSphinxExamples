@@ -39,7 +39,7 @@ if(ITK_WRAP_PYTHON)
   string(REPLACE . "Python." output_image2 "${output_image2}")
   string(REPLACE . "Python." output_image3 "${output_image3}")
   add_test(NAME Perform2DTranslationRegistrationWithMeanSquaresTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     ${input_image1}
     ${input_image2}
     ${output_image1}

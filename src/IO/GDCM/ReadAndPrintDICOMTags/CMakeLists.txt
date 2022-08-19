@@ -25,10 +25,10 @@ add_test(NAME ReadAndPrintDICOMTagsTest
 )
 
 if(ITK_WRAP_PYTHON)
-  find_package(PythonInterp REQUIRED)
+  find_package(Python3 COMPONENTS Interpreter REQUIRED)
   string(REPLACE . "Python." output_image "${output_image}")
   add_test(NAME ReadAndPrintDICOMTagsTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       "${CMAKE_CURRENT_BINARY_DIR}"
     )
 endif()
