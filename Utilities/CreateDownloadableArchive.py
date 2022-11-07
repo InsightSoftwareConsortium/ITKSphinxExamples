@@ -43,7 +43,6 @@ files_to_copy_to_html_output.extend(glob.glob(os.path.join(example_dir, "*.rst")
 for path in files_to_copy_to_html_output:
     shutil.copy2(path, html_output_dir)
 
-
 # archives for users to download from the website.
 files_for_archive = files_to_copy_to_html_output
 
@@ -66,9 +65,9 @@ with open(archive_cmakelist, "w") as new_list_file:
 files_for_archive = files_for_archive[1:]
 files_for_archive.append(archive_cmakelist)
 
-inputs = glob.glob(os.path.join(example_dir, "*.sha512"))
+inputs = glob.glob(os.path.join(example_dir, "*.cid"))
 for path in inputs:
-    files_for_archive.append(path[:-7])
+    files_for_archive.append(path[:-4])
 
 # Remove duplicates.
 files_for_archive = set(files_for_archive)

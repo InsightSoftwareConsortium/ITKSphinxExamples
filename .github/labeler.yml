@@ -83,7 +83,7 @@ type:Python notebook:
 
 type:Data:
   files:
-    - ".*.sha512"
+    - ".*.cid"
 
 type:Infrastructure:
   files:
