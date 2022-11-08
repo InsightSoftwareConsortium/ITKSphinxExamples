@@ -6,202 +6,131 @@ Upload Binary Data
 Motivation
 ----------
 
-Since every local Git_ repository contains a copy of the entire project history,
-it is important to avoid adding large binary files directly to the repository.
-Large binary files added and removed throughout a project's history will cause
-the repository to become bloated, take up too much disk space, require excessive
-time and bandwidth to download, etc.
+Since every local Git_ repository contains a copy of the entire project
+history, it is important to avoid adding large binary files directly to the
+repository. Large binary files added and removed throughout a project's
+history will cause the repository to become bloated, take up too much disk
+space, require excessive time and bandwidth to download, etc.
 
-A `solution to this problem`_ which has been adopted by this project is to store
-binary files, such as images, in a separate location outside the Git repository,
-then download the files at build time with CMake_.
+A `solution to this problem`_ which has been adopted by this project, is to
+store binary files such as images in a separate location outside the Git
+repository. Then, download the files at build time with CMake_.
 
-A "content link" file contains an identifying `SHA512 hash`_. The content link
-is stored in the Git_ repository at the path where the file would exist, but
-with a ".sha512" extension appended to the file name.  CMake will find these
-content link files at *build* time, download them from a list of server
-resources, and create symlinks or copies of the original files at the
+A "content link" file contains an identifying `Content Identifier (CID)`_. The
+content link is stored in the Git_ repository at the path where the file would
+exist, but with a `.cid`` extension appended to the file name.  CMake will
+find these content link files at *build* time, download them from a list of
+server resources, and create symlinks or copies of the original files at the
 corresponding location in the *build tree*.
+
+The `Content Identifier (CID)`_ is self-describing hash following the
+`multiformats`_ standard created by the Interplanetary Filesystem (`IPFS`_)
+community. A file with a CID for its filename is content-verifable. Locating
+files according to their CID makes content-addressed, as opposed to
+location-addressed, data exchange possible. This practice is the foundation of
+the decentralized web, also known as the dWeb or Web3. By adopting Web3, we
+gain:
+
+- Permissionless data uploads
+- Robust, redundant storage
+- Local and peer-to-peer storage
+- Scalability
+- Sustainability
+
+Contributors to the examples upload their data through an easy-to-use,
+permissionless, free service, `web3.storage`_.
+
+Data used in the examples Git repository is periodically tracked in a
+`dedicated Datalad repository`_ and stored across redundant locations so it
+can be retrieved from any of the following:
+
+- Local `IPFS`_ nodes
+- Peer `IPFS`_ nodes
+- `web3.storage`_
+- `estuary.tech`_
+- `pinata.cloud`_
+- Kitware's HTTP Server
 
 Prerequisites
 -------------
 
-The `data.kitware.com`_ server is an ITK community resource where any
+`web3.storage`_ is a decentralized IPFS storage provider where any ITK
 community member can upload binary data files. There are two methods available
 to upload data files:
 
-1. The `Girder web interface`_.
-2. The `girder-cli` command line executable that comes with the
-   girder-client_ Python package.
+1. The CMake ExternalData Web3 upload browser interface.
+2. The `w3` command line executable that comes with the
+   `@web3-storage/w3`_ Node.js NPM package.
 
-Before uploading data, please visit `data.kitware.com`_ and
-register for an account.
-
-Once files have been uploaded to your account, they will be publicly
-available and accessible since data is content addressed. At release time,
-the release manager will upload and archive repository data references in the
-`ITK collection`_ and other redundant storage locations.
+Once files have been uploaded to your account, they will be publicly available
+and accessible since data is content addressed on the IPFS peer-to-peer
+network. At release time, the release manager will upload and archive
+repository data references in other redundant storage locations.
 
 Upload Via the Web Interface
 ----------------------------
 
+Use the `CMake ExternalData Web3 Upload`_ tool to upload your data to the
+InterPlanetary Filesystem and download the corresponding CMake content link
+file.
 
-.. figure:: LogInHighlighted.png
-  :alt: Log in welcome page
+.. figure:: CMakeW3ExternalDataUpload.png
+  :alt: CMake ExternalData Web3 Upload
   :align: center
-  :width: 400
+  :width: 500
+  :target: https://cmake-w3-externaldata-upload.on.fleek.co/
 
-  After logging in, you will be presented with the welcome page. Click on the
-  **personal data space** link.
+  `CMake ExternalData Web3 Upload`_
 
-.. figure:: PersonalDataSpaceHighlighted.png
-  :alt: Personal data space
-  :align: center
-  :width: 400
+Add the file to the examples repository in your example's directory. Next time
+CMake configuration runs, it will find the new content link. During the next
+project build, the data file corresponding to the content link will be
+downloaded into the build tree.
 
-  Next, select the **Public** folder of your personal data space.
+Upload Via CMake and Node.js CLI
+--------------------------------
 
-.. figure:: PublicFolderHighlighted.png
-  :alt: Public folder
-  :align: center
-  :width: 400
+Install the `w3` CLI with the `@web3-storage/w3`_ `Node.js`_ package:
 
-  Click the **green upload button**.
+.. code-block:: shell
 
-.. figure:: UploadHereHighlighted.png
-  :alt: The Upload files dialog
-  :align: center
-  :width: 400
+  $ npm install --location=global @web3-storage/w3
 
-  Click the **Browse or drop files** to select the files to upload.
+Login in and create an API token at `web3.storage`_ then pass it into `w3 token`:
 
-.. figure:: UploadHereFilesSelectedHighlighted.png
-  :alt: The Upload files dialog with files selected
-  :align: center
-  :width: 400
+.. code-block:: shell
 
-  Click **Start Upload** to upload the file to the server.
+  $ w3 token
+  ? Paste your API token for api.web3.storage › <your token here>
 
-Next, proceed to `Download the Content Link`_.
+  ⁂ API token saved
 
-Upload Via Python Script
-------------------------
+Create an `w3externaldata` bash/zsh function:
 
-A Python script to upload files from the command line, `girder-cli`, is
-available with the girder-client_ python package. To install it::
+.. code-block:: shell
 
-  python -m pip install girder-client
+   $ function w3externaldata() { w3 put $1 --no-wrap | tail -n 1 | awk -F "/ipfs/" '{print $2}' | tee $1.cid }
 
-To upload files with the `girder-cli` script, we need to obtain an API key and
-a parent folder id from the web interface.
+Call the function with the file to be uploaded. This command will generate the
+`<filename>.cid` content link:
 
-.. figure:: MyAccountHighlighted.png
-  :alt: My account link
-  :align: center
-  :width: 400
+.. code-block:: shell
 
-  After logging in, select **My account** from the user drop down.
-
-.. figure:: AccountHighlighted.png
-  :alt: API key tab
-  :align: center
-  :width: 400
-
-  Next, select the **API keys** tab.
-
-.. figure:: CreateNewKeyHighlighted.png
-  :alt: Create new key
-  :align: center
-  :width: 400
-
-  Create a new API key if one is not available.
-
-.. figure:: ShowKeyHighlighted.png
-  :alt: Create new key
-  :align: center
-  :width: 400
-
-  The **show** link will show the key, which can be copied into the command
-  line.
-
-.. figure:: MyFoldersHighlighted.png
-  :alt: My Folders link
-  :align: center
-  :width: 400
-
-  Next, select **My Folders** from the user drop down.
-
-.. figure:: PersonalDataSpaceHighlighted.png
-  :alt: Personal data space
-  :align: center
-  :width: 400
-
-  Next, select the **Public** folder of your personal data space.
-
-.. figure:: PublicFolderInformationHighlighted.png
-  :alt: Public folder information
-  :align: center
-  :width: 400
-
-  Click the **i** button for information about the folder.
-
-.. figure:: FolderInformationHighlighted.png
-  :alt: Public folder information modal
-  :align: center
-  :width: 400
-
-  The **Unique ID** can be copied into the command line.
-
-Use both the API key and the folder ID when calling `girder-cli`. For example,
-
-.. code-block:: bash
-
-  girder-cli \
-    --api-key 12345ALongSetOfCharactersAndNumbers \
-    --api-url https://data.kitware.com/api/v1 \
-    upload \
-    58becaee8d777f0aefede556 \
-    /tmp/cthead1.png
-
-Next, proceed to `Download the Content Link`_.
-
-Download the Content Link
--------------------------
-
-.. figure:: FilesUploadedHighlighted.png
-  :alt: File has been uploaded
-  :align: center
-  :width: 400
-
-  Click on the file that has been uploaded.
-
-.. figure:: ClickOnItemHighlighted.png
-  :alt: Item has been clicked
-  :align: center
-  :width: 400
-
-  Click on the **i** button for further information.
-
-.. figure:: ShowInfoHighlighted.png
-  :alt: File information
-  :align: center
-  :width: 400
-
-  Finally, click on the **Download key file** icon to download the key file.
-
-Move the content link file to the source tree at the location
-where the actual file is desired in the build tree. Stage the new file to
-your commit::
-
-  git add -- path/to/file.sha512
-
+  $ w3externaldata <filename>
+  # Packed 1 file (0.3MB)
+  ⁂ Stored 1 file
+  bafkreifpfhcc3gc7zo2ds3ktyyl5qrycwisyaolegp47cl27i4swxpa2ey
 
 .. _CMake:                             https://cmake.org/
 .. _Git:                               https://git-scm.com/
-.. _Insight Community mailing list:    https://itk.org/mailman/listinfo/community
-.. _ITK collection:                    https://data.kitware.com/#collection/57b5c9e58d777f126827f5a1
-.. _SHA512 hash:                       https://en.wikipedia.org/wiki/SHA-2
-.. _data.kitware.com:                  https://data.kitware.com/
-.. _Girder web interface:              https://girder.readthedocs.io/en/latest/user-guide.html
-.. _girder-client:                     https://girder.readthedocs.io/en/latest/python-client.html#the-command-line-interface
 .. _solution to this problem:          https://blog.kitware.com/cmake-externaldata-using-large-files-with-distributed-version-control/
+.. _Content Identifier (CID):          https://proto.school/anatomy-of-a-cid
+.. _multiformats:                      https://multiformats.io/
+.. _IPFS:                              https://ipfs.io/
+.. _web3.storage:                      https://web3.storage/
+.. _dedicated Datalad repository:      https://github.com/InsightSoftwareConsortium/ITKSphinxExamplesData
+.. _estuary.tech:                      https://estuary.tech
+.. _pinata.cloud:                      https://pinata.cloud
+.. _CMake ExternalData Web3 Upload:    https://cmake-w3-externaldata-upload.on.fleek.co/
+.. _@web3-storage/w3:                  https://www.npmjs.com/package/@web3-storage/w3
+.. _Node.js:                           https://nodejs.org/
