@@ -1,8 +1,15 @@
-add_subdirectory_if_module_enabled(Common)
-add_subdirectory_if_module_enabled(QuadEdgeMesh)
-add_subdirectory_if_module_enabled(Mesh)
-add_subdirectory_if_module_enabled(TestKernel)
-add_subdirectory_if_module_enabled(Transform)
-add_subdirectory_if_module_enabled(ImageFunction)
-add_subdirectory_if_module_enabled(ImageAdaptors)
-add_subdirectory_if_module_enabled(SpatialObjects)
+set(Core_MODULES
+  Common
+  QuadEdgeMesh
+  Mesh
+  TestKernel
+  Transform
+  ImageFunction
+  ImageAdaptors
+  SpatialObjects
+)
+
+foreach(_module ${Core_MODULES})
+  add_subdirectory_if_module_enabled(${_module})
+  add_module_archives(${_module})
+endforeach()

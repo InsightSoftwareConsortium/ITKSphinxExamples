@@ -15,21 +15,58 @@ include(CMakeParseArguments)
 # the Sphinx documentation for an individual example.  The Sphinx target will be
 # called ${example_name}Doc.
 macro(add_example example_name)
-  if(BUILD_DOCUMENTATION)
-    if(SPHINX_HTML_OUTPUT)
-      add_custom_target(${example_name}DownloadableArchive
-        COMMAND ${PYTHON_EXECUTABLE} ${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateDownloadableArchive.py
-          ${example_name} ${SPHINX_DESTINATION}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Creating downloadable archive for ${example_name}"
-        DEPENDS copy_sources
-        )
-      add_dependencies(CreateDownloadableArchives ${example_name}DownloadableArchive)
-    endif()
-  endif()
-
   # Process the example's CMakeLists.txt
   add_subdirectory(${example_name})
+endmacro()
+
+# Macro for adding archive targets.
+#
+# Assumptions:
+#   1. An archive should be produced for every example
+#      contained under the given module
+#   2. The macro is called from the module source directory,
+#      i.e. `CMAKE_CURRENT_SOURCE_DIR`
+#   2. All immediate subdirectories represent examples to archive
+#
+# The project folder structure should be as follows:
+# / - Group_Name (i.e. Core)
+# / --- Module_Name (i.e. Common ) <<<< Calls this macro in `CMakeLists.txt`
+# / ----- Example_Name (i.e. CreateAnImage )
+# / ------- Example_File.cxx
+# / ------- ...
+# / ----- Example_Name_2
+# / ------- ...
+#
+# Input: Name of parent module to build example archives.
+# Output: Adds CMake target to output archives alongside HTML documentation.
+#         Each <example_name> archive will be located at
+#         path/to/build/html/src/<group_name>/<module_name>/<example_name>/<example_name>.zip
+#
+macro(add_module_archives _module_name)
+  file(GLOB
+       ${_module_name}_EXAMPLE_DIRS
+       CONFIGURE_DEPENDS
+       ${CMAKE_CURRENT_SOURCE_DIR}/${_module_name}/*/
+  )
+
+  if(BUILD_DOCUMENTATION AND SPHINX_HTML_OUTPUT)
+    foreach(_example_path ${${_module_name}_EXAMPLE_DIRS})
+      if(IS_DIRECTORY ${_example_path})
+        get_filename_component(_example_name ${_example_path} NAME)
+        get_filename_component(_example_parent_path ${_example_path} DIRECTORY)
+        get_filename_component(_example_parent_name ${_example_parent_path} NAME)
+        set(_archive_target ${_example_parent_name}_${_example_name}_DownloadableArchive)
+        add_custom_target(${_archive_target}
+          COMMAND ${PYTHON_EXECUTABLE} ${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateDownloadableArchive.py
+            ${_example_name} ${SPHINX_DESTINATION}
+          WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${_example_parent_name}
+          COMMENT "Creating downloadable archive for ${_example_name}"
+          DEPENDS copy_sources
+          )
+        add_dependencies(CreateDownloadableArchives ${_archive_target})
+      endif()
+    endforeach()
+  endif()
 endmacro()
 
 
