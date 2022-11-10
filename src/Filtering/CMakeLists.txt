@@ -1,26 +1,39 @@
-add_subdirectory_if_module_enabled(BinaryMathematicalMorphology)
-add_subdirectory_if_module_enabled(ImageGrid)
-add_subdirectory_if_module_enabled(ImageFeature)
-add_subdirectory_if_module_enabled(FastMarching)
-add_subdirectory_if_module_enabled(Colormap)
-add_subdirectory_if_module_enabled(ImageIntensity)
-add_subdirectory_if_module_enabled(ImageFilterBase)
-add_subdirectory_if_module_enabled(Thresholding)
-add_subdirectory_if_module_enabled(QuadEdgeMeshFiltering)
-add_subdirectory_if_module_enabled(ImageCompare)
-add_subdirectory_if_module_enabled(MathematicalMorphology)
-add_subdirectory_if_module_enabled(Smoothing)
-# TODO: Need to re-enable ImageGraadient
-# add_subdirectory_if_module_enabled(ImageGradient)
-add_subdirectory_if_module_enabled(AnisotropicSmoothing)
-add_subdirectory_if_module_enabled(FFT)
-add_subdirectory_if_module_enabled(AntiAlias)
-add_subdirectory_if_module_enabled(LabelMap)
-add_subdirectory_if_module_enabled(ImageStatistics)
-add_subdirectory_if_module_enabled(ImageFusion)
-add_subdirectory_if_module_enabled(Convolution)
-add_subdirectory_if_module_enabled(DistanceMap)
-add_subdirectory_if_module_enabled(ImageCompose)
-add_subdirectory_if_module_enabled(ImageLabel)
-add_subdirectory_if_module_enabled(CurvatureFlow)
-add_subdirectory_if_module_enabled(Path)
+set(Filtering_MODULES
+  AnisotropicSmoothing
+  AntiAlias
+  BinaryMathematicalMorphology
+  Colormap
+  Convolution
+  CurvatureFlow
+  DistanceMap
+  FastMarching
+  FFT
+  ImageCompare
+  ImageCompose
+  ImageFeature
+  ImageFilterBase
+  ImageFusion
+  ImageGradient
+  ImageGrid
+  ImageIntensity
+  ImageLabel
+  ImageStatistics
+  LabelMap
+  MathematicalMorphology
+  Path
+  QuadEdgeMeshFiltering
+  Smoothing
+  Thresholding
+)
+
+set(Filtering_MODULES_IGNORED
+  # TODO: Fix ImageGradient examples and re-enable
+  ImageGradient
+)
+
+foreach(_module ${Filtering_MODULES})
+  if(NOT (${_module} IN_LIST Filtering_MODULES_IGNORED))
+    add_subdirectory_if_module_enabled(${_module})
+  endif()
+  add_module_archives(${_module})
+endforeach()

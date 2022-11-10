@@ -1,1 +1,2 @@
 add_subdirectory_if_module_enabled(Review)
+add_module_archives(Review)

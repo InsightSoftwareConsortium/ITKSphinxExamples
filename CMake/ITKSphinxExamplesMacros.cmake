@@ -15,21 +15,36 @@ include(CMakeParseArguments)
 # the Sphinx documentation for an individual example.  The Sphinx target will be
 # called ${example_name}Doc.
 macro(add_example example_name)
-  if(BUILD_DOCUMENTATION)
-    if(SPHINX_HTML_OUTPUT)
-      add_custom_target(${example_name}DownloadableArchive
-        COMMAND ${PYTHON_EXECUTABLE} ${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateDownloadableArchive.py
-          ${example_name} ${SPHINX_DESTINATION}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Creating downloadable archive for ${example_name}"
-        DEPENDS copy_sources
-        )
-      add_dependencies(CreateDownloadableArchives ${example_name}DownloadableArchive)
-    endif()
-  endif()
-
   # Process the example's CMakeLists.txt
   add_subdirectory(${example_name})
+endmacro()
+
+# Macro for adding module archives
+macro(add_module_archives _module_name)
+  file(GLOB
+       ${_module_name}_EXAMPLE_DIRS
+       CONFIGURE_DEPENDS
+       ${CMAKE_CURRENT_SOURCE_DIR}/${_module_name}/*/
+  )
+
+  if(BUILD_DOCUMENTATION AND SPHINX_HTML_OUTPUT)
+    foreach(_example_path ${${_module_name}_EXAMPLE_DIRS})
+      if(IS_DIRECTORY ${_example_path})
+        get_filename_component(_example_name ${_example_path} NAME)
+        get_filename_component(_example_parent_path ${_example_path} DIRECTORY)
+        get_filename_component(_example_parent_name ${_example_parent_path} NAME)
+        set(_archive_target ${_example_parent_name}_${_example_name}_DownloadableArchive)
+        add_custom_target(${_archive_target}
+          COMMAND ${PYTHON_EXECUTABLE} ${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateDownloadableArchive.py
+            ${_example_name} ${SPHINX_DESTINATION}
+          WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${_example_parent_name}
+          COMMENT "Creating downloadable archive for ${_example_name}"
+          DEPENDS copy_sources
+          )
+        add_dependencies(CreateDownloadableArchives ${_archive_target})
+      endif()
+    endforeach()
+  endif()
 endmacro()
 
 
@@ -46,6 +61,21 @@ macro(add_subdirectory_if_module_enabled _dir)
   if(NOT ${_have} EQUAL "-1")
     add_subdirectory(${_dir})
   endif()
+endmacro()
+
+macro(add_subdirectories_if_module_enabled _dirs_to_ignore)
+  file(GLOB
+       _current_subdirectories
+       CONFIGURE_DEPENDS
+       ${CMAKE_CURRENT_SOURCE_DIR}/*/
+  )
+  message(STATUS "Got subdirectories ${_current_subdirectories}")
+  foreach(_subdir ${_current_subdirectories})
+    get_filename_component(_subdir_name ${_subdir} NAME)
+    if(${_subdir_name} NOT IN ${_dirs_to_ignore})
+      add_subdirectory_if_module_enabled(${_subdir_name})
+    endif()
+  endforeach()
 endmacro()
 
 # Creates a test that compares the output image of an example to its baseline

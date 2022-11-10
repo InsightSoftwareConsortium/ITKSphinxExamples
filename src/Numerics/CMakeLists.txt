@@ -1,2 +1,9 @@
-add_subdirectory_if_module_enabled(Statistics)
-add_subdirectory_if_module_enabled(Optimizers)
+set(Numerics_MODULES
+  Optimizers
+  Statistics
+)
+
+foreach(_module ${Numerics_MODULES})
+  add_subdirectory_if_module_enabled(${_module})
+  add_module_archives(${_module})
+endforeach()

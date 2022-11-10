@@ -1,1 +1,2 @@
 add_subdirectory_if_module_enabled(BridgeOpenCV ITKVideoBridgeOpenCV)
+add_module_archives(BridgeOpenCV)
