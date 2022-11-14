@@ -1,2 +1,3 @@
 add_subdirectory(Remote) 
 add_subdirectory_if_module_enabled(WikiExamples)
+add_module_archives(WikiExamples)
