@@ -143,7 +143,7 @@ function(compare_to_baseline)
   endif()
 
   file(GLOB baseline_image ${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${LOCAL_COMPARISON_BASELINE_PREFIX}.*)
-  string(REPLACE .sha512 "" baseline_image "${baseline_image}")
+  string(REPLACE .cid "" baseline_image "${baseline_image}")
   get_filename_component(baseline_image_file "${baseline_image}" NAME)
   set(baseline_image "${CMAKE_CURRENT_BINARY_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${baseline_image_file}")
 

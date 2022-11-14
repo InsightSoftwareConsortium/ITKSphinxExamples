@@ -12,4 +12,4 @@
 
 # ExternalData content links must have LF newlines
 *.md5            crlf=input
-*.sha512         crlf=input
+*.cid            crlf=input
