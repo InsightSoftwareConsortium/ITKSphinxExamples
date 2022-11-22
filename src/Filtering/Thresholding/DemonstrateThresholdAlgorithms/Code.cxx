@@ -74,8 +74,6 @@ main(int argc, char * argv[])
   using TriangleFilterType = itk::TriangleThresholdImageFilter<InputImageType, OutputImageType>;
   using YenFilterType = itk::YenThresholdImageFilter<InputImageType, OutputImageType>;
 
-  const auto input = itk::ReadImage<InputImageType>(argv[1]);
-
   QuickView viewer;
   viewer.AddImage(input.GetPointer(), true, itksys::SystemTools::GetFilenameName(argv[1]));
 
