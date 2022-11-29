@@ -3,7 +3,7 @@ name: Build, test, publish
 on: [push,pull_request]
 
 env:
-  itk-git-tag: "v5.3rc04"
+  itk-git-tag: "v5.3.0"
 
 jobs:
   build-test-cxx:
@@ -42,7 +42,7 @@ jobs:
           python -m pip install ninja
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v3.18.3
+        uses: lukka/get-cmake@v3.19.2
 
       - name: Download ITK
         run: |
@@ -146,7 +146,7 @@ jobs:
             cmake-build-type: "MinSizeRel"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: Ex
 
@@ -161,7 +161,7 @@ jobs:
           python -m pip install ninja
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v3.18.3
+        uses: lukka/get-cmake@v3.19.2
 
       - name: Fetch CTest driver script
         run: |
@@ -273,7 +273,7 @@ jobs:
           python-version: 3.8
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v3.18.3
+        uses: lukka/get-cmake@v3.19.2
 
       - name: Install build dependencies
         run: |
