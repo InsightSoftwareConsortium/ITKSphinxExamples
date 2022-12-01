@@ -32,10 +32,6 @@ set(ITKSphinxExamples_DEPENDENCIES )
 set(ITK_DEPENDENCIES )
 
 option(ITKSphinxExamples_USE_VTK "Add VTK to the superbuild." OFF)
-# Used by ITK, VTK, -- always build it.
-if(NOT WIN32 OR ITKSphinxExamples_USE_VTK AND NOT VTK_DIR)
-  include(${CMAKE_SOURCE_DIR}/External-zlib.cmake)
-endif()
 
 option(ITKSphinxExamples_USE_OpenCV "Add OpenCV to the superbuild" OFF)
 if(NOT OpenCV_DIR AND ITKSphinxExamples_USE_OpenCV)
