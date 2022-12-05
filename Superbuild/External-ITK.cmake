@@ -2,7 +2,8 @@
 # Get and build itk
 
 if(NOT ITK_TAG)
-  set(ITK_TAG "v5.3.0")
+  # ITK release 2022-12-05
+  set(ITK_TAG "37c107436f163436d9f9caf015b6f642eacdf651")
 endif()
 
 set(_vtk_args)
@@ -58,6 +59,7 @@ ExternalProject_Add(ITK
     -DBUILD_TESTING:BOOL=OFF
     -DITK_BUILD_DEFAULT_MODULES:BOOL=ON
     -DModule_ITKReview:BOOL=ON
+    -DITK_LEGACY_REMOVE:BOOL=ON
     -DITK_LEGACY_SILENT:BOOL=ON
     -DExternalData_OBJECT_STORES:STRING=${ExternalData_OBJECT_STORES}
     ${_vtk_args}
