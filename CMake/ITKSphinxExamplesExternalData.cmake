@@ -21,7 +21,8 @@ list(APPEND ExternalData_OBJECT_STORES
   "${CMAKE_SOURCE_DIR}/.ExternalData"
   )
 
-set(ITK_SPHINX_EXAMPLES_DATA_RELEASED_ROOT_CID bafybeicjaaz3xi2qso3kdirmy5ixoxegvfp3bm7o44ytoh6egj5m6wgeuu)
+set(ITK_SPHINX_EXAMPLES_DATA_RELEASED_ROOT_CID bafybeib6yijwyl52gkalx6griio2wsibowlrt3v5wmkkuqlnuvku64c3ra)
+
 set(ExternalData_URL_ALGO_CID_lower cid)
 set(ExternalData_URL_TEMPLATES "" CACHE STRING
   "Additional URL templates for the ExternalData CMake script to look for testing data. E.g.
@@ -31,6 +32,10 @@ if(NOT ITK_FORBID_DOWNLOADS)
   list(APPEND ExternalData_URL_TEMPLATES
     # Local IPFS gateway
     "http://127.0.0.1:8080/ipfs/%(hash)"
+
+    # Data published on GitHub Pages (note: not complete due to file size
+    # limit)
+    "https://insightsoftwareconsortium.github.io/ITKTestingData/%(algo)/%(hash)"
 
     # Released data rsync'd to Kitware's Apache web server
     "https://itk.org/files/ExternalData/%(algo)/%(hash)"
@@ -45,6 +50,9 @@ if(NOT ITK_FORBID_DOWNLOADS)
     "https://${ITK_SPHINX_EXAMPLES_DATA_RELEASED_ROOT_CID}.ipfs.w3s.link/Objects/CID/%(hash)"
 
     # Released data on estuary.tech
+    "https://api.estuary.tech/gw/ipfs/${ITK_SPHINX_EXAMPLES_DATA_RELEASED_ROOT_CID}/Objects/CID/%(hash)"
+
+    # Protocol Labs gateway
     "https://${ITK_SPHINX_EXAMPLES_DATA_RELEASED_ROOT_CID}.ipfs.dweb.link/Objects/CID/%(hash)"
 
     # Gateway for arbitrary new files, uploaded to web3.storage

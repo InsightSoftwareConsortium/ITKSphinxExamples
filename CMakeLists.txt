@@ -10,8 +10,8 @@
 # CMake versions greater than the ITKEX_NEWEST_VALIDATED_POLICIES_VERSION policies will
 # continue to generate policy warnings "CMake Warning (dev)...Policy CMP0XXX is not set:"
 #
-set(ITKEX_OLDEST_VALIDATED_POLICIES_VERSION "3.10.2")
-set(ITKEX_NEWEST_VALIDATED_POLICIES_VERSION "3.14.0")
+set(ITKEX_OLDEST_VALIDATED_POLICIES_VERSION "3.16.3")
+set(ITKEX_NEWEST_VALIDATED_POLICIES_VERSION "3.19.7")
 cmake_minimum_required(VERSION ${ITKEX_OLDEST_VALIDATED_POLICIES_VERSION} FATAL_ERROR)
 if("${CMAKE_VERSION}" VERSION_LESS_EQUAL "${ITKEX_NEWEST_VALIDATED_POLICIES_VERSION}")
   #Set and use the newest available cmake policies that are validated to work
@@ -80,7 +80,7 @@ endif()
 if(NOT ITK_VERSION)
   # To get the ITK version information from external package when building
   # stand alone, ITK is required.
-  find_package(ITK 5.2.0 REQUIRED)
+  find_package(ITK 5.3.0 REQUIRED)
 endif()
 set(ITKSphinxExamples_VERSION_MAJOR ${ITK_VERSION_MAJOR})
 set(ITKSphinxExamples_VERSION_MINOR ${ITK_VERSION_MINOR})
