@@ -6,8 +6,8 @@ Archives in various formats
 
 The complete set of examples can be downloaded in various formats:
 
-- `HTML (Packed as .tar.gz) <ITKSphinxExamples-@ITKSphinxExamples_RELEASE_VERSION@-html.tar.gz>`_
-- `HTML (Packed as .zip)    <ITKSphinxExamples-@ITKSphinxExamples_RELEASE_VERSION@-html.zip>`_
+- `HTML (Packed as .tar.gz) <https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/releases/download/v@ITKSphinxExamples_RELEASE_VERSION@/ITKSphinxExamples-@ITKSphinxExamples_RELEASE_VERSION@-html.tar.gz>`_
+- `HTML (Packed as .zip)    <https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/releases/download/v@ITKSphinxExamples_RELEASE_VERSION@/ITKSphinxExamples-@ITKSphinxExamples_RELEASE_VERSION@-html.zip>`_
 
 Individual examples
 -------------------
