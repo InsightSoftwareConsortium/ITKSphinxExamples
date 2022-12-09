@@ -144,8 +144,17 @@ html_theme_options = {
       {"name": "ITK", "url": "https://itk.org"},
     ],
 
+    "use_edit_page_button": True,
+
     # Global TOC depth for "site" navbar tab.
     'show_nav_level': 2,
+}
+
+html_context = {
+    "github_user": "InsightSoftwareConsortium",
+    "github_repo": "ITKSphinxExamples",
+    "github_version": "master",
+    "doc_path": "",
 }
 
 # The name for this set of Sphinx documents.  If None, it defaults to
