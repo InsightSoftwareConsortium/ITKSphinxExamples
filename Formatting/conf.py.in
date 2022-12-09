@@ -148,6 +148,8 @@ html_theme_options = {
 
     # Global TOC depth for "site" navbar tab.
     'show_nav_level': 2,
+
+    'github_url': 'https://github.com/InsightSoftwareConsortium/ITKSphinxExamples',
 }
 
 html_context = {
