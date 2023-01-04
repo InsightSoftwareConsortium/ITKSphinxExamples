@@ -39,3 +39,8 @@ add_example(GlobalRegistrationTwoImagesBSpline)
 compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesBSpline
   BASELINE_PREFIX GlobalRegistrationTwoImagesBSpline
   )
+
+add_example(DeformAVolumeWithAThinPlateSpline)
+compare_to_baseline(EXAMPLE_NAME DeformAVolumeWithAThinPlateSpline
+  BASELINE_PREFIX DeformedImageBaseline
+  )

@@ -14,3 +14,4 @@ Transform
   ScaleAnImage/Documentation.rst
   TranslateAVectorImage/Documentation.rst
   TranslateImage/Documentation.rst
+  DeformAVolumeWithAThinPlateSpline/Documentation.rst

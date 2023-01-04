@@ -249,7 +249,6 @@
 * ../ITK/Examples/Registration/DeformationFieldJacobian.cxx
 * ../ITK/Examples/Registration/ImageRegistration5.tcl
 * ../ITK/Examples/Registration/ImageRegistration5.py
-* ../ITK/Examples/Registration/ThinPlateSplineWarp.cxx
 * ../ITK/Examples/Registration/ImageRegistration4.tcl
 * ../ITK/Examples/Registration/ImageRegistration16.cxx
 * ../ITK/Examples/Registration/ImageRegistration4.py
