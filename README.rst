@@ -43,12 +43,10 @@ Implemented
 - Script to create a new examples from a template.
 - GitHub community development.
 - Selectable light/dark colorscheme.
+- Online editing via GitHub.
 
 Todo
 ^^^^
-
-- Anonymous online editing.
-- Editable online with CodeMirror.
 
 - See `Github Issues`_ for a complete list of actions to be performed, bugs, *etc.*
 
