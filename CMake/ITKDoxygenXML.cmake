@@ -1,5 +1,5 @@
-set( ITKDoxygenXML_DIR ${CMAKE_BINARY_DIR}/ITKDoxygenXML )
-set( ITKDoxygenXML_TEMP_DIR ${CMAKE_BINARY_DIR}/ITKDoxygenXML-TEMP )
+set(ITKDoxygenXML_DIR ${CMAKE_BINARY_DIR}/ITKDoxygenXML)
+set(ITKDoxygenXML_TEMP_DIR ${CMAKE_BINARY_DIR}/ITKDoxygenXML-TEMP)
 
 
 add_custom_command( OUTPUT ${ITKDoxygenXML_DIR}/index.xml
