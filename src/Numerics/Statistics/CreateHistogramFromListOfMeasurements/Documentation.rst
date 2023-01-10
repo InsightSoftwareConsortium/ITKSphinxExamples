@@ -5,7 +5,7 @@ Create Histogram From List of Measurements
 
 .. index::
    single: SampleToHistogramFilter
-   single: histogram
+   single: Histogram
 
 Synopsis
 --------
