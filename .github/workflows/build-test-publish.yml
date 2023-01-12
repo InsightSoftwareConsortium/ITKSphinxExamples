@@ -357,7 +357,7 @@ jobs:
           ctest -j 2 -VV -S dashboard.cmake
 
       - name: Publish Documentation html as GitHub Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Documentation
           path: |
