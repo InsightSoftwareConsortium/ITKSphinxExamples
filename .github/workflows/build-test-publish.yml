@@ -247,10 +247,11 @@ jobs:
             python -m pip install itkwidgets
             # Issues with 5.7.0
             # https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/issues/407
-            python -m pip install traitlets==5.6.0
+            python -m pip install traitlets==5.6.0 pytest nbmake
 
       - name: Test notebooks
-        uses: treebeardtech/nbmake-action@v0.2.1
+        run: |
+          pytest --nbmake --nbmake-timeout=30000
 
   build-test-documentation:
     runs-on: ${{ matrix.os }}
