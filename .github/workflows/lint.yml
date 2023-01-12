@@ -7,13 +7,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
+      with:
+        # Full git history is needed to get a proper
+        # list of changed files within `super-linter`
+        fetch-depth: 0
 
     - name: Lint C++
       uses: InsightSoftwareConsortium/ITKClangFormatLinterAction@master
 
     - name: Set up Python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v4
       with:
         python-version: 3.9
 
