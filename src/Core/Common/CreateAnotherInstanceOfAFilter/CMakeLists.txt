@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project(CreateAnother)
+project(CreateAnotherInstanceOfAFilter)
 
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
@@ -14,10 +14,10 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAnother
+  DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAnotherInstanceOfAFilter
   COMPONENT Code
 )
 
 enable_testing()
-add_test(NAME CreateAnotherTest
+add_test(NAME CreateAnotherInstanceOfAFilterTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})

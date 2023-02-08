@@ -1,7 +1,7 @@
-:name: CreateAnother
+:name: CreateAnotherInstanceOfAFilter
 
-Create Another
-==============
+Create Another Instance Of A Filter
+===================================
 
 .. index::
    single: Object

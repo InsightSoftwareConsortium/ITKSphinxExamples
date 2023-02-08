@@ -31,7 +31,7 @@ Common
   CreateAnImageRegion/Documentation.rst
   CreateAnImageOfVectors/Documentation.rst
   CreateAnRGBImage/Documentation.rst
-  CreateAnother/Documentation.rst
+  CreateAnotherInstanceOfAFilter/Documentation.rst
   CreateAnotherInstanceOfAnImage/Documentation.rst
   CreateDerivativeKernel/Documentation.rst
   CreateForwardDifferenceKernel/Documentation.rst
