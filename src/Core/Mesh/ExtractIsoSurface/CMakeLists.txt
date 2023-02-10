@@ -13,16 +13,31 @@ install(TARGETS ${PROJECT_NAME}
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKSphinxExamples/Code/Core/Mesh/ExtractIsoSurface
   COMPONENT Code
   )
 
+set(input_volume ${CMAKE_CURRENT_BINARY_DIR}/HeadMRVolume.mha)
+set(output_mesh ${CMAKE_CURRENT_BINARY_DIR}/Output.vtk)
+set(lower_threshold 64)
+set(upper_threshold 255)
+
 enable_testing()
 add_test(NAME ExtractIsoSurfaceTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
-    ${CMAKE_CURRENT_BINARY_DIR}/HeadMRVolume.mha
-    ${CMAKE_CURRENT_BINARY_DIR}/Output.vtk
-    64
-    255
+    ${input_volume}
+    ${output_mesh}
+    ${lower_threshold}
+    ${upper_threshold}
 )
+
+if(ITK_WRAP_PYTHON)
+  add_test(NAME ExtractIsoSurfaceTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    ${input_volume}
+    OutputPython.vtk
+    ${lower_threshold}
+    ${upper_threshold}
+    )
+endif()
