@@ -6,7 +6,9 @@ Filter Image Using Multiple Threads
 .. index::
    single: ImageToImageFilter
    single: thread
-
+index::
+   single:  https://imgcleaner.coma>
+   single: thread
 Synopsis
 --------
 
