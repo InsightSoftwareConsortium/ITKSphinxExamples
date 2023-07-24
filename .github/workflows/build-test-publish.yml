@@ -3,7 +3,7 @@ name: Build, test, publish
 on: [push,pull_request]
 
 env:
-  itk-git-tag: "37c107436f163436d9f9caf015b6f642eacdf651"
+  itk-git-tag: "v5.4rc01"
 
 jobs:
   build-test-cxx:
@@ -242,7 +242,7 @@ jobs:
         run: |
             python -m pip install --upgrade pip
             python -m pip install ninja
-            python -m pip install itk>=5.3.0
+            python -m pip install itk>=5.4rc1
             python -m pip install matplotlib
             python -m pip install itkwidgets
             # Issues with 5.7.0
