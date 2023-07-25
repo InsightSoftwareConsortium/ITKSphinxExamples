@@ -132,7 +132,7 @@ jobs:
       matrix:
         os: [ubuntu-22.04, windows-2022, macos-12]
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-22.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
             cmake-build-type: "MinSizeRel"
@@ -284,7 +284,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install gnuplot dvipng
           sudo apt-get install texlive-full
-          sudo apt-get install pandoc
+          sudo apt-get install curl
+          curl -LO https://github.com/jgm/pandoc/releases/download/3.1.6/pandoc-3.1.6-1-amd64.deb
+          sudo apt-get install ./pandoc-3.1.6-1-amd64.deb
           sudo apt-get install imagemagick
 
           python -m pip install --upgrade pip
