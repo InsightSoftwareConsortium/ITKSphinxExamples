@@ -38,7 +38,7 @@ add_test(NAME SegmentBloodVesselsWithMultiScaleHessianBasedMeasureTest
 if(ITK_WRAP_PYTHON)
   string(REPLACE . "Python." output_image "${output_image}")
   add_test(NAME SegmentBloodVesselsWithMultiScaleHessianBasedMeasureTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       ${output_image}
       --sigma_minimum ${sigma_minimum}

@@ -138,76 +138,27 @@ foreach(link ${content_links})
 endforeach()
 ExternalData_Add_Target(ITKSphinxExamplesData)
 
-if(${ITK_WRAP_PYTHON})
-  # Use the same Python interpreter as ITK to run the tests.
-  find_package(PythonInterp ${ITK_WRAP_PYTHON_VERSION} REQUIRED)
-  mark_as_advanced(PYTHON_EXECUTABLE)
+set(PYTHON_REQUIRED_VERSION 3.7)
+set(Python_ADDITIONAL_VERSIONS 3.12 3.11 3.10 3.9 3.8 3.7)
+if(BUILD_TESTING OR ITK_BUILD_DOCUMENTATION OR ITK_WRAP_PYTHON)
+  if(ITK_WRAP_PYTHON)
+    # Use the same Python interpreter as ITK to run the tests.
+    find_package(Python3 ${ITK_WRAP_PYTHON_VERSION} EXACT COMPONENTS Interpreter REQUIRED)
+    mark_as_advanced(Python3_EXECUTABLE)
+  else()
+    find_package(Python3 ${PYTHON_REQUIRED_VERSION} COMPONENTS Interpreter)
+  endif()
 endif()
-find_package(PythonInterp)
-if(PYTHON_EXECUTABLE AND NOT ITK_WRAP_PYTHON)
-  execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import itk"
+
+if(Python3_EXECUTABLE AND NOT ITK_WRAP_PYTHON)
+  # See if external ITK python packages are installed for this python environment
+  execute_process(COMMAND ${Python3_EXECUTABLE} -c "import itk"
     RESULT_VARIABLE _have_itk_return_code
     OUTPUT_QUIET
     ERROR_QUIET
     )
   if(_have_itk_return_code EQUAL 0)
     set(ITK_WRAP_PYTHON 1)
-  endif()
-endif()
-if(BUILD_TESTING OR ITK_BUILD_DOCUMENTATION OR ITK_WRAP_PYTHON)
-  # Prefer to use more robust FindPython3 module if greater than cmake 3.12.0
-  if("${CMAKE_VERSION}" VERSION_LESS_EQUAL "3.12.0")
-    # Use of PythonInterp and PythonLibs is deprecated since cmake version 3.12.0
-    # Only use deprecated mechanisms for older versions of cmake
-    set(Python_ADDITIONAL_VERSIONS 3.9 3.8 3.7 3.6 3.5)
-    find_package(PythonInterp)
-    if(ITK_WRAP_PYTHON)
-      find_package(PythonLibs REQUIRED)
-      # check for version mismatch.
-      if(PYTHONLIBS_FOUND AND PYTHONINTERP_FOUND
-          AND NOT(PYTHON_VERSION_STRING VERSION_EQUAL PYTHONLIBS_VERSION_STRING))
-        message(FATAL_ERROR "Python executable (\"${PYTHON_VERSION_STRING}\") and library (\"${PYTHONLIBS_VERSION_STRING}\") version mismatch.")
-      endif()
-    endif()
-    if(PYTHON_VERSION_STRING VERSION_LESS 3.5)
-      # if python version is less than 3.5, unset so that it appears that no python version is found.
-      # to emulate the same behavior as find(Python3 ..) from cmake 3.12.0+
-      unset(PYTHON_EXECUTABLE)
-      unset(PYTHONINTERP_FOUND)
-      unset(PYTHON_VERSION_STRING)
-      unset(PYTHON_INCLUDE_DIRS)
-    else()
-      ## For forward compatibility with cmake 3.12.0 or greater, emulate variable names from FindPython3.cmake
-      set(Python3_EXECUTABLE ${PYTHON_EXECUTABLE})
-      set(Python3_Interpreter_FOUND ${PYTHONINTERP_FOUND})
-      set(Python3_VERSION ${PYTHON_VERSION_STRING})
-
-      set(Python3_Development_FOUND ${PYTHONLIBS_FOUND})
-      set(Python3_INCLUDE_DIRS ${PYTHON_INCLUDE_DIRS})
-      set(Python3_LIBRARIES    ${PYTHON_LIBRARIES})
-    endif()
-  else()
-    if(ITK_WRAP_PYTHON)
-      if(DEFINED Python3_EXECUTABLE)
-        set(_specified_Python3_EXECUTABLE ${Python3_EXECUTABLE})
-      endif()
-      find_package(Python3 COMPONENTS Interpreter Development)
-      set(Python3_EXECUTABLE ${_specified_Python3_EXECUTABLE} CACHE INTERNAL
-        "Path to the Python interpreter" FORCE)
-    else()
-      find_package(Python3 COMPONENTS Interpreter)
-    endif()
-    if(NOT Python3_EXECUTABLE AND _Python3_EXECUTABLE)
-      set(Python3_EXECUTABLE ${_Python3_EXECUTABLE} CACHE INTERNAL
-        "Path to the Python interpreter" FORCE)
-    endif()
-  endif()
-
-  if(ITK_WRAP_PYTHON AND Python3_VERSION VERSION_LESS 3.5)
-    message(FATAL_ERROR "Python versions less than 3.5 are not supported for wrapping. Python version: \"${Python3_VERSION}\".")
-  endif()
-  if(ITK_WRAP_PYTHON AND NOT Python3_INCLUDE_DIRS)
-    message(FATAL_ERROR "Python version ${Python3_VERSION} development environment not found for wrapping.")
   endif()
 endif()
 
@@ -265,7 +216,6 @@ if(BUILD_DOCUMENTATION)
   endif()
 
   # Builds the documentation.
-  find_package(PythonInterp REQUIRED)
   find_package(Sphinx REQUIRED)
   find_program(PANDOC_BIN pandoc REQUIRED)
 
@@ -288,7 +238,7 @@ if(BUILD_DOCUMENTATION)
       )
     add_custom_command(TARGET ${sphinx_target_base_name}_html
       POST_BUILD
-      COMMAND ${PYTHON_EXECUTABLE}
+      COMMAND ${Python3_EXECUTABLE}
         ${ITKSphinxExamples_SOURCE_DIR}/Utilities/DocumentationTarball.py
         ${SPHINX_DESTINATION}/html
         ${ITKSphinxExamples_BINARY_DIR}/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}-html

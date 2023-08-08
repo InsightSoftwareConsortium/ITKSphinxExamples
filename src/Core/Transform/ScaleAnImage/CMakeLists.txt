@@ -30,7 +30,7 @@ add_test(NAME ScaleAnImageTest
 
 if(ITK_WRAP_PYTHON)
 add_test(NAME ScaleAnImageTestPython
-COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     ${CMAKE_CURRENT_BINARY_DIR}/ScaleAnImageInput.png
     ${CMAKE_CURRENT_BINARY_DIR}/ScaleAnImageOutputPython.png)
 endif()

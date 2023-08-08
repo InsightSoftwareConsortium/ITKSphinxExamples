@@ -71,35 +71,35 @@ add_test(NAME SegmentWithWatershedImageFilterTest05
 
 if(ITK_WRAP_PYTHON)
   add_test(NAME SegmentWithWatershedImageFilterTest01Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       SegmentWithWatershedImageFilterTest01Python.png
       ${threshold01}
       ${level01}
     )
   add_test(NAME SegmentWithWatershedImageFilterTest02Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       SegmentWithWatershedImageFilterTest02Python.png
       ${threshold02}
       ${level02}
     )
   add_test(NAME SegmentWithWatershedImageFilterTest03Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       SegmentWithWatershedImageFilterTest03Python.png
       ${threshold03}
       ${level03}
     )
   add_test(NAME SegmentWithWatershedImageFilterTest04Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       SegmentWithWatershedImageFilterTest04Python.png
       ${threshold04}
       ${level04}
     )
   add_test(NAME SegmentWithWatershedImageFilterTest05Python
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${input_image}
       SegmentWithWatershedImageFilterTest05Python.png
       ${threshold05}

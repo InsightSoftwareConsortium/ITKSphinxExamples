@@ -30,7 +30,7 @@ add_test(NAME CombineTwoImagesWithCheckerBoardPatternTest
 if(ITK_WRAP_PYTHON)
   string(REPLACE . "Python." output_image "${output_image}")
   add_test(NAME CombineTwoImagesWithCheckerBoardPatternTestPython
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${output_image}
   )
 endif()
