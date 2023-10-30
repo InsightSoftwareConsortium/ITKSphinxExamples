@@ -21,5 +21,10 @@ install(FILES Code.cxx CMakeLists.txt
 
 
 enable_testing()
-add_test(NAME ConvertImageWithLabelsToShapeLabelMapTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
+# Windows failures tracked: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/issues/420
+if (NOT WIN32)
+  add_test(NAME ConvertImageWithLabelsToShapeLabelMapTest
+    COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
+  set_tests_properties(ConvertImageWithLabelsToShapeLabelMapTest
+    PROPERTIES PASS_REGULAR_EXPRESSION "There are 2 objects.")
+endif()

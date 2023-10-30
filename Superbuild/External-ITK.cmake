@@ -2,8 +2,8 @@
 # Get and build itk
 
 if(NOT ITK_TAG)
-  # ITK release 2023-06-20
-  set(ITK_TAG "v5.4rc01")
+  # ITK release 2023-10-10
+  set(ITK_TAG "v5.4rc02")
 endif()
 
 set(_vtk_args)
