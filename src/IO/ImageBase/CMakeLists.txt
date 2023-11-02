@@ -33,6 +33,14 @@ compare_to_baseline(
 
 add_example(ConvertImageToAnotherType)
 
+add_example( ReadWriteAnRGBImage )
+compare_to_baseline(
+  EXAMPLE_NAME ReadWriteAnRGBImage
+  BASELINE_PREFIX OutputBaseline
+  TEST_IMAGE Output.png
+  )
+
+
 #TODO: When example has valid input, uncomment below
 #add_example(Create3DFromSeriesOf2D)
 #compare_to_baseline(EXAMPLE_NAME Create3DFromSeriesOf2D
