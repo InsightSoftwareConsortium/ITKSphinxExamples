@@ -22,7 +22,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ExampleCostFunction2, SingleValuedCostfunction);
+  itkOverrideGetNameOfClassMacro(ExampleCostFunction2);
 
   unsigned int
   GetNumberOfParameters() const override

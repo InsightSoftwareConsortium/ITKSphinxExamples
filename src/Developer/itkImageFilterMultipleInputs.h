@@ -20,7 +20,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ImageFilterMultipleInputs, ImageToImageFilter);
+  itkOverrideGetNameOfClassMacro(ImageFilterMultipleInputs);
 
   /** The image to be inpainted in regions where the mask is white.*/
   void
