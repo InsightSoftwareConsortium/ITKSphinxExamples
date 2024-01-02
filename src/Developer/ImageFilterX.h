@@ -21,7 +21,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ImageFilter, ImageToImageFilter);
+  itkOverrideGetNameOfClassMacro(ImageFilter);
 
   itkSetMacro(Variable, double);
   itkGetMacro(Variable, double);

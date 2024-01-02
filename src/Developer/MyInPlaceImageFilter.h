@@ -20,7 +20,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(MyInPlaceImageFilter, InPlaceImageFilter);
+  itkOverrideGetNameOfClassMacro(MyInPlaceImageFilter);
 
 protected:
   MyInPlaceImageFilter() = default;
