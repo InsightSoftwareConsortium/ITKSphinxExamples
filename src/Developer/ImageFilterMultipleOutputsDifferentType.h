@@ -23,7 +23,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ImageFilterMultipleOutputsDifferentType, ImageToImageFilter);
+  itkOverrideGetNameOfClassMacro(ImageFilterMultipleOutputsDifferentType);
 
   TOutputImage1 *
   GetOutput1();
