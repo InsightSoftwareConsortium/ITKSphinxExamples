@@ -291,7 +291,7 @@ jobs:
 
           python -m pip install --upgrade pip
           python -m pip install ninja
-          python -m pip install 'sphinx==4.4.0' 'docutils<0.18'
+          python -m pip install 'sphinx==7.2.6'
           python -m pip install --ignore-installed six
           python -m pip install ipython
 
