@@ -26,6 +26,14 @@ else()
   #   `git config clangFormat.binary /path/to/clang-format`.
 endif()
 
+# Set the timestamps of the extracted files to their archived
+# timestamps.
+if(${CMAKE_VERSION} VERSION_LESS 3.24)
+  set(download_extract_timestamp_flag)
+else()
+  set(download_extract_timestamp_flag DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
+endif()
+
 if(NOT TARGET ClangFormat AND _clang_format_hash)
   ExternalProject_add(ClangFormat
     URL ${_clang_format_url}
@@ -39,5 +47,6 @@ if(NOT TARGET ClangFormat AND _clang_format_hash)
     LOG_TEST 0
     LOG_INSTALL 0
     INSTALL_COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/ITKClangFormatConfig.cmake
+    ${download_extract_timestamp_flag}
     )
 endif()
