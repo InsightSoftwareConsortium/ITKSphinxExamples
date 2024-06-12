@@ -21,7 +21,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ExampleCostFunction, MultipleValuedCostFunction);
+  itkOverrideGetNameOfClassMacro(ExampleCostFunction);
 
   // The equation we're fitting is y=C*e^(K*x)
   // The free parameters which we're trying to fit are C and K

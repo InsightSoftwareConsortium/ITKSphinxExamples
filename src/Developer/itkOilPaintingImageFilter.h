@@ -31,7 +31,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(OilPaintingImageFilter, ImageToImageFilter);
+  itkOverrideGetNameOfClassMacro(OilPaintingImageFilter);
 
   itkSetMacro(NumberOfBins, unsigned int);
   itkGetConstMacro(NumberOfBins, unsigned int);
