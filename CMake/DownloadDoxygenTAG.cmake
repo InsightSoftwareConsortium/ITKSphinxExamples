@@ -1,4 +1,4 @@
-file( DOWNLOAD https://data.kitware.com/api/v1/file/60674d8a2fa25629b94769d4/download
+file(DOWNLOAD https://github.com/InsightSoftwareConsortium/ITK/releases/download/v5.3.0/InsightDoxygenDocTag-5.3.0.gz
   ${ITKDoxygenTAG_TEMP_DIR}/InsightDoxygen.tag.gz SHOW_PROGRESS
   )
 
