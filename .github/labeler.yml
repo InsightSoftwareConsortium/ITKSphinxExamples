@@ -35,7 +35,7 @@ area:Core:
 area:Documentation:
   files:
     - "Documentation/*"
-    - "Documentation.rst"
+    - "Documentation.md"
 
 area:Filtering:
   files:
@@ -93,4 +93,4 @@ type:Infrastructure:
     - "Formatting/*"
     - "Superbuild/*"
     - "Utilities/*"
-    - "index.rst"
+    - "index.md"
