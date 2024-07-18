@@ -29,6 +29,14 @@ sys.path.insert(0, os.path.abspath(os.path.join('@ITKSphinxExamples_BINARY_DIR@'
 
 import pydata_sphinx_theme
 
+# Define the canonical URL if you are using a custom domain on Read the Docs
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "examples.itk.org")
+
+html_context = {}
+# Tell Jinja2 templates the build is running on Read the Docs
+if os.environ.get("READTHEDOCS", "") == "True":
+    html_context["READTHEDOCS"] = True
+
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
