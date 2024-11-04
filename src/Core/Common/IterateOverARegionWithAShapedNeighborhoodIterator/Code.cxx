@@ -38,8 +38,7 @@ main()
 
   auto image = ImageType::New();
 
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(10);

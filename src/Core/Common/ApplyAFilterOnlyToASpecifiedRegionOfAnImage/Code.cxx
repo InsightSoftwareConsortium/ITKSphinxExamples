@@ -31,8 +31,7 @@ main()
   ImageType::SizeType smallSize;
   smallSize.Fill(10);
 
-  ImageType::IndexType index;
-  index.Fill(0);
+  ImageType::IndexType index{};
 
   ImageType::RegionType region(index, smallSize);
 

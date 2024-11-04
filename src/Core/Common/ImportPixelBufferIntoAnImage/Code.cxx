@@ -48,8 +48,7 @@ main(int argc, char * argv[])
   size[0] = 200; // size along X
   size[1] = 200; // size along Y
 
-  ImportFilterType::IndexType start;
-  start.Fill(0);
+  ImportFilterType::IndexType start{};
 
   ImportFilterType::RegionType region;
   region.SetIndex(start);

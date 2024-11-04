@@ -42,8 +42,7 @@ main()
   filter->SetInput2(image2);
   filter->Update();
 
-  itk::Index<2> pixelIndex;
-  pixelIndex.Fill(0);
+  itk::Index<2> pixelIndex{};
 
   ImageType::PixelType input1PixelValue = image1->GetPixel(pixelIndex);
   ImageType::PixelType input2PixelValue = image2->GetPixel(pixelIndex);
@@ -59,8 +58,7 @@ main()
 void
 CreateImage(ImageType::Pointer image)
 {
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(10);

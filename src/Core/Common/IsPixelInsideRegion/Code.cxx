@@ -32,8 +32,7 @@ main()
   SizeType size;
   size.Fill(3);
 
-  IndexType start;
-  start.Fill(0);
+  IndexType start{};
 
   RegionType region(start, size);
 

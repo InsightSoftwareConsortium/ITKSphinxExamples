@@ -48,8 +48,7 @@ main()
 void
 CreateImage(VectorImageType::Pointer image)
 {
-  VectorImageType::IndexType start;
-  start.Fill(0);
+  VectorImageType::IndexType start{};
 
   VectorImageType::SizeType size;
   size.Fill(2);

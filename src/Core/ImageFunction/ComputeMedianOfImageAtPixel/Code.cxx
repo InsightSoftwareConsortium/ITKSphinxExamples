@@ -45,8 +45,7 @@ main()
 void
 CreateImage(UnsignedCharImageType::Pointer image)
 {
-  itk::Index<2> start;
-  start.Fill(0);
+  itk::Index<2> start{};
 
   itk::Size<2> size;
   size.Fill(100);

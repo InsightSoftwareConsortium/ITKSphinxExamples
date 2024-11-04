@@ -39,8 +39,7 @@ main()
   composeFilter->SetInput3(image);
   composeFilter->Update();
 
-  itk::Index<2> index;
-  index.Fill(0);
+  itk::Index<2> index{};
 
   std::cout << image->GetPixel(index) << std::endl;
 
@@ -52,8 +51,7 @@ main()
 void
 CreateImage(ScalarImageType::Pointer image)
 {
-  ScalarImageType::IndexType start;
-  start.Fill(0);
+  ScalarImageType::IndexType start{};
 
   ScalarImageType::SizeType size;
   size.Fill(2);

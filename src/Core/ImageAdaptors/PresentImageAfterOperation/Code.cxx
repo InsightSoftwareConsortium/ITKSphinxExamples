@@ -57,8 +57,7 @@ main()
   auto image = VectorImageType::New();
   CreateImage(image);
 
-  itk::Index<2> index;
-  index.Fill(0);
+  itk::Index<2> index{};
 
   std::cout << image->GetPixel(index) << std::endl;
 
@@ -79,8 +78,7 @@ main()
 void
 CreateImage(VectorImageType::Pointer image)
 {
-  VectorImageType::IndexType start;
-  start.Fill(0);
+  VectorImageType::IndexType start{};
 
   VectorImageType::SizeType size;
   size.Fill(2);

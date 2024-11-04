@@ -101,8 +101,7 @@ main()
 void
 CreateImage(ImageType::Pointer image, const itk::Index<2> & cornerOfSquare)
 {
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(51);

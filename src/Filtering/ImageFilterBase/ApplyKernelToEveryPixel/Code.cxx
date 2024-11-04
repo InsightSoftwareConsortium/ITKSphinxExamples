@@ -56,8 +56,7 @@ main()
 void
 CreateImage(FloatImageType::Pointer image)
 {
-  FloatImageType::IndexType start;
-  start.Fill(0);
+  FloatImageType::IndexType start{};
 
   FloatImageType::SizeType size;
   size.Fill(100);

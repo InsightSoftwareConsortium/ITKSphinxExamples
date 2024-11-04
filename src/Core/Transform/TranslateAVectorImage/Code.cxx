@@ -29,8 +29,7 @@ main()
   using VectorImageType = itk::Image<VectorType, 2>;
 
   auto          image = VectorImageType::New();
-  itk::Index<2> start;
-  start.Fill(0);
+  itk::Index<2> start{};
 
   itk::Size<2> size;
   size.Fill(10);

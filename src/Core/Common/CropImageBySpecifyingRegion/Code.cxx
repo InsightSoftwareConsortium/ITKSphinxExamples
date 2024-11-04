@@ -25,8 +25,7 @@ main()
 {
   using ImageType = itk::Image<unsigned char, 2>;
 
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(10);

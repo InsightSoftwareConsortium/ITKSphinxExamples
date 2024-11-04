@@ -24,8 +24,7 @@ void
 CreateImage(typename TImage::Pointer image)
 {
   using ImageType = TImage;
-  typename ImageType::IndexType start;
-  start.Fill(0);
+  typename ImageType::IndexType start{};
 
   typename ImageType::SizeType size;
   size.Fill(2);
@@ -55,8 +54,7 @@ main()
   filter2->SetInput(image);
   filter2->Update();
 
-  itk::Index<Dimension> index;
-  index.Fill(0);
+  itk::Index<Dimension> index{};
 
   std::cout << filter2->GetOutput()->GetPixel(index) << std::endl;
 

@@ -49,8 +49,7 @@ main()
 void
 CreateImage(ImageType::Pointer image)
 {
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(100);

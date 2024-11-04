@@ -24,8 +24,7 @@ template <typename TInputImage, typename TOutputImage1, typename TOutputImage2>
 void
 ImageFilterMultipleOutputsDifferentType<TInputImage, TOutputImage1, TOutputImage2>::GenerateData()
 {
-  itk::Index<2> start;
-  start.Fill(0);
+  itk::Index<2> start{};
 
   itk::Size<2> size;
   size.Fill(20);

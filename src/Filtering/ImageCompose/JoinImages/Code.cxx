@@ -55,8 +55,7 @@ void
 CreateImage(ImageType::Pointer image, unsigned char value)
 {
   // Create an image
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(100);

@@ -77,8 +77,7 @@ main(int argc, char * argv[])
 void
 CreateKernel(ImageType::Pointer kernel, unsigned int width)
 {
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(width);
