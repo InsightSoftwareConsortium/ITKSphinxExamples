@@ -11,7 +11,7 @@ jobs:
     strategy:
       max-parallel: 3
       matrix:
-        os: [ubuntu-22.04, windows-2022, macos-12]
+        os: [ubuntu-22.04, windows-2022, macos-13]
         include:
           - os: ubuntu-22.04
             c-compiler: "gcc"
@@ -21,7 +21,7 @@ jobs:
             c-compiler: "cl.exe"
             cxx-compiler: "cl.exe"
             cmake-build-type: "Release"
-          - os: macos-12
+          - os: macos-13
             c-compiler: "clang"
             cxx-compiler: "clang++"
             cmake-build-type: "MinSizeRel"
