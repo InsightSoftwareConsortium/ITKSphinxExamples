@@ -22,7 +22,7 @@ jobs:
         python-version: 3.9
 
     - name: Lint Python
-      uses: github/super-linter@v4
+      uses: github/super-linter@v7
       env:
         VALIDATE_ALL_CODEBASE: false
         VALIDATE_PYTHON_BLACK: true
