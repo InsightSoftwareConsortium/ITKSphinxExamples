@@ -23,7 +23,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ImageSource, ProcessObject);
+  itkOverrideGetNameOfClassMacro(ImageSource);
 
 protected:
   ImageSource() = default;
