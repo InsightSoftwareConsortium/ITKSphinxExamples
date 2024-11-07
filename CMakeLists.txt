@@ -240,7 +240,7 @@ if(BUILD_DOCUMENTATION)
   add_custom_target(copy_sources ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKSphinxExamples_SOURCE_DIR}/src" "${ITKSphinxExamples_BINARY_DIR}/src"
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKSphinxExamples_SOURCE_DIR}/Documentation" "${ITKSphinxExamples_BINARY_DIR}/Documentation"
-    COMMAND ${CMAKE_COMMAND} -E copy "${ITKSphinxExamples_SOURCE_DIR}/index.rst" "${ITKSphinxExamples_BINARY_DIR}/index.rst"
+    COMMAND ${CMAKE_COMMAND} -E copy "${ITKSphinxExamples_SOURCE_DIR}/index.md" "${ITKSphinxExamples_BINARY_DIR}/index.md"
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKSphinxExamples_SOURCE_DIR}/Formatting"
     "${ITKSphinxExamples_BINARY_DIR}/Formatting"
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKSphinxExamples_SOURCE_DIR}/Utilities"
