@@ -321,10 +321,8 @@ RegressionTestImage(const char * testImageFilename,
     using WriterType = itk::ImageFileWriter<DiffOutputType>;
     using RegionType = itk::ImageRegion<ITK_TEST_DIMENSION_MAX>;
 
-    OutputType::IndexType index;
-    index.Fill(0);
-    OutputType::SizeType size;
-    size.Fill(0);
+    OutputType::IndexType index{};
+    OutputType::SizeType  size{};
 
     auto rescale = RescaleType::New();
 

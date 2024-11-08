@@ -27,8 +27,7 @@ main()
   ImageType::SizeType regionSize;
   regionSize.Fill(3);
 
-  ImageType::IndexType regionIndex;
-  regionIndex.Fill(0);
+  ImageType::IndexType regionIndex{};
 
   ImageType::RegionType region(regionIndex, regionSize);
 

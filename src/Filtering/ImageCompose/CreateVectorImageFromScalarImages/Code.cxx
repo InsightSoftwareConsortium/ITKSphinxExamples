@@ -55,8 +55,7 @@ main()
 void
 CreateImage(ScalarImageType::Pointer image)
 {
-  ScalarImageType::IndexType start;
-  start.Fill(0);
+  ScalarImageType::IndexType start{};
 
   ScalarImageType::SizeType size;
   size.Fill(100);

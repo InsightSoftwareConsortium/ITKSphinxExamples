@@ -27,8 +27,7 @@ main()
   itk::Size<2> smallSize;
   smallSize.Fill(10);
 
-  itk::Index<2> index;
-  index.Fill(0);
+  itk::Index<2> index{};
 
   itk::ImageRegion<2> region(index, smallSize);
 

@@ -50,8 +50,7 @@ void
 CreateImage(ImageType::Pointer image)
 {
   // Create an image with 2 connected components
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(100);

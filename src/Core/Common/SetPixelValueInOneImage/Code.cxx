@@ -36,8 +36,7 @@ main(int argc, char * argv[])
 
   ImageType::RegionType region;
 
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   region.SetIndex(start);
 

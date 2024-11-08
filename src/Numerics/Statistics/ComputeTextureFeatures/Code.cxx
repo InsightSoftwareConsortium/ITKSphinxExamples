@@ -46,8 +46,7 @@ main()
 static void
 CreateImage(ImageType::Pointer image)
 {
-  itk::Index<2> index;
-  index.Fill(0);
+  itk::Index<2> index{};
 
   itk::Size<2> size;
   size.Fill(100);

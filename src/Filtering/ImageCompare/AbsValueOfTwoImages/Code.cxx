@@ -51,8 +51,7 @@ main()
 void
 CreateImage1(UnsignedCharImageType::Pointer image)
 {
-  UnsignedCharImageType::IndexType start;
-  start.Fill(0);
+  UnsignedCharImageType::IndexType start{};
 
   UnsignedCharImageType::SizeType size;
   size.Fill(10);
@@ -79,8 +78,7 @@ void
 CreateImage2(UnsignedCharImageType::Pointer image)
 {
   // Create an image with 2 connected components
-  UnsignedCharImageType::IndexType start;
-  start.Fill(0);
+  UnsignedCharImageType::IndexType start{};
 
   UnsignedCharImageType::SizeType size;
   size.Fill(10);

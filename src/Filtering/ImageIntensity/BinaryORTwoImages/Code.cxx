@@ -54,8 +54,7 @@ main()
 void
 CreateImage1(ImageType::Pointer image)
 {
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(100);
@@ -87,8 +86,7 @@ CreateImage1(ImageType::Pointer image)
 void
 CreateImage2(ImageType::Pointer image)
 {
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(100);

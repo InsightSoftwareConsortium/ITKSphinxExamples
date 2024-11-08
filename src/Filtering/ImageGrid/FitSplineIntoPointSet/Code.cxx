@@ -95,8 +95,7 @@ main()
   OutputImageType::SizeType size;
   size.Fill(200);
 
-  OutputImageType::IndexType start;
-  start.Fill(0);
+  OutputImageType::IndexType start{};
 
   OutputImageType::RegionType region(start, size);
   outputImage->SetRegions(region);

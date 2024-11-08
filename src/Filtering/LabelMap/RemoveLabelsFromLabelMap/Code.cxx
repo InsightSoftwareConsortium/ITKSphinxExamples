@@ -77,8 +77,7 @@ void
 CreateImage(ImageType::Pointer image)
 {
   // Create a black image with a white square
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(20);

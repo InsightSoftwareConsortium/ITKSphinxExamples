@@ -72,8 +72,7 @@ main(int argc, char * argv[])
 
   FloatImageType::OffsetType offset0 = { { 28, 35 } };
 
-  FloatImageType::IndexType index;
-  index.Fill(0);
+  FloatImageType::IndexType index{};
   index += offset0;
 
   AliveImage->SetPixel(index, 1.0);

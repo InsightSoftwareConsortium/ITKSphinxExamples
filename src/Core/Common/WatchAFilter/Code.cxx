@@ -29,8 +29,7 @@ CreateImage(typename TImage::Pointer image)
 
   // Create an image with 2 connected components
   typename ImageType::RegionType region;
-  typename ImageType::IndexType  start;
-  start.Fill(0);
+  typename ImageType::IndexType  start{};
 
   typename ImageType::SizeType size;
   size.Fill(100);

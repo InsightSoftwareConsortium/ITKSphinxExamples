@@ -126,8 +126,7 @@ main()
 void
 CreateMask(MaskType * const mask)
 {
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(51);
@@ -161,8 +160,7 @@ CreateMask(MaskType * const mask)
 void
 CreateImage(ImageType * const image)
 {
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(51);
@@ -177,8 +175,7 @@ CreateImage(ImageType * const image)
 void
 CreateImageOfSquare(ImageType * const image, const itk::Index<2> & cornerOfSquare)
 {
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(51);

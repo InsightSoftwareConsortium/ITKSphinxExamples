@@ -91,8 +91,7 @@ main(int argc, char * argv[])
   std::cout << "fixedImage->GetLargestPossibleRegion(): " << fixedImage->GetLargestPossibleRegion() << std::endl;
   displacementField->Allocate();
   // Fill it with 0's
-  DisplacementTransformType::OutputVectorType zeroVector;
-  zeroVector.Fill(0.0);
+  DisplacementTransformType::OutputVectorType zeroVector{};
   displacementField->FillBuffer(zeroVector);
   // Assign to transform
   displacementTransform->SetDisplacementField(displacementField);

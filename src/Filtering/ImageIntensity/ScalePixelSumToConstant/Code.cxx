@@ -57,8 +57,7 @@ CreateImage(ImageType::Pointer image)
 {
   // Create an image full of 1's
 
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(3);

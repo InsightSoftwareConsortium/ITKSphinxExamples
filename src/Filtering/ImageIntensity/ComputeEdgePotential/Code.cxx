@@ -69,8 +69,7 @@ CreateImage(UnsignedCharImageType::Pointer image)
 {
   // Create a black image with 2 white regions
 
-  UnsignedCharImageType::IndexType start;
-  start.Fill(0);
+  UnsignedCharImageType::IndexType start{};
 
   UnsignedCharImageType::SizeType size;
   size.Fill(200);

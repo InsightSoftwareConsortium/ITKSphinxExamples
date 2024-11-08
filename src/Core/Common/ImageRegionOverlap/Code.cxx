@@ -88,19 +88,15 @@ main(int argc, char * argv[])
   regionC.Crop(regionB);
   regionC.PadByRadius(10);
 
-  RGBPixelType pix_black;
-  pix_black.Fill(0);
+  RGBPixelType pix_black{};
 
-  RGBPixelType pix_red;
-  pix_red.Fill(0);
+  RGBPixelType pix_red{};
   pix_red[0] = 255;
 
-  RGBPixelType pix_green;
-  pix_green.Fill(0);
+  RGBPixelType pix_green{};
   pix_green[1] = 255;
 
-  RGBPixelType pix_blue;
-  pix_blue.Fill(0);
+  RGBPixelType pix_blue{};
   pix_blue[2] = 255;
 
   // A black canvas

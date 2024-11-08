@@ -45,8 +45,7 @@ void
 CreateImage(ImageType::Pointer image)
 {
   // Create an image that is mostly constant but has some different kinds of objects.
-  ImageType::IndexType start;
-  start.Fill(0);
+  ImageType::IndexType start{};
 
   ImageType::SizeType size;
   size.Fill(100);
