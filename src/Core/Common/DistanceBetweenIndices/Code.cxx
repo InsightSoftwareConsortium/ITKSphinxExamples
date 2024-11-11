@@ -25,11 +25,9 @@
 int
 main()
 {
-  itk::Index<2> pixel1;
-  pixel1.Fill(2);
+  auto pixel1 = itk::Index<2>::Filled(2);
 
-  itk::Index<2> pixel2;
-  pixel2.Fill(4);
+  auto pixel2 = itk::Index<2>::Filled(4);
 
   itk::Point<double, 2> p1;
   p1[0] = pixel1[0];

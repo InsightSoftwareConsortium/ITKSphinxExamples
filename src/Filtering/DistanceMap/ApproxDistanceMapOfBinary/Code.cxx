@@ -85,8 +85,7 @@ CreateImage(UnsignedCharImageType::Pointer image)
   // Create a line of white pixels
   for (unsigned int i = 40; i < 60; ++i)
   {
-    itk::Index<2> pixel;
-    pixel.Fill(i);
+    auto pixel = itk::Index<2>::Filled(i);
     image->SetPixel(pixel, 255);
   }
 }

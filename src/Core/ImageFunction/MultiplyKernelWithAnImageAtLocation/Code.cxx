@@ -44,24 +44,21 @@ main()
   neighborhoodOperatorImageFunction->SetInputImage(image);
 
   {
-    itk::Index<2> index;
-    index.Fill(20);
+    auto index = itk::Index<2>::Filled(20);
 
     float output = neighborhoodOperatorImageFunction->EvaluateAtIndex(index);
     std::cout << "Sum on border: " << output << std::endl;
   }
 
   {
-    itk::Index<2> index;
-    index.Fill(35);
+    auto index = itk::Index<2>::Filled(35);
 
     float output = neighborhoodOperatorImageFunction->EvaluateAtIndex(index);
     std::cout << "Sum in center: " << output << std::endl;
   }
 
   {
-    itk::Index<2> index;
-    index.Fill(7);
+    auto index = itk::Index<2>::Filled(7);
 
     float output = neighborhoodOperatorImageFunction->EvaluateAtIndex(index);
     std::cout << "Sum outside: " << output << std::endl;

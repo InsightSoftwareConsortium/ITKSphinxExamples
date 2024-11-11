@@ -38,8 +38,7 @@ main()
 
   std::cout << "Image largest region: " << image->GetLargestPossibleRegion() << std::endl;
 
-  ImageType::IndexType desiredStart;
-  desiredStart.Fill(3);
+  auto desiredStart = ImageType::IndexType::Filled(3);
 
   auto desiredSize = ImageType::SizeType::Filled(4);
 
@@ -60,8 +59,7 @@ main()
   output->DisconnectPipeline();
   output->FillBuffer(2);
 
-  itk::Index<2> index;
-  index.Fill(5);
+  auto index = itk::Index<2>::Filled(5);
 
   std::cout << "new largest region: " << output->GetLargestPossibleRegion() << std::endl;
   std::cout << "new: " << (int)output->GetPixel(index) << std::endl;

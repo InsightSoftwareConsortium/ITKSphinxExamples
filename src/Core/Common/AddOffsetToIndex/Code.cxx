@@ -26,8 +26,7 @@ main()
 {
   constexpr unsigned int Dimension = 2;
 
-  itk::Index<Dimension> index;
-  index.Fill(5);
+  auto index = itk::Index<Dimension>::Filled(5);
 
   itk::Offset<Dimension> offset;
   offset.Fill(1);
