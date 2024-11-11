@@ -76,8 +76,7 @@ CreateImage(UnsignedCharImageType::Pointer image)
   // Create an image with 2 connected components
   UnsignedCharImageType::IndexType start{};
 
-  UnsignedCharImageType::SizeType size;
-  size.Fill(100);
+  auto size = UnsignedCharImageType::SizeType::Filled(100);
 
   UnsignedCharImageType::RegionType region(start, size);
 

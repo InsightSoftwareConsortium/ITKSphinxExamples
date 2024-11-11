@@ -23,8 +23,7 @@ main()
   using ForwardDifferenceOperatorType = itk::ForwardDifferenceOperator<float, 2>;
   ForwardDifferenceOperatorType forwardDifferenceOperator;
   forwardDifferenceOperator.SetDirection(0); // Create the operator for the X axis derivative
-  itk::Size<2> radius;
-  radius.Fill(1);
+  auto radius = itk::Size<2>::Filled(1);
   forwardDifferenceOperator.CreateToRadius(radius);
 
   std::cout << "Size: " << forwardDifferenceOperator.GetSize() << std::endl;

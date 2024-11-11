@@ -91,9 +91,8 @@ main()
   // The output will consist of a 1-D image where each voxel contains the
   // (x,y,z) locations of the points
   using OutputImageType = itk::Image<unsigned char, 2>;
-  auto                      outputImage = OutputImageType::New();
-  OutputImageType::SizeType size;
-  size.Fill(200);
+  auto outputImage = OutputImageType::New();
+  auto size = OutputImageType::SizeType::Filled(200);
 
   OutputImageType::IndexType start{};
 

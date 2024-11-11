@@ -88,8 +88,7 @@ main(int argc, char * argv[])
 void
 CreateImage(ImageType::Pointer image)
 {
-  ImageType::SizeType regionSize;
-  regionSize.Fill(100);
+  auto regionSize = ImageType::SizeType::Filled(100);
 
   ImageType::IndexType regionIndex{};
 

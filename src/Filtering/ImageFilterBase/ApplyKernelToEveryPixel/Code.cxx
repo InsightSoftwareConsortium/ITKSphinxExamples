@@ -37,9 +37,8 @@ main()
 
   using SobelOperatorType = itk::SobelOperator<float, 2>;
   SobelOperatorType sobelOperator;
-  itk::Size<2>      radius;
-  radius.Fill(1);                // a radius of 1x1 creates a 3x3 operator
-  sobelOperator.SetDirection(0); // Create the operator for the X axis derivative
+  auto              radius = itk::Size<2>::Filled(1); // a radius of 1x1 creates a 3x3 operator
+  sobelOperator.SetDirection(0);                      // Create the operator for the X axis derivative
   sobelOperator.CreateToRadius(radius);
 
   using NeighborhoodOperatorImageFilterType = itk::NeighborhoodOperatorImageFilter<FloatImageType, FloatImageType>;
@@ -58,8 +57,7 @@ CreateImage(FloatImageType::Pointer image)
 {
   FloatImageType::IndexType start{};
 
-  FloatImageType::SizeType size;
-  size.Fill(100);
+  auto size = FloatImageType::SizeType::Filled(100);
 
   FloatImageType::RegionType region(start, size);
 

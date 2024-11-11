@@ -103,8 +103,7 @@ CreateImage(ImageType::Pointer image, const itk::Index<2> & cornerOfSquare)
 {
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(51);
+  auto size = ImageType::SizeType::Filled(51);
 
   ImageType::RegionType region(start, size);
 

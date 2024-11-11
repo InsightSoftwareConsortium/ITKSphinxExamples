@@ -55,9 +55,8 @@ main(int /*argc*/, char * /*argv*/[])
   auto contour = ContourType::New();
   contour->SetControlPoints(points);
 
-  auto         imageFilter = SpatialObjectToImageFilterType::New();
-  itk::Size<2> size;
-  size.Fill(50);
+  auto imageFilter = SpatialObjectToImageFilterType::New();
+  auto size = itk::Size<2>::Filled(50);
   imageFilter->SetInsideValue(255); // white
   imageFilter->SetSize(size);
   imageFilter->SetInput(contour);

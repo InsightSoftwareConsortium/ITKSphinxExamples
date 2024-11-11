@@ -92,8 +92,7 @@ main(int argc, char * argv[])
   // The crop border defaults to 0, and the image is not cropped by default.
   filter->SetCrop(crop);
 
-  FilterType::SizeType border;
-  border.Fill(borderSize);
+  auto border = FilterType::SizeType::Filled(borderSize);
 
   filter->SetCropBorder(border);
 

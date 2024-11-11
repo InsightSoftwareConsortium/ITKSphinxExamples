@@ -37,8 +37,7 @@ main(int argc, char * argv[])
 
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(100);
+  auto size = ImageType::SizeType::Filled(100);
 
   ImageType::RegionType region;
   region.SetSize(size);

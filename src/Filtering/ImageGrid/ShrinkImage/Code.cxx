@@ -52,8 +52,7 @@ CreateImage(ImageType::Pointer image)
   // Create an image with 2 connected components
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(100);
+  auto size = ImageType::SizeType::Filled(100);
 
   ImageType::RegionType region(start, size);
   image->SetRegions(region);

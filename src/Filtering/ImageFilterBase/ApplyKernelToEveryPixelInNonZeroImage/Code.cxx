@@ -44,9 +44,8 @@ main()
 
   using SobelOperatorType = itk::SobelOperator<float, 2>;
   SobelOperatorType sobelOperator;
-  itk::Size<2>      radius;
-  radius.Fill(1);                // a radius of 1x1 creates a 3x3 operator
-  sobelOperator.SetDirection(0); // Create the operator for the X axis derivative
+  auto              radius = itk::Size<2>::Filled(1); // a radius of 1x1 creates a 3x3 operator
+  sobelOperator.SetDirection(0);                      // Create the operator for the X axis derivative
   sobelOperator.CreateToRadius(radius);
 
   // Visualize mask image
@@ -112,8 +111,7 @@ CreateImage(UnsignedCharImageType::Pointer image)
 {
   itk::Index<2> start{};
 
-  itk::Size<2> size;
-  size.Fill(100);
+  auto size = itk::Size<2>::Filled(100);
 
   itk::ImageRegion<2> region(start, size);
 

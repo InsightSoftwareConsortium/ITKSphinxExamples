@@ -51,9 +51,8 @@ main(int itkNotUsed(argc), char * itkNotUsed(argv)[])
   auto line = LineType::New();
   line->SetPoints(points);
 
-  auto         imageFilter = SpatialObjectToImageFilterType::New();
-  itk::Size<2> size;
-  size.Fill(50);
+  auto imageFilter = SpatialObjectToImageFilterType::New();
+  auto size = itk::Size<2>::Filled(50);
   imageFilter->SetInsideValue(255); // white
   imageFilter->SetSize(size);
   imageFilter->SetInput(line);

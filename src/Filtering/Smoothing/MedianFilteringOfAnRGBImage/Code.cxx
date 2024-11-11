@@ -76,8 +76,7 @@ main(int argc, char * argv[])
   using FilterType = itk::MedianImageFilter<MyImageType, MyImageType>;
   auto medianFilter = FilterType::New();
 
-  FilterType::InputSizeType radius;
-  radius.Fill(std::stoi(argv[3]));
+  auto radius = FilterType::InputSizeType::Filled(std::stoi(argv[3]));
 
   medianFilter->SetRadius(radius);
   medianFilter->SetInput(input);

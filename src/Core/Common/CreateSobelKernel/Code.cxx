@@ -23,8 +23,7 @@ main()
   using SobelOperatorType = itk::SobelOperator<float, 2>;
   SobelOperatorType sobelOperator;
   sobelOperator.SetDirection(0); // Create the operator for the X axis derivative
-  itk::Size<2> radius;
-  radius.Fill(1);
+  auto radius = itk::Size<2>::Filled(1);
   sobelOperator.CreateToRadius(radius);
 
   std::cout << sobelOperator << std::endl;

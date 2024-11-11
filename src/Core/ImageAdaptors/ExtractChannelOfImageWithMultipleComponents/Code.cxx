@@ -51,8 +51,7 @@ CreateImage(VectorImageType::Pointer image)
 {
   VectorImageType::IndexType start{};
 
-  VectorImageType::SizeType size;
-  size.Fill(2);
+  auto size = VectorImageType::SizeType::Filled(2);
 
   VectorImageType::RegionType region;
   region.SetSize(size);

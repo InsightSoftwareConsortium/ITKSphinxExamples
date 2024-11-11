@@ -128,8 +128,7 @@ CreateMask(MaskType * const mask)
 {
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(51);
+  auto size = ImageType::SizeType::Filled(51);
 
   ImageType::RegionType region(start, size);
 
@@ -162,8 +161,7 @@ CreateImage(ImageType * const image)
 {
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(51);
+  auto size = ImageType::SizeType::Filled(51);
 
   ImageType::RegionType region(start, size);
 
@@ -177,8 +175,7 @@ CreateImageOfSquare(ImageType * const image, const itk::Index<2> & cornerOfSquar
 {
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(51);
+  auto size = ImageType::SizeType::Filled(51);
 
   ImageType::RegionType region(start, size);
 

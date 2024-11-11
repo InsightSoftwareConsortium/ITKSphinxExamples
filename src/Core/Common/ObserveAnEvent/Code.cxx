@@ -58,8 +58,7 @@ main()
   using SourceType = itk::GaussianImageSource<ImageType>;
   auto source = SourceType::New();
 
-  ImageType::SizeType size;
-  size.Fill(128);
+  auto size = ImageType::SizeType::Filled(128);
   source->SetSize(size);
 
   SourceType::ArrayType sigma;
