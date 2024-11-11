@@ -79,8 +79,7 @@ CreateKernel(ImageType::Pointer kernel, unsigned int width)
 {
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(width);
+  auto size = ImageType::SizeType::Filled(width);
 
   ImageType::RegionType region;
   region.SetSize(size);

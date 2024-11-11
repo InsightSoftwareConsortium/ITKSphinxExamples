@@ -38,8 +38,7 @@ main(int argc, char * argv[])
 
   using InputImageType = itk::Image<InputPixelType, Dimension>;
 
-  InputImageType::SizeType size;
-  size.Fill(100);
+  auto size = InputImageType::SizeType::Filled(100);
 
   using RandomImageSourceType = itk::RandomImageSource<InputImageType>;
 

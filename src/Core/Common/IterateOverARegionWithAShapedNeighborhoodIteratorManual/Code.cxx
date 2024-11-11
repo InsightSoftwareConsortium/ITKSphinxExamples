@@ -39,8 +39,7 @@ main()
 
   using IteratorType = itk::ShapedNeighborhoodIterator<ImageType>;
 
-  itk::Size<2> radius;
-  radius.Fill(1);
+  auto         radius = itk::Size<2>::Filled(1);
   IteratorType iterator(radius, image, image->GetLargestPossibleRegion());
   std::cout << "By default there are " << iterator.GetActiveIndexListSize() << " active indices." << std::endl;
 
@@ -87,8 +86,7 @@ CreateImage(ImageType::Pointer image)
 {
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(10);
+  auto size = ImageType::SizeType::Filled(10);
 
   ImageType::RegionType region(start, size);
 

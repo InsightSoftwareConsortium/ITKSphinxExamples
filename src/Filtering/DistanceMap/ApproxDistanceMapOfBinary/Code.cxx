@@ -75,8 +75,7 @@ CreateImage(UnsignedCharImageType::Pointer image)
   // Create an image
   itk::Index<2> start{};
 
-  itk::Size<2> size;
-  size.Fill(100);
+  auto size = itk::Size<2>::Filled(100);
 
   itk::ImageRegion<2> region(start, size);
   image->SetRegions(region);

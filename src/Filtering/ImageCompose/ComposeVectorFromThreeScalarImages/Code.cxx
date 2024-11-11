@@ -53,8 +53,7 @@ CreateImage(ScalarImageType::Pointer image)
 {
   ScalarImageType::IndexType start{};
 
-  ScalarImageType::SizeType size;
-  size.Fill(2);
+  auto size = ScalarImageType::SizeType::Filled(2);
 
   ScalarImageType::RegionType region;
   region.SetSize(size);

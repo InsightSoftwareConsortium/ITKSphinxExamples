@@ -24,8 +24,7 @@ main()
   using ImageType = itk::Image<unsigned char, 2>;
   auto image = ImageType::New();
 
-  ImageType::SizeType regionSize;
-  regionSize.Fill(3);
+  auto regionSize = ImageType::SizeType::Filled(3);
 
   ImageType::IndexType regionIndex{};
 

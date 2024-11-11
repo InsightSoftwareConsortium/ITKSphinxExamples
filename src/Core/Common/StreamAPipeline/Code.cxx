@@ -35,9 +35,8 @@ main(int argc, char * argv[])
   using ImageType = itk::Image<PixelType, Dimension>;
 
   using SourceType = itk::RandomImageSource<ImageType>;
-  auto                source = SourceType::New();
-  ImageType::SizeType size;
-  size.Fill(numberOfSplits);
+  auto source = SourceType::New();
+  auto size = ImageType::SizeType::Filled(numberOfSplits);
   source->SetSize(size);
 
   using MonitorFilterType = itk::PipelineMonitorImageFilter<ImageType>;

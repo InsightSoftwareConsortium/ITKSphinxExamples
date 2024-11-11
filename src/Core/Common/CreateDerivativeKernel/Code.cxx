@@ -23,8 +23,7 @@ main()
   using DerivativeOperatorType = itk::DerivativeOperator<float, 2>;
   DerivativeOperatorType derivativeOperator;
   derivativeOperator.SetDirection(0); // Create the operator for the X axis derivative
-  itk::Size<2> radius;
-  radius.Fill(1);
+  auto radius = itk::Size<2>::Filled(1);
   derivativeOperator.CreateToRadius(radius);
 
   std::cout << "Size: " << derivativeOperator.GetSize() << std::endl;

@@ -25,8 +25,7 @@ main()
 
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(2);
+  auto size = ImageType::SizeType::Filled(2);
 
   ImageType::RegionType region(start, size);
 

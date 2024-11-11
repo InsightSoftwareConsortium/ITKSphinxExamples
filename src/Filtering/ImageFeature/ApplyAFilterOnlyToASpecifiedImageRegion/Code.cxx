@@ -24,15 +24,13 @@ main()
 {
   using ImageType = itk::Image<float, 2>;
 
-  itk::Size<2> smallSize;
-  smallSize.Fill(10);
+  auto smallSize = itk::Size<2>::Filled(10);
 
   itk::Index<2> index{};
 
   itk::ImageRegion<2> region(index, smallSize);
 
-  itk::Size<2> bigSize;
-  bigSize.Fill(10000);
+  auto bigSize = itk::Size<2>::Filled(10000);
 
   itk::RandomImageSource<ImageType>::Pointer randomImageSource = itk::RandomImageSource<ImageType>::New();
   randomImageSource->SetNumberOfWorkUnits(1); // to produce non-random results

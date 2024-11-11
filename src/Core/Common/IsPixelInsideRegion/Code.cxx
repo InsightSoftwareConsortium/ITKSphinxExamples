@@ -29,8 +29,7 @@ main()
   using SizeType = RegionType::SizeType;
   using IndexType = RegionType::IndexType;
 
-  SizeType size;
-  size.Fill(3);
+  auto size = SizeType::Filled(3);
 
   IndexType start{};
 

@@ -28,8 +28,7 @@ main()
 
   itk::Index<2> start{};
 
-  itk::Size<2> size;
-  size.Fill(10);
+  auto size = itk::Size<2>::Filled(10);
 
   itk::ImageRegion<2> region(start, size);
 

@@ -47,8 +47,7 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   using FilterType = itk::VotingBinaryIterativeHoleFillingImageFilter<ImageType>;
-  FilterType::InputSizeType radius;
-  radius.Fill(r);
+  auto radius = FilterType::InputSizeType::Filled(r);
 
   auto filter = FilterType::New();
   filter->SetInput(input);

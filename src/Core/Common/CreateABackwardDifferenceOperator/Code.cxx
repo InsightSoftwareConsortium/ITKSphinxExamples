@@ -30,8 +30,7 @@ main()
   // Create the operator for the X axis derivative
   backwardDifferenceOperator.SetDirection(0);
 
-  itk::Size<Dimension> radius;
-  radius.Fill(1);
+  auto radius = itk::Size<Dimension>::Filled(1);
 
   backwardDifferenceOperator.CreateToRadius(radius);
 

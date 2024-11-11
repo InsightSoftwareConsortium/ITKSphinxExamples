@@ -26,8 +26,7 @@ ImageFilterMultipleOutputsDifferentType<TInputImage, TOutputImage1, TOutputImage
 {
   itk::Index<2> start{};
 
-  itk::Size<2> size;
-  size.Fill(20);
+  auto size = itk::Size<2>::Filled(20);
 
   itk::ImageRegion<2> region(start, size);
 

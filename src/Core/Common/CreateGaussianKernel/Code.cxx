@@ -23,8 +23,7 @@ main()
   using GaussianOperatorType = itk::GaussianOperator<float, 2>;
   GaussianOperatorType gaussianOperator;
   gaussianOperator.SetDirection(0); // Create the operator for the X axis derivative
-  itk::Size<2> radius;
-  radius.Fill(1);
+  auto radius = itk::Size<2>::Filled(1);
   gaussianOperator.CreateToRadius(radius);
 
   std::cout << "Size: " << gaussianOperator.GetSize() << std::endl;

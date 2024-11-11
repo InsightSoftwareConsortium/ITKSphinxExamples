@@ -50,9 +50,8 @@ main(int argc, char * argv[])
   const auto input = itk::ReadImage<ImageType>(inputFileName);
 
   // Create and setup a median filter
-  auto                      medianFilter = FilterType::New();
-  FilterType::InputSizeType radius;
-  radius.Fill(2);
+  auto medianFilter = FilterType::New();
+  auto radius = FilterType::InputSizeType::Filled(2);
   if (argc > 2)
   {
     radius.Fill(atoi(argv[2]));

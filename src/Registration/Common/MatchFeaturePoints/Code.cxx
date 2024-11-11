@@ -81,9 +81,8 @@ void
 CreateImage(ImageType::Pointer image, const unsigned int x)
 {
   // Allocate empty image
-  itk::Index<2> start{};
-  itk::Size<2>  size;
-  size.Fill(100);
+  itk::Index<2>         start{};
+  auto                  size = itk::Size<2>::Filled(100);
   ImageType::RegionType region(start, size);
   image->SetRegions(region);
   image->Allocate();

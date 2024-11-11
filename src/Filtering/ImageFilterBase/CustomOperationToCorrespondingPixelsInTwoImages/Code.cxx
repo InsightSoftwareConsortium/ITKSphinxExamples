@@ -94,8 +94,7 @@ CreateImage(ImageType::Pointer image)
 {
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(10);
+  auto size = ImageType::SizeType::Filled(10);
 
   ImageType::RegionType region(start, size);
   image->SetRegions(region);

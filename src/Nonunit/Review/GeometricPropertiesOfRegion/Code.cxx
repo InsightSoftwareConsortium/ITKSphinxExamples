@@ -146,8 +146,7 @@ CreateIntensityImage(ImageType::Pointer image)
   // Create a random image.
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(20);
+  auto size = ImageType::SizeType::Filled(20);
 
   ImageType::RegionType region;
   region.SetSize(size);
@@ -173,8 +172,7 @@ CreateLabelImage(ImageType::Pointer image)
   // Create a black image with labeled squares.
   ImageType::IndexType start{};
 
-  ImageType::SizeType size;
-  size.Fill(20);
+  auto size = ImageType::SizeType::Filled(20);
 
   ImageType::RegionType region;
   region.SetSize(size);

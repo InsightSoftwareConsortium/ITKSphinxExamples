@@ -52,8 +52,7 @@ main(int argc, char * argv[])
   FloatImageType::IndexType start;
   start.Fill(50);
 
-  FloatImageType::SizeType patchSize;
-  patchSize.Fill(51);
+  auto patchSize = FloatImageType::SizeType::Filled(51);
 
   FloatImageType::RegionType desiredRegion(start, patchSize);
 

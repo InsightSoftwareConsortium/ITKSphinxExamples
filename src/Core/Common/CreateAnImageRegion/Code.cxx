@@ -24,8 +24,7 @@ main()
   constexpr unsigned int Dimension = 2;
 
   using RegionType = itk::ImageRegion<Dimension>;
-  RegionType::SizeType size;
-  size.Fill(3);
+  auto size = RegionType::SizeType::Filled(3);
 
   RegionType::IndexType index;
   index.Fill(1);

@@ -71,8 +71,7 @@ CreateImage(UnsignedCharImageType::Pointer image)
 
   UnsignedCharImageType::IndexType start{};
 
-  UnsignedCharImageType::SizeType size;
-  size.Fill(200);
+  auto size = UnsignedCharImageType::SizeType::Filled(200);
 
   UnsignedCharImageType::RegionType region(start, size);
   image->SetRegions(region);

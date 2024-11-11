@@ -53,8 +53,7 @@ CreateImage1(UnsignedCharImageType::Pointer image)
 {
   UnsignedCharImageType::IndexType start{};
 
-  UnsignedCharImageType::SizeType size;
-  size.Fill(10);
+  auto size = UnsignedCharImageType::SizeType::Filled(10);
 
   UnsignedCharImageType::RegionType region;
   region.SetSize(size);
@@ -80,8 +79,7 @@ CreateImage2(UnsignedCharImageType::Pointer image)
   // Create an image with 2 connected components
   UnsignedCharImageType::IndexType start{};
 
-  UnsignedCharImageType::SizeType size;
-  size.Fill(10);
+  auto size = UnsignedCharImageType::SizeType::Filled(10);
 
   UnsignedCharImageType::RegionType region;
   region.SetSize(size);

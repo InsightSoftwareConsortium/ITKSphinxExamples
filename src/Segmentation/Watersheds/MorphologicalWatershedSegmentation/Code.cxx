@@ -96,8 +96,7 @@ CreateImage(UnsignedCharImageType::Pointer image)
 
   itk::Index<2> start{};
 
-  itk::Size<2> size;
-  size.Fill(200);
+  auto size = itk::Size<2>::Filled(200);
 
   itk::ImageRegion<2> region(start, size);
   image->SetRegions(region);

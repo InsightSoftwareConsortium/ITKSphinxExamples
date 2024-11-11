@@ -28,15 +28,13 @@ main()
 
   using ImageType = itk::Image<PixelType, Dimension>;
 
-  ImageType::SizeType smallSize;
-  smallSize.Fill(10);
+  auto smallSize = ImageType::SizeType::Filled(10);
 
   ImageType::IndexType index{};
 
   ImageType::RegionType region(index, smallSize);
 
-  ImageType::SizeType bigSize;
-  bigSize.Fill(10000);
+  auto bigSize = ImageType::SizeType::Filled(10000);
 
   using RandomSourceType = itk::RandomImageSource<ImageType>;
   auto randomImageSource = RandomSourceType::New();

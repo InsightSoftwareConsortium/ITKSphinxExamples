@@ -45,8 +45,7 @@ main(int argc, char * argv[])
   using FilterType = itk::MeanImageFilter<ImageType, ImageType>;
   auto meanFilter = FilterType::New();
 
-  FilterType::InputSizeType radius;
-  radius.Fill(radiusValue);
+  auto radius = FilterType::InputSizeType::Filled(radiusValue);
 
   meanFilter->SetRadius(radius);
   meanFilter->SetInput(input);

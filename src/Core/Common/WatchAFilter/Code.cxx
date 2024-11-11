@@ -31,8 +31,7 @@ CreateImage(typename TImage::Pointer image)
   typename ImageType::RegionType region;
   typename ImageType::IndexType  start{};
 
-  typename ImageType::SizeType size;
-  size.Fill(100);
+  auto size = ImageType::SizeType::Filled(100);
 
   region.SetSize(size);
   region.SetIndex(start);

@@ -29,8 +29,7 @@ int
 main()
 {
 
-  ImageType::SizeType exclusionRegionSize;
-  exclusionRegionSize.Fill(2);
+  auto exclusionRegionSize = ImageType::SizeType::Filled(2);
 
   ImageType::IndexType exclusionRegionIndex{};
 
@@ -58,8 +57,7 @@ main()
 void
 CreateImage(ImageType::Pointer image)
 {
-  ImageType::SizeType regionSize;
-  regionSize.Fill(3);
+  auto regionSize = ImageType::SizeType::Filled(3);
 
   ImageType::IndexType regionIndex{};
 

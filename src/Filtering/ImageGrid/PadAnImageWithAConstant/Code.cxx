@@ -41,11 +41,9 @@ main(int argc, char * argv[])
 
   const auto input = itk::ReadImage<ImageType>(argv[1]);
 
-  ImageType::SizeType lowerExtendRegion;
-  lowerExtendRegion.Fill(std::stoi(argv[3]));
+  auto lowerExtendRegion = ImageType::SizeType::Filled(std::stoi(argv[3]));
 
-  ImageType::SizeType upperExtendRegion;
-  upperExtendRegion.Fill(std::stoi(argv[4]));
+  auto upperExtendRegion = ImageType::SizeType::Filled(std::stoi(argv[4]));
 
   using FilterType = itk::ConstantPadImageFilter<ImageType, ImageType>;
   auto filter = FilterType::New();
