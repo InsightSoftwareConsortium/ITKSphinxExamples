@@ -35,8 +35,7 @@ main()
   auto medianImageFunction = MedianImageFunctionType::New();
   medianImageFunction->SetInputImage(image);
 
-  itk::Index<2> index;
-  index.Fill(10);
+  auto index = itk::Index<2>::Filled(10);
   std::cout << "Median at " << index << " is " << static_cast<int>(medianImageFunction->EvaluateAtIndex(index))
             << std::endl;
   return EXIT_SUCCESS;

@@ -26,8 +26,7 @@ main()
   using RegionType = itk::ImageRegion<Dimension>;
   auto size = RegionType::SizeType::Filled(3);
 
-  RegionType::IndexType index;
-  index.Fill(1);
+  auto index = RegionType::IndexType::Filled(1);
 
   RegionType region(index, size);
 

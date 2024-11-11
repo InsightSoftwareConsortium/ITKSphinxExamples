@@ -70,8 +70,7 @@ CreateImage(ImageType::Pointer image)
   }
 
   // Create a rogue white pixel
-  ImageType::IndexType pixel;
-  pixel.Fill(20);
+  auto pixel = ImageType::IndexType::Filled(20);
   image->SetPixel(pixel, 255);
 
   itk::WriteImage(image, "input.mhd");

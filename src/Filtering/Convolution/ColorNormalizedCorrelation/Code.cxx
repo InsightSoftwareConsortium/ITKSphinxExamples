@@ -60,8 +60,7 @@ main(int argc, char * argv[])
 
   auto extractFilter = ExtractFilterType::New();
 
-  FloatImageType::IndexType start;
-  start.Fill(50);
+  auto start = FloatImageType::IndexType::Filled(50);
 
   auto patchSize = FloatImageType::SizeType::Filled(51);
 

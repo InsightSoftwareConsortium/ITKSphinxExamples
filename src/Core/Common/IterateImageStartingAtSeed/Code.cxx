@@ -73,8 +73,7 @@ CreateImage(ImageType::Pointer image)
   // Make a line
   for (unsigned int i = 20; i < 50; ++i)
   {
-    itk::Index<2> pixelIndex;
-    pixelIndex.Fill(i);
+    auto pixelIndex = itk::Index<2>::Filled(i);
 
     image->SetPixel(pixelIndex, 255);
   }
