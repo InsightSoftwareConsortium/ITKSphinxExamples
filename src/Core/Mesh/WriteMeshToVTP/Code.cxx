@@ -48,20 +48,10 @@ CreateMeshWithEdges()
   auto mesh = MeshType::New();
 
   // Create points
-  MeshType::PointType p0, p1, p2, p3;
-
-  p0[0] = -1.0;
-  p0[1] = -1.0;
-  p0[2] = 0.0; // first  point ( -1, -1, 0 )
-  p1[0] = 1.0;
-  p1[1] = -1.0;
-  p1[2] = 0.0; // second point (  1, -1, 0 )
-  p2[0] = 1.0;
-  p2[1] = 1.0;
-  p2[2] = 0.0; // third  point (  1,  1, 0 )
-  p3[0] = 1.0;
-  p3[1] = 1.0;
-  p3[2] = 1.0; // third  point (  1,  1, 1 )
+  const MeshType::PointType p0({ -1.0, -1.0, 0 });
+  const MeshType::PointType p1({ 1.0, -1.0, 0.0 });
+  const MeshType::PointType p2({ 1.0, 1.0, 0.0 });
+  const MeshType::PointType p3({ 1.0, 1.0, 1.0 });
 
   mesh->SetPoint(0, p0);
   mesh->SetPoint(1, p1);
@@ -74,7 +64,6 @@ CreateMeshWithEdges()
   using PointsIterator = MeshType::PointsContainer::Iterator;
 
   PointsIterator pointIterator = mesh->GetPoints()->Begin();
-
   PointsIterator end = mesh->GetPoints()->End();
   while (pointIterator != end)
   {
@@ -85,7 +74,6 @@ CreateMeshWithEdges()
 
   using CellAutoPointer = MeshType::CellType::CellAutoPointer;
   using LineType = itk::LineCell<MeshType::CellType>;
-
 
   CellAutoPointer line0;
   line0.TakeOwnership(new LineType);

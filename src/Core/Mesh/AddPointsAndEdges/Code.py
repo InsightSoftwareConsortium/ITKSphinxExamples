@@ -26,10 +26,10 @@ def CreatePointOnlyMesh():
     mesh = MeshType.New()
 
     # Create points
-    p0 = [-1.0, -1.0, 0.0]  # first  point ( -1, -1, 0 )
-    p1 = [1.0, -1.0, 0.0]  # second point (  1, -1, 0 )
-    p2 = [1.0, 1.0, 0.0]  # third  point (  1,  1, 0 )
-    p3 = [1.0, 1.0, 1.0]  # fourth  point (  1,  1, 1 )
+    p0 = [-1.0, -1.0, 0.0]
+    p1 = [1.0, -1.0, 0.0]
+    p2 = [1.0, 1.0, 0.0]
+    p3 = [1.0, 1.0, 1.0]
 
     mesh.SetPoint(0, p0)
     mesh.SetPoint(1, p1)

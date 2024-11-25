@@ -28,32 +28,26 @@ main()
   constexpr unsigned int DataDimension = 2;
 
   using DataType = itk::Vector<float, DataDimension>;
-
   using PointSetType = itk::PointSet<DataType, ParametricDimension>;
 
   auto pointSet = PointSetType::New();
 
-  PointSetType::PointType param0, param1, param2;
+  const PointSetType::PointType param0{ 0.0 };
 
-  param0[0] = 0.0;
-  DataType p0;
-  p0[0] = 10.0;
-  p0[1] = 10.0;
+  const DataType p0({ 10.0, 10.0 });
 
   pointSet->SetPoint(0, param0);
   pointSet->SetPointData(0, p0);
 
-  param1[0] = 1.0;
-  DataType p1;
-  p1[0] = 80.0;
-  p1[1] = 50.0;
+  const PointSetType::PointType param1{ 1.0 };
+  const DataType                p1({ 80.0, 50.0 });
   pointSet->SetPoint(1, param1);
   pointSet->SetPointData(1, p1);
 
-  param2[0] = 2.0;
-  DataType p2;
-  p2[0] = 180.0;
-  p2[1] = 180.0;
+
+  PointSetType::PointType param2{ 2.0 };
+  DataType                p2({ 180.0, 180.0 });
+
   pointSet->SetPoint(2, param2);
   pointSet->SetPointData(2, p2);
 
@@ -68,11 +62,10 @@ main()
   SplineFilterType::ArrayType closedim;
   closedim[0] = 0;
 
-  ImageType::PointType parametricDomainOrigin;
-  parametricDomainOrigin[0] = 0.0;
+  const ImageType::PointType parametricDomainOrigin{ 0.0 };
 
-  ImageType::SpacingType parametricDomainSpacing;
-  parametricDomainSpacing[0] = 0.0001; // this determines the sampling of the continuous B-spline object.
+  // this determines the sampling of the continuous B-spline object.
+  const ImageType::SpacingType parametricDomainSpacing{ 0.0001 };
 
   ImageType::SizeType parametricDomainSize;
   parametricDomainSize[0] = 2.0 / parametricDomainSpacing[0] + 1;
