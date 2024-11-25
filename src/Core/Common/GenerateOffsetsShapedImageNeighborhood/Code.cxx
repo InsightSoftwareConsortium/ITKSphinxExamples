@@ -65,11 +65,11 @@ PrintImageNeighborhoodShape(const TOffsets & offsets)
   const itk::ImageBufferRange<const ImageType> imageBufferRange(*image);
   auto                                         imageBufferIterator = imageBufferRange.cbegin();
 
-  for (int y{ 0 }; y < imageSize; ++y)
+  for (unsigned int y{ 0 }; y < imageSize; ++y)
   {
     std::cout << "  ";
 
-    for (int x{ 0 }; x < imageSize; ++x)
+    for (unsigned int x{ 0 }; x < imageSize; ++x)
     {
       std::cout << *imageBufferIterator << ' ';
       ++imageBufferIterator;
