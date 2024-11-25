@@ -75,8 +75,8 @@ main(int, char *[])
 
   while (cellDataIterator != end)
   {
-    PixelType cellValue = cellDataIterator.Value();
-    // std::cout << cellValue << std::endl; //same values as before
+    const auto cellValue = cellDataIterator.Value();
+    std::cout << cellValue << std::endl; // same values as before
     ++cellDataIterator;
   }
 
