@@ -35,8 +35,6 @@ def make_circles(l_dimension: int = 2):
 
     fixed_points = PointSetType.New()
     moving_points = PointSetType.New()
-    fixed_points.Initialize()
-    moving_points.Initialize()
 
     step = 0.1
     for count in range(0, int(2 * pi / step) + 1):
