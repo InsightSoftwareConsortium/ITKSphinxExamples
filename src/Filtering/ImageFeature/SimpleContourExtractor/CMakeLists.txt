@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project(ExtractContoursFromImage)
+project(SimpleContourExtractor)
 
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
@@ -15,11 +15,11 @@ install(TARGETS ${PROJECT_NAME}
   )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFeature/ExtractContoursFromImage/
+  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFeature/SimpleContourExtractor/
   COMPONENT Code
   )
 
 
 enable_testing()
-add_test(NAME ExtractContoursFromImageTest
+add_test(NAME SimpleContourExtractorTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
