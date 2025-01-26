@@ -59,9 +59,8 @@ main(int argc, char * argv[])
   using MeshQEType = MeshType::QEType;
   using MeshIteratorGeom = MeshQEType::IteratorGeom;
 
-  using EdgeListType = MeshType::EdgeListType;
-  using EdgeListPointer = MeshType::EdgeListPointerType;
-  using EdgeListIterator = EdgeListType::iterator;
+  using EdgeListPointer = MeshType::EdgeListType *;
+  using EdgeListIterator = MeshType::EdgeListType::iterator;
 
   EdgeListPointer list = extractor->Evaluate(*mesh);
 
