@@ -47,10 +47,10 @@ main(int argc, char * argv[])
 
   constexpr unsigned int Dimension = 2;
 
-  // Input and output are png files, use unsigned char
+  //  Input and output are png files, use unsigned char
   using PixelType = unsigned char;
   using ImageType = itk::Image<PixelType, Dimension>;
-  // Double type for GradientRecursiveGaussianImageFilter
+  //  Double type for GradientRecursiveGaussianImageFilter
   using DoublePixelType = double;
   using DoubleImageType = itk::Image<DoublePixelType, Dimension>;
   // The output of GradientRecursiveGaussianImageFilter
@@ -65,19 +65,19 @@ main(int argc, char * argv[])
   auto filter = FilterType::New();
   filter->SetInput(input);
 
-  // Allows to select the X or Y output images
+  //  Allows to select the X or Y output images
   using IndexSelectionType = itk::VectorIndexSelectionCastImageFilter<CovImageType, DoubleImageType>;
   auto indexSelectionFilter = IndexSelectionType::New();
   indexSelectionFilter->SetInput(filter->GetOutput());
 
-  // Rescale for png output
+  //  Rescale for png output
   using RescalerType = itk::RescaleIntensityImageFilter<DoubleImageType, ImageType>;
   auto rescaler = RescalerType::New();
   rescaler->SetOutputMinimum(itk::NumericTraits<PixelType>::min());
   rescaler->SetOutputMaximum(itk::NumericTraits<PixelType>::max());
   rescaler->SetInput(indexSelectionFilter->GetOutput());
 
-  // Write the X and Y images
+  //  Write the X and Y images
   for (int i = 0; i < 2; ++i)
   {
     indexSelectionFilter->SetIndex(i);
@@ -93,12 +93,12 @@ main(int argc, char * argv[])
     }
   }
 
-  // Compute the magnitude of the vector and output the image
+  //  Compute the magnitude of the vector and output the image
   using MagnitudeType = itk::VectorMagnitudeImageFilter<CovImageType, DoubleImageType>;
   auto magnitudeFilter = MagnitudeType::New();
   magnitudeFilter->SetInput(filter->GetOutput());
 
-  // Rescale for png output
+  //  Rescale for png output
   rescaler->SetInput(magnitudeFilter->GetOutput());
 
   try
