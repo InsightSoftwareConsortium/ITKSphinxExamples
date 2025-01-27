@@ -97,14 +97,14 @@ main(int argc, char * argv[])
   auto indexSelectionFilter = IndexSelectionType::New();
   indexSelectionFilter->SetInput(filter->GetOutput());
 
-  // Rescale for png output
+  //  Rescale for png output
   using RescalerType = itk::RescaleIntensityImageFilter<DoubleImageType, ImageType>;
   auto rescaler = RescalerType::New();
   rescaler->SetOutputMinimum(itk::NumericTraits<PixelType>::min());
   rescaler->SetOutputMaximum(itk::NumericTraits<PixelType>::max());
   rescaler->SetInput(indexSelectionFilter->GetOutput());
 
-  // Write the X and Y images
+  //  Write the X and Y images
   for (int i = 0; i < 4; ++i)
   {
     indexSelectionFilter->SetIndex(i);
