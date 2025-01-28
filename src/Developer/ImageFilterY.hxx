@@ -29,7 +29,7 @@ ImageFilter<TImage>::GenerateData()
 
   const typename TImage::ConstPointer inputImage(this->GetInput());
 
-  const typename TImage::RegionType region = inputImage->GetRequestedRegion();
+  // const typename TImage::RegionType region = inputImage->GetRequestedRegion();
 
   smoothingFilters[0]->SetInput(inputImage);
 
