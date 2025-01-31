@@ -10,8 +10,8 @@
 # CMake versions greater than the ITKEX_NEWEST_VALIDATED_POLICIES_VERSION policies will
 # continue to generate policy warnings "CMake Warning (dev)...Policy CMP0XXX is not set:"
 #
-set(ITKEX_OLDEST_VALIDATED_POLICIES_VERSION "3.16.3")
-set(ITKEX_NEWEST_VALIDATED_POLICIES_VERSION "3.19.7")
+set(ITKEX_OLDEST_VALIDATED_POLICIES_VERSION "3.22.1")
+set(ITKEX_NEWEST_VALIDATED_POLICIES_VERSION "3.31.5")
 cmake_minimum_required(VERSION ${ITKEX_OLDEST_VALIDATED_POLICIES_VERSION} FATAL_ERROR)
 if("${CMAKE_VERSION}" VERSION_LESS_EQUAL "${ITKEX_NEWEST_VALIDATED_POLICIES_VERSION}")
   #Set and use the newest available cmake policies that are validated to work
@@ -36,14 +36,14 @@ foreach(pold "") # Currently Empty
 endforeach()
 
 # ==== Define language standard configurations requiring at least c++14 standard
-if(CMAKE_CXX_STANDARD EQUAL "98" OR CMAKE_CXX_STANDARD LESS "14")
-  message(FATAL_ERROR "C++98 to C++11 are no longer supported in ITK version 5.3 and greater.")
+if(CMAKE_CXX_STANDARD EQUAL "98" OR CMAKE_CXX_STANDARD LESS "17")
+  message(FATAL_ERROR "C++98 to C++11 are no longer supported in ITK version v5.4 and greater.")
 endif()
 
 #####
 ##  Set the default target properties for ITK
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14) # Supported values are ``14``, ``17``, and ``20``.
+  set(CMAKE_CXX_STANDARD 17) # Supported values are ``17``, and ``20``.
 endif()
 if(NOT CMAKE_CXX_STANDARD_REQUIRED)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -80,7 +80,7 @@ endif()
 if(NOT ITK_VERSION)
   # To get the ITK version information from external package when building
   # stand alone, ITK is required.
-  find_package(ITK 5.3.0 REQUIRED)
+  find_package(ITK 5.4.0 REQUIRED)
 endif()
 set(ITKSphinxExamples_VERSION_MAJOR ${ITK_VERSION_MAJOR})
 set(ITKSphinxExamples_VERSION_MINOR ${ITK_VERSION_MINOR})
@@ -138,8 +138,8 @@ foreach(link ${content_links})
 endforeach()
 ExternalData_Add_Target(ITKSphinxExamplesData)
 
-set(PYTHON_REQUIRED_VERSION 3.7)
-set(Python_ADDITIONAL_VERSIONS 3.12 3.11 3.10 3.9 3.8 3.7)
+set(PYTHON_REQUIRED_VERSION 3.9)
+set(Python_ADDITIONAL_VERSIONS 3.12 3.11 3.10 3.9)
 if(BUILD_TESTING OR ITK_BUILD_DOCUMENTATION OR ITK_WRAP_PYTHON)
   if(ITK_WRAP_PYTHON)
     # Use the same Python interpreter as ITK to run the tests.

@@ -1,4 +1,4 @@
-set(MIN_PYTHON_VERSION 3.7)
+set(MIN_PYTHON_VERSION 3.9)
 find_package(Python3 ${MIN_PYTHON_VERSION} COMPONENTS Interpreter REQUIRED)
 
 set(_itk_venv "${CMAKE_CURRENT_BINARY_DIR}/itkpython")

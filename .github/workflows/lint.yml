@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.2.2
       with:
         # Full git history is needed to get a proper
         # list of changed files within `super-linter`
@@ -15,18 +15,20 @@ jobs:
 
     - name: Lint C++
       uses: InsightSoftwareConsortium/ITKClangFormatLinterAction@master
+      with:
+        itk-branch: master
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v5.4.0
       with:
-        python-version: 3.9
+        python-version: 3.11
 
     - name: Lint Python
-      uses: github/super-linter@v7
+      uses: super-linter/super-linter@v7.2.1
       env:
         VALIDATE_ALL_CODEBASE: false
         VALIDATE_PYTHON_BLACK: true
-        VALIDATE_YAML: true
-        FILTER_REGEX_EXCLUDE: .github/labeler.yml
+        # VALIDATE_YAML: true .clang-format file does not pass validation
+        FILTER_REGEX_EXCLUDE: (.github/labeler.yml|.*\.clang-format)
         DEFAULT_BRANCH: master
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16.3)
+cmake_minimum_required(VERSION 3.22.1)
 
 project(WriteAnImage)
 
@@ -14,7 +14,7 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Base//WriteAnImage
+  DESTINATION share/ITKSphinxExamples/Code/Base/WriteAnImage
   COMPONENT Code
 )
 
