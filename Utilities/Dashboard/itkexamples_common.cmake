@@ -88,7 +88,7 @@
 #
 #==========================================================================*/
 
-cmake_minimum_required(VERSION 2.8.6 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.22.1 FATAL_ERROR)
 
 set(dashboard_user_home "$ENV{HOME}")
 
@@ -289,23 +289,6 @@ foreach(v
 endforeach()
 message("Dashboard script configuration:\n${vars}\n")
 
-# Git does not update submodules by default so they appear as local
-# modifications in the work tree.  CTest 2.8.2 does this automatically.
-# To support CTest 2.8.0 and 2.8.1 we wrap Git in a script.
-if(${CMAKE_VERSION} VERSION_LESS 2.8.2)
-  if(UNIX)
-    configure_file(${dashboard_self_dir}/gitmod.sh.in
-                   ${CTEST_DASHBOARD_ROOT}/gitmod.sh
-                   @ONLY)
-    set(CTEST_GIT_COMMAND ${CTEST_DASHBOARD_ROOT}/gitmod.sh)
-  else()
-    configure_file(${dashboard_self_dir}/gitmod.bat.in
-                   ${CTEST_DASHBOARD_ROOT}/gitmod.bat
-                   @ONLY)
-    set(CTEST_GIT_COMMAND ${CTEST_DASHBOARD_ROOT}/gitmod.bat)
-  endif()
-endif()
-
 # Avoid non-ascii characters in tool output.
 set(ENV{LC_ALL} C)
 
@@ -351,13 +334,6 @@ if(NOT DEFINED dashboard_loop)
   endif()
 endif()
 
-# CTest 2.6 crashes with message() after ctest_test.
-macro(safe_message)
-  if(NOT "${CMAKE_VERSION}" VERSION_LESS 2.8 OR NOT safe_message_skip)
-    message(${ARGN})
-  endif()
-endmacro()
-
 if(COMMAND dashboard_hook_init)
   dashboard_hook_init()
 endif()
@@ -379,14 +355,14 @@ while(NOT dashboard_done)
   set(dashboard_fresh 0)
   if(NOT EXISTS "${CTEST_BINARY_DIRECTORY}/CMakeCache.txt")
     set(dashboard_fresh 1)
-    safe_message("Starting fresh build...")
+    message("Starting fresh build...")
     write_cache()
   endif()
 
   # Look for updates.
   ctest_update(RETURN_VALUE count)
   set(CTEST_CHECKOUT_COMMAND) # checkout on first iteration only
-  safe_message("Found ${count} changed files")
+  message("Found ${count} changed files")
 
   if(dashboard_fresh OR NOT dashboard_continuous OR count GREATER 0)
     # Initial configure needs ITK_BUILD_ALL_MODULES ON to gather full dependency
@@ -396,7 +372,7 @@ while(NOT dashboard_done)
     set_property(GLOBAL PROPERTY SubProject ${main_project_name})
     set_property(GLOBAL PROPERTY Label ${main_project_name})
 
-    safe_message("Initial configure top level project...")
+    message("Initial configure top level project...")
     set(options
       -DCTEST_USE_LAUNCHERS=${CTEST_USE_LAUNCHERS}
       )
@@ -429,7 +405,6 @@ while(NOT dashboard_done)
     else()
       ctest_test(${CTEST_TEST_ARGS})
     endif()
-    set(safe_message_skip 1) # Block further messages
     if(NOT dashboard_no_submit)
       ctest_submit(PARTS Test)
     endif()
