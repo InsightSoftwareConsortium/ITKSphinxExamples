@@ -14,7 +14,7 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Base//WriteAnImage
+  DESTINATION share/ITKSphinxExamples/Code/Base/WriteAnImage
   COMPONENT Code
 )
 
