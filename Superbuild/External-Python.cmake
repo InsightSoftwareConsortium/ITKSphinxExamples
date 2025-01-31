@@ -18,6 +18,6 @@ ExternalProject_Add(ITKPython
   DOWNLOAD_COMMAND ""
   CONFIGURE_COMMAND ${Python3_EXECUTABLE} -m venv "${_itk_venv}"
   BUILD_COMMAND ${ITKPython3_EXECUTABLE} -m pip install --upgrade pip
-  INSTALL_COMMAND ${ITKPython3_EXECUTABLE} -m pip install --ignore-installed itk>=6.0a1 sphinx==8.1.3 six black nbsphinx ipywidgets sphinx-contributors ipykernel matplotlib itkwidgets[lab,notebook]>=1.0a54 pydata-sphinx-theme
+  INSTALL_COMMAND ${ITKPython3_EXECUTABLE} -m pip install --ignore-installed "itk>=6.0a1" "sphinx==8.1.3" six black nbsphinx ipywidgets sphinx-contributors ipykernel matplotlib "itkwidgets[lab,notebook]>=1.0a54" pydata-sphinx-theme
   COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/ITKBlackConfig.cmake
   )
