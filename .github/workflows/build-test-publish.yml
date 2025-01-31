@@ -1,6 +1,14 @@
 name: Build, test, publish
 
-on: [push,pull_request]
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - master
 
 env:
   itk-git-tag: "v6.0a02"
