@@ -32,7 +32,7 @@ jobs:
           path: Ex
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5.4.0
+        uses: actions/setup-python@v5
         with:
           python-version: 3.11
 
@@ -156,7 +156,7 @@ jobs:
           path: Ex
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5.4.0
+        uses: actions/setup-python@v5
         with:
           python-version: 3.11
 
@@ -239,7 +239,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.2.2
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5.4.0
+        uses: actions/setup-python@v5
         with:
             python-version: 3.11
 
@@ -277,7 +277,7 @@ jobs:
           submodules: recursive
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5.4.0
+        uses: actions/setup-python@v5
         with:
           python-version: 3.11
 
