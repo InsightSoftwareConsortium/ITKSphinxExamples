@@ -38,7 +38,7 @@
 #   dashboard_superbuild      = True to use the Superbuild
 #   dashboard_upload_documentation = Upload the HTML .zip to the dashboard
 #   (requires BUILD_DOCUMENTATION=ON in the dashboard cache)
-#   CTEST_UPDATE_COMMAND      = path to svn command-line client
+#   CTEST_UPDATE_COMMAND      = path to git command-line client
 #   CTEST_BUILD_FLAGS         = build tool arguments (ex: -j2)
 #   CTEST_TEST_TIMEOUT        = Per-test timeout length
 #   CTEST_TEST_ARGS           = ctest_test args (ex: PARALLEL_LEVEL 4)
