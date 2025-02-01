@@ -46,7 +46,7 @@ main(int argc, char * argv[])
   auto reader = ReaderType::New();
   reader->SetFileName(inputFileName);
 
-  using TransformType = itk::TranslationTransform<MeshType::PointType::CoordRepType, Dimension>;
+  using TransformType = itk::TranslationTransform<MeshType::PointType::CoordinateType, Dimension>;
   auto translation = TransformType::New();
 
   TransformType::OutputVectorType displacement;

@@ -29,8 +29,9 @@ using RGBImageType = itk::Image<RGBPixelType, 2>;
 using UnsignedCharImageType = itk::Image<unsigned char, 2>;
 
 static void
-            CreateImage(RGBImageType::Pointer image);
-static void CreateHalfMask(itk::ImageRegion<2>, UnsignedCharImageType::Pointer mask);
+CreateImage(RGBImageType::Pointer image);
+static void
+CreateHalfMask(itk::ImageRegion<2>, UnsignedCharImageType::Pointer mask);
 
 int
 main()
@@ -140,7 +141,8 @@ CreateImage(RGBImageType::Pointer image)
   image->SetPixel(index, redPixel);
 }
 
-void CreateHalfMask(itk::ImageRegion<2> region, UnsignedCharImageType::Pointer mask)
+void
+CreateHalfMask(itk::ImageRegion<2> region, UnsignedCharImageType::Pointer mask)
 {
   mask->SetRegions(region);
   mask->Allocate();
