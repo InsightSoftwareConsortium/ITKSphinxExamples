@@ -11,6 +11,11 @@ Synopsis
 
 Create a vector image.
 
+.. figure:: Operation.png
+  :scale: 70%
+  :alt: operation.png
+
+How the image whose pixels are of vector type can be set using a VariableLengthVector at runtime
 
 Results
 -------

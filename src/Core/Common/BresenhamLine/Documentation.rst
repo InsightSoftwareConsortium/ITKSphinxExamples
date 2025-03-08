@@ -14,6 +14,15 @@ Get the points on a Bresenham line between two points.
 
 Results
 -------
+.. figure:: Segmentation.png
+  :scale: 70%
+  :alt: Segmentation.png
+
+  ITK's Bresenham's Line algorithm is used and optimized for voxel traversal operations.
+
+.. figure:: Operation.png
+  :scale: 70%
+  :alt: Operation.png
 
 Output::
 

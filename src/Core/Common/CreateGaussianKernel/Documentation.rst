@@ -12,9 +12,15 @@ Synopsis
 
 Create a Gaussian kernel.
 
+.. figure:: GaussianBlur.png
+  :scale: 70%
+  :alt: GaussianBlur.png
+
+Results of convolution filtering with a Gaussian kernel of increasing standard deviation σ
 
 Results
 -------
+
 Output::
 
   Size: [3, 3]
@@ -32,6 +38,9 @@ Output::
   [0, 1] 0
   [1, 1] 0
 
+.. figure:: GaussianKernel.png
+  :scale: 70%
+  :alt: GaussianKernel.png
 
 Code
 ----

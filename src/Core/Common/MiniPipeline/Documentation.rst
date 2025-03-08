@@ -11,6 +11,11 @@ Synopsis
 
 Mini Pipeline.
 
+.. figure:: MiniPipeline.png
+  :scale: 70%
+  :alt: MiniPipeline.png
+
+Example of a typical mini pipeline or composite filter that can encapsulate a number of other filters.
 
 Results
 -------

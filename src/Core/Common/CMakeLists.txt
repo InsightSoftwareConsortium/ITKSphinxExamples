@@ -1,5 +1,11 @@
 add_example(CreateACovariantVector)
 add_example(CreateAPointSet)
+
+add_example(ReadAPointSet)
+compare_to_baseline(EXAMPLE_NAME ReadAPointSet
+  BASELINE_PREFIX ReadAPointSet
+  )
+
 add_example(DoDataParallelThreading)
 add_example(CovariantVectorNorm)
 add_example(CovariantVectorDotProduct)

@@ -10,6 +10,16 @@ Synopsis
 --------
 Apply a custom operation to each pixel in an image.
 
+.. figure:: Relationship.png
+  :scale: 70%
+  :alt: Relationship.png
+
+
+.. figure:: Operator.png
+  :scale: 70%
+  :alt: Operator.png
+
+pixel-wise operation on 2D vector image.
 
 Results
 -------

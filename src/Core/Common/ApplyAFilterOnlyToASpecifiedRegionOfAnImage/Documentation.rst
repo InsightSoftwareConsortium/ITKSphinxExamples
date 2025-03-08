@@ -17,9 +17,17 @@ That is, to tell the DerivativeImageFilter to only operate on a small region, yo
   derivativeFilter->GetOutput()->SetRequestedRegion(smallRegion);
   derivativeFilter->Update();
 
+.. figure:: FilterImageRegion.png
+  :scale: 70%
+  :alt: FilterImageRegion.png
+
 
 Results
 -------
+
+.. figure:: Relationship.png
+  :scale: 70%
+  :alt: relationship.png
 
 
 Code

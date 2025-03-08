@@ -12,9 +12,15 @@ Synopsis
 
 Create a derivative kernel.
 
+.. figure:: DerivativeOperator.png
+  :scale: 70%
+  :alt: DerivativeOperator.png
+
+Applied a neighborhood iterator using a first-order derivative operator to approximate y-derivative
 
 Results
 -------
+
 Output::
 
   Size: [3, 3]
@@ -31,6 +37,13 @@ Output::
   [-1, 1] 0
   [0, 1] 0
   [1, 1] 0
+
+
+.. figure:: DerivativeKernel.png
+  :scale: 70%
+  :alt: DerivativeKernel.png
+
+
 
 Code
 ----
