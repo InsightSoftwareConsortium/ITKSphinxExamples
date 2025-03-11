@@ -12,6 +12,10 @@ Synopsis
 
 Demonstrates how to assign transparency to pixels in an image, then writing the result to a tif file for inspection and verification.
 
+.. figure:: Transparency.png
+  :scale: 70%
+  :alt: Transparency.png
+
 
 Results
 -------

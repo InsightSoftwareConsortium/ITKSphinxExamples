@@ -16,7 +16,9 @@ Get the bounding box of a PointSet
 
 Results
 -------
-
+.. figure:: BoundingBox.png
+  :scale: 70%
+  :alt: BoundingBox.png
 
 Output::
   bounds: [0, 0.1, 0, 0.1, 0, 0]

@@ -13,6 +13,11 @@ Synopsis
 
 This example demonstrates how to check if two regions of an image overlap/intersect.
 
+.. figure:: ImageRegionIntersection.png
+  :scale: 70%
+  :alt: imageregionintersection.png
+
+
 
 Results
 -------

@@ -12,6 +12,15 @@ Synopsis
 
 Crop an image by specifying the region to keep.
 
+.. figure:: 3DVolume.png
+  :scale: 70%
+  :alt: 3dvolume.png
+
+.. figure:: ExtractedSlice.png
+  :scale: 70%
+  :alt: extractedslice.png
+
+Extracting a 2D slice from a 3D volume.
 
 Results
 -------
