@@ -8,9 +8,6 @@ git config alias.pr-clean '!git checkout master ; git for-each-ref refs/heads/pr
 # Alias to push the current topic branch to GitHub
 git config alias.review-push "!bash Utilities/GitSetup/git-review-push"
 
-git config alias.gerrit-push \
-  "!bash -c 'echo \\\"git gerrit-push\\\" is deprecated. Please use \\\"git review-push\\\" instead.'"
-
 # Useful alias to see what commits are on the current branch with respect to
 # upstream/master
 git config alias.prepush 'log --graph --stat upstream/master..'

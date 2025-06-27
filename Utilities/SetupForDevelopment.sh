@@ -36,19 +36,6 @@ git config branch.master.rebase true
 git config rebase.stat true
 git config branch.master.rebase true
 
-# Disable old Gerrit hooks
-hook=$(git config --get hooks.GerritId) &&
-if "$hook"; then
-	echo '
-ITK has migrated from Gerrit to GitHub for code reviews.
-
-Disabling the GerritId hook that adds a "Change-Id" footer to commit
-messages for interaction with Gerrit. Also, removing the "gerrit" remote.' &&
-	git config hooks.GerritId false
-	git config --get remote.gerrit.url > /dev/null && \
-          git remote remove gerrit
-fi
-
 # Record the version of this setup so Hooks/pre-commit can check it.
 SetupForDevelopment_VERSION=1
 git config hooks.SetupForDevelopment ${SetupForDevelopment_VERSION}
