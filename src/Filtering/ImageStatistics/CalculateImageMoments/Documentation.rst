@@ -57,7 +57,7 @@ Jupyter Notebook
 -----------------
 
 .. image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/master?filepath=src%2FFiltering%2FImageStatistics%2FImageMomentsCalculator%2FCalculateEllipseMoments.ipynb
+   :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKExamples/main?filepath=src%2FFiltering%2FImageStatistics%2FImageMomentsCalculator%2FCalculateEllipseMoments.ipynb
 
 Code
 ----

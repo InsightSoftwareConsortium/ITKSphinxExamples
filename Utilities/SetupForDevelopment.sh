@@ -28,13 +28,13 @@ Utilities/GitSetup/setup-git-aliases && echo &&
 Utilities/GitSetup/tips &&
 Utilities/GitSetup/github-tips
 
-# Rebase master by default
+# Rebase main by default
 git config rebase.stat true
-git config branch.master.rebase true
+git config branch.main.rebase true
 
-# Rebase master by default
+# Rebase main by default
 git config rebase.stat true
-git config branch.master.rebase true
+git config branch.main.rebase true
 
 # Record the version of this setup so Hooks/pre-commit can check it.
 SetupForDevelopment_VERSION=1

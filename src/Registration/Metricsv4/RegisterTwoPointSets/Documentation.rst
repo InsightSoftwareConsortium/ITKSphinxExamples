@@ -54,7 +54,7 @@ Jupyter Notebook
 ----------------
 
 .. image:: https://mybinder.org/badge_logo.svg
-  :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKSphinxExamples/master?filepath=src%2FRegistration%2FMetricsv4%2FRegisterTwoPointSets%2FRegisterTwoPointSets.ipynb
+  :target: https://mybinder.org/v2/gh/InsightSoftwareConsortium/ITKSphinxExamples/main?filepath=src%2FRegistration%2FMetricsv4%2FRegisterTwoPointSets%2FRegisterTwoPointSets.ipynb
 
 Code
 --------
