@@ -14,9 +14,3 @@
 [stage]
 	#url = git://public.kitware.com/stage/Project.git
 	#pushurl = git@public.kitware.com:stage/Project.git
-
-[gerrit]
-	#project = Project
-	site = https://review.source.kitware.com
-	# pushurl placeholder "$username" is literal
-	pushurl = $username@review.source.kitware.com:Project
