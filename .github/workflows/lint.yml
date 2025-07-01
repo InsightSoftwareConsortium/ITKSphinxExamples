@@ -28,5 +28,5 @@ jobs:
         VALIDATE_PYTHON_BLACK: true
         # VALIDATE_YAML: true .clang-format file does not pass validation
         FILTER_REGEX_EXCLUDE: (.github/labeler.yml|.*\.clang-format)
-        DEFAULT_BRANCH: master
+        DEFAULT_BRANCH: main
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

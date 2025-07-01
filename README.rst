@@ -1,11 +1,11 @@
 ITK Sphinx Examples
 ===================
 
-.. image:: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/workflows/Build,%20test,%20publish/badge.svg?branch=master
-   :target: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/actions?query=workflow%3A%22Build%2C+test%2C+publish%22+branch%3Amaster
+.. image:: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/workflows/Build,%20test,%20publish/badge.svg?branch=main
+   :target: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/actions?query=workflow%3A%22Build%2C+test%2C+publish%22+branch%3Amain
 
 .. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=shield
-   :target: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/blob/master/LICENSE
+   :target: https://github.com/InsightSoftwareConsortium/ITKSphinxExamples/blob/main/LICENSE
 
 
 A set of cookbook examples for the Insight Toolkit, ITK_.

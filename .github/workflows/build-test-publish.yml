@@ -89,8 +89,8 @@ jobs:
           file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../Ex" CTEST_SOURCE_DIRECTORY)
           file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../bld/" CTEST_BINARY_DIRECTORY)
           set(dashboard_source_name "${GITHUB_REPOSITORY}")
-          if(ENV{GITHUB_REF} MATCHES "master")
-            set(branch "-master")
+          if(ENV{GITHUB_REF} MATCHES "main")
+            set(branch "-main")
             set(dashboard_model "Continuous")
           else()
             set(branch "-${GITHUB_REF}")
@@ -183,8 +183,8 @@ jobs:
           file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../Ex" CTEST_SOURCE_DIRECTORY)
           file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../bld/" CTEST_BINARY_DIRECTORY)
           set(dashboard_superbuild 1)
-          if(ENV{GITHUB_REF} MATCHES "master")
-            set(branch "-master")
+          if(ENV{GITHUB_REF} MATCHES "main")
+            set(branch "-main")
             set(dashboard_model "Continuous")
           else()
             set(branch "-${GITHUB_REF}")
@@ -322,8 +322,8 @@ jobs:
           file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../Ex" CTEST_SOURCE_DIRECTORY)
           file(TO_CMAKE_PATH "\$ENV{GITHUB_WORKSPACE}/../../bld/" CTEST_BINARY_DIRECTORY)
           set(dashboard_superbuild 1)
-          if(ENV{GITHUB_REF} MATCHES "master")
-            set(branch "-master")
+          if(ENV{GITHUB_REF} MATCHES "main")
+            set(branch "-main")
             set(dashboard_model "Continuous")
           else()
             set(branch "-${GITHUB_REF}")
@@ -382,7 +382,7 @@ jobs:
         uses: nwtgck/actions-netlify@v3.0.0
         with:
           publish-dir: '${{ github.workspace }}/site'
-          production-branch: master
+          production-branch: main
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ github.event.pull_request.title }})
