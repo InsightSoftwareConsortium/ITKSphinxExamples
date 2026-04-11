@@ -11,7 +11,7 @@ jobs:
     strategy:
       max-parallel: 3
       matrix:
-        os: [ubuntu-24.04, windows-2022, macos-13]
+        os: [ubuntu-24.04, windows-2022, macos-14]
         include:
           - os: ubuntu-24.04
             c-compiler: "gcc"
@@ -21,7 +21,7 @@ jobs:
             c-compiler: "cl.exe"
             cxx-compiler: "cl.exe"
             cmake-build-type: "Release"
-          - os: macos-13
+          - os: macos-14
             c-compiler: "clang"
             cxx-compiler: "clang++"
             cmake-build-type: "MinSizeRel"
@@ -45,7 +45,7 @@ jobs:
         uses: lukka/get-cmake@v3.24.2
 
       - name: Specific XCode version
-        if: matrix.os == 'macos-13'
+        if: matrix.os == 'macos-14'
         run: |
           sudo xcode-select -s "/Applications/Xcode_14.3.1.app"
 
@@ -234,7 +234,7 @@ jobs:
     strategy:
       max-parallel: 3
       matrix:
-        os: [ubuntu-24.04, windows-2022, macos-13]
+        os: [ubuntu-24.04, windows-2022, macos-14]
 
     steps:
       - uses: actions/checkout@v4
