@@ -14,7 +14,7 @@ jobs:
         fetch-depth: 0
 
     - name: Lint C++
-      uses: InsightSoftwareConsortium/ITKClangFormatLinterAction@master
+      uses: InsightSoftwareConsortium/ITKClangFormatLinterAction@main
 
     - name: Set up Python
       uses: actions/setup-python@v5
