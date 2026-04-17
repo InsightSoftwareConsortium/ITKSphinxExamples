@@ -17,6 +17,8 @@ add_example(ApplyAFilterOnlyToASpecifiedImageRegion)
 
 add_example(ApplyAFilterToASpecifiedRegionOfAnImage)
 
+add_example(SimpleContourExtractor)
+
 add_example(ZeroCrossingBasedEdgeDecor)
 compare_to_baseline(EXAMPLE_NAME ZeroCrossingBasedEdgeDecor
   BASELINE_PREFIX ZeroCrossingBasedEdgeDecor
