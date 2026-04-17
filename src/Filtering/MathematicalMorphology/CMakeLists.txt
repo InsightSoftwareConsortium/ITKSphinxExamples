@@ -32,3 +32,8 @@ add_example(ErodeBinaryImageUsingFlatStruct)
 compare_to_baseline(EXAMPLE_NAME ErodeBinaryImageUsingFlatStruct
         BASELINE_PREFIX ErodeBinaryImageUsingFlatStruct
         )
+
+add_example(DilateUsingFunctionalGrayscale)
+compare_to_baseline(EXAMPLE_NAME DilateUsingFunctionalGrayscale
+        BASELINE_PREFIX OutputBaseline
+        )
