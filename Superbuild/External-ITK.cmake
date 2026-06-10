@@ -2,8 +2,8 @@
 # Get and build itk
 
 if(NOT ITK_TAG)
-  # ITK release 2025-01-02
-  set(ITK_TAG "v5.4.2")
+  # Track ITK main, matching the itk-git-tag used by the C++ CI jobs
+  set(ITK_TAG "main")
 endif()
 
 set(_vtk_args)

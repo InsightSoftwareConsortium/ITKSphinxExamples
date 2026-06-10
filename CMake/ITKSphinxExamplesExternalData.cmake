@@ -1,3 +1,4 @@
+set(ExternalData_SOURCE_ROOT "${PROJECT_SOURCE_DIR}")
 get_filename_component(_ITKExternalData_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 include(${_ITKExternalData_DIR}/ExternalData.cmake)
 
@@ -18,52 +19,39 @@ if(NOT ExternalData_OBJECT_STORES)
 endif()
 list(APPEND ExternalData_OBJECT_STORES
   # Local data store populated by the ITK pre-commit hook
-  "${CMAKE_SOURCE_DIR}/.ExternalData"
+  "${PROJECT_SOURCE_DIR}/.ExternalData"
   )
 
-set(ITK_SPHINX_EXAMPLES_DATA_RELEASED_ROOT_CID bafybeib6yijwyl52gkalx6griio2wsibowlrt3v5wmkkuqlnuvku64c3ra)
+# Tests reference staged data at ${CMAKE_CURRENT_BINARY_DIR}/<Example>/<file>,
+# which requires the default ExternalData_BINARY_ROOT (${CMAKE_BINARY_DIR}).
 
+# Expands %(algo:lower)
 set(ExternalData_URL_ALGO_CID_lower cid)
+set(ExternalData_URL_ALGO_MD5_lower md5)
 set(ExternalData_URL_TEMPLATES "" CACHE STRING
   "Additional URL templates for the ExternalData CMake script to look for testing data. E.g.
 file:///var/bigharddrive/%(algo)/%(hash)")
 mark_as_advanced(ExternalData_URL_TEMPLATES)
 if(NOT ITK_FORBID_DOWNLOADS)
   list(APPEND ExternalData_URL_TEMPLATES
+    # Data published on GitHub Pages
+    "https://insightsoftwareconsortium.github.io/ITKTestingData/%(algo)/%(hash)"
     # Local IPFS gateway
     "http://127.0.0.1:8080/ipfs/%(hash)"
-
-    # Data published on GitHub Pages (note: not complete due to file size
-    # limit)
-    "https://insightsoftwareconsortium.github.io/ITKTestingData/%(algo)/%(hash)"
-
-    # Released data rsync'd to Kitware's Apache web server
-    "https://itk.org/files/ExternalData/%(algo)/%(hash)"
-
-    # Restricted gateway with released data
-    "https://itk.mypinata.cloud/ipfs/${ITK_SPHINX_EXAMPLES_DATA_RELEASED_ROOT_CID}/Objects/CID/%(hash)"
-
-    # New data on web3.storage
-    "https://w3s.link/ipfs/%(hash)"
-
-    # Released data on web3.storage
-    "https://${ITK_SPHINX_EXAMPLES_DATA_RELEASED_ROOT_CID}.ipfs.w3s.link/Objects/CID/%(hash)"
-
-    # Released data on estuary.tech
-    "https://api.estuary.tech/gw/ipfs/${ITK_SPHINX_EXAMPLES_DATA_RELEASED_ROOT_CID}/Objects/CID/%(hash)"
-
-    # Protocol Labs gateway
-    "https://${ITK_SPHINX_EXAMPLES_DATA_RELEASED_ROOT_CID}.ipfs.dweb.link/Objects/CID/%(hash)"
-
-    # Gateway for arbitrary new files, uploaded to web3.storage
-    "https://dweb.link/ipfs/%(hash)"
-
     # Protocol Labs gateway
     "https://ipfs.io/ipfs/%(hash)"
-
+    # Filebase gateway
+    "https://ipfs.filebase.io/ipfs/%(hash)"
+    # Gateway for data pinned on pinata
+    "https://gateway.pinata.cloud/ipfs/%(hash)"
     # Cloudflare gateway
     "https://cloudflare-ipfs.com/ipfs/%(hash)"
-
+    # Additional gateway (modern but has redirect)
+    "https://dweb.link/ipfs/%(hash)"
+    # Data published on Girder
+    "https://data.kitware.com:443/api/v1/file/hashsum/%(algo)/%(hash)/download"
+    # Data published by developers using git-gerrit-push.
+    "https://itk.org/files/ExternalData/%(algo)/%(hash)"
     # DataLad repository on gin.g-node.org
     "https://gin.g-node.org/InsightSoftwareConsortium/ITKSphinxExamplesData/raw/main/Objects/CID/%(hash)"
     )
@@ -73,7 +61,7 @@ endif()
 set(ExternalData_LINK_CONTENT CID)
 
 # Emscripten currently has difficulty reading symlinks.
-if(EMSCRIPTEN)
+if(EMSCRIPTEN OR WASI)
   set(ExternalData_NO_SYMLINKS 1)
 endif()
 
