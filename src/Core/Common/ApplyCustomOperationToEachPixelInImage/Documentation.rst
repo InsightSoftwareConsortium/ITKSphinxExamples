@@ -15,9 +15,9 @@ Apply a custom operation to each pixel in an image.
   :alt: Relationship.png
 
 
-.. figure:: Operator.png
+.. figure:: Operation.png
   :scale: 70%
-  :alt: Operator.png
+  :alt: Operation.png
 
 pixel-wise operation on 2D vector image.
 
