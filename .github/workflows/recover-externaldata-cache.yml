@@ -1,0 +1,53 @@
+name: Recover ExternalData cache
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/recover-externaldata-cache.yml
+
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Restore cxx ExternalData cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ github.workspace }}/../bld/ExternalData/Objects
+          key: externaldata-v1-recover
+          restore-keys: |
+            externaldata-v1-
+
+      - name: Restore docs ExternalData cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ github.workspace }}/../bld-docs/ExternalData/Objects
+          key: externaldata-docs-v1-recover
+          restore-keys: |
+            externaldata-docs-v1-
+
+      - name: Restore superbuild ExternalData cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ github.workspace }}/../bld-superbuild/ExternalData/Objects
+          key: externaldata-superbuild-v1-recover
+          restore-keys: |
+            externaldata-superbuild-v1-ubuntu-24.04-
+
+      - name: Inventory recovered objects
+        run: |
+          mkdir -p recovered
+          for d in ../bld/ExternalData/Objects ../bld-docs/ExternalData/Objects ../bld-superbuild/ExternalData/Objects; do
+            if [ -d "$d" ]; then
+              rsync -a "$d/" recovered/
+            fi
+          done
+          find recovered -type f | wc -l
+          ls -R recovered | head -50
+
+      - name: Upload recovered objects
+        uses: actions/upload-artifact@v4
+        with:
+          name: recovered-externaldata-objects
+          path: recovered/
+          if-no-files-found: error
+          retention-days: 14
