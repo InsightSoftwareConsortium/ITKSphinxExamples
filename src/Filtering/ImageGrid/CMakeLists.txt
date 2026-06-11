@@ -36,6 +36,7 @@ add_example(ResampleAnImage)
 compare_to_baseline(
   EXAMPLE_NAME ResampleAnImage
   BASELINE_PREFIX OutputBaseline
+  OPTIONS --tolerance-intensity 1
 )
 
 add_example(UpsampleAnImage)

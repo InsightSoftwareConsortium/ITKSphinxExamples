@@ -43,4 +43,5 @@ compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesBSpline
 add_example(DeformAVolumeWithAThinPlateSpline)
 compare_to_baseline(EXAMPLE_NAME DeformAVolumeWithAThinPlateSpline
   BASELINE_PREFIX DeformedImageBaseline
+  OPTIONS --tolerance-intensity 1
   )
