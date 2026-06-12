@@ -46,9 +46,6 @@ set(CTEST_CUSTOM_WARNING_EXCEPTION
   "LabelGeometryImageFilter.*deprecated"
   "note: declared here"
   "RemovedInSphinx[0-9]+Warning"
-  # Nightly InsightDoxygen XML is currently missing these classes upstream.
-  "doxygenclass: Cannot find class"
-  "Could not find match for .itk::"
   "ipo: warning #11053"
   "ipo: warning #11053"
   "vxl.core.vnl.algo"

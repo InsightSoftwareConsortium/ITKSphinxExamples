@@ -52,7 +52,7 @@ C++
    :lines: 18-
 
 WebAssembly
-...........
+......
 
 .. literalinclude:: WebAssembly.html
    :language: html

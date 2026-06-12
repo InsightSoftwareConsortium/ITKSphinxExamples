@@ -39,9 +39,7 @@ Results
 
   Output Phase Image
 
-Output:
-
-.. code-block:: text
+Output::
 
   Read real input image of type <class 'itk.itkImagePython.itkImageF2'> and size itkSize2 ([1536, 128])
   Padded input image to size itkSize2 ([1536, 128])
