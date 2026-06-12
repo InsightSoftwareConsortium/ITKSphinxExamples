@@ -16,6 +16,7 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkAddImageFilter.h"
 #include "itkImageFileWriter.h"
 
@@ -54,7 +55,7 @@ CreateImage(ImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {

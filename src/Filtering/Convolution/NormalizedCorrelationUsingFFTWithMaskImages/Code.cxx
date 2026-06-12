@@ -16,6 +16,7 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkFFTNormalizedCorrelationImageFilter.h"
 #include "itkRegionOfInterestImageFilter.h"
 #include "itkImageKernelOperator.h"
@@ -118,7 +119,7 @@ CreateImage(ImageType::Pointer image, const itk::Index<2> & cornerOfSquare)
   image->Allocate();
   image->FillBuffer(0);
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   ImageType::IndexValueType squareSize = 8;
 
@@ -154,7 +155,7 @@ CreateMask(MaskType * const mask)
   itk::Index<2> cornerOfSquare = { { 3, 8 } };
 
   // Remove pixels from the mask in a small square. The correlationw will not be computed at these pixels.
-  itk::ImageRegionIterator<MaskType> maskIterator(mask, region);
+  itk::ImageRegionIteratorWithIndex<MaskType> maskIterator(mask, region);
 
   while (!maskIterator.IsAtEnd())
   {

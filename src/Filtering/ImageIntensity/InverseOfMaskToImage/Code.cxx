@@ -16,6 +16,7 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkImageFileWriter.h"
 #include "itkMaskNegatedImageFilter.h"
 
@@ -57,7 +58,7 @@ CreateHalfMask(ImageType::Pointer image, ImageType::Pointer mask)
 
   ImageType::SizeType regionSize = region.GetSize();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(mask, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(mask, region);
 
   // Make the left half of the mask white and the right half black
   while (!imageIterator.IsAtEnd())

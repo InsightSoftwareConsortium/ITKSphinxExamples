@@ -20,7 +20,7 @@
 #include "itkImageFileWriter.h"
 #include "itkRGBPixel.h"
 #include "itkImageRegionIteratorWithIndex.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkRescaleIntensityImageFilter.h"
 
 using RGBPixelType = itk::RGBPixel<unsigned char>;
@@ -123,7 +123,7 @@ CreateImage(RGBImageType::Pointer image)
   blackPixel.SetGreen(0);
   blackPixel.SetBlue(0);
 
-  itk::ImageRegionIterator<RGBImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<RGBImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {
@@ -150,7 +150,7 @@ CreateHalfMask(itk::ImageRegion<2> region, UnsignedCharImageType::Pointer mask)
 
   itk::Size<2> regionSize = region.GetSize();
 
-  itk::ImageRegionIterator<UnsignedCharImageType> imageIterator(mask, region);
+  itk::ImageRegionIteratorWithIndex<UnsignedCharImageType> imageIterator(mask, region);
 
   // Make the left half of the mask white and the right half black
   while (!imageIterator.IsAtEnd())

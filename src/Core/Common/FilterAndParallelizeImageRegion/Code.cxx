@@ -21,6 +21,7 @@
 #include "itkImageDuplicator.h"
 #include "itkMultiThreaderBase.h"
 #include "itkImageRegionIterator.h"
+#include "itkImageRegionConstIteratorWithIndex.h"
 
 constexpr unsigned int Dimension = 2;
 using PixelType = unsigned int;
@@ -102,9 +103,9 @@ main()
   log1xViaParallelizeImageRegion(clonedImage);
 
   // compare to make sure the results are the same
-  unsigned                                 diffCount = 0;
-  itk::ImageRegionConstIterator<ImageType> it1(image, region);
-  itk::ImageRegionConstIterator<ImageType> it2(clonedImage, region);
+  unsigned                                          diffCount = 0;
+  itk::ImageRegionConstIteratorWithIndex<ImageType> it1(image, region);
+  itk::ImageRegionConstIterator<ImageType>          it2(clonedImage, region);
   for (; !it1.IsAtEnd(); ++it1, ++it2)
   {
     if (it1.Get() != it2.Get())

@@ -16,6 +16,7 @@
  *
  *=========================================================================*/
 #include "itkImageFileWriter.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkImage.h"
 #include "itkVector.h"
 #include "itkResampleImageFilter.h"
@@ -122,7 +123,7 @@ CreateFixedImage(ImageType::Pointer image)
   image->Allocate();
   image->FillBuffer(0);
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {
@@ -154,7 +155,7 @@ CreateMovingImage(ImageType::Pointer image)
   image->Allocate();
   image->FillBuffer(0);
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {

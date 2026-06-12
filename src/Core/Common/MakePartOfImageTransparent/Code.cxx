@@ -17,7 +17,7 @@
  *=========================================================================*/
 #include "itkImage.h"
 #include "itkImageFileWriter.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkTIFFImageIO.h"
 #include "itkRGBAPixel.h"
 
@@ -53,7 +53,7 @@ main(int argc, char * argv[])
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {

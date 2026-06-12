@@ -17,7 +17,7 @@
  *=========================================================================*/
 #include "itkImage.h"
 #include "itkImageFileWriter.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkBinaryImageToLabelMapFilter.h"
 #include "itkLabelMapToLabelImageFilter.h"
 #include "itkLabelStatisticsImageFilter.h"
@@ -93,7 +93,7 @@ CreateImage(ImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
 
   // Make a square
   while (!imageIterator.IsAtEnd())

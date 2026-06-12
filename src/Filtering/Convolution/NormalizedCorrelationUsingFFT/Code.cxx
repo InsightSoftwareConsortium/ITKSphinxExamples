@@ -16,6 +16,7 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkFFTNormalizedCorrelationImageFilter.h"
 #include "itkRegionOfInterestImageFilter.h"
 #include "itkImageKernelOperator.h"
@@ -111,7 +112,7 @@ CreateImage(ImageType::Pointer image, const itk::Index<2> & cornerOfSquare)
   image->Allocate();
   image->FillBuffer(0);
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   ImageType::IndexValueType squareSize = 8;
 

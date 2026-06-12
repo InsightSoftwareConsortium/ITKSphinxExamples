@@ -17,7 +17,7 @@
  *=========================================================================*/
 #include "itkImage.h"
 #include "itkImageFileWriter.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkMedianImageFunction.h"
 
 using UnsignedCharImageType = itk::Image<unsigned char, 2>;
@@ -54,7 +54,7 @@ CreateImage(UnsignedCharImageType::Pointer image)
   image->Allocate();
   image->FillBuffer(0);
 
-  itk::ImageRegionIterator<UnsignedCharImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<UnsignedCharImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {

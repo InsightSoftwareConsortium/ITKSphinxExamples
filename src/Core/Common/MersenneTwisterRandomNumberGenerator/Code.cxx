@@ -24,7 +24,7 @@ main()
   using GeneratorType = itk::Statistics::MersenneTwisterRandomVariateGenerator;
   auto generator = GeneratorType::New();
 
-  generator->Initialize();
+  generator->SetSeed();
 
   std::cout << generator->GetUniformVariate(0, 5) << std::endl;
 
