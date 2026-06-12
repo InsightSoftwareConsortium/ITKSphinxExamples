@@ -37,6 +37,15 @@ set(CTEST_CUSTOM_COVERAGE_EXCLUDE
 set(CTEST_CUSTOM_WARNING_EXCEPTION
   ${CTEST_CUSTOM_WARNING_EXCEPTION}
   "has no symbols"
+  "UseITK\\.cmake"
+  "This warning is for project developers"
+  "DirectWarningToFile"
+  "WITH_MAINTAINER_WARNINGS"
+  "which will suppress this warning"
+  "WARNING: Cache entry deserialization failed, entry ignored"
+  "LabelGeometryImageFilter.*deprecated"
+  "note: declared here"
+  "RemovedInSphinx[0-9]+Warning"
   "ipo: warning #11053"
   "ipo: warning #11053"
   "vxl.core.vnl.algo"
@@ -91,3 +100,8 @@ set(CTEST_CUSTOM_WARNING_EXCEPTION
   "ld.*warning.*duplicate dylib.*"
   )
 endif()
+
+set(CTEST_CUSTOM_ERROR_EXCEPTION
+  ${CTEST_CUSTOM_ERROR_EXCEPTION}
+  "RemovedInSphinx[0-9]+Warning"
+  )
