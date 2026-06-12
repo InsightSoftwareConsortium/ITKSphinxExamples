@@ -8,4 +8,3 @@ compare_to_baseline(EXAMPLE_NAME SegmentPixelsWithSimilarStats
 # compare_to_baseline(EXAMPLE_NAME ConnectedComponentsInImage
 #  BASELINE_PREFIX OutputBaseline
 #  )
-

@@ -23,4 +23,3 @@ install(FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test(NAME Stack2DImagesInto3DImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
-

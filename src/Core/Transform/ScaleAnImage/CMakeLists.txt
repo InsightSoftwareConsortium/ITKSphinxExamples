@@ -13,7 +13,7 @@ install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Transform
   COMPONENT Runtime
   )
-  
+
 install(FILES Code.cxx Code.py CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Transform/ScaleAnImage/
   COMPONENT Code

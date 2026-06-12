@@ -6,4 +6,3 @@ add_example(ComputePlanarParameterizationOfAMesh)
 
 #TODO: Example needs proper input and results
 #add_example(CleanQuadEdgeMesh)
-

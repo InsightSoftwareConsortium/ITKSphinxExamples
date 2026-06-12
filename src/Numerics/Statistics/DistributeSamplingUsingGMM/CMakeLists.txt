@@ -23,4 +23,3 @@ install(FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test(NAME DistributeSamplingUsingGMMTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
-

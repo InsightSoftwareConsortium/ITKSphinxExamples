@@ -247,4 +247,3 @@ VV
 .. _Qt:                    https://www.qt.io/developers/
 .. _VTK:                   https://vtk.org/
 .. _VV:                    https://www.creatis.insa-lyon.fr/rio/vv
-

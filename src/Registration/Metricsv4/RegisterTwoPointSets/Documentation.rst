@@ -16,7 +16,7 @@ Index
 
 .. toctree::
   :maxdepth: 1
-   
+
   RegisterTwoPointSets.ipynb
 
 Synopsis

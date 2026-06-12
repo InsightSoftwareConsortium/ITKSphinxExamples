@@ -29,4 +29,3 @@ if(ITK_WRAP_PYTHON)
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
     )
 endif()
-

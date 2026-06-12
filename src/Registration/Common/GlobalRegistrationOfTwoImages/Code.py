@@ -117,10 +117,10 @@ def main():
 
     #     Print out results
     print("Result = ")
-    print(" Translation X = {}".format(TranslationAlongX))
-    print(" Translation Y = {}".format(TranslationAlongY))
-    print(" Iterations    = {}".format(numberOfIterations))
-    print(" Metric value  = {}".format(bestValue))
+    print(f" Translation X = {TranslationAlongX}")
+    print(f" Translation Y = {TranslationAlongY}")
+    print(f" Iterations    = {numberOfIterations}")
+    print(f" Metric value  = {bestValue}")
 
     #     It is common, as the last step of a registration task, to use the
     #     resulting transform to map the moving image into the fixed image space.

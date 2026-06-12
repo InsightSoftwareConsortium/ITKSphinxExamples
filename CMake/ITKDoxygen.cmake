@@ -12,4 +12,3 @@ add_custom_command(OUTPUT ${ITKDoxygen_DIR}/index.html
 
 add_custom_target(ITKDoxygen ${CMAKE_COMMAND} -E echo "Finished obtaining Doxygen"
   DEPENDS ${ITKDoxygen_DIR}/index.html)
-

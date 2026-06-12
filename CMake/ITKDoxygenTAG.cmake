@@ -15,4 +15,3 @@ add_custom_command(OUTPUT ${ITKDoxygenTAG_DIR}/InsightDoxygen.tag
   )
 add_custom_target(ITKDoxygenTAG ${CMAKE_COMMAND} -E echo "Finished obtaining Doxygen TAG"
   DEPENDS ${ITKDoxygenTAG_DIR}/InsightDoxygen.tag)
-

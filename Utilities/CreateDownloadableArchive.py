@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""" Build archives for the examples.
+"""Build archives for the examples.
 
 Build the .tar.gz and .zip for the example, and copy them along with the
 supporting files into the html output.
@@ -56,7 +56,7 @@ files_for_archive.append(build_dir)
 # archive CMakeLists.txt.  This so the input images can be found.
 archive_cmakelist = os.path.join(example_dir, "CMakeLists.txt.archive")
 with open(archive_cmakelist, "w") as new_list_file:
-    with open(os.path.join(example_dir, "CMakeLists.txt"), "r") as old_list_file:
+    with open(os.path.join(example_dir, "CMakeLists.txt")) as old_list_file:
         for line in old_list_file:
             newline = line.replace(
                 "CMAKE_CURRENT_BINARY_DIR", "CMAKE_CURRENT_SOURCE_DIR"

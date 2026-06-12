@@ -10,7 +10,7 @@ Mutual Information Affine
 
 .. toctree::
   :maxdepth: 1
-   
+
   MutualInformationAffine.ipynb
 
 Synopsis
