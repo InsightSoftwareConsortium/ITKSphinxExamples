@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.22.1)
 project(ClusterPixelsInGrayscaleImage)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
 
 find_package(VTK REQUIRED)
 set(_vtk_prefix "")
@@ -21,7 +20,15 @@ if(VTK_VERSION VERSION_LESS "8.90.0")
 endif()
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES} ${VTK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKClassifiersModule
+    ITK::ITKCommonModule
+    ITK::ITKConnectedComponentsModule
+    ITK::ITKImageIntensityModule
+    ITK::ITKVtkGlueModule
+    ${VTK_LIBRARIES}
+)
 
 if(NOT VTK_VERSION VERSION_LESS "8.90.0")
   vtk_module_autoinit(

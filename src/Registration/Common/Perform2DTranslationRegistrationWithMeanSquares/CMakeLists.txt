@@ -9,10 +9,20 @@ set(output_image3 ImageRegistration1DifferenceBefore.png)
 project(Perform2DTranslationRegistrationWithMeanSquares)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
+itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKImageFilterBaseModule
+    ITK::ITKImageGridModule
+    ITK::ITKImageIntensityModule
+    ITK::ITKMetricsv4Module
+    ITK::ITKOptimizersv4Module
+    ITK::ITKRegistrationMethodsv4Module
+    ITK::ITKTransformModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Registration/Common

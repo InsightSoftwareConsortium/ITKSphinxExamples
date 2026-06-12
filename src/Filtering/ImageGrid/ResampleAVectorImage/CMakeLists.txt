@@ -6,10 +6,17 @@ set(output_image Output.png)
 project(ResampleAVectorImage)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
+itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKCommonModule
+    ITK::ITKImageFunctionModule
+    ITK::ITKImageGridModule
+    ITK::ITKTransformModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid/

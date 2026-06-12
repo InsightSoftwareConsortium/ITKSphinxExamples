@@ -7,10 +7,15 @@ set(test_options)
 project(CreateACustomColormap)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
+itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKColormapModule
+    ITK::ITKCommonModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/Colormap

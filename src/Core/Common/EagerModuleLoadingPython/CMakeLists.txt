@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.22.1)
 project(EagerModuleLoadingPython)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
 
 install(FILES Code.py CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Common/EagerModuleLoadingPython/

@@ -3,11 +3,19 @@ cmake_minimum_required(VERSION 3.22.1)
 project(ComputeForwardFFT)
 
 find_package(ITK REQUIRED)
+itk_generate_factory_registration()
 
-include(${ITK_USE_FILE})
 add_executable(${PROJECT_NAME}
   Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKCommonModule
+    ITK::ITKFFTModule
+    ITK::ITKImageGridModule
+    ITK::ITKImageIntensityModule
+    ITK::ITKFFTImageFilterInit
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/FFT
