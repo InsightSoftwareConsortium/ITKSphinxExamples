@@ -14,7 +14,7 @@ install(TARGETS ${PROJECT_NAME}
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt 
+install(FILES Code.cxx CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Common/ImportPixelBufferIntoAnImage/
   COMPONENT Code
   )

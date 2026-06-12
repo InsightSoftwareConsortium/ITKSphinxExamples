@@ -3,7 +3,7 @@
 
 
 #include "itkObjectFactory.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkImageRegionConstIterator.h"
 
 namespace itk
@@ -40,7 +40,7 @@ ImageFilterMultipleOutputs<TImage>::GenerateData()
   output1->SetRegions(region);
   output1->Allocate();
 
-  itk::ImageRegionIterator<TImage> outputIterator1(output1, output1->GetLargestPossibleRegion());
+  itk::ImageRegionIteratorWithIndex<TImage> outputIterator1(output1, output1->GetLargestPossibleRegion());
   outputIterator1.GoToBegin();
 
   while (!outputIterator1.IsAtEnd())
@@ -62,7 +62,7 @@ ImageFilterMultipleOutputs<TImage>::GenerateData()
   output2->SetRegions(region);
   output2->Allocate();
 
-  itk::ImageRegionIterator<TImage> outputIterator2(output2, output2->GetLargestPossibleRegion());
+  itk::ImageRegionIteratorWithIndex<TImage> outputIterator2(output2, output2->GetLargestPossibleRegion());
   outputIterator2.GoToBegin();
 
   while (!outputIterator2.IsAtEnd())

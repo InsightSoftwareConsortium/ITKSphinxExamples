@@ -16,7 +16,7 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkImageFileReader.h"
 #include "itkLabelGeometryImageFilter.h"
 #include "itkLabelToRGBImageFilter.h"
@@ -154,7 +154,7 @@ CreateIntensityImage(ImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
   // Make a random image
   // Create an unchanging seed.
   srand(1);
@@ -180,7 +180,7 @@ CreateLabelImage(ImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
 
   // Make a square
   while (!imageIterator.IsAtEnd())

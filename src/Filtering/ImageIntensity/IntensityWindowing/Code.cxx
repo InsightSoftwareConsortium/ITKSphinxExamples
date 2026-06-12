@@ -18,7 +18,7 @@
 #include "itkImage.h"
 #include "itkImageFileWriter.h"
 #include "itkIntensityWindowingImageFilter.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 
 using ImageType = itk::Image<unsigned char, 2>;
 
@@ -59,7 +59,7 @@ CreateImage(ImageType::Pointer image)
   image->Allocate();
   image->FillBuffer(10);
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {

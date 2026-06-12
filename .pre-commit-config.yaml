@@ -1,0 +1,53 @@
+# Mirrors ITK's .pre-commit-config.yaml style gates for C++ and Python.
+# The clang-format rev must track ITK main's pin (the lint CI job
+# resolves its version from ITK main at run time).
+fail_fast: true
+default_stages: [pre-commit]
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+   - id: check-added-large-files
+     args: ['--maxkb=200']
+   - id: check-ast
+   - id: check-case-conflict
+   - id: check-illegal-windows-names
+   - id: check-json
+     exclude: "\\.ipynb$"
+   - id: check-merge-conflict
+   - id: check-toml
+   - id: check-vcs-permalinks
+   - id: check-xml
+   - id: check-yaml
+   - id: check-shebang-scripts-are-executable
+   - id: debug-statements
+     exclude: "^Utilities\\/SphinxExtensions\\/"
+   - id: destroyed-symlinks
+   - id: detect-private-key
+   - id: end-of-file-fixer
+     exclude: "\\.(md5|sha512|cid|svg|vtk|vtp|ipynb)$|^Superbuild\\/"
+   - id: forbid-new-submodules
+   - id: mixed-line-ending
+     exclude: "\\.(sha512|cid|svg|vtk|vtp|ipynb)$"
+   - id: no-commit-to-branch
+     args: ['--branch','main','--branch','dashboard','--branch','gh-pages']
+   - id: trailing-whitespace
+     exclude: "\\.(sha512|cid|svg|vtk|vtp|ipynb)$"
+- repo: https://github.com/pre-commit/mirrors-clang-format
+  rev: v19.1.7
+  hooks:
+  - id: clang-format
+    args: ['--style=file']
+    files: '\.(c|cc|h|cxx|hxx)$'
+- repo: https://github.com/psf/black
+  rev: 25.12.0
+  hooks:
+   - id: black
+     args: ['--target-version', 'py310']
+     exclude: "^Utilities\\/SphinxExtensions\\/"
+- repo: https://github.com/asottile/pyupgrade
+  rev: v3.21.2
+  hooks:
+  - id: pyupgrade
+    args: [--py310-plus]
+    exclude: "^Utilities\\/SphinxExtensions\\/"

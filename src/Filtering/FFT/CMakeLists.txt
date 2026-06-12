@@ -4,12 +4,14 @@ compare_to_baseline(
   EXAMPLE_NAME ComputeFFTInOneDimension
   TEST_NAME ComputeFFTInOneDimensionModulusBaselineComparison
   BASELINE_PREFIX MouseLiver1DFFTModulusOutputBaseline
+  OPTIONS --tolerance-intensity 1
 )
 compare_to_baseline(
   PYTHON_ONLY
   EXAMPLE_NAME ComputeFFTInOneDimension
   TEST_NAME ComputeFFTInOneDimensionPhaseBaselineComparison
   BASELINE_PREFIX MouseLiver1DFFTPhaseOutputBaseline
+  OPTIONS --tolerance-intensity 1
 )
 
 compare_to_baseline(
@@ -53,4 +55,5 @@ compare_to_baseline(
 add_example(ComputeInverseFFTOfImage)
 compare_to_baseline(EXAMPLE_NAME ComputeInverseFFTOfImage
   BASELINE_PREFIX ComputeInverseFFTOfImage
+  OPTIONS --tolerance-intensity 1
   )

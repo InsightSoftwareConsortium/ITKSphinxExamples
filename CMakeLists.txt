@@ -99,7 +99,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ITKSphinxExamples_BINARY_DIR}/bin)
 include(CTest)
 # Tests are added with add_test() can be run with the 'ctest' command line program.
 enable_testing()
-configure_file(CMake/CTestCustom.cmake.in CTestCustom.cmake)
+configure_file(CMake/CTestCustom.cmake.in CTestCustom.cmake COPYONLY)
 
 # ExternalData setup.  We use the CMake ExternalData features to download binary
 # files from a configurable location(s) -- including the local filesystem -- to

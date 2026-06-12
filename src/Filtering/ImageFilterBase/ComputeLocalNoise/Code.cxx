@@ -16,6 +16,7 @@
  *
  *=========================================================================*/
 #include "itkImage.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkNoiseImageFilter.h"
 #include "itkImageFileWriter.h"
 
@@ -57,7 +58,7 @@ CreateImage(ImageType::Pointer image)
   image->FillBuffer(0);
 
   // Create a white square
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {

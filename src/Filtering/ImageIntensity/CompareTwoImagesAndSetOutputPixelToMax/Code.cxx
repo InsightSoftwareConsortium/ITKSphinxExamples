@@ -17,7 +17,7 @@
  *=========================================================================*/
 #include "itkImage.h"
 #include "itkMaximumImageFilter.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 
 using ImageType = itk::Image<unsigned char, 2>;
 
@@ -59,7 +59,7 @@ CreateImage1(ImageType * image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {
@@ -90,7 +90,7 @@ CreateImage2(ImageType * image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {

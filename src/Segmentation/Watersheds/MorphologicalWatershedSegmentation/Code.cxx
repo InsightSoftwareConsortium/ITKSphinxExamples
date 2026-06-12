@@ -18,6 +18,7 @@
 #include <iostream>
 
 #include "itkImageFileReader.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkImageFileWriter.h"
 #include "itkScalarToRGBPixelFunctor.h"
 #include "itkUnaryFunctorImageFilter.h"
@@ -103,7 +104,7 @@ CreateImage(UnsignedCharImageType::Pointer image)
   image->Allocate();
   image->FillBuffer(255);
 
-  itk::ImageRegionIterator<UnsignedCharImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<UnsignedCharImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {

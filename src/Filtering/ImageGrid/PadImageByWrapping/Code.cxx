@@ -18,7 +18,7 @@
 #include "itkImage.h"
 #include "itkRescaleIntensityImageFilter.h"
 #include "itkWrapPadImageFilter.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 
 using ImageType = itk::Image<unsigned char, 2>;
 
@@ -68,7 +68,7 @@ CreateImage(ImageType::Pointer image)
 
   image->SetRegions(region);
   image->Allocate();
-  itk::ImageRegionIterator<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
 
   while (!imageIterator.IsAtEnd())
   {

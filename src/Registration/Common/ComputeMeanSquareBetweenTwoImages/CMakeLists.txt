@@ -25,8 +25,8 @@ add_test(NAME ComputeMeanSquareBetweenTwoImagesTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     Yinyang.png
     Gourds.png)
-    
-    
+
+
 if(ITK_WRAP_PYTHON)
   add_test(NAME ComputeMeanSquareBetweenTwoImagesTestPython
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py

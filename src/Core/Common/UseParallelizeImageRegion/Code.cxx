@@ -17,6 +17,7 @@
  *=========================================================================*/
 
 #include "itkImageFileReader.h"
+#include "itkImageRegionConstIteratorWithIndex.h"
 #include "itkImageFileWriter.h"
 #include "itkWatershedImageFilter.h"
 #include "itkImageRegionIterator.h"
@@ -54,8 +55,8 @@ segmentationAndCustomColorization(InputImageType::Pointer inImage)
     // the lambda will have access to outer variables 'image' and 'outImage'
     // it will have parameter 'region', which needs to be processed
     [image, outImage](const LabeledImageType::RegionType & region) {
-      itk::ImageRegionConstIterator<LabeledImageType> iIt(image, region);
-      itk::ImageRegionIterator<OutputImageType>       oIt(outImage, region);
+      itk::ImageRegionConstIteratorWithIndex<LabeledImageType> iIt(image, region);
+      itk::ImageRegionIterator<OutputImageType>                oIt(outImage, region);
       for (; !iIt.IsAtEnd(); ++iIt, ++oIt)
       {
         LabeledImageType::IndexType ind = iIt.GetIndex();

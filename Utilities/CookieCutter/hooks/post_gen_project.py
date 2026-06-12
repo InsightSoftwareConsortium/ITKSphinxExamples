@@ -15,8 +15,8 @@
 # limitations under the License.
 
 
-""" Post-generate cookiecutter hook script to incorporate the example to the
-    ITKSphinxExamples source tree.
+"""Post-generate cookiecutter hook script to incorporate the example to the
+ITKSphinxExamples source tree.
 """
 
 import os
@@ -146,7 +146,7 @@ def print_instructions(itk_examples_src, example_dir, example_name, group_name):
     example_cxx = pjoin(example_dir, "Code.cxx")
     example_py = pjoin(example_dir, "Code.py")
 
-    print("Example {} added successfully!".format(example_name))
+    print(f"Example {example_name} added successfully!")
 
     print("Please:")
     print("  1- Edit the following files:")

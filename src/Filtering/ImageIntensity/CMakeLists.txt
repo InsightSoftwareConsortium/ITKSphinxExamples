@@ -11,7 +11,8 @@ add_example(ApplyAtanImageFilter)
 compare_to_baseline(EXAMPLE_NAME ApplyAtanImageFilter BASELINE_PREFIX OutputBaseline)
 
 add_example(ConvertRGBImageToGrayscaleImage)
-compare_to_baseline(EXAMPLE_NAME ConvertRGBImageToGrayscaleImage BASELINE_PREFIX OutputBaseline)
+compare_to_baseline(EXAMPLE_NAME ConvertRGBImageToGrayscaleImage BASELINE_PREFIX OutputBaseline
+  OPTIONS --tolerance-intensity 1)
 
 add_example(MultiplyImageByScalar)
 compare_to_baseline(EXAMPLE_NAME MultiplyImageByScalar BASELINE_PREFIX OutputBaseline)

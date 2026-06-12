@@ -14,33 +14,47 @@ import vtk
 
 
 def three_floats(value):
-    values = value[1:-1].split(',')
+    values = value[1:-1].split(",")
     if len(values) != 3:
         raise argparse.ArgumentError
     return map(float, values)
 
 
 def two_floats(value):
-    values = value[1:-1].split(',')
+    values = value[1:-1].split(",")
     if len(values) != 2:
         raise argparse.ArgumentError
     return map(float, values)
+
+
 parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('inputFile', help='.vtk PolyData input')
-parser.add_argument('--position', help='Camera Position',
-                    type=three_floats, metavar=('x,y,z'))
-parser.add_argument('--focal-point', help='Camera FocalPoint',
-                    type=three_floats, metavar=('x,y,z'))
-parser.add_argument('--view-up', help='Camera ViewUp',
-                    type=three_floats, metavar=('x,y,z'))
-parser.add_argument('--size', help='Window size in pixels',
-                    type=int, metavar=('width', 'height'), nargs=2)
-parser.add_argument('--clipping-range', help='Window size in pixels',
-                    type=two_floats, metavar=('near,far'))
-parser.add_argument('--png', help='Output PNG file',
-                    metavar='file.png')
-parser.add_argument('--webgl', help='File prefix for WebGL output',
-                    metavar='webglFilePrefix')
+parser.add_argument("inputFile", help=".vtk PolyData input")
+parser.add_argument(
+    "--position", help="Camera Position", type=three_floats, metavar=("x,y,z")
+)
+parser.add_argument(
+    "--focal-point", help="Camera FocalPoint", type=three_floats, metavar=("x,y,z")
+)
+parser.add_argument(
+    "--view-up", help="Camera ViewUp", type=three_floats, metavar=("x,y,z")
+)
+parser.add_argument(
+    "--size",
+    help="Window size in pixels",
+    type=int,
+    metavar=("width", "height"),
+    nargs=2,
+)
+parser.add_argument(
+    "--clipping-range",
+    help="Window size in pixels",
+    type=two_floats,
+    metavar=("near,far"),
+)
+parser.add_argument("--png", help="Output PNG file", metavar="file.png")
+parser.add_argument(
+    "--webgl", help="File prefix for WebGL output", metavar="webglFilePrefix"
+)
 args = parser.parse_args()
 
 reader = vtk.vtkPolyDataReader()
@@ -81,26 +95,29 @@ camera = renderer.GetActiveCamera()
 
 def print_camera_position(interactor, event):
     def cmd_line_friendly(xyz):
-        return '[{0:+8.4e},{1:+8.4e},{2:+8.4e}]'.format(*xyz)
+        return "[{:+8.4e},{:+8.4e},{:+8.4e}]".format(*xyz)
 
     def cmd_line_friendly2(clip_range):
-        return '[{0:+8.4e},{1:+8.4e}]'.format(*clip_range)
-    if interactor.GetKeySym() == 'c':
-        print('\nPosition:    ' + cmd_line_friendly(camera.GetPosition()))
-        print('FocalPoint:   ' + cmd_line_friendly(camera.GetFocalPoint()))
-        print('ViewUp:       ' + cmd_line_friendly(camera.GetViewUp()))
-        print('ClippingRange:' + cmd_line_friendly2(camera.GetClippingRange()))
-        sys.stdout.write('\n--position ')
+        return "[{:+8.4e},{:+8.4e}]".format(*clip_range)
+
+    if interactor.GetKeySym() == "c":
+        print("\nPosition:    " + cmd_line_friendly(camera.GetPosition()))
+        print("FocalPoint:   " + cmd_line_friendly(camera.GetFocalPoint()))
+        print("ViewUp:       " + cmd_line_friendly(camera.GetViewUp()))
+        print("ClippingRange:" + cmd_line_friendly2(camera.GetClippingRange()))
+        sys.stdout.write("\n--position ")
         sys.stdout.write(cmd_line_friendly(camera.GetPosition()))
-        sys.stdout.write(' --focal-point ')
+        sys.stdout.write(" --focal-point ")
         sys.stdout.write(cmd_line_friendly(camera.GetFocalPoint()))
-        sys.stdout.write(' --view-up ')
+        sys.stdout.write(" --view-up ")
         sys.stdout.write(cmd_line_friendly(camera.GetViewUp()))
-        sys.stdout.write(' --clipping-range ')
+        sys.stdout.write(" --clipping-range ")
         sys.stdout.write(cmd_line_friendly2(camera.GetClippingRange()))
-        sys.stdout.write('\n')
+        sys.stdout.write("\n")
         sys.stdout.flush()
-render_window_interactor.AddObserver('KeyPressEvent', print_camera_position)
+
+
+render_window_interactor.AddObserver("KeyPressEvent", print_camera_position)
 
 if args.position:
     camera.SetPosition(args.position)

@@ -24,4 +24,3 @@ enable_testing()
 add_test(NAME MultiplyKernelWithAnImageAtLocationTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
   )
-

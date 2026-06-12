@@ -28,6 +28,6 @@ threader.SetGlobalDefaultNumberOfThreads(args.number_of_threads)
 filt = itk.MedianImageFilter.New()
 filter_default_threads = filt.GetMultiThreader().GetGlobalDefaultNumberOfThreads()
 
-print("Filter's default number of threads: {}".format(filter_default_threads))
+print(f"Filter's default number of threads: {filter_default_threads}")
 
 assert filter_default_threads == args.number_of_threads

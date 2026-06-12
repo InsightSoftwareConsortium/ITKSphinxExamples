@@ -154,7 +154,7 @@ CreateImage(ColorImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ColorImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ColorImageType> imageIterator(image, region);
 
   itk::Vector<unsigned char, 3> redPixel;
   redPixel[0] = 255;

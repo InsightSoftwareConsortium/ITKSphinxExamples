@@ -23,7 +23,7 @@
 #include "itkMaximumDecisionRule.h"
 #include "itkImageToListSampleFilter.h"
 #include "itkCovariantVector.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkSimpleFilterWatcher.h"
 
 using PixelType = itk::CovariantVector<unsigned char, 3>;
@@ -265,7 +265,7 @@ ControlledImage(ImageType::Pointer image)
   black[1] = 0;
   black[2] = 0;
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
   imageIterator.GoToBegin();
 
   while (!imageIterator.IsAtEnd())
@@ -308,7 +308,7 @@ RandomImage(ImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
   imageIterator.GoToBegin();
 
   while (!imageIterator.IsAtEnd())

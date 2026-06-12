@@ -29,7 +29,7 @@ add_test(NAME ExhaustiveOptimizerTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
 	${fixed_image}
 	${moving_image})
-	
+
 if(ITK_WRAP_PYTHON)
 	add_test(NAME ExhaustiveOptimizerTestPython
 	 COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py

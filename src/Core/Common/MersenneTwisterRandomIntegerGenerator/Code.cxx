@@ -23,7 +23,7 @@ main()
 {
   using GeneratorType = itk::Statistics::MersenneTwisterRandomVariateGenerator;
   auto generator = GeneratorType::New();
-  generator->Initialize();
+  generator->SetSeed();
 
   // Get an int between 0 and 5
   // (inclusive - that is sample from the set {0,1,2,3,4,5})

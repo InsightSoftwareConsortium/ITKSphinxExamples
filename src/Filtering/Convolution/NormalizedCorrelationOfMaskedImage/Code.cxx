@@ -18,6 +18,7 @@
 // Maximum value is inf??
 
 #include "itkImage.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkNormalizedCorrelationImageFilter.h"
 #include "itkRegionOfInterestImageFilter.h"
 #include "itkImageKernelOperator.h"
@@ -142,7 +143,7 @@ CreateMask(MaskType * const mask)
   itk::Index<2> cornerOfSquare = { { 3, 8 } };
 
   // Remove pixels from the mask in a small square. The correlationw will not be computed at these pixels.
-  itk::ImageRegionIterator<MaskType> maskIterator(mask, region);
+  itk::ImageRegionIteratorWithIndex<MaskType> maskIterator(mask, region);
 
   while (!maskIterator.IsAtEnd())
   {
@@ -183,7 +184,7 @@ CreateImageOfSquare(ImageType * const image, const itk::Index<2> & cornerOfSquar
   image->Allocate();
   image->FillBuffer(0);
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   unsigned int squareSize = 8;
 

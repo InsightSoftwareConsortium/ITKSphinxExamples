@@ -18,7 +18,7 @@
 #include "itkScalarImageKmeansImageFilter.h"
 #include "itkRelabelComponentImageFilter.h"
 #include "itkRescaleIntensityImageFilter.h"
-#include "itkImageRegionIterator.h"
+#include "itkImageRegionIteratorWithIndex.h"
 
 #include <itkImageToVTKImageFilter.h>
 
@@ -177,7 +177,7 @@ CreateImage(ImageType::Pointer image)
   image->SetRegions(region);
   image->Allocate();
 
-  itk::ImageRegionIterator<ImageType> imageIterator(image, region);
+  itk::ImageRegionIteratorWithIndex<ImageType> imageIterator(image, region);
 
   while (!imageIterator.IsAtEnd())
   {
