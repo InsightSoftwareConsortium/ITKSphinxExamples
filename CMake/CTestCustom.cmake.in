@@ -44,6 +44,7 @@ set(CTEST_CUSTOM_WARNING_EXCEPTION
   "which will suppress this warning"
   "WARNING: Cache entry deserialization failed, entry ignored"
   "LabelGeometryImageFilter.*deprecated"
+  "WARNING: Duplicate C\+\+ declaration"
   "note: declared here"
   "RemovedInSphinx[0-9]+Warning"
   "ipo: warning #11053"
