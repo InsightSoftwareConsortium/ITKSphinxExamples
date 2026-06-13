@@ -3,11 +3,20 @@ cmake_minimum_required(VERSION 3.22.1)
 project(ExhaustiveOptimizer)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
+itk_generate_factory_registration()
 
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKCommonModule
+    ITK::ITKMetricsv4Module
+    ITK::ITKOptimizersv4Module
+    ITK::ITKRegistrationCommonModule
+    ITK::ITKRegistrationMethodsv4Module
+    ITK::ITKTransformModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Numerics/Optimizers

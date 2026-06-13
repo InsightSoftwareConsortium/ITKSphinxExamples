@@ -3,10 +3,14 @@ cmake_minimum_required(VERSION 3.22.1)
 project(ApplyAFilterOnlyToASpecifiedRegionOfAnImage)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
 
 add_executable(${PROJECT_NAME} Code.cxx Code.py)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKCommonModule
+    ITK::ITKImageFeatureModule
+    ITK::ITKTestKernelModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common

@@ -10,10 +10,13 @@ find_package(ITK REQUIRED
   ITKIOPNG
   ITKIOMeta
   )
-include(${ITK_USE_FILE})
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKSmoothingModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/IO/ImageBase/

@@ -3,11 +3,28 @@ cmake_minimum_required(VERSION 3.22.1)
 project(ComputePCAShapeFromSample)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
+itk_generate_factory_registration()
 
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKAnisotropicSmoothingModule
+    ITK::ITKCommonModule
+    ITK::ITKFastMarchingModule
+    ITK::ITKImageGradientModule
+    ITK::ITKImageGridModule
+    ITK::ITKImageIntensityModule
+    ITK::ITKImageStatisticsModule
+    ITK::ITKLevelSetsModule
+    ITK::ITKOptimizersModule
+    ITK::ITKSignedDistanceFunctionModule
+    ITK::ITKSpatialFunctionModule
+    ITK::ITKStatisticsModule
+    ITK::ITKThresholdingModule
+    ITK::ITKTransformModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageStatistics

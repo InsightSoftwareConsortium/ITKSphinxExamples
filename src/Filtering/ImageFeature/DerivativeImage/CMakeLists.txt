@@ -3,10 +3,15 @@ cmake_minimum_required(VERSION 3.22.1)
 project( DerivativeImage )
 
 find_package( ITK REQUIRED )
-include( ${ITK_USE_FILE} )
 
 add_executable( DerivativeImage Code.cxx )
-target_link_libraries( DerivativeImage ${ITK_LIBRARIES} )
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKCommonModule
+    ITK::ITKImageFeatureModule
+    ITK::ITKImageIntensityModule
+)
 
 install( TARGETS DerivativeImage
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.22.1)
 project(FindZeroCrossingsInSignedImage)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
+itk_generate_factory_registration()
 
 
 if(ENABLE_QUICKVIEW)
@@ -18,7 +18,12 @@ if(ENABLE_QUICKVIEW)
   endif()
 
   add_executable(${PROJECT_NAME} Code.cxx)
-  target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES} ${VTK_LIBRARIES})
+  target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+      ITK::ITKImageIO
+      ITK::ITKImageFeatureModule
+      ${VTK_LIBRARIES}
+  )
 
   if(NOT VTK_VERSION VERSION_LESS "8.90.0")
     vtk_module_autoinit(
@@ -28,7 +33,11 @@ if(ENABLE_QUICKVIEW)
   endif()
 else()
   add_executable(${PROJECT_NAME} Code.cxx)
-  target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+  target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+      ITK::ITKImageIO
+      ITK::ITKImageFeatureModule
+  )
 endif()
 
 install(TARGETS ${PROJECT_NAME}

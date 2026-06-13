@@ -3,11 +3,17 @@ cmake_minimum_required(VERSION 3.22.1)
 project(KeepRegionsThatMeetSpecific)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
+itk_generate_factory_registration()
 
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKColormapModule
+    ITK::ITKCommonModule
+    ITK::ITKLabelMapModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/LabelMap

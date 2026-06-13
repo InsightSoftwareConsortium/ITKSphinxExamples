@@ -14,10 +14,14 @@ find_package(ITK REQUIRED
   ITKIOMeta
   ITKIOPNG
   )
-include(${ITK_USE_FILE})
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKAnisotropicSmoothingModule
+    ITK::ITKCommonModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/AnisotropicSmoothing

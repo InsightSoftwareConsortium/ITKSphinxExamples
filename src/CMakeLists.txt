@@ -5,7 +5,6 @@ if(itk-module)
   endif()
 endif()
 find_package(ITK 5.2.0 REQUIRED)
-include(${ITK_USE_FILE})
 
 # To avoid linker issues.
 # Module_ITKVtkGlue is true when building inside ITK
@@ -34,7 +33,13 @@ endif()
 
 # For comparing example outputs to their regression baseline's.
 add_executable(ImageCompareCommand ImageCompareCommand.cxx)
-target_link_libraries(ImageCompareCommand ${ITK_LIBRARIES})
+target_link_libraries(ImageCompareCommand
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKCommonModule
+    ITK::ITKImageIntensityModule
+    ITK::ITKTestKernelModule
+)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../CMake/ITKSphinxExamplesMacros.cmake)
 

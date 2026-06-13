@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.22.1)
 project(ConvertvtkImageDataToAnitkImage)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
 
 # Since we use vtkImageMagnitude
 find_package(VTK REQUIRED
@@ -16,9 +15,10 @@ endif()
 
 add_executable(${PROJECT_NAME} Code.cxx)
 target_link_libraries(${PROJECT_NAME}
-  ${ITK_LIBRARIES}
-  ${VTK_LIBRARIES}
-  )
+  PRIVATE
+    ITK::ITKVtkGlueModule
+    ${VTK_LIBRARIES}
+)
 
 if(NOT VTK_VERSION VERSION_LESS "8.90.0")
   vtk_module_autoinit(

@@ -9,10 +9,14 @@ find_package(ITK REQUIRED
   ITKMathematicalMorphology
   ITKIOPNG
   )
-include(${ITK_USE_FILE})
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKCommonModule
+    ITK::ITKMathematicalMorphologyModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/MathematicalMorphology

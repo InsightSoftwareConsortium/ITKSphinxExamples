@@ -3,10 +3,15 @@ cmake_minimum_required(VERSION 3.22.1)
 project(ApplyGradientRecursiveGaussian)
 
 find_package(ITK 4.7.0 REQUIRED)
-include(${ITK_USE_FILE})
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKCommonModule
+    ITK::ITKImageGradientModule
+    ITK::ITKImageIntensityModule
+)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGradient/
