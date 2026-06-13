@@ -1,7 +1,7 @@
-:name: ExtractContoursFromImage
+:name: SimpleContourExtractor
 
-Extract Contours From Image
-===========================
+Simple Contour Extractor
+========================
 .. note::
    **Wish List**
    Still needs additional work to finish proper creation of example.
