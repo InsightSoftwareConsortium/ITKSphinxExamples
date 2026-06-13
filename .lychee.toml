@@ -2,10 +2,14 @@
 # - Jinja2/Liquid template expressions in filenames
 # - insight-journal.org: historical journal now offline
 # - gnuplot.info: site exists but has TLS issues intermittently
+# Accept 429 (rate limit) and 502 (transient gateway) as non-errors
+accept = ["200", "429", "502"]
+
 exclude = [
   "%7B%7B",                            # URL-encoded {{ in Jinja template file paths
   "insight-journal.org",               # Historical journal, offline
   "www.gnuplot.info",                  # TLS certificate issues
   "cmake-w3-externaldata-upload.on.fleek.co", # Web3 upload service, returns 403
   "npmjs.com/package/@web3-storage",    # w3cli package, returns 403
+  "itk.org/Doxygen",                      # Dead URL, use docs.itk.org instead
 ]

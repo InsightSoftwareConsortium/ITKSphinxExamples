@@ -306,7 +306,7 @@ if(BUILD_DOCUMENTATION)
       include(${CMAKE_SOURCE_DIR}/CMake/ITKDoxygen.cmake)
     endif()
   else()
-    set(ITKDoxygen_LINK_ADDRESS "https://itk.org/Doxygen/html")
+    set(ITKDoxygen_LINK_ADDRESS "https://docs.itk.org/projects/doxygen/en/stable")
   endif()
 
   add_subdirectory(Formatting)
