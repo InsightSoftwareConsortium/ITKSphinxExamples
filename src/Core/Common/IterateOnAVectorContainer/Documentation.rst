@@ -34,4 +34,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. breathelink:: itk::VectorContainer
+.. breathelink:: itk::detail::VectorContainer
