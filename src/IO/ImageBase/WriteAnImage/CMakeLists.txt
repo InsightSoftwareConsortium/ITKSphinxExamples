@@ -13,12 +13,12 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 install(TARGETS ${PROJECT_NAME}
-  DESTINATION bin/ITKSphinxExamples/Base/
+  DESTINATION bin/ITKSphinxExamples/Base
   COMPONENT Runtime
 )
 
 install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Base//WriteAnImage
+  DESTINATION share/ITKSphinxExamples/Code/Base/WriteAnImage
   COMPONENT Code
 )
 
