@@ -18,14 +18,13 @@
 #include "itkImage.h"
 #include "itkImageRegionIteratorWithIndex.h"
 #include "itkImageFileReader.h"
-#include "itkLabelGeometryImageFilter.h"
+#include "itkLabelImageToShapeLabelMapFilter.h"
+#include "itkLabelStatisticsImageFilter.h"
 #include "itkLabelToRGBImageFilter.h"
 
 #ifdef ENABLE_QUICKVIEW
 #  include "QuickView.h"
 #endif
-
-#include <sstream>
 
 using ImageType = itk::Image<unsigned int, 2>;
 using RGBPixelType = itk::RGBPixel<unsigned char>;
@@ -41,101 +40,79 @@ main(int argc, char * argv[])
 {
   auto labelImage = ImageType::New();
   auto intensityImage = ImageType::New();
-  int  label = 1;
 
-  if (argc < 2)
+  if (argc < 3)
   {
     // Create a label image that is 0 in the background and where the
-    // objects are labeled
+    // objects are labeled.
     CreateLabelImage(labelImage);
-    labelImage->Print(std::cout);
-    // Create an intensity image.  Some LabelGeometry features (such as
-    // weighted centroid and integrated intensity) depend on an
-    // intensity image.
+    // Create an intensity image. Intensity statistics such as the
+    // integrated intensity depend on an intensity image.
     CreateIntensityImage(intensityImage);
   }
-  else if (argc > 3)
+  else
   {
     labelImage = itk::ReadImage<ImageType>(argv[1]);
-
     intensityImage = itk::ReadImage<ImageType>(argv[2]);
-
-    label = std::stoi(argv[3]);
   }
 
-  // NOTE: As of April 8, 2015 the filter does not work with non-zero
-  // origins
-  double origin[2] = { 0.0, 0.0 };
-  labelImage->SetOrigin(origin);
-  intensityImage->SetOrigin(origin);
+  // Shape attributes (size, centroid, ellipsoid axes, elongation, ...).
+  using LabelImageToShapeLabelMapFilterType = itk::LabelImageToShapeLabelMapFilter<ImageType>;
+  auto shapeFilter = LabelImageToShapeLabelMapFilterType::New();
+  shapeFilter->SetInput(labelImage);
+  shapeFilter->Update();
 
-  using LabelGeometryImageFilterType = itk::LabelGeometryImageFilter<ImageType>;
-  auto labelGeometryImageFilter = LabelGeometryImageFilterType::New();
-  labelGeometryImageFilter->SetInput(labelImage);
-  labelGeometryImageFilter->SetIntensityInput(intensityImage);
+  // Intensity statistics computed over each labeled region.
+  using LabelStatisticsImageFilterType = itk::LabelStatisticsImageFilter<ImageType, ImageType>;
+  auto statisticsFilter = LabelStatisticsImageFilterType::New();
+  statisticsFilter->SetInput(intensityImage);
+  statisticsFilter->SetLabelInput(labelImage);
+  statisticsFilter->Update();
 
-  // These generate optional outputs.
-  labelGeometryImageFilter->CalculatePixelIndicesOn();
-  labelGeometryImageFilter->CalculateOrientedBoundingBoxOn();
-  labelGeometryImageFilter->CalculateOrientedLabelRegionsOn();
-  labelGeometryImageFilter->CalculateOrientedIntensityRegionsOn();
+  auto labelMap = shapeFilter->GetOutput();
+  std::cout << "Number of labels: " << labelMap->GetNumberOfLabelObjects() << std::endl;
+  std::cout << std::endl;
 
-  labelGeometryImageFilter->Update();
-  LabelGeometryImageFilterType::LabelsType allLabels = labelGeometryImageFilter->GetLabels();
+  for (unsigned int n = 0; n < labelMap->GetNumberOfLabelObjects(); ++n)
+  {
+    const auto labelObject = labelMap->GetNthLabelObject(n);
+    const auto labelValue = labelObject->GetLabel();
 
+    std::cout << "\tLabel: " << static_cast<int>(labelValue) << std::endl;
+    std::cout << "\tPhysical size: " << labelObject->GetPhysicalSize() << std::endl;
+    std::cout << "\tNumber of pixels: " << labelObject->GetNumberOfPixels() << std::endl;
+    std::cout << "\tCentroid: " << labelObject->GetCentroid() << std::endl;
+    std::cout << "\tEquivalent ellipsoid diameter: " << labelObject->GetEquivalentEllipsoidDiameter() << std::endl;
+    std::cout << "\tElongation: " << labelObject->GetElongation() << std::endl;
+    std::cout << "\tFlatness: " << labelObject->GetFlatness() << std::endl;
+    std::cout << "\tPrincipal axes: " << labelObject->GetPrincipalAxes() << std::endl;
+    std::cout << "\tBounding box: " << labelObject->GetBoundingBox() << std::endl;
+
+    if (statisticsFilter->HasLabel(labelValue))
+    {
+      std::cout << "\tIntegrated intensity: " << statisticsFilter->GetSum(labelValue) << std::endl;
+      std::cout << "\tMean intensity: " << statisticsFilter->GetMean(labelValue) << std::endl;
+    }
+
+    std::cout << std::endl << std::endl;
+  }
+
+#ifdef ENABLE_QUICKVIEW
   using RGBFilterType = itk::LabelToRGBImageFilter<ImageType, RGBImageType>;
   auto rgbLabelImage = RGBFilterType::New();
   rgbLabelImage->SetInput(labelImage);
 
-  using RGBFilterType = itk::LabelToRGBImageFilter<ImageType, RGBImageType>;
-  auto rgbOrientedImage = RGBFilterType::New();
-  rgbOrientedImage->SetInput(labelGeometryImageFilter->GetOrientedLabelImage(allLabels[label]));
-
-#ifdef ENABLE_QUICKVIEW
   QuickView viewer;
   viewer.ShareCameraOff();
   viewer.InterpolateOff();
-
   viewer.AddImage(rgbLabelImage->GetOutput(),
                   true,
-                  argc > 3 ? itksys::SystemTools::GetFilenameName(argv[1]) : "Generated label image");
+                  argc > 2 ? itksys::SystemTools::GetFilenameName(argv[1]) : "Generated label image");
   viewer.AddImage(intensityImage.GetPointer(),
                   true,
-                  argc > 3 ? itksys::SystemTools::GetFilenameName(argv[2]) : "Generated intensity image");
-
-  std::stringstream desc;
-  desc << "Oriented Label: " << allLabels[label];
-  viewer.AddImage(rgbOrientedImage->GetOutput(), true, desc.str());
-
-  std::stringstream desc2;
-  desc2 << "Oriented Intensity: " << allLabels[label];
-  viewer.AddImage(labelGeometryImageFilter->GetOrientedIntensityImage(allLabels[label]), true, desc2.str());
+                  argc > 2 ? itksys::SystemTools::GetFilenameName(argv[2]) : "Generated intensity image");
   viewer.Visualize();
 #endif
-
-  LabelGeometryImageFilterType::LabelsType::iterator allLabelsIt;
-  std::cout << "Number of labels: " << labelGeometryImageFilter->GetNumberOfLabels() << std::endl;
-  std::cout << std::endl;
-
-  for (allLabelsIt = allLabels.begin(); allLabelsIt != allLabels.end(); ++allLabelsIt)
-  {
-    LabelGeometryImageFilterType::LabelPixelType labelValue = *allLabelsIt;
-    std::cout << "\tLabel: " << (int)labelValue << std::endl;
-    std::cout << "\tVolume: " << labelGeometryImageFilter->GetVolume(labelValue) << std::endl;
-    std::cout << "\tIntegrated Intensity: " << labelGeometryImageFilter->GetIntegratedIntensity(labelValue)
-              << std::endl;
-    std::cout << "\tCentroid: " << labelGeometryImageFilter->GetCentroid(labelValue) << std::endl;
-    std::cout << "\tWeighted Centroid: " << labelGeometryImageFilter->GetWeightedCentroid(labelValue) << std::endl;
-    std::cout << "\tAxes Length: " << labelGeometryImageFilter->GetAxesLength(labelValue) << std::endl;
-    std::cout << "\tMajorAxisLength: " << labelGeometryImageFilter->GetMajorAxisLength(labelValue) << std::endl;
-    std::cout << "\tMinorAxisLength: " << labelGeometryImageFilter->GetMinorAxisLength(labelValue) << std::endl;
-    std::cout << "\tEccentricity: " << labelGeometryImageFilter->GetEccentricity(labelValue) << std::endl;
-    std::cout << "\tElongation: " << labelGeometryImageFilter->GetElongation(labelValue) << std::endl;
-    std::cout << "\tOrientation: " << labelGeometryImageFilter->GetOrientation(labelValue) << std::endl;
-    std::cout << "\tBounding box: " << labelGeometryImageFilter->GetBoundingBox(labelValue) << std::endl;
-
-    std::cout << std::endl << std::endl;
-  }
 
   return EXIT_SUCCESS;
 }

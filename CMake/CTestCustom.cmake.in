@@ -43,7 +43,6 @@ set(CTEST_CUSTOM_WARNING_EXCEPTION
   "WITH_MAINTAINER_WARNINGS"
   "which will suppress this warning"
   "WARNING: Cache entry deserialization failed, entry ignored"
-  "LabelGeometryImageFilter.*deprecated"
   "WARNING: Duplicate C\+\+ declaration"
   "note: declared here"
   "RemovedInSphinx[0-9]+Warning"
