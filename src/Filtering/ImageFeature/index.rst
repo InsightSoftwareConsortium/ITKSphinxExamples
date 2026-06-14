@@ -11,10 +11,10 @@ ImageFeature
   ComputeLaplacian/Documentation.rst
   DetectEdgesWithCannyEdgeDetectionFilter/Documentation.rst
   DerivativeImage/Documentation.rst
-  ExtractContoursFromImage/Documentation.rst
   FindZeroCrossingsInSignedImage/Documentation.rst
   LaplacianRecursiveGaussianImageFilter/Documentation.rst
   SegmentBloodVessels/Documentation.rst
   SharpenImage/Documentation.rst
+  SimpleContourExtractor/Documentation.rst
   SobelEdgeDetectionImageFilter/Documentation.rst
   ZeroCrossingBasedEdgeDecor/Documentation.rst
