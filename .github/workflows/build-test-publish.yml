@@ -319,11 +319,6 @@ jobs:
 
           echo "Workspace: ${{ github.workspace }}"
 
-      - name: Remove Duplicate Declaration Warnings
-        run: |
-          SITE_PACKAGES_DIR=$(python3 "-c" "from distutils import sysconfig; print(sysconfig.get_python_lib())")
-          sed -i "6559d" ${SITE_PACKAGES_DIR}/sphinx/domains/cpp.py
-
       - name: Restore ExternalData cache
         uses: actions/cache@v4
         with:
