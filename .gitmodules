@@ -1,6 +1,0 @@
-[submodule "Utilities/SphinxExtensions/breathelink"]
-	path = Utilities/SphinxExtensions/breathelink
-	url = https://github.com/thewtex/breathelink.git
-[submodule "Utilities/SphinxExtensions/breathe"]
-	path = Utilities/SphinxExtensions/breathe
-	url = https://github.com/michaeljones/breathe
