@@ -27,12 +27,12 @@ jobs:
             cmake-build-type: "MinSizeRel"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           path: Ex
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: 3.11
 
@@ -42,7 +42,7 @@ jobs:
           python -m pip install ninja
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v3.24.2
+        uses: lukka/get-cmake@v4.3.3
 
       - name: Select Xcode
         if: startsWith(matrix.os, 'macos')
@@ -58,7 +58,7 @@ jobs:
           git checkout ${{ env.itk-git-tag }}
 
       - name: Restore ExternalData cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ github.workspace }}/../bld/ExternalData/Objects
           key: externaldata-v1-${{ hashFiles('Ex/src/**/*.cid') }}
@@ -160,12 +160,12 @@ jobs:
             cmake-build-type: "MinSizeRel"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           path: Ex
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: 3.11
 
@@ -175,10 +175,10 @@ jobs:
           python -m pip install ninja
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v3.24.2
+        uses: lukka/get-cmake@v4.3.3
 
       - name: Restore ExternalData cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ github.workspace }}/../bld/ExternalData/Objects
           key: externaldata-superbuild-v1-${{ matrix.os }}-${{ hashFiles('Ex/src/**/*.cid') }}
@@ -254,9 +254,9 @@ jobs:
         os: [ubuntu-24.04, windows-2022, macos-14]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
             python-version: 3.11
 
@@ -288,18 +288,18 @@ jobs:
             cmake-build-type: "Release"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           path: Ex
           submodules: recursive
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: 3.11
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v3.24.2
+        uses: lukka/get-cmake@v4.3.3
 
       - name: Install build dependencies
         run: |
@@ -320,7 +320,7 @@ jobs:
           echo "Workspace: ${{ github.workspace }}"
 
       - name: Restore ExternalData cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ github.workspace }}/../bld/ExternalData/Objects
           key: externaldata-docs-v1-${{ hashFiles('Ex/src/**/*.cid') }}
@@ -384,7 +384,7 @@ jobs:
           ctest -j 2 -VV -S dashboard.cmake
 
       - name: Publish Documentation html as GitHub Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Documentation
           path: |
@@ -399,7 +399,7 @@ jobs:
           tar --strip-components=1 -xf /home/runner/work/bld/ITKEx-build/ITKSphinxExamples-*-html.tar.gz -C ${{ github.workspace }}/site
 
       - name: Deploy website to Netlify
-        uses: nwtgck/actions-netlify@v3.0.0
+        uses: nwtgck/actions-netlify@v4.0.0
         with:
           publish-dir: '${{ github.workspace }}/site'
           production-branch: main
