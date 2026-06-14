@@ -23,7 +23,8 @@ if(ENABLE_QUICKVIEW)
       ITK::ITKImageIO
       ITK::ITKCommonModule
       ITK::ITKImageFusionModule
-      ITK::ITKReviewModule
+      ITK::ITKLabelMapModule
+      ITK::ITKImageStatisticsModule
       ${VTK_LIBRARIES}
   )
 
@@ -40,7 +41,8 @@ else()
       ITK::ITKImageIO
       ITK::ITKCommonModule
       ITK::ITKImageFusionModule
-      ITK::ITKReviewModule
+      ITK::ITKLabelMapModule
+      ITK::ITKImageStatisticsModule
   )
 endif()
 
