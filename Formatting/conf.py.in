@@ -45,6 +45,11 @@ if os.environ.get("READTHEDOCS", "") == "True":
 # C++ is the primary (default) Sphinx domain.
 primary_domain = 'cpp'
 
+# The same ITK class is intentionally documented by more than one example,
+# so the C++ domain reports duplicate declarations. Suppress that subtype
+# (effective on Sphinx versions that tag the warning).
+suppress_warnings = ['duplicate_declaration.cpp']
+
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.todo', 'sphinx.ext.imgmath', 'sphinx.ext.ifconfig',
