@@ -16,6 +16,9 @@ compare_to_baseline(EXAMPLE_NAME NormalizedCorrelationUsingFFTWithMaskImages
 add_example(ConvolveImageWithKernel)
 compare_to_baseline(EXAMPLE_NAME ConvolveImageWithKernel
   BASELINE_PREFIX ConvolveImageWithKernel
+  # The Python example emits a raw convolved image, not the C++ QuickView
+  # screenshot, so the two are not pixel-comparable.
+  NO_PYTHON_COMPARISON
   )
 
 # TODO:  Fix building of ColorNormalizedCorrelation example
