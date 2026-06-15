@@ -43,9 +43,10 @@ set(CTEST_CUSTOM_WARNING_EXCEPTION
   "WITH_MAINTAINER_WARNINGS"
   "which will suppress this warning"
   "WARNING: Cache entry deserialization failed, entry ignored"
-  "WARNING: Duplicate C\+\+ declaration"
   "note: declared here"
   "RemovedInSphinx[0-9]+Warning"
+  # breathe cannot parse some complex ITK signatures and skips them
+  "WARNING: Skipping .*Error reported from parser was"
   "ipo: warning #11053"
   "ipo: warning #11053"
   "vxl.core.vnl.algo"
