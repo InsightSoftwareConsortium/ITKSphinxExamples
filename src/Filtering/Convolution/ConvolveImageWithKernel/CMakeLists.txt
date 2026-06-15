@@ -46,7 +46,7 @@ install(TARGETS ${PROJECT_NAME}
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx Code.py CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Filtering/Convolution/ConvolveImageWithKernel/
   COMPONENT Code
   )
@@ -57,3 +57,10 @@ add_test(NAME ConvolveImageWithKernelTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     Yinyang.png
     10)
+
+if(ITK_WRAP_PYTHON)
+  add_test(NAME ConvolveImageWithKernelTestPython
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+  ${CMAKE_CURRENT_BINARY_DIR}/Yinyang.png
+  10)
+endif()

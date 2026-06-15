@@ -100,6 +100,10 @@ endmacro()
 #
 #   [OPTIONS myListOfOptions]        // Options to pass to ImageCompareCommand.
 #
+#   [NO_PYTHON_COMPARISON]           // Skip the auto-added Python baseline comparison
+#                                    // when the Python output is not pixel-comparable
+#                                    // to the C++ baseline (e.g. a Matplotlib figure).
+#
 #   [DEPENDS myListOfDependencies]   // Other tests that the comparison test will
 #                                    // depend on. By default, the dependency is assumed
 #                                    // to be ${EXAMPLE_NAME}Test. For Python, the comparison
@@ -110,6 +114,7 @@ endmacro()
 function(compare_to_baseline)
   set(options
     PYTHON_ONLY
+    NO_PYTHON_COMPARISON
   )
 
   set(oneValueArgs
@@ -174,7 +179,7 @@ function(compare_to_baseline)
     )
   endif()
 
-  if(ITK_WRAP_PYTHON AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/Code.py")
+  if(ITK_WRAP_PYTHON AND NOT LOCAL_COMPARISON_NO_PYTHON_COMPARISON AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/Code.py")
     set(python_test_name ${test_name}Python)
     get_filename_component(test_image_we "${test_image}" NAME_WE)
     get_filename_component(test_image_dir "${test_image}" DIRECTORY)
