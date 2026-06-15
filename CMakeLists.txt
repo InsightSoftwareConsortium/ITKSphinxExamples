@@ -12,28 +12,7 @@
 #
 set(ITKEX_OLDEST_VALIDATED_POLICIES_VERSION "3.22.1")
 set(ITKEX_NEWEST_VALIDATED_POLICIES_VERSION "3.31.5")
-cmake_minimum_required(VERSION ${ITKEX_OLDEST_VALIDATED_POLICIES_VERSION} FATAL_ERROR)
-if("${CMAKE_VERSION}" VERSION_LESS_EQUAL "${ITKEX_NEWEST_VALIDATED_POLICIES_VERSION}")
-  #Set and use the newest available cmake policies that are validated to work
-  set(ITK_CMAKE_POLICY_VERSION "${CMAKE_VERSION}")
-else()
-  set(ITK_CMAKE_POLICY_VERSION "${ITKEX_NEWEST_VALIDATED_POLICIES_VERSION}")
-endif()
-cmake_policy(VERSION ${ITK_CMAKE_POLICY_VERSION})
-#
-# Now enumerate specific policies newer than ITKEX_NEWEST_VALIDATED_POLICIES_VERSION
-# that may need to be individually set to NEW/OLD
-#
-foreach(pnew "") # Currently Empty
-  if(POLICY ${pnew})
-    cmake_policy(SET ${pnew} NEW)
-  endif()
-endforeach()
-foreach(pold "") # Currently Empty
-  if(POLICY ${pold})
-    cmake_policy(SET ${pold} OLD)
-  endif()
-endforeach()
+cmake_minimum_required(VERSION ${ITKEX_OLDEST_VALIDATED_POLICIES_VERSION}..${ITKEX_NEWEST_VALIDATED_POLICIES_VERSION} FATAL_ERROR)
 
 # ==== Define language standard configurations requiring at least c++14 standard
 if(CMAKE_CXX_STANDARD EQUAL "98" OR CMAKE_CXX_STANDARD LESS "17")
