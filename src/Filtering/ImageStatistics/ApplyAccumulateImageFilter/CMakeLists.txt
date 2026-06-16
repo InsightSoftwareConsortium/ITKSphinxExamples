@@ -6,27 +6,36 @@ find_package(ITK REQUIRED)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKImageIO
     ITK::ITKImageStatisticsModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageStatistics
   COMPONENT Runtime
-  )
+)
 
-install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageStatistics/ApplyAccumulateImageFilter
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/Filtering/ImageStatistics/ApplyAccumulateImageFilter
   COMPONENT Code
-  )
+)
 
 enable_testing()
 
 foreach(i RANGE 0 2)
-  add_test(NAME ApplyAccumulateImageFilterTest${i}
-    COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+  add_test(
+    NAME ApplyAccumulateImageFilterTest${i}
+    COMMAND
+      ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
       ${CMAKE_CURRENT_BINARY_DIR}/HeadMRVolume.mha
       ${CMAKE_CURRENT_BINARY_DIR}/ApplyAccumulateImageFilterTestOutput${i}.mha
       ${i}

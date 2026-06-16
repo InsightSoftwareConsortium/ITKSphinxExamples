@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.22.1)
 
-project( DerivativeImage )
+project(DerivativeImage)
 
-find_package( ITK REQUIRED )
+find_package(ITK REQUIRED)
 
-add_executable( DerivativeImage Code.cxx )
-target_link_libraries(${PROJECT_NAME}
+add_executable(DerivativeImage Code.cxx)
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKImageIO
     ITK::ITKCommonModule
@@ -13,22 +14,30 @@ target_link_libraries(${PROJECT_NAME}
     ITK::ITKImageIntensityModule
 )
 
-install( TARGETS DerivativeImage
+install(
+  TARGETS
+    DerivativeImage
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageFeature
   COMPONENT Runtime
-  )
+)
 
-install( FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFeature/DerivativeImage
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/Filtering/ImageFeature/DerivativeImage
   COMPONENT Code
-  )
+)
 
 enable_testing()
-add_test( NAME DerivativeImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DerivativeImage
-    ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png
-    Output.mha Output_normalized.mha 1 1
-  )
+add_test(
+  NAME DerivativeImageTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/DerivativeImage
+    ${CMAKE_CURRENT_BINARY_DIR}/BrainProtonDensitySlice.png Output.mha
+    Output_normalized.mha 1 1
+)
 
 #if( ITK_WRAP_PYTHON )
 #  add_test( NAME DerivativeImageTestPython

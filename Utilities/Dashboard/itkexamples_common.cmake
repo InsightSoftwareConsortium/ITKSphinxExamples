@@ -99,7 +99,11 @@ if(NOT DEFINED dashboard_root_name)
   set(dashboard_root_name "My Tests")
 endif()
 if(NOT DEFINED CTEST_DASHBOARD_ROOT)
-  get_filename_component(CTEST_DASHBOARD_ROOT "${CTEST_SCRIPT_DIRECTORY}/${dashboard_root_name}" ABSOLUTE)
+  get_filename_component(
+    CTEST_DASHBOARD_ROOT
+    "${CTEST_SCRIPT_DIRECTORY}/${dashboard_root_name}"
+    ABSOLUTE
+  )
 endif()
 
 # Select the model (Nightly, Experimental, Continuous).
@@ -107,7 +111,10 @@ if(NOT DEFINED dashboard_model)
   set(dashboard_model Nightly)
 endif()
 if(NOT "${dashboard_model}" MATCHES "^(Nightly|Experimental|Continuous)$")
-  message(FATAL_ERROR "dashboard_model must be Nightly, Experimental, or Continuous: dashboard_model='${dashboard_model}'")
+  message(
+    FATAL_ERROR
+    "dashboard_model must be Nightly, Experimental, or Continuous: dashboard_model='${dashboard_model}'"
+  )
 endif()
 
 # Default to a Debug build.
@@ -133,16 +140,18 @@ if(NOT CTEST_TEST_TIMEOUT)
   set(CTEST_TEST_TIMEOUT 1500)
 endif()
 
-
 # Select Git source to use.
 if(NOT DEFINED dashboard_git_url)
-  set(dashboard_git_url "https://github.com/InsightSoftwareConsortium/ITKSphinxExamples.git")
+  set(
+    dashboard_git_url
+    "https://github.com/InsightSoftwareConsortium/ITKSphinxExamples.git"
+  )
 endif()
 if(NOT DEFINED dashboard_git_branch)
   #if("${dashboard_model}" STREQUAL "Nightly")
   #  set(dashboard_git_branch nightly-main)
   #else()
-    set(dashboard_git_branch main)
+  set(dashboard_git_branch main)
   #endif()
 endif()
 if(NOT DEFINED dashboard_git_crlf)
@@ -155,7 +164,12 @@ endif()
 
 # Look for a GIT command-line client.
 if(NOT DEFINED CTEST_GIT_COMMAND)
-  find_program(CTEST_GIT_COMMAND NAMES git git.cmd)
+  find_program(
+    CTEST_GIT_COMMAND
+    NAMES
+      git
+      git.cmd
+  )
 endif()
 
 if(NOT DEFINED CTEST_GIT_COMMAND)
@@ -183,7 +197,10 @@ endif()
 # Select a data store.
 if(NOT DEFINED ExternalData_OBJECT_STORES)
   if(DEFINED dashboard_data_name)
-    set(ExternalData_OBJECT_STORES ${CTEST_DASHBOARD_ROOT}/${dashboard_data_name})
+    set(
+      ExternalData_OBJECT_STORES
+      ${CTEST_DASHBOARD_ROOT}/${dashboard_data_name}
+    )
   else()
     set(ExternalData_OBJECT_STORES ${CTEST_DASHBOARD_ROOT}/ExternalData)
   endif()
@@ -194,18 +211,41 @@ if(EXISTS ${CTEST_SOURCE_DIRECTORY})
   if(NOT EXISTS "${CTEST_SOURCE_DIRECTORY}/.git")
     set(vcs_refresh "because it is not managed by git.")
   endif()
-  if(vcs_refresh AND "${CTEST_SOURCE_DIRECTORY}" MATCHES "/(ITKSphinxExamples|Insight)[^/]*")
+  if(
+    vcs_refresh
+    AND
+      "${CTEST_SOURCE_DIRECTORY}"
+        MATCHES
+        "/(ITKSphinxExamples|Insight)[^/]*"
+  )
     message("Deleting source tree\n  ${CTEST_SOURCE_DIRECTORY}\n${vcs_refresh}")
     file(REMOVE_RECURSE "${CTEST_SOURCE_DIRECTORY}")
   endif()
 endif()
 
 # Support initial checkout if necessary.
-if(NOT EXISTS "${CTEST_SOURCE_DIRECTORY}"
-    AND NOT DEFINED CTEST_CHECKOUT_COMMAND)
+if(
+  NOT
+    EXISTS
+      "${CTEST_SOURCE_DIRECTORY}"
+  AND
+    NOT
+      DEFINED
+        CTEST_CHECKOUT_COMMAND
+)
   get_filename_component(_name "${CTEST_SOURCE_DIRECTORY}" NAME)
-  execute_process(COMMAND ${CTEST_GIT_COMMAND} --version OUTPUT_VARIABLE output)
-  string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]+(\\.[0-9]+(\\.g[0-9a-f]+)?)?" GIT_VERSION "${output}")
+  execute_process(
+    COMMAND
+      ${CTEST_GIT_COMMAND} --version
+    OUTPUT_VARIABLE output
+  )
+  string(
+    REGEX
+    MATCH
+    "[0-9]+\\.[0-9]+\\.[0-9]+(\\.[0-9]+(\\.g[0-9a-f]+)?)?"
+    GIT_VERSION
+    "${output}"
+  )
   if(NOT "${GIT_VERSION}" VERSION_LESS "1.6.5")
     # Have "git clone -b <branch>" option.
     set(git_branch_new "-b ${dashboard_git_branch}")
@@ -213,12 +253,18 @@ if(NOT EXISTS "${CTEST_SOURCE_DIRECTORY}"
   else()
     # No "git clone -b <branch>" option.
     set(git_branch_new)
-    set(git_branch_old "-b ${dashboard_git_branch} origin/${dashboard_git_branch}")
+    set(
+      git_branch_old
+      "-b ${dashboard_git_branch} origin/${dashboard_git_branch}"
+    )
   endif()
 
-    # Generate an initial checkout script.
-    set(ctest_checkout_script ${CTEST_DASHBOARD_ROOT}/${_name}-init.cmake)
-    file(WRITE ${ctest_checkout_script} "# git repo init script for ${_name}
+  # Generate an initial checkout script.
+  set(ctest_checkout_script ${CTEST_DASHBOARD_ROOT}/${_name}-init.cmake)
+  file(
+    WRITE
+    ${ctest_checkout_script}
+    "# git repo init script for ${_name}
 execute_process(
   COMMAND \"${CTEST_GIT_COMMAND}\" clone -n ${git_branch_new} -- \"${dashboard_git_url}\"
           \"${CTEST_SOURCE_DIRECTORY}\"
@@ -241,8 +287,12 @@ if(EXISTS \"${CTEST_SOURCE_DIRECTORY}/.git\")
     WORKING_DIRECTORY \"${CTEST_SOURCE_DIRECTORY}\"
     )
 endif()
-")
-  set(CTEST_CHECKOUT_COMMAND "\"${CMAKE_COMMAND}\" -P \"${ctest_checkout_script}\"")
+"
+  )
+  set(
+    CTEST_CHECKOUT_COMMAND
+    "\"${CMAKE_COMMAND}\" -P \"${ctest_checkout_script}\""
+  )
   # CTest delayed initialization is broken, so we put the
   # CTestConfig.cmake info here.
   set(CTEST_NIGHTLY_START_TIME "01:00:00 UTC")
@@ -255,36 +305,35 @@ endif()
 #-----------------------------------------------------------------------------
 
 # Send the main script as a note.
-list(APPEND CTEST_NOTES_FILES
+list(
+  APPEND
+  CTEST_NOTES_FILES
   "${CTEST_SCRIPT_DIRECTORY}/${CTEST_SCRIPT_NAME}"
   "${CMAKE_CURRENT_LIST_FILE}"
-  )
+)
 
 # Check for required variables.
-foreach(req
-    CTEST_CMAKE_GENERATOR
-    CTEST_SITE
-    CTEST_BUILD_NAME
-    )
+foreach(req CTEST_CMAKE_GENERATOR CTEST_SITE CTEST_BUILD_NAME)
   if(NOT DEFINED ${req})
     message(FATAL_ERROR "The containing script must set ${req}")
   endif()
 endforeach()
 
 # Print summary information.
-foreach(v
-    CTEST_SITE
-    CTEST_BUILD_NAME
-    CTEST_SOURCE_DIRECTORY
-    CTEST_BINARY_DIRECTORY
-    ExternalData_OBJECT_STORES
-    CTEST_CMAKE_GENERATOR
-    CTEST_BUILD_CONFIGURATION
-    CTEST_GIT_COMMAND
-    CTEST_CHECKOUT_COMMAND
-    CTEST_SCRIPT_DIRECTORY
-    CTEST_USE_LAUNCHERS
-    )
+foreach(
+  v
+  CTEST_SITE
+  CTEST_BUILD_NAME
+  CTEST_SOURCE_DIRECTORY
+  CTEST_BINARY_DIRECTORY
+  ExternalData_OBJECT_STORES
+  CTEST_CMAKE_GENERATOR
+  CTEST_BUILD_CONFIGURATION
+  CTEST_GIT_COMMAND
+  CTEST_CHECKOUT_COMMAND
+  CTEST_SCRIPT_DIRECTORY
+  CTEST_USE_LAUNCHERS
+)
   set(vars "${vars}  ${v}=[${${v}}]\n")
 endforeach()
 message("Dashboard script configuration:\n${vars}\n")
@@ -302,7 +351,10 @@ macro(write_cache)
       set(cache_make_program CMAKE_MAKE_PROGRAM:FILEPATH=${CMAKE_MAKE_PROGRAM})
     endif()
   endif()
-  file(WRITE ${CTEST_BINARY_DIRECTORY}/CMakeCache.txt "
+  file(
+    WRITE
+    ${CTEST_BINARY_DIRECTORY}/CMakeCache.txt
+    "
 SITE:STRING=${CTEST_SITE}
 BUILDNAME:STRING=${CTEST_BUILD_NAME}
 CTEST_USE_LAUNCHERS:BOOL=${CTEST_USE_LAUNCHERS}
@@ -311,13 +363,21 @@ ExternalData_OBJECT_STORES:STRING=${ExternalData_OBJECT_STORES}
 ${cache_build_type}
 ${cache_make_program}
 ${dashboard_cache}
-")
+"
+  )
 endmacro()
 
 # Start with a fresh build tree.
 file(MAKE_DIRECTORY "${CTEST_BINARY_DIRECTORY}")
-if(NOT "${CTEST_SOURCE_DIRECTORY}" STREQUAL "${CTEST_BINARY_DIRECTORY}"
-    AND NOT dashboard_no_clean)
+if(
+  NOT
+    "${CTEST_SOURCE_DIRECTORY}"
+      STREQUAL
+      "${CTEST_BINARY_DIRECTORY}"
+  AND
+    NOT
+      dashboard_no_clean
+)
   message("Clearing build tree...")
   ctest_empty_binary_directory(${CTEST_BINARY_DIRECTORY})
 endif()
@@ -369,24 +429,42 @@ while(NOT dashboard_done)
     # information for *.Project.xml and topological sorting for correct build
     # order in *.SubProjects.cmake.
     #
-    set_property(GLOBAL PROPERTY SubProject ${main_project_name})
-    set_property(GLOBAL PROPERTY Label ${main_project_name})
+    set_property(
+      GLOBAL
+      PROPERTY
+        SubProject
+          ${main_project_name}
+    )
+    set_property(
+      GLOBAL
+      PROPERTY
+        Label
+          ${main_project_name}
+    )
 
     message("Initial configure top level project...")
-    set(options
-      -DCTEST_USE_LAUNCHERS=${CTEST_USE_LAUNCHERS}
+    set(options -DCTEST_USE_LAUNCHERS=${CTEST_USE_LAUNCHERS})
+    if(dashboard_superbuild)
+      ctest_configure(
+        BUILD "${CTEST_BINARY_DIRECTORY}"
+        SOURCE "${CTEST_SOURCE_DIRECTORY}/Superbuild"
       )
-    if( dashboard_superbuild )
-      ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}"
-        SOURCE "${CTEST_SOURCE_DIRECTORY}/Superbuild")
     else()
-      ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}"
-        SOURCE "${CTEST_SOURCE_DIRECTORY}" OPTIONS "${options}")
+      ctest_configure(
+        BUILD "${CTEST_BINARY_DIRECTORY}"
+        SOURCE "${CTEST_SOURCE_DIRECTORY}"
+        OPTIONS "${options}"
+      )
     endif()
     ctest_read_custom_files(${CTEST_BINARY_DIRECTORY})
 
     if(NOT dashboard_no_submit)
-      ctest_submit(PARTS Update Notes Configure)
+      ctest_submit(
+        PARTS
+          Update
+          Notes
+          Configure
+      )
     endif()
 
     if(COMMAND dashboard_hook_build)
@@ -401,7 +479,10 @@ while(NOT dashboard_done)
       dashboard_hook_test()
     endif()
     if(dashboard_superbuild)
-      ctest_test(BUILD "${CTEST_BINARY_DIRECTORY}/ITKSphinxExamples-build" ${CTEST_TEST_ARGS})
+      ctest_test(
+        BUILD "${CTEST_BINARY_DIRECTORY}/ITKSphinxExamples-build"
+        ${CTEST_TEST_ARGS}
+      )
     else()
       ctest_test(${CTEST_TEST_ARGS})
     endif()
@@ -411,7 +492,10 @@ while(NOT dashboard_done)
 
     if(dashboard_upload_documentation)
       if(dashboard_superbuild)
-        file(GLOB zip_doc "${CTEST_BINARY_DIRECTORY}/ITKSphinxExamples-build/*.zip")
+        file(
+          GLOB zip_doc
+          "${CTEST_BINARY_DIRECTORY}/ITKSphinxExamples-build/*.zip"
+        )
       else()
         file(GLOB zip_doc "${CTEST_BINARY_DIRECTORY}/*.zip")
       endif()
@@ -426,7 +510,11 @@ while(NOT dashboard_done)
 
   if(dashboard_loop)
     # Delay until at least 5 minutes past START_TIME
-    ctest_sleep(${START_TIME} 300 ${CTEST_ELAPSED_TIME})
+    ctest_sleep(
+      ${START_TIME}
+      300
+      ${CTEST_ELAPSED_TIME}
+    )
     if(${CTEST_ELAPSED_TIME} GREATER ${dashboard_loop})
       set(dashboard_done 1)
     endif()

@@ -21,10 +21,10 @@ endmacro()
 
 # Macro for adding module archives
 macro(add_module_archives _module_name)
-  file(GLOB
-       ${_module_name}_EXAMPLE_DIRS
-       CONFIGURE_DEPENDS
-       ${CMAKE_CURRENT_SOURCE_DIR}/${_module_name}/*/
+  file(
+    GLOB ${_module_name}_EXAMPLE_DIRS
+    CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/${_module_name}/*/
   )
 
   if(BUILD_DOCUMENTATION AND SPHINX_HTML_OUTPUT)
@@ -32,21 +32,31 @@ macro(add_module_archives _module_name)
       if(IS_DIRECTORY ${_example_path})
         get_filename_component(_example_name ${_example_path} NAME)
         get_filename_component(_example_parent_path ${_example_path} DIRECTORY)
-        get_filename_component(_example_parent_name ${_example_parent_path} NAME)
-        set(_archive_target ${_example_parent_name}_${_example_name}_DownloadableArchive)
-        add_custom_target(${_archive_target}
-          COMMAND ${Python3_EXECUTABLE} ${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateDownloadableArchive.py
+        get_filename_component(
+          _example_parent_name
+          ${_example_parent_path}
+          NAME
+        )
+        set(
+          _archive_target
+          ${_example_parent_name}_${_example_name}_DownloadableArchive
+        )
+        add_custom_target(
+          ${_archive_target}
+          COMMAND
+            ${Python3_EXECUTABLE}
+            ${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateDownloadableArchive.py
             ${_example_name} ${SPHINX_DESTINATION}
           WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${_example_parent_name}
           COMMENT "Creating downloadable archive for ${_example_name}"
-          DEPENDS copy_sources
-          )
+          DEPENDS
+            copy_sources
+        )
         add_dependencies(CreateDownloadableArchives ${_archive_target})
       endif()
     endforeach()
   endif()
 endmacro()
-
 
 # Macro if the corresponding module is enabled when ITK was built
 # Pass in the module directory path.  Also pass the module name as the second
@@ -64,10 +74,10 @@ macro(add_subdirectory_if_module_enabled _dir)
 endmacro()
 
 macro(add_subdirectories_if_module_enabled _dirs_to_ignore)
-  file(GLOB
-       _current_subdirectories
-       CONFIGURE_DEPENDS
-       ${CMAKE_CURRENT_SOURCE_DIR}/*/
+  file(
+    GLOB _current_subdirectories
+    CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/*/
   )
   message(STATUS "Got subdirectories ${_current_subdirectories}")
   foreach(_subdir ${_current_subdirectories})
@@ -112,36 +122,46 @@ endmacro()
 #                                    // ${EXAMPLE_NAME}TestPython.
 # )
 function(compare_to_baseline)
-  set(options
+  set(
+    options
     PYTHON_ONLY
     NO_PYTHON_COMPARISON
   )
 
-  set(oneValueArgs
+  set(
+    oneValueArgs
     EXAMPLE_NAME
     TEST_IMAGE
     BASELINE_PREFIX
     TEST_NAME
-    )
+  )
 
-  set(multiValueArgs
+  set(
+    multiValueArgs
     DEPENDS
     OPTIONS
-    )
+  )
 
-  cmake_parse_arguments(LOCAL_COMPARISON
+  cmake_parse_arguments(
+    LOCAL_COMPARISON
     "${options}"
     "${oneValueArgs}"
     "${multiValueArgs}"
     ${ARGN}
-    )
+  )
 
   if(NOT LOCAL_COMPARISON_EXAMPLE_NAME)
-    message(FATAL_ERROR "Syntax error in use of compare_to_baseline: EXAMPLE_NAME is required")
+    message(
+      FATAL_ERROR
+      "Syntax error in use of compare_to_baseline: EXAMPLE_NAME is required"
+    )
   endif()
 
   if(NOT LOCAL_COMPARISON_BASELINE_PREFIX)
-    message(FATAL_ERROR "Syntax error in use of compare_to_baseline: BASELINE_PREFIX is required")
+    message(
+      FATAL_ERROR
+      "Syntax error in use of compare_to_baseline: BASELINE_PREFIX is required"
+    )
   endif()
 
   set(depends ${LOCAL_COMPARISON_EXAMPLE_NAME}Test)
@@ -149,15 +169,24 @@ function(compare_to_baseline)
     set(depends ${LOCAL_COMPARISON_DEPENDS})
   endif()
 
-  file(GLOB baseline_image ${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${LOCAL_COMPARISON_BASELINE_PREFIX}.*)
+  file(
+    GLOB baseline_image
+    ${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${LOCAL_COMPARISON_BASELINE_PREFIX}.*
+  )
   string(REPLACE .cid "" baseline_image "${baseline_image}")
   get_filename_component(baseline_image_file "${baseline_image}" NAME)
-  set(baseline_image "${CMAKE_CURRENT_BINARY_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${baseline_image_file}")
+  set(
+    baseline_image
+    "${CMAKE_CURRENT_BINARY_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${baseline_image_file}"
+  )
 
   if(NOT LOCAL_COMPARISON_TEST_IMAGE)
     string(REPLACE Baseline "" test_image "${baseline_image}")
   else()
-    set(test_image ${CMAKE_CURRENT_BINARY_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${LOCAL_COMPARISON_TEST_IMAGE})
+    set(
+      test_image
+      ${CMAKE_CURRENT_BINARY_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/${LOCAL_COMPARISON_TEST_IMAGE}
+    )
   endif()
 
   set(test_name)
@@ -168,18 +197,30 @@ function(compare_to_baseline)
   endif()
 
   if(NOT ${PYTHON_ONLY})
-  add_test(NAME ${test_name}
-    COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageCompareCommand"
-      --test-image "${test_image}"
-      --baseline-image "${baseline_image}"
-      ${LOCAL_COMPARISON_OPTIONS}
+    add_test(
+      NAME ${test_name}
+      COMMAND
+        "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageCompareCommand" --test-image
+        "${test_image}" --baseline-image "${baseline_image}"
+        ${LOCAL_COMPARISON_OPTIONS}
     )
-  set_tests_properties(${test_name}
-    PROPERTIES DEPENDS ${depends}
+    set_tests_properties(
+      ${test_name}
+      PROPERTIES
+        DEPENDS
+          ${depends}
     )
   endif()
 
-  if(ITK_WRAP_PYTHON AND NOT LOCAL_COMPARISON_NO_PYTHON_COMPARISON AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/Code.py")
+  if(
+    ITK_WRAP_PYTHON
+    AND
+      NOT
+        LOCAL_COMPARISON_NO_PYTHON_COMPARISON
+    AND
+      EXISTS
+        "${CMAKE_CURRENT_SOURCE_DIR}/${LOCAL_COMPARISON_EXAMPLE_NAME}/Code.py"
+  )
     set(python_test_name ${test_name}Python)
     get_filename_component(test_image_we "${test_image}" NAME_WE)
     get_filename_component(test_image_dir "${test_image}" DIRECTORY)
@@ -188,20 +229,24 @@ function(compare_to_baseline)
 
     # Add the comparison for the Python test output
     # Use the same baseline image as for the c++ output
-    add_test(NAME ${python_test_name}
-      COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageCompareCommand"
-        --test-image "${test_image}"
-        --baseline-image "${baseline_image}"
+    add_test(
+      NAME ${python_test_name}
+      COMMAND
+        "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ImageCompareCommand" --test-image
+        "${test_image}" --baseline-image "${baseline_image}"
         ${LOCAL_COMPARISON_OPTIONS}
-      )
+    )
 
     # Depend on the Python test.
-    set(python_depends )
+    set(python_depends)
     foreach(dependency ${depends})
       list(APPEND python_depends ${dependency}Python)
     endforeach()
-    set_tests_properties(${python_test_name}
-      PROPERTIES DEPENDS ${python_depends}
-      )
+    set_tests_properties(
+      ${python_test_name}
+      PROPERTIES
+        DEPENDS
+          ${python_depends}
+    )
   endif()
 endfunction()

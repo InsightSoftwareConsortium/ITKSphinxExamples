@@ -4,25 +4,33 @@ project(ExtractChannelOfImageWithMultipleComponents)
 
 find_package(ITK REQUIRED)
 
-
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKCommonModule
     ITK::ITKImageAdaptorsModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/ImageAdaptors
   COMPONENT Runtime
-  )
+)
 
-install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Core/ImageAdaptors/ExtractChannelOfImageWithMultipleComponents/
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/Core/ImageAdaptors/ExtractChannelOfImageWithMultipleComponents/
   COMPONENT Code
-  )
-
+)
 
 enable_testing()
-add_test(NAME ExtractChannelOfImageWithMultipleComponentsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
+add_test(
+  NAME ExtractChannelOfImageWithMultipleComponentsTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+)

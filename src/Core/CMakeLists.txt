@@ -1,4 +1,5 @@
-set(Core_MODULES
+set(
+  Core_MODULES
   Common
   QuadEdgeMesh
   Mesh

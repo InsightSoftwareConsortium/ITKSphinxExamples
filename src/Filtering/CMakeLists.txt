@@ -1,4 +1,5 @@
-set(Filtering_MODULES
+set(
+  Filtering_MODULES
   AnisotropicSmoothing
   AntiAlias
   BinaryMathematicalMorphology
@@ -26,7 +27,8 @@ set(Filtering_MODULES
   Thresholding
 )
 
-set(Filtering_MODULES_IGNORED
+set(
+  Filtering_MODULES_IGNORED
   # TODO: Fix ImageGradient examples and re-enable
   ImageGradient
 )

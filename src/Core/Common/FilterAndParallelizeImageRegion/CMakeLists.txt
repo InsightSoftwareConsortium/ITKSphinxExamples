@@ -5,23 +5,33 @@ project(FilterAndParallelizeImageRegion)
 find_package(ITK 5.0 REQUIRED)
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKCommonModule
     ITK::ITKImageIntensityModule
     ITK::ITKTestKernelModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
-install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Core/Common/FilterAndParallelizeImageRegion
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/Core/Common/FilterAndParallelizeImageRegion
   COMPONENT Code
 )
 
 enable_testing()
-add_test(NAME FilterAndParallelizeImageRegionTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
+add_test(
+  NAME FilterAndParallelizeImageRegionTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+)

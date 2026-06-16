@@ -4,7 +4,7 @@ add_example(CreateAPointSet)
 add_example(ReadAPointSet)
 compare_to_baseline(EXAMPLE_NAME ReadAPointSet
   BASELINE_PREFIX ReadAPointSet
-  )
+)
 
 add_example(DoDataParallelThreading)
 add_example(CovariantVectorNorm)
@@ -68,14 +68,14 @@ add_example(CreateAnImageOfVectors)
 add_example(ReadWriteVectorImage)
 compare_to_baseline(EXAMPLE_NAME ReadWriteVectorImage
   BASELINE_PREFIX OutputBaseline
-  )
+)
 
 add_example(CreateAnImage)
 
 add_example(ImportPixelBufferIntoAnImage)
 compare_to_baseline(EXAMPLE_NAME ImportPixelBufferIntoAnImage
   BASELINE_PREFIX OutputBaseline
-  )
+)
 
 add_example(FilterAndParallelizeImageRegion)
 add_example(UseParallelizeImageRegion)
@@ -87,12 +87,12 @@ add_example(BresenhamLine)
 add_example(MakePartOfImageTransparent)
 compare_to_baseline(EXAMPLE_NAME MakePartOfImageTransparent
   BASELINE_PREFIX MakePartOfImageTransparent
-  )
+)
 
 add_example(ConvertArrayToImage)
 compare_to_baseline(EXAMPLE_NAME ConvertArrayToImage
   BASELINE_PREFIX ConvertArrayToImageOutput
-  )
+)
 
 add_example(CropImageBySpecifyingRegion)
 add_example(ApplyCustomOperationToEachPixelInImage)
@@ -106,7 +106,7 @@ add_example(IterateLineThroughImage)
 
 compare_to_baseline(EXAMPLE_NAME IterateLineThroughImage
   BASELINE_PREFIX IterateLineThroughImage
-  )
+)
 
 add_example(IterateLineThroughImageWithoutWriteAccess)
 add_example(IterateWithNeighborhoodWithoutAccess)
@@ -115,7 +115,7 @@ add_example(IterateRegionWithoutWriteAccess)
 add_example(IterateRegionWithAccessToIndexWithWriteAccess)
 compare_to_baseline(EXAMPLE_NAME IterateRegionWithAccessToIndexWithWriteAccess
   BASELINE_PREFIX IterateRegionWithAccessToIndexWithWriteAccess
-  )
+)
 
 add_example(IterateRegionWithAccessToIndexWithoutWriteAccess)
 
@@ -129,7 +129,7 @@ add_example(CreateForwardDifferenceKernel)
 add_example(AddNoiseToBinaryImage)
 compare_to_baseline(EXAMPLE_NAME AddNoiseToBinaryImage
   BASELINE_PREFIX AddNoiseToBinaryImage
-  )
+)
 
 add_example(SortITKIndex)
 add_example(ReturnObjectFromFunction)
@@ -163,12 +163,12 @@ add_example(MultipleInputsOfSameType)
 add_example(MultipleOutputsOfSameType)
 compare_to_baseline(EXAMPLE_NAME MultipleOutputsOfSameType
   BASELINE_PREFIX TestOutput1 TestOutput2
-  )
+)
 
 add_example(MiniPipeline)
 compare_to_baseline(EXAMPLE_NAME MiniPipeline
   BASELINE_PREFIX MiniPipelineOutput
-  )
+)
 
 add_example(IterateImageStartingAtSeed)
 add_example(StoreNonPixelDataInImage)
@@ -177,7 +177,7 @@ add_example(CheckIfModuleIsPresent)
 add_example(DisplayImage)
 compare_to_baseline(EXAMPLE_NAME DisplayImage
   BASELINE_PREFIX DisplayImage
-  )
+)
 
 add_example(DirectWarningToFile)
 
@@ -186,30 +186,30 @@ add_example(MultiThreadOilPainting)
 #==================================================
 
 if(VTK_DIR)
-add_example(FindMaxAndMinInImage)
-compare_to_baseline(EXAMPLE_NAME FindMaxAndMinInImage
-  BASELINE_PREFIX FindMaxAndMinInImageOutput
+  add_example(FindMaxAndMinInImage)
+  compare_to_baseline(EXAMPLE_NAME FindMaxAndMinInImage
+    BASELINE_PREFIX FindMaxAndMinInImageOutput
   )
 
-add_example(InPlaceFilterOfImage)
-#TODO: Make example save output image, and then compare it to a baseline
-#compare_to_baseline(EXAMPLE_NAME InPlaceFilterOfImage
-#  BASELINE_PREFIX OutputBaseline
-#  )
+  add_example(InPlaceFilterOfImage)
+  #TODO: Make example save output image, and then compare it to a baseline
+  #compare_to_baseline(EXAMPLE_NAME InPlaceFilterOfImage
+  #  BASELINE_PREFIX OutputBaseline
+  #  )
 
-add_example(IterateRegionWithNeighborhood)
-compare_to_baseline(EXAMPLE_NAME IterateRegionWithNeighborhood
-  BASELINE_PREFIX IterateRegionWithWriteAccess
+  add_example(IterateRegionWithNeighborhood)
+  compare_to_baseline(EXAMPLE_NAME IterateRegionWithNeighborhood
+    BASELINE_PREFIX IterateRegionWithWriteAccess
   )
 
-add_example(IterateRegionWithWriteAccess)
-compare_to_baseline(EXAMPLE_NAME IterateRegionWithWriteAccess
-  BASELINE_PREFIX IterateRegionWithWriteAccess
+  add_example(IterateRegionWithWriteAccess)
+  compare_to_baseline(EXAMPLE_NAME IterateRegionWithWriteAccess
+    BASELINE_PREFIX IterateRegionWithWriteAccess
   )
 
-add_example(MakeOutOfBoundsPixelsReturnConstValue)
-compare_to_baseline(EXAMPLE_NAME MakeOutOfBoundsPixelsReturnConstValue
-  BASELINE_PREFIX MakeOutOfBoundsPixelsReturnConstValue
+  add_example(MakeOutOfBoundsPixelsReturnConstValue)
+  compare_to_baseline(EXAMPLE_NAME MakeOutOfBoundsPixelsReturnConstValue
+    BASELINE_PREFIX MakeOutOfBoundsPixelsReturnConstValue
   )
 endif()
 

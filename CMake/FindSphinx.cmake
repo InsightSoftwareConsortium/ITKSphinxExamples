@@ -5,21 +5,24 @@
 #  SPHINX_EXECUTABLE
 #  SPHINX_FOUND
 
-set(_python_paths )
+set(_python_paths)
 find_package(Python3 COMPONENTS Interpreter)
 if(Python3_EXECUTABLE)
   get_filename_component(_python_dir "${Python3_EXECUTABLE}" DIRECTORY)
-  list(APPEND _python_paths
+  list(
+    APPEND
+    _python_paths
     "${_python_dir}"
     "${_python_dir}/bin"
     "${_python_dir}/Scripts"
-    )
+  )
 endif()
 
-
-find_program(SPHINX_EXECUTABLE
+find_program(
+  SPHINX_EXECUTABLE
   NAMES
-    sphinx-build sphinx-build.exe
+    sphinx-build
+    sphinx-build.exe
   HINTS
     ${_python_paths}
   PATHS
@@ -29,16 +32,28 @@ find_program(SPHINX_EXECUTABLE
   DOC "Sphinx documentation generator"
 )
 
-if( NOT SPHINX_EXECUTABLE )
-  set(_Python_VERSIONS
-    2.7 2.6 2.5 2.4 2.3 2.2 2.1 2.0 1.6 1.5
+if(NOT SPHINX_EXECUTABLE)
+  set(
+    _Python_VERSIONS
+    2.7
+    2.6
+    2.5
+    2.4
+    2.3
+    2.2
+    2.1
+    2.0
+    1.6
+    1.5
   )
 
-  foreach( _version ${_Python_VERSIONS} )
-    set( _sphinx_NAMES sphinx-build-${_version} )
+  foreach(_version ${_Python_VERSIONS})
+    set(_sphinx_NAMES sphinx-build-${_version})
 
-    find_program( SPHINX_EXECUTABLE
-      NAMES ${_sphinx_NAMES}
+    find_program(
+      SPHINX_EXECUTABLE
+      NAMES
+        ${_sphinx_NAMES}
       PATHS
         /usr/bin
         /usr/local/bin
@@ -50,22 +65,50 @@ endif()
 
 include(FindPackageHandleStandardArgs)
 
-find_package_handle_standard_args(Sphinx DEFAULT_MSG
+find_package_handle_standard_args(
+  Sphinx
+  DEFAULT_MSG
   SPHINX_EXECUTABLE
 )
 
-
-option( SPHINX_HTML_OUTPUT "Build a single HTML with the whole content." ON )
-option( SPHINX_DIRHTML_OUTPUT "Build HTML pages, but with a single directory per document." OFF )
-option( SPHINX_HTMLHELP_OUTPUT "Build HTML pages with additional information for building a documentation collection in htmlhelp." OFF )
-option( SPHINX_QTHELP_OUTPUT "Build HTML pages with additional information for building a documentation collection in qthelp." OFF )
-option( SPHINX_DEVHELP_OUTPUT "Build HTML pages with additional information for building a documentation collection in devhelp." OFF )
-option( SPHINX_EPUB_OUTPUT "Build HTML pages with additional information for building a documentation collection in epub." OFF )
-option( SPHINX_LATEX_OUTPUT "Build LaTeX sources that can be compiled to a PDF document using pdflatex." OFF )
-option( SPHINX_MAN_OUTPUT "Build manual pages in groff format for UNIX systems." OFF )
-option( SPHINX_TEXT_OUTPUT "Build plain text files." OFF )
-option( SPHINX_LINKCHECK "Create a target that will check HTTP links." OFF )
-
+option(SPHINX_HTML_OUTPUT "Build a single HTML with the whole content." ON)
+option(
+  SPHINX_DIRHTML_OUTPUT
+  "Build HTML pages, but with a single directory per document."
+  OFF
+)
+option(
+  SPHINX_HTMLHELP_OUTPUT
+  "Build HTML pages with additional information for building a documentation collection in htmlhelp."
+  OFF
+)
+option(
+  SPHINX_QTHELP_OUTPUT
+  "Build HTML pages with additional information for building a documentation collection in qthelp."
+  OFF
+)
+option(
+  SPHINX_DEVHELP_OUTPUT
+  "Build HTML pages with additional information for building a documentation collection in devhelp."
+  OFF
+)
+option(
+  SPHINX_EPUB_OUTPUT
+  "Build HTML pages with additional information for building a documentation collection in epub."
+  OFF
+)
+option(
+  SPHINX_LATEX_OUTPUT
+  "Build LaTeX sources that can be compiled to a PDF document using pdflatex."
+  OFF
+)
+option(
+  SPHINX_MAN_OUTPUT
+  "Build manual pages in groff format for UNIX systems."
+  OFF
+)
+option(SPHINX_TEXT_OUTPUT "Build plain text files." OFF)
+option(SPHINX_LINKCHECK "Create a target that will check HTTP links." OFF)
 
 mark_as_advanced(
   SPHINX_EXECUTABLE
@@ -81,82 +124,94 @@ mark_as_advanced(
   SPHINX_LINKCHECK
 )
 
-function( Sphinx_add_target target_name builder conf source destination )
-  add_custom_target( ${target_name} ALL
-    COMMAND ${SPHINX_EXECUTABLE} -b ${builder}
-    -c ${conf}
-    ${source}
-    ${destination}
+function(
+  Sphinx_add_target
+  target_name
+  builder
+  conf
+  source
+  destination
+)
+  add_custom_target(
+    ${target_name}
+    ALL
+    COMMAND
+      ${SPHINX_EXECUTABLE} -b ${builder} -c ${conf} ${source} ${destination}
     COMMENT "Generating sphinx documentation: ${builder}"
-    )
+  )
 
   set_property(
-    DIRECTORY APPEND PROPERTY
-    ADDITIONAL_MAKE_CLEAN_FILES
-    ${destination}
-    )
+    DIRECTORY
+    APPEND
+    PROPERTY
+      ADDITIONAL_MAKE_CLEAN_FILES
+        ${destination}
+  )
 endfunction()
 
 # Target dependencies can be optionally listed at the end.
-function( Sphinx_add_targets target_base_name conf source base_destination )
+function(Sphinx_add_targets target_base_name conf source base_destination)
+  set(_dependencies)
 
-  set( _dependencies )
-
-  foreach( arg IN LISTS ARGN )
-    set( _dependencies ${_dependencies} ${arg} )
+  foreach(arg IN LISTS ARGN)
+    set(
+      _dependencies
+      ${_dependencies}
+      ${arg}
+    )
   endforeach()
 
-  if( ${SPHINX_HTML_OUTPUT} )
-    Sphinx_add_target( ${target_base_name}_html html ${conf} ${source} ${base_destination}/html )
+  if(${SPHINX_HTML_OUTPUT})
+    sphinx_add_target( ${target_base_name}_html html ${conf} ${source} ${base_destination}/html)
 
-    add_dependencies( ${target_base_name}_html ${_dependencies} )
+    add_dependencies(${target_base_name}_html ${_dependencies})
   endif()
 
-  if( ${SPHINX_DIRHTML_OUTPUT} )
-    Sphinx_add_target( ${target_base_name}_dirhtml dirhtml ${conf} ${source} ${base_destination}/dirhtml )
+  if(${SPHINX_DIRHTML_OUTPUT})
+    sphinx_add_target( ${target_base_name}_dirhtml dirhtml ${conf} ${source} ${base_destination}/dirhtml)
 
-    add_dependencies( ${target_base_name}_dirhtml ${_dependencies} )
+    add_dependencies(${target_base_name}_dirhtml ${_dependencies})
   endif()
 
-  if( ${SPHINX_QTHELP_OUTPUT} )
-    Sphinx_add_target( ${target_base_name}_qthelp qthelp ${conf} ${source} ${base_destination}/qthelp )
+  if(${SPHINX_QTHELP_OUTPUT})
+    sphinx_add_target( ${target_base_name}_qthelp qthelp ${conf} ${source} ${base_destination}/qthelp)
 
-    add_dependencies( ${target_base_name}_qthelp ${_dependencies} )
+    add_dependencies(${target_base_name}_qthelp ${_dependencies})
   endif()
 
-  if( ${SPHINX_DEVHELP_OUTPUT} )
-    Sphinx_add_target( ${target_base_name}_devhelp devhelp ${conf} ${source} ${base_destination}/devhelp )
+  if(${SPHINX_DEVHELP_OUTPUT})
+    sphinx_add_target( ${target_base_name}_devhelp devhelp ${conf} ${source} ${base_destination}/devhelp)
 
-    add_dependencies( ${target_base_name}_devhelp ${_dependencies} )
+    add_dependencies(${target_base_name}_devhelp ${_dependencies})
   endif()
 
-  if( ${SPHINX_EPUB_OUTPUT} )
-    Sphinx_add_target( ${target_base_name}_epub epub ${conf} ${source} ${base_destination}/epub )
+  if(${SPHINX_EPUB_OUTPUT})
+    sphinx_add_target( ${target_base_name}_epub epub ${conf} ${source} ${base_destination}/epub)
 
-    add_dependencies( ${target_base_name}_epub ${_dependencies} )
+    add_dependencies(${target_base_name}_epub ${_dependencies})
   endif()
 
-  if( ${SPHINX_LATEX_OUTPUT} )
-    Sphinx_add_target( ${target_base_name}_latex latex ${conf} ${source} ${base_destination}/latex )
+  if(${SPHINX_LATEX_OUTPUT})
+    sphinx_add_target( ${target_base_name}_latex latex ${conf} ${source} ${base_destination}/latex)
 
-    add_dependencies( ${target_base_name}_latex ${_dependencies} )
+    add_dependencies(${target_base_name}_latex ${_dependencies})
   endif()
 
-  if( ${SPHINX_MAN_OUTPUT} )
-    Sphinx_add_target( ${target_base_name}_man man ${conf} ${source} ${base_destination}/man )
+  if(${SPHINX_MAN_OUTPUT})
+    sphinx_add_target( ${target_base_name}_man man ${conf} ${source} ${base_destination}/man)
 
-    add_dependencies( ${target_base_name}_man ${_dependencies} )
+    add_dependencies(${target_base_name}_man ${_dependencies})
   endif()
 
-  if( ${SPHINX_TEXT_OUTPUT} )
-    Sphinx_add_target( ${target_base_name}_text text ${conf} ${source} ${base_destination}/text )
+  if(${SPHINX_TEXT_OUTPUT})
+    sphinx_add_target( ${target_base_name}_text text ${conf} ${source} ${base_destination}/text)
 
-    add_dependencies( ${target_base_name}_text ${_dependencies} )
+    add_dependencies(${target_base_name}_text ${_dependencies})
   endif()
 
-  if( ${SPHINX_LINKCHECK} )
-    sphinx_add_target( ${target_base_name}_linkcheck linkcheck ${conf} ${source} ${base_destination}/linkcheck )
+  if(${SPHINX_LINKCHECK})
+    sphinx_add_target( ${target_base_name}_linkcheck linkcheck ${conf} ${source} ${base_destination}/linkcheck)
 
-    add_dependencies( ${target_base_name}_linkcheck ${_dependencies} )
+    add_dependencies(${target_base_name}_linkcheck ${_dependencies})
   endif()
 endfunction()

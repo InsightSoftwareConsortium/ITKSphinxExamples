@@ -5,25 +5,33 @@ project(ReadTransformFromFile)
 find_package(ITK REQUIRED)
 itk_generate_factory_registration()
 
-
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKTransformIO
     ITK::ITKTransformFactoryModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/IO/TransformBase
   COMPONENT Runtime
-  )
+)
 
-install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/IO/TransformBase/ReadTransformFromFile/
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/IO/TransformBase/ReadTransformFromFile/
   COMPONENT Code
-  )
-
+)
 
 enable_testing()
-add_test(NAME ReadTransformFromFileTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
+add_test(
+  NAME ReadTransformFromFileTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+)

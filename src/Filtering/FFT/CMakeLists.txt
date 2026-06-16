@@ -56,4 +56,4 @@ add_example(ComputeInverseFFTOfImage)
 compare_to_baseline(EXAMPLE_NAME ComputeInverseFFTOfImage
   BASELINE_PREFIX ComputeInverseFFTOfImage
   OPTIONS --tolerance-intensity 1
-  )
+)

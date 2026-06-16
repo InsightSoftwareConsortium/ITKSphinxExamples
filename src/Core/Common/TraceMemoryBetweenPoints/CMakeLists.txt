@@ -5,21 +5,26 @@ project(TraceMemoryBetweenPoints)
 find_package(ITK REQUIRED)
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
-  PRIVATE
-    ITK::ITKCommonModule
-)
+target_link_libraries(${PROJECT_NAME} PRIVATE ITK::ITKCommonModule)
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
-  )
+)
 
-install(FILES Code.cxx CMakeLists.txt
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Common/TraceMemoryBetweenPoints
   COMPONENT Code
-  )
+)
 
 enable_testing()
-add_test(NAME TraceMemoryBetweenPointsTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME} 2048000)
+add_test(
+  NAME TraceMemoryBetweenPointsTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME} 2048000
+)

@@ -12,11 +12,18 @@
 #
 set(ITKEX_OLDEST_VALIDATED_POLICIES_VERSION "3.22.1")
 set(ITKEX_NEWEST_VALIDATED_POLICIES_VERSION "3.31.5")
-cmake_minimum_required(VERSION ${ITKEX_OLDEST_VALIDATED_POLICIES_VERSION}..${ITKEX_NEWEST_VALIDATED_POLICIES_VERSION} FATAL_ERROR)
+cmake_minimum_required(
+  VERSION
+    ${ITKEX_OLDEST_VALIDATED_POLICIES_VERSION}..${ITKEX_NEWEST_VALIDATED_POLICIES_VERSION}
+  FATAL_ERROR
+)
 
 # ==== Define language standard configurations requiring at least c++14 standard
 if(CMAKE_CXX_STANDARD EQUAL "98" OR CMAKE_CXX_STANDARD LESS "17")
-  message(FATAL_ERROR "C++98 to C++11 are no longer supported in ITK version v6 and greater.")
+  message(
+    FATAL_ERROR
+    "C++98 to C++11 are no longer supported in ITK version v6 and greater."
+  )
 endif()
 
 #####
@@ -34,23 +41,25 @@ endif()
 project(ITKSphinxExamples)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-  set(CMAKE_CXX_FLAGS  "-Qunused-arguments ${CMAKE_CXX_FLAGS}")
-  set(CMAKE_C_FLAGS    "-Qunused-arguments ${CMAKE_C_FLAGS}")
+  set(CMAKE_CXX_FLAGS "-Qunused-arguments ${CMAKE_CXX_FLAGS}")
+  set(CMAKE_C_FLAGS "-Qunused-arguments ${CMAKE_C_FLAGS}")
 endif()
 
 if(CMAKE_HOST_WIN32)
   string(LENGTH "${ITKSphinxExamples_SOURCE_DIR}" source_len)
   if(${source_len} GREATER 30)
-    message(FATAL_ERROR
-    "The source directory is currently too long, ${source_len} characters. "
-    "Please move the Examples source directory to a shorter path."
+    message(
+      FATAL_ERROR
+      "The source directory is currently too long, ${source_len} characters. "
+      "Please move the Examples source directory to a shorter path."
     )
   endif()
   string(LENGTH "${ITKSphinxExamples_BINARY_DIR}" binary_len)
   if(${binary_len} GREATER 30)
-    message(FATAL_ERROR
-    "The build directory is currently too long, ${binary_len} characters. "
-    "Please set the Examples build directory to a shorter path."
+    message(
+      FATAL_ERROR
+      "The build directory is currently too long, ${binary_len} characters. "
+      "Please set the Examples build directory to a shorter path."
     )
   endif()
 endif()
@@ -66,13 +75,15 @@ set(ITKSphinxExamples_VERSION_MAJOR ${ITK_VERSION_MAJOR})
 set(ITKSphinxExamples_VERSION_MINOR ${ITK_VERSION_MINOR})
 set(ITKSphinxExamples_VERSION_PATCH ${ITK_VERSION_PATCH})
 
-set(ITKSphinxExamples_VERSION
+set(
+  ITKSphinxExamples_VERSION
   "${ITKSphinxExamples_VERSION_MAJOR}.${ITKSphinxExamples_VERSION_MINOR}"
-  )
+)
 
-set(ITKSphinxExamples_RELEASE_VERSION
-   "${ITKSphinxExamples_VERSION_MAJOR}.${ITKSphinxExamples_VERSION_MINOR}.${ITKSphinxExamples_VERSION_PATCH}"
-  )
+set(
+  ITKSphinxExamples_RELEASE_VERSION
+  "${ITKSphinxExamples_VERSION_MAJOR}.${ITKSphinxExamples_VERSION_MINOR}.${ITKSphinxExamples_VERSION_PATCH}"
+)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ITKSphinxExamples_BINARY_DIR}/bin)
 
@@ -84,46 +95,73 @@ configure_file(CMake/CTestCustom.cmake.in CTestCustom.cmake COPYONLY)
 # ExternalData setup.  We use the CMake ExternalData features to download binary
 # files from a configurable location(s) -- including the local filesystem -- to
 # avoid storing the potentially large files in the Git history.
-set(CMAKE_MODULE_PATH ${ITKSphinxExamples_SOURCE_DIR}/CMake ${CMAKE_MODULE_PATH})
+set(
+  CMAKE_MODULE_PATH
+  ${ITKSphinxExamples_SOURCE_DIR}/CMake
+  ${CMAKE_MODULE_PATH}
+)
 # The CMake magic to download the data.
 set(ExternalData_SOURCE_ROOT "${ITKSphinxExamples_SOURCE_DIR}")
 set(ExternalData_BINARY_ROOT "${ITKSphinxExamples_BINARY_DIR}")
 
 include(ITKSphinxExamplesExternalData)
-set(_RootSubDirs
+set(
+  _RootSubDirs
   CMake
   Formatting
   Utilities
   src
   Documentation
   Superbuild
-  )
+)
 
 set(content_links)
 
 # By default we copy all the content links in the source tree to their
 # corresponding locations in the binary tree.
 foreach(_dir ${_RootSubDirs})
-  file(GLOB_RECURSE ${_dir}_content_links
-    RELATIVE "${ITKSphinxExamples_SOURCE_DIR}" "${_dir}/*.cid")
-  set(content_links ${content_links} ${${_dir}_content_links})
+  file(
+    GLOB_RECURSE ${_dir}_content_links
+    RELATIVE "${ITKSphinxExamples_SOURCE_DIR}"
+    "${_dir}/*.cid"
+  )
+  set(
+    content_links
+    ${content_links}
+    ${${_dir}_content_links}
+  )
 endforeach()
 
 foreach(link ${content_links})
   string(REGEX REPLACE "\\.cid$" "" link ${link})
-  ExternalData_Expand_Arguments(ITKSphinxExamplesData
+  ExternalData_Expand_Arguments(
+    ITKSphinxExamplesData
     link_location
     DATA{${link}}
-    )
+  )
 endforeach()
 ExternalData_Add_Target(ITKSphinxExamplesData)
 
 set(PYTHON_REQUIRED_VERSION 3.9)
-set(Python_ADDITIONAL_VERSIONS 3.13 3.12 3.11 3.10 3.9)
+set(
+  Python_ADDITIONAL_VERSIONS
+  3.13
+  3.12
+  3.11
+  3.10
+  3.9
+)
 if(BUILD_TESTING OR ITK_BUILD_DOCUMENTATION OR ITK_WRAP_PYTHON)
   if(ITK_WRAP_PYTHON)
     # Use the same Python interpreter as ITK to run the tests.
-    find_package(Python3 ${ITK_WRAP_PYTHON_VERSION} EXACT COMPONENTS Interpreter REQUIRED)
+    find_package(
+      Python3
+      ${ITK_WRAP_PYTHON_VERSION}
+      EXACT
+      COMPONENTS
+        Interpreter
+      REQUIRED
+    )
     mark_as_advanced(Python3_EXECUTABLE)
   else()
     find_package(Python3 ${PYTHON_REQUIRED_VERSION} COMPONENTS Interpreter)
@@ -132,11 +170,13 @@ endif()
 
 if(Python3_EXECUTABLE AND NOT ITK_WRAP_PYTHON)
   # See if external ITK python packages are installed for this python environment
-  execute_process(COMMAND ${Python3_EXECUTABLE} -c "import itk"
+  execute_process(
+    COMMAND
+      ${Python3_EXECUTABLE} -c "import itk"
     RESULT_VARIABLE _have_itk_return_code
     OUTPUT_QUIET
     ERROR_QUIET
-    )
+  )
   if(_have_itk_return_code EQUAL 0)
     set(ITK_WRAP_PYTHON 1)
   endif()
@@ -147,24 +187,40 @@ option(BUILD_DOCUMENTATION "Build the examples documentation." OFF)
 if(BUILD_DOCUMENTATION)
   # We must also duplicate the source tree since the images need to be present
   # with the source.
-  add_custom_target(copy_sources ALL
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKSphinxExamples_SOURCE_DIR}/src" "${ITKSphinxExamples_BINARY_DIR}/src"
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKSphinxExamples_SOURCE_DIR}/Documentation" "${ITKSphinxExamples_BINARY_DIR}/Documentation"
-    COMMAND ${CMAKE_COMMAND} -E copy "${ITKSphinxExamples_SOURCE_DIR}/index.rst" "${ITKSphinxExamples_BINARY_DIR}/index.rst"
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKSphinxExamples_SOURCE_DIR}/Formatting"
-    "${ITKSphinxExamples_BINARY_DIR}/Formatting"
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${ITKSphinxExamples_SOURCE_DIR}/Utilities"
-    "${ITKSphinxExamples_BINARY_DIR}/Utilities"
+  add_custom_target(
+    copy_sources
+    ALL
+    COMMAND
+      ${CMAKE_COMMAND} -E copy_directory "${ITKSphinxExamples_SOURCE_DIR}/src"
+      "${ITKSphinxExamples_BINARY_DIR}/src"
+    COMMAND
+      ${CMAKE_COMMAND} -E copy_directory
+      "${ITKSphinxExamples_SOURCE_DIR}/Documentation"
+      "${ITKSphinxExamples_BINARY_DIR}/Documentation"
+    COMMAND
+      ${CMAKE_COMMAND} -E copy "${ITKSphinxExamples_SOURCE_DIR}/index.rst"
+      "${ITKSphinxExamples_BINARY_DIR}/index.rst"
+    COMMAND
+      ${CMAKE_COMMAND} -E copy_directory
+      "${ITKSphinxExamples_SOURCE_DIR}/Formatting"
+      "${ITKSphinxExamples_BINARY_DIR}/Formatting"
+    COMMAND
+      ${CMAKE_COMMAND} -E copy_directory
+      "${ITKSphinxExamples_SOURCE_DIR}/Utilities"
+      "${ITKSphinxExamples_BINARY_DIR}/Utilities"
     COMMENT "Copying sources"
-    )
+  )
   # For unknown reasons, this was the only effective way to ensure ITKSphinxExamplesData
   # was built before build_html.
   add_dependencies(copy_sources ITKSphinxExamplesData)
 
   # A high level target that the individual targets depend on.
-  add_custom_target(CreateDownloadableArchives ALL
-    ${CMAKE_COMMAND} -E echo "Done creating individual example downloadable archives..."
-    )
+  add_custom_target(
+    CreateDownloadableArchives
+    ALL
+    ${CMAKE_COMMAND} -E echo
+    "Done creating individual example downloadable archives..."
+  )
 
   if(NOT ITKDoxygenXML_DIR)
     include(${ITKSphinxExamples_SOURCE_DIR}/CMake/ITKDoxygenXML.cmake)
@@ -181,35 +237,47 @@ if(BUILD_DOCUMENTATION)
   set(SPHINX_CONF_DIR ${ITKSphinxExamples_BINARY_DIR}/Formatting)
   set(SPHINX_INPUT_DIR ${ITKSphinxExamples_BINARY_DIR})
   set(SPHINX_DESTINATION ${ITKSphinxExamples_BINARY_DIR})
-  set(SPHINX_DEPENDENCIES ITKDoxygenXML ITKSphinxExamplesData ITKDoxygenTAG CreateDownloadableArchives)
+  set(
+    SPHINX_DEPENDENCIES
+    ITKDoxygenXML
+    ITKSphinxExamplesData
+    ITKDoxygenTAG
+    CreateDownloadableArchives
+  )
 
   option(DOC_WITH_LOCAL_DOXYGEN "Generate documentation with local doxygen" OFF)
   mark_as_advanced(DOC_WITH_LOCAL_DOXYGEN)
 
   set(sphinx_target_base_name build)
-  Sphinx_add_targets(${sphinx_target_base_name} ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES})
+  sphinx_add_targets(${sphinx_target_base_name} ${SPHINX_CONF_DIR} ${SPHINX_INPUT_DIR} ${SPHINX_DESTINATION} ${SPHINX_DEPENDENCIES})
 
   if(${SPHINX_HTML_OUTPUT})
-    install(DIRECTORY ${SPHINX_DESTINATION}/html
+    install(
+      DIRECTORY
+        ${SPHINX_DESTINATION}/html
       DESTINATION share/ITKSphinxExamples/doc
       COMPONENT Doc
-      PATTERN "${SPHINX_DESTINATION}/html/*"
-      )
-    add_custom_command(TARGET ${sphinx_target_base_name}_html
+      PATTERN
+      "${SPHINX_DESTINATION}/html/*"
+    )
+    add_custom_command(
+      TARGET ${sphinx_target_base_name}_html
       POST_BUILD
-      COMMAND ${Python3_EXECUTABLE}
+      COMMAND
+        ${Python3_EXECUTABLE}
         ${ITKSphinxExamples_SOURCE_DIR}/Utilities/DocumentationTarball.py
         ${SPHINX_DESTINATION}/html
         ${ITKSphinxExamples_BINARY_DIR}/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}-html
       WORKING_DIRECTORY ${ITKSphinxExamples_BINARY_DIR}/html
       COMMENT "Creating html tarballs..."
-      )
-    install(FILES
-      ${ITKSphinxExamples_BINARY_DIR}/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}-html.tar.gz
-      ${ITKSphinxExamples_BINARY_DIR}/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}-html.zip
+    )
+    install(
+      FILES
+        ${ITKSphinxExamples_BINARY_DIR}/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}-html.tar.gz
+        ${ITKSphinxExamples_BINARY_DIR}/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}-html.zip
       DESTINATION share/ITKSphinxExamples/doc/html
       COMPONENT Doc
-      )
+    )
   endif()
 
   if(${SPHINX_LATEX_OUTPUT})
@@ -218,54 +286,70 @@ if(BUILD_DOCUMENTATION)
     # Build the PDF with pdflatex
     find_package(LATEX)
     if(NOT PDFLATEX_COMPILER)
-      message("pdflatex compiler was not found. Please pass to advanced mode and provide its full path")
+      message(
+        "pdflatex compiler was not found. Please pass to advanced mode and provide its full path"
+      )
     else()
       # Needs to be executed twice to get table of contents.
-      add_custom_command(TARGET ${sphinx_target_base_name}_latex
+      add_custom_command(
+        TARGET ${sphinx_target_base_name}_latex
         POST_BUILD
-        COMMAND ${PDFLATEX_COMPILER}
-          ${SPHINX_DESTINATION}/latex/ITKSphinxExamples.tex
+        COMMAND
+          ${PDFLATEX_COMPILER} ${SPHINX_DESTINATION}/latex/ITKSphinxExamples.tex
           -output-directory ${SPHINX_DESTINATION}/latex
-        COMMAND ${MAKEINDEX_COMPILER}
-          ITKSphinxExamples.idx
-        COMMAND ${PDFLATEX_COMPILER}
-          ${SPHINX_DESTINATION}/latex/ITKSphinxExamples.tex
+        COMMAND
+          ${MAKEINDEX_COMPILER} ITKSphinxExamples.idx
+        COMMAND
+          ${PDFLATEX_COMPILER} ${SPHINX_DESTINATION}/latex/ITKSphinxExamples.tex
           -output-directory ${SPHINX_DESTINATION}/latex
-        COMMAND ${CMAKE_COMMAND} -E copy
+        COMMAND
+          ${CMAKE_COMMAND} -E copy
           ${SPHINX_DESTINATION}/latex/ITKSphinxExamples.pdf
           ${SPHINX_DESTINATION}/html/Documentation/Download/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}.pdf
         WORKING_DIRECTORY ${SPHINX_DESTINATION}/latex
         COMMENT "Building PDF"
-        )
-      install(FILES ${SPHINX_DESTINATION}/html/Documentation/Download/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}.pdf
+      )
+      install(
+        FILES
+          ${SPHINX_DESTINATION}/html/Documentation/Download/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}.pdf
         DESTINATION share/ITKSphinxExamples/doc/pdf
         COMPONENT Doc
-        )
+      )
     endif()
   endif()
 
   if(${SPHINX_EPUB_OUTPUT})
-    add_custom_command(TARGET ${sphinx_target_base_name}_epub
+    add_custom_command(
+      TARGET ${sphinx_target_base_name}_epub
       POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy
-        ${SPHINX_DESTINATION}/epub/sphinx.epub
+      COMMAND
+        ${CMAKE_COMMAND} -E copy ${SPHINX_DESTINATION}/epub/sphinx.epub
         ${SPHINX_DESTINATION}/html/Documentation/Download/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}.epub
-        COMMENT "Copying EPUB"
-        )
-    install(FILES ${SPHINX_DESTINATION}/html/Documentation/Download/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}.epub
+      COMMENT "Copying EPUB"
+    )
+    install(
+      FILES
+        ${SPHINX_DESTINATION}/html/Documentation/Download/ITKSphinxExamples-${ITKSphinxExamples_RELEASE_VERSION}.epub
       DESTINATION share/ITKSphinxExamples/doc/epub
       COMPONENT Doc
-      )
+    )
   endif()
 
   if(DOC_WITH_LOCAL_DOXYGEN)
     set(ITKDoxygen_LINK_ADDRESS ${ITKDoxygen_DIR})
-    set(SPHINX_DEPENDENCIES ${SPHINX_DEPENDENCIES} ITKDoxygen)
+    set(
+      SPHINX_DEPENDENCIES
+      ${SPHINX_DEPENDENCIES}
+      ITKDoxygen
+    )
     if(NOT ITKDoxygen_DIR)
       include(${CMAKE_SOURCE_DIR}/CMake/ITKDoxygen.cmake)
     endif()
   else()
-    set(ITKDoxygen_LINK_ADDRESS "https://docs.itk.org/projects/doxygen/en/stable")
+    set(
+      ITKDoxygen_LINK_ADDRESS
+      "https://docs.itk.org/projects/doxygen/en/stable"
+    )
   endif()
 
   add_subdirectory(Formatting)
@@ -273,18 +357,23 @@ if(BUILD_DOCUMENTATION)
 else()
   # Copy the cookiecutter directory
   # Achieved with copy_sources target when BUILD_DOCUMENTATION enabled
-  add_custom_target(copy_cookiecutter ALL
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
+  add_custom_target(
+    copy_cookiecutter
+    ALL
+    COMMAND
+      ${CMAKE_COMMAND} -E copy_directory
       "${ITKSphinxExamples_SOURCE_DIR}/Utilities/CookieCutter"
       "${ITKSphinxExamples_BINARY_DIR}/Utilities/CookieCutter"
     COMMENT "Copy CookieCutter"
-    )
+  )
 endif()
 
 # Configure the CreateNewExamples.py Python Script
-configure_file("${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateNewExample.py.in"
+configure_file(
+  "${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateNewExample.py.in"
   "${ITKSphinxExamples_BINARY_DIR}/Utilities/CreateNewExample.py"
-  @ONLY)
+  @ONLY
+)
 
 # Build the example executables?
 option(BUILD_EXECUTABLES "Build the example executables." ON)

@@ -5,26 +5,35 @@ project(Stack2DImagesInto3DImage)
 find_package(ITK REQUIRED)
 itk_generate_factory_registration()
 
-
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKImageIO
     ITK::ITKCommonModule
     ITK::ITKImageGridModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
-  )
+)
 
-install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/Stack2DImagesInto3DImage/
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/Filtering/ImageGrid/Stack2DImagesInto3DImage/
   COMPONENT Code
-  )
+)
 
 # TODO Implement input in test when Code.cxx is updated
 enable_testing()
-add_test(NAME Stack2DImagesInto3DImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
+add_test(
+  NAME Stack2DImagesInto3DImageTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+)

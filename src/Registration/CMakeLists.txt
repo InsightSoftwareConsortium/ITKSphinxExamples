@@ -1,4 +1,5 @@
-set(Numerics_MODULES
+set(
+  Numerics_MODULES
   Common
   Metricsv4
 )

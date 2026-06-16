@@ -10,21 +10,27 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../CMake")
 
 # The dashboard driver runs ctest here, so the warning exceptions must
 # be present in this binary directory, not only in ITKEx-build.
-configure_file(${CMAKE_CURRENT_LIST_DIR}/../CMake/CTestCustom.cmake.in CTestCustom.cmake COPYONLY)
+configure_file(
+  ${CMAKE_CURRENT_LIST_DIR}/../CMake/CTestCustom.cmake.in
+  CTestCustom.cmake
+  COPYONLY
+)
 
 if(CMAKE_HOST_WIN32)
   string(LENGTH "${ITKSphinxExamples_SOURCE_DIR}" source_len)
   if(${source_len} GREATER 30)
-    message(FATAL_ERROR
-    "The source directory is currently too long, ${source_len} characters. "
-    "Please move the Examples build directory to a shorter path."
+    message(
+      FATAL_ERROR
+      "The source directory is currently too long, ${source_len} characters. "
+      "Please move the Examples build directory to a shorter path."
     )
   endif()
   string(LENGTH "${ITKSphinxExamples_BINARY_DIR}" binary_len)
   if(${binary_len} GREATER 30)
-    message(FATAL_ERROR
-    "The build directory is currently too long, ${binary_len} characters. "
-    "Please set the Examples build directory to a shorter path."
+    message(
+      FATAL_ERROR
+      "The build directory is currently too long, ${binary_len} characters. "
+      "Please set the Examples build directory to a shorter path."
     )
   endif()
 endif()

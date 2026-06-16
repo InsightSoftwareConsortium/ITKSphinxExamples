@@ -1,10 +1,11 @@
-set(Bridge_MODULES
+set(
+  Bridge_MODULES
   VtkGlue
   NumPy
 )
 
 if(ENABLE_QUICKVIEW)
-add_subdirectory_if_module_enabled(VtkGlue)
+  add_subdirectory_if_module_enabled(VtkGlue)
 endif()
 
 add_subdirectory_if_module_enabled( NumPy )

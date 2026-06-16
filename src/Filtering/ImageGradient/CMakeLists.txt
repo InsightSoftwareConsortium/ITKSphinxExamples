@@ -64,16 +64,16 @@ compare_to_baseline(
 add_example(ImplementationOfSnakes)
 compare_to_baseline(EXAMPLE_NAME ImplementationOfSnakes
   BASELINE_PREFIX OutputBaseline
-  )
+)
 
 add_example(GradientOfVectorImage)
 compare_to_baseline(EXAMPLE_NAME GradientOfVectorImage
   BASELINE_PREFIX OutputBaseline
-  )
+)
 
 if(ENABLE_QUICKVIEW)
-add_example(ComputeAndDisplayGradient)
-compare_to_baseline(EXAMPLE_NAME ComputeAndDisplayGradient
-  BASELINE_PREFIX OutputBaseline
+  add_example(ComputeAndDisplayGradient)
+  compare_to_baseline(EXAMPLE_NAME ComputeAndDisplayGradient
+    BASELINE_PREFIX OutputBaseline
   )
 endif()

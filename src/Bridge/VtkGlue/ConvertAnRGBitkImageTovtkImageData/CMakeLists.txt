@@ -5,31 +5,38 @@ project(ConvertAnRGBitkImageTovtkImageData)
 find_package(ITK REQUIRED)
 itk_generate_factory_registration()
 
-
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKImageIO
     ITK::ITKCommonModule
     ITK::ITKVtkGlueModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Bridge/VtkGlue
   COMPONENT Runtime
-  )
+)
 
-install(FILES Code.cxx CMakeLists.txt Code.py
-  DESTINATION share/ITKSphinxExamples/Code/Bridge/VtkGlue/ConvertAnRGBitkImageTovtkImageData/
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+    Code.py
+  DESTINATION
+    share/ITKSphinxExamples/Code/Bridge/VtkGlue/ConvertAnRGBitkImageTovtkImageData/
   COMPONENT Code
-  )
-
+)
 
 enable_testing()
 
 set(input_image ${CMAKE_CURRENT_BINARY_DIR}/VisibleWomanEyeSlice.png)
 
-add_test(NAME ConvertAnRGBitkImageTovtkImageDataTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
-  ${input_image}
-  )
+add_test(
+  NAME ConvertAnRGBitkImageTovtkImageDataTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME} ${input_image}
+)

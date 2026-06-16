@@ -4,9 +4,9 @@ project(CreateListOfSamplesFromImageWithoutDuplication)
 
 find_package(ITK REQUIRED)
 
-
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKCommonModule
     ITK::ITKImageComposeModule
@@ -14,17 +14,25 @@ target_link_libraries(${PROJECT_NAME}
     ITK::ITKTestKernelModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Numerics/Statistics
   COMPONENT Runtime
-  )
+)
 
-install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Numerics/Statistics/CreateListOfSamplesFromImageWithoutDuplication/
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/Numerics/Statistics/CreateListOfSamplesFromImageWithoutDuplication/
   COMPONENT Code
-  )
-
+)
 
 enable_testing()
-add_test(NAME CreateListOfSamplesFromImageWithoutDuplicationTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
+add_test(
+  NAME CreateListOfSamplesFromImageWithoutDuplicationTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+)

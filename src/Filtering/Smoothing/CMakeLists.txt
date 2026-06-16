@@ -4,7 +4,8 @@ add_example(MedianFilteringOfAnImage)
 compare_to_baseline(EXAMPLE_NAME MedianFilteringOfAnImage BASELINE_PREFIX OutputBaseline)
 add_example(MedianFilteringOfAnRGBImage)
 compare_to_baseline(EXAMPLE_NAME MedianFilteringOfAnRGBImage
-  BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-intensity 2.0e1)
+  BASELINE_PREFIX OutputBaseline OPTIONS --tolerance-intensity 2.0e1
+)
 add_example(ComputesSmoothingWithGaussianKernel)
 compare_to_baseline(EXAMPLE_NAME ComputesSmoothingWithGaussianKernel BASELINE_PREFIX OutputBaseline)
 
@@ -14,6 +15,6 @@ compare_to_baseline(EXAMPLE_NAME BlurringAnImageUsingABinomialKernel BASELINE_PR
 add_example(FindHigherDerivativesOfImage)
 compare_to_baseline(EXAMPLE_NAME FindHigherDerivativesOfImage
   BASELINE_PREFIX FindHigherDerivativesOfImage
-  )
+)
 
 add_example(SmoothImageWithDiscreteGaussianFilter)

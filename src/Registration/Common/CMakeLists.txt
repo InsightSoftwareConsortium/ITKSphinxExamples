@@ -1,6 +1,7 @@
 add_example(PerformMultiModalityRegistrationWithMutualInformation)
 compare_to_baseline(EXAMPLE_NAME PerformMultiModalityRegistrationWithMutualInformation BASELINE_PREFIX OutputBaseline
-  OPTIONS LABELS RUNS_LONG)
+  OPTIONS LABELS RUNS_LONG
+)
 
 if(ITKV4_COMPATIBILITY)
   add_example(Perform2DTranslationRegistrationWithMeanSquares)
@@ -10,19 +11,19 @@ endif()
 add_example(MultiresolutionPyramidFromImage)
 compare_to_baseline(EXAMPLE_NAME MultiresolutionPyramidFromImage
   BASELINE_PREFIX output_0 output_1 output_2 output_3
-  )
+)
 
 add_example(ComputeMeanSquareBetweenTwoImages)
 
 add_example(RegisterImageToAnotherUsingLandmarks)
 compare_to_baseline(EXAMPLE_NAME RegisterImageToAnotherUsingLandmarks
   BASELINE_PREFIX output
-  )
+)
 
 add_example(GlobalRegistrationOfTwoImages)
 compare_to_baseline(EXAMPLE_NAME GlobalRegistrationOfTwoImages
   BASELINE_PREFIX output
-  )
+)
 
 add_example(MutualInformation)
 compare_to_baseline(EXAMPLE_NAME MutualInformation
@@ -30,14 +31,13 @@ compare_to_baseline(EXAMPLE_NAME MutualInformation
   fixed
   moving
   OutputBaseline
-  )
-
+)
 
 if(VTK_DIR)
   add_example(WatchRegistration)
   compare_to_baseline(EXAMPLE_NAME WatchRegistration
     BASELINE_PREFIX WatchRegistration
-    )
+  )
 endif()
 
 # TODO: Fix build errors

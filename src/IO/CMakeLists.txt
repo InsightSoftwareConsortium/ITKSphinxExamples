@@ -1,4 +1,5 @@
-set(IO_MODULES
+set(
+  IO_MODULES
   ImageBase
   Mesh
   TIFF
