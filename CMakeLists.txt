@@ -79,8 +79,9 @@ endif()
 #Optional if we are building as an ITK module, these variables will be pre-defined
 if(NOT ITK_VERSION)
   # To get the ITK version information from external package when building
-  # stand alone, ITK is required.
-  find_package(ITK 5.4.2 REQUIRED)
+  # stand alone, ITK is required. ITK can be provided via ITK_DIR or fetched
+  # from source using FetchContent.
+  include(${CMAKE_CURRENT_SOURCE_DIR}/CMake/ITKFetchContent.cmake)
 endif()
 set(ITKSphinxExamples_VERSION_MAJOR ${ITK_VERSION_MAJOR})
 set(ITKSphinxExamples_VERSION_MINOR ${ITK_VERSION_MINOR})
@@ -308,7 +309,8 @@ configure_file("${ITKSphinxExamples_SOURCE_DIR}/Utilities/CreateNewExample.py.in
 
 # Build the example executables?
 option(BUILD_EXECUTABLES "Build the example executables." ON)
-if(COMMAND itk_module_impl)
+# Use itk-module (set by ITK's module system) to detect if we are building as an ITK module or stand alone.
+if(itk-module)
   itk_module_impl()
 else()
   if(BUILD_EXECUTABLES)

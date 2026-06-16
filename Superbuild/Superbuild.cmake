@@ -29,7 +29,6 @@ else()
 endif()
 
 set(ITKSphinxExamples_DEPENDENCIES )
-set(ITK_DEPENDENCIES )
 
 option(ITKSphinxExamples_USE_VTK "Add VTK to the superbuild." OFF)
 
@@ -37,7 +36,6 @@ option(ITKSphinxExamples_USE_OpenCV "Add OpenCV to the superbuild" OFF)
 if(NOT OpenCV_DIR AND ITKSphinxExamples_USE_OpenCV)
   include(${CMAKE_SOURCE_DIR}/External-OpenCV.cmake)
   list(APPEND ITKSphinxExamples_DEPENDENCIES OpenCV)
-  list(APPEND ITK_DEPENDENCIES OpenCV)
 endif()
 
 
@@ -55,13 +53,11 @@ endif()
 if(NOT VTK_DIR AND ITKSphinxExamples_USE_VTK)
   include(${CMAKE_SOURCE_DIR}/External-VTK.cmake)
   list(APPEND ITKSphinxExamples_DEPENDENCIES VTK)
-  list(APPEND ITK_DEPENDENCIES VTK)
 endif()
 
-if(NOT ITK_DIR)
-  include(${CMAKE_SOURCE_DIR}/External-ITK.cmake)
-  list(APPEND ITKSphinxExamples_DEPENDENCIES ITK)
-endif()
+# ITK is no longer fetched by the Superbuild. It is acquired via FetchContent
+# in the root CMakeLists.txt. Pass ITK_DIR through if provided by the user
+# so the inner build can use a pre-built ITK via find_package.
 
 option(BUILD_DOCUMENTATION "Build documentation" OFF)
 set(_build_doc_args)
@@ -108,7 +104,7 @@ ExternalProject_Add(ITKSphinxExamples
     ${_build_doc_args}
     ${_python_args}
     -DBUILD_SHARED_LIBS:BOOL=FALSE
-     # ITK
+    # ITK — pass through ITK_DIR if provided, otherwise FetchContent handles it
     -DITK_DIR:PATH=${ITK_DIR}
     -DBUILD_TESTING:BOOL=${BUILD_TESTING}
     -DBUILD_DOCUMENTATION:BOOL=${BUILD_DOCUMENTATION}

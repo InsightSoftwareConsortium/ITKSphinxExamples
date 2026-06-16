@@ -9,10 +9,14 @@ find_package( ITK REQUIRED
   ITKMathematicalMorphology
   ITKIOPNG
   )
-include( ${ITK_USE_FILE} )
 
 add_executable( DilateUsingFunctionalGrayscale Code.cxx )
-target_link_libraries( DilateUsingFunctionalGrayscale ${ITK_LIBRARIES} )
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    ITK::ITKImageIO
+    ITK::ITKCommonModule
+    ITK::ITKMathematicalMorphologyModule
+)
 
 install( TARGETS DilateUsingFunctionalGrayscale
   DESTINATION bin/ITKSphinxExamples/Filtering/MathematicalMorphology

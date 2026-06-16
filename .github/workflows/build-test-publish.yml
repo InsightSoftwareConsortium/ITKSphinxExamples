@@ -64,26 +64,6 @@ jobs:
           key: externaldata-v1-${{ hashFiles('Ex/src/**/*.cid') }}
           restore-keys: |
             externaldata-v1-
-
-      - name: Build ITK
-        if: matrix.os != 'windows-2022'
-        run: |
-          cd ..
-          mkdir ITK-build
-          cd ITK-build
-          cmake -DCMAKE_C_COMPILER:FILEPATH="${{ matrix.c-compiler }}" -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_CXX_COMPILER="${{ matrix.cxx-compiler }}" -DCMAKE_BUILD_TYPE:STRING=${{ matrix.cmake-build-type }} -DBUILD_TESTING:BOOL=OFF -GNinja ../ITK
-          ninja
-      - name: Build ITK
-        if: matrix.os == 'windows-2022'
-        run: |
-          cd ..
-          mkdir ITK-build
-          cd ITK-build
-          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          cmake -DCMAKE_C_COMPILER:FILEPATH="${{ matrix.c-compiler }}" -DBUILD_SHARED_LIBS:BOOL=OFF -DCMAKE_CXX_COMPILER="${{ matrix.cxx-compiler }}" -DCMAKE_BUILD_TYPE:STRING=${{ matrix.cmake-build-type }} -DBUILD_TESTING:BOOL=OFF -GNinja ../ITK
-          ninja
-        shell: cmd
-
       - name: Fetch CTest driver script
         run: |
           curl -L https://raw.githubusercontent.com/InsightSoftwareConsortium/ITK/dashboard/itk_common.cmake -O
