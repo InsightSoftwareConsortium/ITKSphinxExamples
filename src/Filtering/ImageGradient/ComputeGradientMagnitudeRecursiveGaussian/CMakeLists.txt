@@ -6,36 +6,45 @@ find_package(ITK REQUIRED)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKImageIO
     ITK::ITKCommonModule
     ITK::ITKImageGradientModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGradient
   COMPONENT Runtime
 )
 
-install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGradient/ComputeGradientMagnitudeRecursiveGaussian
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/Filtering/ImageGradient/ComputeGradientMagnitudeRecursiveGaussian
   COMPONENT Code
 )
 
 enable_testing()
-add_test(NAME ComputeGradientMagnitudeRecursiveGaussianTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+add_test(
+  NAME ComputeGradientMagnitudeRecursiveGaussianTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
-    ComputeGradientMagnitudeRecursiveGaussianTestOutput.mha
-    2.
- )
+    ComputeGradientMagnitudeRecursiveGaussianTestOutput.mha 2.
+)
 
 if(ITK_WRAP_PYTHON)
-  add_test(NAME ComputeGradientMagnitudeRecursiveGaussianTestPython
-    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+  add_test(
+    NAME ComputeGradientMagnitudeRecursiveGaussianTestPython
+    COMMAND
+      ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
       ${CMAKE_CURRENT_BINARY_DIR}/Gourds.png
-      ComputeGradientMagnitudeRecursiveGaussianTestOutputPython.mha
-      2.
-   )
+      ComputeGradientMagnitudeRecursiveGaussianTestOutputPython.mha 2.
+  )
 endif()

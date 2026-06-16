@@ -4,13 +4,19 @@ project(EagerModuleLoadingPython)
 
 find_package(ITK REQUIRED)
 
-install(FILES Code.py CMakeLists.txt
+install(
+  FILES
+    Code.py
+    CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Common/EagerModuleLoadingPython/
   COMPONENT Code
-  )
+)
 
 enable_testing()
 if(ITK_WRAP_PYTHON)
-  add_test(NAME EagerModuleLoadingPythonTest
-    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py)
+  add_test(
+    NAME EagerModuleLoadingPythonTest
+    COMMAND
+      ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+  )
 endif()

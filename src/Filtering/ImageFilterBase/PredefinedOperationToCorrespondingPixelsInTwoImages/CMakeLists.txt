@@ -4,26 +4,34 @@ project(PredefinedOperationToCorrespondingPixelsInTwoImages)
 
 find_package(ITK REQUIRED)
 
-
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKCommonModule
     ITK::ITKImageFilterBaseModule
     ITK::ITKImageIntensityModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageFilterBase
   COMPONENT Runtime
-  )
+)
 
-install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageFilterBase/PredefinedOperationToCorrespondingPixelsInTwoImages/
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/Filtering/ImageFilterBase/PredefinedOperationToCorrespondingPixelsInTwoImages/
   COMPONENT Code
-  )
-
+)
 
 enable_testing()
-add_test(NAME PredefinedOperationToCorrespondingPixelsInTwoImagesTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
+add_test(
+  NAME PredefinedOperationToCorrespondingPixelsInTwoImagesTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+)

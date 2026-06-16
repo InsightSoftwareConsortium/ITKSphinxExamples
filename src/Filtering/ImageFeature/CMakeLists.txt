@@ -22,12 +22,12 @@ add_example(SimpleContourExtractor)
 add_example(ZeroCrossingBasedEdgeDecor)
 compare_to_baseline(EXAMPLE_NAME ZeroCrossingBasedEdgeDecor
   BASELINE_PREFIX ZeroCrossingBasedEdgeDecor
-  )
+)
 
 add_example(BilateralFilterAnImage)
 compare_to_baseline(EXAMPLE_NAME BilateralFilterAnImage
   BASELINE_PREFIX BilateralFilterAnImage
-  )
+)
 
 # TODO: Complete example
 #add_example(SharpenImage)

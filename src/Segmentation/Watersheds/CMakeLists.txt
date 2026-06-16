@@ -1,4 +1,3 @@
-
 add_example(SegmentWithWatershedImageFilter)
 
 foreach(i RANGE 1 5)
@@ -14,4 +13,4 @@ endforeach()
 add_example(MorphologicalWatershedSegmentation)
 compare_to_baseline(EXAMPLE_NAME MorphologicalWatershedSegmentation
   BASELINE_PREFIX output_20_3
-  )
+)

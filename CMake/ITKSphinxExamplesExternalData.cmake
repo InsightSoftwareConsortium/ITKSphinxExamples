@@ -6,21 +6,31 @@ if(NOT ExternalData_OBJECT_STORES)
   # Use ExternalData_OBJECT_STORES from environment as default.
   set(ExternalData_OBJECT_STORES_DEFAULT "")
   if(DEFINED "ENV{ExternalData_OBJECT_STORES}")
-    file(TO_CMAKE_PATH "$ENV{ExternalData_OBJECT_STORES}" ExternalData_OBJECT_STORES_DEFAULT)
+    file(
+      TO_CMAKE_PATH
+      "$ENV{ExternalData_OBJECT_STORES}"
+      ExternalData_OBJECT_STORES_DEFAULT
+    )
   endif()
 endif()
 
-set(ExternalData_OBJECT_STORES "${ExternalData_OBJECT_STORES_DEFAULT}" CACHE STRING
-  "Semicolon-separated list of local directories holding data objects in the layout %(algo)/%(hash).")
+set(
+  ExternalData_OBJECT_STORES
+  "${ExternalData_OBJECT_STORES_DEFAULT}"
+  CACHE STRING
+  "Semicolon-separated list of local directories holding data objects in the layout %(algo)/%(hash)."
+)
 mark_as_advanced(ExternalData_OBJECT_STORES)
 if(NOT ExternalData_OBJECT_STORES)
   set(ExternalData_OBJECT_STORES "${CMAKE_BINARY_DIR}/ExternalData/Objects")
   file(MAKE_DIRECTORY "${ExternalData_OBJECT_STORES}")
 endif()
-list(APPEND ExternalData_OBJECT_STORES
+list(
+  APPEND
+  ExternalData_OBJECT_STORES
   # Local data store populated by the ITK pre-commit hook
   "${PROJECT_SOURCE_DIR}/.ExternalData"
-  )
+)
 
 # Tests reference staged data at ${CMAKE_CURRENT_BINARY_DIR}/<Example>/<file>,
 # which requires the default ExternalData_BINARY_ROOT (${CMAKE_BINARY_DIR}).
@@ -28,12 +38,18 @@ list(APPEND ExternalData_OBJECT_STORES
 # Expands %(algo:lower)
 set(ExternalData_URL_ALGO_CID_lower cid)
 set(ExternalData_URL_ALGO_MD5_lower md5)
-set(ExternalData_URL_TEMPLATES "" CACHE STRING
+set(
+  ExternalData_URL_TEMPLATES
+  ""
+  CACHE STRING
   "Additional URL templates for the ExternalData CMake script to look for testing data. E.g.
-file:///var/bigharddrive/%(algo)/%(hash)")
+file:///var/bigharddrive/%(algo)/%(hash)"
+)
 mark_as_advanced(ExternalData_URL_TEMPLATES)
 if(NOT ITK_FORBID_DOWNLOADS)
-  list(APPEND ExternalData_URL_TEMPLATES
+  list(
+    APPEND
+    ExternalData_URL_TEMPLATES
     # Data published on GitHub Pages
     "https://insightsoftwareconsortium.github.io/ITKTestingData/%(algo)/%(hash)"
     # Local IPFS gateway
@@ -54,7 +70,7 @@ if(NOT ITK_FORBID_DOWNLOADS)
     "https://itk.org/files/ExternalData/%(algo)/%(hash)"
     # DataLad repository on gin.g-node.org
     "https://gin.g-node.org/InsightSoftwareConsortium/ITKSphinxExamplesData/raw/main/Objects/CID/%(hash)"
-    )
+  )
 endif()
 
 # Tell ExternalData commands to transform raw files to content links.

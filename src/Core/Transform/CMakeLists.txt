@@ -16,7 +16,7 @@ compare_to_baseline(
 add_example(ScaleAnImage)
 compare_to_baseline(EXAMPLE_NAME ScaleAnImage
   BASELINE_PREFIX ScaleAnImageOutputBaseline
-  )
+)
 
 add_example(TranslateAVectorImage)
 add_example(CartesianToAzimuthElevation)
@@ -27,21 +27,21 @@ compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesAffine
     fixed
     moving
     output
-  )
+)
 
 add_example(MutualInformationAffine)
 compare_to_baseline(EXAMPLE_NAME MutualInformationAffine
   BASELINE_PREFIX
     OutputBaseline
-  )
+)
 
 add_example(GlobalRegistrationTwoImagesBSpline)
 compare_to_baseline(EXAMPLE_NAME GlobalRegistrationTwoImagesBSpline
   BASELINE_PREFIX GlobalRegistrationTwoImagesBSpline
-  )
+)
 
 add_example(DeformAVolumeWithAThinPlateSpline)
 compare_to_baseline(EXAMPLE_NAME DeformAVolumeWithAThinPlateSpline
   BASELINE_PREFIX DeformedImageBaseline
   OPTIONS --tolerance-intensity 1
-  )
+)

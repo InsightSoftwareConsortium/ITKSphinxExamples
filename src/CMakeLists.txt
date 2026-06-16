@@ -20,7 +20,13 @@ endif()
 
 if(BUILD_DOCUMENTATION)
   if(NOT Python3_EXECUTABLE)
-    find_package(Python3 ${PYTHON_REQUIRED_VERSION} COMPONENTS Interpreter REQUIRED)
+    find_package(
+      Python3
+      ${PYTHON_REQUIRED_VERSION}
+      COMPONENTS
+        Interpreter
+      REQUIRED
+    )
     if(NOT Python3_Interpreter_FOUND)
       message(SEND_ERROR "Building the documentation requires Python")
     endif()
@@ -28,12 +34,16 @@ if(BUILD_DOCUMENTATION)
 endif()
 
 if(WIN32)
-  add_definitions(-D_SCL_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_WARNINGS)
+  add_definitions(
+    -D_SCL_SECURE_NO_WARNINGS
+    -D_CRT_SECURE_NO_WARNINGS
+  )
 endif()
 
 # For comparing example outputs to their regression baseline's.
 add_executable(ImageCompareCommand ImageCompareCommand.cxx)
-target_link_libraries(ImageCompareCommand
+target_link_libraries(
+  ImageCompareCommand
   PRIVATE
     ITK::ITKImageIO
     ITK::ITKCommonModule

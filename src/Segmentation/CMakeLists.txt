@@ -1,4 +1,5 @@
-set(Segmentation_MODULES
+set(
+  Segmentation_MODULES
   Classifiers
   CMakeLists.txt
   ConnectedComponents

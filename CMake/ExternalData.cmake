@@ -331,14 +331,20 @@ file or set a variable:
 
 function(ExternalData_add_test target)
   # Expand all arguments as a single string to preserve escaped semicolons.
-  ExternalData_expand_arguments("${target}" testArgs "${ARGN}")
+  ExternalData_Expand_Arguments(
+    "${target}"
+    testArgs
+    "${ARGN}"
+  )
   add_test(${testArgs})
 endfunction()
 
 function(ExternalData_add_target target)
   if(NOT ExternalData_URL_TEMPLATES AND NOT ExternalData_OBJECT_STORES)
-    message(FATAL_ERROR
-      "Neither ExternalData_URL_TEMPLATES nor ExternalData_OBJECT_STORES is set!")
+    message(
+      FATAL_ERROR
+      "Neither ExternalData_URL_TEMPLATES nor ExternalData_OBJECT_STORES is set!"
+    )
   endif()
   if(NOT ExternalData_OBJECT_STORES)
     set(ExternalData_OBJECT_STORES ${CMAKE_BINARY_DIR}/ExternalData/Objects)
@@ -352,23 +358,33 @@ function(ExternalData_add_target target)
       if(key MATCHES "^[A-Za-z_][A-Za-z0-9_]*$")
         if(ExternalData_CUSTOM_SCRIPT_${key})
           if(IS_ABSOLUTE "${ExternalData_CUSTOM_SCRIPT_${key}}")
-            string(CONCAT _ExternalData_CONFIG_CODE "${_ExternalData_CONFIG_CODE}\n"
-              "set(ExternalData_CUSTOM_SCRIPT_${key} \"${ExternalData_CUSTOM_SCRIPT_${key}}\")")
+            string(
+              CONCAT
+              _ExternalData_CONFIG_CODE
+              "${_ExternalData_CONFIG_CODE}\n"
+              "set(ExternalData_CUSTOM_SCRIPT_${key} \"${ExternalData_CUSTOM_SCRIPT_${key}}\")"
+            )
           else()
-            message(FATAL_ERROR
+            message(
+              FATAL_ERROR
               "No ExternalData_CUSTOM_SCRIPT_${key} is not set to a full path:\n"
-              " ${ExternalData_CUSTOM_SCRIPT_${key}}")
+              " ${ExternalData_CUSTOM_SCRIPT_${key}}"
+            )
           endif()
         else()
-          message(FATAL_ERROR
+          message(
+            FATAL_ERROR
             "No ExternalData_CUSTOM_SCRIPT_${key} is set for URL template:\n"
-            " ${url_template}")
+            " ${url_template}"
+          )
         endif()
       else()
-        message(FATAL_ERROR
+        message(
+          FATAL_ERROR
           "Bad ExternalDataCustomScript key '${key}' in URL template:\n"
           " ${url_template}\n"
-          "The key must be a valid C identifier.")
+          "The key must be a valid C identifier."
+        )
       endif()
     endif()
 
@@ -379,22 +395,32 @@ function(ExternalData_add_target target)
         string(REPLACE "|" ";" _algos "${_ExternalData_REGEX_ALGO}")
         foreach(algo ${_algos})
           if(DEFINED ExternalData_URL_ALGO_${algo}_${key})
-            string(CONCAT _ExternalData_CONFIG_CODE "${_ExternalData_CONFIG_CODE}\n"
-              "set(ExternalData_URL_ALGO_${algo}_${key} \"${ExternalData_URL_ALGO_${algo}_${key}}\")")
+            string(
+              CONCAT
+              _ExternalData_CONFIG_CODE
+              "${_ExternalData_CONFIG_CODE}\n"
+              "set(ExternalData_URL_ALGO_${algo}_${key} \"${ExternalData_URL_ALGO_${algo}_${key}}\")"
+            )
           endif()
         endforeach()
       else()
-        message(FATAL_ERROR
+        message(
+          FATAL_ERROR
           "Bad %(algo:${key}) in URL template:\n"
           " ${url_template}\n"
-          "The transform name must be a valid C identifier.")
+          "The transform name must be a valid C identifier."
+        )
       endif()
     endif()
   endforeach()
 
   # Store configuration for use by build-time script.
   set(config ${CMAKE_CURRENT_BINARY_DIR}/${target}_config.cmake)
-  configure_file(${_ExternalData_SELF_DIR}/ExternalData_config.cmake.in ${config} @ONLY)
+  configure_file(
+    ${_ExternalData_SELF_DIR}/ExternalData_config.cmake.in
+    ${config}
+    @ONLY
+  )
 
   set(files "")
 
@@ -417,17 +443,29 @@ function(ExternalData_add_target target)
       set("_ExternalData_FILE_${file}" 1)
       get_property(added DIRECTORY PROPERTY "_ExternalData_FILE_${file}")
       if(NOT added)
-        set_property(DIRECTORY PROPERTY "_ExternalData_FILE_${file}" 1)
+        set_property(
+          DIRECTORY
+          PROPERTY
+            "_ExternalData_FILE_${file}"
+              1
+        )
         add_custom_command(
-          COMMENT "Generating ${file}"
-          OUTPUT "${file}"
-          COMMAND ${CMAKE_COMMAND} -Drelative_top=${CMAKE_BINARY_DIR}
-                                   -Dfile=${file} -Dname=${name}
-                                   -DExternalData_ACTION=local
-                                   -DExternalData_CONFIG=${config}
-                                   -P ${_ExternalData_SELF}
-          MAIN_DEPENDENCY "${name}"
-          )
+          COMMENT
+          "Generating ${file}"
+          OUTPUT
+          "${file}"
+          COMMAND
+          ${CMAKE_COMMAND}
+          -Drelative_top=${CMAKE_BINARY_DIR}
+          -Dfile=${file}
+          -Dname=${name}
+          -DExternalData_ACTION=local
+          -DExternalData_CONFIG=${config}
+          -P
+          ${_ExternalData_SELF}
+          MAIN_DEPENDENCY
+          "${name}"
+        )
       endif()
       list(APPEND files "${file}")
     endif()
@@ -447,24 +485,38 @@ function(ExternalData_add_target target)
       set("_ExternalData_FILE_${file}" 1)
       get_property(added DIRECTORY PROPERTY "_ExternalData_FILE_${file}")
       if(NOT added)
-        set_property(DIRECTORY PROPERTY "_ExternalData_FILE_${file}" 1)
+        set_property(
+          DIRECTORY
+          PROPERTY
+            "_ExternalData_FILE_${file}"
+              1
+        )
         add_custom_command(
           # Users care about the data file, so hide the hash/timestamp file.
-          COMMENT "Generating ${file}"
+          COMMENT
+          "Generating ${file}"
           # The hash/timestamp file is the output from the build perspective.
           # List the real file as a second output in case it is a broken link.
           # The files must be listed in this order so CMake can hide from the
           # make tool that a symlink target may not be newer than the input.
-          OUTPUT "${file}${stamp}" "${file}"
+          OUTPUT
+          "${file}${stamp}"
+          "${file}"
           # Run the data fetch/update script.
-          COMMAND ${CMAKE_COMMAND} -Drelative_top=${CMAKE_BINARY_DIR}
-                                   -Dfile=${file} -Dname=${name} -Dexts=${exts}
-                                   -DExternalData_ACTION=fetch
-                                   -DExternalData_CONFIG=${config}
-                                   -P ${_ExternalData_SELF}
+          COMMAND
+          ${CMAKE_COMMAND}
+          -Drelative_top=${CMAKE_BINARY_DIR}
+          -Dfile=${file}
+          -Dname=${name}
+          -Dexts=${exts}
+          -DExternalData_ACTION=fetch
+          -DExternalData_CONFIG=${config}
+          -P
+          ${_ExternalData_SELF}
           # Update whenever the object hash changes.
-          MAIN_DEPENDENCY "${name}${first_ext}"
-          )
+          MAIN_DEPENDENCY
+          "${name}${first_ext}"
+        )
       endif()
       list(APPEND files "${file}${stamp}")
     endif()
@@ -492,7 +544,7 @@ function(ExternalData_expand_arguments target outArgsVar)
       foreach(piece IN LISTS pieces)
         if("x${piece}" MATCHES "^x${data_regex}$")
           # Replace this DATA{}-piece with a file path.
-          _ExternalData_arg("${target}" "${piece}" "${CMAKE_MATCH_1}" file)
+          _externaldata_arg("${target}" "${piece}" "${CMAKE_MATCH_1}" file)
           string(APPEND outArg "${file}")
         else()
           # No replacement needed for this piece.
@@ -513,27 +565,51 @@ endfunction()
 #-----------------------------------------------------------------------------
 # Private helper interface
 
-set(_ExternalData_REGEX_ALGO "MD5|SHA1|SHA224|SHA256|SHA384|SHA512|SHA3_224|SHA3_256|SHA3_384|SHA3_512|CID")
-set(_ExternalData_REGEX_EXT "md5|sha1|sha224|sha256|sha384|sha512|sha3-224|sha3-256|sha3-384|sha3-512|cid")
+set(
+  _ExternalData_REGEX_ALGO
+  "MD5|SHA1|SHA224|SHA256|SHA384|SHA512|SHA3_224|SHA3_256|SHA3_384|SHA3_512|CID"
+)
+set(
+  _ExternalData_REGEX_EXT
+  "md5|sha1|sha224|sha256|sha384|sha512|sha3-224|sha3-256|sha3-384|sha3-512|cid"
+)
 set(_ExternalData_SELF "${CMAKE_CURRENT_LIST_FILE}")
 get_filename_component(_ExternalData_SELF_DIR "${_ExternalData_SELF}" PATH)
-set(_ExternalData_ipfs_add_flags --cid-version 1 -Q --chunker=size-1048576 --raw-leaves --cid-base=base32)
+set(
+  _ExternalData_ipfs_add_flags
+  --cid-version
+  1
+  -Q
+  --chunker=size-1048576
+  --raw-leaves
+  --cid-base=base32
+)
 
 function(_ExternalData_compute_hash var_hash algo file)
   if("${algo}" STREQUAL "CID")
-    find_program(W3_EXECUTABLE
-      NAMES w3
+    find_program(
+      W3_EXECUTABLE
+      NAMES
+        w3
       DOC "web3.storage CLI executable"
-      REQUIRED)
+      REQUIRED
+    )
     if(NOT W3_EXECUTABLE)
-      message(FATAL_ERROR "Please set W3_EXECUTABLE to the path for the w3 CLI to add ExternalData. Install with `npm i -g w3`")
+      message(
+        FATAL_ERROR
+        "Please set W3_EXECUTABLE to the path for the w3 CLI to add ExternalData. Install with `npm i -g w3`"
+      )
     endif()
     get_filename_component(file_name "${file}" NAME)
-    execute_process(COMMAND "${W3_EXECUTABLE}" put "${file}" --no-wrap --hidden --name "${file_name}"
+    execute_process(
+      COMMAND
+        "${W3_EXECUTABLE}" put "${file}" --no-wrap --hidden --name
+        "${file_name}"
       RESULT_VARIABLE w3_put_result
       ERROR_VARIABLE w3_put_error
       OUTPUT_STRIP_TRAILING_WHITESPACE
-      OUTPUT_VARIABLE w3_put_output)
+      OUTPUT_VARIABLE w3_put_output
+    )
     if(NOT ${w3_put_result} EQUAL 0)
       message(FATAL_ERROR "Error while calling 'w3 put': ${w3_put_error}")
     endif()
@@ -542,7 +618,11 @@ function(_ExternalData_compute_hash var_hash algo file)
     string(SUBSTRING "${w3_put_output}" ${cid_loc} -1 w3_cid)
     set("${var_hash}" "${w3_cid}" PARENT_SCOPE)
   elseif("${algo}" MATCHES "^${_ExternalData_REGEX_ALGO}$")
-    file("${algo}" "${file}" hash)
+    file(
+      "${algo}"
+      "${file}"
+      hash
+    )
     set("${var_hash}" "${hash}" PARENT_SCOPE)
   else()
     message(FATAL_ERROR "Hash algorithm ${algo} unimplemented.")
@@ -560,7 +640,7 @@ function(_ExternalData_exact_regex regex_var string)
 endfunction()
 
 function(_ExternalData_atomic_write file content)
-  _ExternalData_random(random)
+  _externaldata_random(random)
   set(tmp "${file}.tmp${random}")
   file(WRITE "${tmp}" "${content}")
   file(RENAME "${tmp}" "${file}")
@@ -570,15 +650,17 @@ function(_ExternalData_link_content name var_ext)
   if("${ExternalData_LINK_CONTENT}" MATCHES "^(${_ExternalData_REGEX_ALGO})$")
     set(algo "${ExternalData_LINK_CONTENT}")
   else()
-    message(FATAL_ERROR
+    message(
+      FATAL_ERROR
       "Unknown hash algorithm specified by ExternalData_LINK_CONTENT:\n"
-      "  ${ExternalData_LINK_CONTENT}")
+      "  ${ExternalData_LINK_CONTENT}"
+    )
   endif()
-  _ExternalData_compute_hash(hash "${algo}" "${name}")
+  _externaldata_compute_hash(hash "${algo}" "${name}")
   get_filename_component(dir "${name}" PATH)
   set(staged "${dir}/.ExternalData_${algo}_${hash}")
   string(TOLOWER ".${algo}" ext)
-  _ExternalData_atomic_write("${name}${ext}" "${hash}\n")
+  _externaldata_atomic_write("${name}${ext}" "${hash}\n")
   file(RENAME "${name}" "${staged}")
   set("${var_ext}" "${ext}" PARENT_SCOPE)
 
@@ -614,17 +696,23 @@ function(_ExternalData_arg target arg options var_file)
   set(top_src "${ExternalData_SOURCE_ROOT}")
   file(RELATIVE_PATH reldata "${top_src}" "${absdata}")
   if(IS_ABSOLUTE "${reldata}" OR "${reldata}" MATCHES "^\\.\\./")
-    message(FATAL_ERROR "Data file referenced by argument\n"
+    message(
+      FATAL_ERROR
+      "Data file referenced by argument\n"
       "  ${arg}\n"
       "does not lie under the top-level source directory\n"
-      "  ${top_src}\n")
+      "  ${top_src}\n"
+    )
   endif()
   if(data_is_directory AND NOT IS_DIRECTORY "${top_src}/${reldata}")
-    message(FATAL_ERROR "Data directory referenced by argument\n"
+    message(
+      FATAL_ERROR
+      "Data directory referenced by argument\n"
       "  ${arg}\n"
       "corresponds to source tree path\n"
       "  ${reldata}\n"
-      "that does not exist as a directory!")
+      "that does not exist as a directory!"
+    )
   endif()
   if(NOT ExternalData_BINARY_ROOT)
     set(ExternalData_BINARY_ROOT "${CMAKE_BINARY_DIR}")
@@ -664,41 +752,59 @@ function(_ExternalData_arg target arg options var_file)
       # Specific associated file.
       list(APPEND associated_files "${opt}")
     else()
-      message(FATAL_ERROR "Unknown option \"${opt}\" in argument\n"
-        "  ${arg}\n")
+      message(
+        FATAL_ERROR
+        "Unknown option \"${opt}\" in argument\n"
+        "  ${arg}\n"
+      )
     endif()
   endforeach()
 
   if(series_option)
     if(data_is_directory)
-      message(FATAL_ERROR "Series option \"${series_option}\" not allowed with directories.")
+      message(
+        FATAL_ERROR
+        "Series option \"${series_option}\" not allowed with directories."
+      )
     endif()
     if(associated_files OR associated_regex)
-      message(FATAL_ERROR "Series option \"${series_option}\" not allowed with associated files.")
+      message(
+        FATAL_ERROR
+        "Series option \"${series_option}\" not allowed with associated files."
+      )
     endif()
     if(recurse_option)
-      message(FATAL_ERROR "Recurse option \"${recurse_option}\" allowed only with directories.")
+      message(
+        FATAL_ERROR
+        "Recurse option \"${recurse_option}\" allowed only with directories."
+      )
     endif()
     # Load a whole file series.
-    _ExternalData_arg_series()
+    _externaldata_arg_series()
   elseif(data_is_directory)
     if(associated_files OR associated_regex)
       # Load listed/matching associated files in the directory.
-      _ExternalData_arg_associated()
+      _externaldata_arg_associated()
     else()
-      message(FATAL_ERROR "Data directory referenced by argument\n"
+      message(
+        FATAL_ERROR
+        "Data directory referenced by argument\n"
         "  ${arg}\n"
-        "must list associated files.")
+        "must list associated files."
+      )
     endif()
   else()
     if(recurse_option)
-      message(FATAL_ERROR "Recurse option \"${recurse_option}\" allowed only with directories.")
+      message(
+        FATAL_ERROR
+        "Recurse option \"${recurse_option}\" allowed only with directories."
+      )
     endif()
     # Load the named data file.
-    _ExternalData_arg_single()
+    _externaldata_arg_single()
     if(associated_files OR associated_regex)
       # Load listed/matching associated files.
-      _ExternalData_arg_associated()
+      _externaldata_arg_associated()
     endif()
   endif()
 
@@ -710,19 +816,32 @@ function(_ExternalData_arg target arg options var_file)
       set(msg_kind AUTHOR_WARNING)
       set(msg "that does not exist as a file (with or without an extension)!")
     endif()
-    message(${msg_kind} "Data file referenced by argument\n"
+    message(
+      ${msg_kind}
+      "Data file referenced by argument\n"
       "  ${arg}\n"
       "corresponds to source tree path\n"
       "  ${reldata}\n"
-      "${msg}")
+      "${msg}"
+    )
   endif()
 
   if(external)
     # Make the series available in the build tree.
-    set_property(GLOBAL APPEND PROPERTY
-      _ExternalData_${target}_FETCH "${external}")
-    set_property(GLOBAL APPEND PROPERTY
-      _ExternalData_${target}_LOCAL "${internal}")
+    set_property(
+      GLOBAL
+      APPEND
+      PROPERTY
+        _ExternalData_${target}_FETCH
+          "${external}"
+    )
+    set_property(
+      GLOBAL
+      APPEND
+      PROPERTY
+        _ExternalData_${target}_LOCAL
+          "${internal}"
+    )
     set("${var_file}" "${top_bin}/${reldata}" PARENT_SCOPE)
   else()
     # The whole series is in the source tree.
@@ -740,7 +859,7 @@ macro(_ExternalData_arg_associated)
   if(reldir)
     string(APPEND reldir "/")
   endif()
-  _ExternalData_exact_regex(reldir_regex "${reldir}")
+  _externaldata_exact_regex(reldir_regex "${reldir}")
   if(recurse_option)
     set(glob GLOB_RECURSE)
     string(APPEND reldir_regex "(.+/)?")
@@ -750,9 +869,10 @@ macro(_ExternalData_arg_associated)
 
   # Find files named explicitly.
   foreach(file ${associated_files})
-    _ExternalData_exact_regex(file_regex "${file}")
-    _ExternalData_arg_find_files(${glob} "${reldir}${file}"
-      "${reldir_regex}${file_regex}")
+    _externaldata_exact_regex(file_regex "${file}")
+    _externaldata_arg_find_files(${glob} "${reldir}${file}"
+      "${reldir_regex}${file_regex}"
+    )
   endforeach()
 
   # Find files matching the given regular expressions.
@@ -762,13 +882,13 @@ macro(_ExternalData_arg_associated)
     string(APPEND all "${sep}${reldir_regex}${regex}")
     set(sep "|")
   endforeach()
-  _ExternalData_arg_find_files(${glob} "${reldir}" "${all}")
+  _externaldata_arg_find_files(${glob} "${reldir}" "${all}")
 endmacro()
 
 macro(_ExternalData_arg_single)
   # Match only the named data by itself.
-  _ExternalData_exact_regex(data_regex "${reldata}")
-  _ExternalData_arg_find_files(GLOB "${reldata}" "${data_regex}")
+  _externaldata_exact_regex(data_regex "${reldata}")
+  _externaldata_arg_find_files(GLOB "${reldata}" "${data_regex}")
 endmacro()
 
 macro(_ExternalData_arg_series)
@@ -783,8 +903,14 @@ macro(_ExternalData_arg_series)
       endif()
       set(series_parse_number "\\${ExternalData_SERIES_PARSE_NUMBER}")
       set(series_parse_suffix "\\${ExternalData_SERIES_PARSE_SUFFIX}")
-    elseif(NOT "x${ExternalData_SERIES_PARSE}" MATCHES "^x\\([^()]*\\)\\([^()]*\\)\\$$")
-      message(FATAL_ERROR
+    elseif(
+      NOT
+        "x${ExternalData_SERIES_PARSE}"
+          MATCHES
+          "^x\\([^()]*\\)\\([^()]*\\)\\$$"
+    )
+      message(
+        FATAL_ERROR
         "ExternalData_SERIES_PARSE is set to\n"
         "  ${ExternalData_SERIES_PARSE}\n"
         "which is not of the form\n"
@@ -793,7 +919,7 @@ macro(_ExternalData_arg_series)
         "  ExternalData_SERIES_PARSE_PREFIX = <prefix> regex group number, if any\n"
         "  ExternalData_SERIES_PARSE_NUMBER = <number> regex group number\n"
         "  ExternalData_SERIES_PARSE_SUFFIX = <suffix> regex group number\n"
-        )
+      )
     endif()
     set(series_parse "${ExternalData_SERIES_PARSE}")
   else()
@@ -806,31 +932,48 @@ macro(_ExternalData_arg_series)
   endif()
 
   # Parse the base, number, and extension components of the series.
-  string(REGEX REPLACE "${series_parse}" "${series_parse_prefix};${series_parse_number};${series_parse_suffix}" tuple "${reldata}")
+  string(
+    REGEX
+    REPLACE
+    "${series_parse}"
+    "${series_parse_prefix};${series_parse_number};${series_parse_suffix}"
+    tuple
+    "${reldata}"
+  )
   list(LENGTH tuple len)
   if(NOT "${len}" EQUAL 3)
-    message(FATAL_ERROR "Data file referenced by argument\n"
+    message(
+      FATAL_ERROR
+      "Data file referenced by argument\n"
       "  ${arg}\n"
       "corresponds to path\n"
       "  ${reldata}\n"
       "that does not match regular expression\n"
-      "  ${series_parse}")
+      "  ${series_parse}"
+    )
   endif()
   list(GET tuple 0 relbase)
   list(GET tuple 2 ext)
 
   # Glob files that might match the series.
   # Then match base, number, and extension.
-  _ExternalData_exact_regex(series_base "${relbase}")
-  _ExternalData_exact_regex(series_ext "${ext}")
-  _ExternalData_arg_find_files(GLOB "${relbase}*${ext}"
-    "${series_base}${series_match}${series_ext}")
+  _externaldata_exact_regex(series_base "${relbase}")
+  _externaldata_exact_regex(series_ext "${ext}")
+  _externaldata_arg_find_files(GLOB "${relbase}*${ext}"
+    "${series_base}${series_match}${series_ext}"
+  )
 endmacro()
 
 function(_ExternalData_arg_find_files glob pattern regex)
   cmake_policy(PUSH)
   cmake_policy(SET CMP0009 NEW)
-  file(${glob} globbed RELATIVE "${top_src}" "${top_src}/${pattern}*")
+  file(
+    ${glob}
+    globbed
+    RELATIVE
+    "${top_src}"
+    "${top_src}/${pattern}*"
+  )
   cmake_policy(POP)
   set(externals_count -1)
   foreach(entry IN LISTS globbed)
@@ -841,9 +984,16 @@ function(_ExternalData_arg_find_files glob pattern regex)
       set(relname "${entry}")
       set(alg "")
     endif()
-    if("x${relname}" MATCHES "^x${regex}$" # matches
-        AND NOT "x${relname}" MATCHES "(^x|/)\\.ExternalData_" # not staged obj
-        )
+    if(
+      "x${relname}"
+        MATCHES
+        "^x${regex}$" # matches
+      AND
+        NOT
+          "x${relname}"
+            MATCHES
+            "(^x|/)\\.ExternalData_" # not staged obj
+    )
       if(IS_DIRECTORY "${top_src}/${entry}")
         if("${relname}" STREQUAL "${reldata}")
           set(have_original_as_dir 1)
@@ -852,13 +1002,18 @@ function(_ExternalData_arg_find_files glob pattern regex)
         set(name "${top_src}/${relname}")
         set(file "${top_bin}/${relname}")
         if(alg)
-          if(NOT "${external_${externals_count}_file_name}" STREQUAL "${file}|${name}")
+          if(
+            NOT
+              "${external_${externals_count}_file_name}"
+                STREQUAL
+                "${file}|${name}"
+          )
             math(EXPR externals_count "${externals_count} + 1")
             set(external_${externals_count}_file_name "${file}|${name}")
           endif()
           list(APPEND external_${externals_count}_algs "${alg}")
         elseif(ExternalData_LINK_CONTENT)
-          _ExternalData_link_content("${name}" alg)
+          _externaldata_link_content("${name}" alg)
           list(APPEND external "${file}|${name}|${alg}")
         elseif(NOT top_same)
           list(APPEND internal "${file}|${name}")
@@ -894,15 +1049,17 @@ if(ExternalData_CONFIG)
   include(${ExternalData_CONFIG})
 endif()
 if(NOT ExternalData_URL_TEMPLATES AND NOT ExternalData_OBJECT_STORES)
-  message(FATAL_ERROR
-    "Neither ExternalData_URL_TEMPLATES nor ExternalData_OBJECT_STORES is set!")
+  message(
+    FATAL_ERROR
+    "Neither ExternalData_URL_TEMPLATES nor ExternalData_OBJECT_STORES is set!"
+  )
 endif()
 
 function(_ExternalData_link_or_copy src dst)
   # Create a temporary file first.
   get_filename_component(dst_dir "${dst}" PATH)
   file(MAKE_DIRECTORY "${dst_dir}")
-  _ExternalData_random(random)
+  _externaldata_random(random)
   set(tmp "${dst}.tmp${random}")
   if(UNIX AND NOT ExternalData_NO_SYMLINKS)
     # Create a symbolic link.
@@ -911,15 +1068,40 @@ function(_ExternalData_link_or_copy src dst)
       # Use relative path if files are close enough.
       file(RELATIVE_PATH relsrc "${relative_top}" "${src}")
       file(RELATIVE_PATH relfile "${relative_top}" "${dst}")
-      if(NOT IS_ABSOLUTE "${relsrc}" AND NOT "${relsrc}" MATCHES "^\\.\\./" AND
-          NOT IS_ABSOLUTE "${reldst}" AND NOT "${reldst}" MATCHES "^\\.\\./")
+      if(
+        NOT
+          IS_ABSOLUTE
+            "${relsrc}"
+        AND
+          NOT
+            "${relsrc}"
+              MATCHES
+              "^\\.\\./"
+        AND
+          NOT
+            IS_ABSOLUTE
+              "${reldst}"
+        AND
+          NOT
+            "${reldst}"
+              MATCHES
+              "^\\.\\./"
+      )
         file(RELATIVE_PATH tgt "${dst_dir}" "${src}")
       endif()
     endif()
-    execute_process(COMMAND "${CMAKE_COMMAND}" -E create_symlink "${tgt}" "${tmp}" RESULT_VARIABLE result)
+    execute_process(
+      COMMAND
+        "${CMAKE_COMMAND}" -E create_symlink "${tgt}" "${tmp}"
+      RESULT_VARIABLE result
+    )
   else()
     # Create a copy.
-    execute_process(COMMAND "${CMAKE_COMMAND}" -E copy "${src}" "${tmp}" RESULT_VARIABLE result)
+    execute_process(
+      COMMAND
+        "${CMAKE_COMMAND}" -E copy "${src}" "${tmp}"
+      RESULT_VARIABLE result
+    )
   endif()
   if(result)
     file(REMOVE "${tmp}")
@@ -935,25 +1117,57 @@ function(_ExternalData_download_file url file err_var msg_var)
   while(retry)
     math(EXPR retry "${retry} - 1")
     if(ExternalData_TIMEOUT_INACTIVITY)
-      set(inactivity_timeout INACTIVITY_TIMEOUT ${ExternalData_TIMEOUT_INACTIVITY})
+      set(
+        inactivity_timeout
+        INACTIVITY_TIMEOUT
+        ${ExternalData_TIMEOUT_INACTIVITY}
+      )
     elseif(NOT "${ExternalData_TIMEOUT_INACTIVITY}" EQUAL 0)
-      set(inactivity_timeout INACTIVITY_TIMEOUT 60)
+      set(
+        inactivity_timeout
+        INACTIVITY_TIMEOUT
+        60
+      )
     else()
       set(inactivity_timeout "")
     endif()
     if(ExternalData_TIMEOUT_ABSOLUTE)
-      set(absolute_timeout TIMEOUT ${ExternalData_TIMEOUT_ABSOLUTE})
+      set(
+        absolute_timeout
+        TIMEOUT
+        ${ExternalData_TIMEOUT_ABSOLUTE}
+      )
     elseif(NOT "${ExternalData_TIMEOUT_ABSOLUTE}" EQUAL 0)
-      set(absolute_timeout TIMEOUT 300)
+      set(
+        absolute_timeout
+        TIMEOUT
+        300
+      )
     else()
       set(absolute_timeout "")
     endif()
-    file(DOWNLOAD "${url}" "${file}" STATUS status LOG log ${inactivity_timeout} ${absolute_timeout} SHOW_PROGRESS)
+    file(
+      DOWNLOAD
+        "${url}"
+        "${file}"
+      STATUS status
+      LOG log
+      ${inactivity_timeout}
+      ${absolute_timeout}
+      SHOW_PROGRESS
+    )
     list(GET status 0 err)
     list(GET status 1 msg)
     if(err)
-      if("${msg}" MATCHES "HTTP response code said error" AND
-          "${log}" MATCHES "error: 503")
+      if(
+        "${msg}"
+          MATCHES
+          "HTTP response code said error"
+        AND
+          "${log}"
+            MATCHES
+            "error: 503"
+      )
         set(msg "temporarily unavailable")
       endif()
     elseif("${log}" MATCHES "\nHTTP[^\n]* 503")
@@ -970,7 +1184,14 @@ function(_ExternalData_download_file url file err_var msg_var)
   set("${msg_var}" "${msg}" PARENT_SCOPE)
 endfunction()
 
-function(_ExternalData_custom_fetch key loc file err_var msg_var)
+function(
+  _ExternalData_custom_fetch
+  key
+  loc
+  file
+  err_var
+  msg_var
+)
   if(NOT ExternalData_CUSTOM_SCRIPT_${key})
     set(err 1)
     set(msg "No ExternalData_CUSTOM_SCRIPT_${key} set!")
@@ -1006,7 +1227,15 @@ function(_ExternalData_get_from_object_store hash algo var_obj var_success)
   endforeach()
 endfunction()
 
-function(_ExternalData_download_object name hash algo var_obj var_success var_errorMsg)
+function(
+  _ExternalData_download_object
+  name
+  hash
+  algo
+  var_obj
+  var_success
+  var_errorMsg
+)
   # Search all object stores for an existing object.
   set(success 1)
   foreach(dir ${ExternalData_OBJECT_STORES})
@@ -1022,7 +1251,7 @@ function(_ExternalData_download_object name hash algo var_obj var_success var_er
   list(GET ExternalData_OBJECT_STORES 0 store)
   set(obj "${store}/${algo}/${hash}")
 
-  _ExternalData_random(random)
+  _externaldata_random(random)
   set(tmp "${obj}.tmp${random}")
   set(found 0)
   set(tried "")
@@ -1039,12 +1268,19 @@ function(_ExternalData_download_object name hash algo var_obj var_success var_er
         set(url "${lhs}${algo}${rhs}")
       endif()
     endif()
-    string(REGEX REPLACE "((https?|ftp)://)([^@]+@)?(.*)" "\\1\\4" secured_url "${url}")
+    string(
+      REGEX
+      REPLACE
+      "((https?|ftp)://)([^@]+@)?(.*)"
+      "\\1\\4"
+      secured_url
+      "${url}"
+    )
     message(STATUS "Fetching \"${secured_url}\"")
     if(url MATCHES "^ExternalDataCustomScript://([A-Za-z_][A-Za-z0-9_]*)/(.*)$")
-      _ExternalData_custom_fetch("${CMAKE_MATCH_1}" "${CMAKE_MATCH_2}" "${tmp}" err errMsg)
+      _externaldata_custom_fetch("${CMAKE_MATCH_1}" "${CMAKE_MATCH_2}" "${tmp}" err errMsg)
     else()
-      _ExternalData_download_file("${url}" "${tmp}" err errMsg)
+      _externaldata_download_file("${url}" "${tmp}" err errMsg)
     endif()
     string(APPEND tried "\n  ${url}")
     if(err)
@@ -1056,19 +1292,29 @@ function(_ExternalData_download_object name hash algo var_obj var_success var_er
         # https://github.com/web3-storage/docs/issues/155
         set(found 1)
         break()
-        find_program(IPFS_EXECUTABLE
-          NAMES jsipfs
-          DOC "Interplanetary Filesystem (IPFS) executable")
+        find_program(
+          IPFS_EXECUTABLE
+          NAMES
+            jsipfs
+          DOC "Interplanetary Filesystem (IPFS) executable"
+        )
         if(NOT IPFS_EXECUTABLE)
-          message(STATUS "Skipping ${name} download verification because IPFS_EXECUTABLE is not found.")
+          message(
+            STATUS
+            "Skipping ${name} download verification because IPFS_EXECUTABLE is not found."
+          )
           set(found 1)
           break()
         endif()
-        execute_process(COMMAND "${IPFS_EXECUTABLE}" add --only-hash --pin=false ${_ExternalData_ipfs_add_flags} "${tmp}"
+        execute_process(
+          COMMAND
+            "${IPFS_EXECUTABLE}" add --only-hash --pin=false
+            ${_ExternalData_ipfs_add_flags} "${tmp}"
           RESULT_VARIABLE ipfs_add_result
           ERROR_VARIABLE ipfs_error
           OUTPUT_STRIP_TRAILING_WHITESPACE
-          OUTPUT_VARIABLE dl_hash)
+          OUTPUT_VARIABLE dl_hash
+        )
         if(NOT ${ipfs_add_result} EQUAL 0)
           # Todo: Currently does not run in parallel due to the repo lock
           # Bail for now.
@@ -1077,7 +1323,7 @@ function(_ExternalData_download_object name hash algo var_obj var_success var_er
           break()
         endif()
       else()
-        _ExternalData_compute_hash(dl_hash "${algo}" "${tmp}")
+        _externaldata_compute_hash(dl_hash "${algo}" "${tmp}")
       endif()
       if("${dl_hash}" STREQUAL "${hash}")
         set(found 1)
@@ -1107,7 +1353,11 @@ function(_ExternalData_download_object name hash algo var_obj var_success var_er
       set(tried "\n  (No ExternalData_URL_TEMPLATES given)")
     endif()
     set(success 0)
-    set("${var_errorMsg}" "Object ${algo}=${hash} not found at:${tried}" PARENT_SCOPE)
+    set(
+      "${var_errorMsg}"
+      "Object ${algo}=${hash} not found at:${tried}"
+      PARENT_SCOPE
+    )
   endif()
 
   set("${var_obj}" "${obj}" PARENT_SCOPE)
@@ -1124,10 +1374,10 @@ if("${ExternalData_ACTION}" STREQUAL "fetch")
   string(REPLACE "+" ";" exts_list "${exts}")
   set(succeeded 0)
   set(errorMsg "")
-  set(hash_list )
-  set(algo_list )
-  set(hash )
-  set(algo )
+  set(hash_list)
+  set(algo_list)
+  set(hash)
+  set(algo)
   foreach(ext ${exts_list})
     file(READ "${name}${ext}" hash)
     string(STRIP "${hash}" hash)
@@ -1148,7 +1398,7 @@ if("${ExternalData_ACTION}" STREQUAL "fetch")
   foreach(ii RANGE 0 ${exts_range})
     list(GET hash_list ${ii} hash)
     list(GET algo_list ${ii} algo)
-    _ExternalData_get_from_object_store("${hash}" "${algo}" obj succeeded)
+    _externaldata_get_from_object_store("${hash}" "${algo}" obj succeeded)
     if(succeeded)
       break()
     endif()
@@ -1157,8 +1407,9 @@ if("${ExternalData_ACTION}" STREQUAL "fetch")
     foreach(ii RANGE 0 ${exts_range})
       list(GET hash_list ${ii} hash)
       list(GET algo_list ${ii} algo)
-      _ExternalData_download_object("${name}" "${hash}" "${algo}"
-        obj succeeded algoErrorMsg)
+      _externaldata_download_object("${name}" "${hash}" "${algo}"
+        obj succeeded algoErrorMsg
+      )
       string(APPEND errorMsg "\n${algoErrorMsg}")
       if(succeeded)
         break()
@@ -1183,18 +1434,18 @@ if("${ExternalData_ACTION}" STREQUAL "fetch")
     # Touch the file to convince the build system it is up to date.
     file(TOUCH "${file}")
   else()
-    _ExternalData_link_or_copy("${obj}" "${file}")
+    _externaldata_link_or_copy("${obj}" "${file}")
   endif()
 
   # Atomically update the hash/timestamp file to record the object referenced.
-  _ExternalData_atomic_write("${file}${stamp}" "${hash}\n")
+  _externaldata_atomic_write("${file}${stamp}" "${hash}\n")
 elseif("${ExternalData_ACTION}" STREQUAL "local")
   foreach(v file name)
     if(NOT DEFINED "${v}")
       message(FATAL_ERROR "No \"-D${v}=\" value provided!")
     endif()
   endforeach()
-  _ExternalData_link_or_copy("${name}" "${file}")
+  _externaldata_link_or_copy("${name}" "${file}")
 else()
   message(FATAL_ERROR "Unknown ExternalData_ACTION=[${ExternalData_ACTION}]")
 endif()

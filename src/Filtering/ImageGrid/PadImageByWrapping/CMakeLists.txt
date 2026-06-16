@@ -4,26 +4,34 @@ project(PadImageByWrapping)
 
 find_package(ITK REQUIRED)
 
-
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKCommonModule
     ITK::ITKImageGridModule
     ITK::ITKImageIntensityModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/ImageGrid
   COMPONENT Runtime
-  )
+)
 
-install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Filtering/ImageGrid/PadImageByWrapping/
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/Filtering/ImageGrid/PadImageByWrapping/
   COMPONENT Code
-  )
-
+)
 
 enable_testing()
-add_test(NAME PadImageByWrappingTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
+add_test(
+  NAME PadImageByWrappingTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+)

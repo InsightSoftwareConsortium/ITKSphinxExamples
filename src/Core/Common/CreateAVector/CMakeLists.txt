@@ -5,27 +5,35 @@ project(CreateAVector)
 find_package(ITK REQUIRED)
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
-  PRIVATE
-    ITK::ITKCommonModule
-)
+target_link_libraries(${PROJECT_NAME} PRIVATE ITK::ITKCommonModule)
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Core/Common
   COMPONENT Runtime
 )
 
-install(FILES Code.cxx Code.py CMakeLists.txt
+install(
+  FILES
+    Code.cxx
+    Code.py
+    CMakeLists.txt
   DESTINATION share/ITKSphinxExamples/Code/Core/Common/CreateAVector
   COMPONENT Code
 )
 
 enable_testing()
-add_test(NAME CreateAVectorTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
+add_test(
+  NAME CreateAVectorTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+)
 
 if(ITK_WRAP_PYTHON)
-  add_test(NAME CreateAVectorTestPython
-    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
-    )
+  add_test(
+    NAME CreateAVectorTestPython
+    COMMAND
+      ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+  )
 endif()

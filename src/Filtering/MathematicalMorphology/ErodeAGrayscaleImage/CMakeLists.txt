@@ -2,45 +2,54 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(ErodeAGrayscaleImage)
 
-find_package(ITK REQUIRED
+find_package(
+  ITK
+  REQUIRED
   COMPONENTS
-  ITKCommon
-  ITKIOImageBase
-  ITKMathematicalMorphology
-  ITKIOPNG
-  )
+    ITKCommon
+    ITKIOImageBase
+    ITKMathematicalMorphology
+    ITKIOPNG
+)
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(
+  ${PROJECT_NAME}
   PRIVATE
     ITK::ITKImageIO
     ITK::ITKCommonModule
     ITK::ITKMathematicalMorphologyModule
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS
+    ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/MathematicalMorphology
   COMPONENT Runtime
 )
 
-install(FILES Code.cxx CMakeLists.txt
-  DESTINATION share/ITKSphinxExamples/Code/Filtering/MathematicalMorphology/ErodeAGrayscaleImage
+install(
+  FILES
+    Code.cxx
+    CMakeLists.txt
+  DESTINATION
+    share/ITKSphinxExamples/Code/Filtering/MathematicalMorphology/ErodeAGrayscaleImage
   COMPONENT Code
 )
 
 enable_testing()
-add_test(NAME ErodeAGrayscaleImageTest
-  COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
-    ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
-    Output.png
-    5
-  )
+add_test(
+  NAME ErodeAGrayscaleImageTest
+  COMMAND
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
+    ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png Output.png 5
+)
 
 if(ITK_WRAP_PYTHON)
-  add_test(NAME ErodeAGrayscaleImageTestPython
-    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
-      ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png
-      OutputPython.png
-      5
-    )
+  add_test(
+    NAME ErodeAGrayscaleImageTestPython
+    COMMAND
+      ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      ${CMAKE_CURRENT_BINARY_DIR}/cthead1.png OutputPython.png 5
+  )
 endif()

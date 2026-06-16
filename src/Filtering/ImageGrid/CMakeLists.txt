@@ -22,8 +22,8 @@ add_example(Create3DVolume)
 # There is currently an issue with the TileImageFilter SetDefaultPixelValue in
 # the Python wrapping. See https://issues.itk.org/jira/browse/ITK-3422
 #compare_to_baseline(
-  #EXAMPLE_NAME Create3DVolume
-  #BASELINE_PREFIX OutputBaseline
+#EXAMPLE_NAME Create3DVolume
+#BASELINE_PREFIX OutputBaseline
 #)
 
 add_example(AppendTwo3DVolumes)
@@ -66,7 +66,8 @@ compare_to_baseline(
 add_example(ResampleAVectorImage)
 compare_to_baseline(
   EXAMPLE_NAME ResampleAVectorImage
-  BASELINE_PREFIX OutputBaseline)
+  BASELINE_PREFIX OutputBaseline
+)
 
 add_example(ExtractRegionOfInterestInOneImage)
 compare_to_baseline(EXAMPLE_NAME ExtractRegionOfInterestInOneImage BASELINE_PREFIX OutputBaseline)
@@ -74,17 +75,17 @@ compare_to_baseline(EXAMPLE_NAME ExtractRegionOfInterestInOneImage BASELINE_PREF
 add_example(WarpAnImageUsingADeformationField)
 compare_to_baseline(EXAMPLE_NAME WarpAnImageUsingADeformationField
   BASELINE_PREFIX OutputBaseline
-  )
+)
 
 add_example(ProcessA2DSliceOfA3DImage)
 compare_to_baseline(EXAMPLE_NAME ProcessA2DSliceOfA3DImage
   BASELINE_PREFIX OutputBaseline
-  )
+)
 
 add_example(PadImageByWrapping)
 compare_to_baseline(EXAMPLE_NAME PadImageByWrapping
   BASELINE_PREFIX image
-  )
+)
 
 add_example(ShrinkImage)
 
@@ -101,9 +102,9 @@ add_example(FitSplineIntoPointSet)
 add_example(RunImageFilterOnRegionOfImage)
 compare_to_baseline(EXAMPLE_NAME RunImageFilterOnRegionOfImage
         BASELINE_PREFIX RunImageFilterOnRegionOfImage
-        )
+)
 
 add_example(CropImageBySpecifyingRegion2)
 compare_to_baseline(EXAMPLE_NAME CropImageBySpecifyingRegion2
         BASELINE_PREFIX CropImageBySpecifyingRegion2
-        )
+)
