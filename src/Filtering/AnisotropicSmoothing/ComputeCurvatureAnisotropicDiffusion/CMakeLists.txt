@@ -6,16 +6,17 @@ set(test_options 5 0.125 3.0)
 
 project(ComputeCurvatureAnisotropicDiffusion)
 
-find_package(ITK REQUIRED)
+find_package(ITK REQUIRED COMPONENTS
+  ITKImageBase
+  ITKAnisotropicSmoothingModule
+  ITKImageIntensityModule
+)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)
-target_link_libraries(${PROJECT_NAME}
-  PRIVATE
-    ITK::ITKImageIO
-    ITK::ITKAnisotropicSmoothingModule
-    ITK::ITKImageIntensityModule
-)
+message(STATUS "ITK_FACTORY_LIST: ${ITK_FACTORY_LIST}")
+message(STATUS "ITK_INTERFACE_LIBRARIES: ${ITK_INTERFACE_LIBRARIES}")
+target_link_libraries(${PROJECT_NAME} PRIVATE ${ITK_INTERFACE_LIBRARIES} ITKImageIO)
 
 install(TARGETS ${PROJECT_NAME}
   DESTINATION bin/ITKSphinxExamples/Filtering/AnisotropicSmoothing
