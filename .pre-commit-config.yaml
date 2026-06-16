@@ -33,6 +33,12 @@ repos:
      args: ['--branch','main','--branch','dashboard','--branch','gh-pages']
    - id: trailing-whitespace
      exclude: "\\.(sha512|cid|svg|vtk|vtp|ipynb)$"
+- repo: https://github.com/BlankSpruce/gersemi
+  rev: 0.19.3
+  hooks:
+  - id: gersemi
+    args: [ '--config', '.gersemi.config', '-i' ]
+    files: '.cmake$|CMakeLists.txt'
 - repo: https://github.com/pre-commit/mirrors-clang-format
   rev: v19.1.7
   hooks:
