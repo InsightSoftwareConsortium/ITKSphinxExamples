@@ -27,7 +27,7 @@ jobs:
             cmake-build-type: "MinSizeRel"
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: Ex
 
@@ -42,7 +42,7 @@ jobs:
           python -m pip install ninja
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v4.3.3
+        uses: lukka/get-cmake@v4.3.4
 
       - name: Select Xcode
         if: startsWith(matrix.os, 'macos')
@@ -58,7 +58,7 @@ jobs:
           git checkout ${{ env.itk-git-tag }}
 
       - name: Restore ExternalData cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ github.workspace }}/../bld/ExternalData/Objects
           key: externaldata-v1-${{ hashFiles('Ex/src/**/*.cid') }}
@@ -140,7 +140,7 @@ jobs:
             cmake-build-type: "MinSizeRel"
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: Ex
 
@@ -155,10 +155,10 @@ jobs:
           python -m pip install ninja
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v4.3.3
+        uses: lukka/get-cmake@v4.3.4
 
       - name: Restore ExternalData cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ github.workspace }}/../bld/ExternalData/Objects
           key: externaldata-superbuild-v1-${{ matrix.os }}-${{ hashFiles('Ex/src/**/*.cid') }}
@@ -234,7 +234,7 @@ jobs:
         os: [ubuntu-24.04, windows-2022, macos-14]
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Set up Python 3.11
         uses: actions/setup-python@v6
         with:
@@ -268,7 +268,7 @@ jobs:
             cmake-build-type: "Release"
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: Ex
           submodules: recursive
@@ -279,7 +279,7 @@ jobs:
           python-version: 3.11
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v4.3.3
+        uses: lukka/get-cmake@v4.3.4
 
       - name: Install build dependencies
         run: |
@@ -300,7 +300,7 @@ jobs:
           echo "Workspace: ${{ github.workspace }}"
 
       - name: Restore ExternalData cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ github.workspace }}/../bld/ExternalData/Objects
           key: externaldata-docs-v1-${{ hashFiles('Ex/src/**/*.cid') }}
