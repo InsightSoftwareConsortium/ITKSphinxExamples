@@ -42,7 +42,7 @@ jobs:
           python -m pip install ninja
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v4.4.0
+        uses: lukka/get-cmake@v4.4.2
 
       - name: Select Xcode
         if: startsWith(matrix.os, 'macos')
@@ -155,7 +155,7 @@ jobs:
           python -m pip install ninja
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v4.4.0
+        uses: lukka/get-cmake@v4.4.2
 
       - name: Restore ExternalData cache
         uses: actions/cache@v6
@@ -279,7 +279,7 @@ jobs:
           python-version: 3.11
 
       - name: Get specific version of CMake, Ninja
-        uses: lukka/get-cmake@v4.4.0
+        uses: lukka/get-cmake@v4.4.2
 
       - name: Install build dependencies
         run: |
