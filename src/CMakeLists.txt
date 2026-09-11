@@ -4,7 +4,7 @@ if(itk-module)
     return()
   endif()
 endif()
-find_package(ITK 5.2.0 REQUIRED)
+find_package(ITK 6 REQUIRED)
 
 # To avoid linker issues.
 # Module_ITKVtkGlue is true when building inside ITK
