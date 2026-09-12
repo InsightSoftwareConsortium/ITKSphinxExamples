@@ -18,9 +18,7 @@ import sys
 import itk
 import argparse
 
-from distutils.version import StrictVersion
-
-if StrictVersion(itk.Version.GetITKVersion()) < StrictVersion("5.2.0"):
+if tuple(int(v) for v in itk.Version.GetITKVersion().split(".")) < (5, 2, 0):
     print("ITK 5.2.0 is required.")
     sys.exit(1)
 
