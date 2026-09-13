@@ -2,7 +2,17 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(ExtraLargestConnectComponentFromBinaryImage)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKConnectedComponents
+    ITKIOImageBase
+    ITKImageIO
+    ITKImageIntensity
+    ITKLabelMap
+)
 itk_generate_factory_registration()
 
 if(ENABLE_QUICKVIEW)

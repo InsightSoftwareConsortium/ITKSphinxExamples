@@ -2,7 +2,14 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(AssignContiguousLabelsToConnectedRegions)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKColormap
+    ITKCommon
+    ITKConnectedComponents
+)
 
 if(ENABLE_QUICKVIEW)
   find_package(

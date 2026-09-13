@@ -2,7 +2,17 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(LabelConnectComponentsInGrayscaleImage)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKConnectedComponents
+    ITKIOImageBase
+    ITKImageFusion
+    ITKImageIO
+    ITKImageStatistics
+)
 itk_generate_factory_registration()
 
 if(ENABLE_QUICKVIEW)

@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(SegmentPixelsWithSimilarStats)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKIOImageBase
+    ITKImageIO
+    ITKRegionGrowing
+)
 itk_generate_factory_registration()
 
 if(ENABLE_QUICKVIEW)
