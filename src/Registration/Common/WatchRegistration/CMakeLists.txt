@@ -2,7 +2,22 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(WatchRegistration)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKIOImageBase
+    ITKImageCompare
+    ITKImageGrid
+    ITKImageIO
+    ITKImageIntensity
+    ITKOptimizers
+    ITKRegistrationCommon
+    ITKSmoothing
+    ITKTransform
+    ITKVtkGlue
+)
 itk_generate_factory_registration()
 
 find_package(VTK REQUIRED)

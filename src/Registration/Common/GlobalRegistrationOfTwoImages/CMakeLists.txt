@@ -2,7 +2,22 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(GlobalRegistrationOfTwoImages)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKIOImageBase
+    ITKImageFilterBase
+    ITKImageFunction
+    ITKImageGrid
+    ITKImageIO
+    ITKImageIntensity
+    ITKOptimizers
+    ITKRegistrationCommon
+    ITKSpatialObjects
+    ITKTransform
+)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)

@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(RegisterTwoPointSets)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKMetricsv4
+    ITKOptimizersv4
+    ITKTransform
+)
 
 add_executable(${PROJECT_NAME} Code.cxx)
 target_link_libraries(

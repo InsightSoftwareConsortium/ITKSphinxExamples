@@ -14,7 +14,20 @@ set(output_image3 ImageRegistration1DifferenceBefore.png)
 
 project(Perform2DTranslationRegistrationWithMeanSquares)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKIOImageBase
+    ITKImageFilterBase
+    ITKImageGrid
+    ITKImageIO
+    ITKImageIntensity
+    ITKMetricsv4
+    ITKOptimizersv4
+    ITKRegistrationMethodsv4
+    ITKTransform
+)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)
