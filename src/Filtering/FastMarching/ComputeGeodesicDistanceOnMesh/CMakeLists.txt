@@ -2,7 +2,16 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(ComputeGeodesicDistanceOnMesh)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKFastMarching
+    ITKIOMeshBase
+    ITKMesh
+    ITKMeshIO
+    ITKQuadEdgeMesh
+)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)

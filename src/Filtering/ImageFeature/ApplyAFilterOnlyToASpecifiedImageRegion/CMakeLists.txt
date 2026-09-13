@@ -2,7 +2,14 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(ApplyAFilterOnlyToASpecifiedImageRegion)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKImageFeature
+    ITKTestKernel
+)
 
 add_executable(${PROJECT_NAME} Code.cxx)
 target_link_libraries(

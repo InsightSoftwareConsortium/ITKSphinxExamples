@@ -17,8 +17,7 @@ find_package(
     ITKAnisotropicSmoothing
     ITKCommon
     ITKIOImageBase
-    ITKIOMeta
-    ITKIOPNG
+    ITKImageIO
 )
 
 add_executable(${PROJECT_NAME} Code.cxx)

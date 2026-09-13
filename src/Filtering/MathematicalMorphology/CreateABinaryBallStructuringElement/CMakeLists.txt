@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(CreateABinaryBallStructuringElement)
 
-find_package(ITK REQUIRED)
+find_package(ITK REQUIRED COMPONENTS ITKMathematicalMorphology)
 
 add_executable(${PROJECT_NAME} Code.cxx)
 target_link_libraries(

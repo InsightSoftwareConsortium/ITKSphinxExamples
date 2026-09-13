@@ -5,7 +5,14 @@ set(output_image Output.png)
 
 project(RemoveHolesNotConnectedToImageBoundaries)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKIOImageBase
+    ITKImageIO
+    ITKLabelMap
+)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)

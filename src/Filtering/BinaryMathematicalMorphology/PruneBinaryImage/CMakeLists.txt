@@ -2,7 +2,16 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(PruneBinaryImage)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKBinaryMathematicalMorphology
+    ITKCommon
+    ITKIOImageBase
+    ITKImageIO
+    ITKMathematicalMorphology
+)
 itk_generate_factory_registration()
 
 if(ENABLE_QUICKVIEW)

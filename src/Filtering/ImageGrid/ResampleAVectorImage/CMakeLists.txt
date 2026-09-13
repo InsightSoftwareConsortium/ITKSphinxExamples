@@ -5,7 +5,17 @@ set(output_image Output.png)
 
 project(ResampleAVectorImage)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKIOImageBase
+    ITKImageFunction
+    ITKImageGrid
+    ITKImageIO
+    ITKTransform
+)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)

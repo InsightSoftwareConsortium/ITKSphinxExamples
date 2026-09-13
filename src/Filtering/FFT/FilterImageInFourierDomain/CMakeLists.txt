@@ -2,7 +2,17 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(FilterImageInFourierDomain)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKFFT
+    ITKIOImageBase
+    ITKImageGrid
+    ITKImageIO
+    ITKImageIntensity
+    ITKImageSources
+)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)

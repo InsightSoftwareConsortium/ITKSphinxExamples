@@ -8,8 +8,8 @@ find_package(
   COMPONENTS
     ITKCommon
     ITKIOImageBase
+    ITKImageIO
     ITKMathematicalMorphology
-    ITKIOPNG
 )
 
 add_executable(${PROJECT_NAME} Code.cxx)

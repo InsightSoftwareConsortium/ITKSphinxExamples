@@ -2,7 +2,14 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(DemonstrateThresholdAlgorithms)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKIOImageBase
+    ITKImageIO
+    ITKThresholding
+)
 itk_generate_factory_registration()
 
 if(ENABLE_QUICKVIEW)

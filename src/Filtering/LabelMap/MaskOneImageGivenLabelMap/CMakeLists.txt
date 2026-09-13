@@ -2,7 +2,14 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(MaskOneImageGivenLabelMap)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKIOImageBase
+    ITKImageIO
+    ITKLabelMap
+)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)

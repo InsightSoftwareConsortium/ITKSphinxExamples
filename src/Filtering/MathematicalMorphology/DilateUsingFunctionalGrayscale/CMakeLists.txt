@@ -8,8 +8,8 @@ find_package(
   COMPONENTS
     ITKCommon
     ITKIOImageBase
+    ITKImageIO
     ITKMathematicalMorphology
-    ITKIOPNG
 )
 
 add_executable(DilateUsingFunctionalGrayscale Code.cxx)

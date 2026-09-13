@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(ApplyAFilterToASpecifiedRegionOfAnImage)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKIOImageBase
+    ITKImageFeature
+    ITKImageIO
+)
 itk_generate_factory_registration()
 
 if(ENABLE_QUICKVIEW)

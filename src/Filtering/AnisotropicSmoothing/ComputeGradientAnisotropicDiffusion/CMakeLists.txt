@@ -11,7 +11,15 @@ set(
 
 project(ComputeGradientAnisotropicDiffusion)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKAnisotropicSmoothing
+    ITKIOImageBase
+    ITKImageIO
+    ITKImageIntensity
+)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)

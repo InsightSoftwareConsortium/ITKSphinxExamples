@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(ApproxDistanceMapOfBinary)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKDistanceMap
+    ITKIOImageBase
+    ITKImageIO
+)
 itk_generate_factory_registration()
 
 if(ENABLE_QUICKVIEW)

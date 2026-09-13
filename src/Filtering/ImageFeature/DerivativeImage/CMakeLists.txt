@@ -2,7 +2,16 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(DerivativeImage)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKIOImageBase
+    ITKImageFeature
+    ITKImageIO
+    ITKImageIntensity
+)
 
 add_executable(DerivativeImage Code.cxx)
 target_link_libraries(
