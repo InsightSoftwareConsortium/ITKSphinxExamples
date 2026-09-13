@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(AmoebaOptimizer)
 
-find_package(ITK REQUIRED)
+find_package(ITK REQUIRED COMPONENTS ITKOptimizers)
 
 add_executable(
   ${PROJECT_NAME}
