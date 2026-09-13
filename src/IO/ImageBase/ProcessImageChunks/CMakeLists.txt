@@ -6,11 +6,9 @@ find_package(
   ITK
   REQUIRED
   COMPONENTS
-    ITKCommon
     ITKIOImageBase
+    ITKImageIO
     ITKSmoothing
-    ITKIOPNG
-    ITKIOMeta
 )
 
 add_executable(${PROJECT_NAME} Code.cxx)

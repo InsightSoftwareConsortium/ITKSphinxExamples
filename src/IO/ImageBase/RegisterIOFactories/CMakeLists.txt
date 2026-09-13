@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(RegisterIOFactories)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKIOImageBase
+    ITKIOMeta
+    ITKIOPNG
+    ITKImageIO
+)
 itk_generate_factory_registration()
 # Registering the IO classes manually is usually not necessary,
 # unless this variable is set before calling

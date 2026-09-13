@@ -11,9 +11,8 @@ find_package(
   COMPONENTS
     ITKCommon
     ITKIOImageBase
+    ITKImageIO
     ITKImageIntensity
-    ITKIOPNG
-    ITKIOMeta
 )
 
 add_executable(${PROJECT_NAME} Code.cxx)
