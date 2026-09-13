@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(UseParallelizeImageRegion)
 
-find_package(ITK 6 REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKIOImageBase
+    ITKImageIO
+    ITKWatersheds
+)
 
 add_executable(${PROJECT_NAME} Code.cxx)
 target_link_libraries(

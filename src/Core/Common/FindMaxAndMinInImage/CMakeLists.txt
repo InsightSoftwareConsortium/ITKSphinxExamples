@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(FindMaxAndMinInImage)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKIOImageBase
+    ITKImageIO
+    ITKVtkGlue
+)
 itk_generate_factory_registration()
 
 find_package(VTK REQUIRED)

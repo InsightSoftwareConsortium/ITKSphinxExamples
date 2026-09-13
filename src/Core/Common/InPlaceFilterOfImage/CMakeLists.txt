@@ -2,7 +2,16 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(InPlaceFilterOfImage)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKIOImageBase
+    ITKImageIO
+    ITKThresholding
+    ITKVtkGlue
+)
 itk_generate_factory_registration()
 
 find_package(VTK REQUIRED)

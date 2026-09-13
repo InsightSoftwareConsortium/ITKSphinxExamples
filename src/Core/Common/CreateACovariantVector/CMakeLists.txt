@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(CreateACovariantVector)
 
-find_package(ITK REQUIRED)
+find_package(ITK REQUIRED COMPONENTS ITKCommon)
 
 add_executable(
   ${PROJECT_NAME}
