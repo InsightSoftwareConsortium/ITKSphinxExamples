@@ -2,7 +2,16 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(VisualizeStaticMalcolm2DLevelSetLayers)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKIOImageBase
+    ITKImageIO
+    ITKImageIntensity
+    ITKLevelSetsv4
+    ITKThresholding
+)
 itk_generate_factory_registration()
 
 find_package(VTK REQUIRED)

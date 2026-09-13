@@ -2,7 +2,17 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(VisualizeStaticDense2DLevelSetZeroSet)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKCommon
+    ITKIOImageBase
+    ITKImageIO
+    ITKImageIntensity
+    ITKLevelSetsv4
+    ITKThresholding
+)
 itk_generate_factory_registration()
 
 find_package(VTK REQUIRED)
