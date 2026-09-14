@@ -1,5 +1,5 @@
-#ifndef ImageFilterX_hxx
-#define ImageFilterX_hxx
+#ifndef itkImageFilterX_hxx
+#define itkImageFilterX_hxx
 
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"
@@ -10,10 +10,10 @@ namespace itk
 
 template <typename TImage>
 void
-ImageFilter<TImage>::GenerateData()
+ImageFilterX<TImage>::GenerateData()
 {}
 
 } // namespace itk
 
 
-#endif
+#endif // itkImageFilterX_hxx

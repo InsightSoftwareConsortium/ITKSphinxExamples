@@ -1,5 +1,5 @@
-#ifndef ImageFilterY_h
-#define ImageFilterY_h
+#ifndef itkImageFilterY_h
+#define itkImageFilterY_h
 
 #include "itkImageToImageFilter.h"
 
@@ -8,13 +8,13 @@
 namespace itk
 {
 template <typename TImage>
-class ImageFilter : public ImageToImageFilter<TImage, TImage>
+class ImageFilterY : public ImageToImageFilter<TImage, TImage>
 {
 public:
-  ITK_DISALLOW_COPY_AND_MOVE(ImageFilter);
+  ITK_DISALLOW_COPY_AND_MOVE(ImageFilterY);
 
   /** Standard class type alias. */
-  using Self = ImageFilter;
+  using Self = ImageFilterY;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
   using ConstPointer = SmartPointer<const Self>;
@@ -23,7 +23,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkOverrideGetNameOfClassMacro(ImageFilter);
+  itkOverrideGetNameOfClassMacro(ImageFilterY);
 
 
   /** Image dimension. */
@@ -37,8 +37,8 @@ public:
   using InternalGaussianFilterPointer = typename InternalGaussianFilterType::Pointer;
 
 protected:
-  ImageFilter() = default;
-  ~ImageFilter() override = default;
+  ImageFilterY() = default;
+  ~ImageFilterY() override = default;
 
   /** Does the real work. */
   void
@@ -48,8 +48,8 @@ protected:
 
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#  include "ImageFilterY.hxx"
+#  include "itkImageFilterY.hxx"
 #endif
 
 
-#endif // ImageFilterY_h
+#endif // itkImageFilterY_h

@@ -1,5 +1,5 @@
-#ifndef ImageFilterMultipleOutputs_hxx
-#define ImageFilterMultipleOutputs_hxx
+#ifndef itkImageFilterMultipleOutputs_hxx
+#define itkImageFilterMultipleOutputs_hxx
 
 
 #include "itkObjectFactory.h"
@@ -119,4 +119,4 @@ ImageFilterMultipleOutputs<TImage>::GetOutput2()
 } // namespace itk
 
 
-#endif
+#endif // itkImageFilterMultipleOutputs_hxx

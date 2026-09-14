@@ -1,5 +1,5 @@
-#ifndef ImageFilterY_hxx
-#define ImageFilterY_hxx
+#ifndef itkImageFilterY_hxx
+#define itkImageFilterY_hxx
 
 #include "itkObjectFactory.h"
 #include "itkImageRegionIterator.h"
@@ -9,7 +9,7 @@ namespace itk
 
 template <typename TImage>
 void
-ImageFilter<TImage>::GenerateData()
+ImageFilterY<TImage>::GenerateData()
 {
   InternalGaussianFilterPointer smoothingFilters[ImageDimension];
 
@@ -43,4 +43,4 @@ ImageFilter<TImage>::GenerateData()
 } // namespace itk
 
 
-#endif
+#endif // itkImageFilterY_hxx

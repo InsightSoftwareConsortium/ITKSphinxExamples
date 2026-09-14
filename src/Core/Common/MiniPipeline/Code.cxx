@@ -19,7 +19,7 @@
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
 
-#include "ImageFilterY.h"
+#include "itkImageFilterY.h"
 
 template <typename TImage>
 static void
@@ -30,7 +30,7 @@ main()
 {
   // Setup types
   using ImageType = itk::Image<unsigned char, 2>;
-  using FilterType = itk::ImageFilter<ImageType>;
+  using FilterType = itk::ImageFilterY<ImageType>;
 
   auto image = ImageType::New();
   CreateImage(image.GetPointer());

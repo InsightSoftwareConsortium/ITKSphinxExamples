@@ -1,18 +1,18 @@
-#ifndef ImageFilterX_h
-#define ImageFilterX_h
+#ifndef itkImageFilterX_h
+#define itkImageFilterX_h
 
 #include "itkImageToImageFilter.h"
 
 namespace itk
 {
 template <typename TImage>
-class ImageFilter : public ImageToImageFilter<TImage, TImage>
+class ImageFilterX : public ImageToImageFilter<TImage, TImage>
 {
 public:
-  ITK_DISALLOW_COPY_AND_MOVE(ImageFilter);
+  ITK_DISALLOW_COPY_AND_MOVE(ImageFilterX);
 
   /** Standard class type alias. */
-  using Self = ImageFilter;
+  using Self = ImageFilterX;
   using Superclass = ImageToImageFilter<TImage, TImage>;
   using Pointer = SmartPointer<Self>;
   using ConstPointer = SmartPointer<const Self>;
@@ -21,14 +21,14 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkOverrideGetNameOfClassMacro(ImageFilter);
+  itkOverrideGetNameOfClassMacro(ImageFilterX);
 
   itkSetMacro(Variable, double);
   itkGetMacro(Variable, double);
 
 protected:
-  ImageFilter() = default;
-  ~ImageFilter() override = default;
+  ImageFilterX() = default;
+  ~ImageFilterX() override = default;
 
   /** Does the real work. */
   void
@@ -40,8 +40,8 @@ protected:
 
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#  include "ImageFilterX.hxx"
+#  include "itkImageFilterX.hxx"
 #endif
 
 
-#endif // __ImageFilterX_h
+#endif // itkImageFilterX_h

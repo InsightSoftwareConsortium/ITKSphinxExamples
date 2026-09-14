@@ -19,7 +19,7 @@
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
 
-#include "ImageFilterMultipleOutputs.h"
+#include "itkImageFilterMultipleOutputs.h"
 
 int
 main()
