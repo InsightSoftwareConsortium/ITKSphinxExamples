@@ -14,12 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
-
-if tuple(int(v) for v in itk.Version.GetITKVersion().split(".")) < (4, 9, 0):
-    print("ITK 4.9.0 is required.")
-    sys.exit(1)
 
 Dimension = 2
 

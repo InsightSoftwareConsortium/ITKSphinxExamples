@@ -16,12 +16,7 @@
 
 import argparse
 
-import sys
 import itk
-
-if tuple(int(v) for v in itk.Version.GetITKVersion().split(".")) < (5, 0, 0):
-    print("ITK 5.0.0 or newer is required.")
-    sys.exit(1)
 
 parser = argparse.ArgumentParser(description="Segment blood vessels.")
 parser.add_argument("input_image")
