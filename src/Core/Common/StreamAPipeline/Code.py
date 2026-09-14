@@ -14,13 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
 import argparse
-
-if tuple(int(v) for v in itk.Version.GetITKVersion().split(".")) < (4, 10, 0):
-    print("ITK 4.10.0 is required.")
-    sys.exit(1)
 
 parser = argparse.ArgumentParser(description="Stream A Pipeline.")
 parser.add_argument("number_of_splits", type=int)

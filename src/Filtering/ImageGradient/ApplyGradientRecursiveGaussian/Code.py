@@ -14,13 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import itk
 import argparse
-
-if tuple(int(v) for v in itk.Version.GetITKVersion().split(".")) < (4, 7, 0):
-    print("ITK 4.7.0 is required (see example documentation).")
-    sys.exit(1)
 
 parser = argparse.ArgumentParser(description="Apply Gradient Recursive Gaussian.")
 parser.add_argument("input_image")
