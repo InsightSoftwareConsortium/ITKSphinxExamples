@@ -4,16 +4,16 @@ Visualize a Static Dense 2D Level-Set Zero-Set
 ==============================================
 
 .. index::
-   single: VTKVisualizeImageLevelSetIsoValues
    single: BinaryImageToLevelSetImageAdaptor
    single: LevelSetDenseImage
+   single: ZeroCrossingImageFilter
 
 Synopsis
 --------
 
-Visualize a static dense level-set function 2D's zero set. From the input
-image, first an otsu thresholding technique is used to get a binary mask, which
-is then converted to a dense level-set function.
+Convert a binary mask into a dense level-set function, extract its zero set
+with itk::ZeroCrossingImageFilter, and write the contour as an image. The mask
+comes from an Otsu threshold of the input image.
 
 
 Results
@@ -24,12 +24,6 @@ Results
   :alt: Input image (cells)
 
   Input image
-
-.. figure:: levelsets.png
-  :scale: 100%
-  :alt: Static level-sets zero-sets
-
-  Static level-sets
 
 
 Code
@@ -45,4 +39,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. [breathelink:: itk::VTKVisualizeImageLevelSetIsoValues]
+.. breathelink:: itk::LevelSetDenseImage

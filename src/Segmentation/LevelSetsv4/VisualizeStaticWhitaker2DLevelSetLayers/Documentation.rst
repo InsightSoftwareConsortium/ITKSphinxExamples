@@ -4,18 +4,18 @@ Visualize a Static Sparse Whitaker 2D Level-Set Layers
 ======================================================
 
 .. index::
-   single: vtkVisualize2DSparseLevelSetLayers
    single: BinaryImageToLevelSetImageAdaptor
    single: WhitakerSparseLevelSetImage
 
 Synopsis
 --------
 
-Visualize a static sparse Whitaker level-set function 2D's layers. From the input
-image, first an otsu thresholding technique is used to get a binary mask, which
-is then converted to a sparse level-set function.
+Convert a binary mask into a sparse Whitaker level-set function and write its
+layers as an image, by sampling the function at every pixel. The mask comes
+from an Otsu threshold of the input image.
 
-Note that Whitaker's representation is composed of 5 layers where values are real.
+The written values are -3, -2, -1, 0, 1, 2, and 3.
+
 
 Results
 -------
@@ -25,12 +25,6 @@ Results
   :alt: Input image (cells)
 
   Input image
-
-.. figure:: levelsets.png
-  :scale: 100%
-  :alt: Static level-sets zero-sets
-
-  Static level-sets
 
 
 Code
@@ -46,4 +40,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. [breathelink:: itk::VTKVisualize2DSparseLevelSetLayers]
+.. breathelink:: itk::WhitakerSparseLevelSetImage

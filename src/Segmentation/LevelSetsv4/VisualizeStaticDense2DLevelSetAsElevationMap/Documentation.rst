@@ -4,16 +4,16 @@ Visualize a Static Dense 2D Level Set as Elevation Map
 ======================================================
 
 .. index::
-   single: VTKVisualize2DLevelSetAsElevationMap
    single: BinaryImageToLevelSetImageAdaptor
    single: LevelSetDenseImage
 
 Synopsis
 --------
 
-Visualize a static dense level-set function 2D rendered as an elevation map.
-From the input image, first an otsu thresholding technique is used to get a
-binary mask, which is then converted to a dense level-set function.
+Convert a binary mask into a dense level-set function and write the function
+values as an image. Rendered as a height field, these values form an elevation
+map whose zero level is the contour. The mask comes from an Otsu threshold of
+the input image.
 
 
 Results
@@ -24,12 +24,6 @@ Results
   :alt: Input image (cells)
 
   Input image
-
-.. figure:: levelsets.png
-  :scale: 100%
-  :alt: Static level-sets rendered as an elevation map
-
-  Static level-sets
 
 
 Code
@@ -45,4 +39,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. [breathelink:: itk::VTKVisualize2DLevelSetAsElevationMap]
+.. breathelink:: itk::LevelSetDenseImage

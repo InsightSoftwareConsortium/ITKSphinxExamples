@@ -16,15 +16,13 @@
  *
  *=========================================================================*/
 
-#include "itkVTKVisualize2DSparseLevelSetLayers.h"
-
 #include "itkBinaryImageToLevelSetImageAdaptor.h"
 #include "itkImageFileReader.h"
+#include "itkImageFileWriter.h"
+#include "itkImageRegionIteratorWithIndex.h"
 #include "itkShiSparseLevelSetImage.h"
-
 #include "itkOtsuMultipleThresholdsImageFilter.h"
 #include "itkRescaleIntensityImageFilter.h"
-#include "vtkRenderWindowInteractor.h"
 
 int
 main(int argc, char * argv[])
@@ -33,11 +31,10 @@ main(int argc, char * argv[])
   {
     std::cerr << "Missing Arguments" << std::endl;
     std::cerr << argv[0] << std::endl;
-    std::cerr << "<Input Image> <Interactive (0 or 1)>" << std::endl;
+    std::cerr << "<Input Image> <Output Image>" << std::endl;
     return EXIT_FAILURE;
   }
 
-  // Image Dimension
   constexpr unsigned int Dimension = 2;
 
   using InputPixelType = unsigned char;
@@ -48,7 +45,7 @@ main(int argc, char * argv[])
   using LevelSetType = itk::ShiSparseLevelSetImage<Dimension>;
 
   // Generate a binary mask that will be used as initialization for the level
-  // set evolution.
+  // set.
   using OtsuFilterType = itk::OtsuMultipleThresholdsImageFilter<InputImageType, InputImageType>;
   auto otsu = OtsuFilterType::New();
   otsu->SetInput(input);
@@ -60,40 +57,37 @@ main(int argc, char * argv[])
   rescaler->SetInput(otsu->GetOutput());
   rescaler->SetOutputMinimum(0);
   rescaler->SetOutputMaximum(1);
+  rescaler->Update();
 
-  // convert a binary mask to a level-set function
+  // Convert the binary mask to a sparse level-set function
   using BinaryImageToLevelSetType = itk::BinaryImageToLevelSetImageAdaptor<InputImageType, LevelSetType>;
-
   auto adaptor = BinaryImageToLevelSetType::New();
   adaptor->SetInputImage(rescaler->GetOutput());
   adaptor->Initialize();
 
   LevelSetType::Pointer levelSet = adaptor->GetModifiableLevelSet();
 
-  // Create the visualizer
-  using VisualizationType = itk::VTKVisualize2DSparseLevelSetLayers<InputImageType, LevelSetType>;
-  auto visualizer = VisualizationType::New();
-  visualizer->SetInputImage(input);
-  visualizer->SetLevelSet(levelSet);
-  visualizer->SetScreenCapture(true);
+  // Sample the level-set function on the image grid to show its layers
+  using LayerImageType = itk::Image<LevelSetType::OutputType, Dimension>;
+  auto layers = LayerImageType::New();
+  layers->CopyInformation(input);
+  layers->SetRegions(input->GetLargestPossibleRegion());
+  layers->Allocate();
 
-  vtkSmartPointer<vtkRenderWindowInteractor> renderWindowInteractor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
-  renderWindowInteractor->SetRenderWindow(visualizer->GetRenderWindow());
+  itk::ImageRegionIteratorWithIndex<LayerImageType> it(layers, layers->GetLargestPossibleRegion());
+  for (it.GoToBegin(); !it.IsAtEnd(); ++it)
+  {
+    it.Set(levelSet->Evaluate(it.GetIndex()));
+  }
 
   try
   {
-    visualizer->Update();
+    itk::WriteImage(layers, argv[2]);
   }
   catch (const itk::ExceptionObject & error)
   {
     std::cerr << "Error: " << error << std::endl;
     return EXIT_FAILURE;
-  }
-
-  bool interactive = (std::stoi(argv[2]) != 0);
-  if (interactive)
-  {
-    renderWindowInteractor->Start();
   }
 
   return EXIT_SUCCESS;

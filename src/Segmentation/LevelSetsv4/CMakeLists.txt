@@ -1,0 +1,5 @@
+add_example(VisualizeStaticDense2DLevelSetAsElevationMap)
+add_example(VisualizeStaticDense2DLevelSetZeroSet)
+add_example(VisualizeStaticWhitaker2DLevelSetLayers)
+add_example(VisualizeStaticShi2DLevelSetLayers)
+add_example(VisualizeStaticMalcolm2DLevelSetLayers)
