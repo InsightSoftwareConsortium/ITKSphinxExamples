@@ -11,13 +11,14 @@ target_link_libraries(
   PRIVATE
     ITK::ITKImageIO
     ITK::ITKCommonModule
+    ITK::ITKImageFeatureModule
     ITK::ITKLevelSetsv4Module
 )
 
 install(
   TARGETS
     ${PROJECT_NAME}
-  DESTINATION bin/ITKSphinxExamples/Bridge/VtkGlue
+  DESTINATION bin/ITKSphinxExamples/Segmentation/LevelSetsv4
   COMPONENT Runtime
 )
 
@@ -26,7 +27,7 @@ install(
     Code.cxx
     CMakeLists.txt
   DESTINATION
-    share/ITKSphinxExamples/Code/Bridge/VtkGlue/VisualizeEvolvingDense2DLevelSetZeroSet
+    share/ITKSphinxExamples/Code/Segmentation/LevelSetsv4/VisualizeEvolvingDense2DLevelSetZeroSet
   COMPONENT Code
 )
 
@@ -35,7 +36,7 @@ add_test(
   NAME VisualizeEvolvingDense2DLevelSetZeroSetTest
   COMMAND
     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
-    ${CMAKE_CURRENT_BINARY_DIR}/cells.png 100
+    ${CMAKE_CURRENT_BINARY_DIR}/cells.png 100 Output.png
 )
 set_tests_properties(
   VisualizeEvolvingDense2DLevelSetZeroSetTest

@@ -4,7 +4,6 @@ Visualize an Evolving Dense 2D Level-Set Zero-Set
 =================================================
 
 .. index::
-   single: VTKVisualizeImageLevelSetIsoValues
    single: BinaryImageToLevelSetImageAdaptor
    single: SinRegularizedHeavisideStepFunction
    single: LevelSetDenseImage
@@ -13,13 +12,14 @@ Visualize an Evolving Dense 2D Level-Set Zero-Set
    single: LevelSetEquationChanAndVeseExternalTerm
    single: LevelSetEvolutionNumberOfIterationsStoppingCriterion
    single: LevelSetEvolution
-   single: LevelSetIterationUpdateCommand
-
+   single: ZeroCrossingImageFilter
 
 Synopsis
 --------
 
-Visualize the evolving zero-set of a dense level-set function 2D rendered.
+Evolve a dense level-set function with the Chan and Vese region terms, extract
+the zero set of the result with itk::ZeroCrossingImageFilter, and write the
+contour as an image.
 
 
 Results
@@ -30,18 +30,6 @@ Results
   :alt: Input image (cells)
 
   Input image
-
-.. figure:: levelsets.*
-  :scale: 100%
-  :alt: Evolving level-sets
-
-  Evolving level-sets
-
-.. only:: html
-
-  .. image:: levelsets.gif
-    :scale: 100%
-    :alt: Evolving level-sets animation
 
 
 Code
@@ -57,4 +45,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. [breathelink:: itk::VTKVisualizeImageLevelSetIsoValues]
+.. breathelink:: itk::LevelSetEvolution
