@@ -4,7 +4,6 @@ Visualize an Evolving Dense 2D Level Set as Elevation Map
 =========================================================
 
 .. index::
-   single: VTKVisualize2DLevelSetAsElevationMap
    single: BinaryImageToLevelSetImageAdaptor
    single: SinRegularizedHeavisideStepFunction
    single: LevelSetDenseImage
@@ -13,13 +12,13 @@ Visualize an Evolving Dense 2D Level Set as Elevation Map
    single: LevelSetEquationChanAndVeseExternalTerm
    single: LevelSetEvolutionNumberOfIterationsStoppingCriterion
    single: LevelSetEvolution
-   single: LevelSetIterationUpdateCommand
-
 
 Synopsis
 --------
 
-Visualize an evolving dense level-set function 2D rendered as an elevation map.
+Evolve a dense level-set function with the Chan and Vese region terms and write
+the final function values as an image. Rendered as a height field, these values
+form an elevation map whose zero level is the evolved contour.
 
 
 Results
@@ -30,18 +29,6 @@ Results
   :alt: Input image (cells)
 
   Input image
-
-.. figure:: levelsets.*
-  :scale: 100%
-  :alt: Evolving level-sets rendered as an elevation map
-
-  Evolving level-sets
-
-.. only:: html
-
-  .. image:: levelsets.gif
-    :scale: 100%
-    :alt: Evolving level-sets animation
 
 
 Code
@@ -57,4 +44,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. [breathelink:: itk::VTKVisualize2DLevelSetAsElevationMap]
+.. breathelink:: itk::LevelSetEvolution

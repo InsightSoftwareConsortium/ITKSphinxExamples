@@ -18,7 +18,6 @@
 
 #include "itkBinaryImageToLevelSetImageAdaptor.h"
 #include "itkImageFileReader.h"
-#include "itkLevelSetIterationUpdateCommand.h"
 #include "itkLevelSetContainer.h"
 #include "itkLevelSetEquationChanAndVeseInternalTerm.h"
 #include "itkLevelSetEquationChanAndVeseExternalTerm.h"
@@ -27,18 +26,19 @@
 #include "itkLevelSetEvolution.h"
 #include "itkLevelSetEvolutionNumberOfIterationsStoppingCriterion.h"
 #include "itkLevelSetDenseImage.h"
-#include "itkVTKVisualize2DLevelSetAsElevationMap.h"
+#include "itkImageFileWriter.h"
 #include "itkSinRegularizedHeavisideStepFunction.h"
 
 int
 main(int argc, char * argv[])
 {
-  if (argc != 3)
+  if (argc != 4)
   {
     std::cerr << "Missing Arguments" << std::endl;
     std::cerr << argv[0] << std::endl;
     std::cerr << "1- Input Image" << std::endl;
     std::cerr << "2- Number of Iterations" << std::endl;
+    std::cerr << "3- Output Image" << std::endl;
     return EXIT_FAILURE;
   }
 
@@ -140,13 +140,6 @@ main(int argc, char * argv[])
   auto criterion = StoppingCriterionType::New();
   criterion->SetNumberOfIterations(numberOfIterations);
 
-  // Create the visualizer
-  using VisualizationType = itk::VTKVisualize2DLevelSetAsElevationMap<InputImageType, LevelSetType>;
-  auto visualizer = VisualizationType::New();
-  visualizer->SetInputImage(input);
-  visualizer->SetLevelSet(levelSet);
-  visualizer->SetScreenCapture(true);
-
   // Create evolution class
   using LevelSetEvolutionType = itk::LevelSetEvolution<EquationContainerType, LevelSetType>;
   auto evolution = LevelSetEvolutionType::New();
@@ -154,14 +147,17 @@ main(int argc, char * argv[])
   evolution->SetStoppingCriterion(criterion);
   evolution->SetLevelSetContainer(levelSetContainer);
 
-  using IterationUpdateCommandType = itk::LevelSetIterationUpdateCommand<LevelSetEvolutionType, VisualizationType>;
-  auto iterationUpdateCommand = IterationUpdateCommandType::New();
-  iterationUpdateCommand->SetFilterToUpdate(visualizer);
-  iterationUpdateCommand->SetUpdatePeriod(5);
-
-  evolution->AddObserver(itk::IterationEvent(), iterationUpdateCommand);
-
   evolution->Update();
+
+  try
+  {
+    itk::WriteImage(levelSet->GetImage(), argv[3]);
+  }
+  catch (const itk::ExceptionObject & error)
+  {
+    std::cerr << "Error: " << error << std::endl;
+    return EXIT_FAILURE;
+  }
 
   return EXIT_SUCCESS;
 }

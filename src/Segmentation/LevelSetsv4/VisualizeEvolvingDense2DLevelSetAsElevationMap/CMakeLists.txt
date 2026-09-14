@@ -17,7 +17,7 @@ target_link_libraries(
 install(
   TARGETS
     ${PROJECT_NAME}
-  DESTINATION bin/ITKSphinxExamples/Bridge/VtkGlue
+  DESTINATION bin/ITKSphinxExamples/Segmentation/LevelSetsv4
   COMPONENT Runtime
 )
 
@@ -26,7 +26,7 @@ install(
     Code.cxx
     CMakeLists.txt
   DESTINATION
-    share/ITKSphinxExamples/Code/Bridge/VtkGlue/VisualizeEvolvingDense2DLevelSetAsElevationMap
+    share/ITKSphinxExamples/Code/Segmentation/LevelSetsv4/VisualizeEvolvingDense2DLevelSetAsElevationMap
   COMPONENT Code
 )
 
@@ -35,7 +35,7 @@ add_test(
   NAME VisualizeEvolvingDense2DLevelSetAsElevationMapTest
   COMMAND
     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}
-    ${CMAKE_CURRENT_BINARY_DIR}/cells.png 100
+    ${CMAKE_CURRENT_BINARY_DIR}/cells.png 100 Output.mha
 )
 set_tests_properties(
   VisualizeEvolvingDense2DLevelSetAsElevationMapTest
