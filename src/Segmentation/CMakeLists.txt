@@ -7,6 +7,7 @@ set(
   KLMRegionGrowing
   LabelVoting
   LevelSets
+  LevelSetsv4
   RegionGrowing
   Voronoi
   Watersheds

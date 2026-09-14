@@ -4,18 +4,17 @@ Visualize a Static Sparse Malcolm 2D Level-Set Layers
 =====================================================
 
 .. index::
-   single: vtkVisualize2DSparseLevelSetLayers
    single: BinaryImageToLevelSetImageAdaptor
    single: MalcolmSparseLevelSetImage
 
 Synopsis
 --------
 
-Visualize a static sparse Malcolm level-set function 2D's layers. From the input
-image, first an otsu thresholding technique is used to get a binary mask, which
-is then converted to a sparse level-set function.
+Convert a binary mask into a sparse Malcolm level-set function and write its
+layers as an image, by sampling the function at every pixel. The mask comes
+from an Otsu threshold of the input image.
 
-Note that Malcolm's representation is composed of a single layer (value = {0});
+The written values are -1, 0, and 1.
 
 
 Results
@@ -26,12 +25,6 @@ Results
   :alt: Input image (cells)
 
   Input image
-
-.. figure:: levelsets.png
-  :scale: 100%
-  :alt: Static level-sets zero-sets
-
-  Static level-sets
 
 
 Code
@@ -47,4 +40,4 @@ C++
 Classes demonstrated
 --------------------
 
-.. [breathelink:: itk::VTKVisualize2DSparseLevelSetLayers]
+.. breathelink:: itk::MalcolmSparseLevelSetImage
