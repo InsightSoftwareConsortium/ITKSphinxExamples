@@ -8,6 +8,4 @@ VtkGlue
   ConvertAnRGBitkImageTovtkImageData/Documentation.rst
   ConvertRGBvtkImageDataToAnitkImage/Documentation.rst
   ConvertvtkImageDataToAnitkImage/Documentation.rst
-  VisualizeEvolvingDense2DLevelSetAsElevationMap/Documentation.rst
-  VisualizeEvolvingDense2DLevelSetZeroSet/Documentation.rst
   VTKImageToITKImage/Documentation.rst

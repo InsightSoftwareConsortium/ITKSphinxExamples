@@ -9,9 +9,4 @@ if(ENABLE_QUICKVIEW)
   #compare_to_baseline(EXAMPLE_NAME VTKImageToITKImage
   #  BASELINE_PREFIX OutputBaseline
   #  )
-
-  if(ITK_VERSION_MAJOR LESS 5)
-    add_example(VisualizeEvolvingDense2DLevelSetAsElevationMap)
-    add_example(VisualizeEvolvingDense2DLevelSetZeroSet)
-  endif()
 endif()
