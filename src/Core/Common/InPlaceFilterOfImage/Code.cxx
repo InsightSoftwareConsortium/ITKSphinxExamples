@@ -21,8 +21,6 @@
 
 #include <itkImageToVTKImageFilter.h>
 
-#include "vtkVersion.h"
-
 #include "vtkSmartPointer.h"
 #include "vtkRenderWindow.h"
 #include "vtkRenderer.h"
@@ -56,12 +54,8 @@ main(int argc, char * argv[])
   connector->SetInput(image);
 
   vtkSmartPointer<vtkImageActor> actor = vtkSmartPointer<vtkImageActor>::New();
-#if VTK_MAJOR_VERSION <= 5
-  actor->SetInput(connector->GetOutput());
-#else
   connector->Update();
   actor->GetMapper()->SetInputData(connector->GetOutput());
-#endif
 
   // There will be one render window
   vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();

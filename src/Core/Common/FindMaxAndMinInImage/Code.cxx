@@ -22,7 +22,6 @@
 
 #include <itkImageToVTKImageFilter.h>
 
-#include "vtkVersion.h"
 #include "vtkImageViewer.h"
 #include "vtkImageMapper3D.h"
 #include "vtkRenderWindowInteractor.h"
@@ -61,12 +60,8 @@ main(int argc, char * argv[])
   originalConnector->SetInput(input);
 
   vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();
-#if VTK_MAJOR_VERSION <= 5
-  originalActor->SetInput(originalConnector->GetOutput());
-#else
   originalConnector->Update();
   originalActor->GetMapper()->SetInputData(originalConnector->GetOutput());
-#endif
 
   vtkSmartPointer<vtkSphereSource> minimumSphereSource = vtkSmartPointer<vtkSphereSource>::New();
   ImageType::IndexType             minimumLocation = imageCalculatorFilter->GetIndexOfMinimum();
@@ -89,7 +84,6 @@ main(int argc, char * argv[])
   vtkSmartPointer<vtkActor> maximumActor = vtkSmartPointer<vtkActor>::New();
   maximumActor->SetMapper(maximumMapper);
   maximumActor->GetProperty()->SetColor(1, 0, 0);
-
 
   // Visualize
   vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();

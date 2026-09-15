@@ -72,24 +72,16 @@ main(int argc, char * argv[])
   connector2->SetInput(image);
 
   vtkSmartPointer<vtkImageActor> actor2 = vtkSmartPointer<vtkImageActor>::New();
-#if VTK_MAJOR_VERSION <= 5
-  actor2->SetInput(connector->GetOutput());
-#else
   connector2->Update();
   actor2->GetMapper()->SetInputData(connector2->GetOutput());
-#endif
 
   // Visualize joined image
   auto addConnector = ConnectorType::New();
   addConnector->SetInput(connectedThreshold->GetOutput());
 
   vtkSmartPointer<vtkImageActor> addActor = vtkSmartPointer<vtkImageActor>::New();
-#if VTK_MAJOR_VERSION <= 5
-  addActor->SetInput(connector->GetOutput());
-#else
   addConnector->Update();
   addActor->GetMapper()->SetInputData(addConnector->GetOutput());
-#endif
 
   // There will be one render window
   vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
@@ -135,7 +127,6 @@ main(int argc, char * argv[])
   interactor->SetInteractorStyle(style);
 
   interactor->Start();
-
 
   return EXIT_SUCCESS;
 }
