@@ -21,7 +21,6 @@
 
 #include "itkImageToVTKImageFilter.h"
 
-#include "vtkVersion.h"
 #include "vtkImageViewer.h"
 #include "vtkImageMapper3D.h"
 #include "vtkRenderWindowInteractor.h"
@@ -59,12 +58,8 @@ main()
   connector1->SetInput(image1);
 
   vtkSmartPointer<vtkImageActor> actor1 = vtkSmartPointer<vtkImageActor>::New();
-#if VTK_MAJOR_VERSION <= 5
-  actor1->SetInput(connector1->GetOutput());
-#else
   connector1->Update();
   actor1->GetMapper()->SetInputData(connector1->GetOutput());
-#endif
 
   // Visualize second image
   using ConnectorType = itk::ImageToVTKImageFilter<ImageType>;
@@ -73,24 +68,16 @@ main()
 
   vtkSmartPointer<vtkImageActor> actor2 = vtkSmartPointer<vtkImageActor>::New();
 
-#if VTK_MAJOR_VERSION <= 5
-  actor2->SetInput(connector2->GetOutput());
-#else
   connector2->Update();
   actor2->GetMapper()->SetInputData(connector2->GetOutput());
-#endif
 
   // Visualize subtracted image
   auto subtractConnector = ConnectorType::New();
   subtractConnector->SetInput(subtractFilter->GetOutput());
 
   vtkSmartPointer<vtkImageActor> subtractActor = vtkSmartPointer<vtkImageActor>::New();
-#if VTK_MAJOR_VERSION <= 5
-  subtractActor->SetInput(subtractConnector->GetOutput());
-#else
   subtractConnector->Update();
   subtractActor->GetMapper()->SetInputData(subtractConnector->GetOutput());
-#endif
   // There will be one render window
   vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
   renderWindow->SetSize(900, 300);
@@ -173,7 +160,6 @@ CreateImage1(ImageType::Pointer image)
     }
   }
 }
-
 
 void
 CreateImage2(ImageType::Pointer image)
