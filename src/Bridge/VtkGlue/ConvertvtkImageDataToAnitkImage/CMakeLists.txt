@@ -6,9 +6,6 @@ find_package(ITK REQUIRED)
 
 # Since we use vtkImageMagnitude
 find_package(VTK REQUIRED COMPONENTS ImagingMath)
-if(VTK_VERSION VERSION_LESS "8.90.0")
-  include(${VTK_USE_FILE})
-endif()
 
 add_executable(${PROJECT_NAME} Code.cxx)
 target_link_libraries(
@@ -18,12 +15,10 @@ target_link_libraries(
     ${VTK_LIBRARIES}
 )
 
-if(NOT VTK_VERSION VERSION_LESS "8.90.0")
-  vtk_module_autoinit(
-    TARGETS ConvertvtkImageDataToAnitkImage
-    MODULES ${VTK_LIBRARIES}
-  )
-endif()
+vtk_module_autoinit(
+  TARGETS ConvertvtkImageDataToAnitkImage
+  MODULES ${VTK_LIBRARIES}
+)
 
 install(
   TARGETS
