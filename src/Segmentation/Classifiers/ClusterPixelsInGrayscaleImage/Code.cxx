@@ -22,7 +22,6 @@
 
 #include <itkImageToVTKImageFilter.h>
 
-#include "vtkVersion.h"
 #include "vtkImageViewer.h"
 #include "vtkRenderWindowInteractor.h"
 #include "vtkSmartPointer.h"
@@ -98,23 +97,15 @@ main()
   auto originalConnector = ConnectorType::New();
   originalConnector->SetInput(image);
   vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();
-#if VTK_MAJOR_VERSION <= 5
-  originalActor->SetInput(originalConnector->GetOutput());
-#else
   originalConnector->Update();
   originalActor->SetInputData(originalConnector->GetOutput());
-#endif
 
   auto outputConnector = ConnectorType::New();
   outputConnector->SetInput(rescaleFilter->GetOutput());
 
   vtkSmartPointer<vtkImageActor> outputActor = vtkSmartPointer<vtkImageActor>::New();
-#if VTK_MAJOR_VERSION <= 5
-  outputActor->SetInput(outputConnector->GetOutput());
-#else
   outputConnector->Update();
   outputActor->SetInputData(outputConnector->GetOutput());
-#endif
 
   // There will be one render window
   vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
@@ -138,7 +129,6 @@ main()
   renderWindow->AddRenderer(rightRenderer);
   rightRenderer->SetViewport(rightViewport);
   rightRenderer->SetBackground(.4, .5, .6);
-
 
   // Add the sphere to the left and the cube to the right
   leftRenderer->AddActor(originalActor);

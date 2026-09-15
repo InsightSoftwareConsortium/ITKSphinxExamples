@@ -28,8 +28,6 @@
 #include "itkImageToVTKImageFilter.h"
 #include "itkCenteredTransformInitializer.h"
 
-#include "vtkVersion.h"
-
 #include "vtkSmartPointer.h"
 #include "vtkRenderWindow.h"
 #include "vtkRenderer.h"
@@ -87,12 +85,8 @@ public:
     m_Connector->SetInput(m_Filter->GetOutput());
     m_Connector->Update();
 
-#if VTK_MAJOR_VERSION <= 5
-    m_ImageActor->SetInput(m_Connector->GetOutput());
-#else
     m_Connector->Update();
     m_ImageActor->GetMapper()->SetInputData(m_Connector->GetOutput());
-#endif
     m_RenderWindow->Render();
   }
   void
@@ -281,12 +275,8 @@ main(int argc, char * argv[])
   connector->SetInput(flip->GetOutput());
 
   vtkSmartPointer<vtkImageActor> actor = vtkSmartPointer<vtkImageActor>::New();
-#if VTK_MAJOR_VERSION <= 5
-  actor->SetInput(connector->GetOutput());
-#else
   connector->Update();
   actor->GetMapper()->SetInputData(connector->GetOutput());
-#endif
   vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
   vtkSmartPointer<vtkRenderer>     renderer = vtkSmartPointer<vtkRenderer>::New();
   renderer->SetBackground(.4, .5, .6);

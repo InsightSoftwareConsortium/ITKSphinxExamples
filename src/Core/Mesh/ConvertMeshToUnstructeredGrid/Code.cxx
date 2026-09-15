@@ -22,7 +22,6 @@
 #include "itkQuadrilateralCell.h"
 
 // VTK
-#include "vtkVersion.h"
 #include <vtkCellArray.h>
 #include <vtkSmartPointer.h>
 #include <vtkUnstructuredGrid.h>
@@ -109,11 +108,7 @@ main()
   // Write file
   vtkSmartPointer<vtkXMLUnstructuredGridWriter> writer = vtkSmartPointer<vtkXMLUnstructuredGridWriter>::New();
   writer->SetFileName("output.vtu");
-#if VTK_MAJOR_VERSION <= 5
-  writer->SetInputConnection(unstructuredGrid->GetProducerPort());
-#else
   writer->SetInputData(unstructuredGrid);
-#endif
   writer->Write();
 
   return EXIT_SUCCESS;

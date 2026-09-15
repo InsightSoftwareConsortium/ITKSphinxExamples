@@ -10,12 +10,9 @@ if(ENABLE_QUICKVIEW)
     VTK
     REQUIRED
     COMPONENTS
-      ${_vtk_prefix}RenderingCore
-      ${_vtk_prefix}RenderingGL2PSOpenGL2
+      RenderingCore
+      RenderingGL2PSOpenGL2
   )
-  if(VTK_VERSION VERSION_LESS "8.90.0")
-    include(${VTK_USE_FILE})
-  endif()
 
   add_executable(${PROJECT_NAME} Code.cxx)
   target_link_libraries(
@@ -29,12 +26,10 @@ if(ENABLE_QUICKVIEW)
       ${VTK_LIBRARIES}
   )
 
-  if(NOT VTK_VERSION VERSION_LESS "8.90.0")
-    vtk_module_autoinit(
-      TARGETS BinaryMinMaxCurvatureFlow
-      MODULES ${VTK_LIBRARIES}
-    )
-  endif()
+  vtk_module_autoinit(
+    TARGETS BinaryMinMaxCurvatureFlow
+    MODULES ${VTK_LIBRARIES}
+  )
 else()
   add_executable(${PROJECT_NAME} Code.cxx)
   target_link_libraries(

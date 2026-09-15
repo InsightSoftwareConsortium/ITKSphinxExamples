@@ -5,21 +5,14 @@ project(ConvertMeshToUnstructeredGrid)
 find_package(ITK REQUIRED)
 
 find_package(VTK REQUIRED)
-set(_vtk_prefix "")
-if(VTK_VERSION VERSION_LESS "8.90.0")
-  set(_vtk_prefix "vtk")
-endif()
 find_package(
   VTK
   REQUIRED
   COMPONENTS
-    ${_vtk_prefix}IOXML
-    ${_vtk_prefix}CommonDataModel
-    ${_vtk_prefix}InteractionImage
+    IOXML
+    CommonDataModel
+    InteractionImage
 )
-if(VTK_VERSION VERSION_LESS "8.90.0")
-  include(${VTK_USE_FILE})
-endif()
 
 add_executable(${PROJECT_NAME} Code.cxx)
 target_link_libraries(
@@ -30,12 +23,10 @@ target_link_libraries(
     ${VTK_LIBRARIES}
 )
 
-if(NOT VTK_VERSION VERSION_LESS "8.90.0")
-  vtk_module_autoinit(
-    TARGETS WatchRegistration
-    MODULES ${VTK_LIBRARIES}
-  )
-endif()
+vtk_module_autoinit(
+  TARGETS WatchRegistration
+  MODULES ${VTK_LIBRARIES}
+)
 
 install(
   TARGETS

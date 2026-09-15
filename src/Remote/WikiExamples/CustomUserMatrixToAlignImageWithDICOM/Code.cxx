@@ -19,7 +19,6 @@
  * #include <itkRandomImageSource.h>
 #include "itkImageToVTKImageFilter.h"
 
-#include "vtkVersion.h"
 #include <vtkSmartPointer.h>
 #include <vtkGPUVolumeRayCastMapper.h>
 #include <vtkColorTransferFunction.h>
@@ -90,12 +89,8 @@ int main(int argc, char *argv[])
 
   vtkSmartPointer<vtkGPUVolumeRayCastMapper> volumeMapper =
       vtkSmartPointer<vtkGPUVolumeRayCastMapper>::New();
-#if VTK_MAJOR_VERSION <= 5
-  volumeMapper->SetInput(conv->GetOutput());
-#else
   conv->Update();
   volumeMapper->SetInputData(conv->GetOutput());
-#endif
 
   vtkSmartPointer<vtkVolumeProperty> volumeProperty =
   vtkSmartPointer<vtkVolumeProperty>::New();
