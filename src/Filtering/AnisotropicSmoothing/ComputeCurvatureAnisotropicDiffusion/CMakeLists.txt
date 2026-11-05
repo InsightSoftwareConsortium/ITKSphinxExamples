@@ -11,16 +11,23 @@ set(
 
 project(ComputeCurvatureAnisotropicDiffusion)
 
-find_package(ITK REQUIRED)
+find_package(
+  ITK
+  REQUIRED
+  COMPONENTS
+    ITKIOImageBase
+    ITKAnisotropicSmoothing
+    ITKImageIntensity
+    ITKImageIO
+)
 itk_generate_factory_registration()
 
 add_executable(${PROJECT_NAME} Code.cxx)
 target_link_libraries(
   ${PROJECT_NAME}
   PRIVATE
+    ${ITK_INTERFACE_LIBRARIES}
     ITK::ITKImageIO
-    ITK::ITKAnisotropicSmoothingModule
-    ITK::ITKImageIntensityModule
 )
 
 install(
